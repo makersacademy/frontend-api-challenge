@@ -1,0 +1,23 @@
+{
+  "name": "frontend-api-challenge",
+  "version": "1.0.0",
+  "description": "The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toddpla/frontend-api-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toddpla/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/toddpla/frontend-api-challenge#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
