@@ -17,3 +17,5 @@ Here are some interactions the API supports. Implement as many as you see fit.
 
 # structure
 ### [react](https://reactjs.org/) frontend | [express](https://expressjs.com/) server | [jest](https://jestjs.io/) + [enzyme](https://airbnb.io/enzyme/) testing | [travis](https://travis-ci.org/) pipeline
+
+# setup
