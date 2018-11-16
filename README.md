@@ -16,4 +16,4 @@ Here are some interactions the API supports. Implement as many as you see fit.
 * Unliking Peeps
 
 # structure
-### [react](https://reactjs.org/) frontend | [express](https://expressjs.com/) server | [jest](https://jestjs.io/) testing | [travis](https://travis-ci.org/) pipeline
+### [react](https://reactjs.org/) frontend | [express](https://expressjs.com/) server | [jest](https://jestjs.io/) + [enzyme](https://airbnb.io/enzyme/) testing | [travis](https://travis-ci.org/) pipeline
