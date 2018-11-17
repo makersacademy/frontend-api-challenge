@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 import AppRouter from './routers/AppRouter'
-import { setPeeps } from './actions/peeps'
+import { startSetPeeps } from './actions/peeps'
 
 const store = configureStore()
 
@@ -19,6 +19,6 @@ const jsx = (
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
 
-// store.dispatch(setPeeps())//.then(() => {
+store.dispatch(startSetPeeps())//.then(() => {
   ReactDOM.render(jsx, document.getElementById('app'));
 // })

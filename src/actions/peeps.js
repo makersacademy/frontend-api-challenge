@@ -20,7 +20,8 @@ export const startSetPeeps = () => {
     return fetch("https://chitter-backend-api.herokuapp.com/peeps").then(response => {
       return response.json()
     }).then(json => {
-      return json
-    })
+      console.log(json)
+      dispatch(setPeeps(json))
+    }).catch((e) => console.log(e))
   }
 }
