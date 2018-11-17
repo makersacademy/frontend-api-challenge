@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render HomePage correctly 1`] = `
-<h1>
-  Chitter
-</h1>
+<div
+  className="container"
+>
+  <h1>
+    Chitter
+  </h1>
+  <Connect(PeepForm) />
+  <Connect(Feed) />
+</div>
 `;

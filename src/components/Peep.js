@@ -1,13 +1,9 @@
 import React from 'react'
 
-export class Peep extends React.Component {
-  render() {
-    return (
-      <li>
-        <p>Peep</p>
-      </li>
-    )
-  }
-}
+export const Peep = (props) => (
+  <li>
+    <p>{props.peep.body}</p>
+  </li>
+)
 
 export default Peep

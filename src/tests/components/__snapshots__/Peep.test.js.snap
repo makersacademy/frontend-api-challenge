@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Feed correctly 1`] = `
+<li>
+  <p>
+    test peep one
+  </p>
+</li>
+`;

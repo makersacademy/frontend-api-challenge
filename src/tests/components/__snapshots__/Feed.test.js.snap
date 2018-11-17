@@ -10,7 +10,7 @@ exports[`should render Feed correctly 1`] = `
       key="0"
       peep={
         Object {
-          "peep": "test peep one",
+          "body": "test peep one",
         }
       }
     />
@@ -18,7 +18,7 @@ exports[`should render Feed correctly 1`] = `
       key="1"
       peep={
         Object {
-          "peep": "test peep two",
+          "body": "test peep two",
         }
       }
     />
@@ -26,7 +26,7 @@ exports[`should render Feed correctly 1`] = `
       key="2"
       peep={
         Object {
-          "peep": "test peep three",
+          "body": "test peep three",
         }
       }
     />
