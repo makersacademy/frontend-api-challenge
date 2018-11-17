@@ -1,6 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { addPeep } from '../actions/peeps'
 
 export class PeepForm extends React.Component {
 
@@ -14,9 +12,19 @@ export class PeepForm extends React.Component {
   onSubmit = (e) => {
     e.preventDefault()
     let peep = {
-      body: e.target['peep-body'].value
+      body: this.state.body
     }
-    this.props.addPeep(peep)
+    this.setState({
+       body: ''
+      });
+    this.props.onSubmit(peep);
+  }
+
+  handlePeepChange = (e) => {
+    e.preventDefault()
+    this.setState({
+       body: e.target.value
+      });
   }
 
   render() {
@@ -27,7 +35,8 @@ export class PeepForm extends React.Component {
           <textarea
             id="peep-body"
             className="form-control"
-            defaultValue={this.state.body}
+            value={this.state.body}
+            onChange={this.handlePeepChange}
             required>
           </textarea>
           <button
@@ -40,8 +49,4 @@ export class PeepForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, props) => ({
-  addPeep: (peep) => dispatch(addPeep(peep))
-})
-
-export default connect(undefined, mapDispatchToProps)(PeepForm)
+export default PeepForm

@@ -4,6 +4,7 @@ import Peep from './Peep'
 
 export const Feed = (props) => {
   let insert;
+  
   console.log(props.peeps)
   if (props.peeps === undefined || props.peeps.length == 0) {
     insert = <p>No peeps yet!</p>
@@ -19,7 +20,6 @@ export const Feed = (props) => {
     </div>
   )
 }
-
 
 const mapStateToProps = (state) => {
   return {
