@@ -7,7 +7,9 @@ exports[`should render HomePage correctly 1`] = `
   <h1>
     Chitter
   </h1>
-  <Connect(PeepForm) />
+  <PeepForm
+    onSubmit={[Function]}
+  />
   <Connect(Feed) />
 </div>
 `;
