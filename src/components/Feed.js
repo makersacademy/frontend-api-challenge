@@ -1,13 +1,30 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Peep from './Peep'
 
-export const Feed = (props) => (
+export const Feed = (props) => {
+  let insert;
+  console.log(props.peeps)
+  if (props.peeps === undefined || props.peeps.length == 0) {
+    insert = <p>No peeps yet!</p>
+  } else {
+    insert = props.peeps.map((peep, index) => <Peep key={index} peep={peep}/>)
+  }
+  return (
     <div>
       <h1>Feed</h1>
       <ul>
-        {props.peeps.map((peep, index) => <Peep key={index} peep={peep}/>)}
+        {insert}
       </ul>
     </div>
   )
+}
 
-export default Feed
+
+const mapStateToProps = (state) => {
+  return {
+    peeps: state.peeps
+  }
+}
+
+export default connect(mapStateToProps)(Feed)

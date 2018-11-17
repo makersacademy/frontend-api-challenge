@@ -1,9 +1,9 @@
 export default [
   {
-    peep: "test peep one"
+    body: "test peep one"
   }, {
-    peep: "test peep two"
+    body: "test peep two"
   }, {
-    peep: "test peep three"
+    body: "test peep three"
   }
 ]
