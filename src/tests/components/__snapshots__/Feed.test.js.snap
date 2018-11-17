@@ -7,10 +7,18 @@ exports[`should render Feed correctly 1`] = `
   </h1>
   <ul>
     <Peep
-      key="0"
+      key="1"
       peep={
         Object {
           "body": "test peep one",
+          "created_at": "2018-11-17T19:40:58.497Z",
+          "id": 1,
+          "likes": Array [],
+          "updated_at": "2018-11-17T19:40:58.497Z",
+          "user": Object {
+            "handle": "toddpla",
+            "id": 100,
+          },
         }
       }
     />
@@ -19,14 +27,30 @@ exports[`should render Feed correctly 1`] = `
       peep={
         Object {
           "body": "test peep two",
+          "created_at": "2018-11-17T19:40:58.497Z",
+          "id": 1,
+          "likes": Array [],
+          "updated_at": "2018-11-17T19:40:58.497Z",
+          "user": Object {
+            "handle": "toddpla",
+            "id": 100,
+          },
         }
       }
     />
     <Peep
-      key="2"
+      key="1"
       peep={
         Object {
           "body": "test peep three",
+          "created_at": "2018-11-17T19:40:58.497Z",
+          "id": 1,
+          "likes": Array [],
+          "updated_at": "2018-11-17T19:40:58.497Z",
+          "user": Object {
+            "handle": "toddpla",
+            "id": 100,
+          },
         }
       }
     />

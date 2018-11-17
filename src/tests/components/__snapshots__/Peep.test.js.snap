@@ -3,7 +3,17 @@
 exports[`should render Feed correctly 1`] = `
 <li>
   <p>
+    #
+    toddpla
+     @ 
+    2018-11-17T19:40:58.497Z
+  </p>
+  <p>
     test peep one
+  </p>
+  <p>
+    likes: 
+    0
   </p>
 </li>
 `;
