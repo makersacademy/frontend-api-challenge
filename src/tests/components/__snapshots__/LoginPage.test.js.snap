@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render LoginPage correctly 1`] = `
+<div
+  className="container"
+>
+  <h1>
+    Login
+  </h1>
+  <p>
+    It's time to start peeping.
+  </p>
+  <div
+    className="form-group"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="handle"
+      >
+        Handle
+      </label>
+      <input
+        className="form-control"
+        id="handle"
+        onChange={[Function]}
+        value=""
+      />
+      <label
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="form-control"
+        id="password"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+      <button
+        className="btn btn-success float-right"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>
+`;

@@ -6,17 +6,6 @@ import { startLikePeep } from '../actions/peeps'
 
 export class Feed extends React.Component {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     peeps = props.peeps
-  //   }
-  // }
-
-  // handleLike = (id) => {
-  //   const x = this.props.startLikePeep(id)
-  // }
-
   render() {
     let peeps;
     if (this.props.peeps === undefined || this.props.peeps.length == 0) {

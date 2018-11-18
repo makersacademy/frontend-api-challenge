@@ -19,6 +19,5 @@ const jsx = (
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
 
-store.dispatch(startSetPeeps())//.then(() => {
-  ReactDOM.render(jsx, document.getElementById('app'));
-// })
+store.dispatch(startSetPeeps())
+ReactDOM.render(jsx, document.getElementById('app'));

@@ -10,6 +10,8 @@ exports[`should render HomePage correctly 1`] = `
   <PeepForm
     onSubmit={[Function]}
   />
-  <Connect(Feed) />
+  <Connect(Feed)
+    onRemovePeep={[Function]}
+  />
 </div>
 `;

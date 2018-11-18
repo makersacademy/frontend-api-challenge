@@ -19,8 +19,3 @@ export const startCreateUser = (userData = {}) => {
     }).catch(e => console.log(e))
   }
 }
-//
-// curl "https://chitter-backend-api.herokuapp.com/users" \
-//   -X POST \
-//   -H "Content-Type: application/json" \
-//   -d '{"user": {"handle":"toddpla", "password":"password"}}'

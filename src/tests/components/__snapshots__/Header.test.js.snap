@@ -4,12 +4,15 @@ exports[`should render Feed correctly 1`] = `
 <nav
   className="navbar navbar-expand-lg navbar-light bg-light"
 >
-  <a
-    className="navbar-brand"
-    href="#"
+  <NavLink
+    activeClassName="is-active"
+    ariaCurrent="true"
+    className="nav-link"
+    exact={true}
+    to="/homepage"
   >
-    Chitter
-  </a>
+     Chitter 
+  </NavLink>
   <button
     aria-controls="navbarNav"
     aria-expanded="false"
@@ -33,47 +36,28 @@ exports[`should render Feed correctly 1`] = `
       <li
         className="nav-item active"
       >
-        <a
+        <NavLink
+          activeClassName="is-active"
+          ariaCurrent="true"
           className="nav-link"
-          href="#"
+          exact={true}
+          to="/"
         >
-          Home 
-          <span
-            className="sr-only"
-          >
-            (current)
-          </span>
-        </a>
+           Login 
+        </NavLink>
       </li>
       <li
-        className="nav-item"
+        className="nav-item active"
       >
-        <a
+        <NavLink
+          activeClassName="is-active"
+          ariaCurrent="true"
           className="nav-link"
-          href="#"
+          exact={true}
+          to="/users/new"
         >
-          Features
-        </a>
-      </li>
-      <li
-        className="nav-item"
-      >
-        <a
-          className="nav-link"
-          href="#"
-        >
-          Pricing
-        </a>
-      </li>
-      <li
-        className="nav-item"
-      >
-        <a
-          className="nav-link disabled"
-          href="#"
-        >
-          Disabled
-        </a>
+           Register 
+        </NavLink>
       </li>
     </ul>
   </div>

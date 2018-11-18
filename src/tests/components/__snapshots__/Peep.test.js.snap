@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Feed correctly 1`] = `
-<li>
+<div
+  className="border"
+>
   <p>
     #
     toddpla
@@ -11,9 +13,14 @@ exports[`should render Feed correctly 1`] = `
   <p>
     test peep one
   </p>
-  <p>
-    likes: 
-    0
-  </p>
-</li>
+  <Connect(Like)
+    id={1}
+    likes={Array []}
+  />
+  <button
+    onClick={[Function]}
+  >
+    Delete
+  </button>
+</div>
 `;

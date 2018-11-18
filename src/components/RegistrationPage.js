@@ -36,7 +36,8 @@ export class RegistrationPage extends React.Component {
 
   render() {
     return (
-      <div className="form-group">
+      <div className="form-group container">
+      <h1>Registration</h1>
         <form onSubmit={this.onSubmit}>
           <label htmlFor="handle">Handle</label>
             <input

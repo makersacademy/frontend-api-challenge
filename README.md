@@ -21,3 +21,21 @@ Here are some interactions the API supports. Implement as many as you see fit.
 ### [react](https://reactjs.org/) frontend | [express](https://expressjs.com/) server | [jest](https://jestjs.io/) + [enzyme](https://airbnb.io/enzyme/) testing | [travis](https://travis-ci.org/toddpla/frontend-api-challenge) build | [heroku](https://chitter-react.herokuapp.com/) deployment
 
 # setup
+installation with yarn recommended ```brew install yarn```
+
+```sh
+git clone https://github.com/toddpla/chitter-react.git
+
+cd chitter-react
+
+yarn install
+
+yarn dev-server
+```
+app will be served to localhost:8080
+
+# test
+
+```sh
+yarn test
+```

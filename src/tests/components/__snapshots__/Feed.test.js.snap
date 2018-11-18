@@ -5,7 +5,7 @@ exports[`should render Feed correctly 1`] = `
   <h1>
     Feed
   </h1>
-  <ul>
+  <div>
     <Peep
       key="1"
       peep={
@@ -54,6 +54,6 @@ exports[`should render Feed correctly 1`] = `
         }
       }
     />
-  </ul>
+  </div>
 </div>
 `;

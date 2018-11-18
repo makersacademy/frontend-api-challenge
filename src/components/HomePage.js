@@ -10,15 +10,6 @@ export class HomePage extends React.Component {
 
   onSubmit = (peep) => {
     this.props.startAddPeep(peep)
-    // this.props.history.push('/homepage')
-  }
-
-  // onLikePeep = (id) => {
-  //   this.props.startLikePeep(id).then(user => user)
-  // }
-
-  onUnLikePeep = (id) => {
-    this.props.startUnLikePeep(id).then(user => user)
   }
 
   onRemovePeep = (id) => {
@@ -31,8 +22,6 @@ export class HomePage extends React.Component {
         <h1>Chitter</h1>
         <PeepForm onSubmit={this.onSubmit} />
         <Feed
-          // onLikePeep={this.onLikePeep}
-          onUnLikePeep={this.onUnLikePeep}
           onRemovePeep={this.onRemovePeep}/>
       </div>
     )
@@ -42,8 +31,6 @@ export class HomePage extends React.Component {
 const mapDispatchToProps = (dispatch, props) => ({
   startAddPeep: peep => dispatch(startAddPeep(peep)),
   startRemovePeep: id => dispatch(startRemovePeep(id)),
-  // startLikePeep: id => dispatch(startLikePeep(id)),
-  startLikePeep: id => dispatch(startLikePeep(id))
 })
 
 export default connect(undefined, mapDispatchToProps)(HomePage)

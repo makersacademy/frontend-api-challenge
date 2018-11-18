@@ -36,7 +36,6 @@ export class Like extends React.Component {
     return (
       <div>
         likes: {this.props.likes.length}
-        <p>liked: {this.state.liked}</p>
         <button onClick={this.handleLike}>👍</button>
         <button onClick={this.handleUnlike}>👎</button>
       </div>

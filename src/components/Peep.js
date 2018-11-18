@@ -16,14 +16,11 @@ export class Peep extends React.Component {
         <Like
           id={this.props.peep.id}
           likes={this.props.peep.likes} />
-        <button onClick={this.handleRemovePeep}>Delete</button>
+        <button
+          onClick={this.handleRemovePeep}>Delete</button>
       </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  // startLikePeep: (id) => dispatch(startLikePeep(id))
-})
-
-export default connect(undefined, mapDispatchToProps)(Peep)
+export default Peep

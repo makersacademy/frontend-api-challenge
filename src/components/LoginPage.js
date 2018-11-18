@@ -36,7 +36,7 @@ export class LoginPage extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>Chitter</h1>
+        <h1>Login</h1>
         <p>It's time to start peeping.</p>
         <div className="form-group">
           <form onSubmit={this.onSubmit}>
