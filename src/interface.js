@@ -1,16 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
   var button = document.getElementById('showAllPeeps')
+  var allPeeps = document.getElementById('allPeeps')
   button.addEventListener("click", function () {
-    if( button.style.display == "none" ) {
-      button.style.display = "block";
+    if( allPeeps.style.display == "none" ) {
+      allPeeps.style.display = "block"
+    } else {
+      allPeeps.style.display = "none"
     }
     listAllPeeps()
   })
 })
-
-// function nestTags(a, b, c) {
-//   var nodes = arguments;
-//     for(var i = 1; i < nodes.length; i++) {
-//       nodes[i - 1].appendChild(nodes[i]);
-//     }
-//   };

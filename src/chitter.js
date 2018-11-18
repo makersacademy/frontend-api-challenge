@@ -8,8 +8,6 @@ fetch(url)
   })
   .then(function(myJson) {
     myJson.forEach(function(item) {
-      console.log(item['body'])
-      var listItem = item["body"]
       ul = document.getElementById('allPeepsList')
       li = document.createElement('li')
       li.innerHTML = item["body"] + ':' + item['user']['handle']
