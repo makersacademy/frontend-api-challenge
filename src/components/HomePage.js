@@ -10,14 +10,13 @@ export class HomePage extends React.Component {
 
   onSubmit = (peep) => {
     this.props.startAddPeep(peep)
-    this.props.history.push('/')
+    this.props.history.push('/homepage')
   }
 
   render() {
     return (
       <div className="container">
         <h1>Chitter</h1>
-        <Link to="/users/new">Register</Link>
         <PeepForm onSubmit={this.onSubmit}/>
         <Feed />
       </div>
@@ -25,12 +24,8 @@ export class HomePage extends React.Component {
   }
 }
 
-// const mapStateToProps = (state, props) => ({
-//   session: state.sessions
-// })
-
 const mapDispatchToProps = (dispatch, props) => ({
   startAddPeep: (peep) => dispatch(startAddPeep(peep))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(undefined, mapDispatchToProps)(HomePage)

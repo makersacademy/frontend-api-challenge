@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { startLogin } from '../actions/auth'
+import { startLogin } from '../actions/sessions'
 
 export class LoginPage extends React.Component {
   constructor(props) {
@@ -30,6 +30,7 @@ export class LoginPage extends React.Component {
       password: this.state.password
     }
     this.props.startLogin(auth)
+    this.props.history.push('/homepage')
   }
 
   render() {
@@ -56,6 +57,7 @@ export class LoginPage extends React.Component {
               <input
                 id="password"
                 className="form-control"
+                type="password"
                 value={this.state.password}
                 onChange={this.handlePasswordChange}
                 />

@@ -3,7 +3,7 @@ export const login = (session) => ({
   session
 })
 
-export const startLogin = (auth = {}) => ({
+export const startLogin = (auth = {}) => {
   return (dispatch) => {
     const requestHeader = {
       method: "POST",
@@ -13,12 +13,12 @@ export const startLogin = (auth = {}) => ({
       body: JSON.stringify({'session': auth})
     }
     return fetch("https://chitter-backend-api.herokuapp.com/sessions", requestHeader).then(response => {
-      return respones.json()
+      return response.json()
     }).then(json => {
       dispatch(login(json))
     }).catch(e => console.log(e))
   }
-})
+}
 
 export const logout = () => ({
   type: 'LOGOUT'
