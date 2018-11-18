@@ -14,6 +14,9 @@ export default (state=peepsReducerDefaultState, action) => {
       // const index = state.findIndex((peep) => peep.id === action.id))
       state[state.findIndex((peep) => peep.id === action.id)].likes.push(action.user)
       return state
+    case 'UNLIKE_PEEP':
+      state[state.findIndex((peep) => peep.id === action.id)].likes = []
+      return state
     default:
       return state
   }

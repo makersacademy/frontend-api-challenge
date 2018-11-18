@@ -22,11 +22,6 @@ export const startAddPeep = (peepData = {}) => {
   }
 }
 
-export const removePeep = ({id} = {}) => ({
-  type: 'REMOVE_PEEP',
-  id
-})
-
 export const setPeeps = (peeps) => ({
   type: 'SET_PEEPS',
   peeps
@@ -58,9 +53,64 @@ export const startLikePeep = (id = {}) => {
       }),
     }
     return fetch(`https://chitter-backend-api.herokuapp.com/peeps/${id}/likes/${session.user_id}`, requestHeader).then(response => {
-      return response.json()
+      switch (response.status) {
+        case 201:
+          return response.json()
+        default:
+          throw(`Status: ${response.status} not set in fetch`)
+      }
     }).then(json => {
       dispatch(likePeep(id, json.user))
+      return {id, user: json.user}
+    }).catch(e => console.log(e))
+  }
+}
+
+export const unlikePeep = (id) => ({
+  type: 'UNLIKE_PEEP',
+  id
+})
+
+export const startUnlikePeep = (id = {}) => {
+  return (dispatch, getState) => {
+    const session = getState().sessions
+    const requestHeader = {
+      method: "DELETE",
+      headers: new Headers({
+        'Authorization': `Token token=${session.session_key}`,
+      }),
+    }
+    return fetch(`https://chitter-backend-api.herokuapp.com/peeps/${id}/likes/${session.user_id}`, requestHeader).then(response => {
+      switch (response.status) {
+        case 204:
+          return response
+        default:
+          throw(`Status: ${response.status} not set in fetch`)
+      }
+    }).then(response => {
+      dispatch(unlikePeep(id))
+    }).catch(e => console.log(e))
+  }
+}
+
+export const removePeep = (id) => ({
+  type: 'REMOVE_PEEP',
+  id
+})
+
+export const startRemovePeep = (id = {}) => {
+  return (dispatch, getState) => {
+    const session = getState().sessions
+    const reqestHeader = {
+      method: "DELETE",
+      headers: new Headers({
+        'Authorization': `Token token=${session.session_key}`,
+      })
+    }
+    return fetch(`https://chitter-backend-api.herokuapp.com/peeps/${id}`, reqestHeader).then(response => {
+      return response
+    }).then(response => {
+      if(response.status === 204) dispatch(removePeep(id))
     }).catch(e => console.log(e))
   }
 }

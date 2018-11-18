@@ -13,24 +13,31 @@ export class Feed extends React.Component {
   //   }
   // }
 
-  handleLike = (id) => {
-    const x = this.props.startLikePeep(id)
-    console.log(x)
-  }
+  // handleLike = (id) => {
+  //   const x = this.props.startLikePeep(id)
+  // }
 
   render() {
-    let insert;
+    let peeps;
     if (this.props.peeps === undefined || this.props.peeps.length == 0) {
-      insert = <p>No peeps yet!</p>
+      peeps = <p>No peeps yet!</p>
     } else {
-      insert = this.props.peeps.map((peep) => <Peep key={peep.id} peep={peep} handleLike={this.handleLike}/>)
+      peeps = this.props.peeps.map((peep) => {
+        return (
+          <Peep
+            key={peep.id}
+            peep={peep}
+            handleLikePeep={this.props.onLikePeep}
+            handleRemovePeep={this.props.onRemovePeep}/>
+        )
+      })
     }
     return (
       <div>
         <h1>Feed</h1>
-        <ul>
-          {insert}
-        </ul>
+        <div>
+          {peeps}
+        </div>
       </div>
     )
   }
