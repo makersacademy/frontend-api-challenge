@@ -3,6 +3,11 @@ const express = require('express')
 const PORT = 3000
 const publicPath = path.join(__dirname, 'public')
 const app = express()
+const helmet = require('helmet')
+
+app.use(helmet({
+  frameguard: false
+}))
 
 app.use(express.static(publicPath))
 
