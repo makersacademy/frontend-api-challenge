@@ -1,21 +1,34 @@
 import React, { Component } from "react";
+
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from "react-router-dom";
+import Home from "./Home";
+import Signup from "./Signup";
+import Login from "./Login";
  
-class Main extends Component {
+class App extends Component {
   render() {
     return (
+      <HashRouter>
         <div>
           <h1>Join Chitter Today</h1>
           <ul className="header">
-            <li><a href="/">Homepage</a></li>
-            <li><a href="/Sign up">Sign up</a></li>
-            <li><a href="/Log in">Log in</a></li>
+          <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/signup">Signup</NavLink></li>
+            <li><NavLink to="/login">Login</NavLink></li>
           </ul>
           <div className="content">
-             
+             <Route path="/" component={Home}/>
+             <Route path="/signup" component={Signup}/>
+             <Route path="/login" component={Login}/>
           </div>
         </div>
+      </HashRouter>
     );
   }
 }
  
-export default Main;
+export default App;
