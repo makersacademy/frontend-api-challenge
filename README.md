@@ -1,38 +1,74 @@
-# Chitter API Frontend Challenge
+# FEND Chitter Challenge with React
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Twitter clone that uses
 
-Challenge:
--------
+## Getting Started
 
-As usual please start by forking this repo.
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+### Prerequisites
+* [node]()
+* give link to setting up [nvm](https://www.taniarascia.com/how-to-install-and-use-node-js-and-npm-mac-and-windows/)
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+### Installing
+* `git clone git@github.com:CazaBelle/frontend-api-challenge.git`
+* `cd frontend-api-challenge`
+* 
 
-Here are some interactions the API supports. Implement as many as you see fit.
+## QuickStart
+`npm start`
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+## Running the tests
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+* `open SpecRunner.html`
 
-## Utilities you might find useful
+### Break down into end to end tests
 
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+`surge etc`
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* [Creating a SPA in React with React Router](https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm)
+
+* [Fetching API Data](https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2)
