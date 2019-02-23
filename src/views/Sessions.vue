@@ -2,7 +2,7 @@
     <div id="login">
         <h1>Sign up</h1>
         <input type="text" name="handle" v-model="session.handle" placeholder="Handle" />
-        <input type="password" name="password" v-model="input.password" placeholder="Password" />
+        <input type="password" name="password" v-model="session.password" placeholder="Password" />
         <button type="button" v-on:click="signin()">Sign In</button>
     </div>
 </template>
@@ -24,7 +24,7 @@ import router from '../router'
         },
         methods: {
             signin() {
-              axios.post('https://chitter-backend-api.herokuapp.com//users', {
+              axios.post('https://chitter-backend-api.herokuapp.com//sessions', {
                 session: {
                   handle: this.session.handle,
                   password: this.session.password
@@ -35,7 +35,7 @@ import router from '../router'
               if (response.statusText === 'Created') {
                 router.push('/')
               } else {
-                alert('Duplicate handle')
+                console.log('Login failed')
               }
 
             })
