@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1"
   },
