@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
     "material-design-icons": "^3.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
@@ -29,6 +30,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
+    "jasmine-enzyme": "^7.0.1",
     "react-test-renderer": "^16.8.3"
   }
 }
