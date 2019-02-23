@@ -10,6 +10,7 @@
 
 <script>
 import axios from 'axios'
+import router from '../router'
 
     export default {
         name: 'Users',
@@ -31,8 +32,12 @@ import axios from 'axios'
             })
             .then(function (response) {
               console.log(response)
-              if response.statusText == 'created'
-                
+              if (response.statusText === 'Created') {
+                router.push('/')
+              } else {
+                alert('Duplicate handle')
+              }
+
             })
             .catch(function (error) {
               console.log(error)
