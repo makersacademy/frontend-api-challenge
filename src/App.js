@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from "react";
-import Logo from "./components/Logo";
+import ButtonAppBar from "./components/ButtonAppBar";
+import CenteredTabs from "./components/CenteredTabs";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-        <Logo />
+        <ButtonAppBar />
+        <CenteredTabs />
       </Fragment>
     );
   }
