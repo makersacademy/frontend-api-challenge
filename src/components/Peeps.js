@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
 
 class Peeps extends Component {
   render() {
-    return (
-      <div className="App">
-      <p>Peeps</p>
-      </div>
-    );
+    return this.props.peeps.map((peep) => (
+      <h3>{peep.body}</h3>
+    ));
   }
 }
 
 export default Peeps;
+
+
+//Peep is an object with keys {id, body, created_at, updated_at, user, likes})
