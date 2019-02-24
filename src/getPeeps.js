@@ -11,7 +11,7 @@ const getPeeps = () => {
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState === XMLHttpRequest.DONE) {
-      renderResponse(xhr.response);
+      renderPeepResponse(xhr.response);
     }
   };
   xhr.open('GET', endpoint);
@@ -21,8 +21,8 @@ const getPeeps = () => {
 // Clear previous results and display results to webpage
 const displayPeeps = (event) => {
   event.preventDefault();
-  while(responseField.firstChild){
-    responseField.removeChild(responseField.firstChild);
+  while(peeps.firstChild){
+    peeps.removeChild(peeps.firstChild);
   }
   getPeeps();
 }

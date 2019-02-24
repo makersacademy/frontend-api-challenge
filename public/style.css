@@ -28,7 +28,7 @@ h1 {
   margin: 0;
 }
 
-p{
+a,p{
   color:white;
 }
 
@@ -42,6 +42,10 @@ li {
   max-height: 20%;
   margin-top: 0;
   object-fit: contain;
+}
+
+.page-url{
+  margin:10px;
 }
 
 .message-box {
@@ -93,7 +97,7 @@ input {
   margin-right: -3px;
 }
 
-#responseField {
+#peeps {
   /* min-width: 300px;
   min-height: 120px;
   background-color: #1f233e;  */

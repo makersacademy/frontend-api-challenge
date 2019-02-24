@@ -1,5 +1,5 @@
 // Formats response to look presentable on webpage
-const renderResponse = (res) => {
+const renderPeepResponse = (res) => {
   // // handles if res is falsey
   // if(!res){
   //   console.log(res.status)
@@ -22,7 +22,7 @@ const renderResponse = (res) => {
   // peepList = peepList.join("")
 
   // manipulates responseField to render the modified response
-  responseField.innerHTML = `<p>The most recent ${MAXIMUMPEEPS} peeps:</p><ol>${peepList}</ol>`
+  peeps.innerHTML = `<p>The most recent ${MAXIMUMPEEPS} peeps:</p><ol>${peepList}</ol>`
   return
 }
 
