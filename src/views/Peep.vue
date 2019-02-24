@@ -1,11 +1,8 @@
 <template>
   <div class="title">
     <h1>Chitter</h1>
-    <input type="text" name="newpeep" v-model="newPeep" placeholder="Peep away..." />
-    <button type="button" v-on:click="newpeep()">Peep!</button>
-    <div class="peeps">
-      <div class="peep" v-for="peep in peeps">
-        <h2><a v-bind:href="'/peeps/'+ peep.id">{{peep.body}}</a></h2>
+    <div class="peep">
+        <h2>{{peep.body}}</a></h2>
         <h4>{{peep.user.handle}}</h4>
       </div>
     </div>
@@ -28,12 +25,18 @@ export default {
     }
   },
   created: function(){
-    var self = this
-    self.getpeeps()
+    var self = this;
+
+    axios.get(BASE_URL + 'peeps' +)
+    .then(function (response) {
+      self.peeps = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   },
   methods: {
-    newpeep() {
-              var self = this
+    showpeep() {
               axios.defaults.headers.common = {'Authorization': `Token token=${localStorage.getItem('session_key')}`}
               axios.post(BASE_URL + 'peeps', {
                 peep: {
@@ -44,8 +47,7 @@ export default {
             .then(function (response) {
               console.log(response)
               if (response.statusText === 'Created') {
-                console.log(self)
-                self.getpeeps()
+                vm.$forceUpdate()
               } else {
                 console.log('Unauthorized')
               }
@@ -54,22 +56,8 @@ export default {
             .catch(function (error) {
               console.log(error)
             })
-            // console.log(self)
-            },
-
-          getpeeps() {
-              var self = this
-              axios.get(BASE_URL + 'peeps')
-              .then(function (response) {
-                console.log(response)
-                self.peeps = response.data;
-              })
-              .catch(function (error) {
-                console.log(error);
-              })
+                }
             }
-  }
-
 }
 </script>
 

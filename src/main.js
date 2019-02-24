@@ -3,8 +3,6 @@ import App from './App.vue'
 import router from './router'
 
 Vue.config.productionTip = false
-const BASE_URL = 'https://chitter-backend-api.herokuapp.com/'
-
 
 new Vue({
   router,

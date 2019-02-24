@@ -12,6 +12,9 @@
 import axios from 'axios'
 import router from '../router'
 
+// const BASE_URL = 'https://chitter-backend-api.herokuapp.com/'
+const BASE_URL = 'http://localhost:3000/'
+
     export default {
         name: 'Users',
         data() {
@@ -33,7 +36,7 @@ import router from '../router'
             .then(function (response) {
               console.log(response)
               if (response.statusText === 'Created') {
-                router.push('/')
+                router.push('/sessions')
               } else {
                 console.log('Duplicate handle')
               }

@@ -12,7 +12,8 @@
 import axios from 'axios'
 import router from '../router'
 
-const BASE_URL = 'https://chitter-backend-api.herokuapp.com/'
+// const BASE_URL = 'https://chitter-backend-api.herokuapp.com/'
+const BASE_URL = 'http://localhost:3000/'
 
     export default {
         name: 'Sessions',
@@ -37,6 +38,8 @@ const BASE_URL = 'https://chitter-backend-api.herokuapp.com/'
               localStorage.setItem('session_key',response.data.session_key)
               localStorage.setItem('user_id', response.data.user_id)
               if (response.statusText === 'Created') {
+                console.log(this)
+                localStorage.setItem('user_name', this.session.handle)
                 router.push('/')
               } else {
                 console.log('Login failed')
