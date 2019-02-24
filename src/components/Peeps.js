@@ -4,7 +4,7 @@ import PeepMessage from './PeepMessage.js';
 class Peeps extends Component {
   render() {
     return this.props.peeps.map((peep) => (
-      <PeepMessage key={peep.id} peep={peep} />
+      <PeepMessage key={peep.id} peep={peep} like={this.props.like} />
     ));
   }
 }
