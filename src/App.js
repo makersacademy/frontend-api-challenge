@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Logo from "./components/Logo";
+import LoginForm from "./components/LoginForm";
 import Peep from "./components/Peep";
 import "./App.css";
 
@@ -19,16 +20,15 @@ class App extends Component {
     getPeeps();
   }
 
-  
-
   render() {
     return (
       <Fragment>
         <Logo />
+        <LoginForm />
         {this.state.peeps.map(peep => (
           <Peep key={peep.id} details={peep} />
         ))}
-        {console.log(this.state.peeps)}
+        {/* {console.log(this.state.peeps)} */}
       </Fragment>
     );
   }
