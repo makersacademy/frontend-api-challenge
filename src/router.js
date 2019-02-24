@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Users from './views/Users.vue'
 import Sessions from './views/Sessions.vue'
 import Peeps from './views/Peeps.vue'
+import Peep from './views/Peep.vue'
 import Likes from './views/Likes.vue'
 
 Vue.use(Router)
@@ -33,12 +34,12 @@ export default new Router({
       component: Sessions
     },
     {
-      path: '/peeps',
-      name: 'peeps',
-      component: Peeps
+      path: '/peeps/:id',
+      name: 'peep',
+      component: Peep
     },
     {
-      path: '/peeps/:id',
+      path: '/peeps',
       name: 'peeps',
       component: Peeps
     },
