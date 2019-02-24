@@ -109,7 +109,8 @@ input {
   padding: 5px;
 }
 
-#register {
+
+#responseField {
   min-width: 191px;
   min-height: 120px;
   border: solid 2px #ffffff;
