@@ -5,7 +5,7 @@
         <h2>{{peep.body}}</h2>
         <h4>Created: {{peep.created_at}}</h4>
         <h4>User: {{peep.user.handle}}</h4>
-        <h4>Likes: {{this.likes}}</h4>
+        <h4<a @click="likePeep(peep)">Likes: {{this.likes}}</a></h4>
       </div>
     </div>
   </div>
@@ -48,6 +48,23 @@ export default {
               .catch(function (error) {
                 console.log(error);
               })
+            },
+          likePeep(peep) {
+              var self = this
+              axios.defaults.headers.common = {'Authorization': `Token token=${localStorage.getItem('session_key')}`}
+              axios.put(BASE_URL + 'peeps/' + peep.id + '/likes/' + localStorage.getItem('user_id'))
+            .then(function (response) {
+              console.log('liking')
+              self.getpeep()
+            })
+            .catch(function (error) {
+              axios.defaults.headers.common = {'Authorization': `Token token=${localStorage.getItem('session_key')}`}
+              axios.delete(BASE_URL + 'peeps/' + peep.id + '/likes/' + localStorage.getItem('user_id'))
+              console.log('unliking')
+              console.log(peep.id)
+              console.log(error)
+              self.getpeep()
+            })
             }
   }
 

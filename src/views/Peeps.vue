@@ -8,7 +8,6 @@
         <h2><router-link :to="{ name: 'peep', params: { id: peep.id }}">{{peep.body}}</router-link></h2>
         <h4>{{peep.user.handle}}</h4>
         <h4<a @click="likePeep(peep)">{{peep.likes.length}}</a></h4>
-        <h4><router-link :to="{ name: 'likes', params: { peep_id: peep.id, likes: peep.likes } }">{{peep.likes.length}}</router-link></h4>
       </div>
     </div>
   </div>
@@ -75,7 +74,6 @@ export default {
               axios.defaults.headers.common = {'Authorization': `Token token=${localStorage.getItem('session_key')}`}
               axios.put(BASE_URL + 'peeps/' + peep.id + '/likes/' + localStorage.getItem('user_id'))
             .then(function (response) {
-                console.log('Liked')
                 self.getpeeps()
             })
             .catch(function (error) {
