@@ -11,17 +11,17 @@ const renderResponse = (res) => {
   }
 
   // creating an array to contain the HTML strings
-  let wordList = []
+  let peepList = []
   // looping through the response and maxxing out at 10
   for(let i = 0; i < Math.min(res.length, 10); i++){
     // creating a list of words
-    wordList.push(`<li>${res[i].word}</li>`)
+    peepList.push(`<li>${res[i].body}</li>`)
   }
   // joins the array of HTML strings into one string
-  wordList = wordList.join("")
+  peepList = peepList.join("")
 
   // manipulates responseField to render the modified response
-  responseField.innerHTML = `<p>You might be interested in:</p><ol>${wordList}</ol>`
+  responseField.innerHTML = `<p>The most recent 10 peeps:</p><ol>${peepList}</ol>`
   return
 }
 
