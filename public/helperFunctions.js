@@ -13,15 +13,16 @@ const renderResponse = (res) => {
   // creating an array to contain the HTML strings
   let peepList = []
   // looping through the response and maxxing out at 10
-  for(let i = 0; i < Math.min(res.length, 10); i++){
+  var MAXIMUMPEEPS = 20
+  for(let i = 0; i < Math.min(res.length, MAXIMUMPEEPS); i++){
     // creating a list of words
-    peepList.push(`<div class="message-box">${res[i].body}</div>`)
+    peepList.push(`<div class="message-box">${res[i].body}<br><div class="peep-handles">${res[i].created_at}, ${res[i].user.handle}</div></div>`)
   }
   // joins the array of HTML strings into one string
-  peepList = peepList.join("")
+  // peepList = peepList.join("")
 
   // manipulates responseField to render the modified response
-  responseField.innerHTML = `<p>The most recent 10 peeps:</p><ol>${peepList}</ol>`
+  responseField.innerHTML = `<p>The most recent ${MAXIMUMPEEPS} peeps:</p><ol>${peepList}</ol>`
   return
 }
 

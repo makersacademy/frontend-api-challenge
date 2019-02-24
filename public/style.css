@@ -10,7 +10,7 @@ main {
   /* background-image: url('background_main.jpg'); */
   /* background-color: #ef6b68; */
   background-color:#1f233e;
-  height: 900px;
+  height: auto;
   text-align: center;
   padding: 0;
   margin: 0;
@@ -38,14 +38,15 @@ li {
 }
 
 .logo {
-  width:100%;
-  height: auto;
+  /* width:80%; */
+  max-height: 20%;
   margin-top: 0;
   object-fit: contain;
 }
 
 .message-box {
 text-align: center;
+font-size: 28px;
 padding: 10px;
 line-height: 30px;
 background-color: #fff;
@@ -53,6 +54,10 @@ border-radius: 20px 0px 20px 0px;
 box-shadow: 0px 2px 10px rgba(000, 000, 000, 0.5), inset 1px 2px 0px rgba(255, 255, 255, 0.4);
 margin: inherit;
 width: 70%;
+}
+
+.peep-handles{
+  font-size: 14px;
 }
 
 
