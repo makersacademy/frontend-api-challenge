@@ -5,8 +5,9 @@
     <button type="button" v-on:click="newpeep()">Peep!</button>
     <div class="peeps">
       <div class="peep" v-for="peep in peeps">
-        <h2><router-link :to="{ name: 'peep', params: { userId: 1 }}">{{peep.body}}</router-link></h2>
+        <h2><router-link :to="{ name: 'peep', params: { id: peep.id }}">{{peep.body}}</router-link></h2>
         <h4>{{peep.user.handle}}</h4>
+        <h4><router-link :to="{ name: 'likes' }">{{peep.likes.length}}</router-link></h4>
       </div>
     </div>
   </div>

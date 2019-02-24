@@ -33,7 +33,7 @@ export default {
   },
   created: function(){
     var self = this
-    this.id = this.$route.params.userId
+    this.id = this.$route.params.id
     self.getpeep()
   },
   methods: {
