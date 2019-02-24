@@ -91,7 +91,5 @@ export default {
 </script>
 
 <style>
-img {
-  max-width: 50vw;
-}
+peep 
 </style>
