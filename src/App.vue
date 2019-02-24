@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/peeps">See Peeps</router-link> |
-      <router-link to="/users">Sign up</router-link> |
-      <router-link to="/sessions">Sign in</router-link>
+      <router-link :to="{ name: 'peeps' }">See Peeps</router-link> |
+      <router-link :to="{ name: 'users' }">Sign up</router-link> |
+      <router-link :to="{ name: 'sessions' }">Sign in</router-link>
     </div>
     <router-view/>
   </div>

@@ -5,15 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test": "npm run unit",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "test": "npm run unit",
     "unit": "jest"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
+    "buefy": "^0.7.2",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1"
   },
@@ -28,6 +29,7 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "vue-cli-plugin-buefy": "^0.3.4",
     "vue-jest": "^3.0.3",
     "vue-template-compiler": "^2.5.21"
   },

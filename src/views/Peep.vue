@@ -2,7 +2,7 @@
   <div class="title">
     <h1>Chitter</h1>
     <div class="peep">
-        <h2>Peep:    {{peep.body}}</a></h2>
+        <h2>{{peep.body}}</h2>
         <h4>Created: {{peep.created_at}}</h4>
         <h4>User: {{peep.user.handle}}</h4>
         <h4>Likes: {{this.likes}}</h4>
@@ -23,7 +23,6 @@ export default {
   data: function(){
     return {
       peep: [],
-      likes: 0,
       id: 0
     }
   },
