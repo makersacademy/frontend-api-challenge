@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PeepMessage from './PeepMessage.js';
 
 class Peeps extends Component {
   render() {
     return this.props.peeps.map((peep) => (
-      <h3>{peep.body}</h3>
+      <PeepMessage key={peep.id} peep={peep} />
     ));
   }
 }
