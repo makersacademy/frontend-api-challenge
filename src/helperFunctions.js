@@ -3,12 +3,6 @@ const renderPeepResponse = (res) => {
   // // handles if res is falsey
   // if(!res){
   //   console.log(res.status)
-  // }
-  // // in case res comes back as a blank array
-  // if(!res.length){
-  //   responseField.innerHTML = "<p>Try again!</p><p>There were no suggestions found!</p>"
-  //   return
-  // }
 
   // creating an array to contain the HTML strings
   let peepList = []
@@ -18,20 +12,10 @@ const renderPeepResponse = (res) => {
     // creating a list of words
     peepList.push(`<div class="message-box">${res[i].body}<br><div class="peep-handles">${res[i].created_at}, ${res[i].user.handle}</div></div>`)
   }
-  // joins the array of HTML strings into one string
-  // peepList = peepList.join("")
 
-  // manipulates responseField to render the modified response
+  // manipulates peeps to render the modified response
   peeps.innerHTML = `<p>The most recent ${MAXIMUMPEEPS} peeps:</p><ol>${peepList}</ol>`
   return
-}
-
-// Renders response before it is modified
-const renderRawResponse = (res) => {
-  // taking the first 10 words from res
-  let trimmedResponse = res.slice(0, 10)
-  //manipulates responseField to render the unformatted response
-  responseField.innerHTML = `<text>${JSON.stringify(trimmedResponse)}</text>`
 }
 
 // Renders the JSON that was returned when the Promise from fetch resolves.
@@ -44,5 +28,5 @@ const renderJsonResponse = (res) => {
   // converting JSON into a string and adding line breaks to make it easier to read
   rawJson = JSON.stringify(rawJson).replace(/,/g, ", \n")
   // manipulates responseField to show the returned JSON.
-  responseField.innerHTML = `<pre>${rawJson}</pre>`
+  peeps.innerHTML = `<pre>${rawJson}</pre>`
 }
