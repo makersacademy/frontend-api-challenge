@@ -16,8 +16,17 @@ const renderPeepResponse = (res) => {
 const renderRegisterResponse = (res) => {
   // Displays either message depending on results
   if(res.errors){
-    responseField.innerHTML = "<p>Sorry, couldn't format your URL.</p><p>Try again.</p>";
+    responseField.innerHTML = "<p>Sorry, the username is already taken.</p><p>Try again.</p>";
   } else {
-    responseField.innerHTML = `<p>Your user id is: </p><p> ${res.id} </p>Your user id is:</p><p> ${res.handle} </p>`;
+    responseField.innerHTML = `<p>Your user id is: </p><p> ${res.id} </p>Your user name is:</p><p> ${res.handle} </p>`;
+  }
+}
+
+const renderSessionResponse = (res) => {
+  // Displays either message depending on results
+  if(res.errors){
+    responseField2.innerHTML = "<p>Sorry, the username is already taken.</p><p>Try again.</p>";
+  } else {
+    responseField2.innerHTML = `<p>Your user id is: </p><p> ${res.user_id} </p>Your session key is:</p><p> ${res.session_key} </p>`;
   }
 }

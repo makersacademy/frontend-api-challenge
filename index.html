@@ -18,7 +18,7 @@
       <div class="page-url">
         <a href="#peeps">Peeps</a> |
         <a href="#register">Register</a> |
-        <a href="#sign-in">Sign In</a>
+        <a href="#sign-in">Sign-in</a>
       </div>
 
       <div id="peeps">
@@ -33,10 +33,21 @@
         </form>
         <div id="responseField"></div>
       </div>
+
+      <div id="sign-in">
+      <h2>Sign In</h2>
+      <form id="form" autocomplete="off">
+        <input type="text" id="session-handle" value="" placeholder="Your handle">
+        <input type="password" id="session-password" value="" placeholder="Your password">
+        <button id="submit">SUBMIT</button>
+      </form>
+      <div id="responseField2"></div>
+    </div>
   </main>
   <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
     <script src="src/helperFunctions.js"></script>
-  <script src="src/getPeeps.js"></script>
-  <script src="src/registerUser.js"></script>
+    <!-- <script src="src/spa_controller.js"></script> -->
+    <script src="src/getPeeps.js"></script>
+    <script src="src/registerUser.js"></script>
 </body>
 </html>
