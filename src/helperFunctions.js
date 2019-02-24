@@ -8,7 +8,7 @@ const renderPeepResponse = (res) => {
     // creating a list of words
     peepList.push(`<div class="message-box">${res[i].body}<br><div class="peep-handles">${res[i].created_at}, ${res[i].user.handle}</div></div>`)
   }
-  // manipulates responseField to render the modified response
+  // manipulates peeps to render the modified response
   peeps.innerHTML = `<p>The most recent ${MAXIMUMPEEPS} peeps:</p><ol>${peepList}</ol>`
   return
 }

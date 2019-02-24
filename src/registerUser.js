@@ -1,4 +1,5 @@
 // Information to reach API
+
 const endpoint = 'https://chitter-backend-api.herokuapp.com/users'
 
 // Some page elements
