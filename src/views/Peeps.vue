@@ -5,9 +5,10 @@
     <button type="button" v-on:click="newpeep()">Peep!</button>
     <div class="peeps">
       <div class="peep" v-for="peep in peeps">
-        <h2><router-link :to="{ name: 'peep', params: { id: peep.id }}">{{peep.body}}</router-link></h2>
+        <h2 @click="redirect(peep)">{{peep.body}}</h2>
+        <!-- <h2><router-link :to="{ name: 'peep', params: { id: peep.id }}">{{peep.body}}</router-link></h2> -->
         <h4>{{peep.user.handle}}</h4>
-        <h4<a @click="likePeep(peep)">{{peep.likes.length}}</a></h4>
+        <h4<a @click="likePeep(peep)">{{peep.likes.length}} balloons</a></h4>
       </div>
     </div>
   </div>
@@ -55,7 +56,6 @@ export default {
             .catch(function (error) {
               console.log(error)
             })
-            // console.log(self)
             },
 
           getpeeps() {
@@ -81,8 +81,11 @@ export default {
               axios.delete(BASE_URL + 'peeps/' + peep.id + '/likes/' + localStorage.getItem('user_id'))
               self.getpeeps()
             })
-            }
-  }
+            },
+          redirect(peep) {
+            router.push('/peeps/' + peep.id)
+          }
+}
 
 }
 </script>

@@ -4,6 +4,8 @@
         <input type="text" name="handle" v-model="input.handle" placeholder="Handle" />
         <input type="password" name="password" v-model="input.password" placeholder="Password" />
         <button type="button" v-on:click="signup()">Sign Up</button>
+        <h2><router-link :to="{ name: 'users' }">Don't have an account? Sign up</router-link></h2>
+
     </div>
 </template>
 

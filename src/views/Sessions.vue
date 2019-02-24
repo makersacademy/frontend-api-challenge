@@ -4,6 +4,7 @@
         <input type="text" name="handle" v-model="session.handle" placeholder="Handle" />
         <input type="password" name="password" v-model="session.password" placeholder="Password" />
         <button type="button" v-on:click="signin()">Sign In</button>
+        <h2><router-link :to="{ name: 'users' }">Already have an account? Sign in</router-link></h2>
     </div>
 </template>
 

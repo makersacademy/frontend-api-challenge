@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div v-if="notLoggedIn" id="nav">
       <router-link :to="{ name: 'peeps' }">See Peeps</router-link> |
       <router-link :to="{ name: 'users' }">Sign up</router-link> |
       <router-link :to="{ name: 'sessions' }">Sign in</router-link>
@@ -8,6 +8,22 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+          notLoggedIn() {
+              console.log('triggered')
+              return true
+              if (typeof localStorage.getItem('user_id') === 'undefined') {
+                return true
+              } else {
+                return false
+              }
+              }
+            }
+}
+</script>
 
 <style>
 #app {
