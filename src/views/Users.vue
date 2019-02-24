@@ -24,7 +24,7 @@ import router from '../router'
         },
         methods: {
             signup() {
-              axios.post('https://chitter-backend-api.herokuapp.com//users', {
+              axios.post(BASE_URL + '/users', {
                 user: {
                   handle: this.input.handle,
                   password: this.input.password
@@ -35,7 +35,7 @@ import router from '../router'
               if (response.statusText === 'Created') {
                 router.push('/')
               } else {
-                alert('Duplicate handle')
+                console.log('Duplicate handle')
               }
 
             })

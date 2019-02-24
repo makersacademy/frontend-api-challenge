@@ -1,6 +1,6 @@
 <template>
     <div id="login">
-        <h1>Sign up</h1>
+        <h1>Sign in</h1>
         <input type="text" name="handle" v-model="session.handle" placeholder="Handle" />
         <input type="password" name="password" v-model="session.password" placeholder="Password" />
         <button type="button" v-on:click="signin()">Sign In</button>
@@ -11,6 +11,8 @@
 <script>
 import axios from 'axios'
 import router from '../router'
+
+const BASE_URL = 'https://chitter-backend-api.herokuapp.com/'
 
     export default {
         name: 'Sessions',
@@ -24,7 +26,7 @@ import router from '../router'
         },
         methods: {
             signin() {
-              axios.post('https://chitter-backend-api.herokuapp.com//sessions', {
+              axios.post(BASE_URL + 'sessions', {
                 session: {
                   handle: this.session.handle,
                   password: this.session.password
@@ -32,6 +34,8 @@ import router from '../router'
             })
             .then(function (response) {
               console.log(response)
+              localStorage.setItem('session_key',response.data.session_key)
+              localStorage.setItem('user_id', response.data.user_id)
               if (response.statusText === 'Created') {
                 router.push('/')
               } else {
