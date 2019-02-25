@@ -38,6 +38,37 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * If you have a partial solution, **still check in a partial solution**
 * You must submit a pull request to this repo with your code by 9am Monday morning
 
+Summary
+--------
+
+This is a frontend for a twitter style api backend.
+
+Technologies used were JavaScript and VUE 3.
+
+The following interactions have been implemented:
+
+* Creating Users
+* Logging in
+* Posting Peeps
+* Viewing all Peeps
+* Viewing individual Peeps
+* Deleting Peeps
+* Liking Peeps
+* Unliking Peeps
+
+Installation
+-------------
+
+Fork this repo and in the project directory:
+
+yarn install
+yarn run serve
+
+To run unit tests run:
+
+yarn run test
+
+
 Challenge:
 -------
 
