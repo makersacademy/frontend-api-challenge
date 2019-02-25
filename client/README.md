@@ -1,68 +1,153 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Users
+POST /users
+Creates a new user.
 
-## Available Scripts
+curl "https://chitter-backend-api.herokuapp.com/users" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"user": {"handle":"kay", "password":"mypassword"}}'
+On success, the above command returns JSON structured like this:
 
-In the project directory, you can run:
+{
+  "id" : 1,
+  "handle" : "kay"
+}
+Sessions
+POST /sessions
+Creates a new session, giving you a user_id and session_key required to perform actions on behalf of the user (e.g. posting peeps, liking peeps).
 
-### `npm start`
+Creating a new session renders any previous session_keys invalid.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+curl "https://chitter-backend-api.herokuapp.com/sessions" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"session": {"handle":"kay", "password":"mypassword"}}'
+On success, the above command returns JSON structured like this:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+{
+  "user_id": 1,
+  "session_key": "a_valid_session_key"
+}
+Peeps
+GET /peeps
+Returns a list of the last 50 peeps in reverse chronological order.
 
-### `npm test`
+curl "https://chitter-backend-api.herokuapp.com/peeps"
+On success, the above command returns JSON structured like this:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[
+  {
+    "id": 3,
+    "body": "my first peep :)",
+    "created_at": "2018-06-23T13:21:23.317Z",
+    "updated_at": "2018-06-23T13:21:23.317Z",
+    "user": {
+      "id": 1,
+      "handle": "kay"
+    },
+    "likes": [{
+      "user": {
+        "id": 1,
+        "handle": "kay"
+      }
+    }]
+  }
+]
+POST /peeps
+Creates a new Peep.
 
-### `npm run build`
+This endpoint requires a user_id and session_key given as a token in the authorization header.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+curl "https://chitter-backend-api.herokuapp.com/peeps" \
+  -X POST \
+  -H "Authorization: Token token=a_valid_session_key" \
+  -H "Content-Type: application/json" \
+  -d '{"peep": {"user_id":1, "body":"my first peep :)"}}'
+On success, the above command returns JSON structured like this:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+{
+  "id": 3,
+  "body": "my first peep :)",
+  "created_at": "2018-06-23T13:21:23.317Z",
+  "updated_at": "2018-06-23T13:21:23.317Z",
+  "user": {
+    "id": 1,
+    "handle": "kay"
+  },
+  "likes": [{
+    "user": {
+      "id": 1,
+      "handle": "kay"
+    }
+  }]
+}
+GET /peeps/:id
+Returns a single Peep.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+curl "https://chitter-backend-api.herokuapp.com/peeps/1"
+On success, the above command returns JSON structured like this:
 
-### `npm run eject`
+{
+  "id": 1,
+  "body": "my first peep :)",
+  "created_at": "2018-06-23T13:12:29.945Z",
+  "updated_at": "2018-06-23T13:12:29.945Z",
+  "user": {
+    "id": 1,
+    "handle": "kay"
+  },
+  "likes": []
+}
+DELETE /peeps/:id
+Deletes a Peep.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This endpoint requires a user_id and session_key given as a token in the authorization header.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+curl "https://chitter-backend-api.herokuapp.com/peeps/1" \
+  -X DELETE \
+  -H "Authorization: Token token=a_valid_session_key"
+The above command returns a 204: No Content response on success.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Likes
+PUT /peeps/:peep_id/likes/:user_id
+Adds a Like to the Peep by the User.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This endpoint requires a user_id and session_key given as a token in the authorization header.
 
-## Learn More
+curl "https://chitter-backend-api.herokuapp.com/peeps/2/likes/1" \
+  -X PUT \
+  -H "Authorization: Token token=a_valid_session_key"
+On success, the above command returns JSON structured like this:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+{
+  "user": {
+    "id": 1,
+    "handle": "kay"
+  }
+}
+DELETE /peeps/:peep_id/likes/:user_id
+Removes the Like on the Peep by the User.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This endpoint requires a user_id and session_key given as a token in the authorization header.
 
-### Code Splitting
+curl "https://chitter-backend-api.herokuapp.com/peeps/2/likes/1" \
+  -X DELETE \
+  -H "Authorization: Token token=a_valid_session_key"
+The above command returns a 204: No Content response on success.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Error responses
+The create/update endpoints return errors of the form:
 
-### Analyzing the Bundle Size
+{
+  "peep": ["handle already taken"]
+}
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Creating Users
+Logging in
+Posting Peeps
+Viewing all Peeps (I suggest you start here)
+Viewing individual Peeps
+Deleting Peeps
+Liking Peeps
+Unliking Peeps
