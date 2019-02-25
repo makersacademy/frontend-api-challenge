@@ -124,6 +124,20 @@ input {
   overflow: auto;
 }
 
+#responseField2 {
+  min-width: 191px;
+  min-height: 120px;
+  border: solid 2px #ffffff;
+  margin: 0;
+  margin-top: 25px;
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #ffffff;
+  overflow: auto;
+}
+
 #submit:hover {
   color: #ffffff;
   cursor: pointer;
