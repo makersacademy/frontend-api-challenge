@@ -18,7 +18,7 @@ const renderRegisterResponse = (res) => {
   if(res.errors){
     responseField.innerHTML = "<p>Sorry, the username is already taken.</p><p>Try again.</p>";
   } else {
-    responseField.innerHTML = `<p>Your user id is: </p><p> ${res.id} </p>Your user name is:</p><p> ${res.handle} </p>`;
+    responseField.innerHTML = `<p>Your user id: </p><p> ${res.id} </p>Your user name:</p><p> ${res.handle} </p>`;
   }
 }
 
@@ -27,6 +27,7 @@ const renderSessionResponse = (res) => {
   if(res.errors){
     responseField2.innerHTML = "<p>Sorry, the username is already taken.</p><p>Try again.</p>";
   } else {
-    responseField2.innerHTML = `<p>Your user id is: </p><p> ${res.user_id} </p>Your session key is:</p><p> ${res.session_key} </p>`;
+    responseField2.innerHTML = "<h2>Session render</h2>";
+    responseField2.innerHTML = `<p>Your user id: </p><p> ${res.user_id} </p>Your session key:</p><p> ${res.session_key} </p>`;
   }
 }

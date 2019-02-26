@@ -9,7 +9,7 @@ const submit = document.querySelector('#submit');
 
 // AJAX function
 const registerUser = () => {
-
+  
 const newHandle = handleField.value
 const newPassword = passwordField.value
 const data = JSON.stringify({user:{handle:newHandle, password:newPassword}});

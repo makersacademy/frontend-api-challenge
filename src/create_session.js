@@ -5,15 +5,15 @@ const sessionUrl = 'https://chitter-backend-api.herokuapp.com/sessions'
 // Some page elements
 const sessionHandleField = document.querySelector('#session-handle');
 const sessionPasswordField = document.querySelector('#session-password');
-const submit = document.querySelector('#submit');
+const sessionSubmit = document.querySelector('#session-submit');
 
 
 // AJAX function
 const createSession = () => {
 
-const sessionHandle = sessionHandleField.value
-const sessionPassword = sessionPasswordFieldd.value
-const data = JSON.stringify({session:{handle:sessionHandle, password:sessionPassword}});
+const sessionHandle = sessionHandleField.value //Refer to value from page elements const declared above
+const sessionPassword = sessionPasswordField.value
+const sessionData = JSON.stringify({session:{handle:sessionHandle, password:sessionPassword}});
 
 const xhr = new XMLHttpRequest
   xhr.responseType = 'json'
@@ -26,17 +26,18 @@ const xhr = new XMLHttpRequest
   xhr.open('POST',sessionUrl)
   xhr.setRequestHeader('Content-type', 'application/json');
 
-  xhr.send(data)
+  xhr.send(sessionData)
 
 };
 
 // Clear page and call AJAX functions
-const displaySucces = (event) => {
+const displaySignInSucces = (event) => {
   event.preventDefault();
   while(responseField2.firstChild){
     responseField2.removeChild(responseField2.firstChild);
   }
+
   createSession();
 }
 
-submit.addEventListener('click', displaySucces);
+sessionSubmit.addEventListener('click', displaySignInSucces);
