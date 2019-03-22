@@ -1,8 +1,8 @@
 (function(exports){
 
-  function testViewAllPeepsCanAccessTheDatabase(){
+  function testViewAllPeepsCanInstantiate(){
     var allPeeps = new viewAllPeeps()
     assert.isTrue(allPeeps instanceof viewAllPeeps)
   }
-  testViewAllPeepsCanAccessTheDatabase();
+  testViewAllPeepsCanInstantiate();
 })(this);
