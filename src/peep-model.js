@@ -1,7 +1,7 @@
 (function(exports){
 
   function Peep(texts){
-    this.peep = peeps
+    this.peep = texts
   }
   Peep.prototype.getText = function () {
     return this.peep;
