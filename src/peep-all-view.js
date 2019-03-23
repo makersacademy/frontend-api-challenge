@@ -51,17 +51,22 @@ async function renderPeeps() {
     dataArray = [];
 
     // console.log(dataArray)
-    // // var returnedHTML = "<ul>";
+    var returnedHTML = '';
     // this._returnedHTML = "<ul>";
     var count = Object.keys(apiData).length
     //
     for(var i = 0; i < count; i ++ ) {
-      console.log(apiData[i].id)
-      console.log(apiData[i].body)
+      // console.log(apiData[i].id)
+      // console.log(apiData[i].body)
+      returnedHTML += `${(apiData[i].body)}\n`
+      // returnedHTML+= '<a class="bold"> ${apiData[i].user.handle}: </p> <p class="italics">"${apiData[i].body}"</p>'
       // dataArray.push(JSON.parse(apiData[i]))
       // console.log(dataArray[i])
     // this._returnedHTML += '${apiData[i].id}'
     }
+
+
+    return returnedHTML
     //   // returnedHTML += `<a href="#user/${jsonData[i].user.handle}" id=${(jsonData[i].id)}><div class="well"><li>${(jsonData[i].body)}<br><i>- ${(jsonData[i].user.handle)}</i></li></div></a>`
     // this._returnedHTML += "</ul>"
     // return this._returnedHTML;
