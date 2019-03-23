@@ -72,10 +72,6 @@ function testViewAllPeepsCanBeDisplayedByDatabase() {
 // }
 
 function testViewFetchAPIData(){
-  var testAllPeepsModel = new PeepsAll()
-  var allPeepsModelView = new PeepsAllView(testAllPeepsModel)
-
-
   apiData = fetchAllPeeps()
 
 }
