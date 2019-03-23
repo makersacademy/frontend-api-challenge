@@ -19,7 +19,7 @@
   }
   testAllPeepsModelViewInstantiateStartsWithEmptyArray();
 //
-//   function testViewAllPeepsDisplayANewlyCreatedPeep(){
+  // function testViewAllPeepsDisplayANewlyCreatedPeep(){
 //     var testPeep = new Peep("testpeep1")
 //     console.log(testPeep)
 //     var testAllPeepsModel = new PeepsAll()
@@ -32,8 +32,8 @@
 //     console.log(allPeepsModelView.viewAllPeepsFromDatabase())
 //     assert.isTrue(allPeepsModelView.viewAllPeepsFromDatabase() === '<a href="http://localhost:8080#peeps/0">testpeep1')
 //     assert.isTrue(allPeepsModelView instanceof PeepsAllView)
-//   }
-//   testViewAllPeepsDisplayANewlyCreatedPeep();
+  // }
+  // testViewAllPeepsDisplayANewlyCreatedPeep();
 // //
 // //
 // function testViewAllPeepsDisplayMoreThanOneNewlyCreatedPeep() {
@@ -71,10 +71,14 @@
 // }
 //   testViewAllPeepsCanBeDisplayedByDatabase();
 // // }
-//
-// function testViewFetchAPIData(){
-//   apiData = fetchAllPeeps()
-//   eachPeepHTML(apiData)
-// }
-// testViewFetchAPIData();
+
+function testViewFetchAPIData(){
+  var testAllPeepsModel = new PeepsAll()
+  var testPeepsAllViewController = new PeepsAllViewController(testAllPeepsModel)
+
+
+  testPeepsAllViewController.viewAllPeepsFromDatabase(document)
+
+}
+testViewFetchAPIData();
 })(this);

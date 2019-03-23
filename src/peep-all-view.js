@@ -5,11 +5,10 @@
   }
 
   PeepsAllView.prototype.wrapEachPeepHTML = function(jsonData) {
-      var returnedHTML = "<ul>";
-      for(var i = 0; i < Object.keys(jsonData).length; i ++ ) {
-        returnedHTML += "<li><div>"+`${(jsonData[i].body)}\n`+"</div></li>"
+      var returnedHTML = "";
+      for (var i = 0; i < Object.keys(jsonData).length; i ++ ) {
+        returnedHTML += `${(jsonData[i].body)}\n`
       }
-      returnedHTML += "</ul>"
       return console.log(returnedHTML)
     };
 exports.PeepsAllView = PeepsAllView;

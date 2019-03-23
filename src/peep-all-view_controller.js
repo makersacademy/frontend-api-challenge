@@ -2,18 +2,18 @@
 
   var url = "https://chitter-backend-api.herokuapp.com/peeps"
 
-  function PeepsAllViewController(){
-    this._peepsModel = new PeepsAll();
+  function PeepsAllViewController(peepsAllModel){
+    this._peepsModel = peepsAllModel;
     this._peepsAllView = new PeepsAllView(this._peepsModel);
   }
-    PeepsAllView.prototype.viewAllPeepsFromDatabase = function(doc){
+    PeepsAllViewController.prototype.viewAllPeepsFromDatabase = function(document){
       fetch(url)                      // can be used by service workers
         .then((response) => {
           return response.json();
         }).then((allPeepsFromDatabase) => {
-          return this.peepsAllView.wrapEachPeepHTML(allPeepsFromDatabase);
+          return this._peepsAllView.wrapEachPeepHTML(allPeepsFromDatabase);
         }).then((allWrappedPeeps) => {
-          doc.getElementByID('peeps-list').innerHTML = allWrappedPeeps
+          document.getElementById('peeps-list').innerHTML = allWrappedPeeps
         });
   };
 
