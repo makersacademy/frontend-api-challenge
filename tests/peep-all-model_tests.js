@@ -15,6 +15,7 @@
     assert.isTrue(testAllPeepsModelView instanceof PeepsAllView)
     assert.isTrue(testAllPeepsModelView._allPeepsModel === testAllPeepsModel)
     assert.isTrue(testAllPeepsModel._allPeepsArray.length === 0)
+    assert.isTrue(testAllPeepsModel._allPeepsArray instanceof Array)
   }
   testAllPeepsModelViewInstantiateStartsWithEmptyArray();
 //
