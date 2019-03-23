@@ -29,7 +29,7 @@
 //
     assert.isTrue(testAllPeepsModel instanceof PeepsAll)
     console.log(allPeepsModelView.viewAllPeepsFromDatabase())
-    assert.isTrue(allPeepsModelView.viewAllPeepsFromDatabase() === 'testpeep1<a href="http://localhost:8080#peeps/0">')
+    assert.isTrue(allPeepsModelView.viewAllPeepsFromDatabase() === '<a href="http://localhost:8080#peeps/0">testpeep1')
     assert.isTrue(allPeepsModelView instanceof PeepsAllView)
   }
   testViewAllPeepsDisplayANewlyCreatedPeep();
@@ -70,4 +70,14 @@ function testViewAllPeepsCanBeDisplayedByDatabase() {
 }
   testViewAllPeepsCanBeDisplayedByDatabase();
 // }
+
+function testViewFetchAPIData(){
+  var testAllPeepsModel = new PeepsAll()
+  var allPeepsModelView = new PeepsAllView(testAllPeepsModel)
+
+
+  apiData = fetchAllPeeps()
+
+}
+testViewFetchAPIData();
 })(this);
