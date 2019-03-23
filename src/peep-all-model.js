@@ -1,15 +1,15 @@
 (function(exports){
-  var allPeepsArray;
+  // var allPeepsArray;
   function PeepsAll(){
-    allPeepsArray = new Array();
+    this._allPeepsArray = new Array();
   }
 
     PeepsAll.prototype.getPeeps = function(){
-      return allPeepsArray;
+      return this._allPeepsArray;
     };
 
     PeepsAll.prototype.createNewPeep = function(peep){
-    allPeepsArray.push(peep)
+    this._allPeepsArray.push(peep)
   }
 
 exports.PeepsAll = PeepsAll;
