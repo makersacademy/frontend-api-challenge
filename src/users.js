@@ -1,25 +1,26 @@
 
-var handleInput = document.getElementById('handle');
-var passwordInput = document.getElementById('password');
+const handleInput = document.getElementById('handle');
+const passwordInput = document.getElementById('password');
 
-var newHandleInput = document.getElementById('newhandle');
-var newPasswordInput = document.getElementById('newpassword');
-var newPasswordConfirmInput = document.getElementById('password_confirm_signup');
+const newHandleInput = document.getElementById('newhandle');
+const newPasswordInput = document.getElementById('newpassword');
+const newPasswordConfirmInput = document.getElementById('password_confirm_signup');
 
 window.onload = function() {
-  var loginForm = document.getElementById('login-form');
-  var signupForm = document.getElementById('signup-form');
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
   console.log(loginForm)
-  
-  if (loginForm !== null && signupForm === null) {
-  loginForm.addEventListener('Submit', function(event) {
+
+  if (signupForm === null) {
+  loginForm.addEventListener('submit', function(event) {
     event.preventDefault(); //prevent for from being submitted
-    var handle = handleInput.value
-    var password = passwordInput.value
+    const handle = handleInput.value
+    const password = passwordInput.value
     logIn(handle, password)
   });
-} else {
-  signupForm.addEventListener('Submit', function(event) {
+}
+  if (loginForm === null){
+  signupForm.addEventListener('submit', function(event) {
     event.preventDefault();
     signUp()
   });
@@ -37,8 +38,8 @@ function setSessionItems(response, username){
 }
 
 function logIn(userHandle, userPassword){
-  var url = 'https://chitter-backend-api.herokuapp.com/sessions';
-  var data = { session: { handle: userHandle, password: userPassword } };
+  const url = 'https://chitter-backend-api.herokuapp.com/sessions';
+  const data = { session: { handle: userHandle, password: userPassword } };
 
   fetch(url, {
     method: 'POST',
@@ -64,11 +65,11 @@ function logIn(userHandle, userPassword){
 }
 
  function signUp(){
-   var newHandle = newHandleInput.value
-   var newPassword = newPasswordInput.value
-   var newPasswordConfirm = newPasswordConfirmInput.value
-   var url = 'https://chitter-backend-api.herokuapp.com/users';
-   var data = { user: { handle: newHandle, password: newPassword } };
+   const newHandle = newHandleInput.value
+   const newPassword = newPasswordInput.value
+   const newPasswordConfirm = newPasswordConfirmInput.value
+   const url = 'https://chitter-backend-api.herokuapp.com/users';
+   const data = { user: { handle: newHandle, password: newPassword } };
 
    if (newPassword !== newPasswordConfirm){
      throw new Error('Passwords do not match')
@@ -94,9 +95,9 @@ function logIn(userHandle, userPassword){
 };
 
  function clearAllFields() {
-   handleInput = ''
-   passwordInput = ''
-   newHandleInput = ''
-   newPasswordInput = ''
-   newPasswordConfirmInput = ''
+   handleInput.value = ''
+   passwordInput.value = ''
+   newHandleInput.value = ''
+   newPasswordInput.value = ''
+   newPasswordConfirmInput.value = ''
  }

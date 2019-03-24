@@ -13,12 +13,26 @@ window.onload = () => {
 
 //when user clicks on login button
 loginButton.addEventListener('click', () => {
+  if (sessionStorage.getItem('sessionkey')) {
+    signOut();
+  } else {
   window.location.href="./login.html"; //when the user clicks login button - load login html
-})
+}
+});
+
 
 signupButton.addEventListener('click', () => {
+if (sessionStorage.getItem('sessionkey')) {
+  signOut();
+} else {
   window.location.href="./signup.html"; //when the user clicks login button - load login html
-})
+}
+});
+
+postForm.addEventListener('submit', function(event) => {
+  event.preventDefault();
+  postPeep();
+});
 
 async function renderPeeps(){
   var apiPeeps = await fetchPeepsFromAPI();
@@ -37,18 +51,75 @@ function fetchPeepsFromAPI(url = 'https://chitter-backend-api.herokuapp.com/peep
 };
 
 function wrapAllPeepsInHTML(JSONData){
-  var returnedHTMLString = '';
-  var hideDeleteBetweenText = '';
-  var hideLikesBetweenText = '';
+  const returnedHTMLString = '';
+  const hideDeleteBetweenText = '';
+  const hideLikesBetweenText = '';
+
+  if (sessionStorage.getItem('sessionkey')){
+    returnedHTMLString += `Posting as: ${sessionStorage.getItem('username')} `
+  } else {
+    postForm = null
+  };
+
 
   for (var i = 0; i < Object.keys(JSONData).length; i ++ ) {
+
+    const likeButtonText = returnLikeButtonText(JSONData[i])
+
+    if (JSONData[i].user.id === parseInt(sessionStorage.getItem('id'), 10)) {
+      hideDeleteBetweenText = ''
+    } else {
+      hideDeleteBetweenText = 'hidden';
+    }
+
+    if(sessionStorage.getItem('sessionkey') === null){
+      hideLikesBetweenText = 'hidden';
+    }
+
     returnedHTMLString += `${JSONData[i].user.handle}: ${(JSONData[i].body)} @${JSONData[i].created_at.slice(11,16)} on ${JSONData[i].created_at.slice(0,10)}\n `
+    console.log(returnedHTMLString)
+    return returnedHTMLString
   }
-   console.log(returnedHTMLString)
-   return returnedHTMLString
+
+  peepsListContainer.insertAdjacentHTML('beforeend', returnedHTMLString)
 }
 
 function loginOrSignupOrPost(){
+  if (sessionStorage.getItem('sessionkey')){
+    loginButton.innerHTML = 'Log Out'
+  } else {
+    loginButton.innerHTML = 'Log In'
+  }
 
+function postPeep(){
+  const url = 'https://chitter-backend-api.herokuapp.com/peeps';
+  const data = { peep: { user_id: sessionStorage.getItem('id'), body: newPeep.value} };
 
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'applicayion/json',
+      Authorization: `Token token=${sessionStorage.getItem('sessionkey')}`,
+    },
+  }).then(res => res.json())
+  .then((response) => {
+    console.log('Posted!:', response);
+    window.location.reload();
+  })
+  .catch(error => console.log('Error: ', error));
+}
+
+function deletePeep(postId) {
+  const id = postId.slice(6);
+  const url = `https://chitter-backend-api.herokuapp.com/peeps/${id}`
+
+  fetch(url, {
+    method: 'DELETE',
+    headers: { Authorization: `Token token=${sessionStorage.getItem('sessionkey')}` },
+  }).then((response) => {
+    console.log('Deleted!: ', response);
+    window.location.reload()
+  })
+  .catch(error => console.log('Error: ', error));
 }
