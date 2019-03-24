@@ -28,6 +28,10 @@
     <!-- <script>peepsAllModel = new PeepsAll();</script>
     <script>controller = new PeepsAllViewController(peepsAllModel);</script>
     <script>controller.viewAllPeepsFromDatabase(document);</script> -->
+
+    <script>data = fetchPeepsFromAPI(url = 'https://chitter-backend-api.herokuapp.com/peeps')</script>
+    <script>allPeeps = wrapAllPeepsInHTML(data)</script>
+    <script>console.log(allPeeps)</script>
     <p>
       <h2>Follow your interests.</h2>
       <h2>See what people are talking about.</h2>

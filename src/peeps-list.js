@@ -39,7 +39,7 @@ function wrapAllPeepsInHTML(JSONData){
   for (var i = 0; i < Object.keys(JSONData).length; i ++ ) {
     returnedHTMLString += `${JSONData[i].user.handle}: ${(JSONData[i].body)} @${JSONData[i].created_at.slice(11,16)} on ${JSONData[i].created_at.slice(0,10)}\n `
   }
-  console.log(returnedHTMLString)
+  return returnedHTMLString
 }
 
 function loginOrSignupOrPost(){
