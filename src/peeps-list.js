@@ -1,5 +1,6 @@
 var peepsListContainer = document.getElementById('peeps-list');
 var loginButton = document.getElementById('login');
+var signupButton = document.getElementById('signup')
 var postForm = document.getElementById('post-form');
 var newPeep = document.getElementById('create-peep');
 
@@ -13,6 +14,10 @@ window.onload = () => {
 //when user clicks on login button
 loginButton.addEventListener('click', () => {
   window.location.href="./login.html"; //when the user clicks login button - load login html
+})
+
+signupButton.addEventListener('click', () => {
+  window.location.href="./signup.html"; //when the user clicks login button - load login html
 })
 
 async function renderPeeps(){
