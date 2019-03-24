@@ -1,5 +1,5 @@
 function returnLikeButtonText(data) {
-  const likedBy = [];
+  var likedBy = [];
   for (var i = 0; i < data.likes.length; i ++) {
     likedBy.push(data.likes[i].user.id);
   }
@@ -36,9 +36,9 @@ function returnLikeButtonText(data) {
   }
 
   function clickLike(postId){
-    const id = PostId.slice(4);
-    const url = `https://chitter-backend-api.herokuapp.com/peeps/${id}/likes/${sessionStorage.getItem("id")}`;
-    const likeButton = document.getElementById(postId);
+    var id = PostId.slice(4);
+    var url = `https://chitter-backend-api.herokuapp.com/peeps/${id}/likes/${sessionStorage.getItem("id")}`;
+    var likeButton = document.getElementById(postId);
 
     if (likeButton.innerHTML === 'Unlike'){
       unLikePost(url);

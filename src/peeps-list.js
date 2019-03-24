@@ -1,8 +1,8 @@
-const peepsListContainer = document.getElementById('peeps-list');
-const loginButton = document.getElementById('login');
-const signupButton = document.getElementById('signup')
-const postForm = document.getElementById('post-form');
-const newPeep = document.getElementById('create-peep');
+var peepsListContainer = document.getElementById('peeps-list');
+var loginButton = document.getElementById('login');
+var signupButton = document.getElementById('signup')
+var postForm = document.getElementById('post-form');
+var newPeep = document.getElementById('create-peep');
 
 //
 
@@ -29,7 +29,7 @@ if (sessionStorage.getItem('sessionkey')) {
 }
 });
 
-postForm.addEventListener('submit', function(event) => {
+postForm.addEventListener('submit', function(event) {
   event.preventDefault();
   postPeep();
 });
@@ -51,9 +51,9 @@ function fetchPeepsFromAPI(url = 'https://chitter-backend-api.herokuapp.com/peep
 };
 
 function wrapAllPeepsInHTML(JSONData){
-  const returnedHTMLString = '';
-  const hideDeleteBetweenText = '';
-  const hideLikesBetweenText = '';
+  var returnedHTMLString = '';
+  var hideDeleteBetweenText = '';
+  var hideLikesBetweenText = '';
 
   if (sessionStorage.getItem('sessionkey')){
     returnedHTMLString += `Posting as: ${sessionStorage.getItem('username')} `
@@ -64,7 +64,7 @@ function wrapAllPeepsInHTML(JSONData){
 
   for (var i = 0; i < Object.keys(JSONData).length; i ++ ) {
 
-    const likeButtonText = returnLikeButtonText(JSONData[i])
+    var likeButtonText = returnLikeButtonText(JSONData[i])
 
     if (JSONData[i].user.id === parseInt(sessionStorage.getItem('id'), 10)) {
       hideDeleteBetweenText = ''
@@ -92,8 +92,8 @@ function loginOrSignupOrPost(){
   }
 
 function postPeep(){
-  const url = 'https://chitter-backend-api.herokuapp.com/peeps';
-  const data = { peep: { user_id: sessionStorage.getItem('id'), body: newPeep.value} };
+  var url = 'https://chitter-backend-api.herokuapp.com/peeps';
+  var data = { peep: { user_id: sessionStorage.getItem('id'), body: newPeep.value} };
 
   fetch(url, {
     method: 'POST',
@@ -111,8 +111,8 @@ function postPeep(){
 }
 
 function deletePeep(postId) {
-  const id = postId.slice(6);
-  const url = `https://chitter-backend-api.herokuapp.com/peeps/${id}`
+  var id = postId.slice(6);
+  var url = `https://chitter-backend-api.herokuapp.com/peeps/${id}`
 
   fetch(url, {
     method: 'DELETE',
@@ -122,4 +122,5 @@ function deletePeep(postId) {
     window.location.reload()
   })
   .catch(error => console.log('Error: ', error));
-}
+};
+};
