@@ -6,29 +6,32 @@
   <h1>Chitter</h1>
   <head>See what's happening in the world right now</head>
       <!-- add css style sheet later -->
-
   <body>
 
     <h2>Join Chiter today.</h2>
     <button id="login">Sign Up</button>
     <button id="login">Log In</button>
     <p>
-    <br><div id="peeps-list"></div></br>
     </p>
     <form id="post-form">
-
+      <br><input type="text" id="create-peep" placeholder="What's on your mind?"></br>
+      <button type="submit">Post</button>
     </form>
-
+    <h2>Peeps</h2>
+    <div id="peeps-list"></div>
+    <script src="./src/peeps.js"></script>
     <script src="./src/peep-all-model.js"></script>
     <script src="./src/peep-all-view.js"></script>
     <script src="./src/peep-all-view_controller.js"></script>
+    <script src="./src/likes.js"></script>
+
+    <script>peepsAllModel = new PeepsAll();</script>
+    <script>controller = new PeepsAllViewController(peepsAllModel);</script>
+    <script>controller.viewAllPeepsFromDatabase(document);</script>
+    <p>
+      <h2>Follow your interests.</h2>
+      <h2>See what people are talking about.</h2>
+      <h2>Join the conversation.</h2>
+    </p>
   </body>
-  <script>peepsAllModel = new PeepsAll();</script>
-  <script>controller = new PeepsAllViewController(peepsAllModel);</script>
- <script>controller.viewAllPeepsFromDatabase(document);</script>
-<p>
-    <h2>Follow your interests.</h2>
-    <h2>See what people are talking about.</h2>
-    <h2>Join the conversation.</h2>
-</p>
 </html>
