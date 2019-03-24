@@ -77,7 +77,7 @@ function testViewFetchAPIData(){
   var testPeepsAllViewController = new PeepsAllViewController(testAllPeepsModel)
 
 
-  testPeepsAllViewController.viewAllPeepsFromDatabase(document)
+ testPeepsAllViewController.viewAllPeepsFromDatabase(document)
 
 }
 testViewFetchAPIData();

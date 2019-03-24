@@ -9,7 +9,7 @@
       for (var i = 0; i < Object.keys(jsonData).length; i ++ ) {
         returnedHTML += `${(jsonData[i].body)}\n`
       }
-      return console.log(returnedHTML)
+      return returnedHTML
     };
 exports.PeepsAllView = PeepsAllView;
 })(this);

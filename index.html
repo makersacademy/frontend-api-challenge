@@ -2,7 +2,13 @@
 <html>
   <head>Welcome to Chitter!</head>
   <body>
-    <button id="button_see_all_peeps">See All Peeps</button>
-    <script src="allPeepsController.js"></script>
+    <div id="peeps-list"></div>
+    <!-- <button id="peeps-list">peeps-list</button> -->
+    <script src="./src/peep-all-model.js"></script>
+    <script src="./src/peep-all-view.js"></script>
+    <script src="./src/peep-all-view_controller.js"></script>
   </body>
+  <script>peepsAllModel = new PeepsAll();</script>
+  <script>controller = new PeepsAllViewController(peepsAllModel);</script>
+ <script>controller.viewAllPeepsFromDatabase(document);</script>
 </html>
