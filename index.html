@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html>
-  <head>Welcome to Chitter!</head>
+<html lang="en">
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <h1>Chitter</h1>
+  <head>See what's happening in the world right now</head>
+      <!-- add css style sheet later -->
+
   <body>
-    <div id="peeps-list"></div>
-    <!-- <button id="peeps-list">peeps-list</button> -->
+
+    <h2>Join Chiter today.</h2>
+    <button id="login">Sign Up</button>
+    <button id="login">Log In</button>
+    <p>
+    <br><div id="peeps-list"></div></br>
+    </p>
+    <form id="post-form">
+
+    </form>
+
     <script src="./src/peep-all-model.js"></script>
     <script src="./src/peep-all-view.js"></script>
     <script src="./src/peep-all-view_controller.js"></script>
@@ -11,4 +26,9 @@
   <script>peepsAllModel = new PeepsAll();</script>
   <script>controller = new PeepsAllViewController(peepsAllModel);</script>
  <script>controller.viewAllPeepsFromDatabase(document);</script>
+<p>
+    <h2>Follow your interests.</h2>
+    <h2>See what people are talking about.</h2>
+    <h2>Join the conversation.</h2>
+</p>
 </html>
