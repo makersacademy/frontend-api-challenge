@@ -1,8 +1,8 @@
-var peepsListContainer = document.getElementById('peeps-list');
-var loginButton = document.getElementById('login');
-var signupButton = document.getElementById('signup')
-var postForm = document.getElementById('post-form');
-var newPeep = document.getElementById('create-peep');
+const peepsListContainer = document.getElementById('peeps-list');
+const loginButton = document.getElementById('login');
+const signupButton = document.getElementById('signup')
+const postForm = document.getElementById('post-form');
+const newPeep = document.getElementById('create-peep');
 
 //
 
@@ -44,7 +44,8 @@ function wrapAllPeepsInHTML(JSONData){
   for (var i = 0; i < Object.keys(JSONData).length; i ++ ) {
     returnedHTMLString += `${JSONData[i].user.handle}: ${(JSONData[i].body)} @${JSONData[i].created_at.slice(11,16)} on ${JSONData[i].created_at.slice(0,10)}\n `
   }
-  return returnedHTMLString
+   console.log(returnedHTMLString)
+   return returnedHTMLString
 }
 
 function loginOrSignupOrPost(){

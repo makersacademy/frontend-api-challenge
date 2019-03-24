@@ -17,7 +17,7 @@
       <br><input type="text" id="create-peep" placeholder="What's on your mind?"></br>
       <button type="submit">Post</button>
     </form>
-    <h2>Peeps</h2>
+    <h3>Peeps</h3>
     <div id="peeps-list"></div>
     <script src="./src/peeps-list.js"></script>
     <script src="./src/peep-all-model.js"></script>
@@ -30,8 +30,8 @@
     <script>controller.viewAllPeepsFromDatabase(document);</script> -->
 
     <script>data = fetchPeepsFromAPI(url = 'https://chitter-backend-api.herokuapp.com/peeps')</script>
-    <script>allPeeps = wrapAllPeepsInHTML(data)</script>
-    <script>console.log(allPeeps)</script>
+    <script>wrapAllPeepsInHTML(data)</script>
+
     <p>
       <h2>Follow your interests.</h2>
       <h2>See what people are talking about.</h2>
