@@ -24,6 +24,7 @@ class chitterAPI {
       data: data
     }).done(function(data){
       console.log(data)
+      console.log(password)
     })
   }
 
