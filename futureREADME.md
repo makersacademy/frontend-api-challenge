@@ -3,9 +3,10 @@
 ## API
 
 API links and attributes are pulled from
-```
-https://github.com/makersacademy/chitter_api_backend
-```
+
+[chitter api backend page](https://github.com/makersacademy/chitter_api_backend)
+
+
 
 ## Author
 

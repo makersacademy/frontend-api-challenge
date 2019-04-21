@@ -14,5 +14,17 @@ class chitterAPI {
   }
   // substring implemented to get preferred form. reference from chitter api backend page
 
+  signUpUser(handle, password) {
+    alert('responding')
+    let data = {"user": {"handle":handle, "password":password}};
+    $.ajax({
+      method: 'POST',
+      url: `${this.url}/users`,
+      headers: 'Content-Type: application/json',
+      data: data
+    }).done(function(data){
+      console.log(data)
+    })
+  }
 
 }

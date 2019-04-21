@@ -7,8 +7,10 @@ $(document).ready(function() {
   })
 
   $('#signUpForm').submit(function() {
-    var values = $(this).serialize();
-    alert(values); // pop up with our details
+    event.preventDefault();
+    let handle = $('#handle').val()
+    let password = $('#password').val()
+    chitter.signUpUser(handle, password) // delegate to signUpUser chitterAPI
   })
 
 })
