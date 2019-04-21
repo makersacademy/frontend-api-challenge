@@ -1,10 +1,10 @@
 class chitterAPI {
   constructor() {
     this.url = 'https://chitter-backend-api.herokuapp.com';
-    // our api resource
+    this.sessionKey;
+    this.sessionUserId;
   }
 
-  // peeps => given attributes at chitter api backend page
   renderPeeps() {
     $.get(`${this.url}/peeps`, function(responseData) {
       $(responseData).each(function() {
@@ -12,20 +12,49 @@ class chitterAPI {
       })
     })
   }
-  // substring implemented to get preferred form. reference from chitter api backend page
 
   signUpUser(handle, password) {
-    alert('responding')
-    let data = {"user": {"handle":handle, "password":password}};
-    $.ajax({
+    var userData = {"user": {"handle":handle, "password":password}};
+    console.log(userData)
+
+    this._createUser(userData).then(
+      console.log("user sign up successful")
+    )
+  }
+
+  _createUser(userData) {
+    console.log("create user ajax request")
+    var userPromise = $.ajax({
       method: 'POST',
       url: `${this.url}/users`,
       headers: 'Content-Type: application/json',
-      data: data
-    }).done(function(data){
-      console.log(data)
-      console.log(password)
+      data: userData,
+      error: function(error) {
+        console.log('error')
+      },
+      success: this._createSession
     })
+    return userPromise;
+  }
+
+  _createSession() {
+    var sessionData = {"session": {"handle":handle, "password":password}};
+    console.log("create session ajax request")
+    var sessionPromise = $.ajax({
+      method: 'POST',
+      url: `https://chitter-backend-api.herokuapp.com/sessions`, //'this' updated to /user ?
+      headers: 'Content-Type: application/json',
+      data: sessionData,
+      error: function(error) {
+        console.log('Failed to create session ' + error)
+      },
+      success: function(sessionInfo){
+        console.log('In success for create session. ' + sessionInfo);
+        this.sessionUserId = sessionInfo.user_id;
+        this.sessionKey = sessionInfo.session_key;
+      }
+    })
+    return sessionPromise;
   }
 
 }
