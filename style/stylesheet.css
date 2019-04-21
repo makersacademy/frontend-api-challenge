@@ -1,0 +1,14 @@
+body {
+  background-color: lightblue;
+  color: darkblue;
+  font-weight: 800;
+}
+
+button {
+  background-color: darkblue;
+  border-radius: 0.5rem;
+  border-style: none;
+  color: white;
+  font-size: 16px;
+  margin-top: 1rem;
+}
