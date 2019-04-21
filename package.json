@@ -1,0 +1,19 @@
+{
+  "name": "frontend-api-challenge",
+  "version": "1.0.0",
+  "description": "A chitter app using apis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpalmerr/frontend-api-challenge.git"
+  },
+  "author": "James Palmer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpalmerr/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/jpalmerr/frontend-api-challenge#readme"
+}
