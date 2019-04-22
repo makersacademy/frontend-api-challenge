@@ -18,4 +18,16 @@ $(document).ready(function() {
     }
   })
 
+  $('#loginForm').submit(function() {
+    event.preventDefault();
+    let handle = $('#loginHandle').val()
+    let password = $('#loginPassword').val()
+
+    if (handle == null || handle == "" || password == null || password == "") {
+      alert("Fields can't be blank")
+    } else {
+      chitter.loginUser(handle, password)
+    }
+  })
+
 })

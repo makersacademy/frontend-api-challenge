@@ -22,6 +22,11 @@ class chitterAPI {
     )
   }
 
+  loginUser(handle, password) {
+    var userData = {"handle":handle, "password":password};
+    this._createSession(userData); // doesn't need to create user but otherwise same process
+  }
+
   _createUser(userData) {
     console.log("create user ajax request")
     var userPromise = $.ajax({
