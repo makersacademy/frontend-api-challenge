@@ -1,15 +1,8 @@
 # Chitter API Frontend Challenge
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
 
 Challenge:
 -------
-
-As usual please start by forking this repo.
 
 We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
 
@@ -28,11 +21,54 @@ Here are some interactions the API supports. Implement as many as you see fit.
 * Liking Peeps
 * Unliking Peeps
 
+
+## Approach
+- TDD driven. first write feature and unit tests for each user story which relates to the interaction above. 
+
+### User stories
+As a user, I am able to view all peeps on the page
+
+As a user, I am able to view individual peeps
+
+As a user, I am able to post a peep
+
+As a user, I am able to delete a peep
+
+As a user, I am able to create a new user account 
+
+As a user, I am able to log in to my account
+
+As a user, I am able to like a peep
+
+As a user, I am able to unlike a peep
+
+
+
+### Skills 
+- writting code that is easy to read and change
+- write code that is well tested
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Other notes
+
 We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
 
-## Utilities you might find useful
+## Utilities
 
 * [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
 * [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
