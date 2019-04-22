@@ -9,10 +9,8 @@ var peep;
   })
 
   it('can create a peep', function() {
-    
     expect(peep.body).toEqual('hello1')
     
-
   })
 
 
