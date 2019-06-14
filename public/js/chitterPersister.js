@@ -48,6 +48,16 @@ PeepsPersister.prototype = {
       console.log(result)
       callback(result)
     })
-  }
+  },
 
+  get: function(callback) {
+    $.ajax({
+      type: 'GET',
+      url: `https://chitter-backend-api.herokuapp.com/peeps`
+    })
+    .done(function(result){
+      console.log(result)
+      callback(result)
+    })
+  }
 }

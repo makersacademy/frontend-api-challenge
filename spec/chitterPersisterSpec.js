@@ -57,43 +57,71 @@ describe('SessionPersister', function(){
 })
 
 describe('PeepsPersister', function() {
-  var resultObject = {}
 
-  beforeEach(function(done) {
-    sessionPersister = new SessionPersister();
-    peepsPersister = new PeepsPersister();
-    sessionModel = new Session();
-    userId = 1052
-    body = 'Persister test peep 🎉'
-    handle = 'Zoe'
-    password = '12345'
+  describe('creating peeps', function() {
+    var resultObject = {}
 
-    spy = { 
-      callback: function(result) { 
-        resultObject = result
-        done()
-      } 
-    }
+    beforeEach(function(done) {
+      sessionPersister = new SessionPersister();
+      peepsPersister = new PeepsPersister();
+      sessionModel = new Session();
+      userId = 1052
+      body = 'Persister test peep 🎉'
+      handle = 'Zoe'
+      password = '12345'
+  
+      spy = { 
+        callback: function(result) { 
+          resultObject = result
+          done()
+        } 
+      }
+  
+      function callback(result) { 
+        sessionModel.sessionKey = result.session_key
+        sessionModel.userId = result.user_id
+        peepsPersister.create(sessionModel, body, spy.callback)
+      }
+      sessionPersister.create(handle, password, callback)
+   
+      spyOn(spy, 'callback').and.callThrough()
+    });
+  
+    it('runs the callback when creating a peep', function() {
+      expect(spy.callback).toHaveBeenCalled()
+    })
+  
+    it('Successfully creates a peep', function() {
+      expect(resultObject.id).toEqual(jasmine.any(Number))
+      expect(resultObject.body).toEqual('Persister test peep 🎉')
+      expect(resultObject.user.id).toEqual(1052)
+      expect(resultObject.user.handle).toEqual('Zoe')
+    })
 
-    function callback(result) { 
-      sessionModel.sessionKey = result.session_key
-      sessionModel.userId = result.user_id
-      peepsPersister.create(sessionModel, body, spy.callback)
-    }
-    sessionPersister.create(handle, password, callback)
- 
-    spyOn(spy, 'callback').and.callThrough()
-  });
 
-  it('runs the callback when creating a peep', function() {
-    expect(spy.callback).toHaveBeenCalled()
   })
+  
+  describe('retrieving peeps', function() {
+    var resultObject = []
+    
+    beforeEach(function(done) {
+      spy = { 
+        callback: function(result) { 
+          resultObject = result
+          console.log(resultObject)
+          done()
+        } 
+      }
+      spyOn(spy, 'callback').and.callThrough()
+      peepsPersister = new PeepsPersister();
+      peepsPersister.get(spy.callback)
+    })
 
-  it('Successfully creates a peep', function() {
-    expect(resultObject.id).toEqual(jasmine.any(Number))
-    expect(resultObject.body).toEqual('Persister test peep 🎉')
-    expect(resultObject.user.id).toEqual(1052)
-    expect(resultObject.user.handle).toEqual('Zoe')
+    it('Successfully retrieves a list of peeps', function() {
+      peepsPersister = new PeepsPersister();
+      expect(resultObject).toEqual(jasmine.any(Array))
+      expect(resultObject[0].id).toEqual(jasmine.any(Number))
+      expect(resultObject[0].user.handle).toEqual(jasmine.any(String))
+    })
   })
-
 })

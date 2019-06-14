@@ -48,5 +48,4 @@ describe('Peeps', function(){
     peeps.all = testPeeps
     expect(peeps.all).toEqual(testPeeps)
   })
-
 })
