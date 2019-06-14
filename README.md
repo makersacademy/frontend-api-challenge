@@ -9,6 +9,8 @@
 
 
 ## Notes
+ * Current functionality: Register, login, create a peep
+ * Was working on implementing the peep list - model and persister done, not integrated with page yet.
  * Using jQuery and loosely basing structure on https://github.com/maryrosecook/count
  * Unit testing for model & persisters using Jasmine
  * Had a limited time for this challenge as I'm away this weekend
