@@ -13,7 +13,7 @@ $(document).ready(function(){
   function individualPeep(id) {
     $('#'+id).click(function () {
       singlePeep = $.get('https://chitter-backend-api.herokuapp.com/peeps/'+id, function(peep) {
-        console.log(singlePeep.responseText);
+        console.log(peep.body);
       });
     });
   };
