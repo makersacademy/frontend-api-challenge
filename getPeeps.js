@@ -1,3 +1,4 @@
+
 function getPeeps() {
   $.get('https://chitter-backend-api.herokuapp.com/peeps', function(data){
     loadPeeps(data);
@@ -8,8 +9,9 @@ function loadPeeps(peepsJson) {
   $('#peepsHolder').empty();
   for (var i = 0; i < peepsJson.length; i++) {
     $('#peepsHolder').append(`<div id="peep${i}" class="w3-card"></div>`);
-    $(`#peep${i}`).append(`<p>${peepsJson[i].body}<p>`);
     $(`#peep${i}`).append(`<p>User: ${peepsJson[i].user.handle}<p>`);
+    $(`#peep${i}`).append(`<p>${peepsJson[i].body}<p>`);
+    $(`#peep${i}`).append(`<p>👍 ${peepsJson[i].likes.length}</p>`);
     $(`#peep${i}`).append(`<p>${getTimeValue(peepsJson[i].created_at)}<p>`);
   }
 }

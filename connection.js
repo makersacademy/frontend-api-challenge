@@ -1,13 +1,19 @@
 $(document).ready(function (){
 
-  var peepsJson;
+  var chitter = new Chitter();
   var showLoginForm = true;
-  var sessionKey = "";
-  var userID = "";
-  getPeeps();
   loginFormToggle();
   showPostBox();
+  getPeeps();
+  setInterval(function(){getPeeps()}, 30000);
 
+
+
+  $('#logoutButton').click(function(){
+    chitter.sessionKey = ""
+    chitter.userID = ""
+    showPostBox()
+  })
 
   $('#loginSubmit').click(function(){
     var uname = $('#loginName').val();
@@ -15,8 +21,8 @@ $(document).ready(function (){
     var data = `{"session": {"handle":"${uname}", "password":"${pword}"}}`;
     var dataJson = JSON.parse(data);
     $.post("https://chitter-backend-api.herokuapp.com/sessions", dataJson, function(data){
-      sessionKey = data.session_key
-      userID = data.user_id
+      chitter.sessionKey = data.session_key
+      chitter.userID = data.user_id
       showPostBox();
     })
     .done(function(){
@@ -28,18 +34,12 @@ $(document).ready(function (){
     loginFormToggle();
     $('#loginName').val('')
     $('#loginPassword').val('')
-
   });
+
 
   $('#loginButton').click(function(){
     loginFormToggle()
-  })
-
-  $('#logoutButton').click(function(){
-    sessionKey = ""
-    userID = ""
-    showPostBox()
-  })
+  });
 
   function loginFormToggle() {
     if (showLoginForm){
@@ -49,29 +49,34 @@ $(document).ready(function (){
       showLoginForm = true;
       $('#loginForm').show();
     }
-  }
+  };
+
+
 
   function showPostBox() {
-    if (sessionKey === ""){
+    if (chitter.sessionKey === ""){
       $('#addPeep').hide();
     } else {
       $('#addPeep').show();
     }
-  }
+  };
+
+
+
 
   $('#peepSubmit').click(function(){
     var peepBody = $('#peepInput').val();
-    console.log(userID)
-    var data = `{"peep": {"user_id":"${userID}", "body":"${peepBody}"}}`;
+    console.log(chitter.userID)
+    var data = `{"peep": {"user_id":"${chitter.userID}", "body":"${peepBody}"}}`;
     var dataJson = JSON.parse(data);
-    console.log(sessionKey)
+    console.log(chitter.sessionKey)
     $.ajax({
       type: 'POST',
       url: "https://chitter-backend-api.herokuapp.com/peeps",
-      headers: {'Authorization': `Token token=${sessionKey}`},
+      headers: {'Authorization': `Token token=${chitter.sessionKey}`},
       data: dataJson,
       success: function(response){
-        console.log('succes');
+        console.log('succes added a post');
         getPeeps();
       }
     })
