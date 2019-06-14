@@ -20,7 +20,31 @@ $(document).ready(function() {
       for(i = 0; i < content.length; i ++) {
         // '<span>' + content[i].body + '</span><br></br>';
         var div = document.createElement("div");
-                  div.innerHTML = 'Name: ' + content[i].body + ' ';
+        div.setAttribute('class', 'card text-white bg-success mb-3', 'style', 'width: 18rem');
+        
+        var div2 = document.createElement("div");
+        div2.setAttribute('class', 'card-body');
+        
+        var h5 = document.createElement("h5");
+        h5.setAttribute('class', 'card-header');
+       
+        var p = document.createElement("p");
+        p.setAttribute('class', 'card-text');
+
+        var p2 = document.createElement("p");
+        p2.setAttribute('class', 'card-text');
+
+        var small = document.createElement("small");
+        small.setAttribute('class', 'text-muted');
+        
+                  h5.innerHTML = 'Name: ' + content[i].user.handle + ' ';
+                  p.innerHTML = 'Body ' + content[i].body + ' ';
+                  small.innerHTML = 'Created @' + content[i].created_at + '';
+                  p2.appendChild(small);
+                  div2.appendChild(h5);
+                  div2.appendChild(p);
+                  div2.appendChild(p2);
+                  div.appendChild(div2);
                   mainContainer.appendChild(div);
       }
     }
