@@ -1,8 +1,8 @@
 function User() {
   Object.defineProperties(this, {
     "handle": {
-          "get": function() { return this._handle },
-          "set": function(handle) { this._handle = handle }
+      "get": function() { return this._handle },
+      "set": function(handle) { this._handle = handle }
     },
     "password": {
       "get": function() { return this._password },

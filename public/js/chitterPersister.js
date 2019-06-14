@@ -16,7 +16,6 @@ UserPersister.prototype = {
 }
 
 function SessionPersister() {
-
 }
 
 SessionPersister.prototype = {

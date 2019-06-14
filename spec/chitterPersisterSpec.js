@@ -53,4 +53,5 @@ describe('SessionPersister', function(){
     expect(resultObject.user_id).toEqual(1052)
     expect(resultObject.session_key).toEqual(jasmine.any(String))
   })
+
 })

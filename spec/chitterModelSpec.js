@@ -1,8 +1,6 @@
 describe('User', function() {
 
-  beforeEach(function() {
-    user = new User();
-  });
+  
 
   it('can set and get handle', function() {
     user.handle = 'Jay'
