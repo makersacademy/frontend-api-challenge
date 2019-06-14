@@ -9,7 +9,8 @@ $(document).ready(function(){
     var response = data;
     for (var i = 0; i < response.length; i++) {
       var dateTime = response[i].created_at
-      peep = "<li id="+response[i].id+">"+ "<div class='peep-info'>@" + response[i].user.handle + " - " + getTimeValue(dateTime) +  "</div> <div class='peep'>" + response[i].body + "</div> </li>"
+      peep = "<li id="+response[i].id+">"+ "<div class='peep-info'>@" + response[i].user.handle + " - " + getTimeValue(dateTime) +  
+            "</div> <div class='peep'>" + response[i].body + "</div></li>"
       $('.peeps').append(peep);
       individualPeep(response[i].id);
     };
@@ -35,6 +36,18 @@ $(document).ready(function(){
     dropdown();
   });
 
+  $('.logout').click(function() {
+    logout();
+  });
+
+  function logout() {
+    session_key = "";
+    user_id = "";
+    $('.logout').hide();
+    $('.login').show();
+    $('.new-peep').hide();
+  };
+
   function login (username, password) {
     $.ajax
     ({
@@ -53,6 +66,8 @@ $(document).ready(function(){
     session_key = data.session_key;
     user_id = data.user_id;
     $('.login').hide();
+    $('.logout').show();
+    $('.new-peep').show();
     $(".logindropdown").fadeOut(); 
   };
 
