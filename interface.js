@@ -40,6 +40,11 @@ $(document).ready(function(){
     logout();
   });
 
+  $('.post').click( function() {
+    body = $('.text').val();
+    post(body);
+  });
+
   function logout() {
     session_key = "";
     user_id = "";
@@ -56,6 +61,21 @@ $(document).ready(function(){
         contentType: 'application/json',
         async: false,
         data: JSON.stringify({"session": {"handle":username, "password":password}}),
+        success: function (data) {
+        successfulLogin(data); 
+      }
+    });
+  };
+
+  function post (body) {
+    $.ajax
+    ({
+        type: "POST",
+        url: 'https://chitter-backend-api.herokuapp.com/peeps',
+        contentType: 'application/json',
+        Authorization: 'Token token=' + session_key,
+        async: false,
+        data: JSON.stringify({"peep": {"user_id":user_id, "body":body}}),
         success: function (data) {
         successfulLogin(data); 
       }
