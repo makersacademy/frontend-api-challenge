@@ -19,7 +19,8 @@ function displayPeeps(data) {
   var list = '';
   data.forEach(function(item) {
     list += ` <div class="peep row">`;
-    list += `   <div class="col-md-4 offset-md-8 created">${formatDate(item.created_at)}</div>`;
+    list += `   <div class="col-md-8 handle">@${item.user.handle}</div>`;
+    list += `   <div class="col-md-4 created">${formatDate(item.created_at)}</div>`;
     list += `     <div class="row">`;
     list += `       <div class="col-md-12 peepBody">${item.body}</div>`;
     list += `     </div>`;
