@@ -1,7 +1,5 @@
 $(document).ready(function() {
   getPeeps(displayPeeps);
-
-
 });
 
 function getPeeps(callback) {
@@ -20,16 +18,17 @@ function getPeeps(callback) {
 function displayPeeps(data) {
   var list = '';
   data.forEach(function(item) {
-    list += `<div class="peep">`;
-    list += ` <div class="row">`;
-    list += `   <div class="col-md-4 offset-md-8 created">${item.created_at}</div>`;
+    list += ` <div class="peep row">`;
+    list += `   <div class="col-md-4 offset-md-8 created">${formatDate(item.created_at)}</div>`;
     list += `     <div class="row">`;
-    list += `       <div class="col-md-12 peepBody">`;
-    list += `       </div>`;
+    list += `       <div class="col-md-12 peepBody">${item.body}</div>`;
     list += `     </div>`;
     list += `   </div>`;
-    list += `  </div>`;
-    list += `<p>${item.user.handle}</p>`
   });
   $(list).appendTo('#peepContainer');
+}
+
+function formatDate(date) {
+  var nDate = new Date(date).toLocaleString();
+  return nDate;
 }
