@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="connection.js"></script>
+  </head>
+  <body>
+
+    <div class="w3-bar w3-light-grey">
+      <button class="w3-bar-item w3-button">🐝</button>
+      <button id="loginButton" class="w3-bar-item w3-button">Login</button>
+      <button id="logoutButton" class="w3-bar-item w3-button">Log out</button>
+      <button id="signupButton" class="w3-bar-item w3-button w3-right">Sign Up</button>
+    </div>
+    <br>
+
+    <div id="signupForm" class="w3-card-4">
+      <div class="w3-container w3-pale-blue">
+        <h2>Sign In</h2>
+      </div>
+      <div class="w3-container">
+        <p>
+        <label class="w3-text-pale-blue"><b>Name</b></label>
+        <input id="signupName" class="w3-input w3-border w3-light-gray" name="first" type="text"></p>
+        <p>
+        <label class="w3-text-pale-blue"><b>Password</b></label>
+        <input id="signupPassword" class="w3-input w3-border w3-light-gray" name="last" type="password"></p>
+        <p>
+        <button id="signupSubmit" class="w3-btn w3-pale-blue">Register</button></p>
+      </div>
+    </div>
+
+    <div id="loginForm" class="w3-card-4">
+      <div class="w3-container w3-pale-blue">
+        <h2>Login</h2>
+      </div>
+      <div class="w3-container">
+        <p>
+        <label class="w3-text-pale-blue"><b>Name</b></label>
+        <input id="loginName" class="w3-input w3-border w3-light-gray" name="first" type="text"></p>
+        <p>
+        <label class="w3-text-pale-blue"><b>Password</b></label>
+        <input id="loginPassword" class="w3-input w3-border w3-light-gray" name="last" type="password"></p>
+        <p>
+        <button id="loginSubmit" class="w3-btn w3-pale-blue">Login</button></p>
+      </div>
+    </div>
+
+    <div id="addPeep" class="w3-container">
+      <div class="w3-row">
+        <div class="w3-col m3 l3">
+          <br>
+        </div>
+        <div class="w3-col m3 l3">
+          <textarea id="peepInput" rows="4" cols="25"></textarea>
+        </div>
+        <div class="w3-col m3 l3">
+          <br>
+          <button id="peepSubmit" class="w3-btn w3-pale-blue">Post</button>
+        </div>
+        <div class="w3-col m3 l3">
+          <br>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    <div id="peepsHolder" class="w3-container"></div>
+
+
+
+  </body>
+</html>
