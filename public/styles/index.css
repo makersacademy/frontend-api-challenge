@@ -1,0 +1,22 @@
+body {
+  padding-top: 5rem;
+  color: #051217 !important;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.navLogoChitter {
+  height: 40px;
+  width: auto;
+
+}
+
+.navbar {
+  background-color: #26b2e1 !important;
+}
+
+.btn-secondary {
+  background-color: #ed5481 !important;
+}
