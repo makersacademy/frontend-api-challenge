@@ -1,11 +1,21 @@
 $(document).ready(function(){
+  var response;
+  var i;
   $.get('https://chitter-backend-api.herokuapp.com/peeps', function(data) {
-    response = data 
+    var response = data;
     for (var i = 0; i < response.length; i++) {
-      console.log(response[i]);
-      peep = "<li>"+ "<div class='peep-info'>" + response[i].user.handle +"</div> <div class='peep'>" + response[i].body + "</div> </li>"
+      peep = "<li id="+response[i].id+">"+ "<div class='peep-info'>" + response[i].user.handle + "</div> <div class='peep'>" + response[i].body + "</div> </li>"
       $('.peeps').append(peep);
+      individualPeep(response[i].id);
     };
   });
-
+  
+  function individualPeep(id) {
+    $('#'+id).click(function () {
+      singlePeep = $.get('https://chitter-backend-api.herokuapp.com/peeps/'+id, function(peep) {
+        console.log(singlePeep.responseText);
+      });
+    });
+  };
+  
 });
