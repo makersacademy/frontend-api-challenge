@@ -19,5 +19,6 @@ $(document).ready(function() {
 
   function displaySuccess() {
     $('#status').text('Registration successful!')
+    $('#loginLink').show()
   }
 })

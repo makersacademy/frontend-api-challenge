@@ -11,5 +11,5 @@ Unliking Peeps
 | ------------- | ------------- |
 | User  | #setHandle, #setPassword, #getHandle, #getPassword |
 | Session | #setUserId, #setSessionKey, #getUserId, #getSessionKey  |
-| Peep  | TBD |
+| Peep  | #peeps |
 etc

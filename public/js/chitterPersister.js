@@ -32,3 +32,22 @@ SessionPersister.prototype = {
   }
 
 }
+
+function PeepsPersister() {
+}
+
+PeepsPersister.prototype = {
+  create: function(session, body, callback) {
+    $.ajax({
+      type: 'POST',
+      url: `https://chitter-backend-api.herokuapp.com/peeps`,
+      data: { "peep": {'user_id': session.userId, 'body': body} },
+      headers: {"Authorization": "Token token=" + session.sessionKey}
+    })
+    .done(function(result){
+      console.log(result)
+      callback(result)
+    })
+  }
+
+}

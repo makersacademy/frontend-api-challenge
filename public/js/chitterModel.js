@@ -22,5 +22,13 @@ function Session() {
       "set": function(sessionKey) { this._sessionKey = sessionKey }
     }
   })
+}
 
+function Peeps() {
+  Object.defineProperties(this, {
+    "all": {
+          "get": function() { return this._peeps },
+          "set": function(peeps) { this._peeps = peeps }
+    },
+  })
 }

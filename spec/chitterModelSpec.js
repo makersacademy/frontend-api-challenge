@@ -1,6 +1,8 @@
 describe('User', function() {
 
-  
+  beforeEach(function() {
+    user = new User();
+  });
 
   it('can set and get handle', function() {
     user.handle = 'Jay'
@@ -34,6 +36,17 @@ describe ('Session', function() {
     expect(session._sessionKey).toEqual('a&*^@nbk2jb')
     expect(session.sessionKey).toEqual('a&*^@nbk2jb')
   })
+})
 
+describe('Peeps', function(){
+  beforeEach(function() {
+    peeps = new Peeps();
+    testPeeps = [{"id": 4,},{"id": 5,},{"id": 6,}]
+  });
+
+  it('can set and get a list of peeps', function() {
+    peeps.all = testPeeps
+    expect(peeps.all).toEqual(testPeeps)
+  })
 
 })

@@ -3,7 +3,7 @@ $(document).ready(function() {
   sessionModel = new Session
   userPersister = new UserPersister
   sessionPersister = new SessionPersister
-
+  peepsPersister = new PeepsPersister
 
 
   $('#login').click(function(){
@@ -14,10 +14,19 @@ $(document).ready(function() {
     })
   })
 
+  $('#submitPeep').click(function(){
+    body = $('#peepText').val()
+    peepsPersister.create(sessionModel, body, function(result) {
+      console.log(result)
+    })
+  })
+
   function updateUserFromPage() {
     handle = $('#handle').val()
     password = $('#password').val()
     userModel.handle = handle
     userModel.password = password
   }
+
+  
 })
