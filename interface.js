@@ -12,9 +12,20 @@ $(document).ready(function(){
   
   function individualPeep(id) {
     $('#'+id).click(function () {
-      singlePeep = $.get('https://chitter-backend-api.herokuapp.com/peeps/'+id, function(peep) {
-        console.log(peep.body);
+      popup();
+      $.get('https://chitter-backend-api.herokuapp.com/peeps/'+id, function(peep) {
+        console.log(peep);
+        $('.singlePeepInfo').text(peep.user.handle);
+        $('.singlePeep').text(peep.body);
       });
+    });
+  };
+
+  function popup() {
+    $('.popup').fadeIn(500);
+
+    $(".close").click(function () {
+      $(".popup").fadeOut(500);
     });
   };
   
