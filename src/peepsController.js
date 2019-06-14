@@ -47,7 +47,7 @@ $(document).ready(function() {
 
         var small = document.createElement("small");
         small.setAttribute('class', 'text-muted');
-        
+                  // var timeSince = timeSince(content[i].created_at);
                   h5.innerHTML = 'Name: ' + content[i].user.handle + ' ';
                   p.innerHTML = 'Body ' + content[i].body + ' ';
                   small.innerHTML = 'Created @' + content[i].created_at + '';
@@ -112,6 +112,73 @@ $('#submit').click(function() {
 
 document.getElementById("create").style.visibility = "hidden";
 });
+
+$('#login').click(function() {
+ //why is it sending a request with empty data when we load the page? Because login is everything
+  $.ajax({
+  type: "POST",
+  url: "https://chitter-backend-api.herokuapp.com/sessions",
+  contentType: "application/json",
+  data: JSON.stringify({"session": {"handle": document.getElementById("username-known").value , "password": document.getElementById("password-known").value}}),
+  success: function(resultData) { 
+    
+    var data = JSON.stringify(resultData);
+    var exisitingUser = JSON.parse(data);
+    var sessionKey = exisitingUser.session_key;
+    postAPeep(sessionKey, exisitingUser.user_id);
+    alert("Save Complete, Your UserId is " + exisitingUser.user_id);
+  }
+  
+});
+
+document.getElementById("logging").style.visibility = "hidden";
+document.getElementById("logout").style.visibility = "visible";
+});
+
+$('#register').click(function() {
+  document.getElementById("create").style.visibility = "visible";
+});
+
+
+  $('#newPeep').click(function() {
+    alert("you are peepping")
+  });
+  function postAPeep(session, user) {
+
+}
+
+$('#logout').click(function() {
+  window.location.reload();
+});
+
+
+//MODAL
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 
   });
