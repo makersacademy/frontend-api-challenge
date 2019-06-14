@@ -4,3 +4,5 @@ function Peep(handle, body, created, updated) {
   this.created = created;
   this.updated = updated;
 }
+
+// Not using for AJAX anymore
