@@ -1,7 +1,10 @@
+var session_key;
+var user_id;
+
 $(document).ready(function(){
   var response;
   var i;
-  var session;
+
   $.get('https://chitter-backend-api.herokuapp.com/peeps', function(data) {
     var response = data;
     for (var i = 0; i < response.length; i++) {
@@ -16,7 +19,6 @@ $(document).ready(function(){
     $('#'+id).click(function () {
       popup();
       $.get('https://chitter-backend-api.herokuapp.com/peeps/'+id, function(peep) {
-        console.log(peep);
         $('.singlePeepInfo').text(peep.user.handle);
         $('.singlePeep').text(peep.body);
       });
@@ -40,13 +42,18 @@ $(document).ready(function(){
         url: 'https://chitter-backend-api.herokuapp.com/sessions',
         contentType: 'application/json',
         async: false,
-        data: JSON.stringify({"session": {"handle":"lauren", "password":"Password1"}}),
+        data: JSON.stringify({"session": {"handle":username, "password":password}}),
         success: function (data) {
-        session = data.session_key;
-        $('.login').hide();
-        $('.logindropdown').hide;
+        successfulLogin(data); 
       }
     });
+  };
+
+  function successfulLogin(data) {
+    session_key = data.session_key;
+    user_id = data.user_id;
+    $('.login').hide();
+    $(".logindropdown").fadeOut(); 
   };
 
   function popup() {
@@ -63,9 +70,6 @@ $(document).ready(function(){
 
     $(".close").click(function () {
       $(".logindropdown").slideUp();
-    });
-    $(".go").click(function () {
-      $(".logindropdown").fadeOut();
     });
   };
 
