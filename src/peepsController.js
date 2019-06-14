@@ -126,7 +126,7 @@ $('#login').click(function() {
     var exisitingUser = JSON.parse(data);
     var sessionKey = exisitingUser.session_key;
     //how to pass the params below?
-    $("#newPeep").click({param1: "Hello", param2: "World"}, postAPeep);
+    $("#newPeep").click({param1: sessionKey, param2: exisitingUser.user_id}, postAPeep);
     // postAPeep(sessionKey, exisitingUser.user_id);
     alert("Save Complete, Your UserId is " + exisitingUser.user_id);
   }
