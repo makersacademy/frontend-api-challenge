@@ -1,31 +1,22 @@
 $(document).ready(function() {
-  getPeeps(displayPeeps);
+  peep = new Peep();
+
+  peep.getPeeps(displayPeeps);
 });
 
-function getPeeps(callback) {
-  $.ajax({
-    url: "https://chitter-backend-api.herokuapp.com/peeps",
-    type: "GET",
-    error: function() {
-      return "Error loading peeps";
-    },
-    success: function(result) {
-      callback(result);
-    }
-  });
-}
 
 function displayPeeps(data) {
   var list = '';
-  data.forEach(function(item) {
+  data.forEach(function(peep) {
     list += ` <div class="peep row">`;
-    list += `   <div class="col-md-8 handle">@${item.user.handle}</div>`;
-    list += `   <div class="col-md-4 created">${formatDate(item.created_at)}</div>`;
+    list += `   <div class="col-md-8 handle">@${peep.user.handle}</div>`;
+    list += `   <div class="col-md-4 created">${formatDate(peep.created_at)}</div>`;
     list += `     <div class="row">`;
-    list += `       <div class="col-md-12 peepBody">${item.body}</div>`;
+    list += `       <div class="col-md-12 peepBody">${peep.body}</div>`;
     list += `     </div>`;
     list += `   </div>`;
   });
+  $('#peepContainer').show();
   $(list).appendTo('#peepContainer');
 }
 

@@ -1,8 +1,17 @@
-function Peep(handle, body, created, updated) {
-  this.handle = handle;
-  this.body = body;
-  this.created = created;
-  this.updated = updated;
+function Peep() {
+  this._result = [];
 }
 
-// Not using for AJAX anymore
+Peep.prototype.getPeeps = function(callback) {
+  $.ajax({
+    url: "https://chitter-backend-api.herokuapp.com/peeps",
+    type: "GET",
+    error: function() {
+      return "Error loading peeps";
+    },
+    success: function(result) {
+      this._result = result;
+      callback(result);
+    }
+  });
+}
