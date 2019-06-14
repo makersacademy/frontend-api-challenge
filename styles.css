@@ -4,37 +4,58 @@
 html { 
   font-family: 'Oswald', sans-serif;
   text-align: center;
+  align-items: center;
   background-color: #DCDCDC;
   color: darkslategray;
 }
 
 .popup {
-    position:fixed;
-    border:solid 1px gray;
-    width:20%;
-    height:30%;
-    border-radius: 12px;
-    left:50%;
-    top:50%;
-    margin:-100px 0 0 -100px;
-    display:none;
-    background-color:white;
+  position:fixed;
+  border:solid 1px gray;
+  width:20%;
+  height: auto;
+  padding: 5px;
+  border-radius: 12px;
+  left:50%;
+  top:50%;
+  margin:-100px 0 0 -100px;
+  display:none;
+  background-color:white;
 }
 
-  .close {
-   float: right;
-   background-color: white;
-   color: grey;
-   padding-top: 10px;
-   padding: 5px 12px; 
-   font-size: 10px; 
-   border: none;
-  }
+.login {
+  position: relative;
+}
 
-  .close:hover {
-    color: darkslategrey;
-    background-color: white;
-   }
+.logindropdown {
+  position:fixed;
+  border:solid 1px gray;
+  width:20%;
+  height:20%;
+  position: absolute;
+  border-radius: 12px;
+  left:50%;
+  top:25%;
+  margin:-100px 0 0 -100px;
+  display:none;
+  background-color:white;
+}
+
+
+.close {
+  float: right;
+  background-color: white;
+  color: grey;
+  padding-top: 10px;
+  padding: 5px 12px; 
+  font-size: 10px; 
+  border: none;
+}
+
+.close:hover {
+  color: darkslategrey;
+  background-color: white;
+  }
 
 .cover {
   background-color:black;
@@ -44,12 +65,6 @@ html {
   position:fixed;
 }
 
-div.login { 
-  position: absolute;
-  right: 0px;
-  width: 300px;
-  padding: 10px;
-}
 
 button { 
  text-align: left;
@@ -89,8 +104,14 @@ input[type=submit] {
 }
 
 input[type=text] {
-  width: 15%;
-  padding: 5px 20px;
+  width: 40%;
+  padding: 5px 5px;
+  box-sizing: border-box;
+}
+
+input[type=password] {
+  width: 40%;
+  padding: 5px 5px;
   box-sizing: border-box;
 }
 
@@ -110,6 +131,11 @@ li {
   list-style-type: none;
 }
 
+li:hover {
+  background-color: #b2d8d8;
+}
+
+
 .peeps {
   margin: 0 auto;
   height: auto;
@@ -128,7 +154,7 @@ div.peep {
 .singlePeep {
   font-size: 20px;
   color: darkslategrey;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .singlePeepInfo {
