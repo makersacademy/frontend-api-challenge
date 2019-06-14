@@ -125,7 +125,9 @@ $('#login').click(function() {
     var data = JSON.stringify(resultData);
     var exisitingUser = JSON.parse(data);
     var sessionKey = exisitingUser.session_key;
-    postAPeep(sessionKey, exisitingUser.user_id);
+    //how to pass the params below?
+    $("#newPeep").click({param1: "Hello", param2: "World"}, postAPeep);
+    // postAPeep(sessionKey, exisitingUser.user_id);
     alert("Save Complete, Your UserId is " + exisitingUser.user_id);
   }
   
@@ -140,12 +142,22 @@ $('#register').click(function() {
 });
 
 
-  $('#newPeep').click(function() {
-    alert("you are peepping")
-  });
-  function postAPeep(session, user) {
+  // $('#newPeep').click(function() {
+  //   alert("you are peepping")
+  // });
+  function postAPeep(event) {
+    $.ajax({
+      type: "POST",
+      url: "https://chitter-backend-api.herokuapp.com/peeps",
+      contentType: "application/json",
+      Authorization: 'Token token=' + event.data.param1,
+      data: JSON.stringify({"peep": {"user_id": event.data.param2 , "body": document.getElementById("peepPeep").value}}),
+      success: function(resultData) { 
+        alert("hi")
+      }
+      })
+  }
 
-}
 
 $('#logout').click(function() {
   window.location.reload();
