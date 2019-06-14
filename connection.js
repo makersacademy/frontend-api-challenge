@@ -105,14 +105,17 @@ $(document).ready(function (){
     console.log(userID)
     var data = `{"peep": {"user_id":"${userID}", "body":"${peepBody}"}}`;
     var dataJson = JSON.parse(data);
-    $.post("https://chitter-backend-api.herokuapp.com/peeps", dataJson)
-      .done(function(){
-        alert('Post added created');
+    console.log(sessionKey)
+    $.ajax({
+      type: 'POST',
+      url: "https://chitter-backend-api.herokuapp.com/peeps",
+      headers: {'Authorization': `Token token=${sessionKey}`},
+      data: dataJson,
+      success: function(response){
+        console.log('succes');
         getPeeps();
-      })
-      .fail(function() {
-        alert( "Unable to add post" );
-      })
+      }
+    })
     $('#peepInput').val('')
   });
 
@@ -128,6 +131,7 @@ $(document).ready(function (){
   }
 
   function loadPeeps(peepsJson) {
+    $('#peepsHolder').empty();
     for (var i = 0; i < peepsJson.length; i++) {
       $('#peepsHolder').append(`<div id="peep${i}" class="w3-card"></div>`);
       $(`#peep${i}`).append(`<p>${peepsJson[i].body}<p>`);
