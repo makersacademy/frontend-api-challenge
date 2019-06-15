@@ -1,7 +1,18 @@
 $(document).ready(function() {
   peep = new Peep();
+  user = new User('', '');
 
+  $('#HomeBtn').on('click', function() {
+    GetHome();
+  });
+  $('#SignupBtn').on('click', function() {
+    GetSignup();
+  });
   peep.getPeeps("", displayPeeps);
+
+  $('#signupSubmit').on('click', function() {
+    user.create($('#inputHandle').val(), $('#inputPassword').val(), DisplaySuccess);
+  });
 
 });
 
@@ -50,6 +61,21 @@ function formatDate(date) {
   return nDate;
 }
 
-function displaySinglePeep(data) {
+function GetSignup() {
+  $('#peepContainer').hide();
+  $('#signupContainer').show();
+  $('#pageTitle').text("Sign up");
+}
 
+function GetHome() {
+  $('#signupContainer').hide();
+  $('#peepContainer').show();
+  $('#pageTitle').text("Peeps");
+}
+
+function DisplaySuccess(message) {
+  $('#SignupBtn').text(`Hi ${message}!`);
+  $('.formContainer.signup').hide();
+  $('.successMsg').show().text(`Success! @${message}, you are now a member of Chitter`)
+  $('#SignupBtn').unbind('click');
 }

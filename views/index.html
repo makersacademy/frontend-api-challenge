@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../public/bootstrap-4.3.1-dist/css/bootstrap.css" />
     <link rel="stylesheet" href="../public/styles/index.css" />
+    <link rel="stylesheet" href="../public/styles/floating-labels.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="icon" href="../public/images/chitter.png" />
     <title>Chitter</title>
@@ -23,10 +24,13 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#" id="HomeBtn">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Add</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="SignupBtn">Sign up</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -36,10 +40,29 @@
       </div>
     </nav>
 
-    <main role="main" class="container">
+    <main role="main" class="container main-container">
       <div class="starter-template">
         <h1>Chitter: <span id="pageTitle">Peeps</span></h1>
         <div id="peepContainer"></div>
+        <div id="signupContainer" style="display: none;">
+          <div class="successMsg" style="display: none;"></div>
+          <div class="formContainer signup">
+            <form class="form-signin">
+              <div class="text-center mb-4">
+                <p>It's great that you want to sign up! Just enter your details below!</p>
+              </div>
+              <div class="form-label-group">
+                <input type="text" id="inputHandle" class="form-control" placeholder="@Handle" required autofocus>
+                <label for="inputHandle">@Handle</label>
+              </div>
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+              </div>
+              <button id="signupSubmit" class="btn btn-lg btn-secondary btn-block" type="submit">Sign in</button>
+            </form>
+          </div>
+        </div>
       </div>
     </main>
 

@@ -3,7 +3,7 @@ function User(id, handle) {
  this._handle = handle;
 }
 
-User.prototype.create = function(handle, password) {
+User.prototype.create = function(handle, password, callback) {
   $.ajax({
     url: "https://chitter-backend-api.herokuapp.com/users",
     type: "POST",
@@ -14,11 +14,16 @@ User.prototype.create = function(handle, password) {
       }
     },
     error: function() {
-      return "Error loading peeps";
+      return "Error submitting details. Please try again later.";
     },
     success: function(result) {
       this._id = result.id;
       this._handle = result.handle;
+      callback(this._handle);
     }
   });
+}
+
+User.prototype.handle = function() {
+  return this._handle;
 }
