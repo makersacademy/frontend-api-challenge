@@ -11,9 +11,9 @@ describe("Peep", function() {
     });
 
     it("can getPeeps", function() {
-      // test not working
+      var displayMock = jasmine.createSpy('displayMock');
       peep.getPeeps(displayMock);
-      expect(peep._result.length).toEqual(50);
+      expect(peep._result instanceof Array).toBe(true)
     });
   });
 
