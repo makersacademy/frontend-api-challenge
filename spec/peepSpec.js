@@ -9,7 +9,7 @@ describe("Peep", function() {
     expect(peep instanceof Peep).toBe(true);
   });
 
-  describe(".getPeeps", function() {
+  describe("#getPeeps", function() {
     it("calls its callback", function() {
       spyOn($, "ajax").and.callFake(function(options) {
         options.success();
@@ -39,6 +39,4 @@ describe("Peep", function() {
     //   expect(value.length).toEqual(1);
     // });
   });
-
-
 });
