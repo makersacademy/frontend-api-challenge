@@ -1,4 +1,7 @@
-# Chitter API Frontend Challenge
+# Ed's Chitter API Frontend Challenge
+
+![](chitter.gif)
+
 
 * Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use Google, your notes, books, etc. but work on your own
