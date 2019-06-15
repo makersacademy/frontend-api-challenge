@@ -45,9 +45,10 @@ describe("Peep", function() {
       var userId, body;
 
       peep = {
-        post: function(user_id, msg_body) {
+        post: function(user_id, msg_body, session_key) {
           userId = user_id;
           body = msg_body;
+          sessionKey = session_key;
         },
         getId: function() {
           return userId;
@@ -59,7 +60,7 @@ describe("Peep", function() {
 
       spyOn(peep, 'getId');
       spyOn(peep, 'getBody');
-      peep.post(1, "Message body");
+      peep.post(1, "Message body", "qwerty");
       expect(userId).toEqual(1);
       expect(body).toEqual("Message body");
     });

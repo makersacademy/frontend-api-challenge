@@ -27,7 +27,7 @@
             <a class="nav-link" href="#" id="HomeBtn">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Add</a>
+            <a class="nav-link" href="#" id="AddPeepBtn">Add</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="SignupBtn">Sign up</a>
@@ -44,6 +44,19 @@
       <div class="starter-template">
         <h1>Chitter: <span id="pageTitle">Peeps</span></h1>
         <div id="peepContainer"></div>
+        <div id="addPeepContainer" style="display: none;">
+          <form>
+            <div class="form-group">
+              <label for="handleUser">User handle:</label>
+              <input type="text" class="form-control" id="handleUser" placeholder="@handle">
+            </div>
+            <div class="form-group">
+              <label for="peepBodyTextarea">Peep body:</label>
+              <textarea class="form-control" id="peepBodyTextarea" rows="5" style="resize: none;"></textarea>
+            </div>
+            <button id="addPeepSubmit" class="btn btn-lg btn-secondary btn-block" type="submit">Post</button>
+          </form>
+        </div>
         <div id="signupContainer" style="display: none;">
           <div class="successMsg" style="display: none;"></div>
           <div class="formContainer signup">

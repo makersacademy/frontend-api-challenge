@@ -13,7 +13,12 @@ $(document).ready(function() {
   $('#signupSubmit').on('click', function() {
     user.create($('#inputHandle').val(), $('#inputPassword').val(), DisplaySuccess);
   });
-
+  $('#AddPeepBtn').on('click', function() {
+    GetAddPeep();
+  });
+  $('#addPeepSubmit').on('click', function() {
+    peep.postPeep(user._id, $('#peepBodyTextarea').val(), user._sessionKey, GetHome);
+  });
 });
 
 
@@ -62,15 +67,24 @@ function formatDate(date) {
 }
 
 function GetSignup() {
+  $('#addPeepContainer').hide();
   $('#peepContainer').hide();
   $('#signupContainer').show();
   $('#pageTitle').text("Sign up");
 }
 
 function GetHome() {
+  $('#addPeepContainer').hide();
   $('#signupContainer').hide();
   $('#peepContainer').show();
   $('#pageTitle').text("Peeps");
+}
+
+function GetAddPeep() {
+  $('#signupContainer').hide();
+  $('#peepContainer').hide();
+  $('#addPeepContainer').show();
+  $('#pageTitle').text("Add peep");
 }
 
 function DisplaySuccess(message) {

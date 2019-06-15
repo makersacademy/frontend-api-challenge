@@ -4,7 +4,24 @@ function User(id, handle, sessionKey) {
  this._sessionKey = sessionKey;
 }
 
+User.prototype.session = function(handle, password) {
+  $.ajax({
+    url: "https://chitter-backend-api.herokuapp.com/sessions",
+    type: "POST",
+    data: {
+      session: {
+        handle: handle,
+        password: password
+      }
+    },
+    success: function(result) {
+      this._sessionKey = result.session_key;
+    }
+  });
+}
+
 User.prototype.create = function(handle, password, callback) {
+  $_this = this;
   $.ajax({
     url: "https://chitter-backend-api.herokuapp.com/users",
     type: "POST",
@@ -18,26 +35,12 @@ User.prototype.create = function(handle, password, callback) {
       return "Error submitting details. Please try again later.";
     },
     success: function(result) {
-      this._id = result.id;
-      this._handle = result.handle;
-      this.session(this._handle, password)
-      callback(this._handle);
-    }
-  });
-}
-
-User.prototype.session = function(handle, password, callback) {
-  $.ajax({
-    url: "https://chitter-backend-api.herokuapp.com/sessions",
-    type: "POST",
-    data: {
-      session: {
-        handle: handle,
-        password: password
-      }
-    },
-    success: function(result) {
-      this._sessionKey = result.session_key;
+      $_this._id = result.id;
+      $_this._handle = result.handle;
+      $_this.session($_this._handle, password);
+      console.log($_this._id);
+      console.log($_this._handle);
+      callback($_this._handle);
     }
   });
 }
