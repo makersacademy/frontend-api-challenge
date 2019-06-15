@@ -1,0 +1,13 @@
+[
+  {
+    "id": 808,
+    "body": "Holy Guacamole",
+    "created_at": "2019-06-15T12:16:08.077Z",
+    "updated_at": "2019-06-15T12:16:08.077Z",
+    "user": {
+      "id": 1113,
+      "handle": "RickV"
+    },
+    "likes": []
+  }
+]

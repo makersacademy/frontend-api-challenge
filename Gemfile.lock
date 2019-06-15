@@ -11,12 +11,12 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    jasmine-jquery-rails (2.0.3)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     mustermann (1.0.3)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
-    pg (1.1.4)
     public_suffix (3.1.0)
     rack (2.0.7)
     rack-protection (2.0.5)
@@ -42,7 +42,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
-  pg
+  jasmine-jquery-rails (~> 2.0, >= 2.0.3)
   rake
   sinatra
   sinatra-cross_origin
