@@ -32,6 +32,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#" id="SignupBtn">Sign up</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="LoginBtn">Log in</a>
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
@@ -73,6 +76,25 @@
                 <label for="inputPassword">Password</label>
               </div>
               <button id="signupSubmit" class="btn btn-lg btn-secondary btn-block" type="submit">Sign in</button>
+            </form>
+          </div>
+        </div>
+        <div id="loginContainer" style="display: none;">
+          <div class="successMsg" style="display: none;"></div>
+          <div class="formContainer signup">
+            <form class="form-signin">
+              <div class="text-center mb-4">
+                <p>Enter your details to log in.</p>
+              </div>
+              <div class="form-label-group">
+                <input type="text" id="loginHandle" class="form-control" placeholder="@Handle" required autofocus>
+                <label for="inputHandle">@Handle</label>
+              </div>
+              <div class="form-label-group">
+                <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+              </div>
+              <button id="loginSubmit" class="btn btn-lg btn-secondary btn-block" type="submit">Log in</button>
             </form>
           </div>
         </div>
