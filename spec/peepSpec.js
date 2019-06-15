@@ -39,4 +39,29 @@ describe("Peep", function() {
     //   expect(value.length).toEqual(1);
     // });
   });
+
+  describe("#postPeep", function() {
+    it("can post a peep", function() {
+      var userId, body;
+
+      peep = {
+        post: function(user_id, msg_body) {
+          userId = user_id;
+          body = msg_body;
+        },
+        getId: function() {
+          return userId;
+        },
+        getBody: function() {
+          return body;
+        }
+      }
+
+      spyOn(peep, 'getId');
+      spyOn(peep, 'getBody');
+      peep.post(1, "Message body");
+      expect(userId).toEqual(1);
+      expect(body).toEqual("Message body");
+    });
+  });
 });
