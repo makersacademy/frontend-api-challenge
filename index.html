@@ -1,10 +1,11 @@
+<head>
+<link rel = "stylesheet"
+type = "text/css"
+href = "style.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
 <script src="lib/controllerPeeps.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+</head>
 
-<p id='peeps'></p>
 
-<script>
-  $.get("https://chitter-backend-api.herokuapp.com/peeps", function(peeps) {
-    $("#peeps").html(peeps[0].body);
-  });
-</script>
+<div class="peeps">
+</div>
