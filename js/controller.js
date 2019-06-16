@@ -1,73 +1,39 @@
+
 $(document).ready(function () {
+  chitter = new Chitter();
 
-  var $usernameAlert = $("#usernameAlert");
+  var $bsAlert = $(".alert");
 
-  $usernameAlert.on("close.bs.alert", function () {
-    $usernameAlert.attr('hidden','true');
+  $bsAlert.on("close.bs.alert", function () {
+    $bsAlert.attr('hidden','true');
     return false;
   });
 
-  createFeed = function () {
-      // Can use the JQuery Load() function here?
-    $.get('https://chitter-backend-api.herokuapp.com/peeps', function (response) {
-      var myHTML = '';
-      for (i = 0; i < response.length; i++) {
-        myHTML += `<div class="card">
-                  <div class="card-header">
-                   ${response[i]['user']['handle']}
-                  </div>
-                <div class="card-body">
-                  <blockquote class="blockquote mb-0">
-                   <p>${response[i]['body']}</p>
-                   <footer class="blockquote-footer">${response[i]['created_at']}</footer>
-                  </blockquote>
-                </div>
-                </div>`
-      };
-      $("#feed").html(myHTML);
-    });
-  };
-  
-  setTimeout(function () { createFeed(); }, 10);
-
-    createUser = function(handle, password) {
-      $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        url: "https://chitter-backend-api.herokuapp.com/users",
-        data: `{"user": {"handle":"${handle}", "password":"${password}"}}`,
-        dataType: "json"
-      });
-    };
+  setTimeout(function () { chitter.createFeed(); }, 10);
 
   $("#login-form").submit(function (event) {
     event.preventDefault(); 
-    form_data = $(this).serialize(); //Encode form elements for submission
     var handle = $("input#username").val();
     var password = $("input#password").val();
-    $.ajax({
-      url: 'https://chitter-backend-api.herokuapp.com/users',
-      contentType: "application/json; charset=utf-8",
-      type: 'POST',
-      data: `{"user": {"handle":"${handle}", "password":"${password}"}}`,
-      dataType: "json",
-      statusCode: {
-        422: function () {
-          $("#usernameAlert").removeAttr('hidden');
-          // AfterSavedAll();
-        },
-        200: function () {
-          alert('2');
-          AfterSavedAll();
-        },
-        error: function (e) {
-          alert("Server error - " + e);
-        } 
-      }
-    }).done(function (response) { //
-      $("#server-results").html(response);
-    });
+    chitter.loginUser(handle, password);
   });
+
+  
+  $("#register-form").submit(function (event) {
+    event.preventDefault(); 
+    var handle = $("input#username").val();
+    var password = $("input#password").val();
+    chitter.register(handle, password);
+  });
+
+  $("#logout").click(function () {
+    $("#banner-and-nav-logged-in").attr('hidden', 'true');
+    $("#banner-and-nav-register").removeAttr('hidden');
+    chitter.user_id = null;
+    chitter.username = null;
+    chitter.session_id = null;
+  });
+
       // Leave the following one - it's the whole thing
-    });
+});
 

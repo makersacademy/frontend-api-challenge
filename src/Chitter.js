@@ -1,24 +1,82 @@
-Chitter = function() {}
+Chitter = function() {
+  this.user_id = null;
+  this.username = null;
+  this.session_id = null;
+}
 
 Chitter.prototype.createFeed = function() {
   $.get('https://chitter-backend-api.herokuapp.com/peeps', function (response) {
-    var wrapper = $("#feed");
-    console.log (wrapper)
     var myHTML = '';
     for (i = 0; i < response.length; i++) {
       myHTML += `<div class="card">
                   <div class="card-header">
-                   response[i]['user']['handle]'
+                   ${response[i]['user']['handle']}
                   </div>
                 <div class="card-body">
                   <blockquote class="blockquote mb-0">
-                   <p>response[i][body]</p>
-                   <footer class="blockquote-footer">response[i]['created_at']</footer>
+                   <p>${response[i]['body']}</p>
+                   <footer class="blockquote-footer">${response[i]['created_at']}</footer>
                   </blockquote>
                 </div>
                 </div>`
-      };
-      wrapper.innerHTML = myHTML
-    });
-  };
+    };
+    $("#feed").html(myHTML);
+  });
+};
+
+Chitter.prototype.loginUser = function(handle, password) {
+  var Data;
+  $.ajax({
+    url: 'https://chitter-backend-api.herokuapp.com/sessions',
+    contentType: "application/json; charset=utf-8",
+    type: 'POST',
+    async: false,
+    data: `{"session": {"handle":"${handle}", "password":"${password}"}}`,
+    dataType: "json",
+    success: function (response) {
+      Data = response;
+    },
+    statusCode: {
+      422: function () {
+        $("#loginPasswordAlert").removeAttr('hidden');
+      },
+      500: function () {
+        $("#loginUsernameAlert").removeAttr('hidden');
+      },
+      201: function () {
+        $("#banner-and-nav-logged-in").removeAttr('hidden');
+        $("#banner-and-nav-register").attr('hidden', 'true');
+      },
+      error: function (e) {
+        alert("Server error - " + e);
+      }
+    }
+  });
+  this.username = handle
+  this.user_id = Data['user_id']
+  this.session_id = Data['session_key']
+}
+
+Chitter.prototype.register = function(handle, password) {
+  $.ajax({
+    url: 'https://chitter-backend-api.herokuapp.com/users',
+    contentType: "application/json; charset=utf-8",
+    type: 'POST',
+    data: `{"user": {"handle":"${handle}", "password":"${password}"}}`,
+    dataType: "json",
+    statusCode: {
+      422: function () {
+        $("#registerUsernameAlert").removeAttr('hidden');
+      },
+      201: function () {
+        $("#banner-and-nav-logged-in").removeAttr('hidden');
+        $("#banner-and-nav-register").attr('hidden', 'true');
+        $('#registerModal').modal('toggle');
+      },
+      error: function (e) {
+        alert("Server error - " + e);
+      }
+    }
+  })
+}
 
