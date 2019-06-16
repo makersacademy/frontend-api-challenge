@@ -40,9 +40,9 @@ $(document).ready(function(){
     logout();
   });
 
-  $('.post').click( function() {
-    body = $('.text').val();
-    post(body);
+  $('#post').click( function() {
+    var body = $('#text').val();
+    peep(body);
   });
 
   function logout() {
@@ -67,7 +67,8 @@ $(document).ready(function(){
     });
   };
 
-  function post (body) {
+  function peep(body) {
+    console.log('hello');
     $.ajax
     ({
         type: "POST",

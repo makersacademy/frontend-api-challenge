@@ -1,4 +1,10 @@
+# Functionality 
 
+* Peeps are displayed in reverse order.  Used code found online for the date use. 
+* Individual peeps can be displayed by clicking on them to appear as a pop up.
+* Log in function checks password, once logged in stores session key in variable for use later.  To test, log in using username 'laureno' and password 'test123'.
+* Logging in switched log in button to log out and makes posting peeps available.  Posting peeps not complete but will use session_key and user_id. 
+* Logging out removes these and clears session key and user id. 
 
 # Chitter API Frontend Challenge
 
