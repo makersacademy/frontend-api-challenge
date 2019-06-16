@@ -13,9 +13,8 @@
 </head>
 
 <body>
-  <!-- Modals first; registering, peep posting and peep viewing are all handled with modals -->
-  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerTitle"
-  aria-hidden="true">
+  <!-- Modals first; registering, logging in, peep posting and peep viewing are all handled with modals -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -27,9 +26,10 @@
       <div class="modal-body">
         <div class="register-container" id="register-container">
           <form name="register-form" id="register-form" action="">
-            <input type="text" placeholder="Username" name="username" id="username">
-            <input type="text" placeholder="Password" name="password" id="password">
+            <input type="text" placeholder="Username" name="username" id="registerUsername">
+            <input type="text" placeholder="Password" name="password" id="registerPassword">
             <button type="submit" class="btn btn-success" id="register">Register</button>
+            <!-- Hidden alert to deal with submission errors -->
             <div class="container">
               <div class="alert alert-danger alert-dismissible fade show" hidden="true" role="alert" id="registerUsernameAlert">
                 <strong>Username taken!</strong> If you've already signed up with this username, please login. Otherwise, choose a new one!
@@ -39,59 +39,111 @@
               </div>
             </div>
           </form>
-          </div>
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-        </div> -->
       </div>
     </div>
   </div>
-<!-- Banner / Navbar. Fixed to the top of the page. Containts login/register options -->
-  <div class="container-fluid" id="banner-and-nav-register">
-    <h1>Chitter</h1>
-    <h6>A veritable smorgasboard of inanity and bullshit</h6>
-    <div class="topnav" >
-      <a class="active" href="#home">Home</a>
-        <form class="form-inline">
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerModal">Register</button>
-        </form>
-      <div class="login-container" id="login-container">
-        <form name="login-form" id="login-form" action="">
-          <input type="text" placeholder="Username" name="username" id="username">
-          <input type="text" placeholder="Password" name="password" id="password">
-          <button type="submit">Login</button>
-        </form>
+</div>
+<!-- Login modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginTitle">Please enter your username and password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="login-container" id="login-container">
+          <form name="register-form" id="login-form" action="">
+            <input type="text" placeholder="Username" name="username" id="loginUsername">
+            <input type="text" placeholder="Password" name="password" id="loginPassword">
+            <button type="submit" class="btn btn-success" id="login">Login</button>
+            <!--  Hidden alerts to deal with submission errors -->
+            <div class="container">
+              <div class="alert alert-danger alert-dismissible fade show" hidden="true" role="alert"
+                id="loginPasswordAlert">
+                <strong>Incorrect Password!</strong> Please try again. If you've forgotten your password: tough titty.
+                Register
+                again!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            <div class="container">
+              <div class="alert alert-danger alert-dismissible fade show" hidden="true" role="alert"
+                id="loginUsernameAlert">
+                <strong>Unrecognised Username!</strong> Please try again. If you've forgotten your username: tough
+                titty. Register
+                again!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-  <div class="container-fluid" hidden="true" id="banner-and-nav-logged-in">
-    <h1>Chitter</h1>
-    <h6>A veritable smorgasboard of inanity and bullshit</h6>
-    <div class="topnav" >
-      <a class="active" href="#home">Home</a>
-        <form class="form-inline">
-          <button type="button" id="logout" class="btn btn-success">Logout: <span></span></button>
+</div>
+<!-- New Peep Modal -->
+<div class="modal fade" id="peepModal" tabindex="-1" role="dialog" aria-labelledby="newPeep" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newPeep">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Peep:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Peep that ish</button>
+      </div>
     </div>
   </div>
-  <div class="container">
-    <div class="alert alert-danger alert-dismissible fade show" hidden="true" role="alert" id="loginPasswordAlert">
-      <strong>Incorrect Password!</strong> Please try again. If you've forgotten your password: tough titty. Register again!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+</div>
+<!-- Banner / Navbar, pre-login. Fixed to the top of the page. -->
+<div class="container-fluid" id="banner-and-nav-register">
+  <h1>Chitter</h1>
+  <h6>A veritable smorgasboard of inanity and bullshit</h6>
+  <div class="topnav" >
+  <a class="active" href="#home">Home</a>
+    <form class="form-inline">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerModal">Register</button>
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#loginModal">Login</button>
+    </form>
+  </div>
+</div>
+<!-- Logged in Navbar -->
+<div class="container-fluid" hidden="true" id="banner-and-nav-logged-in">
+  <h1>Chitter</h1>
+  <h6>A veritable smorgasboard of inanity and bullshit</h6>
+  <div class="topnav" >
+  <a class="active" href="#home">Home</a>
+    <form class="form-inline">
+    </form>
+    <div class="login-container" id="login-container">
+      <button type="button" id="logout" class="btn btn-success">Logout: <span></span></button>
     </div>
   </div>
-  <div class="container">
-    <div class="alert alert-danger alert-dismissible fade show" hidden="true" role="alert" id="loginUsernameAlert">
-      <strong>Unrecognised Username!</strong> Please try again. If you've forgotten your username: tough titty. Register again!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  </div>
+</div>
+<!-- Hidden button to post new peep, appears after login -->
+<div class="container">
+  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#newPeep" id="post" hidden="true">Post new brain drivel</button>
+</div>
+<!-- Chitter feed and loading spinner -->
 <div class="container" id="feed">
   <div class="d-flex justify-content-center">
     <div class="spinner-grow" role="status">
@@ -99,8 +151,6 @@
     </div>
   </div>
 </div>
-  
-
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
