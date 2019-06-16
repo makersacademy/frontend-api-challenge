@@ -1,5 +1,5 @@
 var peepSpec = {
-  format: function() {
+  theFormatMethod: function() {
     var peep = mockPeeps[0];
     assert.isEqual(Peep.format(peep), `<article>
     <p class='peep-handle'>Muchacho</p>

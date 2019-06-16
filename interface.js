@@ -1,4 +1,6 @@
 window.onload = function() {
+  let session = null;
+
   (function listPeeps() {
     const request = new XMLHttpRequest()
     request.open('GET', 'https://chitter-backend-api.herokuapp.com/peeps')
@@ -40,5 +42,37 @@ window.onload = function() {
   $('#sign-in-button').click(function() {
     $('#home-page').hide();
     $('#sign-in-page').show();
+  });
+
+  function newSession(response) {
+    session = new Session(response.user_id, response.session_key);
+  }
+
+  function showSignedInPage() {
+    $('#signed-in-buttons').show();
+  }
+
+  $('#sign-in-submit').click(function(event) {
+    event.preventDefault();
+    const handle = document.getElementById('sign-in-handle').value;
+    const password = document.getElementById('sign-in-password').value;
+    const dataString = {"session": {"handle": handle, "password": password}};
+
+    const request = new XMLHttpRequest();
+    request.open('POST', 'https://chitter-backend-api.herokuapp.com/sessions');
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.onload = function() {
+      newSession(JSON.parse(this.response));
+      showSignedInPage();
+      alert('You have signed in!');
+    };
+    request.send(JSON.stringify(dataString));
+
+    $('#sign-in-page').hide();
+    $('#home-page').show();
+  });
+
+  $('#post-a-peep').click(function(event) {
+    alert('peep lol');
   });
 }
