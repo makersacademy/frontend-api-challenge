@@ -1,7 +1,9 @@
 window.onload = function() {
   let session = null;
+  listPeeps();
 
-  (function listPeeps() {
+  function listPeeps() {
+    document.getElementById('peep-list').innerHTML = '';
     const request = new XMLHttpRequest()
     request.open('GET', 'https://chitter-backend-api.herokuapp.com/peeps')
 
@@ -14,7 +16,7 @@ window.onload = function() {
       });
     }
     request.send();
-  }());
+  };
 
   $('#sign-up-button').click(function() {
     $('#home-page').hide();
@@ -73,6 +75,18 @@ window.onload = function() {
   });
 
   $('#post-a-peep').click(function(event) {
-    alert('peep lol');
+    event.preventDefault();
+    const text = document.getElementById('peep-text').value;
+    const dataString = {"peep": {"user_id": session.getUserId(), "body": `${text}`}};
+    const request = new XMLHttpRequest();
+    request.open('POST', 'https://chitter-backend-api.herokuapp.com/peeps');
+    console.log(session.getSessionKey());
+    request.setRequestHeader('Authorization', `Token token=${session.getSessionKey()}`);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.onload = function() {
+      listPeeps();
+      document.getElementById('peep-text').value = '';
+    };
+    request.send(JSON.stringify(dataString));
   });
 }

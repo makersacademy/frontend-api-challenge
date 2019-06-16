@@ -18,7 +18,10 @@
           <button id='sign-in-button'>Sign In</button>
         </section>
         <section id='signed-in-buttons' style='display:none'>
-          <button id='post-a-peep'>Peep</button>
+          <form>
+            <input type='text' id='peep-text' placeholder="What's happening?"/>
+            <input type='submit' id='post-a-peep' value='Peep'/>
+          </form>
         </section>
         <section id='peep-list'></section>
       </div>
@@ -33,9 +36,9 @@
 
       <div id='sign-in-page' style='display:none'>
         <form>
-          <input type='text' id='sign-in-handle' placeholder='Username'></input>
-          <input type='password' id='sign-in-password' placeholder='Password'></input>
-          <input type='submit' id='sign-in-submit' value='Submit'></input>
+          <input type='text' id='sign-in-handle' placeholder='Username'/>
+          <input type='password' id='sign-in-password' placeholder='Password'/>
+          <input type='submit' id='sign-in-submit' value='Submit'/>
         </form>
       </div>
     </center>
