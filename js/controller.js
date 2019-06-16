@@ -33,9 +33,47 @@ $(document).ready(function () {
       });
     };
 
-  setUser = function(handle) {
-    
-  }
+  //   $("#login").submit(function () {
+  //     console.log('Hi Mom');
+  //     var handle = $("input#username").val();
+  //     console.log(handle);
+  //     var password = $("input#password").val();
+  //     console.log(password);
+  //     $.ajax({
+  //       type: "POST",
+  //       contentType: "application/json; charset=utf-8",
+  //       url: "https://chitter-backend-api.herokuapp.com/users",
+  //       data: `{"user": {"handle":"${handle}", "password":"${password}"}}`,
+  //       dataType: "json"
+  //     })
+  //     .done(function (data) {
+
+  //       // log data to the console so we can see
+  //       console.log(data);
+
+  //               // here we will handle errors and validation messages
+  //     event.preventDefault();
+  //   });
+  // });
+
+  $("#login-form").submit(function (event) {
+    // event.preventDefault(); //prevent default action 
+    // var post_url = $(this).attr("action"); //get form action url
+    // var request_method = $(this).attr("method"); //get form GET/POST method
+    // var form_data = $(this).serialize(); //Encode form elements for submission
+    var handle = $("input#username").val();
+  //     console.log(handle);
+      var password = $("input#password").val();
+    $.ajax({
+      url: 'https://chitter-backend-api.herokuapp.com/users',
+      contentType: "application/json; charset=utf-8",
+      type: 'POST',
+      data: `{"user": {"handle":"${handle}", "password":"${password}"}}`,
+      dataType: "json"
+    }).done(function (response) { //
+      $("#server-results").html(response);
+    });
+  });
       // Leave the following one - it's the whole thing
     });
 
