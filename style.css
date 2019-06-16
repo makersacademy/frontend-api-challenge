@@ -1,0 +1,12 @@
+.peeps {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+div.peep-metadata {
+  padding-top: 25px;
+  color: grey;
+  font-size: small;
+}
