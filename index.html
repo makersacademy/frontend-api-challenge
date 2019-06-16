@@ -1,0 +1,10 @@
+<script src="lib/controllerPeeps.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+
+<p id='peeps'></p>
+
+<script>
+  $.get("https://chitter-backend-api.herokuapp.com/peeps", function(peeps) {
+    $("#peeps").html(peeps[0].body);
+  });
+</script>
