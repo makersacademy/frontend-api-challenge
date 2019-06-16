@@ -10,12 +10,22 @@
       <div id="header">
         <h1>Chitter</h1>
       </div>
+
       <div id="nav">
-        <h3><a class="selected" href="">Login/logout</a></h3>
+        <form id="loginForm">
+          <input id="username" type="username" name="username" placeholder="Username"/>
+          <input id="password" type="password" name="password" placeholder="Password"/>
+          <input id="login" type="button" value="login" />
+        </form>
       </div>
+
       <div id="content">
         <div id="newPeep">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h3>Add Message</h3>
+          <form>
+            <input id="peep" type="peep" name="peep" placeholder="Enter Message Here"/>
+            <input id="submitPeep" type="button" value="submit" />
+          </form>
         </div>
         <div id="seePeeps">
             <p class="peep-container"></p>
@@ -27,5 +37,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="../src/peeps.js"></script>
+    <script src="../src/user.js"></script>
   </body>
 </html>

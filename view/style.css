@@ -4,6 +4,7 @@ body {
 h1 {
   margin: 0;
 }
+
 #container {
   background-color: white;
   width: 800px;
@@ -24,6 +25,10 @@ h1 {
   padding-right: 30px;
 }
 
+#loginForm {
+  margin-top: 15px;
+}
+
 #content {
   padding: 10px;
 }
@@ -34,6 +39,10 @@ h1 {
 
 #seePeeps {
   width: 780px;
+}
+
+#peep {
+  width: 720px;
 }
 
 #footer {
