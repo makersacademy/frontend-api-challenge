@@ -1,5 +1,12 @@
-
 $(document).ready(function () {
+
+  var $usernameAlert = $("#usernameAlert");
+
+  $usernameAlert.on("close.bs.alert", function () {
+    $usernameAlert.attr('hidden','true');
+    return false;
+  });
+
   createFeed = function () {
       // Can use the JQuery Load() function here?
     $.get('https://chitter-backend-api.herokuapp.com/peeps', function (response) {
@@ -33,43 +40,30 @@ $(document).ready(function () {
       });
     };
 
-  //   $("#login").submit(function () {
-  //     console.log('Hi Mom');
-  //     var handle = $("input#username").val();
-  //     console.log(handle);
-  //     var password = $("input#password").val();
-  //     console.log(password);
-  //     $.ajax({
-  //       type: "POST",
-  //       contentType: "application/json; charset=utf-8",
-  //       url: "https://chitter-backend-api.herokuapp.com/users",
-  //       data: `{"user": {"handle":"${handle}", "password":"${password}"}}`,
-  //       dataType: "json"
-  //     })
-  //     .done(function (data) {
-
-  //       // log data to the console so we can see
-  //       console.log(data);
-
-  //               // here we will handle errors and validation messages
-  //     event.preventDefault();
-  //   });
-  // });
-
   $("#login-form").submit(function (event) {
-    // event.preventDefault(); //prevent default action 
-    // var post_url = $(this).attr("action"); //get form action url
-    // var request_method = $(this).attr("method"); //get form GET/POST method
-    // var form_data = $(this).serialize(); //Encode form elements for submission
+    event.preventDefault(); 
+    form_data = $(this).serialize(); //Encode form elements for submission
     var handle = $("input#username").val();
-  //     console.log(handle);
-      var password = $("input#password").val();
+    var password = $("input#password").val();
     $.ajax({
       url: 'https://chitter-backend-api.herokuapp.com/users',
       contentType: "application/json; charset=utf-8",
       type: 'POST',
       data: `{"user": {"handle":"${handle}", "password":"${password}"}}`,
-      dataType: "json"
+      dataType: "json",
+      statusCode: {
+        422: function () {
+          $("#usernameAlert").removeAttr('hidden');
+          // AfterSavedAll();
+        },
+        200: function () {
+          alert('2');
+          AfterSavedAll();
+        },
+        error: function (e) {
+          alert("Server error - " + e);
+        } 
+      }
     }).done(function (response) { //
       $("#server-results").html(response);
     });
