@@ -34,7 +34,6 @@ describe('Mainpage', () => {
     cy.visit('/')
     cy.wait('@peeps')
     cy.contains("And I'd like to take a minute Just sit right there I'll tell you how I became the prince of a town called Bel Air")
+    cy.contains("My life got flipped-turned upside down")
   })
-
-  // expect(this.peeps[0].body).to.equal("And I'd like to take a minute Just sit right there I'll tell you how I became the prince of a town called Bel Air")
 })
