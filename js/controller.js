@@ -16,8 +16,8 @@ $(document).ready(function () {
     var handle = $("input#loginUsername").val();
     var password = $("input#loginPassword").val();
     chitter.loginUser(handle, password);
+    $("#userGreeting").replaceWith(`What\'s on your mind, ${handle}?`);
   });
-
   
   $("#register-form").submit(function (event) {
     event.preventDefault(); 
@@ -25,6 +25,14 @@ $(document).ready(function () {
     var password = $("input#registerPassword").val();
     chitter.register(handle, password);
     setTimeout(function () { chitter.loginUser(handle, password); }, 10);
+  });
+  
+  $("#peep-form").submit(function (event) {
+    console.log('how about here')
+    event.preventDefault(); 
+    var message = $("textarea#messageText").val();
+    chitter.post(chitter.user_id, message, chitter.session_id)
+    setTimeout(function () { chitter.createFeed(); }, 10);
   });
   
   $("#logout").click(function () {
@@ -36,11 +44,6 @@ $(document).ready(function () {
     chitter.session_id = null;
   });
   
-  $("#peepForm").submit(function (event) {
-    event.preventDefault(); 
-    var message = $("input#message-text").val();
-    chitter.post(chitter.user_id, message, chitter.session_id, chitter.createFeed())
-  });
 
       // Leave the following one - it's the whole thing
 });

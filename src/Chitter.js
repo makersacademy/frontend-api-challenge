@@ -87,20 +87,20 @@ Chitter.prototype.register = function(handle, password, callback) {
 }
 
 Chitter.prototype.post = function(user_id, message, session_key, callback) {
+  console.log('At lease we are getting this far')
   $.ajax({
     url: 'https://chitter-backend-api.herokuapp.com/peeps',
-    headers: `Authorization: Token token=${session_key}`,
     contentType: "application/json; charset=utf-8",
     type: 'POST',
+    headers: { "Authorization": `Token token=${session_key}` },
     data: `{"peep": {"user_id":${user_id}, "body":"${message}"}}`,
     dataType: "json",
     statusCode: {
       500: function () {
         alert('Summat went wrong - 500 error')
       },
-      200: function () {
-        alert('whoop! 200')
-        $('#newPeep').modal('toggle');
+      201: function () {
+        $('#peepModal').modal('toggle');
       },
       error: function (e) {
         alert("Server error - " + e);
