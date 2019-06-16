@@ -25,12 +25,12 @@ Chitter.prototype.createFeed = function() {
 };
 
 Chitter.prototype.loginUser = function(handle, password) {
+  $this = this
   var Data;
-  $.ajax({
+  request = $.ajax({
     url: 'https://chitter-backend-api.herokuapp.com/sessions',
     contentType: "application/json; charset=utf-8",
     type: 'POST',
-    async: false,
     data: `{"session": {"handle":"${handle}", "password":"${password}"}}`,
     dataType: "json",
     success: function (response) {
@@ -52,9 +52,11 @@ Chitter.prototype.loginUser = function(handle, password) {
       }
     }
   });
-  this.username = handle
-  this.user_id = Data['user_id']
-  this.session_id = Data['session_key']
+  request.done(function(Data){
+    $this.username = handle;
+    $this.user_id = Data['user_id'];
+    $this.session_id = Data['session_key'];
+  });  
 }
 
 Chitter.prototype.register = function(handle, password) {

@@ -16,6 +16,7 @@ $(document).ready(function () {
     var handle = $("input#username").val();
     var password = $("input#password").val();
     chitter.loginUser(handle, password);
+    
   });
 
   
