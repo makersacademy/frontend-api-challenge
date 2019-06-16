@@ -1,8 +1,8 @@
 
 $(document).ready(function () {
   createFeed = function () {
+      // Can use the JQuery Load() function here?
     $.get('https://chitter-backend-api.herokuapp.com/peeps', function (response) {
-      // console.log(wrapper)
       var myHTML = '';
       for (i = 0; i < response.length; i++) {
         myHTML += `<div class="card">
@@ -21,7 +21,21 @@ $(document).ready(function () {
     });
   };
   
-  setTimeout(function () { createFeed(); }, 5000);
+  setTimeout(function () { createFeed(); }, 10);
 
-});
+    createUser = function(handle, password) {
+      $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "https://chitter-backend-api.herokuapp.com/users",
+        data: `{"user": {"handle":"${handle}", "password":"${password}"}}`,
+        dataType: "json"
+      });
+    };
+
+  setUser = function(handle) {
+    
+  }
+      // Leave the following one - it's the whole thing
+    });
 
