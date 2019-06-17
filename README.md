@@ -1,13 +1,40 @@
-# Chitter API Frontend Challenge
+# Ed's Chitter API Frontend Challenge
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+![](chitter.gif)
 
-Challenge:
+
+To check:
 -------
+Download or fork this repo and open the ```chitter.html``` file
+
+Progress:
+-------
+
+* Display the last 50 peeps in reverse order
+* Register and Login options, with error handling. Sort of.
+* Post new tweets as logged in user
+
+Bugs
+-----------
+
+* refresh button doesn't seem to work properly
+* the saved username for the greeting element doesn't seem to get correctly overwritten with a new login
+* probably countless others I haven't spotted yet
+* registering also logs you in, as it should, but still triggers the login modal for some reason
+* buttons are sometimes appearing inconsistently
+
+To Do:
+------
+SOOOOOO MUCH
+* no tests done at all. really struggled with this and ended up working on the code exclusively
+* this meant that I didn't have a clear process at all, which made it super tough
+* I don't know how much of this is me not getting TDD well enough, and how much is struggling with new language, test framework etc
+* loads of refactoring to do
+* all of the extra functionality
+* css is a mess
+
+What I was working from;
+------------
 
 As usual please start by forking this repo.
 
