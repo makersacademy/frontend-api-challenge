@@ -1,5 +1,5 @@
 $(document).ready(function() { 
-
+    //loads all peeps when the page is loaded
   fetch('https://chitter-backend-api.herokuapp.com/peeps')
     .then(function(response) {
       return response.json();
@@ -13,8 +13,8 @@ $(document).ready(function() {
     .catch(function (err) {
       console.log(err);
     });
-  
-    function displayP(content) {
+
+  function displayP(content) {
       var i;
       var mainContainer = document.getElementById("all-peeps");
       for(i = 0; i < content.length; i ++) {
@@ -63,6 +63,7 @@ $(document).ready(function() {
                   // showOnePeepsBody(content[i].id, );
       }
     }
+  
     function keepId(peep) {
       peep.id;
     }
@@ -134,6 +135,7 @@ $('#login').click(function() {
 });
 
 document.getElementById("logging").style.visibility = "hidden";
+document.getElementById("register").style.visibility = "hidden";
 document.getElementById("logout").style.visibility = "visible";
 });
 
@@ -153,8 +155,23 @@ $('#register').click(function() {
       headers: {"Authorization": "Token token=" + event.data.param1},
       data: JSON.stringify({"peep": {"user_id": event.data.param2 , "body": document.getElementById("peepPeep").value}}),
       success: function(resultData) { 
-        alert("hi")
+        alert("Hi, you just peeped!")
       }
+      }).then(function () {
+        //why is this not loading new peeps after positng?
+        fetch('https://chitter-backend-api.herokuapp.com/peeps')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(myPeeps) {
+          var data = JSON.stringify(myPeeps);
+          var peeps = JSON.parse(data);
+          var arr = displayP(peeps);
+          // $('#all-peeps').html(arr);
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
       })
   }
 
