@@ -8,15 +8,22 @@ Chitter.prototype.createFeed = function() {
   $.get('https://chitter-backend-api.herokuapp.com/peeps', function (response) {
     var myHTML = '';
     for (i = 0; i < response.length; i++) {
-      myHTML += `<div class="card">
+      var dateData = response[i]['created_at'];
+      var date = dateData.substring(0, 10);
+      var time = dateData.substring(11, 16);
+      myHTML += `<div class="card mt-3">
                   <div class="card-header">
+                  <div class="text-center">
                    ${response[i]['user']['handle']}
                   </div>
+                  </div>
                 <div class="card-body">
+                <div class="text-center">
                   <blockquote class="blockquote mb-0">
                    <p>${response[i]['body']}</p>
-                   <footer class="blockquote-footer">${response[i]['created_at']}</footer>
+                   <footer class="blockquote-footer">Posted at ${time}, ${date}</footer>
                   </blockquote>
+                </div>
                 </div>
                 </div>`
     };

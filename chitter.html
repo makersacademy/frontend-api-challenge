@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
   <script src="js/jquery.js"></script>
   <script src="js/controller.js"></script>
   <script src="src/chitter.js"></script>
@@ -27,7 +28,7 @@
         <div class="register-container" id="register-container">
           <form name="register-form" id="register-form" action="">
             <input type="text" placeholder="Username" name="username" id="registerUsername">
-            <input type="text" placeholder="Password" name="password" id="registerPassword">
+            <input type="password" placeholder="Password" name="password" id="registerPassword">
             <button type="submit" class="btn btn-success" id="register">Register</button>
             <!-- Hidden alert to deal with submission errors -->
             <div class="container">
@@ -58,7 +59,7 @@
         <div class="login-container" id="login-container">
           <form name="register-form" id="login-form" action="">
             <input type="text" placeholder="Username" name="username" id="loginUsername">
-            <input type="text" placeholder="Password" name="password" id="loginPassword">
+            <input type="password" placeholder="Password" name="password" id="loginPassword">
             <button type="submit" class="btn btn-success" id="login">Login</button>
             <!--  Hidden alerts to deal with submission errors -->
             <div class="container">
@@ -115,9 +116,8 @@
 </div>
 <!-- Banner / Navbar, pre-login. Fixed to the top of the page. -->
 <div class="container-fluid" id="banner-and-nav-register">
-  <div class="topnav" >
-    <h1>Chitter</h1>
-    <h6>A veritable smorgasboard of inanity and bullshit</h6>
+  <div class="topnav fixed-top">
+    <h1>Chitter<span class="tagLine"> a veritable smorgasboard of inanity and bullshit</span></h1>
     <form class="form-inline">
       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerModal">Register</button>
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#loginModal">Login</button>
@@ -126,19 +126,18 @@
 </div>
 <!-- Logged in Navbar -->
 <div class="container-fluid" hidden="true" id="banner-and-nav-logged-in">
-  <div class="topnav" >
-    <h1>Chitter</h1>
-    <h6>A veritable smorgasboard of inanity and bullshit</h6>
+  <div class="topnav fixed-top" >
+    <h1>Chitter<span class="tagLine"> a veritable smorgasboard of inanity and bullshit</span></h1>
+    <div class="usergreeting" id="userGreeting"></div>
     <form class="form-inline">
-      <button type="button" id="logout" class="btn btn-success">Logout</button>
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#peepModal" id="post" hidden="true">Post new brain drivel</button>
+      <button type="button" id="logout" class="btn btn-light">Logout</button>
     </form>
-    <div id="userGreeting"></div>
   </div>
 </div>
 <!-- Hidden button to post new peep, appears after login -->
-<div class="container">
-  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#peepModal" id="post" hidden="true">Post new brain drivel</button>
-</div>
+<!-- <div class="container">
+</div> -->
 <!-- Chitter feed and loading spinner -->
 <div class="container" id="feed">
   <div class="d-flex justify-content-center">

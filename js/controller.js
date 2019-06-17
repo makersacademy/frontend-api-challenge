@@ -16,7 +16,7 @@ $(document).ready(function () {
     var handle = $("input#loginUsername").val();
     var password = $("input#loginPassword").val();
     chitter.loginUser(handle, password);
-    $("#userGreeting").replaceWith(`What\'s on your mind, ${handle}?`);
+    $("#userGreeting").replaceWith(`<div class="usergreeting">What\'s on your mind, ${handle}?</div>`);
   });
   
   $("#register-form").submit(function (event) {
