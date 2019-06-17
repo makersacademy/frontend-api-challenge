@@ -150,7 +150,7 @@ $('#register').click(function() {
       type: "POST",
       url: "https://chitter-backend-api.herokuapp.com/peeps",
       contentType: "application/json",
-      Authorization: 'Token token=' + event.data.param1,
+      headers: {"Authorization": "Token token=" + event.data.param1},
       data: JSON.stringify({"peep": {"user_id": event.data.param2 , "body": document.getElementById("peepPeep").value}}),
       success: function(resultData) { 
         alert("hi")
