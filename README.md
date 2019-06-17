@@ -6,7 +6,7 @@ You can create a new user, log in log out and create new peeps after logging in.
 The application is making ajax calls to the backend api to create users, log users in and add new peeps.
 
 There was not enough time to finish the challenge in one day. Improvements:
-  - I should have written tests
+  - I should have written tests, split controller into multiple files and remove commented out code as well as fix the indentations
   - I should have added navigation bar instead of buttons to add users etc.
   - styling is not great, need to look into overwriting the space after hiding fields
   - the modal that enables creating new posts should disappear after posting and content of the message should be wiped out
