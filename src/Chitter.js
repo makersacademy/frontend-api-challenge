@@ -68,7 +68,7 @@ Chitter.prototype.loginUser = function(handle, password) {
   });  
 }
 
-Chitter.prototype.register = function(handle, password, callback) {
+Chitter.prototype.register = function(handle, password) {
   $.ajax({
     url: 'https://chitter-backend-api.herokuapp.com/users',
     contentType: "application/json; charset=utf-8",
@@ -80,17 +80,15 @@ Chitter.prototype.register = function(handle, password, callback) {
         $("#registerUsernameAlert").removeAttr('hidden');
       },
       201: function () {
+        $('#registerModal').modal('toggle');
         $("#banner-and-nav-logged-in").removeAttr('hidden');
         $("#banner-and-nav-register").attr('hidden', 'true');
-        $('#registerModal').modal('toggle');
       },
       error: function (e) {
         alert("Server error - " + e);
       }
     }
   });
-  if (typeof callback == "function")
-    callback();
 }
 
 Chitter.prototype.post = function(user_id, message, session_key, callback) {

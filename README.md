@@ -14,6 +14,15 @@ Progress:
 * Register and Login options, with error handling. Sort of.
 * Post new tweets as logged in user
 
+Bugs
+-----------
+
+* refresh button doesn't seem to work properly
+* the saved username for the greeting element doesn't seem to get correctly overwritten with a new login
+* probably countless others I haven't spotted yet
+* registering also logs you in, as it should, but still triggers the login modal for some reason
+* buttons are sometimes appearing inconsistently
+
 To Do:
 ------
 SOOOOOO MUCH

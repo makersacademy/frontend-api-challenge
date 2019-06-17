@@ -11,7 +11,7 @@ $(document).ready(function () {
 
   setTimeout(function () { chitter.createFeed(); }, 10);
 
-  $("#loginForm").submit(function (event) {
+  $("#login-form").submit(function (event) {
     event.preventDefault(); 
     var handle = $("input#loginUsername").val();
     var password = $("input#loginPassword").val();
@@ -19,7 +19,7 @@ $(document).ready(function () {
     $("#userGreeting").replaceWith(`<div class="usergreeting">What\'s on your mind, ${handle}?</div>`);
   });
   
-  $("#registerForm").submit(function (event) {
+  $("#register-form").submit(function (event) {
     event.preventDefault(); 
     var handle = $("input#registerUsername").val();
     var password = $("input#registerPassword").val();
@@ -27,7 +27,7 @@ $(document).ready(function () {
     setTimeout(function () { chitter.loginUser(handle, password); }, 10);
   });
   
-  $("#peepForm").submit(function (event) {
+  $("#peep-form").submit(function (event) {
     console.log('how about here')
     event.preventDefault(); 
     var message = $("textarea#messageText").val();
@@ -36,8 +36,8 @@ $(document).ready(function () {
   });
   
   $("#logout").click(function () {
-    $("#loggedInNav").attr('hidden', 'true');
-    $("#registerNav").removeAttr('hidden');
+    $("#banner-and-nav-logged-in").attr('hidden', 'true');
+    $("#banner-and-nav-register").removeAttr('hidden');
     $("#post").attr('hidden', 'true');
     chitter.user_id = null;
     chitter.username = null;
