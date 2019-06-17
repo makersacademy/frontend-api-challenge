@@ -1,17 +1,18 @@
 # Chitter API Frontend Challenge
+Created a front end in JS, using JQuery and html files(added bootstrap for styling).
+The page is displaying all the peeps when it first loads.
+You can create a new user, log in log out and create new peeps after logging in.
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+The application is making ajax calls to the backend api to create users, log users in and add new peeps.
+
+There was not enough time to finish the challenge in one day. Improvements:
+  - I should have written tests
+  - I should have added navigation bar instead of buttons to add users etc.
+  - styling is not great, need to look into overwriting the space after hiding fields
+  - the modal that enables creating new posts should disappear after posting and content of the message should be wiped out
 
 Challenge:
 -------
-
-As usual please start by forking this repo.
-
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
 
 The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
 

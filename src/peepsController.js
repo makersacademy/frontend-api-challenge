@@ -142,8 +142,6 @@ document.getElementById("logout").style.visibility = "visible";
 $('#register').click(function() {
   document.getElementById("create").style.visibility = "visible";
 });
-
-
   // $('#newPeep').click(function() {
   //   alert("you are peepping")
   // });
@@ -155,7 +153,9 @@ $('#register').click(function() {
       headers: {"Authorization": "Token token=" + event.data.param1},
       data: JSON.stringify({"peep": {"user_id": event.data.param2 , "body": document.getElementById("peepPeep").value}}),
       success: function(resultData) { 
-        alert("Hi, you just peeped!")
+        
+        // $('#myModal').modal('hide'); 
+        $('#myModal').data('modal', null);
       }
       }).then(function () {
         //why is this not loading new peeps after positng?
@@ -167,6 +167,7 @@ $('#register').click(function() {
           var data = JSON.stringify(myPeeps);
           var peeps = JSON.parse(data);
           var arr = displayP(peeps);
+          alert("Hi, you just peeped!")
           // $('#all-peeps').html(arr);
         })
         .catch(function (err) {
