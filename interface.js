@@ -78,9 +78,9 @@ window.onload = function() {
     event.preventDefault();
     const text = document.getElementById('peep-text').value;
     const dataString = {"peep": {"user_id": session.getUserId(), "body": `${text}`}};
+
     const request = new XMLHttpRequest();
     request.open('POST', 'https://chitter-backend-api.herokuapp.com/peeps');
-    console.log(session.getSessionKey());
     request.setRequestHeader('Authorization', `Token token=${session.getSessionKey()}`);
     request.setRequestHeader('Content-Type', 'application/json');
     request.onload = function() {
