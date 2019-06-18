@@ -10,7 +10,7 @@ A single-page twitter clone created to practice using JavaScript as well as a RE
 
 * To run tests open spec/specRunner.html and check the browser console for messages
 
-![screenshot](images/screenshot)
+![screenshot](./images/screenshot.png)
 
 ## Challenge:
 
