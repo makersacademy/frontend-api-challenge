@@ -1,0 +1,26 @@
+{
+  "name": "frontend-api-challenge",
+  "version": "1.0.0",
+  "description": "A single-page twitter clone created to practice using JavaScript as well as a RESTful API.",
+  "main": "interface.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "eslint": "^6.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LaurenceTaylor/frontend-api-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LaurenceTaylor/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/LaurenceTaylor/frontend-api-challenge#readme"
+}

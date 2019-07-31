@@ -16,7 +16,7 @@ window.onload = function() {
       });
     }
     request.send();
-  };
+  }
 
   $('#sign-up-button').click(function() {
     $('#home-page').hide();
@@ -27,7 +27,12 @@ window.onload = function() {
     event.preventDefault();
     const handle = document.getElementById('sign-up-handle').value;
     const password = document.getElementById('sign-up-password').value;
-    const dataString = {"user": {"handle": handle, "password": password}};
+    const dataString = {
+      "user": {
+        "handle": handle,
+        "password": password
+      }
+    };
 
     const request = new XMLHttpRequest();
     request.open('POST', 'https://chitter-backend-api.herokuapp.com/users');
@@ -58,7 +63,12 @@ window.onload = function() {
     event.preventDefault();
     const handle = document.getElementById('sign-in-handle').value;
     const password = document.getElementById('sign-in-password').value;
-    const dataString = {"session": {"handle": handle, "password": password}};
+    const dataString = {
+      "session": {
+        "handle": handle,
+        "password": password
+      }
+    };
 
     const request = new XMLHttpRequest();
     request.open('POST', 'https://chitter-backend-api.herokuapp.com/sessions');
@@ -77,7 +87,12 @@ window.onload = function() {
   $('#post-a-peep').click(function(event) {
     event.preventDefault();
     const text = document.getElementById('peep-text').value;
-    const dataString = {"peep": {"user_id": session.getUserId(), "body": `${text}`}};
+    const dataString = {
+      "peep": {
+        "user_id": session.getUserId(),
+        "body": `${text}`
+      }
+    };
 
     const request = new XMLHttpRequest();
     request.open('POST', 'https://chitter-backend-api.herokuapp.com/peeps');
