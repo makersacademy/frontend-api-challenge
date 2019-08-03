@@ -2,6 +2,8 @@
 
 Goal: to create a single-page twitter clone, practicing using JavaScript and a RESTful API.
 
+[Deployed on surge.](http://guiltless-wine.surge.sh/)
+
 ## How to use
 
 * Clone this directory
