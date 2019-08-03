@@ -1,6 +1,6 @@
 # Chitter API Frontend Challenge
 
-A single-page twitter clone created to practice using JavaScript as well as a RESTful API.
+Goal: to create a single-page twitter clone, practicing using JavaScript and a RESTful API.
 
 ## How to use
 
