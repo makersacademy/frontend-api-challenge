@@ -1,10 +1,18 @@
 body {
   font-family: "Futura", Futura, serif;
-  background: whitesmoke;
+  background: #d2f8fc;
+}
+
+.Peep_List {
+  background: #e8f1ff;
+  border-radius: 30px;
+  width: 400px;
+  margin: 0 auto;
 }
 
 .Peep {
   position: relative;
+  margin: 0 auto;
   text-decoration:none;
   color:#000;
   background:#8dc2e3;
@@ -36,6 +44,20 @@ body {
   width:4em;
 }
 
+.Post_Peep {
+  background:white;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  text-indent: 5px;
+  direction:rtl;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 20px;
+  width:6em;
+}
+
+
 :root {
 	--underline-height: .5em;
 	--transition-duration : .5s;
@@ -66,25 +88,72 @@ nav {
 }
 
 .underline:nth-child(1) {
-		background: yellow;
-		transition: calc(var(--transition-duration) * .8);
-	}
+	background: #9aeffc;
+	transition: calc(var(--transition-duration) * .8);
+}
 
 .underline:nth-child(2) {
-		background: cyan;
-		transition: calc(var(--transition-duration) * 1.2);
-	}
+	background: dodgerblue;
+	transition: calc(var(--transition-duration) * 1.2);
+}
 .underline:nth-child(3) {
-		background: magenta;
-	}
+	background: #7da7e3;
+}
 
-.menu_button {
+.topnav-right {
+	float: left;
+}
+
+.topnav-right {
+	float: right;
+}
+
+.home_button {
 	display: inline-block;
 	z-index: 10;
 	width: 20%;
 	padding: 1em 0;
 	text-align: center;
 	cursor: pointer;
+}
+
+.view_profile_button {
+	display: inline-block;
+	z-index: 10;
+	width: 20%;
+	padding: 1em 0;
+	text-align: center;
+	cursor: pointer;
+}
+
+.log_in_button {
+	display: inline-block;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+}
+
+.sign_up_button {
+	display: inline-block;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+}
+
+.log_out_button {
+	display: inline-block;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
 }
 
 nav.black {
@@ -111,6 +180,6 @@ nav.retro.underline {
 	border-radius: 5px;
 }
 
-nav.retro.underline:nth-child(1) { background: gold; }
+nav.retro.underline:nth-child(1) { background: #9aeffc; }
 nav.retro.underline:nth-child(2) { background: dodgerblue; }
-nav.retro.underline:nth-child(3) { background: tomato; }
+nav.retro.underline:nth-child(3) { background: #7da7e3; }
