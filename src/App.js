@@ -5,13 +5,11 @@ import fetch from 'node-fetch';
 
 function App() {
 
-
     return (
       <div>
       <Chitter />
       </div>
     )
-
 
 }
 
@@ -58,6 +56,7 @@ class Menu extends React.Component {
 
   sendData = () => {
     this.props.parentCallback(this.state.user);
+    console.log('logged in')
   }
 
   componentDidMount() {
@@ -75,10 +74,10 @@ class Menu extends React.Component {
         <div className="underline"></div>
         <div className="underline"></div>
         <div className="underline"></div>
-        <div class="topnav">
+        <div className="topnav">
           <div className="home_button" onClick={this.ul.bind(this, 0)}>Home</div>
           <div className="view_profile_button" onClick={this.ul.bind(this, 1)}>Your Peeps</div>
-          <div class="topnav-right">
+          <div className="topnav-right">
             <div className="log_in_button" onClick={this.sendData.bind(this)} >Log In</div>
             <div className="sign_up_button" >Sign Up</div>
             <div className="log_out_button" >Log Out</div>
@@ -104,10 +103,18 @@ class Peeps extends React.Component {
       .then(json => this.setState({hits: json}))
   }
 
+  callbackFunction = () => {
+    console.log('reload')
+    fetch('https://chitter-backend-api.herokuapp.com/peeps')
+      .then(res => res.json())
+      .then(json => this.setState({hits: json}))
+    this.forceUpdate()
+  }
+
   render() {
     return (
       <div className='Peep_List'>
-      <NewPeep user ={this.props.user} />
+      <NewPeep parentCallback = {this.callbackFunction} user ={this.props.user} />
       {this.state.hits.map(function(peep, index){
         return <Peep data={peep} key={peep.id} />;
       })}
@@ -160,6 +167,11 @@ class NewPeep extends React.Component {
       headers: {'Content-Type': 'application/json', "Authorization": "Token token=" + this.props.user.session_key },
       body: JSON.stringify({"peep": {"user_id":this.props.user.user_id, "body":this.state.value}}),
     }).then(res => console.log(res))
+    event.preventDefault();
+    this.props.parentCallback(this.state.value);
+    this.setState({
+      value: ''
+    });
   }
 
   render() {
