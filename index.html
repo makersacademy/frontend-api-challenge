@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Chitter</title>
+    <script src="lib/jquery.js"></script>
+    <script src="src/peep.js"></script>
+    <script src="src/session.js"></script>
+    <script src="interface.js"></script>
+    <link rel="stylesheet" href="styles/stylesheet.css"/>
+  </head>
+  <body>
+    <center>
+      <h1>chitter</h1>
+      <div id='home-page'>
+        <section id='sign-up-or-in'>
+          <button id='sign-up-button'>Sign Up</button>
+          <button id='sign-in-button'>Sign In</button>
+        </section>
+        <section id='signed-in-buttons' style='display:none'>
+          <form>
+            <input type='text' id='peep-text' placeholder="What's happening?"/>
+            <input type='submit' id='post-a-peep' value='Peep'/>
+          </form>
+        </section>
+        <section id='peep-list'></section>
+      </div>
+
+      <div id='sign-up-page' style='display:none'>
+        <form>
+          <input type='text' id='sign-up-handle' placeholder='Username'></input>
+          <input type='password' id='sign-up-password' placeholder='Password'></input>
+          <input type='submit' id='sign-up-submit' value='Submit'></input>
+        </form>
+      </div>
+
+      <div id='sign-in-page' style='display:none'>
+        <form>
+          <input type='text' id='sign-in-handle' placeholder='Username'/>
+          <input type='password' id='sign-in-password' placeholder='Password'/>
+          <input type='submit' id='sign-in-submit' value='Submit'/>
+        </form>
+      </div>
+    </center>
+  </body>
+</html>

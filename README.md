@@ -1,38 +1,52 @@
 # Chitter API Frontend Challenge
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Goal: to create a single-page twitter clone, practicing using JavaScript and a RESTful API.
 
-Challenge:
--------
+[Deployed on surge.](http://guiltless-wine.surge.sh/)
 
-As usual please start by forking this repo.
+## How to use
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+* Clone this directory
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
+* Open index.html to interact with the app. Sign up, sign in, and post peeps!
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+* To run tests open spec/specRunner.html and check the browser console for messages
 
-Here are some interactions the API supports. Implement as many as you see fit.
+![screenshot](./images/screenshot.png)
+
+## Challenge:
+
+Similar to the previously completed [Chitter Challenge](https://github.com/LaurenceTaylor/chitter-challenge), this time in Javascript and using a RESTful API instead of a local database.
+
+Feature list:
 
 * Creating Users
 * Logging in
 * Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
+* Viewing all Peeps
 * Viewing individual Peeps
 * Deleting Peeps
 * Liking Peeps
 * Unliking Peeps
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+## Approach
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+* Built a (very) rudimentary testing framework during the [notes app](https://github.com/n3ttl3t/notes_js) challenge last week. Thought it would be wasteful not to make use of it here! 'Describe' and 'it' blocks would have been nice to have, but after speaking with a coach they were deemed low priority.
 
-## Utilities you might find useful
+* TDD approach - red, green, refactor.
 
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+* Constructing a single-page web app (no page refreshes allowed) was a challenge. I opted to store each 'page' within divs to show/ hide as appropriate. preventDefault was used to prevent form submits from redirecting.
+
+* Connected to the API using vanilla JavaScript. Used jQuery to hide/ show elements. This approach felt a little inconsistent, though I prioritised getting the code working first. It would be nice to refactor.
+
+## Thoughts
+
+* As mentioned it would be nice to refactor (include more jQuery?). Parts of the code are verbose (especially interacting with the API) and could surely be DRYed up.
+
+* Missing a few features here: viewing individual peeps, deleting peeps, liking and unliking peeps.
+
+* Testing coverage feels a little sparse. Was unsure of how best to test this app, with it being mostly front-end. My previous experience has been with unit tests for the model in the MVC pattern.
+
+* Would be fun to expand the testing framework further, but ran out of time this weekend.
+
+* Improvements to CSS would be nice to have.
