@@ -4,6 +4,7 @@ body {
 }
 
 .Peep_List {
+  padding-top : 30px;
   background: #e8f1ff;
   border-radius: 30px;
   width: 400px;
@@ -16,7 +17,7 @@ body {
   text-decoration:none;
   color:#000;
   background:#8dc2e3;
-  height:6em;
+  height:8em;
   width:20em;
   box-shadow: 3px 3px 3px 3px #888888;
   border-radius: 10px;
@@ -42,6 +43,19 @@ body {
   bottom: 0;
   right: 0;
   width:4em;
+}
+
+.PeepDate {
+  background:white;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-indent: 5px;
+  direction:rtl;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-left: 5px;
+  width:auto;
 }
 
 .Post_Peep {
@@ -106,6 +120,7 @@ nav {
 
 .topnav-right {
 	float: right;
+  padding-right: 10px;
 }
 
 .home_button {
@@ -144,6 +159,7 @@ nav {
 	cursor: pointer;
   border-radius: 10px;
   background-color:#d9edff;
+  margin-left: 5px;
 }
 
 .log_out_button {
@@ -154,6 +170,7 @@ nav {
 	cursor: pointer;
   border-radius: 10px;
   background-color:#d9edff;
+  margin-left: 5px;
 }
 
 nav.black {
@@ -183,3 +200,21 @@ nav.retro.underline {
 nav.retro.underline:nth-child(1) { background: #9aeffc; }
 nav.retro.underline:nth-child(2) { background: dodgerblue; }
 nav.retro.underline:nth-child(3) { background: #7da7e3; }
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

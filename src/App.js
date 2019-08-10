@@ -1,7 +1,11 @@
 import React from 'react';
 import './App.css';
 import fetch from 'node-fetch';
-
+import { CSSTransitionGroup } from 'react-transition-group';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function App() {
 
@@ -54,6 +58,37 @@ class Menu extends React.Component {
   	}
   }
 
+  render() {
+    return (
+
+      <nav className="retro">
+        <div className="underline"></div>
+        <div className="underline"></div>
+        <div className="underline"></div>
+        <div className="topnav">
+          <div className="home_button" onClick={this.ul.bind(this, 0)}>Home</div>
+          <div className="view_profile_button" onClick={this.ul.bind(this, 1)}>Your Peeps</div>
+          <div className="topnav-right">
+            <LogInButton parentCallback = {this.props.parentCallback} />
+            <div className="sign_up_button" >Sign Up</div>
+            <div className="log_out_button" >Log Out</div>
+          </div>
+        </div>
+      </nav>
+    )
+  }
+}
+
+class LogInButton extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hits: [],
+      user: []
+    };
+  }
+
   sendData = () => {
     this.props.parentCallback(this.state.user);
     console.log('logged in')
@@ -70,21 +105,82 @@ class Menu extends React.Component {
 
   render() {
     return (
-      <nav className="retro">
-        <div className="underline"></div>
-        <div className="underline"></div>
-        <div className="underline"></div>
-        <div className="topnav">
-          <div className="home_button" onClick={this.ul.bind(this, 0)}>Home</div>
-          <div className="view_profile_button" onClick={this.ul.bind(this, 1)}>Your Peeps</div>
-          <div className="topnav-right">
-            <div className="log_in_button" onClick={this.sendData.bind(this)} >Log In</div>
-            <div className="sign_up_button" >Sign Up</div>
-            <div className="log_out_button" >Log Out</div>
-          </div>
-        </div>
-      </nav>
+      <Dropdown className = "log_in_button">
+        <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+          Log In
+        </Dropdown.Toggle>
+        <Dropdown.Menu as={CustomMenu}>
+        </Dropdown.Menu>
+      </Dropdown>
     )
+  }
+}
+
+class CustomToggle extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+
+    this.props.onClick(e);
+  }
+
+  render() {
+    return (
+      <a href="" onClick={this.handleClick}>
+        {this.props.children}
+      </a>
+    );
+  }
+}
+
+class CustomMenu extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleChange1 = this.handleChange1.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
+
+    this.state = { value1: '', value2: '' };
+  }
+
+  handleChange1(e) {
+    this.setState({ value1: e.target.value });
+  }
+  handleChange2(e) {
+    this.setState({ value2: e.target.value });
+  }
+
+  render() {
+    const {
+      children,
+      style,
+      'aria-labelledby': labeledBy,
+    } = this.props;
+
+    const { value1 } = this.state;
+    const { value2 } = this.state;
+
+    return (
+      <Form>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Handle: </Form.Label>
+          <Form.Control type="email" placeholder="Enter handle" value={value1} />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password: </Form.Label>
+          <Form.Control type="password" placeholder="Password" value={value2} />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Log In
+        </Button>
+      </Form>
+    );
   }
 }
 
@@ -93,32 +189,39 @@ class Peeps extends React.Component {
     super(props);
 
     this.state = {
-      hits: []
+      hits: [{user: {}, likes: {}}]
     };
+    this.callbackFunction = this.callbackFunction.bind(this)
   }
 
-  componentDidMount() {
-    fetch('https://chitter-backend-api.herokuapp.com/peeps')
-      .then(res => res.json())
-      .then(json => this.setState({hits: json}))
-  }
-
-  callbackFunction = () => {
+  componentWillMount() {
     console.log('reload')
     fetch('https://chitter-backend-api.herokuapp.com/peeps')
       .then(res => res.json())
       .then(json => this.setState({hits: json}))
-    this.forceUpdate()
+      console.log(this.state.hits)
+  }
+
+  callbackFunction() {
+    fetch('https://chitter-backend-api.herokuapp.com/peeps')
+      .then(res => res.json())
+      .then(json => this.setState({hits: json}))
   }
 
   render() {
     return (
       <div className='Peep_List'>
-      <NewPeep parentCallback = {this.callbackFunction} user ={this.props.user} />
-      {this.state.hits.map(function(peep, index){
-        return <Peep data={peep} key={peep.id} />;
-      })}
-      </div>)
+        <PostNewPeep parentCallback = {this.callbackFunction} user ={this.props.user} />
+        <CSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {this.state.hits.map(function(peep, index){
+            return <Peep data={peep} key={peep.id} />;
+          })}
+        </CSSTransitionGroup>
+      </div>
+    )
   }
 }
 
@@ -136,18 +239,19 @@ class Peep extends React.Component {
       <div className = 'Peep'><header className = 'PeepHeader'>
         <p>{this.Peep.user.handle}</p></header>
         <p>{this.Peep.body}</p>
-        <p>Posted: {date.getDate()}/{date.getMonth()}/{date.getYear()}</p>
+        <div className="PeepDate">{date.getDate()}/{date.getMonth()}/{date.getYear()}</div>
         <div className='PeepLikes'>Likes: {this.Peep.likes.length}</div>
       </div>
     )
   }
 }
 
-class NewPeep extends React.Component {
+class PostNewPeep extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      style: {background: '#d0f1f7', marginBottom: '30px'}
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -166,17 +270,16 @@ class NewPeep extends React.Component {
       method: 'POST',
       headers: {'Content-Type': 'application/json', "Authorization": "Token token=" + this.props.user.session_key },
       body: JSON.stringify({"peep": {"user_id":this.props.user.user_id, "body":this.state.value}}),
-    }).then(res => console.log(res))
-    event.preventDefault();
-    this.props.parentCallback(this.state.value);
-    this.setState({
-      value: ''
-    });
+    }).then(res => console.log('its working'))
+      .then(res => this.props.parentCallback())
+      .then(res => this.setState({value: ''}))
+      .then(res => console.log('it worked'));
+      event.preventDefault();
   }
 
   render() {
     return (
-      <div className = 'Peep'>
+      <div className = 'Peep' style = {this.state.style}>
         <header className = 'PeepHeader'>Post new peep
         </header>
         <form onSubmit={this.handleSubmit}>
