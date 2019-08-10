@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import fetch from 'node-fetch';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -12,7 +11,7 @@ class Menu extends React.Component {
 
     this.state = {
       hits: [],
-      user: []
+      user: this.props.user
     };
   }
 
@@ -24,23 +23,37 @@ class Menu extends React.Component {
   }
 
   render() {
-    return (
-
-      <nav className="retro">
-        <div className="underline"></div>
-        <div className="underline"></div>
-        <div className="underline"></div>
-        <div className="topnav">
-          <div className="home_button" onClick={this.ul.bind(this, 0)}>Home</div>
-          <div className="view_profile_button" onClick={this.ul.bind(this, 1)}>Your Peeps</div>
-          <div className="topnav-right">
-            <LogInButton parentCallback = {this.props.parentCallback} />
-            <div className="sign_up_button" >Sign Up</div>
-            <div className="log_out_button" >Log Out</div>
+    console.log(this.state.user)
+      if (this.state.user) {
+        return (<nav className="retro">
+          <div className="underline"></div>
+          <div className="underline"></div>
+          <div className="underline"></div>
+          <div className="topnav">
+            <div className="home_button" onClick={this.ul.bind(this, 0)}>Home</div>
+            <div className="view_profile_button" onClick={this.ul.bind(this, 1)}>Your Peeps</div>
+            <div className="topnav-right">
+              <LogInButton parentCallback = {this.props.parentCallback} />
+              <div className="sign_up_button" >Sign Up</div>
+            </div>
           </div>
-        </div>
-      </nav>
-    )
+        </nav>)
+      }
+      else {
+        return (<nav className="retro">
+          <div className="underline"></div>
+          <div className="underline"></div>
+          <div className="underline"></div>
+          <div className="topnav">
+            <div className="home_button" onClick={this.ul.bind(this, 0)}>Home</div>
+            <div className="view_profile_button" onClick={this.ul.bind(this, 1)}>Your Peeps</div>
+            <div className="topnav-right">
+              <div className="log_out_button" >Log Out</div>
+            </div>
+          </div>
+        </nav>)
+
+      }
   }
 }
 
@@ -51,44 +64,26 @@ class LogInButton extends React.Component {
     this.state = {
       hits: [],
       user: [],
-      isOpen: true
+      isOpen: false
     };
   }
 
+  toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
+
+
   render() {
-    return (
-      <Dropdown className = "log_in_button">
-        <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">Log In</Dropdown.Toggle>
-        <Dropdown.Menu as={CustomMenu} parentCallback = {this.props.parentCallback}>
-        </Dropdown.Menu>
-      </Dropdown>
-    )
+    if (!this.state.isOpen) {
+      return <div className = "log_in_button" onClick={this.toggleOpen.bind(this)}>
+        Log In
+      </div>
+    }
+    else {
+      return <LogInWindow parentCallback = {this.props.parentCallback} onClick={this.toggleOpen.bind(this)}/>
+    }
   }
 }
 
-class CustomToggle extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-    e.preventDefault();
-
-    this.props.onClick(e);
-  }
-
-  render() {
-    return (
-      <a href="" onClick={this.handleClick}>
-        {this.props.children}
-      </a>
-    );
-  }
-}
-
-class CustomMenu extends React.Component {
+class LogInWindow extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -117,38 +112,33 @@ class CustomMenu extends React.Component {
     .then(res => res.json())
     .then(json => this.setState({user: json}))
     .then(json => this.sendData())
+    .then(json => this.props.onClick())
   }
 
   sendData = () => {
     this.props.parentCallback(this.state.user);
-    console.log('logged in')
+    console.log(this.state.user)
   }
 
   render() {
-    const {
-      children,
-      style,
-      'aria-labelledby': labeledBy,
-    } = this.props;
 
     const { value1 } = this.state;
     const { value2 } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Handle: </Form.Label>
-          <Form.Control placeholder="Enter handle" value={value1} onChange={this.handleChange1} />
-        </Form.Group>
-
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password: </Form.Label>
-          <Form.Control type="password" placeholder="Password" value={value2} onChange={this.handleChange2} />
-        </Form.Group>
-        <Button type="submit">
+      <form className='logInFloatWindow'>
+        <label>
+          Handle:
+          <input type="text" value={this.state.value1} onChange={this.handleChange1} />
+        </label><br />
+        <label>
+          Password:
+          <input type="password" value={this.state.value2} onChange={this.handleChange2} />
+        </label><br />
+        <button type="submit" onClick={this.handleSubmit}>
           Log In
-        </Button>
-      </Form>
+        </button>
+      </form>
     );
   }
 }

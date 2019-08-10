@@ -151,6 +151,18 @@ nav {
   background-color:#d9edff;
 }
 
+.logInFloatWindow {
+	position: absolute;
+  top: 80px;
+  right: 20px;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+}
+
 .sign_up_button {
 	display: inline-block;
 	z-index: 10;

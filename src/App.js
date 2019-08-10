@@ -25,16 +25,16 @@ class Chitter extends React.Component {
     };
   }
 
-  callbackFunction = (childData) => {
-    console.log('test')
-    this.setState({user: childData})
+  callbackFunction = (user) => {
+    console.log(this.state.user)
+    this.setState({user: user})
     console.log(this.state.user)
   }
 
   render() {
     return (
       <div>
-        <Menu parentCallback = {this.callbackFunction} />
+        <Menu user={this.state.user} parentCallback = {this.callbackFunction} />
         <Peeps user={this.state.user}/>
       </div>
     )
@@ -46,7 +46,7 @@ class Peeps extends React.Component {
     super(props);
 
     this.state = {
-      hits: []
+      hits: [],
     };
     this.callbackFunction = this.callbackFunction.bind(this)
   }
@@ -67,7 +67,6 @@ class Peeps extends React.Component {
   }
 
   render() {
-    console.log(this.state.hits)
     return (
       <div className='Peep_List'>
         <PostNewPeep parentCallback = {this.callbackFunction} user ={this.props.user} />
