@@ -5,9 +5,7 @@
 feature 'Viewing peeps on page' do
   scenario 'User sees last 50 peeps in reverse chronological order' do
     visit('/')
+    expect(find(id: 'latestPeeps')).to have_selector('li', count: 50)
     expect(page).to have_content("Latest Peeps")
-    expect(page).to have_content("Peep: test")
-    expect(page).to have_content("Posted by: chuckles")
-    expect(page).to have_content("Posted on 2019-08-08 at 13:49:15")
   end
 end

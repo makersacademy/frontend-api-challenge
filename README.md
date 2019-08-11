@@ -1,3 +1,16 @@
+## MY NOTES
+
+## Requirements in order of importance
+* ✅ Viewing all Peeps *(I suggest you start here)*
+* Creating Users
+* Viewing individual Peeps (all peeps by an individual?)
+* Creating Users
+* Logging in
+* Posting Peeps
+* Deleting Peeps
+* Liking Peeps
+* Unliking Peeps
+
 # Chitter API Frontend Challenge
 
 * Challenge time: rest of the day and weekend, until Monday 9am
