@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Bowling Challenge
+=================
 
-In the project directory, you can run:
+![Screenshot](https://github.com/Timdavidcole/bowling-challenge/blob/master/images/bowling-challenge.png)
 
-### `npm start`
+## The Task
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To make my first javascript project, an interactive bowling scoreboard!
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## My Approach
 
-### `npm test`
+- I kicked off making sure the model of the game worked. I initially started simple with one game object, then went far too deep down the OOP rabbit hole, with a WAY too complicated spagetti junction of SRP and forwarding.  So retraced back to an old commit and finalised from there.
+- Main file is bowling.js, which has 4 main functions ``` enterBallScore(score) ``` 
+```calculateTotalScore()```
+```newGame()```
+```isGameOver()```
+- Tests are using Jasmine.
+- JSLint and Beautify used in Atom to make sure the code is up to snuff.
+- Having completed the task, I decided to have a go at a UI, for which I used HTML, CSS & Jquery.  Seems to all be working fine.
+- Hosting was done in Ruby with Sinatra.
+- Tested it in Chrome, Safari and Firefox.  Working fine!
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+- In your terminal
+```
+git clone git@github.com:Timdavidcole/bowling-challenge.git
+cd bowling-challenge
+//TO LAUNCH//
+open index.html
+//OR HOST IT LOCALLY//
+bundle install
+rackup
+open http://localhost:9292/
+```
+- I've tried to host it on herokuapp but unfortunately it doesn't seem to be loading the css/jQuery.
+```
+https://bowlingscorecardtim.herokuapp.com/
+```
+- If you're feeling extra curious you can load my Jasmine tests.
+```
+open SpecRunner.html
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to use the site
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- It's extremely simple, load the page and start clicking the pin buttons at the bottom of the page to enter your scores.
+- The page won't allow you to enter a non-viable score.
+- When the round is finished your final score will be displayed at the bottom.
+- Simply click 'Start New Game' any time you want to clear the scorecard and start.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Final thoughts
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- This was a lot of fun to make.  I would like to implement a database system, maybe to store results for multiple rounds with multiple players.  If I get time I'll definitely have a go.
+- I probably should have refactored out another main object Frame, as my Bowling object is doing an awful lot at the moment.  But I think my code is fairly clear, so I decided to go with simplicity rather than the Single Responsibility Principle.
+- I spent HOURS trying to get that bloody 10 button's text aligned properly, but it defeated me.  I would love to know how to fix it!
+- I'm particularly pleased with animations on the Start New Game button.
+- Would like to tweak the UI to display a more traditional bowling scorecard design.
+- Maybe implement Node.js rather than Sinatra.
