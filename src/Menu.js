@@ -279,7 +279,6 @@ class LogInWindow extends React.Component {
   }
 
   render() {
-
     return (
       <form className='logInFloatWindow' onClick={this.props.onClick}>
       <h3>Please Log In</h3>
