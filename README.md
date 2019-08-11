@@ -58,5 +58,6 @@ Delete your Peeps
 ### Future Challenges
 
 - Testing!!!  Jest looks the way to go with React.
-- Maybe design my own API.  Although I do like seeing all my coursemate's gibberish test Peeps.
+- Major MAJOR refactoring.  The project is a mess at the moment, there's some mammoth functions and very little DRY.
+- Maybe design my own backend API.  We did actually do this a while back on the course, in Sinatra. At some point I want to learn Node.js so this could be a great test bed for that.  Although saying that I do like seeing all my coursemate's gibberish test Peeps in the feed.
 - Customize appearance.  Maybe 4 or 5 themes you can select from.
