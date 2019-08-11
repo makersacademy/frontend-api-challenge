@@ -14,15 +14,6 @@ To make my first React project, a Twitter clone called Chitter!
 - It's been a hell of a challenge.  My javascript is novice at best, JQuery around the same, HTML/CSS nothing to write home about, so not the firmest foundations to pick up a whole new framework!  But I find tutorials a little insubstantive, so thought I may as well throw myself in head first into a tricky project.
 - I decided to just use React's "create-react-app" toolset to limit my variables.  https://github.com/facebook/create-react-app.  I think in future I'll just use vanilla, but it's been a great help with keeping me on the straight and narrow & debugging.
 - (Don't tell my coaches) Seeing as I was trying to pick up a new framework I decided against TDD-ing this project.  There was too much to pick up without worrying about testing frameworks as well.  My next main goal is to add a complete testing suite if I have time.
-- Main file is bowling.js, which has 4 main functions ``` enterBallScore(score) ``` 
-```calculateTotalScore()```
-```newGame()```
-```isGameOver()```
-- Tests are using Jasmine.
-- JSLint and Beautify used in Atom to make sure the code is up to snuff.
-- Having completed the task, I decided to have a go at a UI, for which I used HTML, CSS & Jquery.  Seems to all be working fine.
-- Hosting was done in Ruby with Sinatra.
-- Tested it in Chrome, Safari and Firefox.  Working fine!
 
 ### Installation
 
@@ -38,10 +29,16 @@ npm start
 
 ## How to use the site
 
-- It's extremely simple, load the page and start clicking the pin buttons at the bottom of the page to enter your scores.
-- The page won't allow you to enter a non-viable score.
-- When the round is finished your final score will be displayed at the bottom.
-- Simply click 'Start New Game' any time you want to clear the scorecard and start.
+- Not exactly brimming with features. But you can...
+```
+View All Peeps
+Log In
+Sign Up
+Post a Peep
+Like a Peep
+Delete your Peeps
+```
+- Usage should be fairly self explanatory!
 
 ### Final thoughts
 
