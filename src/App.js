@@ -27,7 +27,7 @@ class Chitter extends React.Component {
   }
 
   callbackFunction = (user) => {
-    this.setState({user: user},() => console.log(this.state.user))
+    this.setState({user: user})
   }
 
   changeList = (index) => {

@@ -24,7 +24,6 @@ class Menu extends React.Component {
   }
 
   changeUser(user) {
-    console.log(user)
     this.setState({user: user})
   }
 
@@ -104,14 +103,11 @@ class SignUpButton extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.props.signUp)
-    console.log(prevProps.signUp)
     if(this.props.signUp === true && prevProps.signUp === false){
       this.setState({isOpen: true});
     } else if (this.props.signUp === false && prevProps.signUp === true){
       this.setState({isOpen: false});
     }
-    console.log(this.state.isOpen)
   }
 
   render() {
@@ -173,7 +169,6 @@ class SignUpWindow extends React.Component {
 
   sendData = () => {
     this.props.parentCallback(this.state.user);
-    console.log(this.state.user)
   }
 
   render() {
@@ -215,14 +210,11 @@ class LogInButton extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.props.logIn)
-    console.log(prevProps.logIn)
     if(this.props.logIn === true && prevProps.logIn === false){
       this.setState({isOpen: true});
     } else if (this.props.logIn === false && prevProps.logIn === true){
       this.setState({isOpen: false});
     }
-    console.log(this.state.isOpen)
   }
 
   render() {
@@ -275,7 +267,6 @@ class LogInWindow extends React.Component {
 
   sendData = () => {
     this.props.parentCallback(this.state.user);
-    console.log(this.state.user)
   }
 
   render() {
