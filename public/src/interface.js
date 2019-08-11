@@ -64,10 +64,9 @@ $( document ).ready(function() {
 
     $("#logInButton").hide()
 
-    var sessionHandle = $('#logInHandle').val()
-    var sessionPassword = $('#logInPassword').val()
-
     $('#logInUser').click(function(){
+      var sessionHandle = $('#logInHandle').val()
+      var sessionPassword = $('#logInPassword').val()
       newSession(sessionHandle, sessionPassword);
     })
 
@@ -85,9 +84,10 @@ $( document ).ready(function() {
     $.ajax({
       type: 'POST',
       url: "https://chitter-backend-api.herokuapp.com/sessions" ,
-      data: {
+      data: { session: {
         handle: handle,
         password: password
+        }
       },
 
       success: alert('New session started'),

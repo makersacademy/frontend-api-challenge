@@ -1,4 +1,7 @@
 ## MY NOTES
+ISSUES TO SORT:
+
+1. Don't appear to be getting the values from text boxes...perhaps they need a <label>?
 
 ## Requirements in order of importance
 * ✅ Viewing all Peeps *(I suggest you start here)*
