@@ -95,7 +95,7 @@ class Peep extends React.Component {
       headers: {"Authorization": "Token token=" + this.props.user.session_key }})
       .then(json => this.setState({deleted: true}))
       .then(json => this.props.parentCallback())
-      .catch(alert("That's not your peep to delete!"))
+      .catch(err => alert(err))
   }
 
   liked() {
