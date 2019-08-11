@@ -59,7 +59,7 @@ Log Out
 ### Future Challenges
 
 - Testing!!!  Jest looks the way to go with React.
-- Major MAJOR refactoring.  The project is a mess at the moment, there's some mammoth functions and very little DRY.
+- Major MAJOR refactoring.  The project is a mess at the moment, there's some mammoth functions and very little DRY/SRP.
 - The speed at which the Like button changes colour after liking is painfully slow, no doubt due to some over-engineered code on my part.  Would like to change.
 - Maybe design my own backend API.  We did actually do this a while back on the course, in Sinatra. At some point I want to learn Node.js so this could be a great test bed for that.  Although saying that I do like seeing all my coursemate's gibberish test Peeps in the feed.
 - Customize appearance.  Maybe 4 or 5 themes you can select from.
