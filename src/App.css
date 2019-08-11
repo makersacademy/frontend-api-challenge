@@ -49,7 +49,7 @@ body {
 }
 
 .PeepLikesTrue {
-  background:red;
+  background:#ff5781;
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
   text-indent: 5px;
@@ -63,7 +63,7 @@ body {
 }
 
 .PeepLikes:hover {
-  background:red;
+  background:#ff5781;
 }
 
 .PeepLikesTrue:hover {

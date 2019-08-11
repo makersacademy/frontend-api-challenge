@@ -17,11 +17,11 @@ class Peeps extends React.Component {
       .then(json => this.setState({peeps: json}))
   }
 
-  callbackFunction() {
+  callbackFunction(response) {
     fetch('https://chitter-backend-api.herokuapp.com/peeps')
       .then(res => res.json())
       .then(json => this.setState({peeps: json}))
-      .then(json => this.forceUpdate)
+    return response
   }
 
   render() {
@@ -72,39 +72,51 @@ class Peep extends React.Component {
       likes: this.Peep.likes.length,
       deleted: false,
       liked: false,
-      user: ''
+      user: this.props.user
     };
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.user !== this.props.user) {
-  //     this.setState({ user: this.props.user });
-  //   }
-  // }
-
-  static componentWillReceiveProps(props, current_state) {
-    if (current_state.user !== props.user) {
-      return {
-        user: props.user
-      }
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.user !== prevProps.user) {
+      this.setState({user: this.props.user})
     }
-    console.log(this.state.user)
-    return null
   }
 
   handleLike(event) {
-    event.preventDefault();
-    fetch("https://chitter-backend-api.herokuapp.com/peeps/" + this.props.peep.id + "/likes/" + this.props.user.user_id, {
-      method: 'PUT',
-      headers: {"Authorization": "Token token=" + this.props.user.session_key }})
-      .then(function(response) {
-        if (!response.ok) {
-            throw new Error("You can't like this peep")
-        } else {
-          return response
-        }
-      }, this).then(response => this.setState({likes: this.Peep.likes.length += 1 }))
-      .catch(err => alert(err))
+    console.log('test')
+    console.log(this.liked())
+    if (this.liked()){
+      fetch("https://chitter-backend-api.herokuapp.com/peeps/" + this.props.peep.id + "/likes/" + this.props.user.user_id, {
+        method: 'DELETE',
+        headers: {"Authorization": "Token token=" + this.props.user.session_key }})
+        .then(response => {
+          if (!response.ok) {
+              throw new Error("You haven't liked this Peep!")
+          } else {
+            return response
+          }
+        })
+        .then(response => this.props.parentCallback(response))
+        .then(response => this.setState({likes: this.Peep.likes.length -= 1 }))
+        .then(response => console.log(this.state))
+        .catch(err => alert(err))
+    } else {
+      fetch("https://chitter-backend-api.herokuapp.com/peeps/" + this.props.peep.id + "/likes/" + this.props.user.user_id, {
+        method: 'PUT',
+        headers: {"Authorization": "Token token=" + this.props.user.session_key }})
+        .then(response => {
+          if (!response.ok) {
+              throw new Error("You can't like this peep")
+          } else {
+            return response
+          }
+        })
+        .then(response => this.props.parentCallback(response))
+        .then(response => this.setState({likes: this.Peep.likes.length += 1 }))
+        .then(response => console.log(this.state))
+        .catch(err => alert(err))
+    }
   }
 
   handleDelete(event) {
@@ -124,14 +136,13 @@ class Peep extends React.Component {
   }
 
   liked() {
-    if (this.Peep.likes.forEach(function(user){
-      if (user.user_id === this.props.user.user_id){
-        return true
-      }}, this)) return true
-    else return false
+    if (this.props.peep.likes.filter(e => e.user.id === this.state.user.user_id).length > 0) {
+      return true
+    } else return false
   }
 
   likedStyle() {
+    console.log(this.liked())
     if (this.liked()){
       return (<div className="PeepLikesTrue" onClick={this.handleLike}>Likes: {this.state.likes}</div>)
     } else {
