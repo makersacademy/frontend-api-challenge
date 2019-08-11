@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import fetch from 'node-fetch';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 
 
 class Menu extends React.Component {
@@ -10,9 +8,23 @@ class Menu extends React.Component {
     super(props);
 
     this.state = {
-      hits: [],
-      user: this.props.user
+      user: '',
+      user_handle: ''
     };
+
+    this.setUserHandle = this.setUserHandle.bind(this)
+
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.user !== false && prevProps.user === false) {
+      this.setState({user: this.props.user});
+    }
+  }
+
+  changeUser(user) {
+    console.log(user)
+    this.setState({user: user})
   }
 
   ul (index){
@@ -20,11 +32,15 @@ class Menu extends React.Component {
   	for (var i = 0; i < underlines.length; i++) {
   		underlines[i].style.transform = 'translate3d(' + index * 100 + '%,0,0)';
   	}
+    this.props.changeList(index)
+  }
+
+  setUserHandle(userHandle){
+    this.setState({user_handle: userHandle})
   }
 
   render() {
-    console.log(this.state.user)
-      if (this.state.user) {
+      if (!this.props.user) {
         return (<nav className="retro">
           <div className="underline"></div>
           <div className="underline"></div>
@@ -33,7 +49,7 @@ class Menu extends React.Component {
             <div className="home_button" onClick={this.ul.bind(this, 0)}>Home</div>
             <div className="view_profile_button" onClick={this.ul.bind(this, 1)}>Your Peeps</div>
             <div className="topnav-right">
-              <LogInButton parentCallback = {this.props.parentCallback} />
+              <LogInButton changeUser={this.changeUser} setUserHandle={this.setUserHandle} parentCallback = {this.props.parentCallback} />
               <div className="sign_up_button" >Sign Up</div>
             </div>
           </div>
@@ -48,6 +64,7 @@ class Menu extends React.Component {
             <div className="home_button" onClick={this.ul.bind(this, 0)}>Home</div>
             <div className="view_profile_button" onClick={this.ul.bind(this, 1)}>Your Peeps</div>
             <div className="topnav-right">
+              <div className="Welcome" >Welcome {this.state.user_handle}!</div>
               <div className="log_out_button" >Log Out</div>
             </div>
           </div>
@@ -78,7 +95,7 @@ class LogInButton extends React.Component {
       </div>
     }
     else {
-      return <LogInWindow parentCallback = {this.props.parentCallback} onClick={this.toggleOpen.bind(this)}/>
+      return <LogInWindow setUserHandle={this.props.setUserHandle} changeUser={this.props.changeUser} parentCallback = {this.props.parentCallback} onClick={this.toggleOpen.bind(this)}/>
     }
   }
 }
@@ -103,8 +120,7 @@ class LogInWindow extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.value1)
-    console.log(this.state.value2)
+    this.props.setUserHandle(this.state.value1)
     fetch("https://chitter-backend-api.herokuapp.com/sessions", {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -121,9 +137,6 @@ class LogInWindow extends React.Component {
   }
 
   render() {
-
-    const { value1 } = this.state;
-    const { value2 } = this.state;
 
     return (
       <form className='logInFloatWindow'>
