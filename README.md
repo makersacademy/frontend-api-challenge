@@ -2,11 +2,10 @@
 
 ## Requirements in order of importance
 * ✅ Viewing all Peeps *(I suggest you start here)*
-* Creating Users
-* Viewing individual Peeps (all peeps by an individual?)
-* Creating Users
+* ✅ Creating Users
 * Logging in
 * Posting Peeps
+* Viewing individual Peeps
 * Deleting Peeps
 * Liking Peeps
 * Unliking Peeps
