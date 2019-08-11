@@ -35,7 +35,7 @@ npm start
 
 ## How to use the site
 
-- Not exactly brimming with features. But you can...
+- Not exactly brimming with features as was restricted by the API. But you can...
 ```
 View All Peeps
 Log In
