@@ -6,7 +6,7 @@ Chitter (front-end)
 
 ## The Task
 
-To make my first React project, a Twitter clone called Chitter! Using a pre-made [API](https://github.com/Timdavidcole/Chitter-frontend-api-challenge/blob/master/README.old.md)
+To make my first React project, a Twitter clone called Chitter! Using a pre-made [API](https://github.com/Timdavidcole/Chitter-frontend-api-challenge/blob/master/README.old.md).
 
 ## My Approach
 
