@@ -17,7 +17,7 @@ To make my first React project, a Twitter clone called Chitter! Using a pre-made
 
 ### Installation
 
-- Run in browser
+- [Run in browser](https://chitter-frontend-challenge.herokuapp.com/)
 
 ```
 https://chitter-frontend-challenge.herokuapp.com/
