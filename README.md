@@ -21,7 +21,7 @@ To make my first React project, a Twitter clone called Chitter!
 ```
 git clone git@github.com:Timdavidcole/frontend-api-challenge.git
 cd frontend-api-challenge
-//Make sure you have the latest NPM & Node installed//
+//Make sure you have the latest Node & NPM installed//
 (in browser) visit/download/install https://nodejs.org/en/
 //TO LAUNCH//
 npm start
@@ -36,15 +36,15 @@ Log In
 Sign Up
 Post a Peep
 Like a Peep
+Unlike a Peep
 Delete your Peeps
 ```
 - Usage should be fairly self explanatory!
 
-### Final thoughts
+### Challenges
 
-- This was a lot of fun to make.  I would like to implement a database system, maybe to store results for multiple rounds with multiple players.  If I get time I'll definitely have a go.
-- I probably should have refactored out another main object Frame, as my Bowling object is doing an awful lot at the moment.  But I think my code is fairly clear, so I decided to go with simplicity rather than the Single Responsibility Principle.
-- I spent HOURS trying to get that bloody 10 button's text aligned properly, but it defeated me.  I would love to know how to fix it!
-- I'm particularly pleased with animations on the Start New Game button.
-- Would like to tweak the UI to display a more traditional bowling scorecard design.
-- Maybe implement Node.js rather than Sinatra.
+- Man...  I spend a LONG time fiddling around with this one.  Just getting my head around the way state and props work was a bit of an adventure.
+- I went down a massive rabit hole of trying to get react-bootstrap drop down login/signup elements to work but they defeated me!  So I just implemented my own version (which I'm pretty happy about).  The logic for making one disappear when you click the other took a particularly long time!
+- I stole a bit of CSS for the Home-Own Peeps menu animation.  Pretty groovy but rather unneccessary haha.
+- Managed to get CSSTransitionGroup working, so now when your peeps update they fade in (just the changing elements).  That took a while to work out too, needed to make sure each Peep had a unique key.
+- 
