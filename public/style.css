@@ -1,0 +1,14 @@
+body {
+  background-color: cornsilk;
+  border: 6px solid gold;
+}
+
+h1 {
+  text-align: center;
+  color: coral;
+}
+
+#peeps {
+  text-align: center;
+  padding-right: 30px;
+}
