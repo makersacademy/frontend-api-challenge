@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function() {
 
   $.ajax({
     type: "GET",
@@ -13,29 +13,26 @@ $( document ).ready(function() {
 
     $.each(data, function(i, peep) {
 
-      $(".latestPeeps").append("<li>" + "<a href='#" + peep.id + "' id='" + peep.id + "'>" + peep.body + "</a>" + "</li>")
+      $(".latestPeeps").append("<li>" + "<a href='#" + peep.id + "' id='" + peep.id + "'>" + peep.body + "</a>" + "</li>");
+      $(".latestPeeps").append('<p class="peepUser" id="' + peep.user.id + '">Posted by: ' + peep.user.handle + '</p>');
 
-      $(".latestPeeps").append('<p class="peepUser" id="' + peep.user.id + '">Posted by: <a href="user/' + peep.user.id +'">' + peep.user.handle + '</a></p>')
-
-      var peepDate = peep.created_at.split('T')[0]
-      var peepTime = peep.created_at.split('T')[1].substring(0,8)
+      var peepDate = peep.created_at.split('T')[0];
+      var peepTime = peep.created_at.split('T')[1].substring(0, 8);
 
       $(".latestPeeps").append('<p id="peepTime">Posted on ' + peepDate + ' at ' + peepTime + '</p>')
 
-      if (data.likes !== undefined && peep.likes.length !== 0) {
-        $.each(data.likes, function(i, like) {
+      if (peep.likes !== undefined && peep.likes.length !== 0) {
+        $.each(peep.likes, function(i, like) {
           $(".latestPeeps").append('<p id="likes">Liked by ' + like.user.handle + '</p>')
         })
       }
     });
   }
 
-  $('#registerButton').click(function(){
+  $('#registerButton').click(function() {
 
-    $('.register').append('<h1>Enter your details to register:</h1><br><br>Handle:<input id="newUserHandle" type="text" name="handle" required><br><br>Password:<input id="newUserPassword" type="password" name="password" required><br><br><input id="createUser" type="submit" value="Submit"><br>')
-
-    $("#registerButton").hide()
-
+    $('.register').append('<h1>Enter your details to register:</h1><br><br>Handle:<input id="newUserHandle" type="text" name="handle" required><br><br>Password:<input id="newUserPassword" type="password" name="password" required><br><br><input id="createUser" type="submit" value="Submit"><br>');
+    $("#registerButton").hide();
     $('#createUser').click(function() {
 
       var newUserData = {
@@ -44,7 +41,6 @@ $( document ).ready(function() {
           password: $('#newUserPassword').val()
         }
       }
-
 
       $.ajax({
         type: 'POST',
@@ -59,25 +55,22 @@ $( document ).ready(function() {
 
   })
 
-  $('#logInButton').click(function(){
+  $('#logInButton').click(function() {
 
-    $('.logIn').append('<h1>Enter your details to login:</h1><br><br>Handle:<input id="logInHandle" type="text" name="handle" required><br><br>Password:<input id="logInPassword" type="password" name="password" required><br><br><input id="logInUser" type="submit" value="Log in"><br>')
+    $('.logIn').append('<h1>Enter your details to login:</h1><br><br>Handle:<input id="logInHandle" type="text" name="handle" required><br><br>Password:<input id="logInPassword" type="password" name="password" required><br><br><input id="logInUser" type="submit" value="Log in"><br>');
+    $("#logInButton").hide();
 
-    $("#logInButton").hide()
-
-    $('#logInUser').click(function(){
+    $('#logInUser').click(function() {
       var sessionHandle = $('#logInHandle').val()
       var sessionPassword = $('#logInPassword').val()
       newSession(sessionHandle, sessionPassword);
     })
-
   })
 
 
   function registrationComplete() {
     $('.header').append('<h2>Registration Complete</h2>');
     $('.register').hide()
-
   }
 
   function newSession(handle, password) {
@@ -87,10 +80,11 @@ $( document ).ready(function() {
 
     $.ajax({
       type: 'POST',
-      url: "https://chitter-backend-api.herokuapp.com/sessions" ,
-      data: { session: {
-        handle: handle,
-        password: password
+      url: "https://chitter-backend-api.herokuapp.com/sessions",
+      data: {
+        session: {
+          handle: handle,
+          password: password
         }
       },
 
@@ -119,33 +113,33 @@ $( document ).ready(function() {
 
   function postNewPeep(userID, sessionKey, peepBody) {
 
-    console.log(userID + " ....userID")
-    console.log(sessionKey + " ....sessionKey")
-    console.log(peepBody + " ...peepBody")
-
     $.ajax({
       type: 'POST',
       url: "https://chitter-backend-api.herokuapp.com/peeps",
+
       beforeSend: function(request) {
-              request.setRequestHeader("Authorization", "Token token="+ sessionKey);
-            },
-      data: {peep: {
-        user_id: userID,
-        body: peepBody
+        request.setRequestHeader("Authorization", "Token token=" + sessionKey);
+      },
+
+      data: {
+        peep: {
+          user_id: userID,
+          body: peepBody
         }
       },
+
       success: function(newPeep) {
+        console.log(newPeep)
 
         $(".latestPeeps").append("<li>" + "<a href='#" + newPeep.id + "' id='" + newPeep.id + "'>" + newPeep.body + "</a>" + "</li>")
-
-        $(".latestPeeps").append('<p class="peepUser" id="' + newPeep.user.id + '">Posted by: <a href="user/' + newPeep.user.id +'">' + newPeep.user.handle + '</a></p>')
+        $(".latestPeeps").append('<p class="peepUser" id="' + newPeep.user.id + '">Posted by: ' + newPeep.user.handle + '</p>')
 
         var peepDate = newPeep.created_at.split('T')[0]
-        var peepTime = newPeep.created_at.split('T')[1].substring(0,8)
+        var peepTime = newPeep.created_at.split('T')[1].substring(0, 8)
 
         $(".latestPeeps").append('<p id="peepTime">Posted on ' + peepDate + ' at ' + peepTime + '</p>')
-
       },
+
       error: function() {
         alert('error posting peep')
       }
