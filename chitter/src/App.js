@@ -16,8 +16,10 @@ function App() {
       <Container maxWidth="sm">
         <Router>
           <Route exact path = "/" component={Gateway} />
-          <Route exact path = "/signup" component={SignUp} />
-          <Route exact path = "/login" component={LogIn} />
+
+            <Route exact path = "/signup" component={SignUp} />
+            <Route exact path = "/login" component={LogIn} />
+
           <Route path = "/squiggles" component={FowwestView} />
         </Router>
       </Container>

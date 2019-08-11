@@ -83,7 +83,7 @@ class Like extends React.Component {
         <Typography variant="subtitle1" color="primary">
           Liked by {this.state.likes.map((like)=>(
 
-              <span key={like.user.id}>{like.user.handle}  🌰 </span>
+              <span key={like.user.id}>🌰{like.user.handle} </span>
 
           ))}
 

@@ -32,7 +32,7 @@ class Squiggle extends React.Component {
                 <div >
                   <CardContent>
                     <Typography component="h2" variant="h5">
-                      {squiggle.user.handle}
+                      🌰{squiggle.user.handle}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {squiggle.created_at}

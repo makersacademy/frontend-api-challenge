@@ -41,12 +41,14 @@ class CreateSquiggle extends React.Component {
                id="outlined-multiline-flexible"
                label="Write your squiggle here"
                multiline
+               fullWidth
+               rows="2"
                rowsMax="4"
                margin="normal"
                variant="outlined"
                style={{margin: "20px auto"}}
                onChange = {this.handleChange}
-               fullWidth
+
               />
             </Grid>
             <Grid item xs={12}>
