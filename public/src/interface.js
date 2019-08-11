@@ -31,7 +31,9 @@ $( document ).ready(function() {
 
   $('#registerButton').click(function(){
 
-    $('.register').append('<h1>Enter your details to login:</h1><br><br>Handle:<input id="newUserHandle" type="text" name="handle" required><br><br>Password:<input id="newUserPassword" type="password" name="password" required><br><br><input id="createUser" type="submit" value="Submit"><br>')
+    $('.register').append('<h1>Enter your details to register:</h1><br><br>Handle:<input id="newUserHandle" type="text" name="handle" required><br><br>Password:<input id="newUserPassword" type="password" name="password" required><br><br><input id="createUser" type="submit" value="Submit"><br>')
+
+    $("#registerButton").hide()
 
     $('#createUser').click(function() {
 
@@ -47,7 +49,7 @@ $( document ).ready(function() {
         type: 'POST',
         url: "https://chitter-backend-api.herokuapp.com/users",
         data: newUserData,
-        success: console.log("registration has worked!"),// newSession(newUserData),
+        success: registrationComplete(),
         error: function() {
           alert('error creating new user')
         }
@@ -56,11 +58,38 @@ $( document ).ready(function() {
 
   })
 
-  function newSession(userData) {
+  $('#logInButton').click(function(){
+
+    $('.logIn').append('<h1>Enter your details to login:</h1><br><br>Handle:<input id="logInHandle" type="text" name="handle" required><br><br>Password:<input id="logInPassword" type="password" name="password" required><br><br><input id="logInUser" type="submit" value="Log in"><br>')
+
+    $("#logInButton").hide()
+
+    var sessionHandle = $('#logInHandle').val()
+    var sessionPassword = $('#logInPassword').val()
+
+    $('#logInUser').click(function(){
+      newSession(sessionHandle, sessionPassword);
+    })
+
+  })
+
+
+  function registrationComplete() {
+    $('.header').append('<h2>Registration Complete</h2>');
+    $('.register').hide()
+
+  }
+
+  function newSession(handle, password) {
+
     $.ajax({
       type: 'POST',
       url: "https://chitter-backend-api.herokuapp.com/sessions" ,
-      data: newSessionData,
+      data: {
+        handle: handle,
+        password: password
+      },
+
       success: alert('New session started'),
       error: function() {
         alert('error starting new session')
