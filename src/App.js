@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { CSSTransitionGroup } from 'react-transition-group';
 import Menu from './Menu'
 import Peeps from './Peeps'
 

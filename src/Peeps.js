@@ -66,11 +66,30 @@ class Peep extends React.Component {
     this.Peep = this.props.peep
     this.handleLike = this.handleLike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.likedStyle = this.likedStyle.bind(this);
     this.liked = this.liked.bind(this);
     this.state = {
       likes: this.Peep.likes.length,
-      deleted: false
+      deleted: false,
+      liked: false,
+      user: ''
     };
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.user !== this.props.user) {
+  //     this.setState({ user: this.props.user });
+  //   }
+  // }
+
+  static componentWillReceiveProps(props, current_state) {
+    if (current_state.user !== props.user) {
+      return {
+        user: props.user
+      }
+    }
+    console.log(this.state.user)
+    return null
   }
 
   handleLike(event) {
@@ -80,12 +99,12 @@ class Peep extends React.Component {
       headers: {"Authorization": "Token token=" + this.props.user.session_key }})
       .then(function(response) {
         if (!response.ok) {
-            console.log(response)
-            alert("You can't like a Peep more than once!")
+            throw new Error("You can't like this peep")
         } else {
-          this.setState({likes: this.Peep.likes.length += 1 })
+          return response
         }
-      }, this).catch(err => alert(err))
+      }, this).then(response => this.setState({likes: this.Peep.likes.length += 1 }))
+      .catch(err => alert(err))
   }
 
   handleDelete(event) {
@@ -93,7 +112,13 @@ class Peep extends React.Component {
     fetch("https://chitter-backend-api.herokuapp.com/peeps/" + this.props.peep.id, {
       method: 'DELETE',
       headers: {"Authorization": "Token token=" + this.props.user.session_key }})
-      .then(json => this.setState({deleted: true}))
+      .then(function(response) {
+        if (!response.ok) {
+            throw new Error("This peep isn't yours to delete!")
+        } else {
+          return response
+        }
+      }, this).then(response => this.setState({deleted: true}))
       .then(json => this.props.parentCallback())
       .catch(err => alert(err))
   }
@@ -102,8 +127,16 @@ class Peep extends React.Component {
     if (this.Peep.likes.forEach(function(user){
       if (user.user_id === this.props.user.user_id){
         return true
-      }}, this)) return 'PeepLikesTrue'
-    else return 'PeepLikes'
+      }}, this)) return true
+    else return false
+  }
+
+  likedStyle() {
+    if (this.liked()){
+      return (<div className="PeepLikesTrue" onClick={this.handleLike}>Likes: {this.state.likes}</div>)
+    } else {
+      return (<div className="PeepLikes" onClick={this.handleLike}>Likes: {this.state.likes}</div>)
+    }
   }
 
   render() {
@@ -113,7 +146,7 @@ class Peep extends React.Component {
         <p className = 'PeepHeader'>{this.Peep.user.handle}</p>
         <p>{this.Peep.body}</p>
         <div className="PeepDate">{date.getDate()}/{date.getMonth()}/{date.getYear()}</div>
-        <div className={this.liked()} onClick={this.handleLike}>Likes: {this.state.likes}</div>
+        {this.likedStyle()}
         <div className='DeletePeep' onClick={this.handleDelete}>Delete</div>
       </div>
     )

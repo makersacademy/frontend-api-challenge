@@ -66,6 +66,10 @@ body {
   background:red;
 }
 
+.PeepLikesTrue:hover {
+  background:white;
+}
+
 .DeletePeep {
   background:dodgerblue;
   border-top-right-radius: 10px;

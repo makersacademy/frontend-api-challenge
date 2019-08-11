@@ -259,10 +259,18 @@ class LogInWindow extends React.Component {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({"session": {"handle":this.state.value1, "password":this.state.value2}})})
-    .then(res => res.json())
+    .then(function(response) {
+      if (!response.ok) {
+          console.log(response)
+          throw new Error('Log in details incorrect...')
+      } else {
+        return response.json()
+      }
+    })
     .then(json => this.setState({user: json}))
     .then(json => this.sendData())
     .then(json => this.props.onClick())
+    .catch(err => alert(err))
   }
 
   sendData = () => {
