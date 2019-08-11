@@ -44,6 +44,7 @@ Post a Peep
 Like a Peep
 Unlike a Peep
 Delete your Peeps
+Log Out
 ```
 - Usage should be fairly self explanatory!
 
