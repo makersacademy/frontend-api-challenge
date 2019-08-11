@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="octotree">
+    <head>
+    </head>
+    <body>
+
+        <h1 id="greeting">Welcome to Chitter</h1>
+
+        <section id="anonymous-user">
+          <form id="form-sign-up" >
+            <h2>Sign up:</h2>
+            <input type="text" id="username-sign-up" placeholder="username">
+            <input type="text" id="password-sign-up" placeholder="password">
+            <button id="signup-button">Submit</button>
+          </form>
+
+          <h2> Log in:</h2>
+          <form id="form-login" >
+            <input type="text" id="username-log-in" placeholder="username">
+            <input type="text" id="password-log-in" placeholder="password">
+            <button id="login-button">Log in</button>
+          </form>
+        </section>
+
+        <section id="logged-in-user" style="display: none;">
+
+          <form>
+            <textarea rows="10" cols="60" id="peep-text-box" name="peep-text" placeholder="Write your peep here..."></textarea>
+            <br>
+            <button id="create-peep">Submit peep</button>
+          </form>
+
+          <div id="display">
+            <h2>Peeps:</h2>
+            <ul id="peeps-list">
+            </ul>
+          </div>
+
+        </section>
+
+        <script src="chitter.js" type="application/javascript"></script>
+    </body>
+</html>
