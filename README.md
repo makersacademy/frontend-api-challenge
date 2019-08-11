@@ -53,3 +53,4 @@ Delete your Peeps
 
 - Testing!!!  Jest looks the way to go with React.
 - Maybe design my own API.  Although I do like seeing all my coursemate's gibberish test Peeps.
+- Customize appearance.  Maybe 4 or 5 themes you can select from.
