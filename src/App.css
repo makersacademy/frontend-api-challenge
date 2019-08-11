@@ -105,10 +105,9 @@ body {
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
   text-indent: 5px;
-  direction:rtl;
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 219px;
   height: auto;
   width:auto;
   outline: 0px;
@@ -121,12 +120,11 @@ body {
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
   text-indent: 5px;
-  direction:rtl;
+  text-align: left;
   position: absolute;
-  top: 35px;
-  left: 10px;
+  top: 33px;
+  left: 9px;
   height: auto;
-  width:auto;
   outline: 0px;
 }
 
@@ -219,9 +217,23 @@ nav {
 	cursor: pointer;
   border-radius: 10px;
   background-color:#d9edff;
+  margin-right: 10px;
 }
 
 .logInFloatWindow {
+	position: absolute;
+  top: 80px;
+  right: 20px;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+  box-shadow: 3px 3px 3px 3px #888888;
+}
+
+.signUpFloatWindow {
 	position: absolute;
   top: 80px;
   right: 20px;
@@ -242,7 +254,7 @@ nav {
 	cursor: pointer;
   border-radius: 10px;
   background-color:#d9edff;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .log_out_button {
