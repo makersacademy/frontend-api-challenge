@@ -21,6 +21,7 @@ $( document ).ready(function() {
       var peepTime = peep.created_at.split('T')[1].substring(0,8)
 
       $(".latestPeeps").append('<p id="peepTime">Posted on ' + peepDate + ' at ' + peepTime + '</p>')
+
       if (data.likes !== undefined && peep.likes.length !== 0) {
         $.each(data.likes, function(i, like) {
           $(".latestPeeps").append('<p id="likes">Liked by ' + like.user.handle + '</p>')
@@ -94,8 +95,9 @@ $( document ).ready(function() {
       },
 
       success: function(sessionData) {
-        userID = sessionData.user_id;
-        sessionKey = sessionData.session_key;
+        var userID = sessionData.user_id;
+        var sessionKey = sessionData.session_key;
+
         $('.header').append('<h2>Log in Succesful</h2>');
         $('#registerButton').hide()
         $('.logIn').hide()
@@ -103,7 +105,10 @@ $( document ).ready(function() {
         $('#newPeepButton').click(function() {
           $('#newPeepButton').hide()
           $('.newPeepForm').append('What\'s Happening? <input id="newPeepBody" type="text" name="newPeepBody"><br><input id="postNewPeepButton" type="submit" value="Post"><br>');
-          $('#postNewPeepButton').click(postNewPeep(userID, sessionKey))
+          $('#postNewPeepButton').click(function() {
+            var peepBody = $('#newPeepBody').val()
+            postNewPeep(userID, sessionKey, peepBody);
+          })
         })
       },
       error: function() {
@@ -112,7 +117,38 @@ $( document ).ready(function() {
     })
   }
 
-  function postNewPeep(user_id, sessionKey, peepBody) {
+  function postNewPeep(userID, sessionKey, peepBody) {
 
+    console.log(userID + " ....userID")
+    console.log(sessionKey + " ....sessionKey")
+    console.log(peepBody + " ...peepBody")
+
+    $.ajax({
+      type: 'POST',
+      url: "https://chitter-backend-api.herokuapp.com/peeps",
+      beforeSend: function(request) {
+              request.setRequestHeader("Authorization", "Token token="+ sessionKey);
+            },
+      data: {peep: {
+        user_id: userID,
+        body: peepBody
+        }
+      },
+      success: function(newPeep) {
+
+        $(".latestPeeps").append("<li>" + "<a href='#" + newPeep.id + "' id='" + newPeep.id + "'>" + newPeep.body + "</a>" + "</li>")
+
+        $(".latestPeeps").append('<p class="peepUser" id="' + newPeep.user.id + '">Posted by: <a href="user/' + newPeep.user.id +'">' + newPeep.user.handle + '</a></p>')
+
+        var peepDate = newPeep.created_at.split('T')[0]
+        var peepTime = newPeep.created_at.split('T')[1].substring(0,8)
+
+        $(".latestPeeps").append('<p id="peepTime">Posted on ' + peepDate + ' at ' + peepTime + '</p>')
+
+      },
+      error: function() {
+        alert('error posting peep')
+      }
+    })
   }
 });
