@@ -50,7 +50,7 @@ Log Out
 
 ### Challenges
 
-- Man...  I spent a LONG time fiddling around with this one.  Just getting my head around the way state and props work was a bit of an adventure.
+- Man...  I spent a LONG time fiddling around with this one.  Just getting my head around the way state, props and the React lifecycle work was a bit of an adventure.
 - I went down a massive rabit hole of trying to get react-bootstrap drop down login/signup elements to work but they defeated me!  So I just implemented my own version (which I'm pretty happy about).  The logic for making one disappear when you click the other took a particularly long time!
 - I stole a bit of CSS for the Home-Own Peeps menu animation.  Pretty groovy but rather unneccessary haha.
 - Managed to get CSSTransitionGroup working, so now when your peeps update they fade in (just the changing elements).  That took a while to work out too, needed to make sure each Peep had a unique key.
