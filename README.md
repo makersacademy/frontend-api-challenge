@@ -2,7 +2,7 @@
 Chitter (front-end)
 =================
 
-![Screenshot](https://github.com/Timdavidcole/frontend-api-challenge/blob/master/public/Chitter-example.png)
+![Screenshot](https://github.com/Timdavidcole/Chitter-frontend-api-challenge/blob/master/public/Chittertest.png)
 
 ## The Task
 
