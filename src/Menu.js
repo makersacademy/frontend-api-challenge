@@ -165,16 +165,24 @@ class SignUpWindow extends React.Component {
   }
 
   logIn = () => {
-    this.props.setUserHandle(this.state.value1);
+    console.log('logged in')
+    this.props.setUserHandle(this.state.value1)
     fetch("https://chitter-backend-api.herokuapp.com/sessions", {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({"session": {"handle":this.state.value1, "password":this.state.value2}})})
-      .then(json => json)
-      .then(json => this.setState({user: json}))
-      .then(json => this.sendData())
-      .then(json => this.props.onClick())
-      .catch(err => alert(err))
+    .then(function(response) {
+      if (!response.ok) {
+          console.log(response)
+          throw new Error('Log in details incorrect...')
+      } else {
+        return response.json()
+      }
+    })
+    .then(json => this.setState({user: json}))
+    .then(json => this.sendData())
+    .then(json => this.props.onClick())
+    .catch(err => alert(err))
   }
 
   sendData = () => {
