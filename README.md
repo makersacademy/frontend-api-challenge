@@ -1,12 +1,10 @@
 ## MY NOTES
-ISSUES TO SORT:
+1. postNewPeep method needs implementing... (find out about about giving autentication keys...)
 
-1. Don't appear to be getting the values from text boxes...perhaps they need a <label>?
-
-## Requirements in order of importance
+## Functionalities to implement in order of importance
 * ✅ Viewing all Peeps *(I suggest you start here)*
 * ✅ Creating Users
-* Logging in
+* ✅ Logging in
 * Posting Peeps
 * Viewing individual Peeps
 * Deleting Peeps

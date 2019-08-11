@@ -9,4 +9,9 @@ feature 'Log in page' do
     expect(page).to have_content('Handle:')
     expect(page).to have_content("Password:")
   end
+
+  scenario 'A user can fill in their details' do
+    sign_in()
+    expect(page).to have_content('Log in Succesful')
+  end
 end

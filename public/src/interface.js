@@ -81,6 +81,9 @@ $( document ).ready(function() {
 
   function newSession(handle, password) {
 
+    var userID
+    var sessionKey
+
     $.ajax({
       type: 'POST',
       url: "https://chitter-backend-api.herokuapp.com/sessions" ,
@@ -90,11 +93,26 @@ $( document ).ready(function() {
         }
       },
 
-      success: alert('New session started'),
+      success: function(sessionData) {
+        userID = sessionData.user_id;
+        sessionKey = sessionData.session_key;
+        $('.header').append('<h2>Log in Succesful</h2>');
+        $('#registerButton').hide()
+        $('.logIn').hide()
+        $('.newPeepForm').append('<button id="newPeepButton" type="button" name="newPeepButton">Make a new post</button>')
+        $('#newPeepButton').click(function() {
+          $('#newPeepButton').hide()
+          $('.newPeepForm').append('What\'s Happening? <input id="newPeepBody" type="text" name="newPeepBody"><br><input id="postNewPeepButton" type="submit" value="Post"><br>');
+          $('#postNewPeepButton').click(postNewPeep(userID, sessionKey))
+        })
+      },
       error: function() {
         alert('error starting new session')
       }
     })
   }
 
+  function postNewPeep(user_id, sessionKey, peepBody) {
+
+  }
 });

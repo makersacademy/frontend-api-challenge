@@ -8,6 +8,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require_relative '../app'
+require_relative './web_helper'
 
 Capybara.server = :puma, { Silent: true }
 Capybara.default_driver = :selenium
