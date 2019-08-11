@@ -10,7 +10,10 @@ To make my first React project, a Twitter clone called Chitter!
 
 ## My Approach
 
-- I kicked off making sure the model of the game worked. I initially started simple with one game object, then went far too deep down the OOP rabbit hole, with a WAY too complicated spagetti junction of SRP and forwarding.  So retraced back to an old commit and finalised from there.
+- This was a mid-bootcamp project at Makers Academy.  They provided us with a backend API and asked us to construct a single page front-end in Javascript.  I thought this a good time to learn React so thought I'd give it a go in that!
+- It's been a hell of a challenge.  My javascript is novice at best, JQuery around the same, HTML/CSS nothing to write home about, so not the firmest foundations to pick up a whole new framework!  But I find tutorials a little insubstantive, so thought I may as well throw myself in head first into a tricky project.
+- I decided to just use React's "create-react-app" toolset to limit my variables.  https://github.com/facebook/create-react-app.  I think in future I'll just use vanilla, but it's been a great help with keeping me on the straight and narrow & debugging.
+- (Don't tell my coaches) Seeing as I was trying to pick up a new framework I decided against TDD-ing this project.  There was too much to pick up without worrying about testing frameworks as well.  My next main goal is to add a complete testing suite if I have time.
 - Main file is bowling.js, which has 4 main functions ``` enterBallScore(score) ``` 
 ```calculateTotalScore()```
 ```newGame()```
@@ -25,22 +28,12 @@ To make my first React project, a Twitter clone called Chitter!
 
 - In your terminal
 ```
-git clone git@github.com:Timdavidcole/bowling-challenge.git
-cd bowling-challenge
+git clone git@github.com:Timdavidcole/frontend-api-challenge.git
+cd frontend-api-challenge
+//Make sure you have the latest NPM & Node installed//
+(in browser) visit/download/install https://nodejs.org/en/
 //TO LAUNCH//
-open index.html
-//OR HOST IT LOCALLY//
-bundle install
-rackup
-open http://localhost:9292/
-```
-- I've tried to host it on herokuapp but unfortunately it doesn't seem to be loading the css/jQuery.
-```
-https://bowlingscorecardtim.herokuapp.com/
-```
-- If you're feeling extra curious you can load my Jasmine tests.
-```
-open SpecRunner.html
+npm start
 ```
 
 ## How to use the site
