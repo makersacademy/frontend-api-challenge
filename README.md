@@ -1,12 +1,12 @@
 
-Bowling Challenge
+Chitter (front-end)
 =================
 
-![Screenshot](https://github.com/Timdavidcole/bowling-challenge/blob/master/images/bowling-challenge.png)
+![Screenshot](https://github.com/Timdavidcole/frontend-api-challenge/blob/master/public/Chitter-example.png)
 
 ## The Task
 
-To make my first javascript project, an interactive bowling scoreboard!
+To make my first React project, a Twitter clone called Chitter!
 
 ## My Approach
 
