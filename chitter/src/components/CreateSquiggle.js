@@ -19,7 +19,7 @@ class CreateSquiggle extends React.Component {
 
   handleChange = event => {
     this.setState({squiggle: event.target.value})
-  }
+  }  
 
   handleSubmit = event => {
       event.preventDefault()
@@ -42,7 +42,7 @@ class CreateSquiggle extends React.Component {
 
   render () {
     return (
-      <Paper>
+      <Paper style={{margin: "30px 0", padding:"20px 0px"}}>
         <form onSubmit={this.handleSubmit}>
           <Grid container
             spacing={1}

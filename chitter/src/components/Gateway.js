@@ -13,7 +13,7 @@ class Gateway extends Component {
           Welcome to Squiggler
         </p>
 
-        <Fab href="/squiggles" variant="extended" aria-label="go" color="primary">
+        <Fab href="/login" variant="extended" aria-label="go" color="primary">
           Enter the Fowwest
         </Fab>
 

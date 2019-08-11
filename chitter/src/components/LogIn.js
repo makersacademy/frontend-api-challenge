@@ -47,8 +47,6 @@ class Login extends React.Component {
       .then(res => {
         sessionStorage.setItem('user_id', res.data.user_id)
         sessionStorage.setItem('session_key', res.data.session_key)
-        console.log(sessionStorage.getItem('user_id'))
-        console.log(sessionStorage.getItem('session_key'))
       })
 
       this.setRedirect()
@@ -109,7 +107,7 @@ class Login extends React.Component {
         </Button>
         <Grid container justify="flex-end">
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link href="/signup" variant="body2">
               No account? Sign up here
             </Link>
           </Grid>
