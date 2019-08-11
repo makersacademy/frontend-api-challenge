@@ -49,4 +49,7 @@ Delete your Peeps
 - Managed to get CSSTransitionGroup working, so now when your peeps update they fade in (just the changing elements).  That took a while to work out too, needed to make sure each Peep had a unique key.
 - The liking function was particularly tricky.  Especially liking/deleting like in real time.
 
-### Challenges
+### Future Challenges
+
+- Testing!!!  Jest looks the way to go with React.
+- Maybe design my own API.  Although I do like seeing all my coursemate's gibberish test Peeps.
