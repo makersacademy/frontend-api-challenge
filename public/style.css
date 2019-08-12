@@ -1,0 +1,26 @@
+.myDiv {
+    z-index: 1;
+}
+
+.myDiv .bg {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url(https://cdn.pixabay.com/photo/2016/01/30/22/04/typewriter-1170657_960_720.jpg) center center;
+    opacity: .2;
+    background-position: center;
+    background-attachment: inherit;
+    background-repeat: repeat;
+    background-size: cover;
+    height: auto;
+    width: 100%;
+    height: auto;
+    min-width: 1024px;
+}
+
+body {
+  font-family: 'Lexend Exa', sans-serif;
+}
