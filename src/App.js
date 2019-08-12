@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
-import Menu from './Menu'
-import Peeps from './Peeps'
+import './styles/App.css';
+import Menu from './components/Menu'
+import Peeps from './components/Peeps'
 
 
 function App() {

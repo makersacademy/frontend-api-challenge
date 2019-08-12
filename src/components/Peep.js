@@ -1,63 +1,7 @@
 import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
-
-class Peeps extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      peeps: [],
-    };
-    this.callbackFunction = this.callbackFunction.bind(this)
-  }
-
-  componentDidMount() {
-    fetch('https://chitter-backend-api.herokuapp.com/peeps')
-      .then(res => res.json())
-      .then(json => this.setState({peeps: json}))
-  }
-
-  callbackFunction(response) {
-    fetch('https://chitter-backend-api.herokuapp.com/peeps')
-      .then(res => res.json())
-      .then(json => this.setState({peeps: json}))
-    return response
-  }
-
-  render() {
-    if (this.props.list === 0) {
-      return (
-        <div className='Peep_List'>
-          <PostNewPeep parentCallback = {this.callbackFunction} user ={this.props.user} />
-          <CSSTransitionGroup
-            transitionName="example"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}>
-            {this.state.peeps.map(function(peep, index){
-              return <Peep parentCallback = {this.callbackFunction} user={this.props.user} peep={peep} key={peep.id} />;
-            }, this)}
-          </CSSTransitionGroup>
-        </div>
-      )
-    } else {
-      return (
-        <div className='Peep_List'>
-          <PostNewPeep parentCallback = {this.callbackFunction} user ={this.props.user} />
-          <CSSTransitionGroup
-            transitionName="example"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}>
-            {this.state.peeps.map(function(peep, index){
-              if (peep.user.id === this.props.user.user_id) {
-                return <Peep parentCallback = {this.callbackFunction} user={this.props.user} peep={peep} key={peep.id} />;
-              } return ''
-            }, this)}
-          </CSSTransitionGroup>
-        </div>
-      )
-    }
-  }
-}
+import '../styles/App.css';
+import PostNewPeep from './PostNewPeep'
 
 class Peep extends React.Component {
   constructor(props) {
@@ -164,46 +108,4 @@ class Peep extends React.Component {
   }
 }
 
-class PostNewPeep extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-      style: {background: '#d0f1f7', marginBottom: '30px'}
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    fetch("https://chitter-backend-api.herokuapp.com/peeps", {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json', "Authorization": "Token token=" + this.props.user.session_key },
-      body: JSON.stringify({"peep": {"user_id":this.props.user.user_id, "body":this.state.value}}),
-    }).then(res => this.props.parentCallback())
-      .then(res => this.setState({value: ''}))
-      event.preventDefault();
-  }
-
-  render() {
-    return (
-      <div className = 'Peep' style = {this.state.style}>
-        <header className = 'PeepHeader'>Post new peep
-        </header>
-        <form className = 'textbox' onSubmit={this.handleSubmit}>
-          <label>
-            <textarea cols='45'rows='6'value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <input className='Post_Peep' type="submit" value="Post Peep" />
-        </form>
-      </div>
-    );
-  }
-}
-
-export default Peeps;
+export default Peep;
