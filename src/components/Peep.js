@@ -100,7 +100,7 @@ class Peep extends React.Component {
       <div className = 'Peep'>
         <p className = 'PeepHeader'>{this.Peep.user.handle}</p>
         <p>{this.Peep.body}</p>
-        <div className="PeepDate">{date.getDate()}/{date.getMonth()}/{date.getYear()}</div>
+        <div className="PeepDate">{date.getDate()}/{date.getMonth()}/{date.getYear()-100}</div>
         {this.likedStyle()}
         <div className='DeletePeep' onClick={this.handleDelete}>Delete</div>
       </div>
