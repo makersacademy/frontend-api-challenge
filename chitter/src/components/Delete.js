@@ -5,6 +5,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 class Delete extends React.Component {
 
+  handleClick = event => {
+    this.props.deleteSquiggle()
+  }
+
 
   render () {
 
@@ -15,6 +19,7 @@ class Delete extends React.Component {
           style={{margin:"10px 0px 0px 30px"}}
           size="small"
           aria-label="delete"
+          onClick={this.handleClick}
         >
           <DeleteIcon />
         </Fab>
@@ -28,6 +33,10 @@ class Delete extends React.Component {
     }
 
   }
+}
+
+Delete.propTypes = {
+  deleteSquiggle: PropTypes.func.isRequired
 }
 
 export default Delete;

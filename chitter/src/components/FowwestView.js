@@ -37,14 +37,32 @@ class FowwestView extends React.Component {
     console.log("fowwest" + likeStatus)
   }
 
-  
+  deleteSquiggle = (id) => {
+    axios.delete(
+      `https://chitter-backend-api.herokuapp.com/peeps/${id}`,
+      {headers: {
+       "Authorization": `Token token=${this.state.session_key}`
+      }}
+    ).then(res => {
+      console.log(res)
+      this.deleteSquiggleFromState(id)
+    })
+  }
+
+  deleteSquiggleFromState = (id) => {
+    const array = this.state.squiggles
+    const filtered = array.filter(squiggle => squiggle.id !== id)
+    this.setState({squiggles:filtered})
+  }
+
+
 
   render () {
 
     return (
     <div>
     <CreateSquiggle createSquiggle={this.createSquiggle} />
-    <Squiggles squiggles={this.state.squiggles} toggleLike={this.toggleLike}/>
+    <Squiggles squiggles={this.state.squiggles} toggleLike={this.toggleLike} deleteSquiggle={this.deleteSquiggle}/>
     </div>
     )
 

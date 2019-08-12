@@ -35,6 +35,10 @@ class Squiggle extends React.Component {
     return datetime
   }
 
+  deleteSquiggle = () => {
+    this.props.deleteSquiggle(this.props.squiggle.id)
+  }
+
   render () {
 
     const squiggle = this.props.squiggle
@@ -62,7 +66,7 @@ class Squiggle extends React.Component {
                     </Typography>
 
                     <Like squiggle={squiggle} toggleLike={this.toggleLike}/>
-                    <Delete isMine={this.state.isMine} />
+                    <Delete isMine={this.state.isMine} deleteSquiggle={this.deleteSquiggle}/>
 
                   </CardContent>
                 </div>
@@ -89,7 +93,8 @@ class Squiggle extends React.Component {
 }
 
 Squiggle.propTypes = {
-  toggleLike: PropTypes.func.isRequired
+  toggleLike: PropTypes.func.isRequired,
+  deleteSquiggle: PropTypes.func.isRequired,
 }
 
 export default Squiggle ;

@@ -32,7 +32,6 @@ class Like extends React.Component {
 
   handleClick = event => {
     this.state.isLiked = !this.state.isLiked
-    console.log(this.state.isLiked)
     this.props.toggleLike(this.state.isLiked)
     if(this.state.isLiked === true) {
       this.addLike()
