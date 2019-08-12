@@ -7,12 +7,32 @@ import CardMedia from '@material-ui/core/CardMedia';
 import piccy from '../images/squiggle_default.jpeg'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+
 import Like from './Like'
+import Delete from './Delete'
 
 class Squiggle extends React.Component {
 
+  state = {
+    isMine: false,
+    user_id: sessionStorage.getItem('user_id'),
+  }
+
+  componentDidMount() {
+    if(this.props.squiggle.user.id.toString(10)=== this.state.user_id) {
+      this.setState({isMine:true})
+    }
+  }
+
   toggleLike = (likeStatus) => {
     this.props.toggleLike(likeStatus)
+  }
+
+  prettify = (timestamp) => {
+    const date = timestamp.slice(0,10)
+    const time = timestamp.slice(11,19)
+    const datetime = date + " @ " + time
+    return datetime
   }
 
   render () {
@@ -35,13 +55,14 @@ class Squiggle extends React.Component {
                       🌰{squiggle.user.handle}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                      {squiggle.created_at}
+                      {this.prettify(squiggle.created_at)}
                     </Typography>
                     <Typography variant="subtitle1" paragraph>
                       {squiggle.body}
                     </Typography>
 
                     <Like squiggle={squiggle} toggleLike={this.toggleLike}/>
+                    <Delete isMine={this.state.isMine} />
 
                   </CardContent>
                 </div>
