@@ -6,7 +6,6 @@ const Home = ({items}) => (
   <div>
     <h3>Welcome to Chitter</h3>
     <ViewPeeps />
-    <RegisterUser />
   </div>
 );
  

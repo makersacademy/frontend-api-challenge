@@ -6,7 +6,6 @@ import Signup from './components/Signup';
 import ViewPeeps from './components/ViewPeeps';
 
 
-
 function App() {
   return (
     <Router>
