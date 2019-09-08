@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import { withRouter } from 'react-router';
 
 
 class UserLogin extends React.Component {
@@ -14,10 +16,15 @@ class UserLogin extends React.Component {
   }
 
 
-
-submitHandler = (e) => {
-  e.preventDefault()
-}
+  submitHandler = (e) => {
+    e.preventDefault()
+    this.props.history.push('/');
+    let session =  {"session": {"handle":this.state.handle, "password":this.state.password}}
+      axios.post('https://chitter-backend-api.herokuapp.com/sessions', session).then(res => {
+        sessionStorage.setItem('user_id', res.data.user_id)
+        sessionStorage.setItem('session_key', res.data.session_key)
+      })  
+  }
 
   render() { 
     const {handle, password} = this.state
@@ -36,7 +43,7 @@ submitHandler = (e) => {
           <label for="password">Password</label>
         </div>
       </div>
-      <button class="waves-effect waves-light btn" type="submit">Sign up</button>
+      <button class="waves-effect waves-light btn" type="submit">Login in</button>
         </form>
        
       </div>
@@ -44,4 +51,4 @@ submitHandler = (e) => {
   }
 }
  
-export default UserLogin;
+export default withRouter(UserLogin);

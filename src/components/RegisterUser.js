@@ -1,6 +1,7 @@
 import React from 'react';
-import Signup from './Signup'
-import axios from 'axios'
+import Signup from './Signup';
+import axios from 'axios';
+import { withRouter } from 'react-router';
 
 class RegisterUser extends React.Component {
 
@@ -18,6 +19,7 @@ changeHandler = (e) => {
 
 submitHandler = (e) => {
   e.preventDefault()
+  this.props.history.push('/');
   let data = {"user": {"handle":this.state.handle, "password":this.state.password}}
   let session =  {"session": {"handle":this.state.handle, "password":this.state.password}}
   axios.post('https://chitter-backend-api.herokuapp.com/users', data
@@ -54,4 +56,4 @@ submitHandler = (e) => {
   }
 }
 
-export default RegisterUser;
+export default withRouter(RegisterUser);
