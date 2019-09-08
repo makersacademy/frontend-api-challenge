@@ -27,8 +27,8 @@ submitHandler = (e) => {
     axios.post('https://chitter-backend-api.herokuapp.com/sessions', session).then(res => {
       sessionStorage.setItem('user_id', res.data.user_id)
       sessionStorage.setItem('session_key', res.data.session_key)
-    })  
-  })  
+    })
+  })
 }
 
   render() {
@@ -50,7 +50,6 @@ submitHandler = (e) => {
       </div>
       <button class="waves-effect waves-light btn" type="submit">Sign up</button>
         </form>
-       
       </div>
     );
   }

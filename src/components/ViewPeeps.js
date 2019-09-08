@@ -1,11 +1,13 @@
 import React from 'react';
 import PeepSingle from './PeepSingle';
+import PostPeeps from './PostPeeps';
+import '../App.css';
 
 class ViewPeeps extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      peeps: [],
+      peeps: []
     }   
   }
   componentDidMount() {
@@ -14,22 +16,13 @@ class ViewPeeps extends React.Component {
     .then((response) => {
       return response.json();
     })
-    // .then(response => console.log(response))
     .then((data) => {
       this.setState({
         peeps: data
       })
-
     })
     .catch((error) => console.log(error));
-    // this.getPeeps();
   }
-
-  // getPeeps(){
-  //   fetch('https://chitter-backend-api.herokuapp.com/peeps')
-  //   .then(results => results.json())
-  //   .then(results => console.log(results));
-  // }
 
   renderItems() {
     return this.state.peeps.map((item) => (
@@ -38,9 +31,18 @@ class ViewPeeps extends React.Component {
   }
   render() {
       return(
-        <div className="row">
+        <div>
+          <div className="links">
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+            </div>
+            <PostPeeps/>
+           
+           <div className="row">
           {this.renderItems()}
-       </div>
+          </div>
+        </div>
+       
       );
     }
   }

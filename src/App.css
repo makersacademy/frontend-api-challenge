@@ -1,0 +1,9 @@
+.links a {    color: black;
+  display: inline-block;
+  text-transform: capitalize;
+  padding: 7px 25px;}
+
+.post-form { margin: 0 auto;
+  display: block;
+  width: 30%;
+  text-align: center;}
