@@ -11,6 +11,4 @@ const PeepSingle = ({item}) => (
   </div>
 );
 
-
- 
 export default PeepSingle;

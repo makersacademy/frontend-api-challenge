@@ -1,5 +1,5 @@
 import React from 'react';
-import PeepSingle from './Peeps';
+import PeepSingle from './PeepSingle';
 
 class ViewPeeps extends React.Component {
   constructor(props){

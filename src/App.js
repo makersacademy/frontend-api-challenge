@@ -15,9 +15,9 @@ function App() {
         <Route path="/signup" component={Signup}/>
         <Route path="/viewall" component={ViewPeeps}/>
       </Switch>
-      <ViewPeeps />
     </Router>
    
+ 
   );
 }
 
