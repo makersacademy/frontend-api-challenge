@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Home';
 import Signup from './components/Signup';
 import ViewPeeps from './components/ViewPeeps';
+import Login from "./components/Login";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/" component={Home}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/viewall" component={ViewPeeps}/>
+        <Route path="/login" component={Login} />
       </Switch>
     </Router>
    

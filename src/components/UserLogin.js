@@ -1,35 +1,25 @@
 import React from 'react';
-import Signup from './Signup'
-import axios from 'axios'
 
-class RegisterUser extends React.Component {
 
-constructor(props) {
-  super(props)
-  this.state = {
-    handle: '',
-    password: ''
+class UserLogin extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      handle: '',
+      password: ''
+    }
   }
-}
-
-changeHandler = (e) => {
+ changeHandler = (e) => {
   this.setState({[e.target.name]: e.target.value})
-}
+  }
+
+
 
 submitHandler = (e) => {
   e.preventDefault()
-  let data = {"user": {"handle":this.state.handle, "password":this.state.password}}
-  let session =  {"session": {"handle":this.state.handle, "password":this.state.password}}
-  axios.post('https://chitter-backend-api.herokuapp.com/users', data
-  ).then(res => {
-    axios.post('https://chitter-backend-api.herokuapp.com/sessions', session).then(res => {
-      sessionStorage.setItem('user_id', res.data.user_id)
-      sessionStorage.setItem('session_key', res.data.session_key)
-    })  
-  })  
 }
 
-  render() {
+  render() { 
     const {handle, password} = this.state
     return (
       <div>
@@ -53,5 +43,5 @@ submitHandler = (e) => {
     );
   }
 }
-
-export default RegisterUser;
+ 
+export default UserLogin;
