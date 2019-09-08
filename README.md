@@ -13,6 +13,8 @@ The interactions the API supports:
 * Logging in
 * Posting Peeps
 * Viewing all Peeps
+
+### To be extended:
 * Viewing individual Peeps
 * Deleting Peeps
 * Liking Peeps
@@ -20,5 +22,9 @@ The interactions the API supports:
 
 This App is built using technologies:
 * React
+* Router
 * Materialize
+* Bootstrap
+* Axios
+
 
