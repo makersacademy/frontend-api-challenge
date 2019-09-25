@@ -20,12 +20,7 @@ To make my first React project, a Twitter clone called Chitter! Using a pre-made
 
 ### Usage
 
-***WARNING***
-
-The backend API is fully open to my whole course, so user content of the site is not my own!
-
- ***WARNING***
-
+***WARNING*** - The backend API is fully open to my whole course, so user content of the site is not my own!
 - Just go to the Heroku deployment - [https://chitter-frontend-api-challenge.herokuapp.com/](https://chitter-frontend-api-challenge.herokuapp.com/)
 - Or install locally in your terminal
 ```
