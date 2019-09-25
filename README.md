@@ -17,7 +17,7 @@ To make my first React project, a Twitter clone called Chitter! Using a pre-made
 - I decided to just use React's "create-react-app" toolset to limit my variables.  https://github.com/facebook/create-react-app.  I think in future I'll just use vanilla, but it's been a great help with keeping me on the straight and narrow & debugging.
 - (Don't tell my coaches) Seeing as I was trying to pick up a new framework I decided against TDD-ing this project.  There was too much to pick up without worrying about testing frameworks as well.  My next main goal is to add a complete testing suite if I have time.
 
-### Installation
+### Usage
 
 - Just go to the Heroku deployment - [https://chitter-frontend-api-challenge.herokuapp.com/](https://chitter-frontend-api-challenge.herokuapp.com/)
 - Or install locally in your terminal
