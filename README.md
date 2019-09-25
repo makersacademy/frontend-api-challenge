@@ -22,7 +22,7 @@ To make my first React project, a Twitter clone called Chitter! Using a pre-made
 
 ***WARNING***
 
-User content of the site is open to all the course and not in any way reflective on me so view at your discretion!
+The backend API is fully open to my whole course, so user content of the site is not my own!
 
  ***WARNING***
 
