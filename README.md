@@ -1,4 +1,5 @@
 
+
 Chitter
 =================
 
@@ -18,6 +19,12 @@ To make my first React project, a Twitter clone called Chitter! Using a pre-made
 - (Don't tell my coaches) Seeing as I was trying to pick up a new framework I decided against TDD-ing this project.  There was too much to pick up without worrying about testing frameworks as well.  My next main goal is to add a complete testing suite if I have time.
 
 ### Usage
+
+***WARNING***
+
+User content of the site is open to all the course and not in any way reflective on me so view at your discretion!
+
+ ***WARNING***
 
 - Just go to the Heroku deployment - [https://chitter-frontend-api-challenge.herokuapp.com/](https://chitter-frontend-api-challenge.herokuapp.com/)
 - Or install locally in your terminal
