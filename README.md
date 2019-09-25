@@ -1,5 +1,5 @@
 
-Chitter (front-end)
+Chitter
 =================
 
 ![Screenshot](https://github.com/Timdavidcole/Chitter-frontend-api-challenge/blob/master/public/Chitter-Test.png)
