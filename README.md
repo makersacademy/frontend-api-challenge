@@ -4,6 +4,8 @@ Chitter (front-end)
 
 ![Screenshot](https://github.com/Timdavidcole/Chitter-frontend-api-challenge/blob/master/public/Chitter-Test.png)
 
+[Click here to view](https://chitter-frontend-api-challenge.herokuapp.com/)
+
 ## The Task
 
 To make my first React project, a Twitter clone called Chitter! Using a pre-made [API](https://github.com/Timdavidcole/Chitter-frontend-api-challenge/blob/master/README.old.md).
@@ -17,7 +19,8 @@ To make my first React project, a Twitter clone called Chitter! Using a pre-made
 
 ### Installation
 
-- In your terminal
+- Just got to the Heroku deployment [https://chitter-frontend-api-challenge.herokuapp.com/](https://chitter-frontend-api-challenge.herokuapp.com/)
+- Or install locally in your terminal
 ```
 git clone git@github.com:Timdavidcole/frontend-api-challenge.git
 cd frontend-api-challenge
