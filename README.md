@@ -19,7 +19,7 @@ To make my first React project, a Twitter clone called Chitter! Using a pre-made
 
 ### Installation
 
-- Just got to the Heroku deployment [https://chitter-frontend-api-challenge.herokuapp.com/](https://chitter-frontend-api-challenge.herokuapp.com/)
+- Just go to the Heroku deployment - [https://chitter-frontend-api-challenge.herokuapp.com/](https://chitter-frontend-api-challenge.herokuapp.com/)
 - Or install locally in your terminal
 ```
 git clone git@github.com:Timdavidcole/frontend-api-challenge.git
