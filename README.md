@@ -26,6 +26,7 @@ git clone git@github.com:Timdavidcole/frontend-api-challenge.git
 cd frontend-api-challenge
 //Make sure you have the latest Node & NPM installed//
 (in browser) visit->download->install https://nodejs.org/en/
+npm install
 //TO LAUNCH//
 npm start
 ```
