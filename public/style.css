@@ -1,14 +1,38 @@
 body {
-  background-color: cornsilk;
-  border: 6px solid gold;
+  background-color: darkgrey;
+  border: 6px orange;
 }
 
 h1 {
   text-align: center;
-  color: coral;
+  color: blue;
 }
 
 #peeps {
   text-align: center;
   padding-right: 30px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav input {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav input {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav input {
+  background-color: #4CAF50;
+  color: white;
 }
