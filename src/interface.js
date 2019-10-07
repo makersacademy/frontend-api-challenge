@@ -27,7 +27,7 @@ $(document).ready(function(){
       data: newAccount,
       success: function(newUser) {
         alert("Sign up succeeded, please login to peep");
-        console.log(newUser);
+        console.log(data);
       }
     });
   });
@@ -46,12 +46,30 @@ $(document).ready(function(){
       data: data,
       success: function(result) {
         newSession = result.session_key;
-        userID = result.user_id;
+        userId = result.user_id;
         alert("You are logged in");
-        console.log(newSession);
+        console.log(userId);
       },
       error: function() {
         alert('Did not logged in')
+      }
+    });
+  });
+
+  $('#sendPeep').on('click', function() {
+    var newPeep = {
+      peep: {
+        user_id: userId,
+        body: peep.val(),
+      }
+    }
+    $.ajax({
+      type: 'POST',
+      url: 'https://chitter-backend-api.herokuapp.com/peeps',
+      data: newPeep,
+      headers: {'Authorization': 'Token token=' + newSession},
+      success: function(result) {
+        console.log(result);
       }
     });
   });
