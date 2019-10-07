@@ -15,25 +15,45 @@ $(document).ready(function(){
 
   //create new user
   $('#register').on('click', function() {
-    console.log("hello")
     var newAccount = {
       user: {
-      handle: handle.val(),
-      password: password.val()
+        handle: handle.val(),
+        password: password.val()
       }
     }
     $.ajax({
-      type:'POST',
+      type: 'POST',
       url: 'https://chitter-backend-api.herokuapp.com/users',
       data: newAccount,
       success: function(newUser) {
-        alert("You are now registered on chitter, please login to peep");
+        alert("Sign up succeeded, please login to peep");
         console.log(newUser);
       }
     });
   });
 
-
-
+  //login
+  $('#login').on('click', function() {
+    var data = {
+      session: {
+        handle: handle.val(),
+        password: password.val(),
+      }
+    }
+    $.ajax({
+      type: 'POST',
+      url: 'https://chitter-backend-api.herokuapp.com/sessions/',
+      data: data,
+      success: function(result) {
+        newSession = result.session_key;
+        userID = result.user_id;
+        alert("You are logged in");
+        console.log(newSession);
+      },
+      error: function() {
+        alert('Did not logged in')
+      }
+    });
+  });
 
 });
