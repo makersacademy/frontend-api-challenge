@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+  var handle = $('#username');
+  var password = $('#password');
+  var newSession = '';
+  var userId = '';
+  var peep = $('#peep')
+
+  //show peeps
   $.get('https://chitter-backend-api.herokuapp.com/peeps', function(data) {
     data.forEach(function(element) {
       $(".shows-peeps").append("<p>" + " user: " + element.user["handle"] + "<p>" + " body: " + element.body + "<p>" + "created at: " + element.created_at +"<p>" + "-------");
@@ -7,14 +14,8 @@ $(document).ready(function(){
     console.log(data);
   });
 
-  var handle = $('#username');
-  var password = $('#password');
-  var newSession = '';
-  var userId = '';
-  var peep = $('#peep')
-
   //create new user
-  $('#register').on('click', function() {
+  $('#signUp').on('click', function() {
     var newAccount = {
       user: {
         handle: handle.val(),
@@ -48,14 +49,14 @@ $(document).ready(function(){
         newSession = result.session_key;
         userId = result.user_id;
         alert("You are logged in");
-        console.log(userId);
       },
       error: function() {
-        alert('Did not logged in')
+        alert('Username or password wrong')
       }
     });
   });
 
+  //send peeps
   $('#sendPeep').on('click', function() {
     var newPeep = {
       peep: {
@@ -69,7 +70,7 @@ $(document).ready(function(){
       data: newPeep,
       headers: {'Authorization': 'Token token=' + newSession},
       success: function(result) {
-        console.log(result);
+        alert("You posted a peep");
       }
     });
   });
