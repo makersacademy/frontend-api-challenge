@@ -1,19 +1,21 @@
 $(document).ready(function(){
 
+  var $items = $('#showPeeps')
   var handle = $('#username');
   var password = $('#password');
   var newSession = '';
   var userId = '';
-  var peep = $('#peep')
-  var $items = $('#showPeeps')
+  var peep = $('#peep');
 
+  var peepsTemplate = '<li>User: {{user.handle}} <p> Body: {{body}} <p> Created at: {{created_at}} </li>';
   //show peeps
   $.ajax({
     type: 'GET',
     url: 'https://chitter-backend-api.herokuapp.com/peeps',
     success: function(items) {
       $.each(items, function(i, item) {
-        $items.append('<li>user: '+ item.user["handle"] + '<p>' + 'body: ' + item.body + '<p>' + 'created at: ' + item.created_at +'</li>' + "<p>" + "-------");
+        // $items.append('<li>user: '+ item.user["handle"] + '<p>' + 'body: ' + item.body + '<p>' + 'created at: ' + item.created_at +'</li>' + '<p>' + "-------" + '<input class="button" id="delete" type="button" value="Delete" />');
+        $items.append(Mustache.render(peepsTemplate, item));
       })
     }
   });
@@ -78,5 +80,13 @@ $(document).ready(function(){
       }
     });
   });
+
+  //like
+  // $('#delete').on('click', function() {
+  //   var deletePeep = {
+  //     newSession = result.session_key;
+  //     userId = result.user_id;
+  //   }
+  // })
 
 });
