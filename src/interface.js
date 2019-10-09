@@ -5,13 +5,17 @@ $(document).ready(function(){
   var newSession = '';
   var userId = '';
   var peep = $('#peep')
+  var $items = $('#showPeeps')
 
   //show peeps
-  $.get('https://chitter-backend-api.herokuapp.com/peeps', function(data) {
-    data.forEach(function(element) {
-      $(".shows-peeps").append("<p>" + " user: " + element.user["handle"] + "<p>" + " body: " + element.body + "<p>" + "created at: " + element.created_at +"<p>" + "-------");
-    });
-    console.log(data);
+  $.ajax({
+    type: 'GET',
+    url: 'https://chitter-backend-api.herokuapp.com/peeps',
+    success: function(items) {
+      $.each(items, function(i, item) {
+        $items.append('<li>user: '+ item.user["handle"] + '<p>' + 'body: ' + item.body + '<p>' + 'created at: ' + item.created_at +'</li>' + "<p>" + "-------");
+      })
+    }
   });
 
   //create new user
