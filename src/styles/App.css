@@ -1,0 +1,329 @@
+body {
+  font-family: "Futura", Futura, serif;
+  background: #d2f8fc;
+}
+
+.Peep_List {
+  padding-top : 30px;
+  background: #e8f1ff;
+  border-radius: 30px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.Peep {
+  position: relative;
+  margin: 0 auto;
+  text-decoration:none;
+  color:#000;
+  background:#8dc2e3;
+  height:8em;
+  width:20em;
+  box-shadow: 3px 3px 3px 3px #888888;
+  border-radius: 10px;
+  text-indent: 5px;
+}
+.PeepHeader {
+  position: relative;
+  text-decoration:none;
+  color:black;
+  background:white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-indent: 5px;
+  border:1px outset black;
+}
+
+.PeepLikes {
+  background:white;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  text-indent: 5px;
+  direction:rtl;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width:4em;
+  border:1px outset black;
+  cursor: pointer;
+}
+
+.PeepLikesTrue {
+  background:#ff5781;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  text-indent: 5px;
+  direction:rtl;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width:4em;
+  border:1px outset black;
+  cursor: pointer;
+}
+
+.PeepLikes:hover {
+  background:#ff5781;
+}
+
+.PeepLikesTrue:hover {
+  background:white;
+}
+
+.DeletePeep {
+  background:dodgerblue;
+  border-top-right-radius: 10px;
+  text-indent: 5px;
+  direction:rtl;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width:55px;
+  border:1px outset black;
+  cursor: pointer;
+}
+
+.DeletePeep:active {
+  background:#d0f1f7;
+}
+
+.PeepDate {
+  background:white;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-indent: 5px;
+  direction:rtl;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-left: 5px;
+  width:auto;
+    border:1px outset black;
+}
+
+.Post_Peep {
+  background:white;
+  font-family: "Futura", Futura, serif;
+  font-size: 14px;
+  border:1px outset black;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  text-indent: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 219px;
+  height: auto;
+  width:auto;
+  outline: 0px;
+}
+
+.textbox {
+  background: #d0f1f7;
+  font-family: "Futura", Futura, serif;
+  font-size: 14px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  text-indent: 5px;
+  text-align: left;
+  position: absolute;
+  top: 33px;
+  left: 9px;
+  height: auto;
+  outline: 0px;
+}
+
+.Post_Peep:hover {
+  background:#8dc2e3;
+    border:2px outset black;
+    cursor: pointer;
+}
+
+.Post_Peep:active {
+  background:#d0f1f7;
+  border:none;
+}
+
+
+:root {
+	--underline-height: .5em;
+	--transition-duration : .5s;
+}
+
+nav {
+	position: relative;
+	white-space: nowrap;
+	background: white;
+	padding: var(--underline-height) 0;
+	margin: 2em 0;
+	box-shadow: 0 1em 2em rgba(black, .05);
+  border-radius: 20px;
+}
+
+.underline {
+	display: block;
+	position: absolute;
+	z-index: 0;
+	bottom: 0;
+	left: 0;
+	height: var(--underline-height);
+	width: 20%;
+	background: black;
+	pointer-events: none;
+	mix-blend-mode: multiply;
+	transition: transform var(--transition-duration) ease-in-out;
+}
+
+.underline:nth-child(1) {
+	background: #9aeffc;
+	transition: calc(var(--transition-duration) * .8);
+}
+
+.underline:nth-child(2) {
+	background: dodgerblue;
+	transition: calc(var(--transition-duration) * 1.2);
+}
+.underline:nth-child(3) {
+	background: #7da7e3;
+}
+
+.topnav-right {
+	float: left;
+}
+
+.topnav-right {
+	float: right;
+  padding-right: 10px;
+}
+
+.home_button {
+	display: inline-block;
+	z-index: 10;
+	width: 20%;
+	padding: 1em 0;
+	text-align: center;
+	cursor: pointer;
+}
+
+.view_profile_button {
+	display: inline-block;
+	z-index: 10;
+	width: 20%;
+	padding: 1em 0;
+	text-align: center;
+	cursor: pointer;
+}
+
+.log_in_button {
+	display: inline-block;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+  margin-right: 10px;
+}
+
+.logInFloatWindow {
+	position: absolute;
+  top: 80px;
+  right: 20px;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+  box-shadow: 3px 3px 3px 3px #888888;
+}
+
+.signUpFloatWindow {
+	position: absolute;
+  top: 80px;
+  right: 20px;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+  box-shadow: 3px 3px 3px 3px #888888;
+}
+
+.sign_up_button {
+	display: inline-block;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+  margin-left: 10px;
+}
+
+.log_out_button {
+	display: inline-block;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  background-color:#d9edff;
+  margin-left: 5px;
+}
+
+.Welcome {
+	display: inline-block;
+	z-index: 10;
+	padding: 1em 1em;
+	text-align: center;
+	cursor: pointer;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+nav.black {
+	.underline {
+		background: #222;
+		border-radius: .25em;
+		height: calc(var(--underline-height) / 2);
+		mix-blend-mode: initial;
+	}
+}
+
+nav.full {
+	font-weight: bold;
+	background: #111;
+	color: white;
+
+	.underline {
+		height: 100%;
+		background: gold;
+	}
+}
+
+nav.retro.underline {
+	border-radius: 5px;
+}
+
+nav.retro.underline:nth-child(1) { background: #9aeffc; }
+nav.retro.underline:nth-child(2) { background: dodgerblue; }
+nav.retro.underline:nth-child(3) { background: #7da7e3; }
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
