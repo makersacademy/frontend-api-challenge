@@ -7,14 +7,20 @@ $(document).ready(function(){
   var userId = '';
   var peep = $('#peep');
 
-  var peepsTemplate = '<li>User: {{user.handle}} <p> Body: {{body}} <p> Created at: {{created_at}} </li>';
+  var peepsTemplate = "" +
+  "<li>" +
+  "<p><strong>User:</strong> {{user.handle}} </p>" +
+  "<p><strong>Body:</strong> {{body}} </p>" +
+  "<p><strong>Created at</strong>: {{created_at}}</p>" +
+  '<input class="delete" data-id="{{id}}" type="button" value="Delete" />' +
+  "</li>";
+
   //show peeps
   $.ajax({
     type: 'GET',
     url: 'https://chitter-backend-api.herokuapp.com/peeps',
     success: function(items) {
       $.each(items, function(i, item) {
-        // $items.append('<li>user: '+ item.user["handle"] + '<p>' + 'body: ' + item.body + '<p>' + 'created at: ' + item.created_at +'</li>' + '<p>' + "-------" + '<input class="button" id="delete" type="button" value="Delete" />');
         $items.append(Mustache.render(peepsTemplate, item));
       })
     }
@@ -82,11 +88,18 @@ $(document).ready(function(){
   });
 
   //like
-  // $('#delete').on('click', function() {
-  //   var deletePeep = {
-  //     newSession = result.session_key;
-  //     userId = result.user_id;
-  //   }
-  // })
+  $items.delegate('.delete','click', function() {
+
+    var $li = $(this).closest('li');
+    $.ajax({
+      type: 'DELETE',
+      url: 'https://chitter-backend-api.herokuapp.com/peeps/' + $(this).attr('data-id'),
+      headers: {'Authorization': 'Token token=' + newSession},
+      data: userId,
+      success: function() {
+        $li.remove();
+      }
+    });
+  });
 
 });
