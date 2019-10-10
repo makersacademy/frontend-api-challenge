@@ -30,6 +30,15 @@
   <div id="peeps">
     <ul id="showPeeps"></ul>
   </div>
+    <template id='peepsTemplate'>
+      <li>
+      <p><strong>User:</strong> {{user.handle}} </p>
+      <p><strong>Body:</strong> {{body}} </p>
+      <p><strong>Created at</strong>: {{created_at}}</p>
+      <input class="delete" data-id="{{id}}" type="button" value="Delete" />
+      <input class="like" data-id="{{id}}" type="button" value="Like" />
+      </li>
+    </template>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="./src/interface.js"></script>
     <script src="mustache.js"></script>

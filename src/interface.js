@@ -7,15 +7,8 @@ $(document).ready(function(){
   var userId = '';
   var $peep = $('#peep');
 
-  var peepsTemplate = "" +
-  "<li>" +
-  "<p><strong>User:</strong> {{user.handle}} </p>" +
-  "<p><strong>Body:</strong> {{body}} </p>" +
-  "<p><strong>Created at</strong>: {{created_at}}</p>" +
-  '<input class="delete" data-id="{{id}}" type="button" value="Delete" />' +
-  '<input class="like" data-id="{{id}}" type="button" value="Like" />' +
-  "</li>";
-
+  var peepsTemplate = $('#peepsTemplate').html();
+  
   function addPeep(peep) {
     $showPeeps.append(Mustache.render(peepsTemplate, peep));
   }
@@ -28,7 +21,9 @@ $(document).ready(function(){
       $.each(peeps, function(i, peep) {
         addPeep(peep);
       })
+      console.log(peeps);
     }
+
   });
 
   //create new user
@@ -89,12 +84,6 @@ $(document).ready(function(){
       success: function(peep) {
         alert("You posted a peep");
         addPeep(peep);
-        // $showPeeps.append("<li>" +
-        // "<p><strong>User:</strong>" + peep.user["handle"] + "</p>" +
-        // "<p><strong>Body:</strong>" + peep.body + "</p>" +
-        // "<p><strong>Created at</strong>:" + peep.created_at + "</p>" +
-        // '<input class="delete" data-id="{{id}}" type="button" value="Delete" />' +
-        // "</li>");
       },
       error: function() {
         alert('New peep not saved')

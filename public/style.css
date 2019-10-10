@@ -77,8 +77,8 @@ h1 {
 #peeps {
   padding-right: 50px;
   padding-left: 50px;
-  text-align: center;
-  float: center;
+  text-align: left;
+  float: right;
   /* background-color: white; */
   font-size: 22px;
 }
