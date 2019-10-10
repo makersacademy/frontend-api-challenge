@@ -1,5 +1,4 @@
 import React from 'react';
-import Signup from './Signup';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 
