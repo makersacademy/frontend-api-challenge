@@ -7,8 +7,9 @@ $(document).ready(function(){
   var userId = '';
   var $peep = $('#peep');
 
+
   var peepsTemplate = $('#peepsTemplate').html();
-  
+
   function addPeep(peep) {
     $showPeeps.append(Mustache.render(peepsTemplate, peep));
   }
@@ -101,7 +102,7 @@ $(document).ready(function(){
       type: 'DELETE',
       url: 'https://chitter-backend-api.herokuapp.com/peeps/' + $(this).attr('data-id'),
       headers: {'Authorization': 'Token token=' + newSession},
-      data: userId,
+      // data: userId,
       success: function() {
         $li.fadeOut(300, function() {
           $(this).remove();
@@ -121,8 +122,6 @@ $(document).ready(function(){
       headers: {'Authorization': 'Token token=' + newSession},
       data: userId,
       success: function(result) {
-        userId = result.user_id;
-        handle = result.handle;
         console.log('liked');
       }
     });
