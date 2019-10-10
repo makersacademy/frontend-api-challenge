@@ -127,4 +127,20 @@ $(document).ready(function(){
     });
   });
 
+  //Unlike
+  $showPeeps.delegate('.unlike','click', function() {
+
+    var $li = $(this).closest('li');
+
+    $.ajax({
+      type: 'DELETE',
+      url: 'https://chitter-backend-api.herokuapp.com/peeps/' + $(this).attr('data-id') + '/likes/' + userId,
+      headers: {'Authorization': 'Token token=' + newSession},
+      data: userId,
+      success: function(result) {
+        console.log('Unliked');
+      }
+    });
+  });
+
 });
