@@ -134,7 +134,7 @@ $(document).ready(function(){
 
     $.ajax({
       type: 'DELETE',
-      url: 'https://chitter-backend-api.herokuapp.com/peeps/' + $(this).attr('data-id') + '/likes/' + userId,
+      url: 'https://chitter-backend-api.herokuapp.com/peeps/' + $(this).attr('data-id') + '/likes/' + $(this).attr('data-id1'),
       headers: {'Authorization': 'Token token=' + newSession},
       data: userId,
       success: function(result) {
