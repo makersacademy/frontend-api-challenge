@@ -16,13 +16,17 @@ $(document).ready(function(){
   '<input class="like" data-id="{{id}}" type="button" value="Like" />' +
   "</li>";
 
+  function addPeep(peep) {
+    $showPeeps.append(Mustache.render(peepsTemplate, peep));
+  }
+
   //show peeps
   $.ajax({
     type: 'GET',
     url: 'https://chitter-backend-api.herokuapp.com/peeps',
     success: function(peeps) {
       $.each(peeps, function(i, peep) {
-        $showPeeps.append(Mustache.render(peepsTemplate, peep));
+        addPeep(peep);
       })
     }
   });
@@ -41,7 +45,6 @@ $(document).ready(function(){
       data: newAccount,
       success: function(newUser) {
         alert("Sign up succeeded, please login to peep");
-        console.log(data);
       }
     });
   });
@@ -61,12 +64,13 @@ $(document).ready(function(){
       success: function(result) {
         newSession = result.session_key;
         userId = result.user_id;
-        alert("You are logged in");
+        alert("Log in succeeded");
       },
       error: function() {
         alert('Username or password wrong')
       }
     });
+    console.log('https://chitter-backend-api.herokuapp.com/sessions/');
   });
 
   //send peeps
@@ -84,12 +88,13 @@ $(document).ready(function(){
       headers: {'Authorization': 'Token token=' + newSession},
       success: function(peep) {
         alert("You posted a peep");
-        $showPeeps.append("<li>" +
-        "<p><strong>User:</strong>" + peep.user["handle"] + "</p>" +
-        "<p><strong>Body:</strong>" + peep.body + "</p>" +
-        "<p><strong>Created at</strong>:" + peep.created_at + "</p>" +
-        '<input class="delete" data-id="{{id}}" type="button" value="Delete" />' +
-        "</li>");
+        addPeep(peep);
+        // $showPeeps.append("<li>" +
+        // "<p><strong>User:</strong>" + peep.user["handle"] + "</p>" +
+        // "<p><strong>Body:</strong>" + peep.body + "</p>" +
+        // "<p><strong>Created at</strong>:" + peep.created_at + "</p>" +
+        // '<input class="delete" data-id="{{id}}" type="button" value="Delete" />' +
+        // "</li>");
       },
       error: function() {
         alert('New peep not saved')
@@ -109,7 +114,9 @@ $(document).ready(function(){
       headers: {'Authorization': 'Token token=' + newSession},
       data: userId,
       success: function() {
-        $li.remove();
+        $li.fadeOut(300, function() {
+          $(this).remove();
+        });
       }
     });
   });
@@ -124,8 +131,10 @@ $(document).ready(function(){
       url: 'https://chitter-backend-api.herokuapp.com/peeps/' + $(this).attr('data-id') + '/likes/' + userId,
       headers: {'Authorization': 'Token token=' + newSession},
       data: userId,
-      success: function() {
-        $li.remove();
+      success: function(result) {
+        userId = result.user_id;
+        handle = result.handle;
+        console.log('liked');
       }
     });
   });
