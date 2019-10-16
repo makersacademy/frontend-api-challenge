@@ -24,7 +24,6 @@ $(document).ready(function(){
       })
       console.log(peeps);
     }
-
   });
 
   //create new user
@@ -66,7 +65,6 @@ $(document).ready(function(){
         alert('Username or password wrong')
       }
     });
-    console.log('https://chitter-backend-api.herokuapp.com/sessions/');
   });
 
   //send peeps

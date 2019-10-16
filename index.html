@@ -34,7 +34,8 @@
       <li>
       <p><strong>User:</strong> {{user.handle}} </p>
       <p><strong>Body:</strong> {{body}} </p>
-      <p><strong>Created at</strong>: {{created_at}}</p>
+      <p><strong>Created at:</strong> {{created_at}}</p>
+      <p><strong>Liked by:</strong> {{likes.length}} person/s</p>
       <input class="delete" data-id="{{id}}" type="button" value="Delete" />
       <input class="like" data-id="{{id}}" type="button" value="Like" />
       <input class="unlike" data-id="{{id}}" data-id1="{{user.id}}" type="button" value="Unlike" />
