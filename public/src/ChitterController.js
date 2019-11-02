@@ -1,7 +1,7 @@
 (function(exports) {
-  function ChitterController(ChitterModel, ChitterView) {
+  function ChitterController(chitterModel, chitterView) {
     var chitterModel = ChitterModel
-    var chitterView = ChitterView
+    var chitterView = chitterView
 
     updatePeepFeed(chitterModel, chitterView.updateFeed)
   }
