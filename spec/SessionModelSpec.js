@@ -4,7 +4,7 @@ describe('SessionModel', function() {
   })
   describe('currentSession', function() {
     it('returns the current session', function() {
-      expect(this.sessionModel.currentSession.toEqual('none')
+      expect(this.sessionModel.currentSession).toEqual('none')
     })
   })
   describe('newSession', function() {
