@@ -33,7 +33,7 @@
     element.on('click', function() {
       peepId = +element.attr('id').split('-')[1]
       self.peepController.getPeep(peepId, self.chitterView.viewPeep)
-      window.location.hash += '/peeps/' + peepId
+      window.location.hash ='/peeps/' + peepId
     })   
   }
 
