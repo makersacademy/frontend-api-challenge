@@ -7,10 +7,10 @@
   }
   
   var updatePeepFeed = function(chitterModel, chitterCallback) {
-    convertCallback = function(results) {
+    converterCallback = function(results) {
       convertFeed(results, chitterCallback)
     }
-    chitterModel.getPeepFeed(convertCallback)
+    chitterModel.getPeepFeed(converterCallback)
   }
 
   var convertFeed = function(results, chitterCallback) {

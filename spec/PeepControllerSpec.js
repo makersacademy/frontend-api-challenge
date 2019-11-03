@@ -1,12 +1,6 @@
 describe('PeepController', function(){
   describe('createPeep', function() {
     beforeEach(function() {
-      PeepView  = {createPeepElement: function() {}}
-      spyOn(PeepView, 'createPeepElement').and.callFake(function() {
-        return $('<div/>')
-      })
-    })
-    it('gets the Peep html from the PeepView', function() {
       peepData = {
         "id": 3,
         "body": "my first peep :)",
@@ -23,7 +17,12 @@ describe('PeepController', function(){
           }
         }]
       }
-      PeepController.createPeep(peepData)
+      PeepView  = {createPeepElement: function() {}}
+      spyOn(PeepView, 'createPeepElement')
+      peepController = new PeepController(PeepView)
+    })
+    it('gets the Peep html from the PeepView', function() {
+      peepController.createPeep(peepData)
       expect(PeepView.createPeepElement).toHaveBeenCalledWith(peepData)
     })
   })
