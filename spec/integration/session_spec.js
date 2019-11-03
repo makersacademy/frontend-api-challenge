@@ -8,8 +8,9 @@ describe('sessions', function() {
   describe('click login button', function() {
     it('renders the login form', function() {
       cy.get('#login-logout').click()
-      cy.get('#login-form').contains('Username')
-      cy.get('#login-form').contains('Password')
+      cy.get('#handle')
+      cy.get('#password')
+      cy.get('#login-btn')
     })
   })
 })

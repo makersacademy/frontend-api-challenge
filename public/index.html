@@ -18,7 +18,7 @@
               <div class='container'>
                 <div class='navbar-header'>
                   <div class='container'>
-                      <a class='navbar-brand'>
+                      <a class='navbar-brand' href='javascript:void(0);'>
                         <img src='../images/CHITTERwhite_icon.png' class='header-icon rounded'>
                         Chitter
                       </a>
@@ -28,7 +28,7 @@
             </div>
             <div class='sidebar'>
               <div class='card nav shadow rounded'>
-                <div class='container'>
+                <div id='sidebar-container' class='container'>
                   <strong id='sidebar-username'></strong>
                 </div>
                 <div class ='card-footer logout'>
@@ -47,14 +47,16 @@
         </div>
       </div>
     </div>
-    <script src="src/jQuery.js"></script>
+    <script src="src/modules/jQuery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
-    <script src="src/APIModel.js"></script>
-    <script src="src/PeepView.js"></script>
-    <script src="src/PeepController.js"></script>
-    <script src="src/ChitterView.js"></script>
-    <script src="src/ChitterController.js"></script>
+    <script src="src/models/APIModel.js"></script>
+    <script src="src/views/PeepView.js"></script>
+    <script src="src/views/ChitterView.js"></script>
+    <script src="src/views/SessionView.js"></script>
+    <script src="src/controllers/PeepController.js"></script>
+    <script src="src/controllers/ChitterController.js"></script>
+    <script src="src/controllers/SessionController.js"></script>
     <script src="src/index.js"></script>
   </body>
 </html>

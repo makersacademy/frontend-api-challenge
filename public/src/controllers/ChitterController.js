@@ -2,12 +2,16 @@
 
   var self
 
-  function ChitterController(APIModel, chitterView, peepController) {
+  function ChitterController(APIModel, chitterView, peepController, navBrand) {
     this.APIModel = APIModel
     this.chitterView = chitterView
     this.peepController = peepController
     self = this
     
+    navBrand.on('click', function() {
+      window.location.hash = '/peeps'
+      updatePeepFeed()
+    })
     updatePeepFeed()
   }
   

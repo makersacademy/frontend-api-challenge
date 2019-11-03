@@ -4,7 +4,6 @@
   function PeepController(peepView, APIModel) {
     this.peepView = peepView
     this.APIModel = APIModel
-
   }
   PeepController.prototype = {
     createPeep: function(peepData) {

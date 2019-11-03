@@ -1,7 +1,13 @@
 $(document).ready(function (){
   var main = $('#main')
-  apiModel = new APIModel
+  var loginButton = $('#login-logout')
+  var navBrand = $('.navbar-brand')
+
+  var apiModel = new APIModel
+
+  new SessionController(new SessionView, loginButton)
   new ChitterController(apiModel,
                         new ChitterView(main),
-                        new PeepController(PeepView, apiModel))
+                        new PeepController(PeepView, apiModel),
+                        navBrand)
 })

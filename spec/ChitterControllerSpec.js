@@ -16,7 +16,12 @@ describe('ChitterController', function() {
       spyOn(this.peepController, 'createPeep').and.callFake(() => {
         return this.peep
       })
-      new ChitterController(this.spyAPI, this.spyView, this.peepController)
+      this.navBrand = $('<a/>')
+      spyOn(this.navBrand, 'on')
+      new ChitterController(this.spyAPI, this.spyView, this.peepController, this.navBrand)
+    })
+    it('watches the navBrand', function() {
+      expect(this.navBrand.on).toHaveBeenCalled()
     })
     it('gets the Peep Feed', function() {
       expect(this.spyAPI.getPeepFeed).toHaveBeenCalled()
@@ -48,7 +53,7 @@ describe('ChitterController', function() {
       this.peep = $('<div/>', {
         id: 'peep-1'
       })
-  
+      
       this.peepController = {
         createPeep: function() {},
         getPeep: function() {}
@@ -59,7 +64,8 @@ describe('ChitterController', function() {
       spyOn(this.peepController, 'getPeep').and.callFake(() => {
         return this.peep
       })
-      new ChitterController(this.spyAPI, this.spyView, this.peepController)
+      this.navBrand = $('<a/>')
+      new ChitterController(this.spyAPI, this.spyView, this.peepController, this.navBrand)
       this.peep.trigger('click')
     })
     it('gets the peep from the peep controller', function() {

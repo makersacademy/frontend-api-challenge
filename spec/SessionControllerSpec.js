@@ -3,7 +3,7 @@ describe('SessionController', function() {
     this.spyButton = $('<button/>')
     this.spyView = {loginForm: function() {}}
     spyOn(this.spyButton, 'on')
-    this.sessionController = new SessionController(this.spyView, this.spyButton)
+    this.sessionController = new SessionController(this.spyView, this.spyButton, this.navBrand)
   })
   it('watches the login button on instantiation', function() {
     expect(this.spyButton.on).toHaveBeenCalled()
