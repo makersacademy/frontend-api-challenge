@@ -8,9 +8,14 @@
       }
     })
   }
+  
+  var getPeep = function(peepId) {
+    $.ajax({url: CHITTER_API_URL + `/peeps/${peepId}`, success: function() {}})
+  }
 
   var APIModel = {
-    getPeepFeed: getPeepFeed
+    getPeepFeed: getPeepFeed,
+    getPeep: getPeep
   }
 
   exports.APIModel = APIModel
