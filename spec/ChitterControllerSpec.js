@@ -65,8 +65,5 @@ describe('ChitterController', function() {
     it('gets the peep from the peep controller', function() {
       expect(peepController.getPeep).toHaveBeenCalledWith(1, spyView.viewPeep)
     })
-    it('hides the peep feed', function() {
-      expect(spyView.hideFeed).toHaveBeenCalled()
-    })
   })
 })

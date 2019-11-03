@@ -16,23 +16,31 @@ describe('PeepController', function(){
         }
       }]
     }
-    peepView  = {createPeepElement: function() {}}
     spyAPI = {getPeep: function() {}}
-    
-    spyOn(peepView, 'createPeepElement')
     spyOn(spyAPI, 'getPeep')
-    peepController = new PeepController(peepView, spyAPI)
+    
+    spyView  = {createPeepElement: function() {}}
+
+    peep = jasmine.createSpy('peep')
+    spyOn(spyView, 'createPeepElement').and.callFake(function() {
+      return peep
+    })
+
+    peepController = new PeepController(spyView, spyAPI)
   })
   describe('createPeep', function() {
-    it('gets the Peep html from the PeepView', function() {
+    it('gets the Peep html from the spyView', function() {
       peepController.createPeep(peepData)
-      expect(peepView.createPeepElement).toHaveBeenCalledWith(peepData)
+      expect(spyView.createPeepElement).toHaveBeenCalledWith(peepData)
     })
   })
   describe('getPeep', function() {
-    it('calls the APIModel with the peepId and callback', function() {
-      peepController.getPeep(peepData.id)
-      expect(spyAPI.getPeep).toHaveBeenCalledWith(peepData.id, peepView.createPeepElement)
+    beforeEach(function() {
+      callback = jasmine.createSpy('callback')
+      peepController.getPeep(peepData.id, callback)
+    })
+    it('calls the APIModel with the peepId', function() {
+      expect(spyAPI.getPeep.calls.first().args[0]).toEqual(1)
     })
   })
 })

@@ -1,6 +1,7 @@
 $(document).ready(function (){
   var main = $('#main')
-  new ChitterController(new APIModel,
+  apiModel = new APIModel
+  new ChitterController(apiModel,
                         new ChitterView(main),
-                        new PeepController(PeepView))
+                        new PeepController(PeepView, apiModel))
 })

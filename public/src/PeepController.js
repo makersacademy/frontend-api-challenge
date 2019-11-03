@@ -10,8 +10,12 @@
     createPeep: function(peepData) {
       return this.peepView.createPeepElement(peepData)
     },
-    getPeep: function(id) {
-      this.APIModel.getPeep(id, this.peepView.createPeepElement)
+    getPeep: function(id, callback) {
+      var self = this
+      this.APIModel.getPeep(id, function(data) {
+        peep = self.peepView.createPeepElement(data)
+        callback(peep)
+      })
     }
   }
   

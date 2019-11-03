@@ -1,9 +1,7 @@
 (function(exports) {
 
   function ChitterView(main) {
-    this.main = main
-    this.peepFeed = _peepFeed()
-    main.append(div)
+    main.append(_peepFeed)
     
   }
   
@@ -12,6 +10,11 @@
       data.forEach(peep => {
         $('#peep-feed').append(peep)
       });
+    },
+    viewPeep: function(peep) {
+      main = $('#main')
+      main.children().remove()
+      main.append(peep)
     }
   }
 

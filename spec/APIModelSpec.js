@@ -11,25 +11,29 @@ describe('APIModel', function() {
   describe('getPeepFeed', function() {
     beforeEach(function() {
       callback = jasmine.createSpy('callback')
-  
+      
       apiModel.getPeepFeed(callback)
     })
     it('sends a request to the chitter API', function() {
       expect($.ajax.calls.mostRecent().args[0]["url"])
-        .toEqual(CHITTER_API_URL + '/peeps')
+      .toEqual(CHITTER_API_URL + '/peeps')
     })
-
+    
     it('returns the results to the given callback', function() {
       expect(callback).toHaveBeenCalledWith(response)
     })
   })
   describe('getPeep', function() {
     beforeEach(function() {
-      apiModel.getPeep(1)
+      callback = jasmine.createSpy('callback')
+      apiModel.getPeep(1, callback)
     })
     it('gets the given peep from the Chitter API', function() {
       expect($.ajax.calls.mostRecent().args[0]["url"])
         .toEqual(CHITTER_API_URL + '/peeps/1')
+    })
+    it('executes the given callback with the results', function() {
+      expect(callback).toHaveBeenCalledWith(response)
     })
   })
 })

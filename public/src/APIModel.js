@@ -12,8 +12,11 @@
         }
       })
     },
-    getPeep: function(peepId) {
-      $.ajax({url: CHITTER_API_URL + `/peeps/${peepId}`, success: function() {}})
+    getPeep: function(peepId, callback) {
+      $.ajax({url: CHITTER_API_URL + `/peeps/${peepId}`, success: function(data, status) {
+        callback(data)
+        }
+      })
     }
   }
 
