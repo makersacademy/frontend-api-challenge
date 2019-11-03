@@ -5,7 +5,7 @@ describe('APIModel', function() {
     spyOn($, 'ajax').and.callFake((options) => {
       options.success(this.response)
     })
-    CHITTER_API_URL = 'https://chitter-backend-api.herokuapp.com'
+    this.CHITTER_API_URL = 'https://chitter-backend-api.herokuapp.com'
     this.apiModel = new APIModel
   })
   describe('getPeepFeed', function() {
@@ -17,7 +17,7 @@ describe('APIModel', function() {
     })
     it('sends a request to the chitter API', function() {
       expect($.ajax.calls.mostRecent().args[0]["url"])
-      .toEqual(CHITTER_API_URL + '/peeps')
+      .toEqual(this.CHITTER_API_URL + '/peeps')
     })
     
     it('returns the results to the given callback', function() {
@@ -32,10 +32,20 @@ describe('APIModel', function() {
     })
     it('gets the given peep from the Chitter API', function() {
       expect($.ajax.calls.mostRecent().args[0]["url"])
-        .toEqual(CHITTER_API_URL + '/peeps/1')
+      .toEqual(this.CHITTER_API_URL + '/peeps/1')
     })
     it('executes the given this.callback with the results', function() {
       expect(this.callback).toHaveBeenCalledWith(this.response)
     })
+  })
+  describe('login', function() {
+    beforeEach(function() {
+      this.response = ['call response']
+      this.apiModel.login({handle: 'test', password: 'testpassword'})
+    })
+    it('sends a login request', function() {
+      expect($.ajax.calls.mostRecent().args[0]['url'])
+        .toEqual(this.CHITTER_API_URL + '/sessions')
+      })
   })
 })

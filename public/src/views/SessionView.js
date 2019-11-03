@@ -1,14 +1,27 @@
 (function(exports) {
-
+  var self
   function SessionView() {
-    
+    self = this
+    _createForm()
   }
+
   SessionView.prototype = {
-    loginForm: function() {
-      var sidebar = $('#sidebar-container')
-      form = _createForm()
+    loginForm: function(callback) {
+      if ($('#login-form').length === 0) {
+        $('#sidebar-container').append(this.loginFormElement)
+      } else {
+        this.loginFormElement.toggle()
+      }
       $('#login-logout').toggle()
-      sidebar.append(form)
+      if (callback) {
+        callback($('#login-btn'))
+      }
+    },
+    loginFormVals: function() {
+      return {
+        handle: $('#handle').val(),
+        password: $('#password').val()
+      }
     }
   }
 
@@ -23,8 +36,7 @@
     _createHandleInput(form)
     _createPasswordInput(form)
     _createLogInButton(form)
-    console.log(form)
-    return form
+    self.loginFormElement = form
   }
 
   var _createHandleInput = function(form) {
