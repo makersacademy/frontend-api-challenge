@@ -30,9 +30,9 @@ describe('PeepController', function(){
     })
   })
   describe('getPeep', function() {
-    it('calls the APIModel with the peepId', function() {
+    it('calls the APIModel with the peepId and callback', function() {
       peepController.getPeep(peepData.id)
-      expect(APIModel.getPeep).toHaveBeenCalledWith(peepData.id)
+      expect(APIModel.getPeep).toHaveBeenCalledWith(peepData.id, peepView.createPeepElement)
     })
   })
 })

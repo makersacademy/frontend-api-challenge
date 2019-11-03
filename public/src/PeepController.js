@@ -11,7 +11,7 @@
       return this.peepView.createPeepElement(peepData)
     },
     getPeep: function(id) {
-      this.APIModel.getPeep(id)
+      this.APIModel.getPeep(id, this.peepView.createPeepElement)
     }
   }
   
