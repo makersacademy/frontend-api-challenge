@@ -30,7 +30,31 @@ describe('SessionController', function() {
       expect(this.spySubmitButton.on).toHaveBeenCalled()
     })
     describe('form filled, submit clicked', function() {
-      
+      beforeEach(function() {
+        this.spyButton = $('<button/>')
+        this.spySubmitButton = $('<button/>')
+  
+        this.spyView = {
+          loginForm: function() {},
+          loginFormVals: function() {}
+        }
+        spyOn(this.spyView, 'loginForm').and.callFake((callback) => {
+          callback(this.spySubmitButton)
+        })
+        spyOn(this.spyView, 'loginFormVals').and.callFake(function() {
+          return {
+            handle: 'Test',
+            password: 'TestPassword'
+          }
+        })
+  
+        this.sessionController = new SessionController(this.spyView, this.spyButton)
+        this.spyButton.trigger('click')
+        this.spySubmitButton.trigger('click')
+      })
+      it('gets the form values from the view', function() {
+        expect(this.spyView.loginFormVals).toHaveBeenCalled()
+      })
     })
   })
 })
