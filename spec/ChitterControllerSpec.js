@@ -2,8 +2,8 @@ describe('ChitterController', function() {
   describe('new', function() {
     beforeEach(function() {
       peepsData = ['Dummy Peep']
-      spyModel = {getPeepFeed: function() {}}
-      spyOn(spyModel, 'getPeepFeed').and.callFake(function(callback) {
+      spyAPI = {getPeepFeed: function() {}}
+      spyOn(spyAPI, 'getPeepFeed').and.callFake(function(callback) {
         callback(peepsData)
       })
       spyView = {updateFeed: function() {}}
@@ -16,10 +16,10 @@ describe('ChitterController', function() {
       spyOn(peepController, 'createPeep').and.callFake(function() {
         return peep
       })
-      new ChitterController(spyModel, spyView, peepController)
+      new ChitterController(spyAPI, spyView, peepController)
     })
     it('gets the Peep Feed', function() {
-      expect(spyModel.getPeepFeed).toHaveBeenCalled()
+      expect(spyAPI.getPeepFeed).toHaveBeenCalled()
     })
     it('converts the peep feed to peep elements', function () {
       expect(peepController.createPeep).toHaveBeenCalledWith(peepsData[0])
@@ -34,8 +34,8 @@ describe('ChitterController', function() {
   describe('view single peep', function() {
     beforeEach(function() {
       peepsData = ['Dummy Peep']
-      spyModel = {getPeepFeed: function() {}}
-      spyOn(spyModel, 'getPeepFeed').and.callFake(function(callback) {
+      spyAPI = {getPeepFeed: function() {}}
+      spyOn(spyAPI, 'getPeepFeed').and.callFake(function(callback) {
         callback(peepsData)
       })
       spyView = {
@@ -59,7 +59,7 @@ describe('ChitterController', function() {
       spyOn(peepController, 'getPeep').and.callFake(function() {
         return peep
       })
-      new ChitterController(spyModel, spyView, peepController)
+      new ChitterController(spyAPI, spyView, peepController)
       peep.trigger('click')
     })
     it('gets the peep from the peep controller', function() {

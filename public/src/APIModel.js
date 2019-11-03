@@ -9,9 +9,9 @@
     })
   }
 
-  var ChitterModel = {
+  var APIModel = {
     getPeepFeed: getPeepFeed
   }
 
-  exports.ChitterModel = ChitterModel
+  exports.APIModel = APIModel
 })(this)

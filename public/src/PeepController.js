@@ -1,9 +1,9 @@
 (function(exports) {
 
   
-  function PeepController(peepView, peepModel) {
+  function PeepController(peepView, APIModel) {
     this.peepView = peepView
-    this.peepModel = peepModel
+    this.APIModel = APIModel
 
   }
   PeepController.prototype = {
@@ -11,7 +11,7 @@
       return this.peepView.createPeepElement(peepData)
     },
     getPeep: function(id) {
-      this.peepModel.getPeep(id)
+      this.APIModel.getPeep(id)
     }
   }
   

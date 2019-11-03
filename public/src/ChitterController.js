@@ -2,8 +2,8 @@
 
   var self
 
-  function ChitterController(chitterModel, chitterView, peepController) {
-    this.chitterModel = chitterModel
+  function ChitterController(APIModel, chitterView, peepController) {
+    this.APIModel = APIModel
     this.chitterView = chitterView
     this.peepController = peepController
     self = this
@@ -12,7 +12,7 @@
   }
   
   var updatePeepFeed = function() {
-    self.chitterModel.getPeepFeed(function(results) {
+    self.APIModel.getPeepFeed(function(results) {
       convertFeed(results)
     })
   }
