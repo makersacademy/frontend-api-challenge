@@ -31,4 +31,35 @@ describe('ChitterController', function() {
       expect(spyView.updateFeed).toHaveBeenCalledWith([peep])
     })
   })
+  describe('view single peep', function() {
+    beforeEach(function() {
+      peepsData = ['Dummy Peep']
+      spyModel = {getPeepFeed: function() {}}
+      spyOn(spyModel, 'getPeepFeed').and.callFake(function(callback) {
+        callback(peepsData)
+      })
+      spyView = {updateFeed: function() {}}
+      spyOn(spyView, 'updateFeed')
+      
+      peep = $('<div/>', {
+        id: 'peep-1'
+      })
+  
+      peepController = {
+        createPeep: function() {},
+        getPeep: function() {}
+      }
+      spyOn(peepController, 'createPeep').and.callFake(function() {
+        return peep
+      })
+      spyOn(peepController, 'getPeep').and.callFake(function() {
+        return peep
+      })
+      new ChitterController(spyModel, spyView, peepController)
+      peep.trigger('click')
+    })
+    it('gets the peep from the peep controller', function() {
+      expect(peepController.getPeep).toHaveBeenCalledWith(1)
+    })
+  })
 })
