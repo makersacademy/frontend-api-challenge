@@ -10,23 +10,21 @@ describe('ChitterController', function() {
       spyView = {updateFeed: function() {}}
       spyOn(spyView, 'updateFeed')
 
-      PeepView = {createPeep: function() {}}
-      spyOn(PeepView, 'createPeep').and.callFake(function() {
+      peepController = {createPeep: function() {}}
+      spyOn(peepController, 'createPeep').and.callFake(function() {
         return peeps[0]
       })
+      new ChitterController(spyModel, spyView, peepController)
     })
     it('gets the Peep Feed', function() {
-      new ChitterController(spyModel, spyView)
       expect(spyModel.getPeepFeed).toHaveBeenCalled()
     })
     it('converts the peep feed to peep elements', function () {
 
-      new ChitterController(spyModel, spyView)
-      expect(PeepView.createPeep).toHaveBeenCalledWith(result[0])
+      expect(peepController.createPeep).toHaveBeenCalledWith(result[0])
     })
     it('sends the Peep Feed to the View', function() {
 
-      new ChitterController(spyModel, spyView)
       expect(spyView.updateFeed).toHaveBeenCalledWith(peeps)
     })
   })

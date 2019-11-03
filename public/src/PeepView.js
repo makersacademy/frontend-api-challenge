@@ -1,5 +1,5 @@
 (function(exports) {
-  var _createElemnt = function(type, id, classtext) {
+  var _createElement = function(type, id, classtext) {
     var element = $(`<${type}/>`, {
       class: classtext,
       id: id
@@ -28,9 +28,9 @@
     return peepTime
   }
 
-  var createPeep = function(peepData) {
-    var peep = _createElemnt('div', 'peep-' + peepData.id, 'card peep-feed-peep')
-    var peepBody = _createElemnt(
+  var createPeepElement = function(peepData) {
+    var peep = _createElement('div', 'peep-' + peepData.id, 'card peep-feed-peep')
+    var peepBody = _createElement(
       'div',
       'peep-' + peepData.id + '-body',
       'card-body'
@@ -48,7 +48,7 @@
   }
 
   var PeepView = {
-    createPeep: createPeep
+    createPeepElement: createPeepElement
   }
 
   exports.PeepView = PeepView

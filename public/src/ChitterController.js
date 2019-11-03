@@ -1,24 +1,26 @@
 (function(exports) {
-  function ChitterController(chitterModel, chitterView) {
-    var chitterModel = chitterModel
-    var chitterView = chitterView
+  function ChitterController(chitterModel, chitterView, peepController) {
+    this.chitterModel = chitterModel
+    this.chitterView = chitterView
+    this.peepController = peepController
+    var self = this
     
-    updatePeepFeed(chitterModel, chitterView.updateFeed)
+    updatePeepFeed(self)
   }
   
-  var updatePeepFeed = function(chitterModel, chitterCallback) {
+  var updatePeepFeed = function(self) {
     converterCallback = function(results) {
-      convertFeed(results, chitterCallback)
+      convertFeed(results, self)
     }
-    chitterModel.getPeepFeed(converterCallback)
+    self.chitterModel.getPeepFeed(converterCallback)
   }
 
-  var convertFeed = function(results, chitterCallback) {
+  var convertFeed = function(results, self) {
     var peeps = []
     results.forEach(function(peep, index, array) {
-      peeps.push(PeepView.createPeep(peep))
+      peeps.push(self.peepController.createPeep(peep))
       if (index === array.length - 1) {
-        chitterCallback(peeps)
+        self.chitterView.updateFeed(peeps)
       }
     });
   }

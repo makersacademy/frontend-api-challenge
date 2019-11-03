@@ -1,4 +1,6 @@
 $(document).ready(function (){
   var main = $('#main')
-  new ChitterController(ChitterModel, new ChitterView(main))
+  new ChitterController(ChitterModel,
+                        new ChitterView(main),
+                        new PeepController(PeepView))
 })
