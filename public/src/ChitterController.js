@@ -32,7 +32,7 @@
   var addListener = function(element) {
     element.on('click', function() {
       peepId = +element.attr('id').split('-')[1]
-      self.peepController.getPeep(peepId)
+      self.peepController.getPeep(peepId, self.chitterView.viewPeep)
       self.chitterView.hideFeed()
     })
   }
