@@ -30,7 +30,7 @@
         headers: {
           'Content-Type':'application/json'
         },
-        success: function(data) {callback(data)}
+        success: function(data) {callback(data); console.log(data)}
       })
     }
   }
