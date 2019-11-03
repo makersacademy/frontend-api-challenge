@@ -4,12 +4,17 @@
     this.sessionView = sessionView
 
     sessionButton.on('click', () => {
-      console.log('here')
-      this.sessionView.loginForm()
+      this.sessionView.loginForm(_watchButton)
       window.location.hash = '/login'
     })
   }
 
+   _watchButton = function(button) {
+     console.log(button)
+     button.on('click', function() {
+
+     })
+  }
 
   exports.SessionController = SessionController
 })(this)
