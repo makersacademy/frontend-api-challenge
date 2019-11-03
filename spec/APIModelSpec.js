@@ -1,18 +1,19 @@
 describe('APIModel', function() {
   beforeEach(function() {
-    response = ['call response']
+    this.response = ['call response']
     $ = {ajax: function() {}}
-    spyOn($, 'ajax').and.callFake(function(options) {
-      options.success(response)
+    spyOn($, 'ajax').and.callFake((options) => {
+      options.success(this.response)
     })
     CHITTER_API_URL = 'https://chitter-backend-api.herokuapp.com'
-    apiModel = new APIModel
+    this.apiModel = new APIModel
   })
   describe('getPeepFeed', function() {
     beforeEach(function() {
-      callback = jasmine.createSpy('callback')
+      this.response = ['call response']
+      this.callback = jasmine.createSpy('callback')
       
-      apiModel.getPeepFeed(callback)
+      this.apiModel.getPeepFeed(this.callback)
     })
     it('sends a request to the chitter API', function() {
       expect($.ajax.calls.mostRecent().args[0]["url"])
@@ -20,20 +21,21 @@ describe('APIModel', function() {
     })
     
     it('returns the results to the given callback', function() {
-      expect(callback).toHaveBeenCalledWith(response)
+      expect(this.callback).toHaveBeenCalledWith(this.response)
     })
   })
   describe('getPeep', function() {
     beforeEach(function() {
-      callback = jasmine.createSpy('callback')
-      apiModel.getPeep(1, callback)
+      this.response = ['call response']
+      this.callback = jasmine.createSpy('callback')
+      this.apiModel.getPeep(1, this.callback)
     })
     it('gets the given peep from the Chitter API', function() {
       expect($.ajax.calls.mostRecent().args[0]["url"])
         .toEqual(CHITTER_API_URL + '/peeps/1')
     })
-    it('executes the given callback with the results', function() {
-      expect(callback).toHaveBeenCalledWith(response)
+    it('executes the given this.callback with the results', function() {
+      expect(this.callback).toHaveBeenCalledWith(this.response)
     })
   })
 })

@@ -1,69 +1,69 @@
 describe('ChitterController', function() {
   describe('new', function() {
     beforeEach(function() {
-      peepsData = ['Dummy Peep']
-      spyAPI = {getPeepFeed: function() {}}
-      spyOn(spyAPI, 'getPeepFeed').and.callFake(function(callback) {
-        callback(peepsData)
+      this.peepsData = ['Dummy Peep']
+      this.spyAPI = {getPeepFeed: function() {}}
+      spyOn(this.spyAPI, 'getPeepFeed').and.callFake((callback) => {
+        callback(this.peepsData)
       })
-      spyView = {updateFeed: function() {}}
-      spyOn(spyView, 'updateFeed')
+      this.spyView = {updateFeed: function() {}}
+      spyOn(this.spyView, 'updateFeed')
       
-      peep = {on: function() {}}
-      spyOn(peep, 'on')
+      this.peep = {on: function() {}}
+      spyOn(this.peep, 'on')
 
-      peepController = {createPeep: function() {}}
-      spyOn(peepController, 'createPeep').and.callFake(function() {
-        return peep
+      this.peepController = {createPeep: function() {}}
+      spyOn(this.peepController, 'createPeep').and.callFake(() => {
+        return this.peep
       })
-      new ChitterController(spyAPI, spyView, peepController)
+      new ChitterController(this.spyAPI, this.spyView, this.peepController)
     })
     it('gets the Peep Feed', function() {
-      expect(spyAPI.getPeepFeed).toHaveBeenCalled()
+      expect(this.spyAPI.getPeepFeed).toHaveBeenCalled()
     })
     it('converts the peep feed to peep elements', function () {
-      expect(peepController.createPeep).toHaveBeenCalledWith(peepsData[0])
+      expect(this.peepController.createPeep).toHaveBeenCalledWith(this.peepsData[0])
     })
     it('adds an event listener to the peep', function() {
-      expect(peep.on).toHaveBeenCalled()
+      expect(this.peep.on).toHaveBeenCalled()
     })
     it('sends the Peep Feed to the View', function() {
-      expect(spyView.updateFeed).toHaveBeenCalledWith([peep])
+      expect(this.spyView.updateFeed).toHaveBeenCalledWith([this.peep])
     })
   })
   describe('view single peep', function() {
     beforeEach(function() {
-      peepsData = ['Dummy Peep']
-      spyAPI = {getPeepFeed: function() {}}
-      spyOn(spyAPI, 'getPeepFeed').and.callFake(function(callback) {
-        callback(peepsData)
+      this.peepsData = ['Dummy Peep']
+      this.spyAPI = {getPeepFeed: function() {}}
+      spyOn(this.spyAPI, 'getPeepFeed').and.callFake((callback) => {
+        callback(this.peepsData)
       })
-      spyView = {
+      this.spyView = {
         updateFeed: function() {},
         hideFeed: function() {}
       }
-      spyOn(spyView, 'updateFeed')
-      spyOn(spyView, 'hideFeed')
+      spyOn(this.spyView, 'updateFeed')
+      spyOn(this.spyView, 'hideFeed')
       
-      peep = $('<div/>', {
+      this.peep = $('<div/>', {
         id: 'peep-1'
       })
   
-      peepController = {
+      this.peepController = {
         createPeep: function() {},
         getPeep: function() {}
       }
-      spyOn(peepController, 'createPeep').and.callFake(function() {
-        return peep
+      spyOn(this.peepController, 'createPeep').and.callFake(() => {
+        return this.peep
       })
-      spyOn(peepController, 'getPeep').and.callFake(function() {
-        return peep
+      spyOn(this.peepController, 'getPeep').and.callFake(() => {
+        return this.peep
       })
-      new ChitterController(spyAPI, spyView, peepController)
-      peep.trigger('click')
+      new ChitterController(this.spyAPI, this.spyView, this.peepController)
+      this.peep.trigger('click')
     })
     it('gets the peep from the peep controller', function() {
-      expect(peepController.getPeep).toHaveBeenCalledWith(1, spyView.viewPeep)
+      expect(this.peepController.getPeep).toHaveBeenCalledWith(1, this.spyView.viewPeep)
     })
   })
 })

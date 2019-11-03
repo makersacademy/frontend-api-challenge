@@ -1,6 +1,6 @@
 describe('PeepController', function(){
   beforeEach(function() {
-    peepData = {
+    this.peepData = {
       "id": 1,
       "body": "Test Peep 1",
       "created_at": "2018-06-23T13:21:23.317Z",
@@ -16,31 +16,27 @@ describe('PeepController', function(){
         }
       }]
     }
-    spyAPI = {getPeep: function() {}}
-    spyOn(spyAPI, 'getPeep')
+    this.spyAPI = {getPeep: function() {}}
+    spyOn(this.spyAPI, 'getPeep')
     
-    spyView  = {createPeepElement: function() {}}
+    this.spyView  = {createPeepElement: function() {}}
+    spyOn(this.spyView, 'createPeepElement')
 
-    peep = jasmine.createSpy('peep')
-    spyOn(spyView, 'createPeepElement').and.callFake(function() {
-      return peep
-    })
-
-    peepController = new PeepController(spyView, spyAPI)
+    this.peepController = new PeepController(this.spyView, this.spyAPI)
   })
   describe('createPeep', function() {
-    it('gets the Peep html from the spyView', function() {
-      peepController.createPeep(peepData)
-      expect(spyView.createPeepElement).toHaveBeenCalledWith(peepData)
+    it('gets the Peep html from the this.spyView', function() {
+      this.peepController.createPeep(this.peepData)
+      expect(this.spyView.createPeepElement).toHaveBeenCalledWith(this.peepData)
     })
   })
   describe('getPeep', function() {
     beforeEach(function() {
-      callback = jasmine.createSpy('callback')
-      peepController.getPeep(peepData.id, callback)
+      var callback = jasmine.createSpy('callback')
+      this.peepController.getPeep(this.peepData.id, callback)
     })
     it('calls the APIModel with the peepId', function() {
-      expect(spyAPI.getPeep.calls.first().args[0]).toEqual(1)
+      expect(this.spyAPI.getPeep.calls.first().args[0]).toEqual(1)
     })
   })
 })
