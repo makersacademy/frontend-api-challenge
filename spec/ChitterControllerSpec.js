@@ -38,8 +38,12 @@ describe('ChitterController', function() {
       spyOn(spyModel, 'getPeepFeed').and.callFake(function(callback) {
         callback(peepsData)
       })
-      spyView = {updateFeed: function() {}}
+      spyView = {
+        updateFeed: function() {},
+        hideFeed: function() {}
+      }
       spyOn(spyView, 'updateFeed')
+      spyOn(spyView, 'hideFeed')
       
       peep = $('<div/>', {
         id: 'peep-1'
@@ -60,6 +64,9 @@ describe('ChitterController', function() {
     })
     it('gets the peep from the peep controller', function() {
       expect(peepController.getPeep).toHaveBeenCalledWith(1)
+    })
+    it('hides the peep feed', function() {
+      expect(spyView.hideFeed).toHaveBeenCalled()
     })
   })
 })
