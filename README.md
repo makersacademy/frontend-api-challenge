@@ -1,5 +1,15 @@
 # Chitter API Frontend Challenge
 
+## Melvin's Progress Update
+
+My work is located in this repository: [Chitter-React](https://github.com/melvinlau/chitter-react)
+
+Work is very much still in progress as I've decided to attempt this weekend challenge whilst learning React.js
+
+---
+
+# Chitter API Frontend Challenge
+
 * Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
