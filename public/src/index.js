@@ -5,7 +5,7 @@ $(document).ready(function (){
 
   var apiModel = new APIModel
 
-  new SessionController(new SessionView, loginButton)
+  new SessionController(new SessionView, apiModel, loginButton)
   new ChitterController(apiModel,
                         new ChitterView(main),
                         new PeepController(PeepView, apiModel),

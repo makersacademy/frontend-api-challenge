@@ -1,7 +1,9 @@
 (function(exports) {
   var self
-  function SessionController(sessionView, sessionButton) {
+
+  function SessionController(sessionView, APIModel, sessionButton) {
     this.sessionView = sessionView
+    this.APIModel = APIModel
     self = this
     sessionButton.on('click', () => {
       this.sessionView.loginForm(_watchButton)
@@ -10,9 +12,8 @@
   }
 
    _watchButton = function(button) {
-     console.log(button)
      button.on('click', function() {
-      self.sessionView.loginFormVals()
+      self.APIModel.login(self.sessionView.loginFormVals())
      })
   }
 
