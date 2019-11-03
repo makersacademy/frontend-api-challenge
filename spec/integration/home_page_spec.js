@@ -1,8 +1,8 @@
 describe('Home Page', function() {
   beforeEach(function() {
-    cy.fixture('single_peep_response.json').as('singlePeepResponse')
+    cy.fixture('multi_peep_response.json').as('multiPeepResponse')
     cy.server()
-    cy.route('https://chitter-backend-api.herokuapp.com/peeps', '@singlePeepResponse')
+    cy.route('https://chitter-backend-api.herokuapp.com/peeps', '@multiPeepResponse')
   })
   it('shows the page', function() {
     cy.visit('/')
