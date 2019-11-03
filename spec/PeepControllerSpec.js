@@ -18,6 +18,7 @@ describe('PeepController', function(){
         }]
       }
       PeepView  = {createPeepElement: function() {}}
+      
       spyOn(PeepView, 'createPeepElement')
       peepController = new PeepController(PeepView)
     })
