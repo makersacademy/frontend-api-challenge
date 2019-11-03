@@ -1,7 +1,6 @@
 (function(exports){
 
   var CHITTER_API_URL = 'https://chitter-backend-api.herokuapp.com'
-  
   function APIModel() {
 
   }
@@ -22,12 +21,22 @@
         }
       })
     },
-    login: function(creds) {
+    login: function(creds, callback) {
       $.ajax({
         url: CHITTER_API_URL + '/sessions',
-        success: function() {}
-    })
+        type: 'POST',
+        dataType: 'json',
+        data: loginParams(creds),
+        headers: {
+          'Content-Type':'application/json'
+        },
+        success: function(data) {callback(data)}
+      })
     }
+  }
+
+  var loginParams = function(params) {
+    return `{"session": {"handle":"${params.handle}", "password":"${params.password}"}}`
   }
 
   exports.APIModel = APIModel

@@ -40,12 +40,29 @@ describe('APIModel', function() {
   })
   describe('login', function() {
     beforeEach(function() {
+      this.call = {
+        data: '{"session": {"handle":"test", "password":"testpassword"}}',
+        dataType: "json",
+        headers: {"Content-Type": "application/json"},
+        type: "POST",
+        url: "https://chitter-backend-api.herokuapp.com/sessions"
+      }
       this.response = ['call response']
-      this.apiModel.login({handle: 'test', password: 'testpassword'})
+      this.callback = jasmine.createSpy('loginCallback')
+      this.apiModel.login({handle: 'test', password: 'testpassword'}, this.callback)
     })
     it('sends a login request', function() {
       expect($.ajax.calls.mostRecent().args[0]['url'])
-        .toEqual(this.CHITTER_API_URL + '/sessions')
-      })
+        .toEqual(this.call.url)
+      expect($.ajax.calls.mostRecent().args[0]['data'])
+        .toEqual(this.call.data)
+      expect($.ajax.calls.mostRecent().args[0]['headers'])
+        .toEqual(this.call.headers)
+      expect($.ajax.calls.mostRecent().args[0]['dataType'])
+        .toEqual(this.call.dataType)
+    })
+    it('calls the given callback with the returned params', function() {
+      expect(this.callback).toHaveBeenCalledWith(this.response)
+    })
   })
 })
