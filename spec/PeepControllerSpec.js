@@ -17,11 +17,11 @@ describe('PeepController', function(){
       }]
     }
     peepView  = {createPeepElement: function() {}}
-    APIModel = {getPeep: function() {}}
+    spyAPI = {getPeep: function() {}}
     
     spyOn(peepView, 'createPeepElement')
-    spyOn(APIModel, 'getPeep')
-    peepController = new PeepController(peepView, APIModel)
+    spyOn(spyAPI, 'getPeep')
+    peepController = new PeepController(peepView, spyAPI)
   })
   describe('createPeep', function() {
     it('gets the Peep html from the PeepView', function() {
@@ -32,7 +32,7 @@ describe('PeepController', function(){
   describe('getPeep', function() {
     it('calls the APIModel with the peepId and callback', function() {
       peepController.getPeep(peepData.id)
-      expect(APIModel.getPeep).toHaveBeenCalledWith(peepData.id, peepView.createPeepElement)
+      expect(spyAPI.getPeep).toHaveBeenCalledWith(peepData.id, peepView.createPeepElement)
     })
   })
 })
