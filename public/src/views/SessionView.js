@@ -19,6 +19,7 @@
   var _createForm = function() {
     var form = $('<form/>')
     _addAttr(form, 'id', 'login-form')
+    _addAttr(form, 'action', 'javascript:void(0);')
     _createHandleInput(form)
     _createPasswordInput(form)
     _createLogInButton(form)

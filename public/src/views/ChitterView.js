@@ -8,14 +8,14 @@
   
   ChitterView.prototype = {
     updateFeed: (data) => {
+      _clearFeed()
       data.forEach(peep => {
         $('#peep-feed').append(peep)
       });
     },
     viewPeep: function(peep) {
-      main = $('#main')
-      main.children().remove()
-      main.append(peep)
+      _clearFeed()
+      $('#peep-feed').append(peep)
     },
     loggedIn: function() {
       button = $('#login-logout')
@@ -25,6 +25,11 @@
       button = $('#login-logout')
       button.text('Log in')
     }
+  }
+  
+  var _clearFeed = function() {
+    feed = $('#peep-feed')
+    feed.children().remove()
   }
 
   var _peepFeed = function() {
