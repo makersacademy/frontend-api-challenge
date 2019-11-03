@@ -7,10 +7,15 @@ describe('peeps', function() {
     cy.route('https://chitter-backend-api.herokuapp.com/peeps/1', '@singlePeepResponse')
   })
   describe('view a single peep', function() {
-    it('renders the peep', function() {
+    beforeEach(function() {
       cy.visit('/')
       cy.get('#peep-1').click()
+    })
+    it('renders the peep', function() {
       cy.get('.card').last().contains('Test Peep 1')
+    })
+    it('changes the URL to reflect the selected peep', function() {
+      cy.url().should('include','/peeps/1')
     })
   })
 })

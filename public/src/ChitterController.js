@@ -21,7 +21,7 @@
     var peeps = []
     results.forEach(function(peep, index, array) {
       peepElement = self.peepController.createPeep(peep)
-      addListener(peepElement)
+      addPeepListener(peepElement)
       peeps.push(peepElement)
       if (index === array.length - 1) {
         self.chitterView.updateFeed(peeps)
@@ -29,11 +29,12 @@
     });
   }
   
-  var addListener = function(element) {
+  var addPeepListener = function(element) {
     element.on('click', function() {
       peepId = +element.attr('id').split('-')[1]
       self.peepController.getPeep(peepId, self.chitterView.viewPeep)
-    })
+      window.location.hash += '/peeps/' + peepId
+    })   
   }
 
   exports.ChitterController = ChitterController
