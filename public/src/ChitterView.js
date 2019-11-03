@@ -10,13 +10,12 @@
   ChitterView.prototype = {
     updateFeed: (data) => {
       data.forEach(peep => {
-        $('#peep-feed').append(PeepView.createPeep(peep))
+        $('#peep-feed').append(peep)
       });
     }
   }
 
   var _peepFeed = function() {
-    console.log(1)
     div = $('<div/>', {
       id: 'peep-feed',
       class: 'peep-feed'
