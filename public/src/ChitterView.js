@@ -3,6 +3,7 @@
   function ChitterView(main) {
     main.append(_peepFeed)
     
+    this.loggedOut()
   }
   
   ChitterView.prototype = {
@@ -15,6 +16,14 @@
       main = $('#main')
       main.children().remove()
       main.append(peep)
+    },
+    loggedIn: function() {
+      button = $('#login-logout')
+      button.text('Log out')
+    },
+    loggedOut: function() {
+      button = $('#login-logout')
+      button.text('Log in')
     }
   }
 

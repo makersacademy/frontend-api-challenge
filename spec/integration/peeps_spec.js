@@ -14,8 +14,5 @@ describe('peeps', function() {
     it('renders the peep', function() {
       cy.get('.card').last().contains('Test Peep 1')
     })
-    it('changes the URL to reflect the selected peep', function() {
-      cy.url().should('include','/peeps/1')
-    })
   })
 })
