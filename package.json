@@ -1,0 +1,27 @@
+{
+  "name": "frontend-api-challenge",
+  "version": "1.0.0",
+  "description": "Chitter Front End",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "cypress": "^3.6.0",
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevindhanna/frontend-api-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevindhanna/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/kevindhanna/frontend-api-challenge#readme"
+}
