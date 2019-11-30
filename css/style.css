@@ -1,0 +1,10 @@
+
+#main {
+  width: 700px;
+  margin: 10px auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: lightpink;
+  border: 1px dotted white;
+}
