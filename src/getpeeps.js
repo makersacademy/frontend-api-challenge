@@ -52,7 +52,7 @@ $(document).ready(function() {
         return response.json();
       })
       .then(function(data) {
-        //console.log(data);
+        console.log(data);
 
         $.each(data, function(index, value) {
           var node4 = document.createElement("P");
@@ -63,6 +63,44 @@ $(document).ready(function() {
           node4.appendChild(myvalue);
 
           document.getElementById('confirmed').appendChild(node4);
+
+        });
+
+      });
+  };
+
+  document.getElementById('login').addEventListener('submit', login);
+
+  function login(event) {
+    event.preventDefault();
+
+    fetch('https://chitter-backend-api.herokuapp.com/sessions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "session": {
+            handle: document.getElementById('loghandle').value,
+            password: document.getElementById('logpassword').value
+          }
+        })
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log(data);
+
+        $.each(data, function(index, value) {
+          var node5 = document.createElement("P");
+          var myindex = document.createTextNode(index);
+          var myvalue = document.createTextNode(value);
+
+          node5.appendChild(myindex);
+          node5.appendChild(myvalue);
+
+          document.getElementById('confirmed2').appendChild(node5);
 
         });
 
