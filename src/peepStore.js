@@ -2,6 +2,7 @@
 
 document.getElementById('fetchPeepsBtn').addEventListener('click', fetchPeeps);
 
+var peepText
 
 var postButton = document.getElementById("postbutt");
 postButton.style.width = '150px'
@@ -13,7 +14,7 @@ form.setAttribute("placeholder", "Enter peep here");
 form.style.fontSize = '15px';
 
 document.getElementById('postbutt').addEventListener('click', function(){
-var peepText = form.value
+peepText = form.value
 getSession();
 });
 
@@ -27,19 +28,19 @@ function getSession(){
   method: "POST"
 })
  .then(response => response.json())
- .then(json => setSession(json))
+ .then(json => postPeep(json))
 }
 
-function setSession(json) {
+function postPeep(json) {
     user_id = json.user_id;
     session_key = json.session_key;
     fetch("https://chitter-backend-api.herokuapp.com/peeps", {
-  body: "{\"peep\": {\"user_id\":1545, \"body\":\"Roger says...\"}}",
-  headers: {
+    method: "POST",
+    headers: {
     Authorization: "Token token="+session_key,
     "Content-Type": "application/json"
   },
-  method: "POST"
+    body: JSON.stringify({peep: {user_id: user_id, body: peepText}})
 })
 
 }
@@ -71,12 +72,3 @@ function renderText(outputObject) {
     append(output, li);
   })
 };
-
-
-
-// fetch('https://chitter-backend-api.herokuapp.com/peeps')
-//   .then(function(response){
-//     console.log("Success!", response);
-//   }, function(error) {
-//     console.error("Failed!", error);
-//   });
