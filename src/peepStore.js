@@ -3,6 +3,9 @@
 document.getElementById('fetchPeepsBtn').addEventListener('click', fetchPeeps);
 
 var peepText
+var user_id
+var session_key
+
 
 var postButton = document.getElementById("postbutt");
 postButton.style.width = '150px'
@@ -21,7 +24,7 @@ getSession();
 
 function getSession(){
   fetch("https://chitter-backend-api.herokuapp.com/sessions", {
-  body: "{\"session\": {\"handle\":\"RogerMellie\",\"password\":\"\"}}",
+  body: "{\"session\": {\"handle\":\"RogerMellie\",\"password\":\"telly\"}}",
   headers: {
     "Content-Type": "application/json"
   },
@@ -33,7 +36,7 @@ function getSession(){
 
 function postPeep(json) {
     user_id = json.user_id;
-    session_key = json.session_key;
+    session_key = json.session_key
     fetch("https://chitter-backend-api.herokuapp.com/peeps", {
     method: "POST",
     headers: {
