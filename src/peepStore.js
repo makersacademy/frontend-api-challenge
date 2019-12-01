@@ -24,7 +24,7 @@ getSession();
 
 function getSession(){
   fetch("https://chitter-backend-api.herokuapp.com/sessions", {
-  body: "{\"session\": {\"handle\":\"RogerMellie\",\"password\":\"telly\"}}",
+  body: "{\"session\": {\"handle\":\"RogerMellie\",\"password\":\"\"}}",
   headers: {
     "Content-Type": "application/json"
   },
