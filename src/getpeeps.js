@@ -2,15 +2,21 @@ fetch('https://chitter-backend-api.herokuapp.com/peeps').then(function(response)
   return response.json();
 }).then(function(data) {
 
-  console.log(data);
-
   $.each(data, function (index, value) {
+    var node = document.createElement("P");
+    var text = document.createTextNode(value.body);
+    var time = document.createTextNode(value.created_at);
+    var br = document.createElement("BR");
+    node.appendChild(text);
+    node.appendChild(br);
+    node.appendChild(time);
+
+    document.getElementById('main').appendChild(node);
+    console.log(value);
+
+
     $.each(this, function (index, value) {
-      //console.log(index + " :: " + value);
-      var node = document.createElement("LI");
-      var textnode = document.createTextNode(value);
-      node.appendChild(textnode);
-      document.getElementById("main").appendChild(node);
+      // second loop
     });
   });
 
