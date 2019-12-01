@@ -52,7 +52,20 @@ $(document).ready(function() {
         return response.json();
       })
       .then(function(data) {
-        console.log(JSON.stringify(data));
+        //console.log(data);
+
+        $.each(data, function(index, value) {
+          var node4 = document.createElement("P");
+          var myindex = document.createTextNode(index);
+          var myvalue = document.createTextNode(value);
+
+          node4.appendChild(myindex);
+          node4.appendChild(myvalue);
+
+          document.getElementById('confirmed').appendChild(node4);
+
+        });
+
       });
   };
 
