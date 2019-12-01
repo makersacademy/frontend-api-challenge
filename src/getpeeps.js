@@ -90,7 +90,9 @@ $(document).ready(function() {
         return response.json();
       })
       .then(function(data) {
-        console.log(data);
+
+        var mysession = data.session_key;
+        var myuser = data.user_id;
 
         $.each(data, function(index, value) {
           var node5 = document.createElement("P");
@@ -106,5 +108,30 @@ $(document).ready(function() {
 
       });
   };
+
+  $('#write').on('click', function() {
+
+    fetch('https://chitter-backend-api.herokuapp.com/peeps', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Token token=mysession',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "peep": {
+            user_id: myuser,
+            body: document.getElementById('peep').value
+          }
+        })
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        console.log(data);
+
+        });
+
+      });
 
 });
