@@ -25,21 +25,10 @@ So I can see what other people are sharing online
 I want to  view all the peeps
 
 As a user
-So I view an entire specific tweet
-I want to view an individual tweet
+So I see what a specific user has posted
+I want to view an entire single tweet
 
 As a user
 So I can share what I am thinking online
 I want to be able to post a tweet
-
-As a user
-So I can 
 ```
-
-
-
-
-
-
-
-
