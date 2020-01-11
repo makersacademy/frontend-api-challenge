@@ -12,7 +12,7 @@ describe('<AuthForm />', () => {
   let authForm = [
     { name: 'handle', placeholder: 'Enter your handle', type: 'text', validation: {} },
     { name: 'password', placeholder: 'Enter your password', type: 'password', validation: {} },
-    
+
     { name: 'newHandle', placeholder: 'Enter your new handle', type: 'text', validation: {} },
     { name: 'newPassword', placeholder: 'Enter your new password', type: 'new-password', validation: {} },
     { name: 'confirmNewPassword', placeholder: 'Confirm your new password', type: 'new-password', validation: {} },
@@ -27,15 +27,24 @@ describe('<AuthForm />', () => {
     expect(authFormComponent).toHaveLength(1);
   });
 
-  it('renders the three correct input fields for the user if they choose to sign up', () => {
+  describe('<Authform /> elements', () => {
     const signUpWrapper = setup(AuthForm, { isSignUp: true }, { formFields: authForm });
-    const formInputs = signUpWrapper.find('AuthFormInput');
-    expect(formInputs).toHaveLength(3);
+    const signInWrapper = setup(AuthForm, { isSignUp: false }, { formFields: authForm });
+
+    it('renders the three correct input fields for the user if they choose to sign up', () => {
+      const formInputs = signUpWrapper.find('AuthFormInput');
+      expect(formInputs).toHaveLength(3);
+    });
+  
+    it('renders the two correct input fields for the user if they choose to sign in', () => {
+      const formInputs = signInWrapper.find('AuthFormInput');
+      expect(formInputs).toHaveLength(2);
+    });
+  
+    it('renders a submit button with a relevant string', () => {
+      const button = findByTestAttr(wrapper, 'submit-button');
+      expect(button.text()).toContain('Submit');
+    });
   });
 
-  it('renders the two correct input fields for the user if they choose to sign in', () => {
-    const signInWrapper = setup(AuthForm, { isSignUp: false }, { formFields: authForm });
-    const formInputs = signInWrapper.find('AuthFormInput');
-    expect(formInputs).toHaveLength(2);
-  });
 });

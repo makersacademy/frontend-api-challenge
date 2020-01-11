@@ -7,7 +7,7 @@ class UserOption extends React.Component {
     const isSignUp = this.props.option === 'Sign Up'
     let form = null;
 
-    if (this.props.active) form = <AuthForm isSignUp={isSignUp} />;
+    if (this.props.active) form = <AuthForm isSignUp={isSignUp}/>;
 
     return (
       <div className={Classes.UserOption} data-test='component-user-option'>

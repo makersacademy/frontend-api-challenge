@@ -42,6 +42,10 @@ class AuthForm extends React.Component {
     return (
       <div className={Classes.AuthForm} data-test='component-auth-form'>
         {form}
+        <button 
+          type='submit'
+          value={'Submit'}
+          data-test='submit-button'>Submit</button>
       </div>
     );
   }
