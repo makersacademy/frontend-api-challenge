@@ -1,9 +1,15 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import Enzyme, { shallow } from 'enzyme';
+import EnzymeAdapter from 'enzyme-adapter-react-16';
+import { findByTestAttr, setup } from '../../util/testUtils';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+Enzyme.configure({ adapter: new EnzymeAdapter() });
+
+describe('<App />', () => {
+  it('renders without crashing', () => {
+    const wrapper = setup(App);
+    const appComponent = findByTestAttr(wrapper, 'component-app');
+    expect(appComponent).toHaveLength(1);
+  });
+})
