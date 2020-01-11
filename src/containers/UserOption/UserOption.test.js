@@ -9,6 +9,8 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('<UserOption />', () => {
   let wrapper;
   let userOptionComponent;
+  let signInButton;
+  let signUpButton;
 
   beforeEach(() => {
     wrapper = setup(UserOption);
@@ -20,18 +22,14 @@ describe('<UserOption />', () => {
   });
 
   it('can reveal a sign in form', () => {
-    wrapper = setup(UserOption, { option: 'Sign In', }, { active: false });
+    wrapper = setup(UserOption, { option: 'Sign In', active: true });
 
-    const signInButton = findByTestAttr(wrapper, 'sign-in-button');
-    signInButton.simulate('click');
     expect(wrapper.text()).toContain('<AuthForm />');
   });
 
   it('can reveal a sign up form', () => {
-    wrapper = setup(UserOption, { option: 'Sign Up', }, { active: false });
+    wrapper = setup(UserOption, { option: 'Sign Up', active: true });
 
-    const signUpButton = findByTestAttr(wrapper, 'sign-up-button');
-    signUpButton.simulate('click');
     expect(wrapper.text()).toContain('<AuthForm />');
   });
 });

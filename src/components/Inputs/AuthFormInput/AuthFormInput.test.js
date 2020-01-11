@@ -11,7 +11,7 @@ describe('<AuthFormInput />', () => {
   let authFormInputComponent;
 
   beforeEach(() => {
-    wrapper = setup(AuthFormInput, { name: 'email', type: 'email', placeholder: 'Enter your email' });
+    wrapper = setup(AuthFormInput, { name: 'email', type: 'email', placeholder: 'Enter your email', value: '', });
     authFormInputComponent = findByTestAttr(wrapper, 'component-auth-form-input');
   });
 
@@ -29,5 +29,9 @@ describe('<AuthFormInput />', () => {
 
   it('takes a prop for its placeholder', () => {
     expect(wrapper.props().placeholder).toEqual('Enter your email');
+  });
+
+  it('has an initial value of an empty string', () => {
+    expect(wrapper.props().value).toEqual('');
   });
 });
