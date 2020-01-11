@@ -32,17 +32,17 @@ describe('<AuthForm />', () => {
         const signInWrapper = setup(AuthForm, { isSignUp: false }, { formFields: authForm });
 
         it('renders the three correct input fields for the user if they choose to sign up', () => {
-        const formInputs = signUpWrapper.find('AuthFormInput');
+            const formInputs = signUpWrapper.find('AuthFormInput');
         expect(formInputs).toHaveLength(3);
         });
 
         it('renders the two correct input fields for the user if they choose to sign in', () => {
-        const formInputs = signInWrapper.find('AuthFormInput');
+            const formInputs = signInWrapper.find('AuthFormInput');
         expect(formInputs).toHaveLength(2);
         });
 
         it('renders a submit button with a relevant string', () => {
-        const button = findByTestAttr(wrapper, 'submit-button');
+            const button = findByTestAttr(wrapper, 'submit-button');
         expect(button.text()).toContain('Submit');
         });
     });
