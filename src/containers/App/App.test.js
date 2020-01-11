@@ -7,9 +7,23 @@ import App from './App';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('<App />', () => {
+  let wrapper;
+  let appComponent;
+  beforeEach(() => {
+    wrapper = setup(App);
+    appComponent = findByTestAttr(wrapper, 'component-app');
+  });
+
   it('renders without crashing', () => {
-    const wrapper = setup(App);
-    const appComponent = findByTestAttr(wrapper, 'component-app');
     expect(appComponent).toHaveLength(1);
   });
-})
+
+  it('displays the app name', () => {
+    expect(appComponent.text()).toContain('Chitter');
+  });
+
+  it('displays sign up and sign in links', () => {
+    expect(appComponent.text()).toContain('Sign Up');
+    expect(appComponent.text()).toContain('Sign In');
+  });
+});
