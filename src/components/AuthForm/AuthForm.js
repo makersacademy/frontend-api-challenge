@@ -1,5 +1,6 @@
 import React from 'react';
 import Classes from './AuthForm.module.css';
+import AuthFormInput from '../Inputs/AuthFormInput/AuthFormInput';
 
 class AuthForm extends React.Component {
   state = {
@@ -15,8 +16,14 @@ class AuthForm extends React.Component {
   renderInputs = () => {
     const currentFields = [ ...this.state.formFields ];
     const selectedFields = this.props.isSignUp ? [currentFields[2], currentFields[3], currentFields[4]] : [currentFields[0], currentFields[1]];
-    return selectedFields.map(field => {
-      return field.placeholder;
+    return selectedFields.map((field, i) => {
+      return <AuthFormInput
+        key={`id_${i}_${field.nameå}`}
+        placeholder={field.placeholder}
+        name={field.name}
+        type={field.type}
+        validation={field.validation}
+      />
     });
   }
 

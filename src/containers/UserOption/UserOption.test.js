@@ -34,4 +34,4 @@ describe('<UserOption />', () => {
     signUpButton.simulate('click');
     expect(wrapper.text()).toContain('<AuthForm />');
   });
-})
+});
