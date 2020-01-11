@@ -20,8 +20,18 @@ describe('<UserOption />', () => {
   });
 
   it('can reveal a sign in form', () => {
+    wrapper = setup(UserOption, { option: 'Sign In', }, { active: false });
+
     const signInButton = findByTestAttr(wrapper, 'sign-in-button');
     signInButton.simulate('click');
-    expect(wrapper.text()).toContain('Enter your handle');
-  })
+    expect(wrapper.text()).toContain('<AuthForm />');
+  });
+
+  it('can reveal a sign up form', () => {
+    wrapper = setup(UserOption, { option: 'Sign Up', }, { active: false });
+
+    const signUpButton = findByTestAttr(wrapper, 'sign-up-button');
+    signUpButton.simulate('click');
+    expect(wrapper.text()).toContain('<AuthForm />');
+  });
 })

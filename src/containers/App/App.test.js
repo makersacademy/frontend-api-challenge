@@ -22,8 +22,8 @@ describe('<App />', () => {
     expect(appComponent.text()).toContain('Chitter');
   });
 
-  it('displays sign up and sign in links', () => {
-    expect(appComponent.text()).toContain('Sign Up');
-    expect(appComponent.text()).toContain('Sign In');
+  it('displays sign up and sign in user options', () => {
+    const userOptions = findByTestAttr(wrapper, 'component-user-option');
+    expect(userOptions).toHaveLength(2);
   });
 });

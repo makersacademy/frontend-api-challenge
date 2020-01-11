@@ -6,5 +6,7 @@ export const findByTestAttr = (wrapper, attr) => {
 }
 
 export const setup = (Component = null, props = {}, state = null)=> {
-  return shallow(<Component {...props} />);
+  const wrapper = shallow(<Component {...props} />);
+  if (state) wrapper.setState(state);
+  return wrapper;
 }
