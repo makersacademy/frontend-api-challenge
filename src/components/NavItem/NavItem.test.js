@@ -7,15 +7,15 @@ import NavItem from './NavItem';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('<App />', () => {
-  let wrapper;
-  let navItemComponent;
+	let wrapper;
+	let navItemComponent;
 
-  beforeEach(() => {
-    wrapper = setup(NavItem, { link: '/' });
-    navItemComponent = findByTestAttr(wrapper, 'component-nav-item');
-  });
+	beforeEach(() => {
+		wrapper = setup(NavItem, { link: '/' });
+		navItemComponent = findByTestAttr(wrapper, 'component-nav-item');
+	});
 
-  it('renders without crashing', () => {
-    expect(navItemComponent).toHaveLength(1);
-  });
+	it('renders without crashing', () => {
+		expect(navItemComponent).toHaveLength(1);
+	});
 });

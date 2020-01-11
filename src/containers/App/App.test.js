@@ -7,15 +7,15 @@ import App from './App';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('<App />', () => {
-  let wrapper;
-  let appComponent;
+    let wrapper;
+    let appComponent;
 
-  beforeEach(() => {
-    wrapper = setup(App);
-    appComponent = findByTestAttr(wrapper, 'component-app');
-  });
+    beforeEach(() => {
+        wrapper = setup(App);
+        appComponent = findByTestAttr(wrapper, 'component-app');
+    });
 
-  it('renders without crashing', () => {
-    expect(appComponent).toHaveLength(1);
-  });
+    it('renders without crashing', () => {
+        expect(appComponent).toHaveLength(1);
+    });
 });

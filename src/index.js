@@ -15,27 +15,28 @@ const rootReducer = combineReducers({
 });
 
 const logger = store => {
-  return next => {
-    return action => {
-      console.log('[Middleware] Dispatching ', action);
-      const result = next(action);
-      console.log('[Middleware]', store.getState());
-      return result;
+    return next => {
+        return action => {
+            console.log('[Middleware] Dispatching ', action);
+            const result = next(action);
+            console.log('[Middleware]', store.getState());
+            return result;
+        }
     }
-  }
 }
 
 const store = createStore(rootReducer, composeEnhancers(
-  applyMiddleware(logger, thunk)
+    applyMiddleware(logger, thunk)
 ));
 
 const app = (
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
 )
+
 ReactDOM.render(app, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
