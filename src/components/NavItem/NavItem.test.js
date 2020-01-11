@@ -6,7 +6,7 @@ import NavItem from './NavItem';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('<App />', () => {
+describe('<NavItem />', () => {
 	let wrapper;
 	let navItemComponent;
 

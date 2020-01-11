@@ -1,5 +1,6 @@
 import React from 'react';
 import Classes from './Main.module.css';
+import ChitterFeed from '../../components/ChitterFeed/ChitterFeed';
 
 class Main extends React.Component {
     render() {
@@ -9,7 +10,7 @@ class Main extends React.Component {
         return (
             <div data-test='component-main'>
                 {profileWidget}
-                <div data-test='component-chitter-feed'></div>
+                <ChitterFeed />
             </div>
         )
     }

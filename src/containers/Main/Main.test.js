@@ -6,7 +6,7 @@ import Main from './Main';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('<App />', () => {
+describe('<Main />', () => {
     let wrapper;
     let mainComponent;
 

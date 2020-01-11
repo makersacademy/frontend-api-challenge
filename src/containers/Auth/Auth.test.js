@@ -6,7 +6,7 @@ import Auth from './Auth';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-describe('<App />', () => {
+describe('<Auth />', () => {
 	let wrapper;
 	let authComponent;
 

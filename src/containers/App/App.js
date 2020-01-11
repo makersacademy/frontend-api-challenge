@@ -11,6 +11,7 @@ function App() {
 			<Switch>
 				<Route path='/' exact component={MainFeed} />
 				<Route path='/auth' component={Auth} />
+				<Route path='/main' component={MainFeed} />
 				<Redirect to='/' />
 			</Switch>
 		</div>
