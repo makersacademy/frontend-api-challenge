@@ -10,7 +10,7 @@ class Main extends React.Component {
         return (
             <div data-test='component-main'>
                 {profileWidget}
-                <ChitterFeed />
+                <ChitterFeed data-test='component-chitter-feed' />
             </div>
         )
     }

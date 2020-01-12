@@ -9,7 +9,7 @@ class MainFeed extends React.Component {
         return (
             <div className={Classes.MainFeed} data-test='component-main-feed'>
                 <NavBar data-test='component-navbar'></NavBar>
-                <Main />
+                <Main data-test='component-main' />
                 <div data-test='component-new-peep'></div>
             </div>
         );

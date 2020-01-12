@@ -10,3 +10,11 @@ export const setup = (Component = null, props = {}, state = null)=> {
     if (state) wrapper.setState(state);
     return wrapper;
 }
+
+export const axios = {
+    get: jest.fn(() => {
+        Promise.resolve({
+            data: null,
+        })
+    })
+}
