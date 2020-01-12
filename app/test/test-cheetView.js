@@ -1,6 +1,6 @@
 function displayCheetView(){
-  var cheet = new Cheet(0, "Doing the Weekend Challenge...");
-  var cheetView = new CheetView(cheet);
+  var cheetModel = new CheetModel(0, "Doing the Weekend Challenge...");
+  var cheetView = new CheetView(cheetModel);
   result = "<div>Doing the Weekend Challenge...</div>";
   expects.isTrue(cheetView.inHTML() === result);
 }

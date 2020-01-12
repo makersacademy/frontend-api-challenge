@@ -1,0 +1,22 @@
+{
+  "name": "cheeter_js",
+  "version": "1.0.0",
+  "description": "a small Twitter clone that will allow the users to post messages to a public stream.",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathanPalma-code/frontend-api-challenge.git"
+  },
+  "author": "Jonathan Palma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonathanPalma-code/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/JonathanPalma-code/frontend-api-challenge#readme"
+}

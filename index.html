@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chitter</title>
-
   <!-- Sources -->
-  <script src='./src/cheetModel.js'></script>
-  <script src='./src/cheetListModel.js'></script>
-  <script src='./src/cheetView.js'
-  <script src='./src/cheetListView.js'></script>
-
+  <script src='./app/src/cheetModel.js'></script>
+  <script src='./app/src/cheetListModel.js'></script>
+  <script src='./app/src/cheetView.js'></script>
+  <script src='./app/src/cheetListView.js'></script>
+  <script src='./app/src/cheetListController.js'></script>
   <!-- Helper's Script -->
   <script src='./test.js'></script>
-
   <!-- Tests -->
-  <script src='./test/test-cheetModel.js'></script>
-  <script src='./test/test-cheetListModel.js'></script>
-  <script src='./test/test-cheetView.js'
-  <script src='./test/test-cheetListView.js'></script>
+  <script src='./app/test/test-cheetModel.js'></script>
+  <script src='./app/test/test-cheetListModel.js'></script>
+  <script src='./app/test/test-cheetView.js'></script>
+  <script src='./app/test/test-cheetListView.js'></script>
 
 </head>
 <body>
-  
+
+  <div><h1>Chitter</h1></div>
+  <div>
+    <form id='text' action='#cheet/new' method='POST'>
+      <textarea rows='4' cols='50' name='textarea' type='text' placeholder='Insert your cheet here...'></textarea>
+      <br><button type='submit'>Cheet</button>
+    </form>
+  </div>
+  <div id='app'>hello</div>
+  <div id='cheet'></div>
+  <script src='./app/src/cheetListController.js'></script>
+  <script>
+    var listOfCheets = new CheetListController(new CheetListModel());
+    listOfCheets.fullCheet();
+    listOfCheets.makeUrlChangeCheetForCurrentPage();
+    listOfCheets.formSubmit();
+  </script>
+
 </body>
 </html>

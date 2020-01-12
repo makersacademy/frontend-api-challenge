@@ -3,6 +3,7 @@ var CheetView = function(post){
 }
 
 CheetView.prototype = (function(){
+
   function inHTML(){
     return `<div>${this.post.post}</div>`;
   }return{
