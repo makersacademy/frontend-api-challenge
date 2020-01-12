@@ -1,4 +1,5 @@
-var Post = function(text){
+var Post = function(id, text){
+  this.id = id;
   this.text = text;
 }
 

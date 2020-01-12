@@ -1,6 +1,6 @@
 function displayNotes(){
-  var post = new Post("Doing the Weekend Challenge...");
-  expected.isTrue(post.display() == "Doing the Weekend Challenge...")
+  var post = new Post(0, "Doing the Weekend Challenge...");
+  expects.isTrue(post.display() === "Doing the Weekend Challenge...")
 }
 
 displayNotes();
