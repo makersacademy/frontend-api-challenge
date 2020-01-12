@@ -1,11 +1,11 @@
-var ListOfPosts = function(){
+var ListOfCheets = function(){
   this.list = [];
   this.id = 0;
 }
 
-ListOfPosts.prototype = (function(){
-  function add(text){
-    this.list.push(new Post(this.id, text));
+ListOfCheets.prototype = (function(){
+  function add(post){
+    this.list.push(new Cheet(this.id, post));
     this.id ++;
   }
 
