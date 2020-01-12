@@ -43,4 +43,10 @@ describe('<Peep />', () => {
         const luvs = findByTestAttr(wrapper, 'number-of-luvs');
         expect(luvs).toHaveLength(1);
     });
+
+    it('lets a user luv a peep', () => {
+        const luvIcon = findByTestAttr(wrapper, 'luv-icon');
+        luvIcon.simulate('click');
+        expect(wrapper.state('isLuvd')).toBe(true);
+    })
 });

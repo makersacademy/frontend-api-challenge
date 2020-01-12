@@ -40,6 +40,12 @@
 .FooterRight {
     width: 20%;
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.FooterRight img {
+    padding-left: 10px;
 }
 
 .PeepBody {
