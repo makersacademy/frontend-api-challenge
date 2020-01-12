@@ -1,0 +1,24 @@
+.UserOption {
+    width: 300px;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+.Button {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.light {
+    background: #b0abdb;
+}
+
+.Button.dark {
+    color: #cecef4;
+}
+
+.dark {
+    background: #1e204d;
+}

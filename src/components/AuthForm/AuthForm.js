@@ -32,6 +32,7 @@ class AuthForm extends React.Component {
             validation={field.validation}
             onChange={(e) => { this.handleChange(e, field.name) }}
             value={field.value}
+            color={this.props.color}
         />
         });
     }
@@ -45,7 +46,8 @@ class AuthForm extends React.Component {
                 <button 
                 type='submit'
                 value={'Submit'}
-                data-test='submit-button'>Submit</button>
+                data-test='submit-button'
+                className={Classes.SubmitButton}>Submit</button>
             </div>
         );
     }

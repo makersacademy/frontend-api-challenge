@@ -1,0 +1,9 @@
+.ChitterFeed {
+    width: 100%;
+    position: absolute;
+    top: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

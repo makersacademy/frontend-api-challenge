@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Classes from './App.module.css';
 import Auth from '../Auth/Auth';
 import MainFeed from '../MainFeed/MainFeed';
+import Peep from '../../components/Peep/Peep';
 
 function App() {
 	return (

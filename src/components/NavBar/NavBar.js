@@ -6,7 +6,7 @@ class NavBar extends React.Component {
     render() {
         return (
             <nav className={Classes.NavBar} data-test='component-navbar'>
-                <NavItem link={'/'} data-test='component-nav-item'>Main Feed</NavItem>
+                <NavItem link={'/main'} data-test='component-nav-item'>Main Feed</NavItem>
                 <NavItem link={'/'} data-test='component-nav-item'>My Profile</NavItem>
             </nav>
         );
