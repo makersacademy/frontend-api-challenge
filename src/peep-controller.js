@@ -1,15 +1,19 @@
-function PeepController (peeps) {
-  this.peeps = peeps
-}
+(function (exports) {
+  var self
 
-PeepController.prototype = (function () {
-  function displayPeeps (element = $('#app')) {
-    var peepHTML = this.peeps.display()
-    console.log(this.peeps.display())
-    element.innerHTML = peepHTML
+  function PeepController (apiModel, peepListView) {
+    this.apiModel = apiModel
+    this.peepListView = peepListView
+    self = this
+    displayPeeps();
   }
 
-  return {
-    displayPeeps: displayPeeps
+  function displayPeeps () {
+    self.apiModel.getPeeps(function(peepData) {
+      var element = $('#app')
+      element.html(self.peepListView.toHTML(peepData))
+    })
   }
-})()
+
+  exports.PeepController = PeepController
+})(this)
