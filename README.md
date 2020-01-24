@@ -1,30 +1,17 @@
 # Chitter API Frontend Challenge
 
-This is my attempt at the Makers Academy Frontend API challenge:
+This is my version at the Makers Academy Frontend API challenge:
 
 ```
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
-
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
-
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
-
-Here are some interactions the API supports. Implement as many as you see fit.
-
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+Write a small Twitter clone that will allow the users to post messages to a public stream.
+Someone has already built a backend API for you and hosted it on Heroku.
+Build a front-end single-page-app to interface with this API: https://github.com/makersacademy/chitter_api_backend
 ```
 
-I have managed to implement the following:
+The following features are implemented:
 
-- Viewing all peeps
-- Creating a user
-- Logging in
+- User can view all peeps
+- User can sign up
+- User can log in
 
-I am still attempting to be able to get the user to post a peep.
+The next feature I would implement is to allow the user to post a peep.
