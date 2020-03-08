@@ -1,0 +1,32 @@
+
+#main {
+  width: 400px;
+  margin: 10px auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: lightpink;
+  border: 1px dotted white;
+}
+
+.button {
+  background-color: lightpink;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font: normal 13px Verdana, sans-serif;
+}
+
+.button2 {
+  background-color: lightpink;
+  border: 1px dotted white;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font: normal 13px Verdana, sans-serif;
+}
