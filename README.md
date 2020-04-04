@@ -1,38 +1,69 @@
 # Chitter API Frontend Challenge
+Makers weekend challenge (week 7)
 
-* Challenge time: rest of the day and weekend, until Monday 9am
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+**Tech used**:
+Javascript,
+Jasmine
 
-Challenge:
--------
+## Project aim
+To build a front-end single-page-app that interfaces with a [backend Twitter clone API](https://github.com/makersacademy/chitter_api_backend). This app will allow users to post messages to a public stream.
 
-As usual please start by forking this repo.
+### Primary aims
+* To be able to view all peeps.
+* To be able to view individual peeps.
+* To be able to post a peep.
+* To be able to create a user.
+* To be able to log in.
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+### Secondary aims
+* To be able to delete peeps
+* To be able to like and unlike peeps
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
+**User stories**
+```
+As an unregistered user
+So that I may see what's going on
+I want to see all Peeps by all users
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+As an unregistered user
+So that I can look at a peep I find interesting
+I want to be able to see an individual Peep
 
-Here are some interactions the API supports. Implement as many as you see fit.
+As an unregistered user
+So that I can make a Peep
+I want to be able to create an account
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+As a registered user
+So that I can use my account
+I want to be able to log in
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+As a logged in user
+So I can share my experiences
+I want to be able to post a Peep
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+As a logged in user
+So that I can change my mind
+I want to be able to delete my Peeps
+
+As a logged in user
+So that I can show my appreciation
+I want to be able to like a Peep
+
+As a logged in user
+So that I can change my mind
+I want to be able to unlike a Peep
+```
+
+## Installation instructions
+* NPM
+* npm install http-server --save
+* node node_modules/http-server/bin/http-server
+
+Installed and used [Insomnia](https://insomnia.rest/) to help explore the API
+
+
 
 ## Utilities you might find useful
 
 * [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+
