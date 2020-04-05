@@ -3,7 +3,9 @@ Makers weekend challenge (week 7)
 
 **Tech used**:
 Javascript,
-Jasmine
+Jasmine,
+
+Linter: ESLint
 
 ## Project aim
 To build a front-end single-page-app that interfaces with a [backend Twitter clone API](https://github.com/makersacademy/chitter_api_backend). This app will allow users to post messages to a public stream.
@@ -58,6 +60,7 @@ I want to be able to unlike a Peep
 * NPM
 * npm install http-server --save
 * node node_modules/http-server/bin/http-server
+* For linter: npx eslint yourfile.js
 
 Installed and used [Insomnia](https://insomnia.rest/) to help explore the API
 
