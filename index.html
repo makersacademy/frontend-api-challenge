@@ -6,14 +6,21 @@
     <title>Frontend Chitter clone</title>
   </head>
   <body>
-    <section id="all-peeps">
+    <button action="/#sign-up" method="get" id="sign-up">
+      <a href='#sign-up'>
+      <input type="submit" value="Sign up" />
+    </a>
+    </button>
+    <section id="otherpage"></section>
 
-    </section>
-  
-
+    <section id="all-peeps"></section>
   
     <script src="./src/view/peeps-view.js"></script>
+    <script src="./src/model/peep-model.js"></script>
+    <script src="./src/view/single-peep-view.js"></script>
+    <script src="./src/model/sign-up-model.js"></script>
+    <script src="./src/view/sign-up-view.js"></script>
     <script src="./src/controller/Controller.js"></script>
-    <script> peepController = new PeepController();</script>
+  <script> Controller = new Controller();</script>
   </body>
 </html>
