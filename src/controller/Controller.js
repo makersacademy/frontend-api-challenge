@@ -16,23 +16,14 @@
     document.getElementById('all-peeps').innerHTML = await peepsview.addHTML();
   }
 
-  async function showSinglePeep() {
-    var peepId = window.location.hash.split('#')[1];
-    console.log(peepId)
-    const singleresponse = await fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`)
-    const peep = await singleresponse.json();
-    const singlePeepData = [];
-    await singlePeepData.push(peep.id, peep.body, (peep.created_at).slice(0, 10), peep.user.handle, (peep.likes).length);
-    console.log(singlePeepData)
-    let peepslist = new PeepList(singlePeepData);
-    console.log(peepslist)
-    let mypeep = this.singlePeep.getPeepByID([peepId]);
-    console.log(mypeep)
-
-    // window.addEventListener('hashchange', function(){
-    //   document.getElementById('all-peeps').innerHTML = peepslist.getPeepByID([peepId]);
-    // }, false);
-  };
+    //This should pull the data from the single peep view code but doesn't at present because I haven't finished it yet
+    Controller.prototype.showPeep = function(){
+        window.addEventListener('hashchange', function(){
+          var peepId = window.location.hash.split('#')[1];
+          var peepId_integer = Number(peepId)
+      document.getElementById('all-peeps').innerHTML = peepslist.getPeepByID(peepId_integer);
+    }, false);
+    }
   
   
   
@@ -55,7 +46,7 @@
   // });
 
    getAllPeeps();
-  showSinglePeep();
+
    exports.Controller = Controller;
   //  exports.Controller.signUp = Controller.signUp;
 
