@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:testing-library/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -21,6 +22,7 @@ module.exports = {
   },
   plugins: [
     'react',
+    'testing-library'
   ],
   rules: {
   },
