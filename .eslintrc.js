@@ -3,11 +3,14 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
+    jest: true
   },
   extends: [
     'plugin:react/recommended',
     'airbnb',
     'plugin:testing-library/recommended',
+    'plugin:testing-library/react',
+    'plugin:jest-dom/recommended'
   ],
   globals: {
     Atomics: 'readonly',
@@ -22,7 +25,8 @@ module.exports = {
   },
   plugins: [
     'react',
-    'testing-library'
+    'testing-library',
+    'jest-dom'
   ],
   rules: {
   },
