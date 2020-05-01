@@ -1,9 +1,8 @@
 import React from 'react';
 
-class Peep extends React.Component {
-  render() {
-    return <div>This is a peep</div>;
-  }
+function Peep({text}) {
+  //const text = 'This is a peep';
+  return <div>{text}</div>;
 }
 
 export default Peep;

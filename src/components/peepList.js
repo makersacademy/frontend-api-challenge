@@ -1,14 +1,15 @@
 import React from 'react';
+import Peep from './peep';
 
-class PeepList extends React.Component {
-  render() {
-    return (
-      <div>
-        <div>This is a peep</div>
-        <div>This is also a peep</div>
-      </div>
-    );
-  }
+function PeepList() {
+  const peeps = ['This is a peep', 'This is also a peep'].map((peep) => (
+    <Peep key={peep} text={peep} />
+  ));
+  return (
+    <div>
+      {peeps}
+    </div>
+  );
 }
 
 export default PeepList;
