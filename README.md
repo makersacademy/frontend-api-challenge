@@ -44,3 +44,9 @@ npx create-react-app <app-name>
 mv * ../frontend-api-challenge
 ```
 
+## Set up eslint
+
+## Displaying a list of peeps
+
+Create a simple peep component with placeholder text and a test that tests the placeholder text renders
+
