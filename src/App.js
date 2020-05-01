@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Peep from './components/peep';
+import PeepList from './components/peepList';
 
 function App() {
   return (
     <div className="App">
-      <Peep />
+      <PeepList />
     </div>
   );
 }
