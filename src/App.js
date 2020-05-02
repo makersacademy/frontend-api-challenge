@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from './components/header';
-import PeepList from './components/peepList';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Main from './components/main';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <PeepList />
-    </div>
+    <Router>
+      <Main />
+    </Router>
   );
 }
 

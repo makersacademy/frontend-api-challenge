@@ -15,6 +15,7 @@ function PeepList() {
 
   return (
     <div>
+      <h1>Peeps</h1>
       {peeps.map((peep) => (<Peep key={peep.id} text={peep.body} userHandle={peep.user.handle} />))}
     </div>
   );

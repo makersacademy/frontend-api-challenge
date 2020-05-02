@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpLogIn from './signUpLogIn';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const styles = {
@@ -15,7 +15,7 @@ function Header() {
   return (
     <div style={styles}>
       <div>Chitter</div>
-      <SignUpLogIn />
+      <div style={{ fontSize: '16px' }}><Link to="/sign-up-log-in">Sign up/Log in</Link></div>
     </div>
   );
 }
