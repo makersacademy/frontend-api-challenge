@@ -56,3 +56,5 @@ Create a simple peep component with placeholder text and a test that tests the p
 - added jest-fetch-mock and a mutation observer shim as described here:- https://github.com/testing-library/dom-testing-library/releases/tag/v7.0.0
 - added the mutation observer shim to the global window
 - converted the test to by asynchronous
+
+## Add peep author to peep and style peeps slightly
