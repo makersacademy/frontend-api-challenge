@@ -12,6 +12,10 @@ function SignUpLogIn() {
           <label htmlFor="password">Password:</label>
           <input type="password" name="password" id="password" />
         </div>
+        <div>
+          <button type="button">Sign up</button>
+          <button type="button">Log in</button>
+        </div>
       </form>
     </div>
   );
