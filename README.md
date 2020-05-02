@@ -58,3 +58,9 @@ Create a simple peep component with placeholder text and a test that tests the p
 - converted the test to by asynchronous
 
 ## Add peep author to peep and style peeps slightly
+
+## Add a header with a link to a signup/login page
+
+## Add a simple form for signing up and logging in
+
+## Implement logic and post request for signing up
