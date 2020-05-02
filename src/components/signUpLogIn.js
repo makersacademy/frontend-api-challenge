@@ -35,7 +35,29 @@ function SignUpLogIn() {
 
   const handleLogin = (evt) => {
     evt.preventDefault();
-    history.push('/peeps');
+    const data = { session: { handle: name, password: password } };
+
+    function processLoginResponse(response) {
+      if (response.errors !== undefined) {
+        setMessage('Sorry, invalid username or password, please try again');
+      } else {
+        setMessage('All good, nothing to see here');
+      }
+    }
+
+    async function sendLoginRequest() {
+      fetch('https://chitter-backend-api-v2.herokuapp.com/sessions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }).then((response) => response.json())
+        .then((responseJSON) => { processLoginResponse(responseJSON); });
+    }
+
+    sendLoginRequest();
+    //history.push('/peeps');
   };
 
   return (

@@ -40,3 +40,15 @@ describe('signing up', () => {
     await waitFor(() => expect(screen.getByText('Successfully signed up. Please log in')));
   });
 });
+
+describe('logging in', () => {
+  test('rejects a login if the username or password are invalid', async () => {
+    fetch.mockResponseOnce(JSON.stringify({ errors: { password: 'Invalid username or password' } }));
+    render(<Router><SignUp /></Router>);
+
+    const nameField = screen.getByLabelText('Name:');
+    fireEvent.change(nameField, { target: { value: 'Phil' } });
+    fireEvent.click(screen.getByText('Log in'));
+    await waitFor(() => expect(screen.getByText('Sorry, invalid username or password, please try again')));
+  });
+});
