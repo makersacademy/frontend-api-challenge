@@ -1,10 +1,12 @@
 import React from 'react';
 
 function SignUpLogIn() {
+  const styles = {
+    fontSize: '16px',
+  };
+
   return (
-    <div>
-      <h1>Sign up/Log in</h1>
-    </div>
+    <div style={styles}>Sign up/Log in</div>
   );
 }
 
