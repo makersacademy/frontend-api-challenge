@@ -5,7 +5,18 @@ import PeepList from '../peepList';
 // the anonmyous function has to be async so we can use await
 test('renders the two peeps in the list', async () => {
   // mocks the next call to fetch, returning the argument specified
-  fetch.mockResponseOnce(JSON.stringify([{ id: '1', body: 'This is a peep' }, { id: 2, body: 'This is also a peep' }]));
+  fetch.mockResponseOnce(JSON.stringify([
+    {
+      id: '1',
+      body: 'This is a peep',
+      user: { id: '1', handle: 'Phil' },
+    },
+    {
+      id: 2,
+      body: 'This is also a peep',
+      user: { id: 2, handle: 'Su' },
+    },
+  ]));
 
   render(<PeepList />);
 

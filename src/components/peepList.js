@@ -16,7 +16,7 @@ function PeepList() {
 
   return (
     <div>
-      {peeps.map((peep) => (<Peep key={peep.id} text={peep.body} />))}
+      {peeps.map((peep) => (<Peep key={peep.id} text={peep.body} userHandle={peep.user.handle} />))}
     </div>
   );
 }
