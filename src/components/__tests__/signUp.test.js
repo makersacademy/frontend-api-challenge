@@ -4,5 +4,6 @@ import SignUp from '../signUpLogIn';
 
 test('renders the heading', () => {
   render(<SignUp />);
-  expect(screen.getByText('Sign up or Log in')).toBeInTheDocument();
+  expect(screen.getByLabelText('Name:')).toBeInTheDocument();
+  expect(screen.getByLabelText('Password:')).toBeInTheDocument();
 });

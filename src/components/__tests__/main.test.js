@@ -21,5 +21,5 @@ test('renders signup when you click the signup link', async () => {
   await waitFor(() => expect(screen.getByText('Peeps')));
 
   fireEvent.click(screen.getByText('Sign up/Log in'));
-  expect(screen.getByText('Sign up or Log in')).toBeInTheDocument();
+  expect(screen.getByLabelText('Name:')).toBeInTheDocument();
 });
