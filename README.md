@@ -1,6 +1,6 @@
 # Chitter API Frontend Challenge
 
-![screenshot](./chitter.png)
+![screenshot](./Chitter.png)
 Challenge:
 -------
 
