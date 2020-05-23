@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function SignUpLogIn() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const history = useHistory();
 
   const handleSignup = (evt) => {
@@ -14,21 +14,21 @@ function SignUpLogIn() {
     function processSignupResponse(response) {
       if (
         response.handle !== undefined &&
-        response.handle[0] === "has already been taken"
+        response.handle[0] === 'has already been taken'
       ) {
         setMessage(
-          "Sorry, that name has already been taken, please choose another"
+          'Sorry, that name has already been taken, please choose another'
         );
       } else {
-        setMessage("Successfully signed up. Please log in");
+        setMessage('Successfully signed up. Please log in');
       }
     }
 
     async function sendSignupRequest() {
-      fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
-        method: "POST",
+      fetch('https://chitter-backend-api-v2.herokuapp.com/users', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       })
@@ -47,17 +47,17 @@ function SignUpLogIn() {
 
     function processLoginResponse(response) {
       if (response.errors !== undefined) {
-        setMessage("Sorry, invalid username or password, please try again");
+        setMessage('Sorry, invalid username or password, please try again');
       } else {
-        setMessage("All good, nothing to see here");
+        setMessage('All good, nothing to see here');
       }
     }
 
     async function sendLoginRequest() {
-      fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
-        method: "POST",
+      fetch('https://chitter-backend-api-v2.herokuapp.com/sessions', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       })
@@ -68,7 +68,7 @@ function SignUpLogIn() {
     }
 
     sendLoginRequest();
-    history.push("/peeps");
+    history.push('/peeps');
   };
 
   return (
