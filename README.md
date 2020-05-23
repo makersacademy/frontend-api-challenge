@@ -2,7 +2,8 @@
 
 ![screenshot](./Chitter.png)
 Challenge:
--------
+
+---
 
 We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
 
@@ -12,14 +13,14 @@ Your task is to build a front-end single-page-app to interface with this API. Yo
 
 Here are some interactions the API supports. Implement as many as you see fit.
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+- Creating Users
+- Logging in
+- Posting Peeps
+- Viewing all Peeps _(I suggest you start here)_
+- Viewing individual Peeps
+- Deleting Peeps
+- Liking Peeps
+- Unliking Peeps
 
 # My approach
 
@@ -66,9 +67,11 @@ npm test
 ### Use create-react-app to set up a skeleton react project
 
 React comes with an extremely helpful utility that sets up a working 'hello-world'-like application for you. It is run with:
+
 ```bash
 npx create-react-app <app-name>
 ```
+
 and provides a number of npm scripts that allow you to run and test your project.
 
 ### Set up eslint
@@ -106,22 +109,22 @@ This was hard. Really, really hard. I managed to implement everything except how
 
 The obvious challenge, and why I approached it the way I did, was to learn a new framework while building the application.
 
-I found the subtlties in syntax difficult to understand and first, particularly the JSX, and using hooks was initially extremely counterintuitive to me.
+I found the subtleties in syntax difficult to understand and first, particularly the JSX, and using hooks was initially extremely counterintuitive to me.
 
 I eventually came to a halt trying to work with contexts in a way that would allow the application to know when someone was logged in and be able to log people in and out. I got as far as creating and accessing the context, but could not work out how to update its values. This was a shame, as it meant I was unable to implement features that relied on the user being logged in.
 
 ### Testing
 
-Alongside that I had to learn a new test framework. What I thought looked like a relatively simple API proved to be far more complex than I anticipated. 
+Alongside that I had to learn a new test framework. What I thought looked like a relatively simple API proved to be far more complex than I anticipated.
 
 - successfully mocking fetch api calls took me a long time to get right. I ended up using a third-party library to simplify things a little.
 - just correctly using the right matchers in the right places, and manipulating the results was also difficult
 - I had never really worked with asynchronous tests before, and I initially didn't really understand the differences and what that meant to how I needed to write the tests.
 
-Due to the above I found it difficult to adhere strictly to test-driven development. At times I had no idea how to implement a particular thing , what a test's inputs and outputs should be, or even what exactly I should be testing. As a result, I ended up doing a lot of 'spiking' - writing fast and dirty code to understand an implementation, before writing the test. 
+Due to the above I found it difficult to adhere strictly to test-driven development. At times I had no idea how to implement a particular thing , what a test's inputs and outputs should be, or even what exactly I should be testing. As a result, I ended up doing a lot of 'spiking' - writing fast and dirty code to understand an implementation, before writing the test.
 
 Towards the end of my time on the challenge things started to click though, and I felt I was properly following the TDD process of writing failing tests before making them pass.
 
 ## Future work
 
-I thoroughly enjoyed the parts of React I learned doing this challenge, and I fully intend to come back to it to complete the implementation. There is obviously still a lot to do, but I'm extremely proud of how much I learned and what I was able to get done in such a short (12 hours) timeframe.
+I thoroughly enjoyed the parts of React I learned doing this challenge, and I fully intend to come back to it to complete the implementation. There is obviously still a lot to do, but I'm extremely proud of how much I learned and what I was able to get done in such a short (12 hours) time frame.
