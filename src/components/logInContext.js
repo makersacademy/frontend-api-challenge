@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 const LogInContext = React.createContext([{}, () => {}, () => {}]);
 
 function LogInProvider({ children }) {
-  const [state, setState] = useState({ user_id: '', session_key: '' });
+  const [state, setState] = useState({
+    user_id: '',
+    session_key: '',
+    handle: '',
+  });
 
   function login(loginState, name) {
     setState({
