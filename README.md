@@ -128,3 +128,7 @@ Towards the end of my time on the challenge things started to click though, and 
 ## Future work
 
 I thoroughly enjoyed the parts of React I learned doing this challenge, and I fully intend to come back to it to complete the implementation. There is obviously still a lot to do, but I'm extremely proud of how much I learned and what I was able to get done in such a short (12 hours) time frame.
+
+## TODO
+
+- unit test for signUpLogin when log in is successful. How to test that the page has been rerouted when the component is isolated?
