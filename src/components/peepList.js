@@ -6,7 +6,9 @@ function PeepList() {
 
   useEffect(() => {
     async function fetchPeeps() {
-      const data = await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps');
+      const data = await fetch(
+        'https://chitter-backend-api-v2.herokuapp.com/peeps'
+      );
       data.json().then((peepsData) => setPeeps(peepsData));
     }
 
@@ -16,7 +18,9 @@ function PeepList() {
   return (
     <div>
       <h1>Peeps</h1>
-      {peeps.map((peep) => (<Peep key={peep.id} text={peep.body} userHandle={peep.user.handle} />))}
+      {peeps.map((peep) => (
+        <Peep key={peep.id} text={peep.body} userHandle={peep.user.handle} />
+      ))}
     </div>
   );
 }
