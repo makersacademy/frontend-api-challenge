@@ -5,7 +5,7 @@ function NewPeep() {
     <div>
       <form>
         <label htmlFor="text">Text:</label>
-        <input type="text" name="text" id="text" />
+        <textarea name="text" id="text" />
       </form>
     </div>
   );
