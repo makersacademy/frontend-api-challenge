@@ -62,3 +62,22 @@ test('renders the welcome message when logged in', () => {
   );
   expect(screen.getByText('Welcome Phil')).toBeInTheDocument();
 });
+
+test('renders the new peep link when logged in', () => {
+  render(
+    <Router>
+      <LoginContext.Provider
+        value={[
+          { handle: 'Phil' },
+          null,
+          () => {
+            return true;
+          },
+        ]}
+      >
+        <Header />
+      </LoginContext.Provider>
+    </Router>
+  );
+  expect(screen.getByText('New Peep')).toBeInTheDocument();
+});

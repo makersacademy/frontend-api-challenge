@@ -19,7 +19,10 @@ function Header() {
     <div style={styles}>
       <div>Chitter</div>
       {isLoggedIn() ? (
-        <div>{`Welcome ${loginState.handle}`}</div>
+        <>
+          <div>{`Welcome ${loginState.handle}`}</div>
+          <div>New Peep</div>
+        </>
       ) : (
         <div style={{ fontSize: '16px' }}>
           <Link to="/sign-up-log-in">Sign up/Log in</Link>
