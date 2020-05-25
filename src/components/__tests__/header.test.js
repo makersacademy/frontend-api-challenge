@@ -80,4 +80,5 @@ test('renders the new peep link when logged in', () => {
     </Router>
   );
   expect(screen.getByText('New Peep')).toBeInTheDocument();
+
 });
