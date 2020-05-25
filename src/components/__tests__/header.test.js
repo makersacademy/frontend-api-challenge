@@ -24,3 +24,41 @@ test('renders the heading', () => {
   );
   expect(screen.getByText('Chitter')).toBeInTheDocument();
 });
+
+test('renders the login/signup link when not logged in', () => {
+  render(
+    <Router>
+      <LoginContext.Provider
+        value={[
+          '',
+          null,
+          () => {
+            return false;
+          },
+        ]}
+      >
+        <Header />
+      </LoginContext.Provider>
+    </Router>
+  );
+  expect(screen.getByText('Sign up/Log in')).toBeInTheDocument();
+});
+
+test('renders the welcome message when logged in', () => {
+  render(
+    <Router>
+      <LoginContext.Provider
+        value={[
+          { handle: 'Phil' },
+          null,
+          () => {
+            return true;
+          },
+        ]}
+      >
+        <Header />
+      </LoginContext.Provider>
+    </Router>
+  );
+  expect(screen.getByText('Welcome Phil')).toBeInTheDocument();
+});
