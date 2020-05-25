@@ -101,7 +101,7 @@ describe('logging in', () => {
     );
   });
 
-  test('reroutes to peeps list on successful login', async () => {
+  test('accepts a login with valid details', async () => {
     fetch.mockResponseOnce(
       JSON.stringify({ user_id: '1', session_key: 'abcd' })
     );
