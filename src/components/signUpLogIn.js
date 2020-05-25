@@ -6,9 +6,8 @@ function SignUpLogIn() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [, login] = useContext(LogInContext);
-  const history = useHistory();
   const [, login] = useContext(LoginContext);
+  const history = useHistory();
 
   const handleSignup = (evt) => {
     evt.preventDefault();
