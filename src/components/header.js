@@ -21,7 +21,9 @@ function Header() {
       {isLoggedIn() ? (
         <>
           <div>{`Welcome ${loginState.handle}`}</div>
-          <div>New Peep</div>
+          <div style={{ fontSize: '16px' }}>
+            <Link to="/new-peep">New Peep</Link>
+          </div>
         </>
       ) : (
         <div style={{ fontSize: '16px' }}>
