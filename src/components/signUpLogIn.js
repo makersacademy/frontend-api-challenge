@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import LoginContext from './loginContext';
 
 function SignUpLogIn() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const history = useHistory();
+  const [, login] = useContext(LoginContext);
 
   const handleSignup = (evt) => {
     evt.preventDefault();
@@ -50,6 +52,8 @@ function SignUpLogIn() {
         setMessage('Sorry, invalid username or password, please try again');
       } else {
         setMessage('All good, nothing to see here');
+        login(response.user_id, response.session_key, name);
+        history.push('/peeps');
       }
     }
 
@@ -68,7 +72,6 @@ function SignUpLogIn() {
     }
 
     sendLoginRequest();
-    history.push('/peeps');
   };
 
   return (

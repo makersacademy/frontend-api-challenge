@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import LoginContext from './loginContext';
 
 function Header() {
   const styles = {
@@ -12,10 +13,18 @@ function Header() {
     borderBottom: '1px solid black',
   };
 
+  const [loginState, , isLoggedIn] = useContext(LoginContext);
+
   return (
     <div style={styles}>
       <div>Chitter</div>
-      <div style={{ fontSize: '16px' }}><Link to="/sign-up-log-in">Sign up/Log in</Link></div>
+      {isLoggedIn() ? (
+        <div>{`Welcome ${loginState.handle}`}</div>
+      ) : (
+        <div style={{ fontSize: '16px' }}>
+          <Link to="/sign-up-log-in">Sign up/Log in</Link>
+        </div>
+      )}
     </div>
   );
 }
