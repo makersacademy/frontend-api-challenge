@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import LoginContext from './loginContext';
 
 function Header() {
-  const [state, , isLoggedIn] = useContext(LogInContext);
-
   const styles = {
     display: 'flex',
     justifyContent: 'space-between',
