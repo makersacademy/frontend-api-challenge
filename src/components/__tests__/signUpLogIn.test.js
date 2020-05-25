@@ -1,13 +1,16 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { BrowserRouter, MemoryRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import SignUpLogIn from '../signUpLogIn';
+import LoginContext from '../loginContext';
 
 describe('basic rendering', () => {
   test('renders the input boxes and labels', () => {
     render(
       <BrowserRouter>
-        <SignUpLogIn />
+        <LoginContext.Provider value={['', null, '']}>
+          <SignUpLogIn />
+        </LoginContext.Provider>
       </BrowserRouter>
     );
     expect(screen.getByLabelText('Name:')).toBeInTheDocument();
@@ -17,7 +20,9 @@ describe('basic rendering', () => {
   test('renders the buttons', () => {
     render(
       <BrowserRouter>
-        <SignUpLogIn />
+        <LoginContext.Provider value={['', null, '']}>
+          <SignUpLogIn />
+        </LoginContext.Provider>
       </BrowserRouter>
     );
 
@@ -34,7 +39,9 @@ describe('signing up', () => {
     );
     render(
       <BrowserRouter>
-        <SignUpLogIn />
+        <LoginContext.Provider value={['', null, '']}>
+          <SignUpLogIn />
+        </LoginContext.Provider>
       </BrowserRouter>
     );
 
@@ -54,7 +61,9 @@ describe('signing up', () => {
     fetch.mockResponseOnce(JSON.stringify({ handle: 'Phil', id: '1' }));
     render(
       <BrowserRouter>
-        <SignUpLogIn />
+        <LoginContext.Provider value={['', null, '']}>
+          <SignUpLogIn />
+        </LoginContext.Provider>
       </BrowserRouter>
     );
 
@@ -74,7 +83,9 @@ describe('logging in', () => {
     );
     render(
       <BrowserRouter>
-        <SignUpLogIn />
+        <LoginContext.Provider value={['', null, '']}>
+          <SignUpLogIn />
+        </LoginContext.Provider>
       </BrowserRouter>
     );
 
@@ -90,5 +101,23 @@ describe('logging in', () => {
     );
   });
 
-  test('reroutes to peeps list on successful login', async () => {});
+  test('accepts a login with valid details', async () => {
+    fetch.mockResponseOnce(
+      JSON.stringify({ user_id: '1', session_key: 'abcd' })
+    );
+
+    const login = jest.fn();
+    render(
+      <BrowserRouter>
+        <LoginContext.Provider value={['', login, '']}>
+          <SignUpLogIn />
+        </LoginContext.Provider>
+      </BrowserRouter>
+    );
+
+    const nameField = screen.getByLabelText('Name:');
+    fireEvent.change(nameField, { target: { value: 'Phil' } });
+    await waitFor(() => fireEvent.click(screen.getByText('Log in')));
+    expect(login).toHaveBeenCalledWith('1', 'abcd', 'Phil');
+  });
 });
