@@ -6,13 +6,14 @@ describe('ChitterRequest', function() {
   })
   describe('getPeeps', function() {
     it('loads an array from an ajax request', async function() {
-      const result = await chitterRequest.getPeeps();
+      var result = await chitterRequest.getPeeps();
+      console.log(result)
       expect(result).toBeInstanceOf(Array)
     })
 
     it('contains peep information', async function() {
-      const result = await chitterRequest.getPeeps();
-      expect(result[0].body).toBeInstanceOf(String)
+      var result = await chitterRequest.getPeeps();
+      expect(result[0]).toBeInstanceOf(Peep)
     })
   })
 })
