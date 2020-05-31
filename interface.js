@@ -1,7 +1,6 @@
 'use strict';
 
 let requestResult = []
-let chitterRequest = new ChitterRequest()
 $(document).ready(function() {
 
   let buttonElement = $('<button>', {})
@@ -27,7 +26,7 @@ $(document).ready(function() {
 })
 
 function showPeepList() {
-  chitterRequest.getPeeps().then(function(peepList) {
+  Peep.getPeeps().then(function(peepList) {
     peepList.forEach(function(peep) {
       let pElement = $("<p>", {"class": "peeps"})
       pElement.text(peep.getBody())

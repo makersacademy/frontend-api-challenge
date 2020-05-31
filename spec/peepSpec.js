@@ -11,4 +11,11 @@ describe('Peep', function() {
       expect(peep.getBody()).toEqual(peepBody)
     })
   })
+
+  describe('.getPeeps', function() {
+    it('loads an array from an ajax request', async function() {
+      var result = await Peep.getPeeps();
+      expect(result).toBeInstanceOf(Array)
+    })
+  })
 })
