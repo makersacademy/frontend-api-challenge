@@ -1,6 +1,6 @@
 # Chitter API Frontend Challenge
 
-[![Build Status](https://travis-ci.com/will-head/frontend-api-challenge.svg?branch=master)](https://api.travis-ci.com/will-head/frontend-api-challenge.svg?branch=master)
+[![Build Status](https://travis-ci.com/will-head/frontend-api-challenge.svg?branch=master)](https://travis-ci.com/github/will-head/frontend-api-challenge)
 
 ## Setup
 
