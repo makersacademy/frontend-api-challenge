@@ -7,8 +7,10 @@ clear
 # CMD="open -na \"Google Chrome\" --args --incognito \"http://localhost:9292\""
 # echo -e "$HOSTNAME\$ $CMD\n"
 # $CMD
-echo $HOSTNAME\$ open -na "Google Chrome" --args --incognito "$PWD/index.html"
-open -na "Google Chrome" --args --incognito "$PWD/index.html" "$PWD/spec/SpecRunner.html" 
+echo $HOSTNAME\$ open -na "Firefox Developer Edition" --args "$PWD/index.html" "$PWD/spec/SpecRunner.html"
+# open -na "Firefox Developer Edition" --args -jsconsole -private-window "$PWD/index.html"  -new-tab  "$PWD/spec/SpecRunner.html" 
+
+open -na "Firefox Developer Edition" --args "$PWD/index.html" "$PWD/spec/SpecRunner.html"
 
 
 # CMD="rackup"
