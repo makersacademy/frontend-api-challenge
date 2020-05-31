@@ -1,7 +1,5 @@
 # Chitter API Frontend Challenge
 
-[![Build Status](https://travis-ci.com/will-head/frontend-api-challenge.svg?branch=master)](https://travis-ci.com/github/will-head/frontend-api-challenge)
-
 ## Setup
 
 ```
@@ -29,16 +27,15 @@ $ ./test/web.test
 
 ## Todo
 
-
-
+* Implement additional APIs
 
 ## Doing
 
-* List Peeps
-
+* [paused]
 
 ## Done
 
+* List Peeps
 * Setup Capybara for feature tests
 * Update web.test
 * Test API call
