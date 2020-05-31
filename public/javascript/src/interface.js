@@ -13,15 +13,12 @@ $(document).ready(function() {
   function loadPeeps() {
     const main = document.getElementById(`main`);
 
-    
-
     fetch(API_GET_PEEPS)
       .then(response => response.json())
       .then(data => main.innerHTML = listOfPeeps(data));
 
     main.innerHTML = `<p>Loading...`;
   }
-
 
   function listOfPeeps(data) {
     const peeps = data.map(peep => `<li>${peep.body}</li>`).join(`\n`);
