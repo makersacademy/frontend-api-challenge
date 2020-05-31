@@ -37,10 +37,16 @@ CMD="npx karma start karma.conf.js --single-run"
 echo -e "$HOSTNAME\$ $CMD\n"
 $CMD
 
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+
 CMD="npx eslint $FILE_NAME"
 echo -e "$HOSTNAME\$ $CMD\n"
 $CMD
 # echo $?
 if [[ "$?" == 0 ]] ; then
-  echo -e "Woo! No ESLint errors! Beer?"
+  echo -e "${GREEN}Woo! No ESLint errors! Beer?${NC}"
 fi
+
+

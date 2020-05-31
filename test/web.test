@@ -10,12 +10,12 @@ clear
 echo $HOSTNAME\$ open -na "Firefox Developer Edition" --args "$PWD/index.html" "$PWD/spec/SpecRunner.html"
 # open -na "Firefox Developer Edition" --args -jsconsole -private-window "$PWD/index.html"  -new-tab  "$PWD/spec/SpecRunner.html" 
 
-open -na "Firefox Developer Edition" --args "$PWD/index.html" "$PWD/spec/SpecRunner.html"
+open -na "Firefox Developer Edition" --args "localhost:9292" "$PWD/public/javascript/spec/SpecRunner.html"
 
 
-# CMD="rackup"
-# echo -e "$HOSTNAME\$ $CMD\n"
-# $CMD
+CMD="rackup"
+echo -e "$HOSTNAME\$ $CMD\n"
+$CMD
 
 
 

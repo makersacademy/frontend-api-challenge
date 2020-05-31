@@ -29,14 +29,19 @@ $ ./test/web.test
 
 ## Todo
 
-* Setup Capybara for feature tests
+
+
 
 ## Doing
 
-* Test API call
+* List Peeps
+
 
 ## Done
 
+* Setup Capybara for feature tests
+* Update web.test
+* Test API call
 * Check testing framework
 * Setup testing framework
 
