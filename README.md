@@ -6,6 +6,7 @@
 
 ```
 $ npm install
+$ bundle install
 ```
 ## Usage
 

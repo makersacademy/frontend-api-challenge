@@ -15,6 +15,24 @@ else
 fi
 
 clear
+
+CMD=rspec $SPEC_FILE
+echo -e "$HOSTNAME\$ $CMD\n"
+$CMD
+
+
+if [[ "$1" ]] ; then
+  LIB_FILE="./lib/$1.rb"
+  if [[ ! -f $LIB_FILE ]] ; then
+    $LIB_FILE=""
+  fi
+fi
+
+
+CMD=rubocop $SPEC_FILE $LIB_FILE
+echo -e "$HOSTNAME\$ $CMD\n"
+$CMD
+
 CMD="npx karma start karma.conf.js --single-run"
 echo -e "$HOSTNAME\$ $CMD\n"
 $CMD
