@@ -1,5 +1,9 @@
 # Chitter API Frontend Challenge
 
+I decided to keep it simple and use fetch. I have never connected a backend to a frontend before this challenge so had no idea what to do, which is why I kept it simple. All I managed to do was show a list of peeps, along with who had said them and how many times the peeps had been liked. It might not look great but I was just happy to achieve this! I might come back to this down the line when I know more on this subject and see what else I can link to within this app.
+
+To see what I achieved clone this repo and open index.html
+
 * Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
