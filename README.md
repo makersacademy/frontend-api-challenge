@@ -1,5 +1,51 @@
 # Chitter API Frontend Challenge
 
+## Setup
+
+```
+$ npm install
+$ bundle install
+```
+## Usage
+
+```
+$ ./run
+```
+This will open the default browser and load index.html
+
+## Testing
+
+To run Jasmine Unit tests and ESLint run script:  
+```
+$ ./test/tdd.test`
+```
+
+To test in browser, run script:  
+```
+$ ./test/web.test
+```
+
+## Todo
+
+* Implement additional APIs
+
+## Doing
+
+* [paused]
+
+## Done
+
+* List Peeps
+* Setup Capybara for feature tests
+* Update web.test
+* Test API call
+* Check testing framework
+* Setup testing framework
+
+*Note: (reverse chronological)*
+
+# Original README.md
+
 * Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README

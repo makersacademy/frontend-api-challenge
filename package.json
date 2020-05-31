@@ -1,0 +1,35 @@
+{
+  "name": "frontend-api-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "karma start karma.conf.js --single-run"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "@metahub/karma-jasmine-jquery": "*",
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-jasmine": "*",
+    "jasmine": "*",
+    "jasmine-core": "*",
+    "jasmine-jquery": "*",
+    "karma": "*",
+    "karma-chrome-launcher": "*",
+    "karma-cli": "*",
+    "karma-jasmine": "*",
+    "karma-coverage": "*",
+    "karma-spec-reporter": "*",
+    "karma-jquery": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/will-head/frontend-api-challenge.git"
+  },
+  "author": "Will Head",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/will-head/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/will-head/frontend-api-challenge#readme"
+}
