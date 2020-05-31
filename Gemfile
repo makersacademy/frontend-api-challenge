@@ -9,6 +9,7 @@ gem "sinatra"
 
 group :test, :development do
   gem "capybara"
+  gem 'geckodriver-helper'
   gem "puma", "~> 4.0"
   gem "rspec"
   gem 'rubocop', '0.79.0'

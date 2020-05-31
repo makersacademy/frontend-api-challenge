@@ -10,6 +10,10 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 ])
 SimpleCov.start
 
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
+end
+
 # Enable to see tests in browser
 Capybara.app = Chitter
 Capybara.server = :puma, { Silent: true }
