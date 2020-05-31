@@ -1,5 +1,7 @@
 # Chitter API Frontend Challenge
 
+[![Build Status](https://travis-ci.com/will-head/frontend-api-challenge.svg?branch=master)](https://api.travis-ci.com/will-head/frontend-api-challenge.svg?branch=master)
+
 ## Setup
 
 ```
@@ -9,14 +11,18 @@ $ npm install
 
 ## Todo
 
+* Setup Capybara for feature tests
+
 ## Doing
 
-* Check testing framework
+* Test API call
 
 ## Done
 
+* Check testing framework
 * Setup testing framework
 
+*Note: (reverse chronological)*
 
 # Original README.md
 
