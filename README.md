@@ -1,13 +1,21 @@
 # Chitter API Frontend Challenge
 
+## Setup
+
+```
+$ npm install
+```
+
+
 ## Todo
 
 ## Doing
 
-* Setup testing framework
+* Check testing framework
 
 ## Done
 
+* Setup testing framework
 
 
 # Original README.md
