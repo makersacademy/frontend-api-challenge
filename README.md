@@ -4,6 +4,9 @@ I decided to keep it simple and use fetch. I have never connected a backend to a
 
 To see what I achieved clone this repo and open index.html
 
+Challenge time info:
+-------
+
 * Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
