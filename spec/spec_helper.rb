@@ -1,6 +1,7 @@
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
+require_relative '../app'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
@@ -8,6 +9,13 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   # SimpleCov::Formatter::HTMLFormatter
 ])
 SimpleCov.start
+
+# Enable to see tests in browser
+Capybara.app = Chitter
+Capybara.server = :puma, { Silent: true }
+Capybara.default_driver = :selenium
+# require File.join(File.dirname(__FILE__), '..', 'app.rb')
+# Capybara.app = Chitter
 
 RSpec.configure do |config|
 
