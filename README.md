@@ -15,12 +15,12 @@ This will open the default browser and load index.html
 
 ## Testing
 
-To run Jasmine Unit tests and ESLint run script:  
+To run Capybara feature tests, Rubocop, Jasmine unit tests and ESLint run script:  
 ```
 $ ./test/tdd.test`
 ```
 
-To test in browser, run script:  
+To test in browser (uses Firefox Developer Edition), run script:  
 ```
 $ ./test/web.test
 ```
