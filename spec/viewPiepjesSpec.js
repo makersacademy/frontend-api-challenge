@@ -8,3 +8,12 @@ function testCanGetPeipjeDataFromAPI() {
   }, 500);
 }
 testCanGetPeipjeDataFromAPI()
+
+function testPeipsAreLinks() {
+  peipjesList()
+  document.getElementById('peip0').click()
+  expect(window.location.hash.split('#')[1] === 'peipje/0', 'peips are links to individual pages')
+}
+setTimeout(() => {
+  testPeipsAreLinks()
+}, 500)

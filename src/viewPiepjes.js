@@ -11,9 +11,9 @@ function peipjesList() {
     for (i=0; i < data.length; i ++) {
       var peipbody = `<div id="peip${i}/body">${data[i].body}</div>`
       var peipuser = `<div id="peip${i}/user">${data[i].user.handle}</div>`
-      list += `<li id="peip${i}">${peipuser}${peipbody}</li>`
+      list += `<a href="#peipje/${i}"><li id="peip${i}">${peipuser}${peipbody}</li></a>`
     }
     list += `</ul>`
-    document.getElementById('peipjesList').innerHTML = list
+    document.getElementById('mainDisplay').innerHTML = list
   })
 }
