@@ -12,6 +12,8 @@ Plan:
 * Build in pure Javascript, creating a testing framework.
 * Look at how to get data from the backend
 * Create a list in the main page
+* Create output from a single peep
+* Login
 
 Challenge:
 -------
