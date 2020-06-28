@@ -7,10 +7,13 @@ async function requestPeipjesList() {
 function peipjesList() {
 
   requestPeipjesList().then(function(data) {
-    console.log(data[0])
-    var peip0body = `<div id="peip0/body">${data[0].body}</div>`
-    var peip0user = `<div id="peip0/user">${data[0].user.handle}</div>`
-    document.getElementById('peipjesList').innerHTML = peip0body + peip0user
+    list = '<ul>'
+    for (i=0; i < data.length; i ++) {
+      var peipbody = `<div id="peip${i}/body">${data[i].body}</div>`
+      var peipuser = `<div id="peip${i}/user">${data[i].user.handle}</div>`
+      list += `<li id="peip${i}">${peipuser}${peipbody}</li>`
+    }
+    list += `</ul>`
+    document.getElementById('peipjesList').innerHTML = list
   })
-
 }
