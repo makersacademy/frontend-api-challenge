@@ -3,7 +3,7 @@
     this.handle = handle
     this.password = password
   }
-  User.prototype.login = function() {
+  User.prototype.newUserRequest = function() {
     const data = { user: {"handle": this.handle, "password": this.password} };
 
     fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
@@ -30,5 +30,5 @@
 
 function newUser(handle, password) {
   user= new User(handle, password)
-  user.login()
+  user.newUserRequest()
 }

@@ -16,4 +16,4 @@ function testPeipsAreLinks() {
 }
 setTimeout(() => {
   testPeipsAreLinks()
-}, 1000)
+}, 2000)

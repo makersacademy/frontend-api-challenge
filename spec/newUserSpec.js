@@ -1,12 +1,12 @@
-function testLogin() {
+function testNewUser() {
   newUser('bowrw', 'password1')
   setTimeout(() => {
-    expect(user.id === 1, 'userID from login')
-    expect(user.handle === 'bowrw', 'userHandle from login')
+    expect(user.id === 1, 'userID from new user')
+    expect(user.handle === 'bowrw', 'userHandle from new user')
   }, 2000);
 }
 setTimeout(() => {
-  testLogin()
+  testNewUser()
 }, 4000);
 
 
