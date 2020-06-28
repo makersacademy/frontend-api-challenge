@@ -5,7 +5,7 @@ function testCanGetPeipjeDataFromAPI() {
     expect(document.getElementById('peip0/user').innerHTML === "qwer", "reading data from API user 1")
     expect(document.getElementById('peip1/body').innerHTML === "asdf", "reading data from API body 2")
     expect(document.getElementById('peip1/user').innerHTML === "asdf", "reading data from API user 2")
-  }, 500);
+  }, 1000);
 }
 testCanGetPeipjeDataFromAPI()
 
@@ -16,4 +16,4 @@ function testPeipsAreLinks() {
 }
 setTimeout(() => {
   testPeipsAreLinks()
-}, 500)
+}, 1000)
