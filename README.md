@@ -14,6 +14,12 @@ Plan:
 * Create a list in the main page
 * Create output from a single peep
 * Login
+* new user
+
+What happened:
+-------
+
+Didn't spend much time on this weekend challenge, managed to set up many of the appropriate API links, not sure about the best way to test responses as I can't control the data the responses are based on, (session_key returns, whether that user handle already exists, etc.) Haven't really set up the functions in an easy to edit way yet, seemed like a refactor stage that I didn't get to. Also haven't made it into a page that is functioning with links that change the view via the correct functions.
 
 Challenge:
 -------
