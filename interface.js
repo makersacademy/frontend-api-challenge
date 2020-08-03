@@ -14,6 +14,15 @@ $(document).ready(function() {
     event.preventDefault()
     User.createNewUser($.ajax, $('#username').val(), $('#password').val() )
   })
+
+  let fetchButton = $('<button>', {})
+  fetchButton.text('Fetch it')
+  fetchButton.on('click', function() {
+    fetch('https://chitter-backend-api-v2.herokuapp.com/peeps').then(function(response) {
+      console.log(response)
+    })
+  })
+  $('#container').append(fetchButton)
 })
 
 function showPeepList() {
