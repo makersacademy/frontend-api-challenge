@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chitter</title>
+    <link rel="stylesheet" type="text/css" href="./public/style.css"/>
+  </head>
+<body>
+
+  <div class="navbar">
+    <div class="dropdown">
+      <button class="dropbtn">Have an account? Log in
+      </button>
+    <div class="dropdown-content">
+      <input class='fillForm' id="username" type="username" placeholder="Username"/>
+      <input class='fillForm' id="password" type="password" placeholder="Password"/>
+      <input class='button' id="login" type="button" value="login" />
+      <input class='button' id="signUp" type="button" value="Sign up" />
+    </div>
+  </div>
+</div>
+  <div>
+    <h1>Welcome to Chitter v2.0</h1>
+  </div>
+  <h3>Send a peep</h3>
+  <div>
+    <textarea rows="3" cols="50" id="peep"></textarea><br>
+      <input id="sendPeep" type="button" value="Send Peep" text/>
+  </div>
+  <div id="peeps">
+    <ul id="showPeeps"></ul>
+  </div>
+    <template id='peepsTemplate'>
+      <li>
+      <p><strong>User:</strong> {{user.handle}} </p>
+      <p><strong>Body:</strong> {{body}} </p>
+      <p><strong>Created at:</strong> {{created_at}}</p>
+      <p><strong>Liked by:</strong> {{likes.length}} person/s</p>
+      <input class="delete" data-id="{{id}}" type="button" value="Delete" />
+      <input class="like" data-id="{{id}}" type="button" value="Like" />
+      <input class="unlike" data-id="{{id}}" data-id1="{{user.id}}" type="button" value="Unlike" />
+      </li>
+    </template>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="./src/interface.js"></script>
+    <script src="mustache.js"></script>
+  </body>
+</html>
