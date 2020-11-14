@@ -4,7 +4,7 @@ import PeepView from './peepView.js';
 
 jest.mock('./peepView.js')
 
-describe('getPeeps', () => {
+describe('allPeeps', () => {
   let mockFetch;
   let mockPeepView;
   beforeEach(() => {
@@ -18,9 +18,7 @@ describe('getPeeps', () => {
   it('calls fetch with the url', async () => {
     try {
       await allPeeps();
-
-      // expect(mockFetch.toHaveBeenCalledWith('......'));
-      // https://jestjs.io/docs/en/mock-functions#using-a-mock-function
+      
       expect(mockFetch.mock.calls[0][0]).toEqual("https://chitter-backend-api-v2.herokuapp.com/peeps")
     } catch(error) {
       throw error;
