@@ -2,14 +2,29 @@
 <html>
 <head>
   <title>Chitter</title>
-
+  <link rel="stylesheet" href="css/stylesheet.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
   <div class='container'>
     <section id='bar'>
-      This should be at the top
+      <button class='bar-button' id='sign-up'>Sign up</button>
     </section>
+    <section id='form-space'>
+      <form id='sign-up-form' class='invisible'>
+        <input type='text' name='sign-up-handle'>
+        <input type='text' name='sign-up-password'>
+        <input type='submit' value='Submit'>
+      </form>
+      <form id='log-in-form' class='invisible'>
+        <input type='text' name='handle'>
+        <input type='text' name='password'>
+        <input type='submit' value='Submit'>
+      </form>
+      <form id='log-in-form'>
+
+      </form>
+    <section>
     <section id='peep-list'>
       this should be full of peeps
     </section>
