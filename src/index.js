@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   updatePeepList(exportPeepListAsHTML);
+  const currentUser = new CurrentUser();
 
   $('#sign-up').click(function() {
     event.preventDefault();
@@ -11,7 +12,9 @@ $(document).ready(function() {
     event.preventDefault();
     let newUserHandle = $('#sign-up-handle').val();
     let newUserPassword = $('#sign-up-password').val();
+    console.log($('#sign-up-handle').val());
     sendNewUserData(newUserHandle, newUserPassword);
+    sendNewSessionData(newUserHandle, newUserPassword);
   });
 
   $('#log-in').click(function() {
@@ -34,15 +37,30 @@ $(document).ready(function() {
       dataType: 'json',
       contentType: 'application/json',
       success: function(data){
-        console.log('New user created' + data)
+        console.log(data);
+        currentUser._handle = data.handle;
+        console.log(currentUser.handle)
+        sendNewSessionData(handle, password)
       },
       error: function(e){ console.log(e)}
       });
   }
 
-  function sendNewSessionData(callback) {
-    callback();
-    
+  function sendNewSessionData(handle, password) {
+    $.ajax({
+      url: 'https://chitter-backend-api-v2.herokuapp.com/sessions',
+      type: 'POST',
+      data: JSON.stringify({session: {handle: `${handle}`, password:`${password}`}}),
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(data){
+        currentUser._id = data.user_id;
+        currentUser._sessionKey = data.session_key;
+        console.log(currentUser);
+
+      },
+      error: function(e){ console.log(e)}
+      });
   }
 })
 
