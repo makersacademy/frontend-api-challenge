@@ -1,5 +1,22 @@
 # Chitter API Frontend Challenge
 
+## Personal Goals
+- Learn Jest
+
+## Project Goals
+Write a small Twitter clone that allows users to post messages to a public stream.
+
+Specification:
+* Viewing all Peeps on homepage
+* Creating Users
+* Logging in
+* Posting Peeps
+* Viewing individual Peeps
+* Deleting Peeps
+* Liking Peeps
+* Unliking Peeps
+
+
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
