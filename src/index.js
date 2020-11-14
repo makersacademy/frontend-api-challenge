@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
   const currentUser = new CurrentUser();
-  updateButtonDisplay();
   updatePeepList(exportPeepListAsHTML);
+  updateButtonDisplay();
+
+  setInterval(function(){
+    updatePeepList(exportPeepListAsHTML);
+  }, 5000);
 
   $('#sign-up').click(function() {
     event.preventDefault();
@@ -30,7 +34,6 @@ $(document).ready(function() {
     let userPassword = $('#log-in-password').val();
     sendNewSessionData(userHandle, userPassword);
     $('#log-in-form').addClass('invisible');
-    updatePeepList(exportPeepListAsHTML);
   });
 
   $('#sign-out').click(function(event) {
@@ -41,6 +44,22 @@ $(document).ready(function() {
     currentUser._sessionKey = null;
     updateButtonDisplay();
   })
+
+  function newSessionGreeter() {
+    $('#user-messages').text(`Welcome, ${currentUser.handle}`);
+  }
+
+  function updateButtonDisplay() {
+    if (currentUser.sessionKey) {
+      $('#sign-up').addClass('invisible');
+      $('#log-in').addClass('invisible');
+      $('#sign-out').removeClass('invisible');
+    } else {
+      $('#sign-up').removeClass('invisible');
+      $('#log-in').removeClass('invisible');
+      $('#sign-out').addClass('invisible');
+    }
+  }
 
   function updatePeepList() {
     $.get("https://chitter-backend-api-v2.herokuapp.com/peeps", function(data) {
@@ -81,21 +100,22 @@ $(document).ready(function() {
       });
   }
 
-  function newSessionGreeter() {
-    $('#user-messages').text(`Welcome, ${currentUser.handle}`);
+  function postNewPeep(sessionKey, userID, body) {
+    $.ajax({
+      url: 'https://chitter-backend-api-v2.herokuapp.com/peeps',
+      type: ‘POST’,
+      headers: {“Authorization”: `Token ${sessionKey}`},
+      data: JSON.stringify({peep: {user_id:`${userID}`, body:`${body}`}}),
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function(data){
+        console.log(data)
+      },
+      error: function(e){ console.log(e)}
+    });
   }
 
-  function updateButtonDisplay() {
-    if (currentUser.sessionKey) {
-      $('#sign-up').addClass('invisible');
-      $('#log-in').addClass('invisible');
-      $('#sign-out').removeClass('invisible');
-    } else {
-      $('#sign-up').removeClass('invisible');
-      $('#log-in').removeClass('invisible');
-      $('#sign-out').addClass('invisible');
-      }
-    }
+
 })
 
   // function postNewPeep() {
