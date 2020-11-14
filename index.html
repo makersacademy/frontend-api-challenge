@@ -7,7 +7,14 @@
 
   <body>
     <h1>Chitter 2.0</h1>
+    <form id="signup" action="#users/new" method="post">
+      <input type='text', name='username', placeholder='Handle'>
+      <input type='password', name='password', placeholder='password'>
+      <input type='submit' value='Sign Up'>
+    </form>
+    <div id="welcome"></div>
     <script type="module" src="peepViewController.js"></script>
+    <script type="module" src="userController.js"></script>
     <script type="module" src="peepView.js"></script>
   </body>
 </html>

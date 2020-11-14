@@ -15,12 +15,6 @@ async function allPeeps() {
   }
 };
 
-window.addEventListener("hashchange", function(){
-  let extension = window.location.hash.split('#')
-  let id = extension[1].split("/")[1]
-  singlePeep(id)
-});
-
 async function singlePeep(id) {
   try {
     const result = await fetch(
@@ -34,6 +28,11 @@ async function singlePeep(id) {
   }
 };
 
+window.addEventListener("hashchange", function(){
+  let extension = window.location.hash.split('#')
+  let id = extension[1].split("/")[1]
+  singlePeep(id)
+});
 
 
 allPeeps()
