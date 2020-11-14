@@ -15,6 +15,13 @@ async function allPeeps() {
   }
 }
 
+window.addEventListener("hashchange", function(){
+  document.body.style.backgroundColor = "grey"
+  var peepsDiv = document.getElementById("peeps")
+})
+
+
+
 console.log(allPeeps())
 
 

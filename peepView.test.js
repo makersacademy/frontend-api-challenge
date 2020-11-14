@@ -10,6 +10,6 @@ describe('PeepView', () => {
 
   it('Adds html to document', () => {
     peepView.makeHTML(list)
-    expect(document.body.innerHTML).toEqual("<div>user1 posted: <br> peep  <a id=\"1\" href=\"#peeps/1\">View Peep</a><br><br></div>")
+    expect(document.body.innerHTML).toEqual("<div id=\"peeps\"><li>user1 posted: <br> peep  <a id=\"1\" href=\"#peeps/1\">View Peep</a><br><br></li></div>")
   })
 })
