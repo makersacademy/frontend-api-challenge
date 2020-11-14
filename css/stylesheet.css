@@ -1,0 +1,28 @@
+html, body {
+  background-color: #d2fadd;
+}
+
+.invisible {
+  display: none;
+}
+
+.container {
+  margin-top: 90px;
+}
+
+#bar {
+  background-color: #44b376;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+}
+
+#form-space {
+  margin:top: 25%;
+}
+
+#user-messages {
+  display: inline;
+}
