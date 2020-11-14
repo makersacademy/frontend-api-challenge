@@ -25,7 +25,7 @@ describe('exportPeepListAsHTML', function(){
   })
 
   it('exports the list of peeps as HTML', function(){
-    expect(exportPeepListAsHTML(testPeepList)).toEqual("<ul><li><div id='3'><p>my first peep :)</p><br><i>Kay</i></div></li></ul>")
+    expect(exportPeepListAsHTML(testPeepList)).toEqual("<ul><li><div id='3'><p>my first peep :)</p><br><i>kay</i></div></li></ul>")
   })
 
 
