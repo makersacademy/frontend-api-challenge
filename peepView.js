@@ -3,7 +3,7 @@ export default class PeepView {
     console.log(list)
     list.map(function(peep){
       let peepdiv = document.createElement('div')
-      peepdiv.innerHTML = peep.body
+      peepdiv.innerHTML = peep.user.handle + " " + peep.body
       document.body.appendChild(peepdiv)
     })
   }
