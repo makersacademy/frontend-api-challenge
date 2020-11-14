@@ -11,6 +11,8 @@
       <button class='bar-button' id='sign-up'>Sign up</button>
       <button class='bar-button' id='log-in'>Log in</button>
       <button class='bar-button' id='sign-out'>Sign out</button>
+      <button class='bar-button' id='post-peep'>Post peep</button>
+      <div id='user-messages'></div>
     </section>
     <section id='form-space'>
       <form id='sign-up-form' class='invisible'>
@@ -23,7 +25,10 @@
         <input type='text' id='log-in-password' placeholder="password">
         <input type='submit' value='Submit'>
       </form>
-      <div id='user-messages'></div>
+      <form id='post-peep-form' class='invisible'>
+        <textarea id="new-peep-content" form='post-peep-form' rows="8" cols="80"></textarea>
+        <input type='submit' value='Submit'>
+      </form>
       <form id='log-in-form'>
       </form>
     <section>

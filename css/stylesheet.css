@@ -5,3 +5,7 @@ html, body {
 .invisible {
   display: none;
 }
+
+#user-messages {
+  display: inline;
+}

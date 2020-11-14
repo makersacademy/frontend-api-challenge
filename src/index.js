@@ -36,6 +36,18 @@ $(document).ready(function() {
     $('#log-in-form').addClass('invisible');
   });
 
+  $('#post-peep').click(function(event) {
+    event.preventDefault();
+    $('#post-peep-form').removeClass('invisible');
+  })
+
+  $('#post-peep-form').submit(function(event) {
+    event.preventDefault();
+    let body = $('#new-peep-content').val();
+    postNewPeep(currentUser.sessionKey, currentUser.id, body);
+    $('#post-peep-form').addClass('invisible');
+  });
+
   $('#sign-out').click(function(event) {
     event.preventDefault();
     $('#user-messages').text('');
@@ -54,10 +66,12 @@ $(document).ready(function() {
       $('#sign-up').addClass('invisible');
       $('#log-in').addClass('invisible');
       $('#sign-out').removeClass('invisible');
+      $('#post-peep').removeClass('invisible');
     } else {
       $('#sign-up').removeClass('invisible');
       $('#log-in').removeClass('invisible');
       $('#sign-out').addClass('invisible');
+      $('#post-peep').addClass('invisible');
     }
   }
 
@@ -103,8 +117,8 @@ $(document).ready(function() {
   function postNewPeep(sessionKey, userID, body) {
     $.ajax({
       url: 'https://chitter-backend-api-v2.herokuapp.com/peeps',
-      type: ‘POST’,
-      headers: {“Authorization”: `Token ${sessionKey}`},
+      type: 'POST',
+      headers: {'Authorization': `Token ${sessionKey}`},
       data: JSON.stringify({peep: {user_id:`${userID}`, body:`${body}`}}),
       dataType: 'json',
       contentType: 'application/json',
@@ -117,19 +131,3 @@ $(document).ready(function() {
 
 
 })
-
-  // function postNewPeep() {
-  //   $.ajax({
-  //   url: 'https://chitter-backend-api-v2.herokuapp.com/peeps',
-  //   type: ‘POST’,
-  //   headers: {“Authorization”: 'Token _2a_12_TS6ot62h5KbjB_Z_3xmP6e'},
-  //   data: JSON.stringify({peep: {user_id:'135', body:'my first peep'}}),
-  //   dataType: 'json',
-  //   contentType: 'application/json',
-  //   success: function(data){
-  //     console.log('HI')
-  //     console.log(data)
-  //   },
-  //   error: function(e){ console.log(e)}
-  //   });
-  //   }
