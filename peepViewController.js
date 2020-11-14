@@ -13,16 +13,31 @@ async function allPeeps() {
     console.log(e)
     return null;
   }
-}
+};
 
 window.addEventListener("hashchange", function(){
-  document.body.style.backgroundColor = "grey"
-  var peepsDiv = document.getElementById("peeps")
-})
+  let extension = window.location.hash.split('#')
+  let id = extension[1].split("/")[1]
+  singlePeep(id)
+});
+
+async function singlePeep(id) {
+  try {
+    const result = await fetch(
+      `https://chitter-backend-api-v2.herokuapp.com/peeps/${id}`
+    );
+    const data = await result.json()
+    peepView.singlePeepHTML(data)
+  } catch(e) {
+    console.log(e)
+    return null;
+  }
+};
 
 
 
-console.log(allPeeps())
+allPeeps()
 
 
 export { allPeeps }
+export { singlePeep }
