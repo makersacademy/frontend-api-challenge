@@ -16,15 +16,18 @@
     </section>
     <section id='form-space'>
       <form id='sign-up-form' class='invisible'>
+        <label for='sign-up-form'>Sign up here</label>
         <input type='text' id='sign-up-handle' placeholder="handle">
         <input type='text' id='sign-up-password' placeholder="password">
         <input type='submit' value='Submit'>
       </form>
       <form id='log-in-form' class='invisible'>
+        <label for='log-in-form'>Log in here</label>
         <input type='text' id='log-in-handle' placeholder="handle">
         <input type='text' id='log-in-password' placeholder="password">
         <input type='submit' value='Submit'>
       </form>
+      <div id='form-space-line'></div>
       <form id='post-peep-form' class='invisible'>
         <textarea id="new-peep-content" form='post-peep-form' rows="8" cols="80"></textarea>
         <input type='submit' value='Submit'>
@@ -39,5 +42,6 @@
 </body>
 <script src="src/current-user.js"></script>
 <script src="src/peep-list.js"></script>
+<script src="src/API-calls.js"></script>
 <script src="src/index.js"></script>
 </html>

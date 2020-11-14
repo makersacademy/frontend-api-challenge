@@ -11,6 +11,7 @@ $(document).ready(function() {
   $('#sign-up').click(function() {
     event.preventDefault();
     $('#sign-up-form').removeClass('invisible');
+    $('#log-in-form').addClass('invisible');
   });
 
   $('#sign-up-form').submit(function(event) {
@@ -26,6 +27,7 @@ $(document).ready(function() {
   $('#log-in').click(function() {
     event.preventDefault();
     $('#log-in-form').removeClass('invisible');
+    $('#sign-up-form').addClass('invisible');
   });
 
   $('#log-in-form').submit(function(event) {
