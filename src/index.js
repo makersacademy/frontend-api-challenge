@@ -39,6 +39,11 @@ $(document).ready(function() {
       error: function(e){ console.log(e)}
       });
   }
+
+  function sendNewSessionData(callback) {
+    callback();
+    
+  }
 })
 
   // function postNewPeep() {
