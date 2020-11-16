@@ -7,6 +7,7 @@ export default class User {
       var newWelcome = document.createElement('div')
       newWelcome.setAttribute("id", "welcome")
       newWelcome.innerHTML = `Welcome to Chitter, ${user.handle}`
+      console.log(user)
       document.body.appendChild(newWelcome)
     }
   }

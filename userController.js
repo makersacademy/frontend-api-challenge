@@ -25,6 +25,13 @@ async function signUp(handle, password) {
       }
     });
     const user = await result.json()
+    if (user.handle == "has already been taken") {
+      var signUpError = document.createElement("div")
+      signUpError.setAttribute("id", "sign-up-error")
+      signUpError.innerHTML = "That username is taken!"
+      document.body.appendChild(signUpError)
+      return
+    }
     newUser.createUser(user)
   } catch (e) {
     console.log(e)
