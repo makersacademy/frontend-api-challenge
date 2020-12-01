@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chitter</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" href="peeps-board.css">
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1>Chitter</h1>
+      </div>
+
+      <div id="nav">
+        <form id="loginForm">
+          <input id="username" type="username" name="username" placeholder="Username"/>
+          <input id="password" type="password" name="password" placeholder="Password"/>
+          <input id="login" type="button" value="login" />
+          <input id="register" type="button" value="register" />
+        </form>
+      </div>
+
+      <div id="content">
+        <div id="newPeep">
+          <h3>Add Message</h3>
+          <form>
+            <input id="peep" type="peep" name="peep" placeholder="Enter Message Here"/>
+            <input id="submitPeep" type="button" value="submit" />
+          </form>
+        </div>
+        <div id="seePeeps">
+            <p class="peep-container"></p>
+        </div>
+      </div>
+      <div id="footer">
+        Copyright &copy; 2018 Taj Islam.
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="../src/peeps.js"></script>
+    <script src="../src/user.js"></script>
+  </body>
+</html>
