@@ -28,7 +28,7 @@ async function singlePeep(id) {
   }
 };
 
-async function newPeep(user_id, session_key, body) {
+async function createPeep(user_id, session_key, body) {
   try {
     const result = await fetch(
       "https://chitter-backend-api-v2.herokuapp.com/peeps", {
@@ -36,7 +36,7 @@ async function newPeep(user_id, session_key, body) {
       body: JSON.stringify({peep: {user_id: `${user_id}`, body:`${body}`}}),
       dataType: 'json',
       headers: {
-        'Authorization': `${session_key}`,
+        'Authorization': `Token token=${session_key}`,
         'Content-Type': 'application/json'
       }
     });
@@ -54,14 +54,13 @@ window.addEventListener("hashchange", function(){
   singlePeep(id)
 });
 
-function postPeep(){
-  let postPeeo = document.getElementById("post-peep")
+function postPeep(user_id, session_key){
+  let postPeep = document.getElementById("post-peep")
   if(!postPeep) return;
   postPeep.addEventListener('submit', function(event){
     event.preventDefault();
     let body = event.srcElement[0].value
-    let password = event.srcElement[1].value
-    signUp(handle, password)
+    createPeep(user_id, session_key, body)
   })
 }
 
@@ -71,3 +70,4 @@ allPeeps()
 export { allPeeps }
 export { singlePeep }
 export { postPeep }
+export { createPeep }
