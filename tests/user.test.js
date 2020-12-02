@@ -1,4 +1,4 @@
-import User from './user.js';
+import User from '../models/user.js';
 
 describe('User', () => {
   let exampleUser;

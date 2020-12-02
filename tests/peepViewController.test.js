@@ -1,9 +1,9 @@
 import { jest } from '@jest/globals';
-import { allPeeps } from './peepViewController.js';
-import { singlePeep } from './peepViewController.js';
-import PeepView from './peepView.js';
+import { allPeeps } from '../models/peepViewController.js';
+import { singlePeep } from '../models/peepViewController.js';
+import PeepView from '../models/peepView.js';
 
-jest.mock('./peepView.js')
+jest.mock('../models/peepView.js')
 
 describe('allPeeps', () => {
   let mockFetch;

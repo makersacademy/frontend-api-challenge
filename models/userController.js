@@ -25,19 +25,25 @@ async function signUp(handle, password) {
       }
     });
     const user = await result.json()
-    if (user.handle == "has already been taken") {
-      var signUpError = document.createElement("div")
-      signUpError.setAttribute("id", "sign-up-error")
-      signUpError.innerHTML = "That username is taken!"
-      document.body.appendChild(signUpError)
-      return
-    }
-    newUser.createUser(user)
+    completeSignUp(user)
   } catch (e) {
     console.log(e)
     return null;
   }
 };
+
+function usernameTaken() {
+  var signUpError = document.createElement("div")
+  signUpError.setAttribute("id", "sign-up-error")
+  signUpError.innerHTML = "That username is taken!"
+  document.body.appendChild(signUpError)
+  return
+}
+
+function completeSignUp(user) {
+  if (user.handle == "has already been taken") usernameTaken()
+  newUser.createUser(user)
+}
 
 grabUserData()
 

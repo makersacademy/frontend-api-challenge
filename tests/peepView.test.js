@@ -1,4 +1,4 @@
-import PeepView from './peepView.js';
+import PeepView from '../models/peepView.js';
 
 describe('PeepView', () => {
   let peepView;

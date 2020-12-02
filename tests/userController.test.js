@@ -1,10 +1,10 @@
 import { jest } from '@jest/globals';
-import User from './user.js';
-import { grabUserData } from './userController.js';
-import { signUp } from './userController';
+import User from '../models/user.js';
+import { grabUserData } from '../models/userController.js';
+import { signUp } from '../models/userController';
 
 
-jest.mock('./user.js')
+jest.mock('../models/user.js')
 
 describe('signUp', () => {
   let mockFetch;
