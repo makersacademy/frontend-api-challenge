@@ -7,7 +7,7 @@ describe('PeepView', () => {
 
   beforeEach(() => {
     peepView = new PeepView()
-    list = [{body: "peep", user: {handle: "user1"}, id: "1"}]
+    list = [{body: "peep", user: {handle: "user1"}, id: "1", likes: [["first"], ["second"]]}]
     container = document.createElement("div");
     container.setAttribute('id', 'peeps')
     document.body.appendChild(container);
@@ -15,6 +15,6 @@ describe('PeepView', () => {
   
   it('Adds html to document', () => {
     peepView.makeHTML(list)
-    expect(container.innerHTML).toEqual("<li>user1 posted: <br> peep  <a id=\"1\" href=\"#peeps/1\">View Peep</a><br><br></li>")
+    expect(container.innerHTML).toEqual("<li>user1 posted: <br> peep <br> Likes: 2 <a id=\"1\" href=\"#peeps/1\">View Peep</a><br><br></li>")
   })
 })

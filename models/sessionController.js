@@ -4,7 +4,6 @@ const newSession = new Session();
 
 function getSessionData(){
   let signin = document.getElementById("signin")
-  console.log(signin, "signin here")
   if(!signin) return;
   signin.addEventListener('submit', function(event){
     event.preventDefault();

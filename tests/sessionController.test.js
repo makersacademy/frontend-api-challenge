@@ -8,12 +8,17 @@ jest.mock('../models/session.js')
 describe('signIn', () => {
   let mockFetch;
   let mockSession;
+  let container;
+  
   beforeEach(() => {
     mockFetch = jest.fn().mockResolvedValue({
       json: () => { return [{user: {handle: "newuser", password: "pword"}}] }
     })
     mockSession = new Session();
     global.fetch = mockFetch
+    container = document.createElement("div");
+    container.setAttribute('id', 'sign-in-error')
+    document.body.appendChild(container);
   });
 
   it('calls fetch to the correct url', async () => {

@@ -6,5 +6,6 @@ export default class Session {
     signedIn.innerHTML = `You're logged in. You can now post a peep!`
     postPeep(session.user_id, session.session_key)
   }
+
 }
   
