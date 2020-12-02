@@ -1,5 +1,6 @@
 import User from './user.js'
 
+
 const newUser = new User()
 
 function grabUserData(){

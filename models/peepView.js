@@ -4,9 +4,8 @@ export default class PeepView {
     list.map(function(peep){
       allPeeps += `<li>${peep.user.handle} posted: <br> ${peep.body}  <a id="${peep.id}" href="#peeps/${peep.id}">View Peep</a><br><br></li>`
     })
-    var peepsDiv = document.createElement('div')
+    var peepsDiv = document.getElementById('peeps')
     peepsDiv.setAttribute("id", "peeps")
-    document.body.appendChild(peepsDiv)
     peepsDiv.innerHTML = allPeeps
   }
 
@@ -14,5 +13,6 @@ export default class PeepView {
     var peepsDiv = document.getElementById("peeps")
     peepsDiv.innerHTML = peep.body
   }
+
 }
 

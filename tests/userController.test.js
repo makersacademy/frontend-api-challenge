@@ -1,6 +1,5 @@
 import { jest } from '@jest/globals';
 import User from '../models/user.js';
-import { grabUserData } from '../models/userController.js';
 import { signUp } from '../models/userController';
 
 
