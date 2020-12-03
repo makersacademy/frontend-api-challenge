@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>Peeps</title>
+  </head>
+
+  <body>
+    <h1>Chitter 2.0</h1>
+    <form id="signup" action="#users/new" method="post">
+      <input type='text', name='username', placeholder='Handle'>
+      <input type='password', name='password', placeholder='password'>
+      <input type='submit' value='Sign Up'>
+    </form>
+    <form id="signin" action="#sessions/new" method="post">
+      <input type='text', name='username', placeholder='Handle'>
+      <input type='password', name='password', placeholder='password'>
+      <input type='submit' value='Sign In'>
+    </form>
+    <div id="sign-out"></div>
+    <div id="signed-in"></div>
+    <div id="signn-in-error"></div>
+    <div id="welcome"></div>
+    <form id="post-peep" action="#peeps/new" method="post">
+      <input type='text', name='peep-body', placeholder='I have a lot to get off my chest'>
+      <input type='submit' value='Post Peep'>
+    </form>
+    <div id="peeps"></div>
+    <script type="module" src="./models/peepViewController.js"></script>
+    <script type="module" src="./models/userController.js"></script>
+    <script type="module" src="./models/peepView.js"></script>
+    <script type="module" src="./models/user.js"></script>
+    <script type="module" src="./models/sessionController.js"></script>
+  </body>
+</html>
