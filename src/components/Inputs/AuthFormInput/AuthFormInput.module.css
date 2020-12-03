@@ -1,0 +1,41 @@
+.AuthFormInput {
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    border-radius: 8px;
+}
+
+.light::placeholder {
+    color: #1e204d;
+    opacity: 0.4;
+    transition: 0.2s;
+}
+
+.dark::placeholder {
+    color: #cecef4;
+    opacity: 0.4;
+    transition: 0.2s;
+}
+
+input:hover::placeholder{
+    opacity: 0.6;
+    transition: 0.2s;
+}
+
+input:focus::placeholder{
+    opacity: 0;
+    transition: 0s;
+}
+
+.dark {
+    border: 1px solid #cecef49f;
+    caret-color: #cecef4;
+}
+
+.light {
+    border: 1px solid #1e204d9f;
+}

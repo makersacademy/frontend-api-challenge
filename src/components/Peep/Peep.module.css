@@ -1,0 +1,55 @@
+.Peep {
+    width: 90%;
+    background: #9e9ec4;
+    color: #1e204d;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.Peep:hover {
+    background: #a5a5d3;
+}
+
+.Header {
+    display: flex;
+    font-size: 15px;
+    margin: 8px 5%;
+}
+
+.Handle {
+    position: relative;
+    color: #d9d9ed;
+    top: 2px;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+
+.Footer {
+    margin: 8px 5%;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
+
+.FooterLeft {
+    text-align: left;
+    width: 80%;
+}
+
+.FooterRight {
+    width: 20%;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.FooterRight img {
+    padding-left: 10px;
+}
+
+.PeepBody {
+    text-align: left;
+    margin: 8px 5%;
+    font-size: 17px;
+}
