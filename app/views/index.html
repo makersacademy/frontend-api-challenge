@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <h1>THE FRONTEND PEEPS ARE HERE </h1>
+    <section id='bar'>
+    <button class='bar-button' id='sign-up'>Sign up</button>
+    <button class='bar-button' id='log-in'>Log in</button>
+    <button class='bar-button' id='sign-out'>Sign out</button>
+    <button class='bar-button' id='post-peep'>Post peep</button>
+    <div id='user-messages'></div>
+  </section>
+  </head>
+  <body>
+
+<br>
+
+<!-- sign up form  -->
+    <form id='sign-up-form' class='invisible'>
+      <label for='sign-up-form'>Sign up here</label>
+      <input type='text' id='sign-up-handle' placeholder="handle">
+      <input type='text' id='sign-up-password' placeholder="password">
+      <input type='submit' value='Submit'>
+    </form>
+    <br>
+<!-- Log in form  -->
+    <form id='log-in-form' class='invisible'>
+      <label for='log-in-form'>Log in here  </label>
+      <input type='text' id='log-in-handle' placeholder="handle">
+      <input type='text' id='log-in-password' placeholder="password">
+      <input type='submit' value='Submit'>
+    </form>
+
+
+<h2><div class="peeps-bucket">
+
+</div>
+</h2>
+
+
+<script src="../public/js/index.js">
+
+</script>
+  </body>
+</html>
