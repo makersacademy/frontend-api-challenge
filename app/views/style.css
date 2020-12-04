@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
 html {
   box-sizing: border-box;
 }
@@ -24,4 +27,12 @@ button{
   border-radius: 15px;
 
   box-shadow: 0 0.3rem rgba(121, 121,121,0.65)
+}
+button:hover{
+  filter: brightness(180%);
+}
+
+button:active{
+  transform: translate(0, 0.1rem);
+  box-shadow: 0 0.1rem rgba(255,255,255,0.65)
 }
