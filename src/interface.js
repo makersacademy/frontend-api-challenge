@@ -4,11 +4,13 @@ window.addEventListener('load', (event) => {
   let element = document.getElementById('app')
   let client = new Client
   let chitter = new Chitter(element, client)
-  chitter.renderHomePage()
+  let viewChitter = new ViewChitter(element)
+  viewChitter.renderHomePage()
+  // chitter.renderHomePage()
   window.addEventListener('hashchange', (event) => {
     event.preventDefault()
     if (location.hash === "#peeps") {
-      chitter.render()
+      chitter.peeps()
     } else {
       let peepId = location.hash.slice(1)
       chitter.likePeep(peepId)
@@ -20,20 +22,20 @@ window.addEventListener('load', (event) => {
     let handle = document.getElementById('handle')
     let password = document.getElementById('password')
     chitter.createNewUser(handle.value, password.value)
-    chitter.renderSignUp()
+    viewChitter.renderSignUp()
     let signInForm = document.getElementById('sign-in')
     signInForm.addEventListener('submit', (event) => {
       event.preventDefault()
       let handle = document.getElementById('sign-in-handle')
       let password = document.getElementById('sign-in-password')
       chitter.loginUser(handle.value, password.value)
-      chitter.renderLogIn()
+      viewChitter.renderLogIn()
       let postPeepForm = document.getElementById('post-peep')
       postPeepForm.addEventListener('submit', (event) => {
         event.preventDefault()
         let peep = document.getElementById('peep')
         chitter.postPeep(peep.value)
-        chitter.renderPost()
+        viewChitter.renderPost()
       });
     });
   })
