@@ -4,7 +4,6 @@ window.addEventListener('load', (event) => {
   let element = document.getElementById('app')
   let client = new Client
   let chitter = new Chitter(element, client)
-  viewChitter.renderHomePage()
   chitter.renderHomePage()
   window.addEventListener('hashchange', (event) => {
     event.preventDefault()
@@ -22,6 +21,21 @@ window.addEventListener('load', (event) => {
     let password = document.getElementById('password')
     chitter.createNewUser(handle.value, password.value)
     chitter.renderSignUp()
+    let signInForm = document.getElementById('sign-in')
+    signInForm.addEventListener('submit', (event) => {
+      event.preventDefault()
+      let handle = document.getElementById('sign-in-handle')
+      let password = document.getElementById('sign-in-password')
+      chitter.loginUser(handle.value, password.value)
+      chitter.renderLogIn()
+      let postPeepForm = document.getElementById('post-peep')
+      postPeepForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        let peep = document.getElementById('peep')
+        chitter.postPeep(peep.value)
+        chitter.renderPost()
+      });
+    });
   })
   let signInForm = document.getElementById('sign-in')
   signInForm.addEventListener('submit', (event) => {
