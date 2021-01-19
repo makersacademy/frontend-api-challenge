@@ -6,7 +6,6 @@ window.addEventListener('load', (event) => {
   let chitter = new Chitter(element, client)
   let viewChitter = new ViewChitter(element)
   viewChitter.renderHomePage()
-  // chitter.renderHomePage()
   window.addEventListener('hashchange', (event) => {
     event.preventDefault()
     if (location.hash === "#peeps") {
@@ -19,22 +18,17 @@ window.addEventListener('load', (event) => {
   let signUpForm = document.getElementById('sign-up')
   signUpForm.addEventListener('submit', (event) => {
     event.preventDefault()
-    let handle = document.getElementById('handle')
-    let password = document.getElementById('password')
-    chitter.createNewUser(handle.value, password.value)
+    chitter.createNewUser(event.target[0].value, event.target[1].value)
     viewChitter.renderSignUp()
     let signInForm = document.getElementById('sign-in')
     signInForm.addEventListener('submit', (event) => {
       event.preventDefault()
-      let handle = document.getElementById('sign-in-handle')
-      let password = document.getElementById('sign-in-password')
-      chitter.loginUser(handle.value, password.value)
+      chitter.loginUser(event.target[0].value, event.target[1].value)
       viewChitter.renderLogIn()
       let postPeepForm = document.getElementById('post-peep')
       postPeepForm.addEventListener('submit', (event) => {
         event.preventDefault()
-        let peep = document.getElementById('peep')
-        chitter.postPeep(peep.value)
+        chitter.postPeep(event.target[0].value)
         viewChitter.renderPost()
       });
     });
@@ -42,15 +36,12 @@ window.addEventListener('load', (event) => {
   let signInForm = document.getElementById('sign-in')
   signInForm.addEventListener('submit', (event) => {
     event.preventDefault()
-    let handle = document.getElementById('sign-in-handle')
-    let password = document.getElementById('sign-in-password')
-    chitter.loginUser(handle.value, password.value)
+    chitter.loginUser(event.target[0].value, event.target[1].value)
     chitter.renderLogIn()
     let postPeepForm = document.getElementById('post-peep')
     postPeepForm.addEventListener('submit', (event) => {
       event.preventDefault()
-      let peep = document.getElementById('peep')
-      chitter.postPeep(peep.value)
+      chitter.postPeep(event.target[0].value)
       chitter.renderPost()
     });
   });
