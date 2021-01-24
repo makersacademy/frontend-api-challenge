@@ -1,18 +1,44 @@
 function getPostData() {
-    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps/1").then(response => {
+    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then(response => {
     response.json().then(post => {
      // ...to here.
-     console.log(post)
-     let rendered = renderPost(post);
-     document.getElementById("peeps").innerHTML = rendered;
+    //  console.log(post)
+     post.forEach((element, index, array) => {
+        // var node = document.createElement("LI"); 
+         let peeps = element.body
+
+         document.getElementById("peeps").append(peeps)
+         document.getElementById("peeps").innerHTML += "<br>";
+         
+        })
+        // let rendered = renderPost(element);
+        // document.getElementById("peeps").innerHTML = rendered;
+    // var keys = []
+    // var values = []
+    // for (var i = 0; i < post.length; i++) {
+    //     for (var key in post[i]) {
+    //         if (post[i].hasOwnProperty(key)) {
+    //             keys.push(key);
+    //             values.push(post[i][key]);
+    //         }
+    //     }
+    // }
+    // // document.getElementById("peeps").innerHTML = keys;
+    // document.getElementById("peeps").innerHTML = values;
    })
+   
  })
+ 
 }
 
 function renderPost(postData) {
- let postHeadingHTML = `<h1>${postData.id}</h1>`;
- let postBodyHTML = `<p>${postData.body}</p>`;
- return `${postHeadingHTML}${postBodyHTML}`;
+    let postHeadingHTML = `<p>${postData.id}</p>`;
+    let postBodyHTML = `<p>${postData.body}</p>`;
+        return `${postHeadingHTML}${postBodyHTML}`;
 }
+// entries.forEach(function(note) {
+//     getPostData(`${note.text}`, `${note.id}`)
+//     let noteDiv = document.getElementById(`${note.id}`)
+//     console.log(noteDiv)
 
 getPostData();
