@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+<body>
+    <h1>Welcome To Chitter!</h1>
+    
+    <h2>Find a Peep By ID:</h2>
+    <textarea id="peep-id" cols="10" rows="1" placeholder="Enter ID"></textarea>
+    <button id="find-peep">Find Peep</button>
+    <h2>View Latest Peeps:</h2>
+    <div id="peeps"></div>
+ 
+<script src='../tests/testFramework.js'></script>
+<script src='interface.js'>
+   
+// function getPostData() {
+//   return fetch("https://jsonplaceholder.typicode.com/posts/2");
+// }
+
+// function renderPost(postData) {
+//   let postHeadingHTML = `<h1>${postData.title}</h1>`;
+//   let postWithLinebreaksHTML = postData.body.replaceAll("\n", "<br>\n");
+//   let postBodyHTML = `<p>${postWithLinebreaksHTML}</p>`;
+  
+//   return `${postHeadingHTML}${postBodyHTML}`;
+// }
+
+// getPostData().then(response => {
+//   response.json().then(post => {
+//     let rendered = renderPost(post);
+//     document.getElementById("main").innerHTML = rendered;
+    
+//   })
+// })
+
+// fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
+//   .then(response => {
+//     return response.json()
+//   })
+
+// //   .then(data => console.log(data))
+
+//   .then(response => {
+//       document.getElementById('main').innerHTML = `<p> ${response} </p><br>`;
+//   })
+// var peeps = []
+// function viewEntries() {
+//       let entriesDiv = document.getElementById("notes")
+//       notes.innerHTML = ""
+//       peeps.forEach(function(note) {
+//           getGetData(note)
+//           let noteDiv = document.getElementById(`main`)
+//           console.log(noteDiv)
+//           // noteDiv.insertAdjacentHTML("afterend", "<br>")
+//         });
+//   }
+
+
+// function getGetData(text) {
+// fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       text: JSON.stringify({
+//         text: text
+//       })
+//     })
+//     .then(res => {
+//       return res.json()
+//     })
+//     .then(function(json) => {
+//     //   document.getElementById("peeps").insertAdjacentHTML('afterbegin', `<h1> ${data} </h1><br>`);
+//     document.getElementById("peeps").innerHTML = JSON.stringify(json.items);
+//     })
+// }
+// getGetData();
+// var request = new Request('https://chitter-backend-api-v2.herokuapp.com/peeps');
+
+//   fetch(request).then(function(response) {
+//     return response.json();
+//   }).then(function(json) {
+//     document.getElementById("peeps").innerHTML = JSON.stringify(json.items);
+//   }).then(res => {
+//       console.log(res)
+//   });
+</script>
+</body>
+</html>
