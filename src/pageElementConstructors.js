@@ -8,18 +8,44 @@ function createPage(){
 
 function checkLoggedIn(){
   if (session == null){
-    loggedInElements = document.getElementsByClassName("loggedIn")
-    for(element of loggedInElements){
-      element.setAttribute('hidden', true);
-    }
+    // not logged in
+    _toggleLoggedIn(false);
+    _toggleNotLoggedIn(true);
     headerText(false);
   }
   else{
-    notLoggedInElements = document.getElementsByClassName("notLoggedIn")
+    _toggleLoggedIn(true)
+    _toggleNotLoggedIn(false)
+    headerText(username);
+  }
+}
+function _toggleLoggedIn(show){
+  // shows or hides the stuff that should be seen when a user is logged in
+  loggedInElements = document.getElementsByClassName("loggedIn")
+  if(show === true){
+    for(element of loggedInElements){
+      element.removeAttribute('hidden');
+    }
+  }
+  else{
+    for(element of loggedInElements){
+      element.setAttribute('hidden', true);
+    }
+  }
+}
+
+function _toggleNotLoggedIn(show){
+  // shows or hides the stuff that should be seen when a user is logged in
+  notLoggedInElements = document.getElementsByClassName("notLoggedIn")
+  if(show === true){
+    for(element of notLoggedInElements){
+      element.removeAttribute('hidden');
+    }
+  }
+  else{
     for(element of notLoggedInElements){
       element.setAttribute('hidden', true);
     }
-    headerText(username);
   }
 }
 
