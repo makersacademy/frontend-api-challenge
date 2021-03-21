@@ -23,6 +23,24 @@ userPeeps.addEventListener("click", evt => {
         }
         });
     })
+})
 
 
+
+let signUp = document.getElementById("create-user")
+
+signUp.addEventListener("click", evt => {
+    let handle = document.getElementById("handle").value
+    let password = document.getElementById("password").value
+    let userJson = JSON.parse(`{"user": {"handle":"${handle}", "password":"${password}"}}`)
+    fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+        method: "POST", 
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userJson)
+    })
+    .then(res => res.json())
+    .then(json => console.log(json))
+    
 })
