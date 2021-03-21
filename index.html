@@ -7,11 +7,17 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script defer src="index.js" charset="utf-8"></script>
+        <script defer src="app.js" charset="utf-8"></script>
     </head>
     <body>
         <h1>Welcome to Chitter</h1>
+        <h2>What people are saying...</h2>
         <div id="view-peeps"></div>
+        <form>
+            <label for="username">Enter a Username to see their Peeps:</label>
+            <input type="text" id="username" placeholder="Username">
+            <input type="button" id="view-user-peeps" value="View Peeps">
+        </form>
 
     </body>
 </html>
