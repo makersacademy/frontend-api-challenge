@@ -1,18 +1,3 @@
-// async function getEmoji(text) {
-
-//   var data = {"text": text};
-//   const request = async () => {
-//   const response = await fetch("https://makers-emojify.herokuapp.com",
-//   {method: 'POST',
-//   headers: {'Content-Type': 'application/json'},
-//   body: JSON.stringify(data)});
-//   const json = await response.json();
-
-//   console.log(json);
-//   return json.emojified_text;
-//    }
-//    return await request();
-// }
 
 var peeps;
 var peepsReady = false; // sets to true when peeps are ready to be read
@@ -55,19 +40,25 @@ async function createUser(username, password) {
 }
 
 var session;
+var signingIn = false;  // the state of the signin in process
 async function signin(username, password) {
+  signingIn = true;
   const dataObj = {"session": {"handle": username, "password": password}};
 
   const requestJSON = {method: 'GET',
   headers: {"Content-Type": "application/json"},
   data: JSON.stringify(dataObj)
   }
-
+  
   postData("sessions", dataObj)
   .then(data => {
     console.log(data); // JSON data parsed by `data.json()` call
     session = data;
-  });
+    signingIn = false;
+  }).catch(error => {
+    signingIn = false;
+    warnBadLogin();
+    console.log("Invalid username or password")});
 }
 
 async function postData(urlPath = '', data = {}) {

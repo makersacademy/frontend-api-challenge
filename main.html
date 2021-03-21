@@ -61,6 +61,7 @@ textarea {
 <body onload="createPage()">
 
 <script src="src/apiWrapper.js">getPeeps()</script>
+<script src="src/interface.js"></script>
 
 <div class="header">
 
@@ -81,18 +82,16 @@ textarea {
     </form>
 
   </span><br>
-  <span class='loginSpan notLoggedIn'>
-    <form action='/login' method=post>
-      <!-- <% if @loginSuccess == false %>
-        <span class='error'>Details Incorrect</span>
-      <% end %> -->
-      <label for='loginID'>Username/email:</label>
-      <input type='text' name='loginID'>
+  <div class='loginSpan notLoggedIn'>
+    <span class='error' id='loginError'></span>
+    <form method=post>
+      <label for='loginID'>Username:</label>
+      <input type='text' name='loginID' id='loginUsername'>
       <label for='password'>Password:</label>
       <input type='password' name=password>
-      <input type='submit' value='Sign In'>
+      <input type='button' onclick="signInForm()" value='Sign In'>
     </form>
-  </span><br>
+  </div><br>
 
 </div>
 

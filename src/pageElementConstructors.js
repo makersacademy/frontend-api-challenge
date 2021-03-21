@@ -19,18 +19,18 @@ function checkLoggedIn(){
     for(element of notLoggedInElements){
       element.setAttribute('hidden', true);
     }
-    headerText(true);
+    headerText(username);
   }
 }
 
-function headerText(loggedin = false){
+function headerText(username = false){
   // fills the header text
   var text;
-  if(loggedin === false){
+  if(username === false){
     text = "Sign in or create a new account to post"
   }
   else{
-    text = "Signed in as " //+ username;
+    text = "Signed in as " + username;
   }
   document.getElementById('headerSpan').innerText = text;
 }
