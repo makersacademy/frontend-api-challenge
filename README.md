@@ -19,13 +19,53 @@ Your task is to build a front-end single-page-app to interface with this API. Yo
 Here are some interactions the API supports. Implement as many as you see fit.
 
 * Creating Users
+```
+As a member of the public
+I'd like to create a Chitter Account
+So I can use Chitter
+```
 * Logging in
+```
+As a User
+I'd like to Log In
+So I can post a peep
+```
 * Posting Peeps
+```
+As a User
+I'd like to Post a Peep
+So I can share my thoughts
+```
 * Viewing all Peeps *(I suggest you start here)*
+```
+As a User
+I'd like to view all Peeps
+So I can see what others are posting
+```
 * Viewing individual Peeps
+```
+As a User
+I'd like to view individual Peeps
+So I can focus on one post
+```
 * Deleting Peeps
+```
+As a User
+I'd like to delete Peeps
+So I can remove mistakes or embarassing peeps
+```
 * Liking Peeps
+```
+As a User
+I'd like to like Peeps
+So I can show my appreciation for a good post
+```
 * Unliking Peeps
+```
+As a User
+I'd like to unlike Peeps
+So I can remove an accidental Like
+```
 
 We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
 
