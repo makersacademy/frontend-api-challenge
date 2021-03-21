@@ -8,6 +8,7 @@ function signInForm(){
   var password = document.getElementsByName('password')[0].value
   signin(username, password)
   signinInterval = setInterval(_checkSignIn, 100)
+  document.getElementsByName('password')[0].value = ""
 }
 
 function _checkSignIn(){
@@ -29,4 +30,10 @@ function warnBadLogin(){
   errorSpan = document.getElementById('loginError');
   errorSpan.innerText = "Invalid username or password"
   errorSpan.setAttribute
+}
+
+function signOutForm(){
+  session = null
+  username = null
+  checkLoggedIn();
 }
