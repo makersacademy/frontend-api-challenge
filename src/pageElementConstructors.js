@@ -1,13 +1,12 @@
 // username: CamelTrain_Case_Is_BestCase; password: mypassword
 
-var session;
 function createPage(){
   checkLoggedIn();
   loadPeeps();
 }
 
 function checkLoggedIn(){
-  if (session == null){
+  if (session.user_id == null){
     // not logged in
     _toggleLoggedIn(false);
     _toggleNotLoggedIn(true);
@@ -83,7 +82,7 @@ function showPeeps(){
   for(peep of peeps){
     // var peepNode = document.createElement("LI");
     var peepTime = makePeepTimeNice(peep.created_at);
-    console.log('peepTime: ' + peepTime);
+    // console.log('peepTime: ' + peepTime);
     peepsContainer.insertAdjacentHTML("beforeEnd",
     `<li>
     <div class="peepContainer" name="pc-${peep.id}">
@@ -104,7 +103,6 @@ function showPeeps(){
     </div>
   </li>`
   );
-  // peepsContainer.appendChild(peepNode)
   }
 }
 

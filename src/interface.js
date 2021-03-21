@@ -29,11 +29,16 @@ function warnBadLogin(){
   // this function is called from signin in apiWrapper.js
   errorSpan = document.getElementById('loginError');
   errorSpan.innerText = "Invalid username or password"
-  errorSpan.setAttribute
 }
 
 function signOutForm(){
-  session = null
+  session = {}
   username = null
   checkLoggedIn();
+}
+
+function postPeep(){
+  peepMessage = document.getElementById('peepMessage').value
+  console.log('peep message = ' + peepMessage);
+  postPeepToServer(peepMessage)
 }

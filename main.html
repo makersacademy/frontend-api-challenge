@@ -101,13 +101,13 @@ textarea {
       <!-- post a peep -->
       <li>
         <div class="postContainer" name='post'>
-          <form action='/postPeep' method=post>
+          <form>
             <div class="postPeep">
-                <textarea name='peepMessage' maxlength="420" placeholder="What's the gossip?"></textarea>
+                <textarea name='peepMessage' id='peepMessage' maxlength="420" placeholder="What's the gossip?"></textarea>
             </div>
             <div class="submitPeep">
               <span class="submitSpan fRight">
-                <input type='submit' value='Peep'></form>
+                <input type='button' onclick="postPeep()" value='Peep'></form>
               </span>
             </div>
             <div class="empty"><br></div>

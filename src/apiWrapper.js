@@ -39,16 +39,11 @@ async function createUser(username, password) {
   return await request(requestJSON);
 }
 
-var session;
+var session = {};
 var signingIn = false;  // the state of the signin in process
 async function signin(username, password) {
   signingIn = true;
   const dataObj = {"session": {"handle": username, "password": password}};
-
-  const requestJSON = {method: 'GET',
-  headers: {"Content-Type": "application/json"},
-  data: JSON.stringify(dataObj)
-  }
   
   postData("sessions", dataObj)
   .then(data => {
@@ -61,15 +56,35 @@ async function signin(username, password) {
     console.log("Invalid username or password")});
 }
 
-async function postData(urlPath = '', data = {}) {
+async function postPeepToServer(peepText){
+  const dataObj = {"peep": {"user_id":session.user_id, "body": peepText}}
+
+  
+  var headers = {"Content-Type": "application/json",
+  "Authorization": 'Token token=' + session.session_key}
+
+  postData("peeps", data=dataObj, 'POST', headerObj=headers).then(
+    data => {
+      console.log(data);
+    }
+  )
+}
+
+async function postData(urlPath = '', data = {}, method='POST', headerObj = null) {
   var url = "https://chitter-backend-api-v2.herokuapp.com/" + urlPath
-  // Default options are marked with *
-  const response = await fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    headers: {
+  console.log('data:' + JSON.stringify(data)); console.log(data);
+  if (headerObj == null){
+    headerObj = {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  });
+    }
+  }
+
+  const requestObj = new Request(url, {
+    method: method,
+    headers: headerObj,
+    body: JSON.stringify(data)
+  })
+
+  const response = await fetch(requestObj);
   return response.json(); // parses JSON response into native JavaScript objects
 }
