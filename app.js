@@ -1,3 +1,5 @@
+
+function viewPeeps(){
 let viewPeeps = document.getElementById("view-peeps")
 
 fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
@@ -7,6 +9,8 @@ peeps.forEach(peep => {
     viewPeeps.innerHTML += `<p> ${peep.user.handle} : ${peep.body}</p>`
 });
 })
+}
+
 
 let userPeeps = document.getElementById("view-user-peeps")
 let viewUserPeeps = document.getElementById("peeps-by-user")
@@ -42,5 +46,9 @@ signUp.addEventListener("click", evt => {
     })
     .then(res => res.json())
     .then(json => console.log(json))
+
+    document.getElementById("handle").value = ""
+    document.getElementById("password").value = ""
+    document.getElementById("thanks").innerHTML = `Thanks for signing up ${handle}`
     
 })

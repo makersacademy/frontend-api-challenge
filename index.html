@@ -10,7 +10,7 @@
         <script defer src="app.js" charset="utf-8"></script>
         <link rel="stylesheet" href="styles/styles.css">
     </head>
-    <body>
+    <body onload="viewPeeps()">
         <h1>Welcome to Chitter</h1>
         
         <form>
@@ -26,6 +26,7 @@
             <input type="text" id="handle" placeholder="Create a Chitter Handle">
             <input type="text" id="password" placeholder="Enter a password">
             <input type="button" id="create-user" value="Sign Up">
+            <p id="thanks"></p>
         </form>
 
 
