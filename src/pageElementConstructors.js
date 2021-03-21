@@ -57,6 +57,7 @@ function showPeeps(){
   for(peep of peeps){
     // var peepNode = document.createElement("LI");
     var peepTime = makePeepTimeNice(peep.created_at);
+    console.log('peepTime: ' + peepTime);
     peepsContainer.insertAdjacentHTML("beforeEnd",
     `<li>
     <div class="peepContainer" name="pc-${peep.id}">
@@ -84,5 +85,5 @@ function showPeeps(){
 function makePeepTimeNice(time){
   var groups = peep.created_at.match(/(?<y>\d{4})-(?<m>\d{2})-(?<d>\d{2})T(?<time>\d*:\d*):/).groups
   var date = groups.d + '/' + groups.m + '/' + groups.y.slice(2);
-  return date + ' ' + time;
+  return date + ' ' + groups.time;
 }
