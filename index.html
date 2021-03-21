@@ -8,18 +8,32 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script defer src="app.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="styles/styles.css">
     </head>
     <body>
         <h1>Welcome to Chitter</h1>
-        <h2>What people are saying...</h2>
-        <div id="view-peeps"></div>
+        
         <form>
-            <label for="username">Enter a Username to see their Peeps:</label>
+            <label for="username">Enter a Chitter Handle to see their Peeps:</label>
             <input type="text" id="username" placeholder="Username">
             <input type="button" id="view-user-peeps" value="View Peeps">
         </form>
         <h3 id="title"></h3>
         <div id="peeps-by-user"></div>
+
+        <form id="signup-form">
+            <label for="handle"> Sign up for Chitter:</label>
+            <input type="text" id="handle" placeholder="Create a Chitter Handle">
+            <input type="text" id="password" placeholder="Enter a password">
+            <input type="button" id="=create-user" value="Sign Up">
+        </form>
+
+
+
+        <div id="list-of-all-peeps">
+        <h2>What people are Peeping...</h2>
+        <div id="view-peeps"></div>
+        </div>
         
 
     </body>
