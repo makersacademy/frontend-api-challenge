@@ -73,7 +73,7 @@ textarea {
   <span class='CreateAccountSpan fRight'>
     <form class="notLoggedIn" action='/create_account' method=get>
       <label for='create_account'>Create new account:</label>
-      <input type='submit' name='create_account' value='Create Account'>
+      <input type='button' onclick="createNewUser()" name='create_account' value='Create Account'>
     </form>
 
     <form class="loggedIn">
@@ -97,10 +97,10 @@ textarea {
 
 <div class="row">
   <div class="peeps">
-    <ol id="allPeepsContainer">
+    <ol>
       <!-- post a peep -->
-      <li>
-        <div class="postContainer" name='post'>
+      <li class="postContainer">
+        <div  name='post'>
           <form>
             <div class="postPeep">
                 <textarea name='peepMessage' id='peepMessage' maxlength="420" placeholder="What's the gossip?"></textarea>
@@ -113,6 +113,10 @@ textarea {
             <div class="empty"><br></div>
           </form>
       </li>
+
+      <div id="allPeepsContainer">
+
+      </div>
 
       <!-- peeps get shown under here -->
     </ol>

@@ -9,7 +9,7 @@ async function getPeeps() {
   const response = await fetch("https://chitter-backend-api-v2.herokuapp.com/peeps",
   {method: 'GET'}).then(response => response.json())
   .then(data => {
-    console.log(data);
+    // console.log(data);
     peeps = data;
     peepsReady = true;
     gettingPeeps = false;
@@ -19,24 +19,21 @@ async function getPeeps() {
 }
 getPeeps();
 
-var responseObject;
-var user;
 async function createUser(username, password) {
-
-  const requestJSON = {method: 'POST',
-  headers: {"Content-Type": "application/json"},
-  data: {"user": {"handle":username, "password":password}}
-  }
-  const request = async (requestJSON) => {
-  const response = await fetch("https://chitter-backend-api-v2.herokuapp.com/users",
-  requestJSON)
-  .then(response => { console.log("requestJSON: "); console.log(requestJSON);
-    console.log(response);
-    responseObject = response;
-    response.json()})
-  .then(data => {console.log(data); user = data;});
-  }
-  return await request(requestJSON);
+  const dataObj = {"user": {"handle": username, "password": password}};
+  
+  var newUser = await postData("users", dataObj)
+  .then(data => {
+    console.log(data); // JSON data parsed by `data.json()` call
+    newUser = data;
+    if (data.handle == "has already been taken"){
+      console.log('username already taken');
+      return false;
+    }
+    else{ return data}
+  }).catch(error => {
+    warnBadLogin();
+    console.log("Invalid username or password")});
 }
 
 var session = {};

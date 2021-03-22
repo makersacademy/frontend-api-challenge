@@ -6,9 +6,23 @@ function signInForm(){
   
   username = document.getElementById("loginUsername").value
   var password = document.getElementsByName('password')[0].value
+  _signIn(username, password)
+}
+
+function _signIn(username, password){
+  // helper function that down the signing in process
   signin(username, password)
   signinInterval = setInterval(_checkSignIn, 100)
   document.getElementsByName('password')[0].value = ""
+}
+
+function createNewUser(){
+  
+  username = document.getElementById("loginUsername").value
+  var password = document.getElementsByName('password')[0].value
+  createUser(username, password)
+
+  _signIn(username, password)
 }
 
 function _checkSignIn(){
@@ -42,3 +56,4 @@ function postPeep(){
   console.log('peep message = ' + peepMessage);
   postPeepToServer(peepMessage)
 }
+

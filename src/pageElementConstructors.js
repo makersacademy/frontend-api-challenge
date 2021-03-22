@@ -71,19 +71,24 @@ function loadPeeps(){
 function checkPeepsReady(){
   if (peepsReady){
     clearInterval(loadInterval);
+    deletePeeps();
     showPeeps();
   }
+}
+
+function deletePeeps(){
+  document.getElementById("allPeepsContainer").innerHTML = ``
 }
 
 function showPeeps(){
   // shows the peeps on the page
   var peepsContainer = document.getElementById("allPeepsContainer");
-  
+
   for(peep of peeps){
     // var peepNode = document.createElement("LI");
     var peepTime = makePeepTimeNice(peep.created_at);
     // console.log('peepTime: ' + peepTime);
-    peepsContainer.insertAdjacentHTML("beforeEnd",
+    peepsContainer.insertAdjacentHTML("afterBegin",
     `<li>
     <div class="peepContainer" name="pc-${peep.id}">
       <div id='p-${peep.id}' class='peep'>
@@ -101,8 +106,8 @@ function showPeeps(){
         </div>
       </div>
     </div>
-  </li>`
-  );
+    </li>`
+    )
   }
 }
 
