@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row{
+  display: flexbox;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  min-width: 330px;
+}
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.header {
+  background-color: #9933cc;
+  color: #ffffff;
+  padding: 15px;
+}
+
+.peeps ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.peeps li {
+  /* affects each item of the list */
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color: #33b5e5;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+textarea {
+  width: 100%;
+  height: 100%; 
+  box-sizing: border-box;
+}
+
+.fRight {
+  float:right
+}
+
+.headerSpan {
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+
+</style>
+</head>
+<body onload="createPage()">
+
+<script src="src/apiWrapper.js">getPeeps()</script>
+<script src="src/interface.js"></script>
+
+<div class="header">
+
+  <span class='headerSpan' id='headerSpan'>
+    <!-- Sign in or create a new account to post -->
+  </span><br>
+
+  <!-- this stuff shows when user isn't logged in -->
+  <span class='CreateAccountSpan fRight'>
+    <form class="notLoggedIn" action='/create_account' method=get>
+      <label for='create_account'>Create new account:</label>
+      <input type='button' onclick="createNewUser()" name='create_account' value='Create Account'>
+    </form>
+
+    <form class="loggedIn">
+      <label for='sign_out'>Sign out of account:</label>
+      <input type='button' onclick="signOutForm()" name='sign_out' value='Sign Out of Account'>
+    </form>
+
+  </span><br>
+  <div class='loginSpan notLoggedIn'>
+    <span class='error' id='loginError'></span>
+    <form method=post>
+      <label for='loginID'>Username:</label>
+      <input type='text' name='loginID' id='loginUsername'>
+      <label for='password'>Password:</label>
+      <input type='password' name=password>
+      <input type='button' onclick="signInForm()" value='Sign In'>
+    </form>
+  </div><br>
+
+</div>
+
+<div class="row">
+  <div class="peeps">
+    <ol>
+      <!-- post a peep -->
+      <li class="postContainer">
+        <div  name='post'>
+          <form>
+            <div class="postPeep">
+                <textarea name='peepMessage' id='peepMessage' maxlength="420" placeholder="What's the gossip?"></textarea>
+            </div>
+            <div class="submitPeep">
+              <span class="submitSpan fRight">
+                <input type='button' onclick="postPeep()" value='Peep'></form>
+              </span>
+            </div>
+            <div class="empty"><br></div>
+          </form>
+      </li>
+
+      <div id="allPeepsContainer">
+
+      </div>
+
+      <!-- peeps get shown under here -->
+    </ol>
+  </div>
+
+</div>
+<script src="src/pageElementConstructors.js"></script>
+</body>
+</html>
