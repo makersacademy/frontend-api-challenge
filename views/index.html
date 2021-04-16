@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="../public/style.css">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CHITTER :: Home</title>
+</head>
+<script src = "../src/interface.js"></script>
+<body>
+  <h2>
+
+  </h2>
+  <div id = "heading">
+    <h1>Chitter <img src = "logo.png"></h1>
+  </div>
+    <div id = "welcome">
+      <h1>Welcome, user</h1>
+      <form action="/signout" method="post">
+        <input type="submit" value="Sign out" name="signout">
+      </form>
+      <p>
+      <form action='/peep' method='post'>
+        <label for='peep_text'>Peep:</label>
+        <input type='text' name='peep_text'>
+        <input type='submit' value='Post' name='post'>
+      </form>
+    </div>
+    <div id = "sign_in">
+      <a href='/sessions/new' class='clickable-text'>Sign in</a><br>
+      <a href='/users/new' class='clickable-text'>Create Account</a>
+      <p>
+    </div>
+    <div id = "peep-list">
+    </div>
+    <div id = "full-text">
+    </div>
+
+    <center><button type="button" id="allPeeps-button"> All Peeps </button>
+
+</body>
