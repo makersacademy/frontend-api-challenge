@@ -38,9 +38,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function login(handle, password){
-    postData('https://chitter-backend-api-v2.herokuapp.com/sessions', data={session: {"handle": handle, "password": password}})
+    postData('https://chitter-backend-api-v2.herokuapp.com/sessions', data = {session: {"handle": handle, "password": password}})
     .then(data => {
-      console.log(data);
       if (data.hasOwnProperty('errors')){
         console.log("login failed");
         return false;
@@ -50,16 +49,14 @@ document.addEventListener("DOMContentLoaded", function() {
         window.localStorage.setItem("session_key", data.session_key);
         window.localStorage.setItem("handle", handle);
         window.localStorage.setItem("logged_in", "true");
-        console.log(handle);
         return true;
       }
     });
-    console.log(localStorage)
+    console.log(localStorage);
   }
 
   function logout(){
     window.localStorage.clear();
-    console.log(localStorage);
   }
 
   function printPeeps(){
@@ -101,6 +98,21 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
+  function createUser (handle, password) {
+    postData('https://chitter-backend-api-v2.herokuapp.com/users', data = {user: {"handle": handle, "password": password}})
+    .then (data => {
+      if (data.hasOwnProperty('id')){
+        window.alert('User created');
+        console.log(data);
+        return true;
+      } else {
+        window.alert('User creation failed');
+        console.log(data);
+        return false;
+      }
+    });
+  }
+
   peepList.addEventListener('click', function(event){
      if (event.target !== this) {
        showFullPeep();
@@ -119,6 +131,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1000);
   });
 
+  document.getElementById('create').addEventListener('click', function(event){
+    let handle = document.getElementById('handle').value;
+    let password = document.getElementById('password').value;
+    createUser(handle, password);
+  });
+
   document.getElementById("signin").addEventListener('click', function(event){
     let handle = document.getElementById('handle').value;
     let password = document.getElementById('password').value;
@@ -133,6 +151,5 @@ document.addEventListener("DOMContentLoaded", function() {
       hideFullPeep();
       showPeepsList();
    });
-
 
 });
