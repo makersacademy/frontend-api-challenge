@@ -19,7 +19,7 @@ Your task is to build a front-end single-page-app to interface with this API. Yo
 Here are some interactions the API supports. Implement as many as you see fit.
 
 * Creating Users
-* Logging in
+x* Logging in
 * Posting Peeps
 x* Viewing all Peeps *(I suggest you start here)*
 x* Viewing individual Peeps

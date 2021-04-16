@@ -92,9 +92,11 @@ document.addEventListener("DOMContentLoaded", function() {
   function checkSession(){
     if (window.localStorage.getItem("logged_in") == "true"){
       console.log("check - logged in");
+      document.getElementById("welcome").style.display = "block";
       document.getElementById("login").style.display = "none";
     } else {
       console.log("check - logged out");
+      document.getElementById("welcome").style.display = "none";
       document.getElementById("login").style.display = "block";
     }
   }
