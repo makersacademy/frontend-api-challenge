@@ -6,13 +6,15 @@ document.addEventListener("DOMContentLoaded", function() {
   checkSession();
 
   function reloadPeeps () {
+    console.log("in reload peeps")
     getPeeps();
     setTimeout(function(){
       printPeeps();
-    },2000);
+    },3000);
   }
 
   function getPeeps () {
+    console.log("in get peeps")
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
     .then(response => response.json())
     .then(data => {
@@ -26,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  async function postData (url = '', data = {}) {
+  async function postData (url = '', data = {}, header = "") {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -60,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function printPeeps(){
+    console.log("in print peeps")
     peepList.innerHTML = "";
     peeps.forEach(function(peep){
       var div = document.createElement('div');
@@ -113,14 +116,39 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  async function postDataPeep (url = '', data = {}, token) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${token}`
+      },
+      body: JSON.stringify(data)
+    }).then(reloadPeeps());
+  }
+
+  function postPeep (peep) {
+    let token = window.localStorage["session_key"];
+    let id = window.localStorage["user_id"];
+    postDataPeep('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":id, "body":peep}}, token);
+    setTimeout(function () {
+      reloadPeeps();
+      console.log("reloading2")
+    }, 5000);
+  }
+
+  document.getElementById('post_peep').addEventListener('click', function(event){
+    let peep = document.getElementById('peep_text').value;
+    postPeep(peep);
+    document.getElementById('peep_text').value = ' ';
+  });
+
   peepList.addEventListener('click', function(event){
      if (event.target !== this) {
        showFullPeep();
        let num = event.target.id;
        peepList.style.display = "none";
        fullPeepText.textContent = peeps[num].body;
-       console.log(num);
-       console.log(peeps[num].body);
      }
   });
 
