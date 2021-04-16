@@ -44,9 +44,9 @@ h3 {
             transform: translate(-50%, -50%);
             white-space: nowrap;}
 
-#sign_in{  text-align: center;
+#login{     text-align: center;
             font-family: 'Trebuchet MS', sans-serif;}
-#peep-list {    text-align: center;
+#peep-list {text-align: center;
             font-family: 'Trebuchet MS', sans-serif;
 }
 

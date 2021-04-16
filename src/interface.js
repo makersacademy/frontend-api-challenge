@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function() {
   let peeps = [];
   let peepList = document.getElementById("peep-list");
+  let fullPeepText = document.getElementById("full-text");
   reloadPeeps();
+  checkSession();
 
   function reloadPeeps () {
     getPeeps();
     setTimeout(function(){
       printPeeps();
-    },1000);
+    },2000);
   }
 
   function getPeeps () {
@@ -24,6 +26,42 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  async function postData (url = '', data = {}) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    return response.json();
+  }
+
+  function login(handle, password){
+    postData('https://chitter-backend-api-v2.herokuapp.com/sessions', data={session: {"handle": handle, "password": password}})
+    .then(data => {
+      console.log(data);
+      if (data.hasOwnProperty('errors')){
+        console.log("login failed");
+        return false;
+      } else {
+        console.log("login successful");
+        window.localStorage.setItem("user_id", data.user_id);
+        window.localStorage.setItem("session_key", data.session_key);
+        window.localStorage.setItem("handle", handle);
+        window.localStorage.setItem("logged_in", "true");
+        console.log(handle);
+        return true;
+      }
+    });
+    console.log(localStorage)
+  }
+
+  function logout(){
+    window.localStorage.clear();
+    console.log(localStorage);
+  }
+
   function printPeeps(){
     peepList.innerHTML = "";
     peeps.forEach(function(peep){
@@ -36,11 +74,11 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function hideFullPeep(){
-    document.getElementById("full-text").style.display = "none";
+    fullPeepText.style.display = "none";
   }
 
   function showFullPeep(){
-    document.getElementById("full-text").style.display = "block";
+    fullPeepText.style.display = "block";
   }
 
   function showPeepsList (){
@@ -51,21 +89,48 @@ document.addEventListener("DOMContentLoaded", function() {
     peepList.style.display = "none";
   }
 
+  function checkSession(){
+    if (window.localStorage.getItem("logged_in") == "true"){
+      console.log("check - logged in");
+      document.getElementById("login").style.display = "none";
+    } else {
+      console.log("check - logged out");
+      document.getElementById("login").style.display = "block";
+    }
+  }
+
   peepList.addEventListener('click', function(event){
      if (event.target !== this) {
        showFullPeep();
        let num = event.target.id;
        peepList.style.display = "none";
-       document.getElementById("full-text").textContent = peeps[num].body;
+       fullPeepText.textContent = peeps[num].body;
        console.log(num);
        console.log(peeps[num].body);
      }
   });
 
+  document.getElementById('signout').addEventListener('click', function(event){
+    logout();
+    setTimeout(function () {
+      checkSession();
+    }, 1000);
+  });
+
+  document.getElementById("signin").addEventListener('click', function(event){
+    let handle = document.getElementById('handle').value;
+    let password = document.getElementById('password').value;
+    login(handle, password);
+    setTimeout(function () {
+      checkSession();
+    }, 1000);
+  });
+
   document.getElementById("allPeeps-button").addEventListener('click', function(event){
-      console.log(document.getElementById("full-text").innerHTML);
+      console.log(fullPeepText.innerHTML);
       hideFullPeep();
       showPeepsList();
    });
+
 
 });

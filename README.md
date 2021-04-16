@@ -22,7 +22,7 @@ Here are some interactions the API supports. Implement as many as you see fit.
 * Logging in
 * Posting Peeps
 x* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
+x* Viewing individual Peeps
 * Deleting Peeps
 * Liking Peeps
 * Unliking Peeps
