@@ -10,25 +10,25 @@ document.addEventListener("DOMContentLoaded", function() {
   // Load page
   listPeepsOnPage();
   checkSession();
-
+  // get peeps from server (get peeps), print them on the page
   function reloadPeeps () {
     getPeeps();
     setTimeout(function(){
       printPeeps();
     },3000);
   }
-
+  // get peeps from server, print on page, hide single peep div and show peeps list div
   function listPeepsOnPage() {
     reloadPeeps();
     hideFullPeep();
     showPeepsList();
   }
-
+  // show single peep div and hide peeps list div
   function showIndividualPeep () {
     hidePeepsList();
     showFullPeep();
   }
-
+  // get peeps from server
   function getPeeps () {
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
     .then(response => response.json())
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }
-
+// If login is successful, add data to localStorage
   function createSession(data) {
     window.alert("login successful");
     window.localStorage.setItem("user_id", data.user_id);
@@ -69,10 +69,12 @@ document.addEventListener("DOMContentLoaded", function() {
     window.localStorage.setItem("logged_in", "true");
   }
 
+// Clear local storage on logout
   function logout(){
     window.localStorage.clear();
   }
 
+// Print peeps list to the page
   function printPeeps(){
     peepList.innerHTML = "";
     peeps.forEach(function(peep){
