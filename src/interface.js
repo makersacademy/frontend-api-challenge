@@ -131,6 +131,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }).then(reloadPeeps());
   }
 
+  async function deleteDataPeep (url = '', token) {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${token}`
+      },
+      //body: JSON.stringify(data)
+    }).then(console.log(response));
+      //reloadPeeps());
+  }
+
   function postPeep (peep) {
     let token = window.localStorage["session_key"];
     let id = window.localStorage["user_id"];
@@ -141,6 +153,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 5000);
   }
 
+  function deletePeep (peep_id) {
+    let token = window.localStorage["session_key"];
+    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id;
+    deleteDataPeep(url, token);
+    reloadPeeps();
+  }
+
+// Delete a peep when a button is clicked
+  document.getElementById('delete').addEventListener('click', function(event){
+    console.log(window.localStorage.getItem("peepId"))
+    let peepId = window.localStorage["peepId"];
+    deletePeep(peepId);
+    showPeepsList();
+    hideFullPeep();
+  })
+
+// Post a peep when the button is clicked
   document.getElementById('post_peep').addEventListener('click', function(event){
     let peep = document.getElementById('peep_text').value;
     postPeep(peep);
