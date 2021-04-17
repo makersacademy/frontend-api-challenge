@@ -1,11 +1,15 @@
 document.addEventListener("DOMContentLoaded", function() {
+  // Declare variables
   let peeps = [];
   let peepList = document.getElementById("peep-list");
   let singlePeep = document.getElementById("single-peep");
   let fullPeepText = document.getElementById("full-text");
-  reloadPeeps();
+  var fetchHeaders = new Headers({'Content-Type': 'application/json'});
+  let token;
+
+  // Load page
+  listPeepsOnPage();
   checkSession();
-  hideFullPeep();
 
   function reloadPeeps () {
     getPeeps();
@@ -37,26 +41,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  async function postData (url = '', data = {}, header = "") {
+  async function postData (url = '', data = {}, headers = fetchHeaders) {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    return response.json();
-  }
-
-  async function postDataPeep (url = '', data = {}, token) {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Token token=${token}`
-      },
+      headers: headers,
       body: JSON.stringify(data)
     }).then(reloadPeeps());
+    return response.json();
   }
 
   function login(handle, password){
@@ -90,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function() {
       div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes"
       div.innerHTML += "<p>";
       peepList.appendChild(div);
-      window.alert("added peep");
     });
   }
 
@@ -157,9 +147,11 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function postPeep (peep) {
-    let token = window.localStorage["session_key"];
     let user_id = window.localStorage["user_id"];
-    postDataPeep('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":user_id, "body":peep}}, token);
+    let authHeaders = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `Token token=${window.localStorage["session_key"]}`});
+    postData('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":user_id, "body":peep}}, authHeaders);
     setTimeout(function () {
       reloadPeeps();
     }, 5000);
