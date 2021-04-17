@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(data[i].body);
         peeps.push({id: data[i].id, body: data[i].body, created: data[i].created_at, userId: data[i].user.id, userHandle: data[i].user.handle, likes: data[i].likes});
       }
+      console.log(peeps);
     });
   }
 
@@ -68,8 +69,11 @@ document.addEventListener("DOMContentLoaded", function() {
     peepList.innerHTML = "";
     peeps.forEach(function(peep){
       var div = document.createElement('div');
+      let likes = peep.likes.length;
       div.setAttribute("id", peeps.indexOf(peep));
-      div.innerHTML += peep.body;
+      div.innerHTML += peep.body + "<br>";
+      div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes"
+      div.innerHTML += "<p>";
       peepList.appendChild(div);
       console.log("added peep");
     });
@@ -139,8 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
         'Authorization': `Token token=${token}`
       },
       //body: JSON.stringify(data)
-    }).then(console.log(response));
-      //reloadPeeps());
+    }).then(reloadPeeps());
   }
 
   function postPeep (peep) {
@@ -159,6 +162,8 @@ document.addEventListener("DOMContentLoaded", function() {
     deleteDataPeep(url, token);
     reloadPeeps();
   }
+
+
 
 // Delete a peep when a button is clicked
   document.getElementById('delete').addEventListener('click', function(event){
@@ -180,10 +185,11 @@ document.addEventListener("DOMContentLoaded", function() {
   peepList.addEventListener('click', function(event){
      if (event.target !== this) {
        showFullPeep();
+       hidePeepsList();
        let num = event.target.id;
-       peepList.style.display = "none";
-       // call show peep api??
-       fullPeepText.textContent = peeps[num].body;
+       fullPeepText.innerHTML = peeps[num].body + "<br>";
+       let likes = peeps[num].likes.length;
+       fullPeepText.innerHTML += "<img src = '../public/like.png'> " + likes + " likes";
        window.localStorage.setItem("peepId",peeps[num].id);
        console.log(peeps[num].id);
      }

@@ -11,7 +11,6 @@ h2  {       font-weight: bold;
             font-family: 'American Typewriter', sans-serif;
             font-size: 25px;
             text-align: center;
-
 }
 #new_user_heading {
             font-family: 'American Typewriter', sans-serif;
@@ -48,6 +47,14 @@ h3 {
             font-family: 'Trebuchet MS', sans-serif;}
 #peep-list {text-align: center;
             font-family: 'Trebuchet MS', sans-serif;
+}
+
+#peep-list img {
+            width: 21px;
+}
+
+#single-peep img {
+            width: 21px;
 }
 
 #full-text {text-align: center;

@@ -18,14 +18,20 @@ Your task is to build a front-end single-page-app to interface with this API. Yo
 
 Here are some interactions the API supports. Implement as many as you see fit.
 
-* Creating Users
+x* Creating Users
 x* Logging in
-* Posting Peeps
+x* Posting Peeps
 x* Viewing all Peeps *(I suggest you start here)*
 x* Viewing individual Peeps
-* Deleting Peeps
+x* Deleting Peeps
 * Liking Peeps
 * Unliking Peeps
+
+////////////// TO DO //////////////
+TESTING
+Can user delete a peep if they aren't logged in?
+Can a user post a peep if they aren't logged in?
+
 
 We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
 
