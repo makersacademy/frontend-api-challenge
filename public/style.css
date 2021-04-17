@@ -55,6 +55,7 @@ h3 {
 
 #single-peep img {
             width: 21px;
+            cursor: pointer;
 }
 
 #full-text {text-align: center;

@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", function() {
     },3000);
   }
 
+  function listPeepsOnPage() {
+    reloadPeeps();
+    hideFullPeep();
+    showPeepsList();
+  }
+
   function getPeeps () {
     console.log("in get peeps")
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
@@ -146,10 +152,21 @@ document.addEventListener("DOMContentLoaded", function() {
     }).then(reloadPeeps());
   }
 
+  async function putDataPeep (url = '', token) {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${token}`
+      },
+    }).then(listPeepsOnPage()
+  );
+  }
+
   function postPeep (peep) {
     let token = window.localStorage["session_key"];
-    let id = window.localStorage["user_id"];
-    postDataPeep('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":id, "body":peep}}, token);
+    let user_id = window.localStorage["user_id"];
+    postDataPeep('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":user_id, "body":peep}}, token);
     setTimeout(function () {
       reloadPeeps();
       console.log("reloading2")
@@ -163,7 +180,12 @@ document.addEventListener("DOMContentLoaded", function() {
     reloadPeeps();
   }
 
-
+  function likePeep (peep_id) {
+    let token = window.localStorage["session_key"];
+    let user_id = window.localStorage["user_id"];
+    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + user_id;
+    putDataPeep(url, token);
+  }
 
 // Delete a peep when a button is clicked
   document.getElementById('delete').addEventListener('click', function(event){
@@ -189,11 +211,20 @@ document.addEventListener("DOMContentLoaded", function() {
        let num = event.target.id;
        fullPeepText.innerHTML = peeps[num].body + "<br>";
        let likes = peeps[num].likes.length;
-       fullPeepText.innerHTML += "<img src = '../public/like.png'> " + likes + " likes";
+       fullPeepText.innerHTML += "<img src = '../public/like.png' id='like-peep'> " + likes + " likes";
        window.localStorage.setItem("peepId",peeps[num].id);
        console.log(peeps[num].id);
+       listenForLike();
      }
   });
+
+// Add a like when like button is clicked in full peep text
+function listenForLike () {
+  document.getElementById('like-peep').addEventListener('click', function(event){
+    let peepId = window.localStorage["peepId"];
+    likePeep(peepId);
+  });
+}
 
 // Sign out when button clicked
   document.getElementById('signout').addEventListener('click', function(event){
