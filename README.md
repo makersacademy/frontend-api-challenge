@@ -24,8 +24,8 @@ x* Posting Peeps
 x* Viewing all Peeps *(I suggest you start here)*
 x* Viewing individual Peeps
 x* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+x* Liking Peeps
+x* Unliking Peeps
 
 ////////////// TO DO //////////////
 TESTING
