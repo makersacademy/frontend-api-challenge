@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
         'Authorization': `Token token=${token}`
       },
       //body: JSON.stringify(data)
-    }).then(reloadPeeps());
+    }).then(listPeepsOnPage());
   }
 
   async function putDataPeep (url = '', token) {
@@ -187,6 +187,13 @@ document.addEventListener("DOMContentLoaded", function() {
     putDataPeep(url, token);
   }
 
+  function deleteLike(peep_id) {
+    let token = window.localStorage["session_key"];
+    let user_id = window.localStorage["user_id"];
+    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + user_id;
+    deleteDataPeep(url, token);
+  }
+
 // Delete a peep when a button is clicked
   document.getElementById('delete').addEventListener('click', function(event){
     console.log(window.localStorage.getItem("peepId"))
@@ -212,8 +219,10 @@ document.addEventListener("DOMContentLoaded", function() {
        fullPeepText.innerHTML = peeps[num].body + "<br>";
        let likes = peeps[num].likes.length;
        fullPeepText.innerHTML += "<img src = '../public/like.png' id='like-peep'> " + likes + " likes";
+       fullPeepText.innerHTML += "      <img src = '../public/unlike.png' id='unlike-peep'> ";
        window.localStorage.setItem("peepId",peeps[num].id);
        console.log(peeps[num].id);
+       listenForUnlike();
        listenForLike();
      }
   });
@@ -223,6 +232,14 @@ function listenForLike () {
   document.getElementById('like-peep').addEventListener('click', function(event){
     let peepId = window.localStorage["peepId"];
     likePeep(peepId);
+  });
+}
+
+// Delete a like when un-like button is clicked in full peep text
+function listenForUnlike () {
+  document.getElementById('unlike-peep').addEventListener('click', function(event){
+    let peepId = window.localStorage["peepId"];
+    deleteLike(peepId);
   });
 }
 
