@@ -55,16 +55,18 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(data => {
       if (data.hasOwnProperty('errors')){
         window.alert("login failed");
-        return false;
       } else {
-        window.alert("login successful");
-        window.localStorage.setItem("user_id", data.user_id);
-        window.localStorage.setItem("session_key", data.session_key);
-        window.localStorage.setItem("handle", handle);
-        window.localStorage.setItem("logged_in", "true");
-        return true;
+        createSession(data);
       }
     });
+  }
+
+  function createSession(data) {
+    window.alert("login successful");
+    window.localStorage.setItem("user_id", data.user_id);
+    window.localStorage.setItem("session_key", data.session_key);
+    window.localStorage.setItem("handle", handle);
+    window.localStorage.setItem("logged_in", "true");
   }
 
   function logout(){
@@ -78,8 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
       let likes = peep.likes.length;
       div.setAttribute("id", peeps.indexOf(peep));
       div.innerHTML += peep.body + "<br>";
-      div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes"
-      div.innerHTML += "<p>";
+      div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes<p>"
       peepList.appendChild(div);
     });
   }
@@ -117,10 +118,8 @@ document.addEventListener("DOMContentLoaded", function() {
     .then (data => {
       if (data.hasOwnProperty('id')){
         window.alert('User created');
-        return true;
       } else {
         window.alert('User creation failed');
-        return false;
       }
     });
   }
@@ -169,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let user_id = window.localStorage["user_id"];
     let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + user_id;
     putDataPeep(url, token);
+    listPeepsOnPage();
   }
 
   function deleteLike(peep_id) {
@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let user_id = window.localStorage["user_id"];
     let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + user_id;
     deleteDataPeep(url, token);
+    listPeepsOnPage();
   }
 
 // Delete a peep when a button is clicked
@@ -198,8 +199,8 @@ document.addEventListener("DOMContentLoaded", function() {
      if (event.target !== this) {
        showIndividualPeep();
        let num = event.target.id;
-       fullPeepText.innerHTML = peeps[num].body + "<br>";
        let likes = peeps[num].likes.length;
+       fullPeepText.innerHTML = peeps[num].body + "<br>";
        fullPeepText.innerHTML += "<img src = '../public/like.png' id='like-peep'> " + likes + " likes";
        fullPeepText.innerHTML += "      <img src = '../public/unlike.png' id='unlike-peep'> ";
        window.localStorage.setItem("peepId",peeps[num].id);
