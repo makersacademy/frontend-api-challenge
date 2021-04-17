@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded", function() {
 // If login is successful, add data to localStorage
   function createSession(data) {
     window.alert("login successful");
-    window.localStorage.setItem("user_id", data.user_id);
-    window.localStorage.setItem("session_key", data.session_key);
+    window.localStorage.setItem("userId", data.user_id);
+    window.localStorage.setItem("sessionKey", data.session_key);
     window.localStorage.setItem("handle", handle);
-    window.localStorage.setItem("logged_in", "true");
+    window.localStorage.setItem("loggedIn", "true");
   }
 
 // Clear local storage on logout
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function checkSession(){
-    if (window.localStorage.getItem("logged_in") == "true"){
+    if (window.localStorage.getItem("loggedIn") == "true"){
       document.getElementById("welcome").style.display = "block";
       document.getElementById("login").style.display = "none";
     } else {
@@ -148,35 +148,35 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function postPeep (peep) {
-    let user_id = window.localStorage["user_id"];
+    let userId = window.localStorage["userId"];
     let authHeaders = new Headers({
       'Content-Type': 'application/json',
-      'Authorization': `Token token=${window.localStorage["session_key"]}`});
-    postData('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":user_id, "body":peep}}, authHeaders);
+      'Authorization': `Token token=${window.localStorage["sessionKey"]}`});
+    postData('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":userId, "body":peep}}, authHeaders);
     setTimeout(function () {
       reloadPeeps();
     }, 5000);
   }
 
   function deletePeep (peep_id) {
-    let token = window.localStorage["session_key"];
+    let token = window.localStorage["sessionKey"];
     let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id;
     deleteDataPeep(url, token);
     reloadPeeps();
   }
 
   function likePeep (peep_id) {
-    let token = window.localStorage["session_key"];
-    let user_id = window.localStorage["user_id"];
-    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + user_id;
+    let token = window.localStorage["sessionKey"];
+    let userId = window.localStorage["userId"];
+    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + userId;
     putDataPeep(url, token);
     listPeepsOnPage();
   }
 
   function deleteLike(peep_id) {
-    let token = window.localStorage["session_key"];
-    let user_id = window.localStorage["user_id"];
-    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + user_id;
+    let token = window.localStorage["sessionKey"];
+    let userId = window.localStorage["userId"];
+    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + userId;
     deleteDataPeep(url, token);
     listPeepsOnPage();
   }
@@ -190,10 +190,10 @@ document.addEventListener("DOMContentLoaded", function() {
   })
 
 // Post a peep when the button is clicked
-  document.getElementById('post_peep').addEventListener('click', function(event){
-    let peep = document.getElementById('peep_text').value;
+  document.getElementById('post-peep').addEventListener('click', function(event){
+    let peep = document.getElementById('peep-text').value;
     postPeep(peep);
-    document.getElementById('peep_text').value = ' ';
+    document.getElementById('peep-text').value = ' ';
   });
 
 // Show single peep when peep is clicked
@@ -228,7 +228,7 @@ function listenForUnlike () {
 }
 
 // Sign out when button clicked
-  document.getElementById('signout').addEventListener('click', function(event){
+  document.getElementById('sign-out').addEventListener('click', function(event){
     logout();
     setTimeout(function () {
       checkSession();
@@ -243,7 +243,7 @@ function listenForUnlike () {
   });
 
 // Sign in user when sign in button clicked
-  document.getElementById("signin").addEventListener('click', function(event){
+  document.getElementById("sign-in").addEventListener('click', function(event){
     let handle = document.getElementById('handle').value;
     let password = document.getElementById('password').value;
     login(handle, password);
@@ -253,7 +253,7 @@ function listenForUnlike () {
   });
 
 // Show list of all peeps when button clicked
-  document.getElementById("allPeeps-button").addEventListener('click', function(event){
+  document.getElementById("all-peeps-button").addEventListener('click', function(event){
       window.localStorage.removeItem("peepId");
       listPeepsOnPage();
    });
