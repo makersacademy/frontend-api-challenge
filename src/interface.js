@@ -1,30 +1,45 @@
-let cryerContainer = document.getElementById('cryer-div');
+// let cryerContainer = document.getElementById('cryer-div');
 
-async function getCries(url = '') {
+async function getRequest(url = '') {
   const response = await fetch(url);
   return response.json();
 }
 
 function makeGetRequest(url, callback) {
-  getCries(url).then(callback)
+  getRequest(url).then(callback)
 }
 
-function displayCries(data) {
-  data.forEach(cry => {
-    let cryContent = `<p>${cry.body}</p>`
-    cryerContainer.innerHTML += cryContent
-  });
-}
+// function display(data) {
+//   data.forEach(cry => {
+//     let cryContent = `<p>${cry.body}</p>`
+//     cryerContainer.innerHTML += cryContent
+//   });
+// }
 
-makeGetRequest("https://chitter-backend-api-v2.herokuapp.com/peeps", displayCries)
+// makeGetRequest("https://chitter-backend-api-v2.herokuapp.com/peeps", displayCries)
 
 class Interface {
   constructor(makeRequest) {
     this.makeRequest = makeRequest
   }
 
-  // displayCries
+  displayCries() {
+    this.makeRequest("https://chitter-backend-api-v2.herokuapp.com/peeps", this._display)
+  }
+
+  _display(cries) {
+    let cryerContainer = document.getElementById('cryer-div');
+    cries.forEach(cry => {
+      let cryContent = `<p>${cry.body}</p>`
+      cryerContainer.innerHTML += cryContent
+    });
+  }
 }
+
+// actions
+
+
+// GUMF
 
 
 //"https://chitter-backend-api-v2.herokuapp.com/peeps"
