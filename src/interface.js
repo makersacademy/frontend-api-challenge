@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
   hideFullPeep();
 
   function reloadPeeps () {
-    console.log("in reload peeps")
     getPeeps();
     setTimeout(function(){
       printPeeps();
@@ -21,19 +20,20 @@ document.addEventListener("DOMContentLoaded", function() {
     showPeepsList();
   }
 
+  function showIndividualPeep () {
+    hidePeepsList();
+    showFullPeep();
+  }
+
   function getPeeps () {
-    console.log("in get peeps")
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
     .then(response => response.json())
     .then(data => {
       let i;
       peeps = [];
       for (i = 0; i < 10; i++) {
-        console.log(data);
-        console.log(data[i].body);
         peeps.push({id: data[i].id, body: data[i].body, created: data[i].created_at, userId: data[i].user.id, userHandle: data[i].user.handle, likes: data[i].likes});
       }
-      console.log(peeps);
     });
   }
 
@@ -48,14 +48,25 @@ document.addEventListener("DOMContentLoaded", function() {
     return response.json();
   }
 
+  async function postDataPeep (url = '', data = {}, token) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${token}`
+      },
+      body: JSON.stringify(data)
+    }).then(reloadPeeps());
+  }
+
   function login(handle, password){
     postData('https://chitter-backend-api-v2.herokuapp.com/sessions', data = {session: {"handle": handle, "password": password}})
     .then(data => {
       if (data.hasOwnProperty('errors')){
-        console.log("login failed");
+        window.alert("login failed");
         return false;
       } else {
-        console.log("login successful");
+        window.alert("login successful");
         window.localStorage.setItem("user_id", data.user_id);
         window.localStorage.setItem("session_key", data.session_key);
         window.localStorage.setItem("handle", handle);
@@ -63,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return true;
       }
     });
-    console.log(localStorage);
   }
 
   function logout(){
@@ -71,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function printPeeps(){
-    console.log("in print peeps")
     peepList.innerHTML = "";
     peeps.forEach(function(peep){
       var div = document.createElement('div');
@@ -81,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
       div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes"
       div.innerHTML += "<p>";
       peepList.appendChild(div);
-      console.log("added peep");
+      window.alert("added peep");
     });
   }
 
@@ -105,11 +114,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function checkSession(){
     if (window.localStorage.getItem("logged_in") == "true"){
-      console.log("check - logged in");
       document.getElementById("welcome").style.display = "block";
       document.getElementById("login").style.display = "none";
     } else {
-      console.log("check - logged out");
       document.getElementById("welcome").style.display = "none";
       document.getElementById("login").style.display = "block";
     }
@@ -120,25 +127,12 @@ document.addEventListener("DOMContentLoaded", function() {
     .then (data => {
       if (data.hasOwnProperty('id')){
         window.alert('User created');
-        console.log(data);
         return true;
       } else {
         window.alert('User creation failed');
-        console.log(data);
         return false;
       }
     });
-  }
-
-  async function postDataPeep (url = '', data = {}, token) {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Token token=${token}`
-      },
-      body: JSON.stringify(data)
-    }).then(reloadPeeps());
   }
 
   async function deleteDataPeep (url = '', token) {
@@ -148,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function() {
         'Content-Type': 'application/json',
         'Authorization': `Token token=${token}`
       },
-      //body: JSON.stringify(data)
     }).then(listPeepsOnPage());
   }
 
@@ -169,7 +162,6 @@ document.addEventListener("DOMContentLoaded", function() {
     postDataPeep('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":user_id, "body":peep}}, token);
     setTimeout(function () {
       reloadPeeps();
-      console.log("reloading2")
     }, 5000);
   }
 
@@ -199,8 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log(window.localStorage.getItem("peepId"))
     let peepId = window.localStorage["peepId"];
     deletePeep(peepId);
-    showPeepsList();
-    hideFullPeep();
+    listPeepsOnPage();
   })
 
 // Post a peep when the button is clicked
@@ -213,15 +204,13 @@ document.addEventListener("DOMContentLoaded", function() {
 // Show single peep when peep is clicked
   peepList.addEventListener('click', function(event){
      if (event.target !== this) {
-       showFullPeep();
-       hidePeepsList();
+       showIndividualPeep();
        let num = event.target.id;
        fullPeepText.innerHTML = peeps[num].body + "<br>";
        let likes = peeps[num].likes.length;
        fullPeepText.innerHTML += "<img src = '../public/like.png' id='like-peep'> " + likes + " likes";
        fullPeepText.innerHTML += "      <img src = '../public/unlike.png' id='unlike-peep'> ";
        window.localStorage.setItem("peepId",peeps[num].id);
-       console.log(peeps[num].id);
        listenForUnlike();
        listenForLike();
      }
@@ -271,8 +260,7 @@ function listenForUnlike () {
 // Show list of all peeps when button clicked
   document.getElementById("allPeeps-button").addEventListener('click', function(event){
       window.localStorage.removeItem("peepId");
-      hideFullPeep();
-      showPeepsList();
+      listPeepsOnPage();
    });
 
 });
