@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
       for (i = 0; i < 10; i++) {
         console.log(data);
         console.log(data[i].body);
-        peeps.push({body: data[i].body, created: data[i].created_at, userId: data[i].user.id, userHandle: data[i].user.handle, likes: data[i].likes});
+        peeps.push({id: data[i].id, body: data[i].body, created: data[i].created_at, userId: data[i].user.id, userHandle: data[i].user.handle, likes: data[i].likes});
       }
     });
   }
@@ -147,15 +147,20 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('peep_text').value = ' ';
   });
 
+// Show single peep when peep is clicked
   peepList.addEventListener('click', function(event){
      if (event.target !== this) {
        showFullPeep();
        let num = event.target.id;
        peepList.style.display = "none";
+       // call show peep api??
        fullPeepText.textContent = peeps[num].body;
+       window.localStorage.setItem("peepId",peeps[num].id);
+       console.log(peeps[num].id);
      }
   });
 
+// Sign out when button clicked
   document.getElementById('signout').addEventListener('click', function(event){
     logout();
     setTimeout(function () {
@@ -163,12 +168,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1000);
   });
 
+// Create new user when button clicked
   document.getElementById('create').addEventListener('click', function(event){
     let handle = document.getElementById('handle').value;
     let password = document.getElementById('password').value;
     createUser(handle, password);
   });
 
+// Sign in user when sign in button clicked
   document.getElementById("signin").addEventListener('click', function(event){
     let handle = document.getElementById('handle').value;
     let password = document.getElementById('password').value;
@@ -178,7 +185,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1000);
   });
 
+// Show list of all peeps when button clicked
   document.getElementById("allPeeps-button").addEventListener('click', function(event){
+      window.localStorage.removeItem("peepId");
       hideFullPeep();
       showPeepsList();
    });
