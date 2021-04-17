@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
   let peeps = [];
   let peepList = document.getElementById("peep-list");
+  let singlePeep = document.getElementById("single-peep");
   let fullPeepText = document.getElementById("full-text");
   reloadPeeps();
   checkSession();
+  hideFullPeep();
 
   function reloadPeeps () {
     console.log("in reload peeps")
@@ -74,11 +76,13 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function hideFullPeep(){
-    fullPeepText.style.display = "none";
+    singlePeep.style.display = "none";
+    singlePeep.style.visibility = "hidden";
   }
 
   function showFullPeep(){
-    fullPeepText.style.display = "block";
+    singlePeep.style.display = "block";
+    singlePeep.style.visibility = "visible";
   }
 
   function showPeepsList (){
@@ -175,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   document.getElementById("allPeeps-button").addEventListener('click', function(event){
-      console.log(fullPeepText.innerHTML);
       hideFullPeep();
       showPeepsList();
    });
