@@ -228,7 +228,7 @@ function listenForUnlike () {
 }
 
 // Sign out when button clicked
-  document.getElementById('sign-out').addEventListener('click', function(event){
+$("#sign-out").click(function(event){
     logout();
     setTimeout(function () {
       checkSession();
