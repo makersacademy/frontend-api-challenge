@@ -214,16 +214,14 @@ $("#peep-list").click(function(event){
 // Add a like when like button is clicked in full peep text
 function listenForLike () {
   $("#like-peep").click(function(event){
-    let peepId = window.localStorage["peepId"];
-    likePeep(peepId);
+    likePeep(window.localStorage["peepId"]);
   });
 }
 
 // Delete a like when un-like button is clicked in full peep text
 function listenForUnlike () {
   $("#unlike-peep").click(function(event){
-    let peepId = window.localStorage["peepId"];
-    deleteLike(peepId);
+    deleteLike(window.localStorage["peepId"]);
   });
 }
 
