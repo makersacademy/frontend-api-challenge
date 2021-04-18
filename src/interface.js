@@ -98,24 +98,20 @@ $( document ).ready(function() {
   }
 
   function showPeepsList (){
-    peepList.style.display = "block";
+    $("#peep-list").show();
   }
 
   function hidePeepsList (){
-    peepList.style.display = "none";
+    $("#peep-list").hide();
   }
 
   function checkSession(){
     if (window.localStorage.getItem("loggedIn") == "true"){
       $("#welcome").show();
       $("#login").hide();
-      //document.getElementById("welcome").style.display = "block";
-    //  document.getElementById("login").style.display = "none";
     } else {
       $("#welcome").hide();
       $("#login").show();
-      //document.getElementById("welcome").style.display = "none";
-      //document.getElementById("login").style.display = "block";
     }
   }
 
