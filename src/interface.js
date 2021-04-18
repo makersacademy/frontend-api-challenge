@@ -193,7 +193,8 @@ $("#delete").click(function(event){
 $("#post-peep").click(function(event){
     let peep = document.getElementById('peep-text').value;
     postPeep(peep);
-    document.getElementById('peep-text').value = ' ';
+    $("#peep-text").val(" ");
+    //document.getElementById('peep-text').value = ' ';
   });
 
 // Show single peep when peep is clicked
