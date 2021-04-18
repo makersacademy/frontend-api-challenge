@@ -107,11 +107,15 @@ $( document ).ready(function() {
 
   function checkSession(){
     if (window.localStorage.getItem("loggedIn") == "true"){
-      document.getElementById("welcome").style.display = "block";
-      document.getElementById("login").style.display = "none";
+      $("#welcome").show();
+      $("#login").hide();
+      //document.getElementById("welcome").style.display = "block";
+    //  document.getElementById("login").style.display = "none";
     } else {
-      document.getElementById("welcome").style.display = "none";
-      document.getElementById("login").style.display = "block";
+      $("#welcome").hide();
+      $("#login").show();
+      //document.getElementById("welcome").style.display = "none";
+      //document.getElementById("login").style.display = "block";
     }
   }
 
@@ -183,18 +187,15 @@ $( document ).ready(function() {
 
 // Delete a peep when a button is clicked
 $("#delete").click(function(event){
-    console.log(window.localStorage.getItem("peepId"))
-    let peepId = window.localStorage["peepId"];
-    deletePeep(peepId);
+    deletePeep(window.localStorage["peepId"]);
     listPeepsOnPage();
-  })
+  });
 
 // Post a peep when the button is clicked
 $("#post-peep").click(function(event){
     let peep = document.getElementById('peep-text').value;
     postPeep(peep);
     $("#peep-text").val(" ");
-    //document.getElementById('peep-text').value = ' ';
   });
 
 // Show single peep when peep is clicked
