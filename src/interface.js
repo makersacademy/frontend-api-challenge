@@ -244,9 +244,7 @@ $("#create").click(function(event){
 
 // Sign in user when sign in button clicked
 $("#sign-in").click(function(event){
-    let handle = document.getElementById('handle').value;
-    let password = document.getElementById('password').value;
-    login(handle, password);
+    login($("#handle").val(), $("#password").val());
     setTimeout(function () {
       checkSession();
     }, 1000);
