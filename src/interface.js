@@ -202,9 +202,9 @@ $("#peep-list").click(function(event){
        showIndividualPeep();
        let num = event.target.id;
        let likes = peeps[num].likes.length;
-       fullPeepText.innerHTML = peeps[num].body + "<br>";
-       fullPeepText.innerHTML += "<img src = '../public/like.png' id='like-peep'> " + likes + " likes";
-       fullPeepText.innerHTML += "      <img src = '../public/unlike.png' id='unlike-peep'> ";
+       $("#full-text").html(peeps[num].body + "<br>");
+       $("#full-text").append("<img src = '../public/like.png' id='like-peep'> " + likes + " likes");
+       $("#full-text").append("      <img src = '../public/unlike.png' id='unlike-peep'> ");
        window.localStorage.setItem("peepId",peeps[num].id);
        listenForUnlike();
        listenForLike();
