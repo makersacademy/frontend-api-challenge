@@ -28,13 +28,36 @@ class Interface {
   }
 
   _display(cries) {
+    let thisIs = this
     let cryerContainer = document.getElementById('cryer-div');
     cries.forEach(cry => {
-      let cryContent = `<p>${cry.body}</p>`
-      cryerContainer.innerHTML += cryContent
+      console.log(cry);
+      let cryTime = `${cry.updated_at.slice(11, 13)}:${cry.updated_at.slice(14, 16)}, ${cry.updated_at.slice(8, 10)}-${cry.updated_at.slice(5, 7)}-${cry.updated_at.slice(0, 4)}`
+
+      let cryDisplay = `
+      <div id="individual-cry">
+        <div id='author-time-div'>
+          <p id='author_text'>${cry.user.handle}</p>
+          <p id='time_text'>${cryTime}</p>
+        </div>
+        <div id='cry_content_div'>
+          <p id='cry_content'>${cry.body}</p>
+        </div>
+        <div id='reply_div' class="replies">
+          <p id='reply_text'><a href="_self" target="_self" id="replies"  name="replies">replies</a></p>
+        </div>
+      </div>
+      `
+      cryerContainer.innerHTML += cryDisplay
     });
   }
+
+  _dateFormat(str) {
+    return `${str.slice(11, 13)}:${str.slice(14, 16)}, ${str.slice(8, 10)}-${str.slice(5, 7)}-${str.slice(0, 4)}`
+  }
 }
+
+
 
 // actions
 
