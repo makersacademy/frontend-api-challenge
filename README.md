@@ -18,5 +18,3 @@ Throughout implementation, I console.logged lots of things to ensure I knew what
 The page is clunky - some timeouts could probably be reduced - but it works. At present, if I delete a post, unless the timeout is long then reloading the peeps doesn't register that it has been deleted.
 
 I've tried to ensure that it's DRY. I created custom headers so that I could reuse the postData function, passing it a different header where necessary.
-
-The node modules have not been used. They are a relic of me trying to get testing to work.
