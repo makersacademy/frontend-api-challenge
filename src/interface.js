@@ -182,7 +182,7 @@ $( document ).ready(function() {
   }
 
 // Delete a peep when a button is clicked
-  document.getElementById('delete').addEventListener('click', function(event){
+$("#delete").click(function(event){
     console.log(window.localStorage.getItem("peepId"))
     let peepId = window.localStorage["peepId"];
     deletePeep(peepId);
