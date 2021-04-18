@@ -13,6 +13,6 @@ I completely failed at testing with Jasmine with this. I have NO idea how to do 
 
 Throughout implementation, I console.logged lots of things to ensure I knew what was happening. I originally wrote this in vanilla JS and then rewrote it in jquery to make it cleaner.
 
-The page is clunky - some timeouts could probably be reduced - but it works.
+The page is clunky - some timeouts could probably be reduced - but it works. At present, if I delete a post, unless the timeout is long then reloading the peeps doesn't register that it has been deleted.
 
 I've tried to ensure that it's DRY. I created custom headers so that I could reuse the postData function, passing it a different header where necessary.

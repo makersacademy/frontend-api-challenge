@@ -12,7 +12,7 @@ $( document ).ready(function() {
     getPeeps();
     setTimeout(function(){
       printPeeps();
-    },3000);
+    },5000);
   }
   // get peeps from server, print on page, hide single peep div and show peeps list div
   function listPeepsOnPage() {
@@ -84,7 +84,6 @@ $( document ).ready(function() {
       div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes<p>";
       $("#peep-list").append(div);
     });
-    console.log(peeps);
   }
 
   function hideFullPeep(){
