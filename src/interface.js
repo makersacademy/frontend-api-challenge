@@ -88,13 +88,11 @@ $( document ).ready(function() {
   }
 
   function hideFullPeep(){
-    singlePeep.style.display = "none";
-    singlePeep.style.visibility = "hidden";
+    $("#single-peep").hide();
   }
 
   function showFullPeep(){
-    singlePeep.style.display = "block";
-    singlePeep.style.visibility = "visible";
+    $("#single-peep").show();
   }
 
   function showPeepsList (){
