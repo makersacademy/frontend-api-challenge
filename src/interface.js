@@ -77,14 +77,13 @@ $( document ).ready(function() {
 // Print peeps list to the page
   function printPeeps(){
     $("#peep-list").html("");
-    //peepList.innerHTML = "";
     peeps.forEach(function(peep){
       var div = document.createElement('div');
       let likes = peep.likes.length;
       div.setAttribute("id", peeps.indexOf(peep));
       div.innerHTML += peep.body + "<br>";
       div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes<p>"
-      peepList.appendChild(div);
+      $("#peep-list").append(div);
     });
   }
 
