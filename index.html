@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Town Cryer</title>
+
+  <link rel="stylesheet" href='public/css/styles.css'>
+  <script src="src/interface.js" defer></script>
+  <script src="app.js" defer></script>
+
+</head>
+
+<body>
+
+  <h1>Town Cryer</h1>
+  <h2>Spout your nonsense all over the town!</h2>
+
+  <div id="welcome-wagon-div">
+    <h3 id="welcome-wagon-header">Welcome Guest Cryer!</h3>
+    <h4 id="welcome-wagon-subheader">Without signing in you can look but you can't cry!</h4>
+    <div id="signup-Login-Div">
+      <button type="button" id="sign-up">Sign Up!</button>
+      <button type="button" id="log-in">Log In!</button>
+    </div>
+    <form id="cry-entry-box" hidden="true">
+      <textarea id='cryArea' rows="15" cols="42" placeholder="Write your Cry here!"></textarea>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+
+  <div id="cryer-div">
+  </div>
+
+</body>
+</html>
