@@ -197,7 +197,7 @@ $( document ).ready(function() {
   });
 
 // Show single peep when peep is clicked
-  peepList.addEventListener('click', function(event){
+$("#peep-list").click(function(event){
      if (event.target !== this) {
        showIndividualPeep();
        let num = event.target.id;
