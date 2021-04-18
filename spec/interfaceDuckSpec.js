@@ -8,7 +8,10 @@ console.log("#displayCries")
   testDiv.setAttribute('id', 'cryer-div');
   document.body.appendChild(testDiv)
 
-  let stubbedData = [{ body: "This is a cry!", updated_at: "2021-02-16T19:48:17.065Z", user: {id: 34, handle: "kay"}}, { body: "This is another cry!", updated_at: "2021-02-16T19:48:17.065Z", user: {id: 34, handle: "kay"}}]
+  let stubbedData = [
+    { body: "This is a cry!", updated_at: "2021-02-16T19:48:17.065Z", user: {id: 34, handle: "kay"}},
+    { body: "This is another cry!", updated_at: "2021-02-16T19:48:17.065Z", user: {id: 34, handle: "kay"}}
+  ]
   let testInterface = new Interface((url, callback) => {
       callback(stubbedData)
   })

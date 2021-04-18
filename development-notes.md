@@ -33,14 +33,40 @@ Development notes
 2. Set up Is It Ducking Working? - done (hope to be able to improve on this testing suite)
 
 3. Taking on first user story - viewing all the peeps
-  - As a maker, So that I can see what others are saying, I want to see all peeps in reverse chronological order
+  - As a maker, So that I can see what others are saying, I want to see all peeps in reverse chronological order - DONE
+
+  - As a Maker, So that I can better appreciate the context of a peep, I want to see the time at which it was made - DONE
   - Set up a div in the html - Done
-  - test out the JS request in the console to the chitter api
-  - set up tests for the interface.js
-  - write interface js code to meet the tests
-  - wrote mocked jasmine and duck tests
-  - developed code to display tweets, using a fetch request to get the api
+  - test out the JS request in the console to the chitter api - DONE
+  - set up tests for the interface.js - DONE
+  - write interface js code to meet the tests - DONE
+  - wrote mocked jasmine and duck tests - DONE
+  - developed code to display tweets, using a fetch request to get the api - DONE
 
   - NEED TO FIX TESTS! - DONE
 
 4. Going to develop creating users and logging in
+
+  - Creating Users
+    - As a Maker, So that I can post messages on Chitter as me, I want to sign up for Chitter
+
+    - need a welcome sign at the top
+    - one buttons - sign up
+    - when you click it a form appears
+    - with username, password
+    - need to build a test on Jasmine
+    - need to build interface login
+
+  - Logging in
+    - As a Maker, So that only I can post messages on Chitter as me, I want to log in to Chitter
+    - As a Maker, So that I can avoid others posting messages on Chitter as me, I want to log out of Chitter
+
+    - need a login button
+    - when clicked it will make a form (with username and password) appear with a submit button
+    - need to built a test on jasmine
+    - need to build an interface login
+    - this also starts the session
+
+    - once signed in
+      - need a new welcome banner with your name
+      - need a log out button which ends the session
