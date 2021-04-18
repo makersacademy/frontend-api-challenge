@@ -76,7 +76,8 @@ $( document ).ready(function() {
 
 // Print peeps list to the page
   function printPeeps(){
-    peepList.innerHTML = "";
+    $("#peep-list").html("");
+    //peepList.innerHTML = "";
     peeps.forEach(function(peep){
       var div = document.createElement('div');
       let likes = peep.likes.length;
