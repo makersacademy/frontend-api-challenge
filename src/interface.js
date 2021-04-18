@@ -1,9 +1,6 @@
 $( document ).ready(function() {
   // Declare variables
   let peeps = [];
-  let peepList = document.getElementById("peep-list");
-  let singlePeep = document.getElementById("single-peep");
-  let fullPeepText = document.getElementById("full-text");
   var fetchHeaders = new Headers({'Content-Type': 'application/json'});
   let token;
 
