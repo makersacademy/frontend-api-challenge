@@ -236,7 +236,7 @@ function listenForUnlike () {
   });
 
 // Create new user when button clicked
-  document.getElementById('create').addEventListener('click', function(event){
+$("#create").click(function(event){
     let handle = document.getElementById('handle').value;
     let password = document.getElementById('password').value;
     createUser(handle, password);
