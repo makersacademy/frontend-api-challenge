@@ -190,7 +190,7 @@ $( document ).ready(function() {
   })
 
 // Post a peep when the button is clicked
-  document.getElementById('post-peep').addEventListener('click', function(event){
+$("#post-peep").click(function(event){
     let peep = document.getElementById('peep-text').value;
     postPeep(peep);
     document.getElementById('peep-text').value = ' ';
