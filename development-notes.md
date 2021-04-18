@@ -50,12 +50,12 @@ Development notes
   - Creating Users
     - As a Maker, So that I can post messages on Chitter as me, I want to sign up for Chitter
 
-    - need a welcome sign at the top
-    - one buttons - sign up
-    - when you click it a form appears
-    - with username, password
-    - need to build a test on Jasmine
-    - need to build interface login
+    - need a welcome sign at the top - done
+    - one buttons - sign up - done
+    - when you click it a form appears - done
+    - with username, password - done
+    - need to build a test on Jasmine - no fail - cannot get a passing test, I figured out how to dummy it, but cannot get past auto clicking the alert.
+    - need to build interface login - done
 
   - Logging in
     - As a Maker, So that only I can post messages on Chitter as me, I want to log in to Chitter
@@ -64,9 +64,13 @@ Development notes
     - need a login button
     - when clicked it will make a form (with username and password) appear with a submit button
     - need to built a test on jasmine
-    - need to build an interface login
-    - this also starts the session
+    - need to build an interface login -
+    - this also starts the session - d
 
     - once signed in
       - need a new welcome banner with your name
       - need a log out button which ends the session
+
+- IMPLEMENTED - put together the login and create crys which also update the page.
+
+- succesfully mocked the tests 

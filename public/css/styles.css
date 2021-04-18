@@ -23,3 +23,9 @@ textarea {
   background-color: rgb(255, 255, 134);
   border-width: 0px;
 } */
+
+#individual-cry {
+  border: 2px solid black;
+  margin: 5px;
+  padding: 10px;
+}
