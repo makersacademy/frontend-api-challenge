@@ -221,7 +221,7 @@ function listenForLike () {
 
 // Delete a like when un-like button is clicked in full peep text
 function listenForUnlike () {
-  document.getElementById('unlike-peep').addEventListener('click', function(event){
+  $("#unlike-peep").click(function(event){
     let peepId = window.localStorage["peepId"];
     deleteLike(peepId);
   });
