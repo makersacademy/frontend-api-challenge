@@ -237,9 +237,7 @@ $("#sign-out").click(function(event){
 
 // Create new user when button clicked
 $("#create").click(function(event){
-    let handle = document.getElementById('handle').value;
-    let password = document.getElementById('password').value;
-    createUser(handle, password);
+    createUser($("#handle").val(), $("#password").val());
   });
 
 // Sign in user when sign in button clicked
