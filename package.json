@@ -20,7 +20,13 @@
   },
   "homepage": "https://github.com/louballantyne/frontend-api-challenge#readme",
   "dependencies": {
+    "fetch-mock": "^9.11.0",
     "jasmine-node": "^3.0.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "proxyquire": "^2.1.3"
+  },
+  "devDependencies": {
+    "@types/jasmine-ajax": "^3.3.2",
+    "jasmine-ajax": "^4.0.0"
   }
 }

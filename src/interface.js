@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+$( document ).ready(function() {
   // Declare variables
   let peeps = [];
   let peepList = document.getElementById("peep-list");
@@ -253,7 +253,7 @@ function listenForUnlike () {
   });
 
 // Show list of all peeps when button clicked
-  document.getElementById("all-peeps-button").addEventListener('click', function(event){
+$("#all-peeps-button").click(function(event){
       window.localStorage.removeItem("peepId");
       listPeepsOnPage();
    });

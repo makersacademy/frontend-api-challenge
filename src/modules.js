@@ -1,97 +1,263 @@
-function reloadPeeps () {
-  getPeeps();
-  setTimeout(function(){
-    printPeeps();
-  },2000);
-}
+  // Declare variables
+  let peeps = [];
+  //let peepList = document.getElementById("peep-list");
+  //let singlePeep = document.getElementById("single-peep");
+  //let fullPeepText = document.getElementById("full-text");
+  //var fetchHeaders = new Headers({'Content-Type': 'application/json'});
+  let token;
 
-function getPeeps () {
-  fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
-  .then(response => response.json())
-  .then(data => {
-    let i;
-    peeps = [];
-    for (i = 0; i < 10; i++) {
-      console.log(data);
-      console.log(data[i].body);
-      peeps.push({body: data[i].body, created: data[i].created_at, userId: data[i].user.id, userHandle: data[i].user.handle, likes: data[i].likes});
-    }
-  });
-}
-
-async function postData (url = '', data = {}) {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-  return response.json();
-}
-
-function login(handle, password){
-  postData('https://chitter-backend-api-v2.herokuapp.com/sessions', data={session: {"handle": handle, "password": password}})
-  .then(data => {
-    console.log(data);
-    if (data.hasOwnProperty('errors')){
-      console.log("login failed");
-      return false;
-    } else {
-      console.log("login successful");
-      window.localStorage.setItem("user_id", data.user_id);
-      window.localStorage.setItem("session_key", data.session_key);
-      window.localStorage.setItem("handle", handle);
-      window.localStorage.setItem("logged_in", "true");
-      console.log(handle);
-      return true;
-    }
-  });
-  console.log(localStorage)
-}
-
-function logout(){
-  window.localStorage.clear();
-  console.log(localStorage);
-}
-
-function printPeeps(){
-  peepList.innerHTML = "";
-  peeps.forEach(function(peep){
-    var div = document.createElement('div');
-    div.setAttribute("id", peeps.indexOf(peep));
-    div.innerHTML += peep.body;
-    peepList.appendChild(div);
-    console.log("added peep");
-  });
-}
-
-function hideFullPeep(){
-  fullPeepText.style.display = "none";
-}
-
-function showFullPeep(){
-  fullPeepText.style.display = "block";
-}
-
-function showPeepsList (){
-  peepList.style.display = "block";
-}
-
-function hidePeepsList (){
-  peepList.style.display = "none";
-}
-
-function checkSession(){
-  if (window.localStorage.getItem("logged_in") == "true"){
-    console.log("check - logged in");
-    document.getElementById("welcome").style.display = "block";
-    document.getElementById("login").style.display = "none";
-  } else {
-    console.log("check - logged out");
-    document.getElementById("welcome").style.display = "none";
-    document.getElementById("login").style.display = "block";
+  // get peeps from server (get peeps), print them on the page
+  function reloadPeeps () {
+    getPeeps();
+    setTimeout(function(){
+      printPeeps();
+    },3000);
   }
-}
+  // get peeps from server, print on page, hide single peep div and show peeps list div
+  function listPeepsOnPage() {
+    reloadPeeps();
+    hideFullPeep();
+    showPeepsList();
+  }
+  // show single peep div and hide peeps list div
+  function showIndividualPeep () {
+    hidePeepsList();
+    showFullPeep();
+  }
+  // get peeps from server
+  function getPeeps () {
+    fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
+    .then(response => response.json())
+    .then(data => savePeeps());
+  }
 
-module.exports = {getPeeps: getPeeps};
+  function savePeeps() {
+      let i;
+      peeps = [];
+      for (i = 0; i < 10; i++) {
+        peeps.push({id: data[i].id, body: data[i].body, created: data[i].created_at, userId: data[i].user.id, userHandle: data[i].user.handle, likes: data[i].likes});
+      }
+  }
+
+  async function postData (url = '', data = {}, headers = fetchHeaders) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(data)
+    }).then(reloadPeeps());
+    return response.json();
+  }
+
+  function login(handle, password){
+    postData('https://chitter-backend-api-v2.herokuapp.com/sessions', data = {session: {"handle": handle, "password": password}})
+    .then(data => {
+      if (data.hasOwnProperty('errors')){
+        window.alert("login failed");
+      } else {
+        createSession(data);
+      }
+    });
+  }
+// If login is successful, add data to localStorage
+  function createSession(data) {
+    window.alert("login successful");
+    window.localStorage.setItem("userId", data.user_id);
+    window.localStorage.setItem("sessionKey", data.session_key);
+    window.localStorage.setItem("handle", handle);
+    window.localStorage.setItem("loggedIn", "true");
+  }
+
+// Clear local storage on logout
+  function logout(){
+    window.localStorage.clear();
+  }
+
+// Print peeps list to the page
+  function printPeeps(){
+    peepList.innerHTML = "";
+    peeps.forEach(function(peep){
+      var div = document.createElement('div');
+      let likes = peep.likes.length;
+      div.setAttribute("id", peeps.indexOf(peep));
+      div.innerHTML += peep.body + "<br>";
+      div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes<p>";
+      peepList.appendChild(div);
+    });
+  }
+
+  function hideFullPeep(){
+    singlePeep.style.display = "none";
+    singlePeep.style.visibility = "hidden";
+  }
+
+  function showFullPeep(){
+    singlePeep.style.display = "block";
+    singlePeep.style.visibility = "visible";
+  }
+
+  function showPeepsList (){
+    peepList.style.display = "block";
+  }
+
+  function hidePeepsList (){
+    peepList.style.display = "none";
+  }
+
+  function checkSession(){
+    if (window.localStorage.getItem("loggedIn") == "true"){
+      document.getElementById("welcome").style.display = "block";
+      document.getElementById("login").style.display = "none";
+    } else {
+      document.getElementById("welcome").style.display = "none";
+      document.getElementById("login").style.display = "block";
+    }
+  }
+
+  function createUser (handle, password) {
+    postData('https://chitter-backend-api-v2.herokuapp.com/users', data = {user: {"handle": handle, "password": password}})
+    .then (data => {
+      if (data.hasOwnProperty('id')){
+        window.alert('User created');
+      } else {
+        window.alert('User creation failed');
+      }
+    });
+  }
+
+  async function deleteDataPeep (url = '', token) {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${token}`
+      },
+    }).then(listPeepsOnPage());
+  }
+
+  async function putDataPeep (url = '', token) {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${token}`
+      },
+    }).then(listPeepsOnPage()
+  );
+  }
+
+  function postPeep (peep) {
+    let userId = window.localStorage["userId"];
+    let authHeaders = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `Token token=${window.localStorage["sessionKey"]}`});
+    postData('https://chitter-backend-api-v2.herokuapp.com/peeps', data = {"peep": {"user_id":userId, "body":peep}}, authHeaders);
+    setTimeout(function () {
+      reloadPeeps();
+    }, 5000);
+  }
+
+  function deletePeep (peep_id) {
+    let token = window.localStorage["sessionKey"];
+    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id;
+    deleteDataPeep(url, token);
+    reloadPeeps();
+  }
+
+  function likePeep (peep_id) {
+    let token = window.localStorage["sessionKey"];
+    let userId = window.localStorage["userId"];
+    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + userId;
+    putDataPeep(url, token);
+    listPeepsOnPage();
+  }
+
+  function deleteLike(peep_id) {
+    let token = window.localStorage["sessionKey"];
+    let userId = window.localStorage["userId"];
+    let url = 'https://chitter-backend-api-v2.herokuapp.com/peeps/' + peep_id + '/likes/' + userId;
+    deleteDataPeep(url, token);
+    listPeepsOnPage();
+  }
+
+// Delete a peep when a button is clicked
+  // document.getElementById('delete').addEventListener('click', function(event){
+  //   console.log(window.localStorage.getItem("peepId"));
+  //   let peepId = window.localStorage["peepId"];
+  //   deletePeep(peepId);
+  //   listPeepsOnPage();
+  // });
+
+// Post a peep when the button is clicked
+  // document.getElementById('post-peep').addEventListener('click', function(event){
+  //   let peep = document.getElementById('peep-text').value;
+  //   postPeep(peep);
+  //   document.getElementById('peep-text').value = ' ';
+  // });
+
+// Show single peep when peep is clicked
+  // peepList.addEventListener('click', function(event){
+  //    if (event.target !== this) {
+  //      showIndividualPeep();
+  //      let num = event.target.id;
+  //      let likes = peeps[num].likes.length;
+  //      fullPeepText.innerHTML = peeps[num].body + "<br>";
+  //      fullPeepText.innerHTML += "<img src = '../public/like.png' id='like-peep'> " + likes + " likes";
+  //      fullPeepText.innerHTML += "      <img src = '../public/unlike.png' id='unlike-peep'> ";
+  //      window.localStorage.setItem("peepId",peeps[num].id);
+  //      listenForUnlike();
+  //      listenForLike();
+  //    }
+  // });
+
+// // Add a like when like button is clicked in full peep text
+// function listenForLike () {
+//   document.getElementById('like-peep').addEventListener('click', function(event){
+//     let peepId = window.localStorage["peepId"];
+//     likePeep(peepId);
+//   });
+// }
+//
+// // Delete a like when un-like button is clicked in full peep text
+// function listenForUnlike () {
+//   document.getElementById('unlike-peep').addEventListener('click', function(event){
+//     let peepId = window.localStorage["peepId"];
+//     deleteLike(peepId);
+//   });
+// }
+//
+// // Sign out when button clicked
+//   document.getElementById('sign-out').addEventListener('click', function(event){
+//     logout();
+//     setTimeout(function () {
+//       checkSession();
+//     }, 1000);
+//   });
+//
+// // Create new user when button clicked
+//   document.getElementById('create').addEventListener('click', function(event){
+//     let handle = document.getElementById('handle').value;
+//     let password = document.getElementById('password').value;
+//     createUser(handle, password);
+//   });
+//
+// // Sign in user when sign in button clicked
+//   document.getElementById("sign-in").addEventListener('click', function(event){
+//     let handle = document.getElementById('handle').value;
+//     let password = document.getElementById('password').value;
+//     login(handle, password);
+//     setTimeout(function () {
+//       checkSession();
+//     }, 1000);
+//   });
+//
+// // Show list of all peeps when button clicked
+//   document.getElementById("all-peeps-button").addEventListener('click', function(event){
+//       window.localStorage.removeItem("peepId");
+//       listPeepsOnPage();
+//    });
+
+
+
+module.exports = {
+  getPeeps: getPeeps,
+  savePeeps: savePeeps};

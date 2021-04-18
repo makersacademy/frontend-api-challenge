@@ -32,6 +32,11 @@ TESTING
 Can user delete a peep if they aren't logged in?
 Can a user post a peep if they aren't logged in?
 
+npm i jasmine-ajax --save-dev
+npm i @types/jasmine-ajax --save-dev
+npm install node-fetch
+npm i fetch-mock
+
 
 We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
 
