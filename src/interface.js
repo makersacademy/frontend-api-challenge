@@ -243,7 +243,7 @@ function listenForUnlike () {
   });
 
 // Sign in user when sign in button clicked
-  document.getElementById("sign-in").addEventListener('click', function(event){
+$("#sign-in").click(function(event){
     let handle = document.getElementById('handle').value;
     let password = document.getElementById('password').value;
     login(handle, password);
