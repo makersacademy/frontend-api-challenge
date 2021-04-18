@@ -1,11 +1,12 @@
+
   // Declare variables
   let peeps = [];
-  //let peepList = document.getElementById("peep-list");
-  //let singlePeep = document.getElementById("single-peep");
-  //let fullPeepText = document.getElementById("full-text");
-  //var fetchHeaders = new Headers({'Content-Type': 'application/json'});
+  var fetchHeaders = new Headers({'Content-Type': 'application/json'});
   let token;
 
+  // Load page
+  listPeepsOnPage();
+  checkSession();
   // get peeps from server (get peeps), print them on the page
   function reloadPeeps () {
     getPeeps();
@@ -28,15 +29,17 @@
   function getPeeps () {
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
     .then(response => response.json())
-    .then(data => savePeeps());
-  }
-
-  function savePeeps() {
+    .then(data => {
       let i;
       peeps = [];
       for (i = 0; i < 10; i++) {
         peeps.push({id: data[i].id, body: data[i].body, created: data[i].created_at, userId: data[i].user.id, userHandle: data[i].user.handle, likes: data[i].likes});
       }
+    });
+    setTimeout(function () {
+      console.log(peeps)
+      return peeps.length;
+    }, 5000);
   }
 
   async function postData (url = '', data = {}, headers = fetchHeaders) {
@@ -74,42 +77,40 @@
 
 // Print peeps list to the page
   function printPeeps(){
-    peepList.innerHTML = "";
+    $("#peep-list").html("");
     peeps.forEach(function(peep){
       var div = document.createElement('div');
       let likes = peep.likes.length;
       div.setAttribute("id", peeps.indexOf(peep));
       div.innerHTML += peep.body + "<br>";
       div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes<p>";
-      peepList.appendChild(div);
+      $("#peep-list").append(div);
     });
   }
 
   function hideFullPeep(){
-    singlePeep.style.display = "none";
-    singlePeep.style.visibility = "hidden";
+    $("#single-peep").hide();
   }
 
   function showFullPeep(){
-    singlePeep.style.display = "block";
-    singlePeep.style.visibility = "visible";
+    $("#single-peep").show();
   }
 
   function showPeepsList (){
-    peepList.style.display = "block";
+    $("#peep-list").show();
   }
 
   function hidePeepsList (){
-    peepList.style.display = "none";
+    $("#peep-list").hide();
   }
 
   function checkSession(){
     if (window.localStorage.getItem("loggedIn") == "true"){
-      document.getElementById("welcome").style.display = "block";
-      document.getElementById("login").style.display = "none";
+      $("#welcome").show();
+      $("#login").hide();
     } else {
-      document.getElementById("welcome").style.display = "none";
-      document.getElementById("login").style.display = "block";
+      $("#welcome").hide();
+      $("#login").show();
     }
   }
 
@@ -180,84 +181,70 @@
   }
 
 // Delete a peep when a button is clicked
-  // document.getElementById('delete').addEventListener('click', function(event){
-  //   console.log(window.localStorage.getItem("peepId"));
-  //   let peepId = window.localStorage["peepId"];
-  //   deletePeep(peepId);
-  //   listPeepsOnPage();
-  // });
+$("#delete").click(function(event){
+    deletePeep(window.localStorage["peepId"]);
+    listPeepsOnPage();
+  });
 
 // Post a peep when the button is clicked
-  // document.getElementById('post-peep').addEventListener('click', function(event){
-  //   let peep = document.getElementById('peep-text').value;
-  //   postPeep(peep);
-  //   document.getElementById('peep-text').value = ' ';
-  // });
+$("#post-peep").click(function(event){
+    let peep = document.getElementById('peep-text').value;
+    postPeep(peep);
+    $("#peep-text").val(" ");
+  });
 
 // Show single peep when peep is clicked
-  // peepList.addEventListener('click', function(event){
-  //    if (event.target !== this) {
-  //      showIndividualPeep();
-  //      let num = event.target.id;
-  //      let likes = peeps[num].likes.length;
-  //      fullPeepText.innerHTML = peeps[num].body + "<br>";
-  //      fullPeepText.innerHTML += "<img src = '../public/like.png' id='like-peep'> " + likes + " likes";
-  //      fullPeepText.innerHTML += "      <img src = '../public/unlike.png' id='unlike-peep'> ";
-  //      window.localStorage.setItem("peepId",peeps[num].id);
-  //      listenForUnlike();
-  //      listenForLike();
-  //    }
-  // });
+$("#peep-list").click(function(event){
+     if (event.target !== this) {
+       showIndividualPeep();
+       let num = event.target.id;
+       let likes = peeps[num].likes.length;
+       $("#full-text").html(peeps[num].body + "<br>");
+       $("#full-text").append("<img src = '../public/like.png' id='like-peep'> " + likes + " likes");
+       $("#full-text").append("      <img src = '../public/unlike.png' id='unlike-peep'> ");
+       window.localStorage.setItem("peepId",peeps[num].id);
+       listenForUnlike();
+       listenForLike();
+     }
+  });
 
-// // Add a like when like button is clicked in full peep text
-// function listenForLike () {
-//   document.getElementById('like-peep').addEventListener('click', function(event){
-//     let peepId = window.localStorage["peepId"];
-//     likePeep(peepId);
-//   });
-// }
-//
-// // Delete a like when un-like button is clicked in full peep text
-// function listenForUnlike () {
-//   document.getElementById('unlike-peep').addEventListener('click', function(event){
-//     let peepId = window.localStorage["peepId"];
-//     deleteLike(peepId);
-//   });
-// }
-//
-// // Sign out when button clicked
-//   document.getElementById('sign-out').addEventListener('click', function(event){
-//     logout();
-//     setTimeout(function () {
-//       checkSession();
-//     }, 1000);
-//   });
-//
-// // Create new user when button clicked
-//   document.getElementById('create').addEventListener('click', function(event){
-//     let handle = document.getElementById('handle').value;
-//     let password = document.getElementById('password').value;
-//     createUser(handle, password);
-//   });
-//
-// // Sign in user when sign in button clicked
-//   document.getElementById("sign-in").addEventListener('click', function(event){
-//     let handle = document.getElementById('handle').value;
-//     let password = document.getElementById('password').value;
-//     login(handle, password);
-//     setTimeout(function () {
-//       checkSession();
-//     }, 1000);
-//   });
-//
-// // Show list of all peeps when button clicked
-//   document.getElementById("all-peeps-button").addEventListener('click', function(event){
-//       window.localStorage.removeItem("peepId");
-//       listPeepsOnPage();
-//    });
+// Add a like when like button is clicked in full peep text
+function listenForLike () {
+  $("#like-peep").click(function(event){
+    likePeep(window.localStorage["peepId"]);
+  });
+}
 
+// Delete a like when un-like button is clicked in full peep text
+function listenForUnlike () {
+  $("#unlike-peep").click(function(event){
+    deleteLike(window.localStorage["peepId"]);
+  });
+}
 
+// Sign out when button clicked
+$("#sign-out").click(function(event){
+    logout();
+    setTimeout(function () {
+      checkSession();
+    }, 1000);
+  });
 
-module.exports = {
-  getPeeps: getPeeps,
-  savePeeps: savePeeps};
+// Create new user when button clicked
+$("#create").click(function(event){
+    createUser($("#handle").val(), $("#password").val());
+  });
+
+// Sign in user when sign in button clicked
+$("#sign-in").click(function(event){
+    login($("#handle").val(), $("#password").val());
+    setTimeout(function () {
+      checkSession();
+    }, 1000);
+  });
+
+// Show list of all peeps when button clicked
+$("#all-peeps-button").click(function(event){
+      window.localStorage.removeItem("peepId");
+      listPeepsOnPage();
+   });

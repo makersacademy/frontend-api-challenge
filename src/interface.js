@@ -53,17 +53,19 @@ $( document ).ready(function() {
       if (data.hasOwnProperty('errors')){
         window.alert("login failed");
       } else {
-        createSession(data);
+        createSession(data, handle);
       }
     });
   }
 // If login is successful, add data to localStorage
-  function createSession(data) {
+  function createSession(data, handle) {
     window.alert("login successful");
     window.localStorage.setItem("userId", data.user_id);
     window.localStorage.setItem("sessionKey", data.session_key);
     window.localStorage.setItem("handle", handle);
     window.localStorage.setItem("loggedIn", "true");
+    handle = window.localStorage.getItem("handle");
+    $("#welcome-text").html("Welcome, " + handle);
   }
 
 // Clear local storage on logout
@@ -79,9 +81,10 @@ $( document ).ready(function() {
       let likes = peep.likes.length;
       div.setAttribute("id", peeps.indexOf(peep));
       div.innerHTML += peep.body + "<br>";
-      div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes<p>"
+      div.innerHTML += "<img src = '../public/like.png'> " + likes + " likes<p>";
       $("#peep-list").append(div);
     });
+    console.log(peeps);
   }
 
   function hideFullPeep(){
