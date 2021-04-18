@@ -213,7 +213,7 @@ $( document ).ready(function() {
 
 // Add a like when like button is clicked in full peep text
 function listenForLike () {
-  document.getElementById('like-peep').addEventListener('click', function(event){
+  $("#like-peep").click(function(event){
     let peepId = window.localStorage["peepId"];
     likePeep(peepId);
   });
