@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="../public/style.css">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CHITTER :: Home</title>
+</head>
+
+<script src = "../src/jquery.js"></script>
+<script src = "../src/interface.js"></script>
+
+<body>
+
+  <div id = "heading">
+    <h1>Chitter</h1>
+  </div>
+
+  <div id = "login">
+    Sign in to post a Peep!
+    <form>
+      <label for='handle'>Handle:</label>
+      <input type='text' name='handle' id='handle'>
+      <label for='password'>Password:</label>
+      <input type='password' name='password' id='password'>
+      <button type="button" id="sign-in">Go</button>
+      <button type="button" id="create">Create account</button>
+    </form>
+  </div>
+
+  <div id = "welcome">
+    <h1 id= "welcome-text">Welcome</h1>
+    <button type="button" id="sign-out">Sign out</button>
+    <p>
+    <form>
+      <label for='peep-text'>Peep:</label>
+      <input type='text' name='peep-text' id='peep-text'>
+      <button type="button" id="post-peep">Submit</button>
+    </form>
+  </div>
+
+  <div id = "peep-list">
+  </div>
+
+  <div id = "single-peep">
+    <div id= "full-text">
+    </div>
+    <div id = "single-peep-buttons">
+      <button type="button" id="delete"> Delete </button>
+    </div>
+  </div>
+
+  <center><button type="button" id="all-peeps-button"> All Peeps </button>
+
+
+
+</body>
