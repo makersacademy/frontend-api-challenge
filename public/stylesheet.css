@@ -1,0 +1,182 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  justify-content: center;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 20% 20% 20% 20%;
+}
+
+.sign-in {
+  font-family: 'Raleway', sans-serif;
+  margin: 20px 20px 20px 20px;
+}
+
+.sign-up {
+  font-family: 'Raleway', sans-serif;
+  margin: 20px 20px 20px 20px;
+}
+
+.sign-in-menu {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  padding-left: 10vw;
+  padding-top: 50px
+}
+
+.sign-up-in {
+  margin: 20px 20px 20px 20px;
+  font-family: 'Raleway', sans-serif;
+  width: 80%;
+}
+
+.sign-up-in:focus {
+  outline: none;
+  color: black;
+}
+
+.submit {
+  font-family: 'Raleway', sans-serif;
+  margin-left: 60%;
+  margin-top: 10px;
+  width: 20%;
+  border: none;
+  background-color: white;
+}
+
+.submit:focus {
+  outline: none;
+  color: coral;
+}
+
+.sign-up-menu {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  padding-left: 10vw;
+  padding-top: 50px
+}
+
+.peep-body {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 100vh;
+  padding: 20px 20px 20px 20px;
+}
+
+.new-peep {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  height: 100px;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  background-color: lightsteelblue;
+}
+
+.new-peep-text {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: darkgray;
+  height: 60px;
+  margin-top: 10px;
+}
+
+.new-peep-text:focus {
+  color: black;
+  outline: none;
+}
+
+.new-peep-button {
+  display: flex;
+  justify-content: flex-end;
+  border: none;
+  background-color: lightsteelblue;
+}
+
+.new-peep-button:focus {
+  outline: none;
+}
+
+.new-peep-img {
+  height: 25px;
+  margin-top: 5px;
+}
+
+.peep-box {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  height: 100px;
+  background-color: #FFEA9F;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 20px;
+}
+
+.peep-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user_handle {
+  font-size: 8px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.created_edited {
+  font-size: 8px;
+}
+
+.peep {
+  height: 100px;
+  background-color: white;
+}
+
+.peep-text {
+  font-family: 'Raleway', sans-serif;
+  padding-left: 10px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 10px;
+  padding: 4px 4px 4px 4px;
+}
+
+.comment {
+  border: none;
+  background-color: #FFEA9F;
+}
+
+.comment:focus {
+  outline: none;
+}
+
+.comment-button {
+  height: 15px;
+}
+
+.like {
+  border: none;
+  background-color: #FFEA9F;
+}
+
+.like:focus {
+  outline: none;
+}
+
+.like-button {
+  height: 15px;
+}
