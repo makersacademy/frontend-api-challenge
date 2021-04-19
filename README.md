@@ -1,5 +1,46 @@
 # Chitter API Frontend Challenge
 
+Makers Academy Week 7 - weekend challenge
+Chitter Javascript front end
+
+#### Summary
+
+This was an interesting experience!
+
+This is a single page web app where I built the front end entirely out of Vanilla Javascript, HTML and CSS. The only library I used was the Jasmine Testing library and I used for one test my own testing library - Is It Ducking Working?
+
+Features of the WebApp:
+- Display peeps
+- signup and login
+- post a peep and display it on the page
+
+I had a tricky time developing this test first, so I did a mish mash of writing code and writing tests. It was very tricky to write mocked tests.
+- I succesfully developed three mocked tests for the peeps display, signup and login.
+- I did not get around to testing the posting of peeps.
+
+#### To use:
+- git clone
+- run index.html in your webbrowswer
+- to see the tests run SpecRunner.html
+- to see my one passing test for Duck testing run DuckTestRunner.html
+
+#### Thoughts:
+
+I was happy with my ability to succesfully mock the tests and also with being able to split up some of the functions between app.js and interface.js.
+
+Things I found very difficult:
+- Setting up the tests, these required a lot of prep work and were difficult to write without working on the actual code as well.
+- Asynchronous Functions, I was trying to past the results of the post requests to the app.js but I could not figure out how to get the functions to wait for the return.
+
+Things I did not get around to:
+- implementing all the features (likes, deleting peeps, seeing one peep in particular)
+- CSS
+
+
+
+Original Instructions
+-----
+
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
