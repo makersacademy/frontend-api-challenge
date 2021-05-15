@@ -34,7 +34,7 @@ const sessions = 'https://chitter-backend-api-v2.herokuapp.com/sessions'
 
 // fetchMe(users).then(results => console.log(results))
 // fetchMe(peeps).then(results => console.log(results))
-var sessionKey = null
+var userData = null
 const allPeeps = document.querySelector('#allPeeps')
 const returnHome = document.querySelector('#backHome')
 
@@ -49,21 +49,30 @@ const returnHome = document.querySelector('#backHome')
 
 // homepage
 loginPage = document.querySelector('#login')
-loginPage.innerHTML = `Login please. <form id ='loginForm'>
+loginPage.innerHTML = ` <form id ='loginForm'> Login please.<br />
 <input id ="loginName" type="text" placeholder="handle"/>
 <input id ="loginPassword" type="text" placeholder="password"/>
 <button type="submit">submit</button></form>`
 
 loginPage.addEventListener('submit',()=>{
+
   event.preventDefault()
+
   name = document.querySelector('#loginName').value
   password = document.querySelector('#loginPassword').value
   // we set a session key here (one we made... this is probably bad.)
   loginUser(name,password)
-  .then(result => sessionKey = result.session_key)
+  .then(result => userData = {
+    sessionKey : result.session_key,
+    userId : result.user_id,
+    userName : name }
+   )
+  // load main page
   .then(() =>{
     // ALL PEEPS page
-    if (sessionKey != null) {
+    if (userData != null) {
+      loginPage.innerHTML = '' //login page is gone
+      // but so is username and password
       fetchMe(peeps).then((result) => {
         result.forEach(peep =>
           // allPeeps.innerHTML += peep.body + "<br />");
@@ -72,7 +81,7 @@ loginPage.addEventListener('submit',()=>{
       })
     }
 
-  
+
   })
 
 
