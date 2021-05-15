@@ -6,7 +6,7 @@ The backend API already exists, it's hosted on Heroku: doco here.
 Here are some interactions the API supports. Implement as many as you see fit.
 
 * Viewing all Peeps << DONE
-* Viewing individual Peeps
+* Viewing individual Peeps << DONE
 * Creating Users
 * Logging in
 * Posting Peeps
