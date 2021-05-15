@@ -1,19 +1,15 @@
 Write a small Twitter clone, where users can post messages to a public stream.
 
-The backend API already exists, it's hosted on Heroku [WHERE?]
-
-
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
-
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+The backend API already exists, it's hosted on Heroku: doco here.
+(https://github.com/makersacademy/chitter_api_backend)
 
 Here are some interactions the API supports. Implement as many as you see fit.
 
+* Viewing all Peeps << DONE
+* Viewing individual Peeps
 * Creating Users
 * Logging in
 * Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
 * Deleting Peeps
 * Liking Peeps
 * Unliking Peeps
