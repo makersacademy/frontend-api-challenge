@@ -11,8 +11,6 @@ async function createUser(handle, password) {
     body: JSON.stringify({'user': {"handle":handle, "password":password}})
     });
     console.log(response.json())
-    // todo: error handling
-
 }
 
 async function loginUser(handle, password) {
