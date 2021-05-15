@@ -20,7 +20,11 @@ async function loginUser(handle, password) {
     method: 'POST',
     headers: {'Content-Type':'application/json'},
     body: JSON.stringify({'session': {"handle":handle, "password":password}})
-    });
+    })
+    if (response.status != 200) {
+      console.log('issue! Response status' + response.status);
+      return;
+    }
     return response.json()
     // todo: error handling
 
@@ -83,6 +87,7 @@ loginPage.addEventListener('submit',()=>{
 
 
   })
+  .catch(err => loginPage.innerHTML += '<br /> failed to login' )
 
 
 
