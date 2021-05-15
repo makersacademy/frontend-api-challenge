@@ -34,7 +34,7 @@ const sessions = 'https://chitter-backend-api-v2.herokuapp.com/sessions'
 
 // fetchMe(users).then(results => console.log(results))
 // fetchMe(peeps).then(results => console.log(results))
-
+var sessionKey = null
 const allPeeps = document.querySelector('#allPeeps')
 const returnHome = document.querySelector('#backHome')
 
@@ -49,11 +49,37 @@ const returnHome = document.querySelector('#backHome')
 
 // homepage
 loginPage = document.querySelector('#login')
-loginPage.innerHTML = `Login please. <form id ='loginForm'><input id ="name" type="text" placeholder="handle"/><input id ="password" type="text" placeholder="password"/> <button type="submit">submit</button></form>`
+loginPage.innerHTML = `Login please. <form id ='loginForm'>
+<input id ="loginName" type="text" placeholder="handle"/>
+<input id ="loginPassword" type="text" placeholder="password"/>
+<button type="submit">submit</button></form>`
 
+loginPage.addEventListener('submit',()=>{
+  event.preventDefault()
+  name = document.querySelector('#loginName').value
+  password = document.querySelector('#loginPassword').value
+  // we set a session key here (one we made... this is probably bad.)
+  loginUser(name,password)
+  .then(result => sessionKey = result.session_key)
+  .then(() =>{
+    // ALL PEEPS page
+    if (sessionKey != null) {
+      fetchMe(peeps).then((result) => {
+        result.forEach(peep =>
+          // allPeeps.innerHTML += peep.body + "<br />");
+          allPeeps.innerHTML += `<a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>`
+        );
+      })
+    }
+
+  
+  })
+
+
+
+})
 // createUser("EEEE","passwordE")
 // >> {"id":407,"handle":"EEEE"}
-loginUser("EEEE","passwordE").then(result => console.log(result.session_key, " >> logged in"))
 
 // for seeing individual peeps
 window.addEventListener('hashchange',()=>{
