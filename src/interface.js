@@ -4,7 +4,6 @@ async function fetchMe(url){ // ONLY FOR GETS
   return response.json()
 }
 
-
 async function createUser(handle, password) {
   const response = await fetch(users, {
     method: 'POST',
@@ -26,7 +25,6 @@ async function loginUser(handle, password) {
     // todo: error handling
 
 }
-// login takes in password and handle
 // session key should exist as a variable we pass in to other functions (like, create peep),
 // and it should be necessary for initiating that other functionality.
 
@@ -40,17 +38,22 @@ const sessions = 'https://chitter-backend-api-v2.herokuapp.com/sessions'
 const allPeeps = document.querySelector('#allPeeps')
 const returnHome = document.querySelector('#backHome')
 
+
+// ALL PEEPS page
+// fetchMe(peeps).then((result) => {
+//   result.forEach(peep =>
+//     // allPeeps.innerHTML += peep.body + "<br />");
+//     allPeeps.innerHTML += `<a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>`
+//   );
+// })
+
 // homepage
-fetchMe(peeps).then((result) => {
-  result.forEach(peep =>
-    // allPeeps.innerHTML += peep.body + "<br />");
-    allPeeps.innerHTML += `<a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>`
-  );
-})
+loginPage = document.querySelector('#login')
+loginPage.innerHTML = `Login please. <form id ='loginForm'><input id ="name" type="text" placeholder="handle"/><input id ="password" type="text" placeholder="password"/> <button type="submit">submit</button></form>`
 
 // createUser("EEEE","passwordE")
 // >> {"id":407,"handle":"EEEE"}
-loginUser("EEEE","passwordE").then(result => console.log(result.session_key))
+loginUser("EEEE","passwordE").then(result => console.log(result.session_key, " >> logged in"))
 
 // for seeing individual peeps
 window.addEventListener('hashchange',()=>{
