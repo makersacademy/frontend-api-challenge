@@ -50,9 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault()
     let message = document.getElementById('postPeepText')
     newPeep(message.value, getUserId(), getSessionKey()).then((response) => {
-      if(response) {
-        getPeeps()
-      }
+      if(response) { getPeeps() }
       message.value = null
     })
   })
@@ -94,11 +92,10 @@ function bannerButtons() {
 async function createNewUser(username, password) {
   const rawResponse = await fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
     method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json'}),
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({user: {"handle": username, "password": password}})
   })
-  let ans = await rawResponse.json()
-  if(ans.handle[0] === 'has already been taken') {
+  if(rawResponse.status >= 400) {
     errorMessage('Error creating account please try again')
   } else {
     successMessage('User created! Please sign in.')
@@ -108,10 +105,10 @@ async function createNewUser(username, password) {
 async function signIn(username, password) {
   const rawResponse = await fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
     method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json'}),
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({session: {"handle": username, "password": password}})
   })
-  if(rawResponse.status === 422) {
+  if(rawResponse.status  >= 400) {
     errorMessage('Invalid Username or password please try again')
     return null
   } else {
@@ -140,10 +137,10 @@ function errorMessage(message) {
 async function newPeep(message, userId, sessionKey) {
   const rawResponse = await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
     method: 'POST',
-    headers: new Headers({
+    headers: {
       'Authorization': `Token token=${sessionKey}`,
       'Content-Type': 'application/json'
-    }),
+    },
     body: JSON.stringify({peep: {'user_id': userId, 'body': message}})
   })
   if(rawResponse.status >= 200 && rawResponse.status < 300) {

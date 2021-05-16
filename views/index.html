@@ -15,25 +15,27 @@
     <div class='header-right'>
       <!-- interface inserts sign up/ sign in or logout  -->
       <div id='loggedInButtons' style="display:none">
-        <button id='signOutButton'>Sign Out</button>
+        <button id='signOutButton' class='button'>Sign Out</button>
       </div>
       <div id='loggedOutButtons'>
         <form id='signInForm'>
-          <input type="text" placeholder="Enter Username" id="signInUsername">
-          <input type="password" placeholder="Enter Password" id="signInPassword">
-          <input type="submit" id='SignInButton' value='Sign In'>
+          <input type="text" placeholder="Enter Username" id="signInUsername" required>
+          <input type="password" placeholder="Enter Password" id="signInPassword" required>
+          <input type="submit" id='SignInButton' value='Sign In' class='button'>
         </form>
-        <button id='SignUpButton'>Sign Up</button>
+        <label for=""> If you don't have an account
+          <button id='SignUpButton' class='button'>Sign Up</button>
+        </label>
       </div>
     </div>
   </div>
 
-  <h1>Chitter</h1>
   <div id='homePageDisplay'>
     <div id='postPeepDiv'>
       <form id='postPeepForm'>
-        <textarea id="postPeepText" placeholder='Share Your Thoughts...' cols="30" rows="10" required></textarea>
-        <input type="submit" value="Post Peep" id="postPeepSubmitButton">
+        <textarea id="postPeepText" placeholder='Share Your Thoughts...' cols="70" rows="5" required></textarea>
+        <br>
+        <input type="submit" value="Post Peep" id="postPeepSubmitButton" class='button'>
       </form>
     </div>
     <div id='peepFeedDiv'>
