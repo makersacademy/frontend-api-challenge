@@ -20,9 +20,30 @@ document.addEventListener("DOMContentLoaded", function() {
       document
         .querySelector('#peep-feed')
         .insertAdjacentHTML('afterbegin', html);
-    }).catch(error => {
+    })
+    .catch(error => {
       console.log(error);
     });
   }
     getAllPeepData()
+
+    function postPeepData(userHandle, userPassword) {
+        fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({"user": {"handle": userHandle, "password": userPassword}}),
+        })
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      }
+    postPeepData();
 });

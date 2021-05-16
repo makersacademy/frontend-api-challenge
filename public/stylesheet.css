@@ -29,12 +29,9 @@ h1 {
   border: solid black;
 }
 
-.header {
-  font-weight: bold;
-}
-
 .body {
   font-size: large;
+  font-weight: bold;
 }
 
 .likes {
@@ -43,4 +40,15 @@ font-size: small;
 
 body {
   background-color: honeydew;
+}
+
+.sign-up-form {
+  position:absolute;
+  top:5px;
+  left:10px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  font-family: 'Courier New', Courier, monospace;
 }
