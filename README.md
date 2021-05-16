@@ -20,7 +20,7 @@ Check in to Chitter:
 
 See it in action:
 -------
-![demo](https://github.com/kerrimcm/frontend-api-challenge/blob/master/public/images/demo.gif)
+![demo](https://github.com/kerrimcm/frontend-api-challenge/blob/master/public/images/chitter_demo.gif)
 
 ## Original Instructions
 
