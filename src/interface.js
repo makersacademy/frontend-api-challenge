@@ -26,6 +26,28 @@ async function loginUser(handle, password) {
     return response.json()
 
 }
+// _2a_12_GsVOHA4pptSvcz0WAvTvfO
+// _2a_12_hw6od1Y7QbPw_l7_liYKOe
+// _2a_12_gmZwRXetEyrx0P2IGItSoO
+
+async function createPeep(content, userId, sessionKey) {
+  // authString = `Token token=${sessionKey}`
+  // console.log(authString)
+  const response = await fetch(peeps, {
+    method: 'POST',
+    headers:{
+      'Authorization':`Token token=${sessionKey}`,
+      'Content-Type':'application/json'},
+    body: JSON.stringify({'peep': {"user_id":userId, "body":content}})
+    })
+    if (response.status != 201) {
+      console.log('issue! Response status' + response.status);
+      return;
+    }
+    return response.json()
+
+}
+
 // session key should exist as a variable we pass in to other functions (like, create peep),
 // and it should be necessary for initiating that other functionality.
 
@@ -73,10 +95,10 @@ loginPage.addEventListener('submit',()=>{
       <textarea id="peepInputField" rows="3" cols="40" placeholder="your new peep..."></textarea>
       <button type="submit">submit</button>
       </form>`
+      console.log(userData.sessionKey) /////
       // but so is username and password
       fetchMe(peeps).then((result) => {
         result.forEach(peep =>
-          // allPeeps.innerHTML += peep.body + "<br />");
           allPeeps.innerHTML += `<a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>`
         );
       })
@@ -85,13 +107,15 @@ loginPage.addEventListener('submit',()=>{
 
   })
   .catch(err => loginPage.innerHTML += '<br /> failed to login' )
-
+  // <a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>
   newPeep.addEventListener('submit',()=> {
     event.preventDefault()
     console.log('peep submitted')
-
+    console.log(userData.sessionKey) /////
     peepContent = document.querySelector('#peepInputField').value
-    console.log(peepContent, userData)
+    // console.log(peepContent, userData)
+    createPeep(peepContent, userData.userId, userData.sessionKey)
+    .then((result)=>{console.log(result)})
 
 
   })
