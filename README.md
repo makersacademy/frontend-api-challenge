@@ -42,4 +42,7 @@ Approach
 * View Peeps
 * Create User
 * Log in
+* Log out
 * Post Peep
+* View Peep
+* Delete Peep

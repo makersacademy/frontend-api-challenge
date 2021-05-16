@@ -14,23 +14,35 @@ document.addEventListener('DOMContentLoaded', () => {
   //creating account
   document.getElementById('signUpForm').addEventListener('submit', (event) => {
     event.preventDefault()
-    let username = document.getElementById('newUserName').value
-    let password = document.getElementById('newPassword').value
-    createNewUser(username, password)
+    let username = document.getElementById('newUserName')
+    let password = document.getElementById('newPassword')
+    createNewUser(username.value, password.value)
     document.querySelector('#signUpDisplay').style.display = 'none'
     document.querySelector('#homePageDisplay').style.display = 'block'
+    username.value = null
+    password.value = null
   })
 
   //signing in
   document.getElementById('signInForm').addEventListener('submit', (event) => {
     event.preventDefault()
-    let signInUsername = document.getElementById('signInUsername').value
-    let signInPassword = document.getElementById('signInPassword').value
-    signIn(signInUsername, signInPassword).then ((signInValues) => {
-      session_key = signInValues.session_key
-      bannerButtons(session_key)
-      successMessage('Sign In successful!')
+    let signInUsername = document.getElementById('signInUsername')
+    let signInPassword = document.getElementById('signInPassword')
+    signIn(signInUsername.value, signInPassword.value).then((signInValues) => {
+      if(signInValues) {
+        session_key = signInValues.session_key
+        bannerButtons(session_key)
+      }
+      signInUsername.value = null
+      signInPassword.value = null
     })
+  })
+
+  //signing out
+  document.getElementById('signOutButton').addEventListener('click', () => {
+    session_key = null
+    bannerButtons(session_key)
+    successMessage('Sign Out successful!')
   })
 })
 
@@ -74,11 +86,7 @@ async function createNewUser(username, password) {
   })
   let ans = await rawResponse.json()
   if(ans.handle[0] === 'has already been taken') {
-    window.FlashMessage.error('Error creating account please try again', {
-      timeout: 8000,
-      progress: true,
-      theme: 'dark'
-    })
+    errorMessage('Error creating account please try again')
   } else {
     successMessage('User created! Please sign in.')
   }
@@ -90,16 +98,27 @@ async function signIn(username, password) {
     headers: new Headers({'Content-Type': 'application/json'}),
     body: JSON.stringify({session: {"handle": username, "password": password}})
   })
-
-  let response = await rawResponse.json()
-  console.log(response)
-  return response
+  if(rawResponse.status === 422) {
+    errorMessage('Invalid Username or password please try again')
+    return null
+  } else {
+    let response = await rawResponse.json()
+    successMessage('Sign In successful!')
+    return response
+  }
 }
 
 function successMessage(message) {
   window.FlashMessage.success(message, {
     timeout: 8000,
-    interactive: false,
+    progress: true,
+    theme: 'dark'
+  })
+}
+
+function errorMessage(message) {
+  window.FlashMessage.error(message, {
+    timeout: 8000,
     progress: true,
     theme: 'dark'
   })
