@@ -19,12 +19,11 @@ async function loginUser(handle, password) {
     headers: {'Content-Type':'application/json'},
     body: JSON.stringify({'session': {"handle":handle, "password":password}})
     })
-    if (response.status != 200) {
+    if (response.status != 201) {
       console.log('issue! Response status' + response.status);
       return;
     }
     return response.json()
-    // todo: error handling
 
 }
 // session key should exist as a variable we pass in to other functions (like, create peep),
@@ -36,21 +35,16 @@ const sessions = 'https://chitter-backend-api-v2.herokuapp.com/sessions'
 
 // fetchMe(users).then(results => console.log(results))
 // fetchMe(peeps).then(results => console.log(results))
+
 var userData = null
 const allPeeps = document.querySelector('#allPeeps')
 const returnHome = document.querySelector('#backHome')
+const loginPage = document.querySelector('#login')
+const newPeep = document.querySelector('#newPeep')
 
-
-// ALL PEEPS page
-// fetchMe(peeps).then((result) => {
-//   result.forEach(peep =>
-//     // allPeeps.innerHTML += peep.body + "<br />");
-//     allPeeps.innerHTML += `<a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>`
-//   );
-// })
 
 // homepage
-loginPage = document.querySelector('#login')
+
 loginPage.innerHTML = ` <form id ='loginForm'> Login please.<br />
 <input id ="loginName" type="text" placeholder="handle"/>
 <input id ="loginPassword" type="text" placeholder="password"/>
@@ -59,6 +53,7 @@ loginPage.innerHTML = ` <form id ='loginForm'> Login please.<br />
 loginPage.addEventListener('submit',()=>{
 
   event.preventDefault()
+  console.log('login submitted')
 
   name = document.querySelector('#loginName').value
   password = document.querySelector('#loginPassword').value
@@ -67,13 +62,17 @@ loginPage.addEventListener('submit',()=>{
   .then(result => userData = {
     sessionKey : result.session_key,
     userId : result.user_id,
-    userName : name }
-   )
+    userName : name })
   // load main page
   .then(() =>{
     // ALL PEEPS page
     if (userData != null) {
       loginPage.innerHTML = '' //login page is gone
+      newPeep.innerHTML = `
+      <form id="submitPeep">
+      <textarea id="peepInputField" rows="3" cols="40" placeholder="your new peep..."></textarea>
+      <button type="submit">submit</button>
+      </form>`
       // but so is username and password
       fetchMe(peeps).then((result) => {
         result.forEach(peep =>
@@ -87,11 +86,19 @@ loginPage.addEventListener('submit',()=>{
   })
   .catch(err => loginPage.innerHTML += '<br /> failed to login' )
 
+  newPeep.addEventListener('submit',()=> {
+    event.preventDefault()
+    console.log('peep submitted')
+
+    peepContent = document.querySelector('#peepInputField').value
+    console.log(peepContent, userData)
+
+
+  })
 
 
 })
-// createUser("EEEE","passwordE")
-// >> {"id":407,"handle":"EEEE"}
+// createUser("EEEE","passwordE") // {"id":407,"handle":"EEEE"}
 
 // for seeing individual peeps
 window.addEventListener('hashchange',()=>{
