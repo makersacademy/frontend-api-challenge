@@ -71,24 +71,21 @@ const loginPage = document.querySelector('#login')
 const newPeep = document.querySelector('#newPeep')
 
 
-// homepage
+//// LOGIN PAGE ////
 loginPage.innerHTML = showLoginForm()
-
 loginPage.addEventListener('submit',()=>{
   event.preventDefault()
   console.log('login submitted')
-
+  //// MAKE COOKIES //// (custom. need to refac!)
   name = document.querySelector('#loginName').value
   password = document.querySelector('#loginPassword').value
-  // we set a session key here (one we made... this is probably bad.)
   loginUser(name,password)
   .then(result => userData = {
     sessionKey : result.session_key,
     userId : result.user_id,
     userName : name })
-  // load main page
+  //// ALL PEEPS page ////
   .then(() =>{
-    // ALL PEEPS page
     if (userData != null) {
       loginPage.innerHTML = ''
       newPeep.innerHTML = showNewPeepForm()
@@ -99,14 +96,15 @@ loginPage.addEventListener('submit',()=>{
       })
     }
 
-
   })
   .catch(err => loginPage.innerHTML += '<br /> failed to login' )
+  //// NEW PEEP CREATION ////
   newPeep.addEventListener('submit',()=> {
     event.preventDefault()
     console.log('peep submitted')
     peepContent = document.querySelector('#peepInputField').value
     createPeep(peepContent, userData.userId, userData.sessionKey)
+    //// PAGE REFRESH ////
     .then((result)=>{
       allPeeps.innerHTML = ''
       fetchMe(peeps).then((result) => {
@@ -116,12 +114,14 @@ loginPage.addEventListener('submit',()=>{
       })
     })
 
-
   })
 
 
 })
+
 // for seeing individual peeps
+// PROBABLY NEED TO MOVE THIS, BUT MAYBE NOT.
+// MAYBE ALL PEEPS SHOULD BE VISIBLE AT ALL TIMES?
 window.addEventListener('hashchange',()=>{
   allPeeps.innerHTML = '';
   returnHome.innerHTML = `<a href="">back to main page</a>`;
