@@ -44,5 +44,6 @@ Approach
 * Log in
 * Log out
 * Post Peep
-* View Peep
+* View Individual Peep
 * Delete Peep
+* Like/Unlike

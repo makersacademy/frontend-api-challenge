@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  let session_key = null
-
   getPeeps()
-  bannerButtons(session_key)
+  bannerButtons()
 
   //clicking sign up
   document.querySelector('#SignUpButton').addEventListener('click', () => {
@@ -30,8 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let signInPassword = document.getElementById('signInPassword')
     signIn(signInUsername.value, signInPassword.value).then((signInValues) => {
       if(signInValues) {
-        session_key = signInValues.session_key
-        bannerButtons(session_key)
+        localStorage.setItem('sessionKey', signInValues.session_key) 
+        localStorage.setItem('userId', signInValues.user_id)
+        bannerButtons()
       }
       signInUsername.value = null
       signInPassword.value = null
@@ -40,15 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //signing out
   document.getElementById('signOutButton').addEventListener('click', () => {
-    session_key = null
-    bannerButtons(session_key)
+    localStorage.removeItem('sessionKey')
+    localStorage.removeItem('userId') 
+    bannerButtons()
     successMessage('Sign Out successful!')
+  })
+
+  //posting a peep
+  document.getElementById('postPeepForm').addEventListener('submit', (event) => {
+    event.preventDefault()
+    let message = document.getElementById('postPeepText')
+    newPeep(message.value, getUserId(), getSessionKey()).then((response) => {
+      if(response) {
+        getPeeps()
+      }
+      message.value = null
+    })
   })
 })
 
 async function getPeeps() {
   let rawResponse = await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
   let peepsJSON = await rawResponse.json()
+  document.getElementById('peepsList').innerText = ''
   peepsJSON.forEach(peep => { 
     let peepNode = document.createElement('div')
     peepNode.setAttribute('class', 'peepFeedDiv')
@@ -68,8 +81,8 @@ function createdAt(timestamp) {
   return `${time[0]}:${time[1]} on ${date[2]}/${date[1]}`
 }
 
-function bannerButtons(session_key) {
-  if(session_key) {
+function bannerButtons() {
+  if(getSessionKey()) {
     document.querySelector('#loggedInButtons').style.display = 'block'
     document.querySelector('#loggedOutButtons').style.display = 'none'
   } else {
@@ -122,4 +135,31 @@ function errorMessage(message) {
     progress: true,
     theme: 'dark'
   })
+}
+
+async function newPeep(message, userId, sessionKey) {
+  const rawResponse = await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
+    method: 'POST',
+    headers: new Headers({
+      'Authorization': `Token token=${sessionKey}`,
+      'Content-Type': 'application/json'
+    }),
+    body: JSON.stringify({peep: {'user_id': userId, 'body': message}})
+  })
+  if(rawResponse.status >= 200 && rawResponse.status < 300) {
+    let response = await rawResponse.json()
+    successMessage('Your Peep has been sent')
+    return response
+  } else {
+    errorMessage('There was an error sending you message, please try again.')
+    return null
+  }
+}
+
+function getSessionKey() {
+  return localStorage.getItem("sessionKey")
+}
+
+function getUserId() {
+  return localStorage.getItem('userId')
 }
