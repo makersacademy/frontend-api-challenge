@@ -17,3 +17,7 @@ h1 {
   padding-top: 10%;
   border: solid black;
 }
+
+.header {
+  font-weight: bold;
+}

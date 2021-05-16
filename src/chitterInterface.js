@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
       const html = data.map(peep => {
         return `
         <div class="peep">
+          <p class="header">@${peep.user.handle} said at ${peep.created_at}:</p>
           <p>${peep.body}</p>
+          <p>Likes: ${peep.likes.length}</p>
         </div>`
       }).join("")
       document
