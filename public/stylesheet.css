@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+.feed {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  
+}
+.peep {
+  background-color: azure;
+  font-family: 'Courier New', Courier, monospace;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 10%;
+  padding-top: 10%;
+  border: solid black;
+}
