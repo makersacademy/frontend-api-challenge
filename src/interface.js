@@ -26,13 +26,8 @@ async function loginUser(handle, password) {
     return response.json()
 
 }
-// _2a_12_GsVOHA4pptSvcz0WAvTvfO
-// _2a_12_hw6od1Y7QbPw_l7_liYKOe
-// _2a_12_gmZwRXetEyrx0P2IGItSoO
 
 async function createPeep(content, userId, sessionKey) {
-  // authString = `Token token=${sessionKey}`
-  // console.log(authString)
   const response = await fetch(peeps, {
     method: 'POST',
     headers:{
@@ -48,8 +43,19 @@ async function createPeep(content, userId, sessionKey) {
 
 }
 
-// session key should exist as a variable we pass in to other functions (like, create peep),
-// and it should be necessary for initiating that other functionality.
+function showLoginForm() {
+  return `<form id ='loginForm'> Login please.<br />
+  <input id ="loginName" type="text" placeholder="handle"/>
+  <input id ="loginPassword" type="text" placeholder="password"/>
+  <button type="submit">submit</button></form>`
+}
+function showNewPeepForm(){
+  return `
+  <form id="submitPeep">
+  <textarea id="peepInputField" rows="3" cols="40" placeholder="your new peep..."></textarea>
+  <button type="submit">submit</button>
+  </form>`
+}
 
 const users = 'https://chitter-backend-api-v2.herokuapp.com/users'
 const peeps = 'https://chitter-backend-api-v2.herokuapp.com/peeps'
@@ -66,14 +72,9 @@ const newPeep = document.querySelector('#newPeep')
 
 
 // homepage
-
-loginPage.innerHTML = ` <form id ='loginForm'> Login please.<br />
-<input id ="loginName" type="text" placeholder="handle"/>
-<input id ="loginPassword" type="text" placeholder="password"/>
-<button type="submit">submit</button></form>`
+loginPage.innerHTML = showLoginForm()
 
 loginPage.addEventListener('submit',()=>{
-
   event.preventDefault()
   console.log('login submitted')
 
@@ -90,11 +91,7 @@ loginPage.addEventListener('submit',()=>{
     // ALL PEEPS page
     if (userData != null) {
       loginPage.innerHTML = '' //login page is gone
-      newPeep.innerHTML = `
-      <form id="submitPeep">
-      <textarea id="peepInputField" rows="3" cols="40" placeholder="your new peep..."></textarea>
-      <button type="submit">submit</button>
-      </form>`
+      newPeep.innerHTML = showNewPeepForm()
       console.log(userData.sessionKey) /////
       // but so is username and password
       fetchMe(peeps).then((result) => {
@@ -122,8 +119,6 @@ loginPage.addEventListener('submit',()=>{
 
 
 })
-// createUser("EEEE","passwordE") // {"id":407,"handle":"EEEE"}
-
 // for seeing individual peeps
 window.addEventListener('hashchange',()=>{
   allPeeps.innerHTML = '';
