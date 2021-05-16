@@ -1,8 +1,8 @@
 'use strict';
 
 class User {
-  constructor(handle, password) {
+  constructor(id, handle) {
+    this.id = id
     this.handle = handle
-    this.password = password  
   }
 }

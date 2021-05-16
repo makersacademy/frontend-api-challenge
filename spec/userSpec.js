@@ -4,14 +4,14 @@ describe ('User', () => {
   let user;
 
   beforeEach(function() {
-    user = new User("kerri_mcm", "radiohead04");
+    user = new User(24, "kerri_mcm");
   });
 
-  it('has a handle', function() {
+  it('has a id', function() {
+    expect(user.id).toEqual(24);
+  });
+
+  it('had a handle', function() {
     expect(user.handle).toEqual("kerri_mcm");
-  });
-
-  it('had a password', function() {
-    expect(user.password).toEqual("radiohead04");
   });
 });
