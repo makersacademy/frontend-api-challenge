@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chitter</title>
+  <script src='./interface.js'></script>
+  <link rel="stylesheet" href="../css/stylesheet.css">
+  <link rel="stylesheet" href="../libraries/flashjs-master/dist/flash.css">
+</head>
+<body>
+  <div class="homepage_nav_buttons"> 
+    <h1 class="header-left">&#9999; Chitter</h1>
+    <div class='header-right'>
+      <!-- interface inserts sign up/ sign in or logout  -->
+      <div id='loggedInButtons' style="display:none">
+        <button id='signOutButton' class='button'>Sign Out</button>
+      </div>
+      <div id='loggedOutButtons'>
+        <form id='signInForm'>
+          <input type="text" placeholder="Enter Username" id="signInUsername" required>
+          <input type="password" placeholder="Enter Password" id="signInPassword" required>
+          <input type="submit" id='SignInButton' value='Sign In' class='button'>
+        </form>
+        <label for=""> If you don't have an account
+          <button id='SignUpButton' class='button'>Sign Up</button>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div id='homePageDisplay'>
+    <div id='postPeepDiv'>
+      <form id='postPeepForm'>
+        <textarea id="postPeepText" placeholder='Share Your Thoughts...' cols="70" rows="5" required></textarea>
+        <br>
+        <input type="submit" value="Post Peep" id="postPeepSubmitButton" class='button'>
+      </form>
+    </div>
+    <div id='peepFeedDiv'>
+      <div id='peepsList'>
+        <!-- interface inserts 50 most recent peeps here -->
+      </div>
+    </div>
+  </div>
+  <div id='individualPeepDisplay' style="display:none">
+
+  </div>
+  <div id='signUpDisplay' style="display:none">
+    <h2>Sign Up!</h2>
+    <h3>Please Enter your details</h3>
+    <form id='signUpForm'>
+      <label id='newUserNameLabel' for="newUserName"> 
+        Username: <input type="text" id='newUserName' required>
+      </label>
+      <br>
+      <label id='newPasswordLabel' for="newPassword">
+        Password: <input type="password" id='newPassword' required>
+      </label>
+      <br>
+      <input id='signUpSubmitButton' type="submit" value='Submit'>
+    </form>
+  </div>
+  <script src="../libraries/flashjs-master/dist/flash.min.js"></script>
+</body>
+</html>

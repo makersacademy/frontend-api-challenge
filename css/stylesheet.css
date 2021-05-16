@@ -1,0 +1,71 @@
+/* nav bar styling from airbnb */
+
+body {
+  padding-bottom: 20px;
+  font-family: 'monaco', monospace;
+  text-align: center;
+  overflow: auto;
+  background-color: #fff1e6;
+}
+
+input {
+  outline: none
+}
+
+.header-right {
+  float: right;
+  text-align: right;
+}
+.header-left {
+  float: left;
+  margin-left: 15px;
+}
+
+.homepage_nav_buttons {
+  overflow: hidden;
+  width: 100%;
+  border: 0px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+#loggedInButtons {
+  margin-top: 33px;
+  margin-right: 20px;
+}
+
+#loggedOutButtons {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+#signInForm {
+  margin-bottom: 5px;
+}
+
+.button {
+  display:inline-block;
+  padding:0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius: 2em;
+  text-decoration:none;
+  border: none;
+  font-weight:300;
+  color:#FFFFFF;
+  background-color:#4eb5f1;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  background-color:#4095c6;
+  }
+
+
+#postPeepText {
+  resize: none;
+}
+
+.peepFeedDiv {
+  margin-top:10px;
+}
