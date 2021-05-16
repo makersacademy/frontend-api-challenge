@@ -9,13 +9,14 @@ document.addEventListener("DOMContentLoaded", function() {
     return user;
   }
 
+  getAllPeepData()
+
   function getAllPeepData() {
     fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
     .then(response => {
       return response.json()
     })
     .then(data => {
-      console.log(data);
       const html = data.map(peep => {
         return `
         <div class="peep">
@@ -32,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(error);
     });
   }
-    getAllPeepData()
 
     submitNewUser.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -40,6 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
         let passwordValue = document.querySelector('#user-password').value;
         postPeepData(handleValue, passwordValue);
       })
+
+    function addNameToPage(userHandle) {
+      document.querySelector('#user-handle-appear').innerText = `Welcome ${userHandle}`;
+    }
 
     function postPeepData(userHandle, userPassword) {
         fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
@@ -53,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function() {
           return response.json()
         })
         .then(data => {
+          addNameToPage(data.handle);
           return newUser(data.id, data.handle)
-          
         })
         .catch(error => {
           console.log(error);
