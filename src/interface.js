@@ -3,6 +3,8 @@ async function fetchMe(url){ // ONLY FOR GETS
   const response = await fetch(url)
   return response.json()
 }
+// fetchMe(users).then(results => console.log(results))
+// fetchMe(peeps).then(results => console.log(results))
 
 async function createUser(handle, password) {
   const response = await fetch(users, {
@@ -61,8 +63,6 @@ const users = 'https://chitter-backend-api-v2.herokuapp.com/users'
 const peeps = 'https://chitter-backend-api-v2.herokuapp.com/peeps'
 const sessions = 'https://chitter-backend-api-v2.herokuapp.com/sessions'
 
-// fetchMe(users).then(results => console.log(results))
-// fetchMe(peeps).then(results => console.log(results))
 
 var userData = null
 const allPeeps = document.querySelector('#allPeeps')
@@ -90,10 +90,8 @@ loginPage.addEventListener('submit',()=>{
   .then(() =>{
     // ALL PEEPS page
     if (userData != null) {
-      loginPage.innerHTML = '' //login page is gone
+      loginPage.innerHTML = ''
       newPeep.innerHTML = showNewPeepForm()
-      console.log(userData.sessionKey) /////
-      // but so is username and password
       fetchMe(peeps).then((result) => {
         result.forEach(peep =>
           allPeeps.innerHTML += `<a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>`
@@ -104,15 +102,19 @@ loginPage.addEventListener('submit',()=>{
 
   })
   .catch(err => loginPage.innerHTML += '<br /> failed to login' )
-  // <a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>
   newPeep.addEventListener('submit',()=> {
     event.preventDefault()
     console.log('peep submitted')
-    console.log(userData.sessionKey) /////
     peepContent = document.querySelector('#peepInputField').value
-    // console.log(peepContent, userData)
     createPeep(peepContent, userData.userId, userData.sessionKey)
-    .then((result)=>{console.log(result)})
+    .then((result)=>{
+      allPeeps.innerHTML = ''
+      fetchMe(peeps).then((result) => {
+        result.forEach(peep =>
+          allPeeps.innerHTML += `<a href="#${peep.id}">${peep.body}</a> - <small> said ${peep.user.handle}</small> <br>`
+        );
+      })
+    })
 
 
   })
