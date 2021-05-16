@@ -1,5 +1,29 @@
 # Chitter API Frontend Challenge
 
+My notes:
+-------
+* In this weekend's challenge I sucessfully covered two areas of building the Chitter app
+* The user can sign up as a new user and view the 50 most recent peeps
+* I used Vanilla JavaScript to make calls to the API and a small User class to create new Users via the sign up form - this class was tested using the Jasmine library 
+
+Next steps & to improve:
+-------
+* My next steps will be to enable the POST `/sessions` which assigns the user a `user_id` and a `session_key` allowing them to post and like peeps 
+* I'd also like to stub the API to create tests for the `chitterInterface.js`
+* I will aim to make the Interface less bulky - however, I used this challenge to fully get to grips with fetching data from and API and posting data to an API
+
+Check in to Chitter:
+-------
+* `git clone` this repo
+* `cd` into the folder
+* `open index.html` to view the Chitter-verse
+
+See it in action:
+-------
+![demo](https://github.com/kerrimcm/frontend-api-challenge/blob/master/public/images/chitter_demo.gif)
+
+## Original Instructions
+
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
