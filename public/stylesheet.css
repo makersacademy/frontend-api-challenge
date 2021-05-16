@@ -1,7 +1,17 @@
+img {
+  align-items: center;
+  max-width: 8%;  
+  height: auto; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 h1 {
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
 }
+
 .feed {
   margin-left: auto;
   margin-right: auto;
@@ -15,9 +25,22 @@ h1 {
   padding-right: 10%;
   padding-bottom: 10%;
   padding-top: 10%;
+  margin-bottom: 20px;
   border: solid black;
 }
 
 .header {
   font-weight: bold;
+}
+
+.body {
+  font-size: large;
+}
+
+.likes {
+font-size: small;
+}
+
+body {
+  background-color: honeydew;
 }
