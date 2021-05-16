@@ -7,9 +7,9 @@ Here are some interactions the API supports. Implement as many as you see fit.
 
 * Viewing all Peeps         << DONE
 * Viewing individual Peeps  << DONE
-* Creating Users            << DONE >> but I need a signup page
+* Creating Users            << DONE >> but I also need a signup page
 * Logging in                << DONE
-* Posting Peep    >> should be doable sunday
+* Posting Peep              << DONE
 * Deleting Peeps  >> should be doable sunday
 * Liking Peeps
 * Unliking Peeps
