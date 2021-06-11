@@ -37,10 +37,10 @@ I chose this challenge to get more practice with:
 
 ## How to install
 1. Clone the repo: `git clone https://github.com/BecaLParker/frontend-api-challenge`
-2. cd to directory
+2. cd to directory frontend-api-challenge
 
 You can run the testing ....
- - open specrunner.html in a browser
+ - open SpecRunner.html in a browser
 
 Interact as a user by ...
  - open index.html in a browser and follow the onscreen instructions
