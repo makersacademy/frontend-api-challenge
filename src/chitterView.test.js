@@ -97,5 +97,30 @@ describe('ChitterView', () => {
         expect(rootDiv.innerHTML).toBe('<ul><li><p>anna.cav</p><p>hiya tokens</p><p>2021-05-30T14:17:35.240Z</p><p>0</p></li><li><p>acava</p><p>was it needed</p><p>2021-05-27T12:11:19.967Z</p><p>0</p></li><li><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></li><li><p>acava</p><p>Promises promises\n</p><p>2021-05-27T11:27:51.867Z</p><p>0</p></li></ul>')
       })
     })
+  const peep1 = {
+    id: 479,
+    body: 'Userid',
+    created_at: '2021-05-27T11:30:09.963Z',
+    updated_at: '2021-05-27T11:30:09.963Z',
+    user: {
+      id: 442,
+      handle: 'acava'
+    },
+    likes: []
+  }
+
+  describe('.prototype.displayPeep()', () => {
+    describe('when given peep1', () => {
+      test('displays given peep on page', () => {
+        chitterView.displayPeep(peep1)
+        expect(rootDiv.innerHTML).toBe('<li><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></li>')
+      })
+
+      test('clears the rootDiv before displaying peep', () => {
+        chitterView.displayPeep(peep1)
+        chitterView.displayPeep(peep1)
+        expect(rootDiv.innerHTML).toBe('<li><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></li>')
+      })
+    })
   })
 })

@@ -14,6 +14,13 @@ class ChitterView {
     this._rootDiv.append(peepUnorderedListElement)
   }
 
+  displayPeep (peep) {
+    this._clearRootDiv()
+
+    const peepListItemElement = this._createPeepListItemElement(peep)
+    this._rootDiv.append(peepListItemElement)
+  }
+
   _createPeepListItemElement (peep) {
     const handle = document.createElement('p')
     const body = document.createElement('p')
