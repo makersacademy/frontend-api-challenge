@@ -17,6 +17,8 @@ I chose this challenge to get more practice with:
  - External API integration
  - User login / authentication
 
+Here's a model of how I planned the entities to interact to load the landing page:
+![landing page sequence diagram](./planning/landing-page-sequence.svg)
 
 ## Features
 
@@ -46,6 +48,6 @@ Interact as a user by ...
  - open index.html in a browser and follow the onscreen instructions
 
 ## Credits
-
+* [allymparker](https://github.com/allymparker) for discussing my entity sequence diagram during planning, and for explaining promises (extracting methods that return promises, testing promises)
 * [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
 * [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
