@@ -3,25 +3,10 @@ class ChitterController {
     this._view = view
   }
 
-  getPeeps () {
-    this._view.displayPeeps([
-      {
-        id: 3,
-        body: 'my first peep :)',
-        created_at: '2018-06-23T13:21:23.317Z',
-        updated_at: '2018-06-23T13:21:23.317Z',
-        user: {
-          id: 1,
-          handle: 'kay'
-        },
-        likes: [{
-          user: {
-            id: 1,
-            handle: 'kay'
-          }
-        }]
-      }
-    ])
+  async getPeeps () {
+    await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
+      .then(response => response.json())
+      .then(peeps => this._view.displayPeeps(peeps))
   }
 }
 
