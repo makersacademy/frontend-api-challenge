@@ -21,6 +21,28 @@ const examplePeepsArray2 = [
     updated_at: '2021-06-02T09:47:00.147Z',
     user: { id: 454, handle: 'wishing2' },
     likes: []
+  },
+  {
+    id: 479,
+    body: 'Userid',
+    created_at: '2021-05-27T11:30:09.963Z',
+    updated_at: '2021-05-27T11:30:09.963Z',
+    user: {
+      id: 442,
+      handle: 'acava'
+    },
+    likes: []
+  },
+  {
+    id: 478,
+    body: 'Promises promises\n',
+    created_at: '2021-05-27T11:27:51.867Z',
+    updated_at: '2021-05-27T11:27:51.867Z',
+    user: {
+      id: 442,
+      handle: 'acava'
+    },
+    likes: []
   }
 ]
 
