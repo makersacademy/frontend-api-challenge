@@ -27,13 +27,16 @@ class ChitterView {
     const createdAt = document.createElement('p')
     const likes = document.createElement('p')
     const peepListItemElement = document.createElement('li')
+    const peepAnchorElement = document.createElement('a')
 
     handle.append(`${peep.user.handle}`)
     body.append(`${peep.body}`)
     createdAt.append(`${peep.created_at}`)
     likes.append(`${peep.likes.length}`)
+    peepAnchorElement.href = `#${peep.id}`
 
-    peepListItemElement.append(handle, body, createdAt, likes)
+    peepAnchorElement.append(handle, body, createdAt, likes)
+    peepListItemElement.append(peepAnchorElement)
     return peepListItemElement
   }
 

@@ -81,14 +81,14 @@ describe('ChitterView', () => {
     describe('when given peepsArray1', () => {
       test('displays given peeps on the page', () => {
         chitterView.displayPeeps(peepsArray1)
-        expect(rootDiv.innerHTML).toBe('<ul><li><p>kay</p><p>my first peep :)</p><p>2018-06-23T13:21:23.317Z</p><p>1</p></li><li><p>wishing2</p><p>still now?</p><p>2021-06-02T09:47:00.147Z</p><p>0</p></li></ul>')
+        expect(rootDiv.innerHTML).toBe('<ul><li><a href="#3"><p>kay</p><p>my first peep :)</p><p>2018-06-23T13:21:23.317Z</p><p>1</p></a></li><li><a href="#485"><p>wishing2</p><p>still now?</p><p>2021-06-02T09:47:00.147Z</p><p>0</p></a></li></ul>')
       })
     })
 
     describe('when given peepsArray2', () => {
       test('displays given peeps on the page', () => {
         chitterView.displayPeeps(peepsArray2)
-        expect(rootDiv.innerHTML).toBe('<ul><li><p>anna.cav</p><p>hiya tokens</p><p>2021-05-30T14:17:35.240Z</p><p>0</p></li><li><p>acava</p><p>was it needed</p><p>2021-05-27T12:11:19.967Z</p><p>0</p></li><li><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></li><li><p>acava</p><p>Promises promises\n</p><p>2021-05-27T11:27:51.867Z</p><p>0</p></li></ul>')
+        expect(rootDiv.innerHTML).toBe('<ul><li><a href="#481"><p>anna.cav</p><p>hiya tokens</p><p>2021-05-30T14:17:35.240Z</p><p>0</p></a></li><li><a href="#480"><p>acava</p><p>was it needed</p><p>2021-05-27T12:11:19.967Z</p><p>0</p></a></li><li><a href="#479"><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></a></li><li><a href="#478"><p>acava</p><p>Promises promises\n</p><p>2021-05-27T11:27:51.867Z</p><p>0</p></a></li></ul>')
       })
     })
 
@@ -99,7 +99,7 @@ describe('ChitterView', () => {
     })
   })
 
-  const peep1 = {
+  const examplePeep1 = {
     id: 479,
     body: 'Userid',
     created_at: '2021-05-27T11:30:09.963Z',
@@ -111,17 +111,42 @@ describe('ChitterView', () => {
     likes: []
   }
 
+  const examplePeep2 = {
+    id: 485,
+    body: 'still now?',
+    created_at: '2021-06-02T09:47:00.147Z',
+    updated_at: '2021-06-02T09:47:00.147Z',
+    user: {
+      id: 454,
+      handle: 'wishing2'
+    },
+    likes: []
+  }
+
   describe('.prototype.displayPeep()', () => {
-    describe('when given peep1', () => {
+    describe('when given examplePeep1', () => {
       test('displays given peep on page', () => {
-        chitterView.displayPeep(peep1)
-        expect(rootDiv.innerHTML).toBe('<li><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></li>')
+        chitterView.displayPeep(examplePeep1)
+        expect(rootDiv.innerHTML).toBe('<li><a href="#479"><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></a></li>')
       })
 
       test('clears the rootDiv before displaying peep', () => {
-        chitterView.displayPeep(peep1)
-        chitterView.displayPeep(peep1)
-        expect(rootDiv.innerHTML).toBe('<li><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></li>')
+        chitterView.displayPeep(examplePeep1)
+        chitterView.displayPeep(examplePeep1)
+        expect(rootDiv.innerHTML).toBe('<li><a href="#479"><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></a></li>')
+      })
+    })
+
+    describe('when given examplePeep2', () => {
+      test('displays given peep on page', () => {
+        chitterView.displayPeep(examplePeep2)
+        expect(rootDiv.innerHTML).toBe('<li><a href="#485"><p>wishing2</p><p>still now?</p><p>2021-06-02T09:47:00.147Z</p><p>0</p></a></li>')
+      })
+
+      test('clears the rootDiv before displaying peep', () => {
+        chitterView.displayPeep(examplePeep2)
+        chitterView.displayPeep(examplePeep2)
+        expect(rootDiv.innerHTML).toBe('<li><a href="#485"><p>wishing2</p><p>still now?</p><p>2021-06-02T09:47:00.147Z</p><p>0</p></a></li>')
       })
     })
   })
