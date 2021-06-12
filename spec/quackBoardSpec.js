@@ -1,12 +1,16 @@
-describe('Quackboard', function() {
+describe('Quackboard', function () {
+  let quackboard
 
-  var quackboard;
+  describe('.getQuacks', function () {
+    it('returns 50 most recent quacks', function () {
+      const quackboard = new QuackBoard()
 
-  describe('.all', function() {
-    it('returns a list of 50 most recent quacks', function() {
-      quackboard = new QuackBoard();
-      let quacks = quackboard.all()
-      expect(quacks.length).toEqual(50)
-    });
-  });
+      return quackboard.getQuacks().then(
+        quacks => {
+          expect(quacks.length).toBe(50)
+        }
+      )
+    }
+    )
+  })
 })
