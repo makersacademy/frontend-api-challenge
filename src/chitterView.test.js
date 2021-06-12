@@ -4,7 +4,12 @@ const ChitterView = require('./chitterView')
 
 describe('ChitterView', () => {
   let chitterView
-  const rootDiv = document.createElement('div')
+  let rootDiv
+
+  beforeEach(() => {
+    rootDiv = document.createElement('div')
+    chitterView = new ChitterView(rootDiv)
+  })
 
   const peepsArray1 = [
     {
@@ -72,20 +77,22 @@ describe('ChitterView', () => {
     }
   ]
 
-  beforeEach(() => {
-    chitterView = new ChitterView(rootDiv)
-  })
-
   describe('.prototype.displayPeeps()', () => {
+    it('clears the rootDiv before displaying peeps', () => {
+      chitterView.displayPeeps(peepsArray1)
+      chitterView.displayPeeps([])
+      expect(rootDiv.innerHTML).toBe('<ul></ul>')
+    })
+
     describe('when given peepsArray1', () => {
-      it('displays given peeps on the page', () => {
+      test('displays given peeps on the page', () => {
         chitterView.displayPeeps(peepsArray1)
         expect(rootDiv.innerHTML).toBe('<ul><li><p>kay</p><p>my first peep :)</p><p>2018-06-23T13:21:23.317Z</p><p>1</p></li><li><p>wishing2</p><p>still now?</p><p>2021-06-02T09:47:00.147Z</p><p>0</p></li></ul>')
       })
     })
 
     describe('when given peepsArray2', () => {
-      it('displays given peeps on the page', () => {
+      test('displays given peeps on the page', () => {
         chitterView.displayPeeps(peepsArray2)
         expect(rootDiv.innerHTML).toBe('<ul><li><p>anna.cav</p><p>hiya tokens</p><p>2021-05-30T14:17:35.240Z</p><p>0</p></li><li><p>acava</p><p>was it needed</p><p>2021-05-27T12:11:19.967Z</p><p>0</p></li><li><p>acava</p><p>Userid</p><p>2021-05-27T11:30:09.963Z</p><p>0</p></li><li><p>acava</p><p>Promises promises\n</p><p>2021-05-27T11:27:51.867Z</p><p>0</p></li></ul>')
       })
