@@ -1,3 +1,6 @@
+![GitHub Build Status](https://github.com/rdupplaw/frontend-api-challenge/actions/workflows/node.js.yml/badge.svg)
+[![Travis CI Build Status](https://travis-ci.com/rdupplaw/frontend-api-challenge.svg?branch=master)](https://travis-ci.com/rdupplaw/frontend-api-challenge)
+
 # Chitter API Frontend Challenge
 
 * Feel free to use Google, your notes, books, etc. but work on your own
