@@ -25,10 +25,14 @@ Here's a model of how I planned the entities to interact to load the landing pag
 ### User stories worked on so far
 
 * Viewing all Peeps
+  Here's a model of how I planned the entities to interact to load the landing page:
+  ![landing page sequence diagram](./planning/landing-page-sequence.svg)
+
+* Creating users
+  ![create user sequence diagram](./planning/create-user-sequence.svg)
 
 ### Next steps / Future features
 
-* Creating Users
 * Logging in
 * Posting Peeps
 * Viewing individual Peeps
