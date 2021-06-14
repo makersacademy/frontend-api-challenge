@@ -1,40 +1,33 @@
-![GitHub Build Status](https://github.com/rdupplaw/frontend-api-challenge/actions/workflows/node.js.yml/badge.svg)
-[![Travis CI Build Status](https://travis-ci.com/rdupplaw/frontend-api-challenge.svg?branch=master)](https://travis-ci.com/rdupplaw/frontend-api-challenge)
+# Frontend API Challenge (Chitter)
 
-# Chitter API Frontend Challenge
+## About
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Try it at https://rdupplaw.github.io/frontend-api-challenge/
 
-Challenge:
--------
+You can click `Peeps` to view a list of peeps, and you can click a Peep to see it on its own.
 
-As usual please start by forking this repo.
+## Getting started
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+### Prerequisites
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
+- npm
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+### Installation
 
-Here are some interactions the API supports. Implement as many as you see fit.
+```
+git clone https://github.com/rdupplaw/frontend-api-challenge.git
+cd frontend-api-challenge
+npm i
+```
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+## Usage
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+```
+open index.html
+```
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+### Testing
 
-## Utilities you might find useful
-
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+```
+npm test
+```
