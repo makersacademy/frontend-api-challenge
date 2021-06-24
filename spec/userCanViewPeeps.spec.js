@@ -19,7 +19,7 @@ describe("User can view a list of peeps", () => {
     let controller = new PeepListController();
     controller.display().then(() => {
       let container = document.querySelector('#main');
-      expect(container.innerHTML).toEqual("<ul><li>Fake Test Data</li></ul>");
+      expect(container.innerHTML).toEqual("<ul><li> Fake Test Data</li></ul>");
       done();
     });
   });

@@ -4,9 +4,12 @@ class PeepListController {
     return fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
       .then(response => response.json())
       .then(data => {
-        console.log(data)
-        let peep = data[0]
-        container.innerHTML = `<ul><li>${peep.body}</li></ul>`;
+        let text = [`<ul>`]
+        let peeps = data.forEach(peep => text.push(
+          `<li> ${peep.body}</li>`
+        ))
+        text.push(`</ul>`)
+        container.innerHTML = text.join('')
     });
   }
 }
