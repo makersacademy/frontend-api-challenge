@@ -9,6 +9,7 @@ describe("User can view a list of peeps", () => {
           return Promise.resolve({
             json: () => Promise.resolve([
               {
+                id: 1,
                 body: "Fake Test Data"
               }
             ])
@@ -17,9 +18,9 @@ describe("User can view a list of peeps", () => {
      };
     
     let controller = new PeepListController();
-    controller.display().then(() => {
+    controller.displayPeeps().then(() => {
       let container = document.querySelector('#main');
-      expect(container.innerHTML).toEqual("<ul><li> Fake Test Data</li></ul>");
+      expect(container.innerHTML).toEqual('<ul><li id="1"><a href="file:///Users/kerrimcmahon/Documents/full-time/frontend-api-challenge/index.html#1">Fake Test Data</a></li></ul>');
       done();
     });
   });
