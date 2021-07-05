@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <h1>Chitter</h1>
+  <head>See what's happening in the world right now</head>
+      <!-- add css style sheet later -->
+  <body>
+
+    <h2>Join Chiter today.</h2>
+    <button id="signup">Sign Up</button>
+    <button id="login">Log In</button>
+    <p>
+    </p>
+    <form id="post-form">
+      <br><input type="text" id="create-peep" placeholder="What's on your mind?"></br>
+      <button type="submit">Post</button>
+    </form>
+    <h3>Peeps</h3>
+    <div id="peeps-list"></div>
+    <script src="./src/peeps-list.js"></script>
+    <script src="./src/peep-all-model.js"></script>
+    <script src="./src/peep-all-view.js"></script>
+    <script src="./src/peep-all-view_controller.js"></script>
+    <script src="./src/likes.js"></script>
+
+    <!-- <script>peepsAllModel = new PeepsAll();</script>
+    <script>controller = new PeepsAllViewController(peepsAllModel);</script>
+    <script>controller.viewAllPeepsFromDatabase(document);</script> -->
+
+    <script>data = fetchPeepsFromAPI(url = 'https://chitter-backend-api.herokuapp.com/peeps')</script>
+    <script>wrapAllPeepsInHTML(data)</script>
+
+    <p>
+      <h2>Follow your interests.</h2>
+      <h2>See what people are talking about.</h2>
+      <h2>Join the conversation.</h2>
+    </p>
+    <button id="logout">Log Out</button>
+  </body>
+</html>
