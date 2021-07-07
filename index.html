@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Chitter</title>
+  <link rel="stylesheet" type="text/css" href="public/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Work+Sans:200,500" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <img src="public/chitter_logo.png" class = "logo"/>
+  </header>
+  <main id="main">
+
+      <h1>Welcome to Chitter</h1>
+      <div class="page-url">
+        <a href="#peeps">Peeps</a> |
+        <a href="#register">Register</a> |
+        <a href="#sign-in">Sign-in</a>
+      </div>
+
+      <div class="page" id="peeps">
+      </div>
+
+      <div class="page" id="register">
+        <h2>Register</h2>
+        <form id="form" autocomplete="off">
+          <input type="text" id="handle" value="" placeholder="Your handle">
+          <input type="password" id="password" value="" placeholder="Your password">
+          <button id="submit">SUBMIT</button>
+        </form>
+        <div id="responseField"></div>
+      </div>
+
+    <div class="page" id="sign-in">
+      <h2>Sign In</h2>
+      <form id="form" autocomplete="off">
+        <input type="text" id="session-handle" value="" placeholder="Your handle">
+        <input type="password" id="session-password" value="" placeholder="Your password">
+        <button id="session-submit">SUBMIT</button>
+      </form>
+      <div id="responseField2"></div>
+    </div>
+  </main>
+
+  <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+    <script src="src/helperFunctions.js"></script>
+    <script src="src/getPeeps.js"></script>
+    <script src="src/registerUser.js"></script>
+    <script src="src/create_session.js"></script>
+
+    <script>
+    function showPage(pageID){
+      $(".page").hide();
+      $(pageID).show();
+    }
+
+    window.location.hash="peeps"; // show defuault page
+
+    $(window).on("hashchange",function(){
+      console.log(location.hash);
+      showPage(location.hash);
+    })
+    </script>
+</body>
+</html>

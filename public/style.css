@@ -1,0 +1,166 @@
+header {
+  text-align: center;
+  background-color: black;
+  padding: 0;
+  margin: 0;
+  /* max-height: 10% !important; */
+}
+
+main {
+  /* background-image: url('background_main.jpg'); */
+  /* background-color: #ef6b68; */
+  background-color:#1f233e;
+  height: auto;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  height: 38px;
+  font-family: Work Sans, sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-align: center;
+  color: white;
+  padding-top: 20px;
+  margin: 0;
+}
+
+h2,a,p{
+  color: white;
+}
+
+li {
+  text-align: center;
+  margin: 0 25% 0 25%;
+}
+
+.logo {
+  max-height: 20%;
+  margin-top: 0;
+  object-fit: contain;
+}
+
+.page-url{
+  margin:10px;
+}
+
+.message-box {
+text-align: center;
+font-size: 28px;
+padding: 10px;
+line-height: 30px;
+background-color: #fff;
+border-radius: 20px 0px 20px 0px;
+box-shadow: 0px 2px 10px rgba(000, 000, 000, 0.5), inset 1px 2px 0px rgba(255, 255, 255, 0.4);
+margin: inherit;
+width: 70%;
+}
+
+.peep-handles{
+  font-size: 14px;
+}
+
+
+input {
+  width: 219px;
+  height: 37px;
+  border-radius: 3.2px;
+  border: solid 0.8px white;
+  background-color: inherit;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-family: Source Sans Pro;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #ffffff;
+}
+
+#submit {
+  width: 125px;
+  height: 30px;
+  border-radius: 2px;
+  border-color: inherit;
+  background-color: #1f233e;
+  font-family: Work Sans, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin: 30px;
+  text-align: center;
+  color: #ef6b68;
+}
+
+#session-submit {
+  width: 125px;
+  height: 30px;
+  border-radius: 2px;
+  border-color: inherit;
+  background-color: #1f233e;
+  font-family: Work Sans, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin: 30px;
+  text-align: center;
+  color: #ef6b68;
+}
+
+#peeps {
+  align-content: center;
+  margin: auto;
+  margin-top: 25px;
+  font-family: Source Sans Pro;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: black;
+  overflow-wrap: break-word;
+  padding: 5px;
+}
+
+
+#responseField {
+  min-width: 191px;
+  min-height: 120px;
+  border: solid 2px #ffffff;
+  margin: 0;
+  margin-top: 25px;
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #ffffff;
+  overflow: auto;
+}
+
+#responseField2 {
+  min-width: 191px;
+  min-height: 120px;
+  border: solid 2px #ffffff;
+  margin: 0;
+  margin-top: 25px;
+  font-family: Source Sans Pro;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #ffffff;
+  overflow: auto;
+}
+
+#submit:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#submit:active {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #ef6b68;
+  cursor: pointer;
+}
