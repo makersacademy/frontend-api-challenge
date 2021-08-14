@@ -1,16 +1,20 @@
+let mockResponse, mockJsonPromise, mockFetchPromise;
 
-  beforeEach(function() {
+ describe('getPeeps', () => {
+    beforeEach(function() {
+      // var peeps;
+      // spyOn(window, 'fetch')
+      // peeps = getPeeps();
+      mockResponse = {mockKey: 'mockValue'}
+      mockJsonPromise = Promise.resolve(mockResponse);
+      mockFetchPromise = Promise.resolve({
+        json: () => mockJsonPromise
+      });
+      spyOn(window, 'fetch').and.callFake(() => mockFetchPromise)
+    });
 
-  });
-
-  // describe('DOM loader', () => {
-  //   it('loads the document before any action is taken', () => {
-  //     var spy = spyOn(window, "example" )
-  //   })
-  // })
-
-  describe('calculate', () => {
-    it("calculates two numbers", () => {
-      expect(calculate(1, 2)).toEqual(3);
+    it('responds to the API fetch request', () => {
+      getPeeps();
+      expect(window.fetch).toHaveBeenCalledWith("https://chitter-backend-api-v2.herokuapp.com/peeps");
     });
   });

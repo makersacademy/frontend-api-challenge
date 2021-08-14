@@ -1,6 +1,5 @@
 
-#right, #left, #header {
-  background-color: cornflowerblue;
-};
-
-
+body {
+  background: #F08;
+  color: aliceblue;
+}
