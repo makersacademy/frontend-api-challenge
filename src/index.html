@@ -5,11 +5,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-  <link rel="stylesheet" href="/jasmine-3.8.0/">
+  <link rel="stylesheet" href="styles.css">
   <title>Chitter!</title>
 </head>
 <body>
-  <h1>Chitter - For Peeps who Peep</h1>
+  <div class="container">
+
+    <div id="header" class="row">
+      <h1>CHITTER</h1>
+    </div>
+    <div class="row">
+
+      <div id="left" class="four columns">
+        <div id="peep-container">
+          <div id="peeps">
+hi  
+          </div>
+        </div>
+      </div>
+
+      <div id="right" class="eight columns">
+        <label for="peep-input">Get peepin'!</label>
+        <textarea class="u-full-width" name="" placeholder="Peep in here..." id="" cols="20" rows="20"></textarea>
+        <input class="button-primary" type="submit" value="Submit">
+      </div>
+    </div>
+  </div>
+
+
 
 <script src="Controller.js"></script>  
 </body>
