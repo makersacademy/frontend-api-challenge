@@ -63,7 +63,6 @@ signUp.addEventListener('submit', (e) => {
 
 logIn.addEventListener('submit', (e) => {
   e.preventDefault();
-  console.log(logInHandle.value, logInPassword.value);
 
   fetch('https://chitter-backend-api-v2.herokuapp.com/sessions', {
     method: 'POST',
@@ -76,16 +75,29 @@ logIn.addEventListener('submit', (e) => {
       return response.json();
     })
     .then((data) => {
-      user_id = data.user_id;
-      session_key = data.session_key;
+      // if (data.handle[0] == "can't be blank") {
+      //   alert('Field cannot be blank');
+      // } else if (data.handle[0] == 'has already been taken') {
+      //   alert('Name has already been taken');
+      // } else {
+      console.log(data);
+      logIn.classList.remove('show');
+      logIn.classList.add('hide');
+      // peeps.classList.remove('hide');
+      // peeps.classList.add('show');
+      // createPeep.classList.remove('hide');
+      // createPeep.classList.add('show');
+      // }console.log(data);
+      peeps.classList.remove('hide');
+      peeps.classList.add('show');
+      createPeep.classList.remove('hide');
+      createPeep.classList.add('show');
+      // user_id = data.user_id;
+      // session_key = data.session_key;
+    })
+    .catch(() => {
+      alert('Not a valid log in');
     });
-
-  logIn.classList.remove('show');
-  logIn.classList.add('hide');
-  peeps.classList.remove('hide');
-  peeps.classList.add('show');
-  createPeep.classList.remove('hide');
-  createPeep.classList.add('show');
 });
 
 peeps.addEventListener('submit', (e) => {
