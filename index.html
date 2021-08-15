@@ -8,22 +8,28 @@
   <title>Chitter</title>
 </head>
 <body>
-  Sign up
-  <form method="post" id="signUp">
-    <label for="handle">Name</label><br>
-    <input type="text" id="handle" name="handle"><br>
-    <label for="password">Password</label><br>
-    <input type="text" id="password" name="password"><br>
-    <input type="submit" value="Submit" id="submit">
-  </form>
-  <!-- Log in
-  <form method="post" id="logIn">
-    <label for="handle">Name</label><br>
-    <input type="text" id="handle" name="handle"><br>
-    <label for="password">Password</label><br>
-    <input type="text" id="password" name="password"><br>
-    <input type="submit" value="Submit">
-  </form> -->
+  <div>
+    Sign up
+    <form method="post" id="signUp" action=/users>
+      <label for="signUpHandle">Name</label><br>
+      <input type="text" id="signUpHandle" name="handle"><br>
+      <label for="signUpPassword">Password</label><br>
+      <input type="text" id="signUpPassword" name="password"><br>
+      <input type="submit" value="Submit" id="submit">
+    </form>
+  </div>
+  
+  <div>
+    Log in
+    <form method="post" id="logIn" action=/sessions>
+      <label for="logInHandle">Name</label><br>
+      <input type="text" id="logInHandle" name="handle"><br>
+      <label for="logInPassword">Password</label><br>
+      <input type="text" id="logInPassword" name="password"><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  
   
   <script src="./src/interface.js"></script>
 </body>
