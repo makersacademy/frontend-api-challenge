@@ -1,15 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => { 
 
- 
+  const userForm = document.querySelector('#user-details');
+
+  userForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    postUserData();
+  });
+
 getPeeps = () => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
   .then(response => {
-    console.log(response)
      return response.json()
   })
   .then(json => {
     json.forEach((peep) => {
-      console.log(peep);
+      // console.log(peep);
       populateDiv(peep);
     });
   });
@@ -23,7 +28,38 @@ populateDiv = (peep) => {
   document.querySelector('#peeps').appendChild(div);
 }
 
+getUserData = () => {
+  console.log('form submitted');
+  const formData = new FormData(userForm);
+  const handle = formData.get('handle');
+  console.log(handle);
+  const password = formData.get('password');
+  console.log(password);
+  const userData = { "handle":handle, "password":password
+  };
+
+  console.log(userData)
+  return userData
+}
+
+postUserData = () => {
+  let userData = getUserData();
+  fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+    method: "POST",
+    headers: { 'Content-Type' : 'application/json' },
+    body: JSON.stringify({"user": userData })
+    })
+  .then(response => {
+    console.log(response);
+    return response.json()
+  })
+  .then(json => {
+    console.log(json)
+  })
+}
+
 getPeeps();
+
 
 
 

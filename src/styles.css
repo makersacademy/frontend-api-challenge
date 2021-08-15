@@ -3,3 +3,13 @@ body {
   background: #F08;
   color: aliceblue;
 }
+
+
+
+#peeps {
+  border: black solid 1px;
+}
+
+.peep-div {
+  border: black solid 1px;
+}
