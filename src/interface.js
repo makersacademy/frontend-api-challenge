@@ -46,16 +46,19 @@ signUp.addEventListener('submit', (e) => {
       return response.json();
     })
     .then((data) => {
-      const id = data.id;
-      const handle = data.handle;
+      if (data.handle[0] == "can't be blank") {
+        alert('Field cannot be blank');
+      } else if (data.handle[0] == 'has already been taken') {
+        alert('Name has already been taken');
+      } else {
+        signUp.classList.remove('show');
+        signUp.classList.add('hide');
+        peeps.classList.remove('hide');
+        peeps.classList.add('show');
+        createPeep.classList.remove('hide');
+        createPeep.classList.add('show');
+      }
     });
-
-  signUp.classList.remove('show');
-  signUp.classList.add('hide');
-  peeps.classList.remove('hide');
-  peeps.classList.add('show');
-  createPeep.classList.remove('hide');
-  createPeep.classList.add('show');
 });
 
 logIn.addEventListener('submit', (e) => {
@@ -102,20 +105,26 @@ peeps.addEventListener('submit', (e) => {
 
 createPeep.addEventListener('click', (e) => {
   e.preventDefault();
+  newPeep.classList.remove('hide');
+  newPeep.classList.add('show');
+});
+
+newPeep.addEventListener('click', (e) => {
+  e.preventDefault();
+  message = newPeep.value;
 
   fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      peep: { user_id: user_id, body: newPeep.value },
+      peep: { user_id: user_id, body: message },
     }),
   })
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      const user_id = data.user_id;
-      const session_key = data.session_key;
+      console.log(data);
     });
 
   console.log('hello');
