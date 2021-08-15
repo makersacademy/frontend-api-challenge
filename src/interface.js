@@ -75,23 +75,14 @@ logIn.addEventListener('submit', (e) => {
       return response.json();
     })
     .then((data) => {
-      // if (data.handle[0] == "can't be blank") {
-      //   alert('Field cannot be blank');
-      // } else if (data.handle[0] == 'has already been taken') {
-      //   alert('Name has already been taken');
-      // } else {
-      console.log(data);
+      // console.log(data.errors);
       logIn.classList.remove('show');
       logIn.classList.add('hide');
-      // peeps.classList.remove('hide');
-      // peeps.classList.add('show');
-      // createPeep.classList.remove('hide');
-      // createPeep.classList.add('show');
-      // }console.log(data);
       peeps.classList.remove('hide');
       peeps.classList.add('show');
       createPeep.classList.remove('hide');
       createPeep.classList.add('show');
+
       // user_id = data.user_id;
       // session_key = data.session_key;
     })
@@ -100,19 +91,18 @@ logIn.addEventListener('submit', (e) => {
     });
 });
 
-peeps.addEventListener('submit', (e) => {
+peeps.addEventListener('click', (e) => {
   e.preventDefault();
+  console.log('hello');
   console.log(logInHandle.value, logInPassword.value);
 
-  fetch('https://chitter-backend-api-v2.herokuapp.com/peeps').then(
-    (response) => {
+  fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
+    .then((response) => {
       console.log(response.json());
-      // })
-      // .then((data) => {
-      //   console.log(data)
-      // });
-    }
-  );
+    })
+    .then((data) => {
+      console.log(data);
+    });
 });
 
 createPeep.addEventListener('click', (e) => {
@@ -136,8 +126,11 @@ newPeep.addEventListener('click', (e) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      chitter = new Chitter();
+      return chitter.addArray(data);
     });
+
+  console.log(chitter);
 
   console.log('hello');
   logIn.classList.remove('show');
