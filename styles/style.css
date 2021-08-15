@@ -3,6 +3,7 @@
 body {
   background-image: url('../images/background.jpeg');
   background-size: cover;
+  background-repeat: repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,4 +77,11 @@ button:active {
   margin-top: 30px;
   margin-bottom: 0px;
   border: 0px;
+}
+
+#listOfPeeps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

@@ -9,6 +9,7 @@ const logInPassword = document.getElementById('logInPassword');
 const peeps = document.getElementById('getPeeps');
 const createPeep = document.getElementById('createPeep');
 const newPeep = document.getElementById('newPeep');
+const listOfPeeps = document.getElementById('listOfPeeps');
 
 let user_id;
 let session_key;
@@ -82,6 +83,7 @@ logIn.addEventListener('submit', (e) => {
       peeps.classList.add('show');
       createPeep.classList.remove('hide');
       createPeep.classList.add('show');
+      console.log(data);
 
       // user_id = data.user_id;
       // session_key = data.session_key;
@@ -96,12 +98,20 @@ peeps.addEventListener('click', (e) => {
   console.log('hello');
   console.log(logInHandle.value, logInPassword.value);
 
+  let chitter = new Chitter();
+
   fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
     .then((response) => {
-      console.log(response.json());
+      return response.json();
     })
     .then((data) => {
-      console.log(data);
+      chitter.addArray(data);
+      console.log(chitter.peeps);
+      chitter.peeps.forEach((peep) => {
+        let p = document.createElement('p');
+        p.innerHTML = peep.body;
+        listOfPeeps.append(p);
+      });
     });
 });
 
@@ -115,24 +125,24 @@ newPeep.addEventListener('click', (e) => {
   e.preventDefault();
   message = newPeep.value;
 
-  fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      peep: { user_id: user_id, body: message },
-    }),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      chitter = new Chitter();
-      return chitter.addArray(data);
-    });
+  const fetchPromise = fetch(
+    'https://chitter-backend-api-v2.herokuapp.com/peeps',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        peep: { user_id: user_id, body: message },
+      }),
+    }
+  );
+  // .then((data) => {
+  //   console.log(data);
+  // });
+  fetchPromise.then((response) => {
+    console.log(response);
+  });
+  // console.log(fetchPromise);
 
-  console.log(chitter);
-
-  console.log('hello');
   logIn.classList.remove('show');
   logIn.classList.add('hide');
   peeps.classList.remove('hide');
