@@ -1,7 +1,7 @@
 
 body {
-  background: #F08;
-  color: aliceblue;
+  background: #171E31;
+  color: #fff;
 }
 
 #log-out {
@@ -10,9 +10,14 @@ body {
 
 
 #peeps {
-  border: black solid 1px;
+  padding: 1em;
+  border-radius: 6px;
 }
 
 .peep-div {
+  padding: 15px, 30px;
   border: black solid 1px;
+  background: #f08;
+  margin: 1em;
+
 }
