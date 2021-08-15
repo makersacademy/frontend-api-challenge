@@ -6,7 +6,12 @@ const signUpHandle = document.getElementById('signUpHandle');
 const signUpPassword = document.getElementById('signUpPassword');
 const logInHandle = document.getElementById('logInHandle');
 const logInPassword = document.getElementById('logInPassword');
-const peeps = document.getElementById('peeps');
+const peeps = document.getElementById('getPeeps');
+const createPeep = document.getElementById('createPeep');
+const newPeep = document.getElementById('newPeep');
+
+let user_id;
+let session_key;
 
 const removeLogInSignUpButtons = () => {
   signUpButton.classList.remove('show');
@@ -41,13 +46,16 @@ signUp.addEventListener('submit', (e) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      const id = data.id;
+      const handle = data.handle;
     });
 
   signUp.classList.remove('show');
   signUp.classList.add('hide');
   peeps.classList.remove('hide');
   peeps.classList.add('show');
+  createPeep.classList.remove('hide');
+  createPeep.classList.add('show');
 });
 
 logIn.addEventListener('submit', (e) => {
@@ -65,11 +73,56 @@ logIn.addEventListener('submit', (e) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      user_id = data.user_id;
+      session_key = data.session_key;
     });
 
   logIn.classList.remove('show');
   logIn.classList.add('hide');
   peeps.classList.remove('hide');
   peeps.classList.add('show');
+  createPeep.classList.remove('hide');
+  createPeep.classList.add('show');
+});
+
+peeps.addEventListener('submit', (e) => {
+  e.preventDefault();
+  console.log(logInHandle.value, logInPassword.value);
+
+  fetch('https://chitter-backend-api-v2.herokuapp.com/peeps').then(
+    (response) => {
+      console.log(response.json());
+      // })
+      // .then((data) => {
+      //   console.log(data)
+      // });
+    }
+  );
+});
+
+createPeep.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      peep: { user_id: user_id, body: newPeep.value },
+    }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const user_id = data.user_id;
+      const session_key = data.session_key;
+    });
+
+  console.log('hello');
+  logIn.classList.remove('show');
+  logIn.classList.add('hide');
+  peeps.classList.remove('hide');
+  peeps.classList.add('show');
+  newPeep.classList.remove('hide');
+  newPeep.classList.add('show');
 });
