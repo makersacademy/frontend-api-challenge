@@ -4,19 +4,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="skeleton.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
 
   <title>Chitter!</title>
 </head>
 <body>
   <div class="container">
-
+    <div id="snackbar">Handle & Password Required</div>
     <div id="header" class="row">
-      <h1>CHITTER</h1>
+      <h1>Chitter</h1>
     </div>
     <div class="row">
-
       <div id="left" class="six columns">
         <div id="peep-container">
           <div id="peeps">
@@ -24,24 +28,24 @@
           </div>
         </div>
       </div>
-
-      <div id="right" class="six columns">
       
-        <input class="hide" id="log-out" name="log-out" type="submit" value="Log Out">
+        <div id="right" class="six columns">
 
+          <input class="button hide" id="log-out" name="log-out" type="submit" value="Log Out">
+  
         <form id="user-details">
           <label for="handle">Handle</label>
             <input id="handle" type="text" name="handle">
           <label for="password">Password</label>
-            <input id="password" type="password" name="password"><BR>
-          <input id="sign-up" name="sign-up" type="submit" value="Sign Up">
-          <input id="log-in" name="log-in" type="submit" value="Log In">
+            <input id="password" type="password" name="password"><br>
+          <input class="button" required id="sign-up" name="sign-up" type="submit" value="Sign Up">
+          <input class="button" required id="log-in" name="log-in" type="submit" value="Log In">
         </form>
 
         <form action="" class="hide" id="peep-form">
         <label for="peep-input">Get peepin'!</label>
         <textarea class="u-full-width" name="content" placeholder="Peep in here..." id="text" cols="20" rows="20"></textarea>
-        <input id="post" class="button-primary" type="submit" value="Submit">
+        <input id="post" class="button" type="submit" value="Submit">
         </form>
       </div>
     </div>

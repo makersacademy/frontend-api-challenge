@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log('NOPE')
     } else {
       userForm.className = 'hide';
-      logOut.className = 'show';
+      logOut.classList.toggle('hide');
       peepForm.className = 'show';
       
     }
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log('NOPE')
     } else {
       userForm.className = 'hide';
-      logOut.className = 'show';
+      logOut.classList.toggle('hide');
       peepForm.className = 'show';
       }
   });
@@ -68,16 +68,29 @@ getPeeps = () => {
 
 populateDiv = (peep) => {
   const div = document.createElement('div');
+  const span = document.createElement('span');
+  const text = document.createElement('div');
+  const img = document.createElement('img')
+  img.src = "images/user.png"
+  span.className = 'posted'
+  text.className = 'text'
   div.className = 'peep-div'
   div.id = peep.id
-  div.innerText = peep.body
-  document.querySelector('#peeps').appendChild(div);
-}
+  div.textContent = peep.body
+  span.textContent = `posted by ${peep.user.handle} at ${peep.created_at}`
+  document.querySelector('#peeps').appendChild(span).appendChild(div)
+  }
 
 formatUserCredentials = (formData) => {
   const handle = formData.get('handle');
   const password = formData.get('password');
   const userData = { "handle":handle, "password":password };
+  if (handle === "" || password === "") {
+    snack = document.getElementById('snackbar');
+    snack.className = 'present-error'
+    setTimeout(function(){ snack.className = snack.className.replace("present-error", ""); }, 3000);
+    throw 'Username & Password required'
+  }
   return userData
 }
 
