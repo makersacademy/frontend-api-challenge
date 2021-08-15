@@ -14,7 +14,6 @@ getPeeps = () => {
   })
   .then(json => {
     json.forEach((peep) => {
-      // console.log(peep);
       populateDiv(peep);
     });
   });
@@ -32,22 +31,20 @@ getUserData = () => {
   console.log('form submitted');
   const formData = new FormData(userForm);
   const handle = formData.get('handle');
-  console.log(handle);
+  // console.log(handle);
   const password = formData.get('password');
-  console.log(password);
+  // console.log(password);
   const userData = { "handle":handle, "password":password
   };
-
-  console.log(userData)
+  // console.log(userData)
   return userData
 }
 
 postUserData = () => {
-  let userData = getUserData();
   fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
     method: "POST",
     headers: { 'Content-Type' : 'application/json' },
-    body: JSON.stringify({"user": userData })
+    body: JSON.stringify({"user": getUserData() })
     })
   .then(response => {
     console.log(response);
