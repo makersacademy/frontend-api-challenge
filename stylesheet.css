@@ -14,8 +14,11 @@ a {
 
 .peep-div {
   margin: 20px 0px 40px 20px;
-  text-align: left;
   display: flex;
+}
+
+.view-peep-div {
+  margin: 20px 0px 40px 20px;
 }
 
 .inner-peep-div {
@@ -33,6 +36,11 @@ a {
   font-size: 18px;
 }
 
+.view-peep-body {
+  margin: 10px 0px 10px 10px;
+  font-size: 32px;
+}
+
 .peep-time {
   margin: 5px 0px 0px 10px;
   font-size: 13px;
@@ -41,7 +49,6 @@ a {
 
 .likes-div {
   display: flex;
-
 }
 
 .heart {
@@ -76,4 +83,9 @@ a {
 
 #location {
   margin: 20px;
+}
+
+#peeps {
+  min-height: 100vh;
+  overflow-y: scroll;
 }
