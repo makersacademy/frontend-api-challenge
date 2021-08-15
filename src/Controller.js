@@ -5,13 +5,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const signUp = document.querySelector('#sign-up');
   const logIn = document.querySelector('#log-in');
   const post = document.querySelector('#post');
+  const logOut = document.querySelector('#log-out');
 
   signUp.addEventListener('click', (e) => {
     e.preventDefault();
     const formData = new FormData(userForm);
     const userData = formatUserCredentials(formData);
-    postUserData(userData);
-    // getSession(userData);
+    postUserData(getSession, userData);
+    let session = JSON.parse(localStorage.getItem('SESSION'));
+    if (session === null) {
+      console.log('NOPE')
+    } else {
+      userForm.className = 'hide';
+      logOut.className = 'show';
+      peepForm.className = 'show';
+      
+    }
   });
 
   logIn.addEventListener('click', (e) => {
@@ -19,7 +28,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(userForm);
     const userData = formatUserCredentials(formData);
     getSession(userData);
+    let session = JSON.parse(localStorage.getItem('SESSION'));
+    if (session === null) {
+      console.log('NOPE')
+    } else {
+      userForm.className = 'hide';
+      logOut.className = 'show';
+      peepForm.className = 'show';
+      }
   });
+
+  logOut.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    location.reload();
+
+  });
+
 
   post.addEventListener('click', (e) => {
     e.preventDefault();
@@ -56,19 +81,16 @@ formatUserCredentials = (formData) => {
   return userData
 }
 
-postUserData = (userData) => {
+postUserData = (callback, userData) => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
     method: "POST",
     headers: { 'Content-Type' : 'application/json' },
     body: JSON.stringify({"user": userData })
     })
-  // .then(response => {
-  //   // console.log(response);
-  //   return response.json()
-  // })
-  // .then(json => {
-  //   // console.log(json)
-  // })
+  .then(response => {
+    callback(userData)
+    // console.log(response);
+  });
 }
 
 getSession = (userData) => {
@@ -83,12 +105,16 @@ getSession = (userData) => {
   })
   .then(json => {
     console.log(json)
-    localStorage.setItem('SESSION', JSON.stringify(json));
+    if (Object.keys(json).includes("user_id")) {
+      localStorage.setItem('SESSION', JSON.stringify(json));
+    } else {
+      return
+    }
   })
 }
 
 postPeep = (content) => {
-  const session = JSON.parse(localStorage.getItem('SESSION'));
+  let session = JSON.parse(localStorage.getItem('SESSION'));
   console.log(session)
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
     method: "POST",
@@ -105,6 +131,7 @@ postPeep = (content) => {
     console.log(json)
   })
 };
+
 
 getPeeps();
 

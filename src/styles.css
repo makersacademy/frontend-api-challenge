@@ -4,8 +4,12 @@ body {
   color: #fff;
 }
 
-#log-out {
-  display: none;
+.show {
+  display: block;
+}
+.hide {
+
+  display:none !important;
 }
 
 
@@ -19,5 +23,4 @@ body {
   border: black solid 1px;
   background: #f08;
   margin: 1em;
-
 }
