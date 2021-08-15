@@ -6,6 +6,7 @@ const signUpHandle = document.getElementById('signUpHandle');
 const signUpPassword = document.getElementById('signUpPassword');
 const logInHandle = document.getElementById('logInHandle');
 const logInPassword = document.getElementById('logInPassword');
+const peeps = document.getElementById('peeps');
 
 const removeLogInSignUpButtons = () => {
   signUpButton.classList.remove('show');
@@ -42,6 +43,11 @@ signUp.addEventListener('submit', (e) => {
     .then((data) => {
       console.log(data);
     });
+
+  signUp.classList.remove('show');
+  signUp.classList.add('hide');
+  peeps.classList.remove('hide');
+  peeps.classList.add('show');
 });
 
 logIn.addEventListener('submit', (e) => {
@@ -61,4 +67,9 @@ logIn.addEventListener('submit', (e) => {
     .then((data) => {
       console.log(data);
     });
+
+  logIn.classList.remove('show');
+  logIn.classList.add('hide');
+  peeps.classList.remove('hide');
+  peeps.classList.add('show');
 });
