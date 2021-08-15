@@ -1,9 +1,30 @@
+const signUpButton = document.getElementById('signUpButton');
+const logInButton = document.getElementById('logInButton');
 const signUp = document.getElementById('signUp');
 const logIn = document.getElementById('logIn');
 const signUpHandle = document.getElementById('signUpHandle');
 const signUpPassword = document.getElementById('signUpPassword');
 const logInHandle = document.getElementById('logInHandle');
 const logInPassword = document.getElementById('logInPassword');
+
+const removeLogInSignUpButtons = () => {
+  signUpButton.classList.remove('show');
+  signUpButton.classList.add('hide');
+  logInButton.classList.remove('show');
+  logInButton.classList.add('hide');
+};
+
+signUpButton.addEventListener('click', () => {
+  signUp.classList.remove('hide');
+  signUp.classList.add('show');
+  removeLogInSignUpButtons();
+});
+
+logInButton.addEventListener('click', () => {
+  logIn.classList.remove('hide');
+  logIn.classList.add('show');
+  removeLogInSignUpButtons();
+});
 
 signUp.addEventListener('submit', (e) => {
   e.preventDefault();

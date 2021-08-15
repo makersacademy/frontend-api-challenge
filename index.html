@@ -4,31 +4,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css">
   <title>Chitter</title>
 </head>
 <body>
-  <div>
-    Sign up
-    <form method="post" id="signUp" action=/users>
-      <label for="signUpHandle">Name</label><br>
-      <input type="text" id="signUpHandle" name="handle"><br>
-      <label for="signUpPassword">Password</label><br>
-      <input type="text" id="signUpPassword" name="password"><br>
-      <input type="submit" value="Submit" id="submit">
-    </form>
-  </div>
-  
-  <div>
-    Log in
-    <form method="post" id="logIn" action=/sessions>
-      <label for="logInHandle">Name</label><br>
-      <input type="text" id="logInHandle" name="handle"><br>
-      <label for="logInPassword">Password</label><br>
-      <input type="text" id="logInPassword" name="password"><br>
-      <input type="submit" value="Submit">
-    </form>
-  </div>
+  <button id="signUpButton" class="show">Sign up</button>
+  <button id="logInButton"class="show">Log in</button>
+
+  <form method="post" id="signUp" action=/users class="hide">
+    <label for="signUpHandle">Name</label><br>
+    <input type="text" id="signUpHandle" name="handle"><br>
+    <label for="signUpPassword">Password</label><br>
+    <input type="text" id="signUpPassword" name="password"><br>
+    <input type="submit" value="Submit" id="submit">
+  </form>
+
+
+  <form method="post" id="logIn" action=/sessions class='hide'>
+    <label for="logInHandle">Name</label><br>
+    <input type="text" id="logInHandle" name="handle"><br>
+    <label for="logInPassword">Password</label><br>
+    <input type="text" id="logInPassword" name="password"><br>
+    <input type="submit" value="Submit">
+  </form>
   
   
   <script src="./src/interface.js"></script>
