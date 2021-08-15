@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(userForm);
     const userData = formatUserCredentials(formData);
     postUserData(userData);
-    getSession(userData);
+    // getSession(userData);
   });
 
   logIn.addEventListener('click', (e) => {
@@ -54,11 +54,11 @@ postUserData = (userData) => {
     body: JSON.stringify({"user": userData })
     })
   .then(response => {
-    console.log(response);
+    // console.log(response);
     return response.json()
   })
   .then(json => {
-    console.log(json)
+    // console.log(json)
   })
 }
 
@@ -74,6 +74,7 @@ getSession = (userData) => {
   })
   .then(json => {
     console.log(json)
+    localStorage.setItem("SESSION KEY", JSON.stringify(json));
   })
 }
 
