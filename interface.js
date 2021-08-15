@@ -13,9 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const div = document.createElement('div');
     div.className = 'peep-div';
     const peepTime = formatTime(new Date(peep.updated_at))
-    div.innerHTML = `<p class="peep-name">${peep.user.handle}</p>
-    <p class="peep-body">${peep.body}</p>
-    <p class="peep-time">${peepTime}</p>`;
+    div.innerHTML = `<div class="inner-peep-div">
+      <p class="peep-name">${peep.user.handle}</p>
+      <p class="peep-body">${peep.body}</p>
+      <p class="peep-time">${peepTime}</p>
+    </div>
+    <div class="likes-div">
+      <img class="heart" src="images/heart.png" alt="Likes" width="30" height="30">
+      <p class="peep-likes">${peep.likes.length}</p>
+    </div>`;
     link.appendChild(div);
     document.querySelector('#peeps').appendChild(link);
   }
