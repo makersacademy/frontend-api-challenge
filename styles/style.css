@@ -85,3 +85,10 @@ button:active {
   justify-content: center;
   align-items: center;
 }
+
+p {
+  width: auto;
+  background-color: rgb(7, 47, 70);
+  padding: 5px;
+  border-radius: 3px;
+}
