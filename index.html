@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  <title>Chitter</title>
+</head>
+<body>
+  <h1>Chitter</h1>
+
+  <div id="homepageButtons">
+    <button id="signUpButton" class="show homeButtons">Sign up</button>
+    <button id="logInButton"class="show homeButtons">Log in</button>
+  </div>
+  
+
+  <form method="post" id="signUp" action=/users class="hide">
+    <label for="signUpHandle">Name</label><br>
+    <input type="text" id="signUpHandle" name="handle"><br>
+    <label for="signUpPassword">Password</label><br>
+    <input type="text" id="signUpPassword" name="password"><br>
+    <input type="submit" value="Submit" id="submit">
+  </form>
+
+
+  <form method="post" id="logIn" action=/sessions class='hide'>
+    <label for="logInHandle">Name</label><br>
+    <input type="text" id="logInHandle" name="handle"><br>
+    <label for="logInPassword">Password</label><br>
+    <input type="text" id="logInPassword" name="password"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <div id="getPeeps" class="hide">
+    <button>Get peeps</button>
+  </div>
+
+  <div id="createPeep" class="hide">
+    <button>Create peep</button>
+  </div>
+
+  <form method="post" id="newPeep" class='hide'>
+    <label for="newPeep">Write your new peep</label><br>
+    <input type="text" id="newPeep" name="newPeep"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <div id=listOfPeeps>
+    
+  </div>
+  
+  
+  <script src="./src/interface.js"></script>
+  <script src="./src/chitter.js"></script>
+</body>
+</html>
