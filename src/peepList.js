@@ -8,7 +8,6 @@ class PeepList {
   }
 
   getPeeps() {
-    let container = document.querySelector("#peepsList");
     return fetch(this.#url)
       .then((response) => response.json())
       .then((peeps) => {
@@ -16,7 +15,7 @@ class PeepList {
         peeps.forEach((peep) => {
           peepList += `<ul><li>${peep.body}</li></ul>`;
         });
-        container.innerHTML = peepList;
+        document.querySelector("#peepsList").innerHTML = peepList;
       });
   }
 }
