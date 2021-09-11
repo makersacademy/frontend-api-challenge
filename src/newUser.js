@@ -1,5 +1,5 @@
 class NewUser {
-  createUser(handle = "sept2021 test", password = "test") {
+  createUser(handle = "testing", password = "test") {
     return fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
       method: "POST",
       body: JSON.stringify({
@@ -9,7 +9,13 @@ class NewUser {
     })
       .then((response) => response.json())
       .then((user) => {
-        document.querySelector("#userCreated").innerHTML = user.handle;
+        console.log(user);
+        let element = document.querySelector("#userCreated");
+        if (user.handle[0] === "has already been taken") {
+          element.innerHTML = `Sorry, ${handle} ${user.handle[0]}`;
+        } else {
+          element.innerHTML = `${user.handle} created!`;
+        }
       });
   }
 }
