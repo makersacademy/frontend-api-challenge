@@ -1,8 +1,17 @@
 describe('Peep', function () {
+
+
+
+  let peepApi;
+
+  beforeEach(function() {
+    peepApi = jasmine.createSpyObj('peepApi', ['getAllPeeps']);
+  });
+
   
 
     it("test", function() {
-      expect(5).toEqual(5)
+      expect(peepApi.getAllPeeps).toBeDefined();
     })
 
 })
