@@ -13,15 +13,6 @@
     <link rel="stylesheet" href="/bootstrap511/css/bootstrap.min.css" />
     <script src="/bootstrap511/js/bootstrap.min.js"></script>
     <script src="/src/interface.js"></script>
-    <style>
-      .jumbotron h1 {
-        font-family: "Caveat";
-      }
-      .jumbotron {
-        background: url("/img/logo.svg") no-repeat left 60%;
-        background-size: 80% 100%;
-      }
-    </style>
   </head>
   <body>
     <header
@@ -73,7 +64,7 @@
             <p class="text-muted mb-0">
               <b style="font-size: 120%; font-weight: 300"></b>just like Twitter
               <br />
-              only sweeter
+              sweeter
               <br />with some extra glitter
             </p>
           </div>
@@ -106,14 +97,14 @@
 
     <div class="container mt-0 peeps">
       <div class="mt-0 g-0 row my-peeps">
-        <button class="btn btn-secondary">My peeps</button>
+        <button class="btn btn-secondary">Own peeps</button>
         <button
           class="btn btn-primary"
           data-bs-toggle="modal"
           data-bs-target="#peepModal"
           id="callPeep"
         >
-          Peep that deep
+          Peep
         </button>
       </div>
       <main>
@@ -121,7 +112,7 @@
           <div class="col-12 col-lg-4 mt-0 mt-lg-0 order-first order-lg-first">
             <!-- news start -->
             <div class="card text-center mt-2">
-              <div class="card-header">Your last peep</div>
+              <div class="card-header">Last peep</div>
               <div class="card-body">
                 <h5 class="card-title d-none">Best to keep</h5>
                 <p class="card-text">
@@ -195,7 +186,7 @@
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form>
+          <form id="loginModalForm">
             <div class="modal-header d-none">
               <h5 class="modal-title" id="loginModalLabel">Login form</h5>
               <button
@@ -279,7 +270,7 @@
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form>
+          <form id="regisModalForm">
             <div class="modal-header">
               <h5 class="modal-title" id="registerModalLabel">
                 Registration form
@@ -375,7 +366,7 @@
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form>
+          <form id="peepModalForm">
             <div class="modal-header">
               <h5 class="modal-title" id="peepModalLabel">Peep</h5>
               <button

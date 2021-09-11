@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
   registerPeepModal();
 
   function registerSubmitLogin() {
-    let submitLogin = document.querySelector("#loginModalSubmit");
-    submitLogin.addEventListener("click", (event) => {
+    let submitLogin = document.querySelector("#loginModalForm");
+    submitLogin.addEventListener("submit", (event) => {
       event.preventDefault();
       console.log(submitLogin.parentElement.textContent);
       return;
@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
   registerSubmitLogin();
 
   function registerSubmitRegis() {
-    let submitRegister = document.querySelector("#regisModalSubmit");
-    submitRegister.addEventListener("click", (event) => {
+    let submitRegister = document.querySelector("#regisModalForm");
+    submitRegister.addEventListener("submit", (event) => {
       event.preventDefault();
       console.log(submitRegister.parentElement.textContent);
       return;
@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
   registerSubmitRegis();
 
   function registerSubmitPeep() {
-    let submitPeep = document.querySelector("#peepModalSubmit");
-    submitPeep.addEventListener("click", (event) => {
+    let submitPeep = document.querySelector("#peepModalForm");
+    submitPeep.addEventListener("submit", (event) => {
       event.preventDefault();
       console.log(submitPeep.parentElement.textContent);
       return;
