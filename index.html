@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" type="text/css" href="./public/css/styles.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chitter</title>
-   
+  </head>
+
+  <header>
     <a href="#create">Create User</a>
     <a href="#all">See all Peeps</a>
-  </head>
+  </header>
 
   <body>
     
     <div id='display'>
       <div id='createUserForm'>
+        <br>
         <form id="userForm">
-          <input type="text" name="handle">
-          <input type="text" name="password">
+          Handle: <input type="text" name="handle"><br><br>
+          Password: <input type="text" name="password"><br><br>
           <button>Submit</button>
         </form>
       </div>
@@ -24,10 +28,7 @@
       <div id='peepsList'></div>
 
     </div>
-    <!-- <script>function userForm(userInput) {
-      alert(userInput.handle.value);
-      return false;
-    }</script> -->
+  
     <script src="./src/newUser.js"></script>
     <script src="./src/onePeep.js"></script>
     <script src="./src/peepList.js"></script>
