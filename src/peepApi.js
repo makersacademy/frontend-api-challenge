@@ -12,7 +12,7 @@ class peepApi {
       .then(response => response.json())
   }
 
-  static addPeep() {
+  static addPeep(peepText) {
     fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
       method: 'POST',
       headers: {
@@ -22,7 +22,7 @@ class peepApi {
       mode: 'cors',
       cache: 'default',
       body: JSON.stringify({
-        "peep": {"user_id":34, "body":"here we go again on my own"}
+        "peep": {"user_id":34, "body": peepText}
       })
     });
 
