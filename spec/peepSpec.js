@@ -1,6 +1,8 @@
 describe('Peep', function () {
-    it('check temp', function () {
-      expect(2).toEqual(2);
-    });
+  
+
+    it("test", function() {
+      expect(5).toEqual(5)
+    })
 
 })
