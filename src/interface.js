@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("peepsList").style.display = "none";
       document.getElementById("createUserForm").style.display = "block";
     } else if (page === "#created") {
-      console.log("we get here");
       document.getElementById("createUserForm").style.display = "none";
     } else if (page === "#all") {
       document.getElementById("createUserForm").style.display = "none";

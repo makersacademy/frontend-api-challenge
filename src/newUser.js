@@ -9,7 +9,6 @@ class NewUser {
     })
       .then((response) => response.json())
       .then((user) => {
-        console.log(user);
         let element = document.querySelector("#createUser");
         if (user.handle[0] === "has already been taken") {
           element.innerHTML = `Sorry, ${handle} ${user.handle[0]}`;
