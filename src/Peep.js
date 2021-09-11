@@ -20,6 +20,12 @@ class Peep {
     return new Peep(result.id, result.body, result.created_at, result.user, result.likes)
   }
 
+  static addPeep() {
+    peepApi.addPeep();
+  }
+
+
+
 
 
 
