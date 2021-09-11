@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chitter</title>
+   
     <a href="#create">Create User</a>
     <a href="#all">See all Peeps</a>
   </head>
@@ -12,14 +13,21 @@
     
     <div id='display'>
       <div id='createUserForm'>
-        <!---put form here see https://semantic-ui.com/collections/form.html -->
+        <form id="userForm">
+          <input type="text" name="handle">
+          <input type="text" name="password">
+          <button>Submit</button>
+        </form>
       </div>
       <div id='createUser'></div>
       <div id='onePeep'></div>
       <div id='peepsList'></div>
 
     </div>
-
+    <!-- <script>function userForm(userInput) {
+      alert(userInput.handle.value);
+      return false;
+    }</script> -->
     <script src="./src/newUser.js"></script>
     <script src="./src/onePeep.js"></script>
     <script src="./src/peepList.js"></script>

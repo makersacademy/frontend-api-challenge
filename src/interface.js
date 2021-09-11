@@ -2,15 +2,18 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   let user = new NewUser();
-  // user.createUser();
   let peepList = new PeepList();
-  //peepList.getPeeps();
-  let onePeep = new OnePeep();
+  //let onePeep = new OnePeep();
   // onePeep.getPeep(1);
 
   showPage();
 
   window.addEventListener("hashchange", getCurrentPage);
+
+  document.addEventListener("submit", function (event) {
+    event.preventDefault();
+    processFormData();
+  });
 
   function getCurrentPage() {
     showPage(getPageFromUrl(window.location)[0]);
@@ -25,7 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (page === "#create") {
       document.getElementById("peepsList").style.display = "none";
       document.getElementById("createUserForm").style.display = "block";
-      // need to create div with form that is exposed when visiting here - then event listener  below for form button
+    } else if (page === "#created") {
+      console.log("we get here");
+      document.getElementById("createUserForm").style.display = "none";
     } else if (page === "#all") {
       document.getElementById("createUserForm").style.display = "none";
       document.getElementById("peepsList").style.display = "block";
@@ -40,5 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
       document.title,
       window.location.pathname + window.location.search
     );
+  }
+
+  function processFormData() {
+    const form = document.getElementById("userForm");
+    const data = new FormData(form);
+    form.reset();
+    const handle = data.get("handle");
+    const password = data.get("password");
+    user.createUser(handle, password);
+    showPage("#created");
   }
 });
