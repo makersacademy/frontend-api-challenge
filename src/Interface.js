@@ -13,8 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     result();
   };
-  console.log("ere")
+  // User.addUser("new_handle3", "new_password")
   updateTimeLine();
+
+  document.querySelector("#signUp").addEventListener("click", () => {
+    async function result() {
+      const newHandle = document.getElementById("newHandle").value;
+      const newPassword = document.getElementById("newPassword").value;
+      User.addUser("new_handle3", "new_password")
+      document.getElementById("newHandle").value = "";
+      document.getElementById("newPassword").value = "";
+      updateTimeLine();
+    }
+    result();  
+  });
 
   document.querySelector("#addPeep").addEventListener("click", () => {
     async function result() {
