@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const elements = document.getElementById("display").children;
   const divArray = [];
   const form = document.getElementById("userForm");
+  const peepform = document.getElementById("peep");
   let user = new NewUser();
   let peepList = new PeepList();
   let userLogIn = new UserLogIn();
+  let peep = new Peep();
 
   getElements();
   showLink();
@@ -16,6 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     formRouter();
+  });
+
+  peepform.addEventListener("submit", function (event) {
+    event.preventDefault();
+    sendPeep();
   });
 
   function getCurrentLink() {
@@ -33,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
     revealDisplayElements(element);
   }
 
-  // following is from: https://stackoverflow.com/questions/1397329/how-to-remove-the-hash-from-window-location-url-with-javascript-without-page-r
   function removeHash() {
     history.pushState(
       "",
@@ -79,5 +85,16 @@ document.addEventListener("DOMContentLoaded", () => {
       ? user.createUser(handle, password)
       : userLogIn.logIn(handle, password);
     showLink(page);
+  }
+
+  function sendPeep() {
+    const form = document.getElementById("peepForm");
+    const data = new FormData(form);
+    form.reset();
+    const peeptext = data.get("content");
+    const user_id = sessionStorage.getItem("user_id");
+    const token = sessionStorage.getItem("token");
+    peep.sendPeep(token, user_id, peeptext);
+    showLink("#peepsent");
   }
 });

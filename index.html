@@ -8,9 +8,11 @@
   </head>
 
   <header>
+    <h1>Chitter</h1>
     <a href="#create">Create User</a>
     <a href="#login">Log in</a>
     <a href="#peeps">See all Peeps</a>
+    <a href="#peep">Send a Peep</a>
   </header>
 
   <body>
@@ -19,12 +21,21 @@
       <div id='create'>Please enter your details below</div>
       <div id='login'>Please enter your log in details below</div>
       <div id='siteForm'>
-        <br>
         <form id="userForm">
           Handle: <input type="text" name="handle"><br><br>
           Password: <input type="text" name="password"><br><br>
           <button>Submit</button>
         </form>
+      </div>
+
+      <div id='peep'>
+        <form id="peepForm">
+        <i></b>What's on your mind?</b></i><br>
+        <textarea style='resize: none;' maxlength='140' 
+        id='content' name='content' rows=5 required></textarea><br>
+        <button>Peep!</button>
+      </form>
+
       </div>
   
       <div id='created'></div>

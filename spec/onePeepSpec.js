@@ -11,7 +11,7 @@ describe("onePeep tests", () => {
     spyOn(window, "fetch").and.returnValue(Promise.resolve(response));
     onePeep = new OnePeep();
     return onePeep.getPeep(1).then(() => {
-      expect(document.querySelector("#onePeep").innerHTML).toEqual(
+      expect(document.querySelector("#onepeep").innerHTML).toEqual(
         "my first peep :)"
       );
     });

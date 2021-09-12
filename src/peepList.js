@@ -7,15 +7,13 @@ class PeepList {
     this.#url = url;
   }
 
-  getPeeps() {
-    return fetch(this.#url)
-      .then((response) => response.json())
-      .then((peeps) => {
-        let peepList = "";
-        peeps.forEach((peep) => {
-          peepList += `<ul><li>${peep.body}</li></ul>`;
-        });
-        document.querySelector("#peeps").innerHTML = peepList;
-      });
+  async getPeeps() {
+    const response = await fetch(this.#url);
+    const peeps = await response.json();
+    let peepList = "";
+    peeps.forEach((peep) => {
+      peepList += `<ul><li>${peep.body}</li></ul>`;
+    });
+    document.querySelector("#peeps").innerHTML = peepList;
   }
 }
