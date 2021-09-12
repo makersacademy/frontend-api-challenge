@@ -1,14 +1,17 @@
 body {
-  background-image: url('images/paper3.jpg');
-  /* font-family: aileron, sans-serif; */
-  font-family: courier-std, monospace;
+  background-image: url('images/black.jpg');
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 200;
+  height: 4vh;
+  color: rgb(102, 204, 255);
+  /* font-family: courier-std, monospace; */
 }
 
 h1 {
   font-size: 80px;
   font-weight: 200;
   height: 4vh;
-  color: white;
+  color: rgb(102, 204, 255);
 }
 
 a,
@@ -18,7 +21,7 @@ h5 {
   text-align: center;
   font-style: normal;
   font-style: normal;
-  color: white;
+  color: rgb(102, 204, 255);
   font-weight: 200;
   height: 1vh;
 }
@@ -30,7 +33,7 @@ h4 {
   margin-top: 10%;
   margin-right: 10%;
   margin-left: 10%;
-  color: white;
+  color: rgb(102, 204, 255);
   font-weight: 200;
   height: 1vh;
 }
