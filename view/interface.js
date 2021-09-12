@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => { 
 
-  const array = [];
+  const peepList = new PeepList();
 
 
   // Retrieves peeps from the API and asigns them to Peep objects
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const peeps = await response.json();
       console.log(peeps)
       peeps.forEach(peep => {
-        array.push(new Peep(peep.id, peep.body));
+        peepList.addPeep(peep.id, peep.body);
       });
       return response
     } catch(error) {
@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  // Creates list tags from the peeps
+  // Creates list tags from the PeepList array
   fetchPeeps().then(() => {
-    array.forEach(peep => {
+    peepList.list.forEach(peep => {
       let li = document.createElement('li')
       let link = document.createElement('a')
       link.id = peep.id
