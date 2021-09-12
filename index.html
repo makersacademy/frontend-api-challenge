@@ -14,22 +14,30 @@
   <script src="src/userApi.js"></script>
   <script src="src/sessionApi.js"></script>
     <h1>Chitter</h1>
+
+      <h3 id="greetUser"></h3>
+      <div id="userSignUp">
       <input type='text' id="newHandle" />
       <br>
       <input type='text' id="newPassword" />
       <br></br>
       <button value="submit" id="addUser" action=""><span>Sign up </span></button>
       <br></br>
-
+    </div>
 
     <br>
-  <textarea style="resize:none" maxlength="1000" id="peepText" 
-  name="peedText" rows="2" cols="20" placeholder="Peep!"></textarea>
-  <div id="center-left">
+    <textarea style="resize:none" maxlength="1000" id="peepText" 
+      name="peedText" rows="2" cols="20" placeholder="Peep!"></textarea>
+    <div id="center-left">
     <button value="submit" id="addPeep" action=""><span>Add Peep </span></button>
 
 
-  <ul id="timeline"></ul>
+    <ul id="timeline"></ul>
+    <div id="singlePeep">
+      <br>
+      <button id="showTimeline">Return to Timeline</button>
+      <li id="singlePeepText"></li>
+    </div>
   </body>
 
 </html>

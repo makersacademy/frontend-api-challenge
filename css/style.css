@@ -1,11 +1,8 @@
-.low-usage {
-  color: green;
+li:hover {
+  background-color: rgb(208, 208, 211);
+  border-radius: 12px;
 }
 
-.medium-usage {
-  color: black;
-}
-
-.high-usage {
-  color: red;
+#singlePeep {
+  display: none;
 }
