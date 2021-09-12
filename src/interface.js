@@ -25,13 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showPage(page = "#all") {
     removeHash();
+    hideDisplayElements();
     if (page === "#create") {
-      document.getElementById("peepsList").style.display = "none";
       document.getElementById("createUserForm").style.display = "block";
     } else if (page === "#created") {
-      document.getElementById("createUserForm").style.display = "none";
+      document.getElementById("createUser").style.display = "block";
     } else if (page === "#all") {
-      document.getElementById("createUserForm").style.display = "none";
       document.getElementById("peepsList").style.display = "block";
       peepList.getPeeps();
     }
@@ -44,6 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
       document.title,
       window.location.pathname + window.location.search
     );
+  }
+
+  function hideDisplayElements() {
+    const elements = ["createUserForm", "createUser", "onePeep", "peepsList"];
+    elements.forEach(function (element) {
+      document.getElementById(element).style.display = "none";
+    });
   }
 
   function processFormData() {
