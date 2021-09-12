@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let chitterApp = createApp();
+
   function registerTooltips() {
     let tooltipTriggerList = [].slice.call(
       document.querySelectorAll('[data-bs-toggle="tooltip"]')
