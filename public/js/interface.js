@@ -18,7 +18,7 @@ function showPeeps() {
             peepAuthor.innerHTML = `posted by ${peep.user.handle} `;
             peepDate.innerHTML = `on ${peep.created_at}`;
 
-            peepBody.setAttribute("class", "peep-body");
+            peepDiv.setAttribute("class", "peep-div");
             peepInfo.setAttribute("class", "peep-info");
             peepBody.setAttribute("class", "peep-body");
             peepAuthor.setAttribute("class", "peep-author");

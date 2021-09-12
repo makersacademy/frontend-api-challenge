@@ -1,0 +1,28 @@
+body {
+    background: black;
+    font-family: monospace;
+}
+
+.peep-div {
+    margin: 1em;
+    padding: 1em;
+    background: black;
+    border-bottom: 2px grey dotted;
+}
+
+.peep-body {
+    font-size: 1.2em;
+    color: #66ff00;
+}
+
+.peep-info {
+    color: white;
+}
+
+.peep-author {
+
+}
+
+.peep-date {
+
+}
