@@ -3,9 +3,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   let user = new NewUser();
   let peepList = new PeepList();
+  let userLogIn = new UserLogIn();
   //let onePeep = new OnePeep();
   // onePeep.getPeep(1);
 
+  userLogIn.logIn("testing999", "999");
   showPage();
 
   window.addEventListener("hashchange", getCurrentPage);
