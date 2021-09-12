@@ -1,14 +1,17 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
+  sessionStorage.setItem("token", "");
+
   const elements = document.getElementById("display").children;
   const divArray = [];
-  const form = document.getElementById("userForm");
-  const peepform = document.getElementById("peep");
-  let user = new NewUser();
-  let peepList = new PeepList();
-  let userLogIn = new UserLogIn();
+  const form = document.getElementById("userform");
+  const peepform = document.getElementById("peepform");
+
   let peep = new Peep();
+  let peepList = new PeepList();
+  let user = new NewUser();
+  let userLogIn = new UserLogIn();
 
   getElements();
   showLink();
@@ -33,10 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return location.hash.split("#"[1]);
   }
 
-  function showLink(page = "#peeps") {
+  function showLink(link = "#peeps") {
     removeHash();
     hideDisplayElements();
-    const element = page.substring(1);
+    const element = link.substring(1);
     revealDisplayElements(element);
   }
 
@@ -53,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (element === "peeps") {
       peepList.getPeeps();
     } else if (element === "create" || element === "login") {
-      document.getElementById("siteForm").style.display = "block";
+      document.getElementById("siteform").style.display = "block";
     }
   }
 
@@ -75,22 +78,29 @@ document.addEventListener("DOMContentLoaded", () => {
       : processFormData("#loggedon");
   }
 
-  function processFormData(page) {
-    const form = document.getElementById("userForm");
+  function getFormData(link) {
+    const form = document.getElementById(link);
     const data = new FormData(form);
     form.reset();
+    return data;
+  }
+
+  function processFormData(link) {
+    const data = getFormData("userform");
     const handle = data.get("handle");
     const password = data.get("password");
-    page === "#created"
+    link === "#created"
       ? user.createUser(handle, password)
       : userLogIn.logIn(handle, password);
-    showLink(page);
+    showLink(link);
   }
 
   function sendPeep() {
-    const form = document.getElementById("peepForm");
-    const data = new FormData(form);
-    form.reset();
+    if (sessionStorage.getItem("token") === "") {
+      alert("Please create an account or log in before peeping!");
+      return;
+    }
+    const data = getFormData("peepform");
     const peeptext = data.get("content");
     const user_id = sessionStorage.getItem("user_id");
     const token = sessionStorage.getItem("token");
