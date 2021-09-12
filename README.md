@@ -13,7 +13,7 @@ Create a frontend for the Makers [chitter api](https://github.com/makersacademy/
 
 ```
 As any user
-So that I can enjoy a feeling of [weltschmerz](https://en.wikipedia.org/wiki/Weltschmerz)
+So that I can enjoy a feeling of weltschmerz
 I would like to be able to view all the peeps
 ```
 

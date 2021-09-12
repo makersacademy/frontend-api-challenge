@@ -2,7 +2,7 @@
   "name": "chitter",
   "version": "0.0.1",
   "description": "A single page app which interfaces with the Maker's Chitter API",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/sa-mcquanzie/frontend-api-challenge#readme",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "express": "^4.17.1",
+    "node-fetch": "^3.0.0"
+  },
+  "type" : "module"
 }
