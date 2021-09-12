@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/sa-mcquanzie/frontend-api-challenge/issues"
   },
-  "homepage": "https://github.com/sa-mcquanzie/frontend-api-challenge#readme"
+  "homepage": "https://github.com/sa-mcquanzie/frontend-api-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
