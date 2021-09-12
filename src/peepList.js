@@ -15,7 +15,7 @@ class PeepList {
         peeps.forEach((peep) => {
           peepList += `<ul><li>${peep.body}</li></ul>`;
         });
-        document.querySelector("#peepsList").innerHTML = peepList;
+        document.querySelector("#peeps").innerHTML = peepList;
       });
   }
 }

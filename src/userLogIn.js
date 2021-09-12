@@ -11,7 +11,7 @@ class UserLogIn {
     })
       .then((response) => response.json())
       .then((user) => {
-        document.querySelector("#loggedOn").innerHTML =
+        document.querySelector("#loggedon").innerHTML =
           "Logged in successfully!";
         console.log(user); // user id & session key in here!
       });

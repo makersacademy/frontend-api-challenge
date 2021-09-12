@@ -16,7 +16,7 @@ describe("newUser tests", () => {
     spyOn(window, "fetch").and.returnValue(Promise.resolve(response));
     newUser = new NewUser();
     return newUser.createUser(handle, password).then(() => {
-      expect(document.querySelector("#createUser").innerHTML).toEqual(
+      expect(document.querySelector("#created").innerHTML).toEqual(
         `JasmineTest created!`
       );
     });
@@ -31,7 +31,7 @@ describe("newUser tests", () => {
     spyOn(window, "fetch").and.returnValue(Promise.resolve(response));
     newUser = new NewUser();
     return newUser.createUser(handle, password).then(() => {
-      expect(document.querySelector("#createUser").innerHTML).toEqual(
+      expect(document.querySelector("#created").innerHTML).toEqual(
         "Sorry, JasmineTest has already been taken"
       );
     });

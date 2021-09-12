@@ -9,7 +9,7 @@ describe("PeepList tests", () => {
     spyOn(window, "fetch").and.returnValue(Promise.resolve(response));
     peeplist = new PeepList();
     return peeplist.getPeeps().then(() => {
-      expect(document.querySelector("#peepsList").innerHTML).toEqual(
+      expect(document.querySelector("#peeps").innerHTML).toEqual(
         "<ul><li>test text</li></ul>"
       );
     });

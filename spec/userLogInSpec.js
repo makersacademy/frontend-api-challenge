@@ -4,7 +4,7 @@ describe("user log in tests", () => {
   let userLogIn;
   let response;
 
-  it("creates a new user", () => {
+  it("successfully logs in", () => {
     let handle = "JasmineTest";
     let password = "password";
     response = new Response(
@@ -16,9 +16,11 @@ describe("user log in tests", () => {
     spyOn(window, "fetch").and.returnValue(Promise.resolve(response));
     userLogIn = new UserLogIn();
     return userLogIn.logIn(handle, password).then(() => {
-      expect(document.querySelector("#loggedOn").innerHTML).toEqual(
+      expect(document.querySelector("#loggedon").innerHTML).toEqual(
         "Logged in successfully!"
       );
     });
   });
+
+  // test for failed log in?
 });
