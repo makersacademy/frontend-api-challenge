@@ -6,6 +6,7 @@ const port = 3000
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
+    Peep.fetchAllByHandle("kay").then(() => console.log(Peep.collection))
 })
 
 app.listen(port, () => {
