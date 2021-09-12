@@ -20,8 +20,10 @@ class Peep {
     return new Peep(result.id, result.body, result.created_at, result.user, result.likes)
   }
 
-  static addPeep(peepText) {
-    peepApi.addPeep(peepText);
+  static async addPeep(peepText) {
+    let result = await peepApi.addPeep(peepText);
+    
+    return new Peep(result.id, result.body, result.created_at, result.user, result.likes)
   }
 
 

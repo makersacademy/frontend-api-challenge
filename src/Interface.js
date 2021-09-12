@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   function updateTimeLine () {
+    let newListItem;
     async function result() {
       const result = await Peep.all();
       result.slice(0, 20).forEach(function(peep) {
-        let newListItem = document.createElement("li");
+        newListItem = document.createElement("li");
         newListItem.addEventListener("click", () => {
           document.querySelector("#timeline").style.display = "none";
           document.querySelector("#addPeepContainer").style.display = "none";
@@ -19,31 +20,45 @@ document.addEventListener('DOMContentLoaded', () => {
     result();
   };
 
-  
-  document.querySelector("#showTimeline").addEventListener("click", () => {
+  function returnToTimeLine() {
     document.querySelector("#timeline").style.display = "block";
     document.querySelector("#addPeepContainer").style.display = "block";
+    document.querySelector("#userContainer").style.display = "block";
     document.querySelector("#singlePeep").style.display = "none";
+    document.querySelector("#loginContainer").style.display = "none";
+  }
+
+  
+  document.querySelector("#showTimeline").addEventListener("click", () => {
+    returnToTimeLine()
 });
-
-
-
-
 
   updateTimeLine();
 
   function updateUserSection() {
     if (sessionStorage.sesssionId) {
-      document.querySelector("#userSignUp").style.display = "none";
+      document.querySelector("#userContainer").style.display = "none";
       document.querySelector("#greetUser").innerHTML = "Hello user"
     }
   }
 
+  function addPeepToTimeLine(peepText, newPeepId) {
+    newPeepItem = document.createElement("li");
+    newPeepItem.appendChild(document.createTextNode(peepText));
+    newPeepItem.id = newPeepId
+    document.querySelector("#timeline").appendChild(newPeepItem)
+  }
+
+
   document.querySelector("#addPeep").addEventListener("click", () => {
+    async function result() {
       const peepText = document.getElementById("peepText").value;
-      Peep.addPeep(peepText);
+      let newPeep = await Peep.addPeep(peepText);
+      let newPeepId = newPeep.id
       document.getElementById("peepText").value = "";
-      updateTimeLine();
+      addPeepToTimeLine(peepText, newPeepId);
+    }
+    result();
   });
 
   document.querySelector("#addUser").addEventListener("click", () => {
@@ -58,5 +73,24 @@ document.addEventListener('DOMContentLoaded', () => {
       updateUserSection();
     }
     result();
+  });
+
+  document.querySelector("#loginUser").addEventListener("click", () => {
+    async function result() {
+      const loginHandle = document.getElementById("newHandle").value;
+      const loginPassword = document.getElementById("newPassword").value;
+      let sessionId = await Session.newSession("test123", "test123")
+      sessionStorage.setItem('sesssionId', sessionId.sessionKey);
+    }
+    result();
+    returnToTimeLine();
+    updateUserSection();
+  });
+
+  document.querySelector("#goToLoginPage").addEventListener("click", () => {
+    document.querySelector("#timeline").style.display = "none";
+    document.querySelector("#addPeepContainer").style.display = "none";
+    document.querySelector("#userContainer").style.display = "none";
+    document.querySelector("#loginContainer").style.display = "block";
   });
 });

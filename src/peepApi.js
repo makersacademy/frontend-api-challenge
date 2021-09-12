@@ -13,7 +13,7 @@ class peepApi {
   }
 
   static addPeep(peepText) {
-    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+    return fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
       method: 'POST',
       headers: {
         "Content-Type" : "application/json",
@@ -24,7 +24,7 @@ class peepApi {
       body: JSON.stringify({
         "peep": {"user_id":34, "body": peepText}
       })
-    });
+    }).then(response => response.json());
 
   }
 }
