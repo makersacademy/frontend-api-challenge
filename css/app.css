@@ -52,7 +52,7 @@ div.unlike::after {
 div[data-peep-message] .card-text {
   white-space: normal;
   padding-bottom: 0.5rem;
-  max-height: 3.4rem;
+  max-height: 3.5rem;
   overflow: hidden;
   transition: max-height ease 200ms;
 }
@@ -135,10 +135,10 @@ div[data-peep-message] .card-text::before {
   margin-left: 1.5rem;
 }
 
-.own-peeps:not(.data-own-peeps) + .all-peeps {
+#callMyPeeps:not(.data-own-peeps) + #callAllPeeps {
   display: none;
 }
-.own-peeps.data-own-peeps {
+#callMyPeeps.data-own-peeps {
   display: none;
 }
 
@@ -189,4 +189,31 @@ div[data-peep-message] .card-text::before {
 
 .to-the-left {
   margin-left: 9.5rem !important;
+}
+
+#registerModalLabel::after {
+  content: attr(data-error);
+  color: var(--bs-danger);
+}
+
+#loginModalLabel::after {
+  content: attr(data-error);
+  color: var(--bs-danger);
+}
+
+body[data-loggedin="false"] #callLogout,
+body[data-loggedin="false"] #lastPeep,
+body[data-loggedin="false"] #callPeepContainer,
+body[data-loggedin="true"] #infoPeep,
+body[data-loggedin="true"] #callLogin {
+  display: none;
+}
+
+#regisModalForm[data-hide-body="true"] > .modal-body,
+#loginModalForm[data-hide-body="true"] > .modal-body {
+  display: none;
+}
+#regisModalForm[data-hide-body="true"] > .modal-footer > button:last-of-type,
+#loginModalForm[data-hide-body="true"] > .modal-footer > button:last-of-type {
+  display: none;
 }

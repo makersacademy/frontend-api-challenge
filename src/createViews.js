@@ -12,6 +12,7 @@ class CreateViews {
   }
   add(peep, owner) {
     let peepBlock = this.peepContainer.cloneNode(true);
+    peepBlock.removeAttribute("id");
     this.owner = owner;
     this.peep = peep;
     this.fillFields(peepBlock);
@@ -81,5 +82,38 @@ class CreateViews {
         break;
       }
     }
+  }
+
+  reportSuccessRegistration(modalLabel, modalForm, responseSuccess) {
+    modalLabel = document.querySelector(modalLabel);
+    modalForm = document.querySelector(modalForm);
+    modalForm.setAttribute("data-hide-body", "true");
+    modalLabel.innerHTML = "Success, user: " + responseSuccess;
+    modalLabel.setAttribute("data-error", " has been created!");
+  }
+
+  reportFailure(modalLabel, responseErr) {
+    modalLabel = document.querySelector(modalLabel);
+    modalLabel.innerHTML = "Username ";
+    modalLabel.setAttribute("data-error", responseErr + "!");
+  }
+
+  hideModal(modalForm) {
+    document
+      .querySelector(modalForm)
+      .querySelector("button[data-bs-dismiss='modal']")
+      .click();
+  }
+
+  clearPeepsContainer() {
+    document.querySelector("#peepContainer").innerHTML = "";
+  }
+
+  callMyPeeps() {
+    document.querySelector("#callMyPeeps").classList.toggle("data-own-peeps");
+  }
+
+  callAllPeeps() {
+    document.querySelector("#callMyPeeps").classList.toggle("data-own-peeps");
   }
 }

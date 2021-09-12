@@ -1,3 +1,4 @@
+let loginModal;
 document.addEventListener("DOMContentLoaded", () => {
   let chitterApp = createApp();
 
@@ -10,10 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   registerTooltips();
-
   function registerLoginModal() {
-    let loginModal = new bootstrap.Modal(document.querySelector("#loginModal"));
+    loginModal = new bootstrap.Modal(document.querySelector("#loginModal"));
     document.querySelector("#callLogin").addEventListener("click", function () {
+      resetModal("#loginModalForm", "#loginModalLabel");
       loginModal.show();
     });
   }
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector("#registerModal")
     );
     document.querySelector("#callRegis").addEventListener("click", function () {
+      resetModal("#regisModalForm", "#registerModalLabel");
       registerModal.show();
     });
   }
@@ -41,7 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let submitLogin = document.querySelector("#loginModalForm");
     submitLogin.addEventListener("submit", (event) => {
       event.preventDefault();
-      console.log(submitLogin.parentElement.textContent);
+      let inputFields = submitLogin.querySelectorAll("input[type]");
+      chitterApp.loginUser(inputFields[0].value, inputFields[1].value);
       return;
     });
   }
@@ -51,7 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let submitRegister = document.querySelector("#regisModalForm");
     submitRegister.addEventListener("submit", (event) => {
       event.preventDefault();
-      console.log(submitRegister.parentElement.textContent);
+      let inputFields = submitRegister.querySelectorAll("input[type]");
+      chitterApp.createUser(inputFields[0].value, inputFields[1].value);
       return;
     });
   }
@@ -66,8 +70,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   registerSubmitPeep();
-});
 
-/*
-<i class="fa fa-user mr-2"> &nbsp;</i>
-*/
+  function registerLogout() {
+    let submitLogout = document.querySelector("#callLogout");
+    submitLogout.addEventListener("click", () => {
+      chitterApp.logout();
+      return;
+    });
+  }
+  registerLogout();
+
+  function registerCallMyPeeps() {
+    let callMyPeeps = document.querySelector("#callMyPeeps");
+    callMyPeeps.addEventListener("click", (event) => {
+      chitterApp.createViews.callMyPeeps();
+    });
+  }
+  registerCallMyPeeps();
+
+  function registerCallAllPeeps() {
+    let callAllPeeps = document.querySelector("#callAllPeeps");
+    callAllPeeps.addEventListener("click", (event) => {
+      chitterApp.createViews.callAllPeeps();
+    });
+  }
+  registerCallAllPeeps();
+
+  function resetModal(modalForm, modalLabel) {
+    modalForm = document.querySelector(modalForm);
+    let modalFormInputs = modalForm.querySelectorAll("input[type]");
+    modalFormInputs[0].value = "";
+    modalFormInputs[1].value = "";
+    modalLabel = document.querySelector(modalLabel);
+    modalForm.setAttribute("data-hide-body", "false");
+    modalLabel.innerHTML = "Registration form";
+    modalLabel.setAttribute("data-error", "");
+  }
+});

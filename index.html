@@ -17,7 +17,7 @@
     <script src="/src/createViews.js"></script>
     <script src="/src/interface.js"></script>
   </head>
-  <body>
+  <body data-loggedin="false">
     <header
       class="
         jumbotron
@@ -93,23 +93,21 @@
               <i class="fa fa-user mr-2"> &nbsp;</i>
               Login or register
             </button>
+            <button class="btn btn-secondary py-2 px-4" id="callLogout">
+              <i class="fa fa-user mr-2"> &nbsp;</i>
+              Logout
+            </button>
           </div>
         </div>
       </div>
     </header>
 
     <div class="container mt-0 peeps">
-      <div class="mt-0 g-0 row my-peeps">
-        <button
-          class="btn btn-secondary own-peeps"
-          onclick="this.classList.toggle('data-own-peeps')"
-        >
+      <div class="mt-0 g-0 row my-peeps" id="callPeepContainer">
+        <button class="btn btn-secondary own-peeps" id="callMyPeeps">
           Own peeps
         </button>
-        <button
-          class="btn btn-success all-peeps"
-          onclick="this.previousElementSibling.classList.toggle('data-own-peeps')"
-        >
+        <button class="btn btn-success all-peeps" id="callAllPeeps">
           Check all peeps
         </button>
         <button
@@ -124,7 +122,7 @@
       <main>
         <div class="row">
           <div class="col-12 col-lg-4 mt-0 mt-lg-0 order-first order-lg-first">
-            <!-- news start -->
+            <!-- lastPeep start -->
             <div
               id="lastPeep"
               class="card text-center mt-2"
@@ -144,7 +142,18 @@
                 data-peep-ago="time"
               ></div>
             </div>
-            <!-- news start -->
+            <!-- lastPeep end -->
+            <!-- lastPeep start -->
+            <div id="infoPeep" class="card text-center mt-2">
+              <div class="card-header bg-danger text-white">Get ready</div>
+              <div class="card-body">
+                <h5 class="card-title d-none">here</h5>
+                <p class="card-text">
+                  Login and peep<br />even when you go to sleep..
+                </p>
+              </div>
+            </div>
+            <!-- lastPeep end -->
           </div>
           <!-- peeps start -->
           <div
@@ -201,9 +210,11 @@
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form id="loginModalForm">
-            <div class="modal-header d-none">
-              <h5 class="modal-title" id="loginModalLabel">Login form</h5>
+          <form id="loginModalForm" data-hide-body="false">
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel" data-error="">
+                Login form
+              </h5>
               <button
                 type="button"
                 class="btn-close"
@@ -222,11 +233,11 @@
                   id="user-name"
                   data-bs-custom-class="to-the-left"
                   data-bs-toggle="tooltip"
-                  data-bs-original-title="Valid email address"
+                  data-bs-original-title="3 to 16 Letters and digits"
                   data-bs-trigger="focus hover"
-                  pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                  pattern="[a-zA-Z0-9]{3,16}"
                   required
-                  placeholder="email address"
+                  placeholder="username"
                 />
               </div>
               <div class="mb-0">
@@ -287,9 +298,9 @@
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form id="regisModalForm">
+          <form id="regisModalForm" data-hide-body="false">
             <div class="modal-header">
-              <h5 class="modal-title" id="registerModalLabel">
+              <h5 class="modal-title" id="registerModalLabel" data-error="">
                 Registration form
               </h5>
               <button
@@ -302,7 +313,7 @@
             <div class="modal-body pt-0">
               <div class="mb-1 mt-2">
                 <label for="recipient-name" class="col-form-label">
-                  Username:
+                  User:
                 </label>
                 <input
                   type="text"
@@ -310,11 +321,11 @@
                   id="name"
                   data-bs-custom-class="to-the-left"
                   data-bs-toggle="tooltip"
-                  data-bs-original-title="Valid email address"
+                  data-bs-original-title="3 to 16 Letter and digits"
                   data-bs-trigger="focus hover"
-                  pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                  pattern="[a-zA-Z0-9]{3,16}"
                   required
-                  placeholder="email address"
+                  placeholder="username"
                 />
               </div>
               <div class="mb-0">
@@ -335,7 +346,7 @@
                   placeholder="********"
                 />
               </div>
-              <div class="mb-0">
+              <div class="mb-0 d-none">
                 <label for="recipient-name" class="col-form-label">
                   Confirm password:
                 </label>
@@ -349,7 +360,6 @@
                   data-bs-trigger="focus hover"
                   id="recipient-name"
                   pattern="[a-zA-Z0-9]{8,16}"
-                  required
                   placeholder="********"
                 />
               </div>
