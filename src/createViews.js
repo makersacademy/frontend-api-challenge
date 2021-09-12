@@ -10,10 +10,10 @@ class CreateViews {
     };
     this.lastPeepCounter = 0;
   }
-  add(_peep, _owner) {
+  add(peep, owner) {
     let peepBlock = this.peepContainer.cloneNode(true);
-    this.owner = _owner;
-    this.peep = _peep;
+    this.owner = owner;
+    this.peep = peep;
     this.fillFields(peepBlock);
     this.container.insertAdjacentElement("beforeend", peepBlock);
   }

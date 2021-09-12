@@ -1,7 +1,9 @@
 describe("chitterApp", () => {
   let chitterApp = createApp();
 
-  beforeEach(() => {});
+  beforeEach(() => {
+    spyOn(chitterApp.createViews, "fillFields").and.returnValue(true);
+  });
 
   it("it should on instantiation instantiate ChitterApi() as chitterApi", () => {
     expect(chitterApp.chitterApi instanceof chitterApi).toEqual(true);
