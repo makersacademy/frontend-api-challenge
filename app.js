@@ -1,16 +1,14 @@
 import express from 'express';
-import { Peep } from './modules/peep.js'
-import { PeepCollection } from './modules/peepCollection.js'
+import { Peep } from './public/js/peep.js'
+import { PeepCollection } from './public/js/peepCollection.js'
 
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
+app.use(express.static('public'));
 
-    const peepsByKay = new PeepCollection("handle", "kay");
-    
-    peepsByKay.refresh().then(() => console.log(peepsByKay.all))
+app.get('/', (req, res) => {
+    res.sendFile('index.html');
 })
 
 app.listen(port, () => {
