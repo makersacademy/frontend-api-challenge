@@ -8,6 +8,19 @@
 * Deleting Peeps
 * Liking Peeps
 * Unliking Peeps
+##Extra functionality
+* Loggin out
+* Peeps manipulation triggers the loading(async) and rendering of the peeps list
+* Login/Logout triggers the loading(async) and rendering of the peeps list
+* See only your peeps
+* See your last peep
+* See time since peep created(days or hours or minutes)
+* See if username is taken with relevant error message on registration
+* See if username and password do not match with relevant error message on login
+```
+
+```
+Under-tested maybe, I felt like the important test have been done, I might be wrong.(tested async in Jasmine).
 ```
 
 ```
