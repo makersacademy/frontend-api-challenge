@@ -22,14 +22,18 @@ export class Peep {
 
     static fetchAllByUserID(userID) {
         let promise = this.fetchAll()
-        .then(() => this.collection = Peep.all.filter(peep => peep.user.id === userID))
+        .then(() => {
+            this.collection = Peep.all.filter(peep => peep.user.id === userID)
+        })
 
         return promise;
     }
 
     static fetchAllByHandle(handle) {
         let promise = this.fetchAll()
-        .then(() => this.collection = Peep.all.filter(peep => peep.user.handle === handle))
+        .then(() => {
+            this.collection = Peep.all.filter(peep => peep.user.handle === handle)
+        })
 
         return promise;
     }
