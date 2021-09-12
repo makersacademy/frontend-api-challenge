@@ -57,6 +57,11 @@ class CreateViews {
     let peepBody = peepBlock.querySelector(".card-text");
     peepBody.insertAdjacentText("beforeend", this.peep.body);
     peepBody.insertAdjacentHTML("beforeend", "<br /> ");
+    if (peepBlock.getAttribute("data-peep-mine") == "true")
+      peepBlock.insertAdjacentHTML(
+        "beforeend",
+        '<div class="delete-peep"><button class="btn btn-danger px-2 py-0" onclick="chitterApp.deletePeep(this)">Delete</button></div>'
+      );
   }
 
   #setLikes(peepBlock) {

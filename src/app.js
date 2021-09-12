@@ -90,6 +90,22 @@ function createApp() {
         });
     }
 
+    async deletePeep(peepElement) {
+      if (this.userId == "" || !confirm("You want to delete this peep?"))
+        return;
+      let peepId =
+        peepElement.parentElement.parentElement.getAttribute("data-peep-id");
+      this.chitterApi
+        .deletePeep(peepId, this.userId, this.sessionKey)
+        .then((response) => {
+          if ("errors" in response) {
+            return;
+          } else {
+            this.callPeeps();
+          }
+        });
+    }
+
     logout() {
       document.body.setAttribute("data-loggedin", "false");
       document

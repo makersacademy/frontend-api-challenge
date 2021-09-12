@@ -9,12 +9,13 @@ class chitterApi {
       "https://chitter-backend-api-v2.herokuapp.com/peeps";
     this.apiLikePeepUrl =
       "https://chitter-backend-api-v2.herokuapp.com/peeps/peepId/likes/userId";
+    this.apiDeletePeepUrl =
+      "https://chitter-backend-api-v2.herokuapp.com/peeps/peepId";
   }
   async fetchAll() {
     return await fetch(this.apiUrl)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         return response;
       });
   }
@@ -85,6 +86,17 @@ class chitterApi {
         },
       }
     ).then((response) => {
+      return response;
+    });
+  }
+
+  async deletePeep(_peepId, _userId, _sessionKey) {
+    return await fetch(this.apiDeletePeepUrl.replace("peepId", _peepId), {
+      method: "DELETE",
+      headers: {
+        Authorization: "Token token=" + _sessionKey,
+      },
+    }).then((response) => {
       return response;
     });
   }
