@@ -15,6 +15,23 @@ document.addEventListener('DOMContentLoaded', () => {
       peeps.forEach(peep => {
         peepList.addPeep(peep.id, peep.body);
       });
+      return peeps
+    } catch(error) {
+      console.log('Error: ', error);
+    }
+
+  }
+
+  // Post form input for create User
+  async function postUser(handle, password) {
+    try {
+      const response = await fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        user: {"handle": handle, "password": password}
+      });
+      const user = await response.json();
+      console.log(user)
       return response
     } catch(error) {
       console.log('Error: ', error);
@@ -34,6 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('#peeps-list').appendChild(li);
     })
   })
+
+  // Create User
+  createUser = () => {
+    document.querySelector('#submit').addEventListener('click', () => {
+      let handle = document.getElementById('name').innerText;
+      let password = document.getElementById('password').innerText;
+      postUser(handle, password)
+    })
+  }
+
 
 
 

@@ -13,7 +13,7 @@
   <header> 
   </header>
    <!-- Navbar begin -->
-   <section id='nav-bar' class='nav_bar nav__bar'>
+   <section id='nav-bar-section' class='nav_bar nav__bar'>
     <h1>Chitter</h1>
       <ul>
         <li><a href="#home">HOME</a></li>
@@ -24,8 +24,46 @@
 
   <!-- Navbar end -->
 
+  <!-- Create User begin -->
+  <section id='create-user-section'>
+    <label for='create-user-form'>Sign Up</label>
+    <form id='create-user-form'>
+      <ul>
+        <li>
+          <input type="text" name="handle" id="handle" class="create_or_login_user" placeholder="Enter handle">
+        </li>
+        <li>      
+          <input type="password" name="password" id="password" class="create_or_login_user" placeholder="Enter password">
+        </li>
+        <li>
+          <input type="submit" name="submit" placeholder="Submit">
+        </li>
+      </ul>
+    </form>
+  </section>
+  <!-- Create User end -->
+
+  <!-- Login User begin -->
+  <section id='login-user-section'>
+    <label for='login-user-form'>Login</label>
+    <form id='login-user-form'>
+      <ul>
+        <li>
+          <input type="text" name="handle" id="handle" class="create_or_login_user" placeholder="Enter handle">
+        </li>
+        <li>      
+          <input type="password" name="password" id="password" class="create_or_login_user" placeholder="Enter password">
+        </li>
+        <li>
+          <input type="submit" name="submit" placeholder="Login">
+        </li>
+      </ul>
+    </form>
+  </section>
+  <!-- Login User end -->
+
   <!-- Peeps begin -->
-  <section>
+  <section id='peeps-list-section'>
     <ul id='peeps-list' class='peeps_list'>
 
     </ul>
