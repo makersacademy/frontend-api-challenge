@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     result();
   };
 
-  Session.newSession("test", "test")
   updateTimeLine();
 
 
@@ -25,10 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector("#addUser").addEventListener("click", () => {
-    const newHandle = document.getElementById("newHandle").value;
-    const newPassword = document.getElementById("newPassword").value;
-    User.addUser(newHandle, newPassword);
-    document.getElementById("newHandle").value = "";
-    document.getElementById("newPassword").value = "";
+    async function result() {
+      const newHandle = document.getElementById("newHandle").value;
+      const newPassword = document.getElementById("newPassword").value;
+      // User.addUser(newHandle, newPassword);
+      document.getElementById("newHandle").value = "";
+      document.getElementById("newPassword").value = "";
+      let sessionId = await Session.newSession("test123", "test123")
+      let test = sessionStorage.setItem('sesssionId', sessionId.sessionKey);
+    }
+    result();
   });
 });
