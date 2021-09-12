@@ -78,6 +78,9 @@ function createApp() {
 
     logout() {
       document.body.setAttribute("data-loggedin", "false");
+      document
+        .querySelector("#peepContainer")
+        .classList.remove("see-only-mine");
       this.owner = "";
       this.userId = "";
       this.sessionKey = "";

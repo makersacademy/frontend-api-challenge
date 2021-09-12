@@ -217,3 +217,7 @@ body[data-loggedin="true"] #callLogin {
 #loginModalForm[data-hide-body="true"] > .modal-footer > button:last-of-type {
   display: none;
 }
+
+#peepContainer.see-only-mine > div:not([data-peep-mine="true"]) {
+  display: none;
+}

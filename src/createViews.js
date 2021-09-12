@@ -72,6 +72,7 @@ class CreateViews {
   }
 
   #setTimerAgo(timePassed, timerHeader) {
+    timePassed < 1 ? (timePassed = 1) : null;
     for (const [key, value] of Object.entries(this.timeFrames)) {
       let useKey = key.toString();
       let passed = parseInt(timePassed / value);
@@ -110,10 +111,12 @@ class CreateViews {
   }
 
   callMyPeeps() {
+    document.querySelector("#peepContainer").classList.add("see-only-mine");
     document.querySelector("#callMyPeeps").classList.toggle("data-own-peeps");
   }
 
   callAllPeeps() {
+    document.querySelector("#peepContainer").classList.remove("see-only-mine");
     document.querySelector("#callMyPeeps").classList.toggle("data-own-peeps");
   }
 }
