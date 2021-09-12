@@ -223,6 +223,7 @@
                   type="text"
                   class="form-control"
                   id="user-name"
+                  data-bs-custom-class="to-the-left"
                   data-bs-toggle="tooltip"
                   data-bs-original-title="Valid email address"
                   data-bs-trigger="focus hover"
@@ -239,8 +240,9 @@
                   type="password"
                   class="form-control"
                   id="user-password"
+                  data-bs-custom-class="to-the-left"
                   data-bs-toggle="tooltip"
-                  data-bs-original-title="8 to 16 : Letters and digits"
+                  data-bs-original-title="8 to 16 Letters and digits"
                   data-bs-trigger="focus hover"
                   id="recipient-name"
                   pattern="[a-zA-Z0-9]{8,16}"
@@ -309,6 +311,7 @@
                   type="text"
                   class="form-control"
                   id="name"
+                  data-bs-custom-class="to-the-left"
                   data-bs-toggle="tooltip"
                   data-bs-original-title="Valid email address"
                   data-bs-trigger="focus hover"
@@ -325,8 +328,9 @@
                   type="password"
                   class="form-control"
                   id="password"
+                  data-bs-custom-class="to-the-left"
                   data-bs-toggle="tooltip"
-                  data-bs-original-title="8 to 16 : Letters and digits"
+                  data-bs-original-title="8 to 16 Letters and digits"
                   data-bs-trigger="focus hover"
                   id="recipient-name"
                   pattern="[a-zA-Z0-9]{8,16}"
@@ -342,6 +346,7 @@
                   type="password"
                   class="form-control"
                   id="confirmPassword"
+                  data-bs-custom-class="to-the-left"
                   data-bs-toggle="tooltip"
                   data-bs-original-title="8 to 16 : Letters and digits"
                   data-bs-trigger="focus hover"
@@ -396,13 +401,18 @@
             </div>
             <div class="modal-body pt-2 pb-2">
               <div class="mb-1 mt-2 mb-2">
+                <label for="recipient-name" class="col-form-label">
+                  Even when you go to sleep:
+                </label>
                 <textarea
                   class="form-control"
                   id="user-peep"
                   rows="4"
                   maxlength="50"
+                  data-bs-html="true"
+                  data-bs-custom-class="to-the-left"
                   data-bs-toggle="tooltip"
-                  data-bs-original-title="Non-empty string, maximum length 50"
+                  data-bs-original-title="Up to 50 chars"
                   data-bs-trigger="focus hover"
                   pattern="((?![a-zA-Z0-9]).)+"
                   required

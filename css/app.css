@@ -186,3 +186,7 @@ div[data-peep-message] .card-text::before {
   color: #000000;
   margin-right: 0.2rem;
 }
+
+.to-the-left {
+  margin-left: 9.5rem !important;
+}
