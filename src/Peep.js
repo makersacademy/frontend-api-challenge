@@ -3,8 +3,8 @@
 class Peep {
 
   constructor(id, text) {
-    this.text = text;
     this.id = id;
+    this.text = text;
   }
 
 }
