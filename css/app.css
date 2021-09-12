@@ -8,7 +8,7 @@
 .card-header[data-peep-owner]::before {
   content: "@ ";
   font-family: Arial, Helvetica, sans-serif;
-  opacity: 0.2;
+  opacity: 0.5;
   color: #000000;
   float: left;
   margin-right: 0.2rem;
@@ -83,7 +83,7 @@ div[data-peep-message][data-peep-mine="true"] .card-header {
 }
 div[data-peep-message] .card-text::after {
   content: "..";
-  opacity: 0.2;
+  opacity: 0.5;
   color: #000000;
 }
 div[data-peep-message] .card-text > .fa {
@@ -95,7 +95,7 @@ div[data-peep-message] .card-text > .fa {
 }
 div[data-peep-message] .card-text::before {
   content: "# ";
-  opacity: 0.2;
+  opacity: 0.5;
   color: #000000;
   margin-left: 0.5rem;
 }
@@ -103,16 +103,17 @@ div[data-peep-message] .card-text::before {
   content: attr(data-peep-owner);
   float: left;
 }
-.card-header > div[data-peep-time]::before {
+.card-header > div[data-peep-time]::after {
   content: attr(data-peep-time);
   float: right;
+  opacity: 0.9;
+  margin-right: 0.5rem;
 }
-.card-header > div[data-peep-time]::after {
-  content: attr(data-peep-ago) " ago.. ";
-  opacity: 0.2;
+.card-header > div[data-peep-time]::before {
+  content: attr(data-peep-ago) " ago";
+  opacity: 0.5;
   color: #000000;
   float: right;
-  margin-right: 0.2rem;
 }
 .peeps {
   z-index: 99 !important;
@@ -181,7 +182,7 @@ div[data-peep-message] .card-text::before {
 }
 .card-footer[data-peep-time]::after {
   content: attr(data-peep-ago) " ago.. ";
-  opacity: 0.2;
+  opacity: 0.5;
   color: #000000;
   margin-right: 0.2rem;
 }

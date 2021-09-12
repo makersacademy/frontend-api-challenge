@@ -4,7 +4,7 @@ describe("CreateViews", () => {
   beforeEach(() => {
     let peep = { id: 7, body: "red" };
     spyOn(createViews, "fillFields").and.returnValue(true);
-    createViews.add(peep);
+    createViews.add(peep, "John");
   });
 
   it("should add another inner child to the peepContainer", () => {
