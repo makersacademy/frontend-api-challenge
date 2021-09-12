@@ -11,6 +11,7 @@ class UserLogIn {
     })
       .then((response) => response.json())
       .then((user) => {
+        // need to check user message - if OK, return positive message, if not try again message
         document.querySelector("#loggedon").innerHTML =
           "Logged in successfully!";
         console.log(user); // user id & session key in here!

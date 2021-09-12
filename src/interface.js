@@ -2,11 +2,13 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const elements = document.getElementById("display").children;
+  const divArray = [];
   const form = document.getElementById("userForm");
   let user = new NewUser();
   let peepList = new PeepList();
   let userLogIn = new UserLogIn();
 
+  getElements();
   showLink();
 
   window.addEventListener("hashchange", getCurrentLink);
@@ -49,11 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function hideDisplayElements() {
-    let divArray = [];
+  function getElements() {
     for (let i = 0; i < elements.length; i++) {
       divArray.push(elements[i].id);
     }
+  }
+
+  function hideDisplayElements() {
     divArray.forEach(function (element) {
       document.getElementById(element).style.display = "none";
     });
