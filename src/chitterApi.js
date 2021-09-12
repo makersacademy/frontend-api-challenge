@@ -7,6 +7,8 @@ class chitterApi {
       "https://chitter-backend-api-v2.herokuapp.com/sessions";
     this.apiCreatePeppUrl =
       "https://chitter-backend-api-v2.herokuapp.com/peeps";
+    this.apiLikePeepUrl =
+      "https://chitter-backend-api-v2.herokuapp.com/peeps/peepId/likes/userId";
   }
   async fetchAll() {
     return await fetch(this.apiUrl)
@@ -32,7 +34,6 @@ class chitterApi {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         return response;
       });
   }
@@ -52,7 +53,6 @@ class chitterApi {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         return response;
       });
   }
@@ -69,8 +69,23 @@ class chitterApi {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         return response;
       });
+  }
+
+  async likePeep(_value, _peepId, _userId, _sessionKey) {
+    let fetchMethod;
+    _value > 0 ? (fetchMethod = "PUT") : (fetchMethod = "DELETE");
+    return await fetch(
+      this.apiLikePeepUrl.replace("peepId", _peepId).replace("userId", _userId),
+      {
+        method: fetchMethod,
+        headers: {
+          Authorization: "Token token=" + _sessionKey,
+        },
+      }
+    ).then((response) => {
+      return response;
+    });
   }
 }

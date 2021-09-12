@@ -21,6 +21,7 @@ class CreateViews {
 
   fillFields(peepBlock) {
     peepBlock.setAttribute("data-peep-message", true);
+    peepBlock.setAttribute("data-peep-id", this.peep.id);
     this.#setMine(peepBlock);
     this.#setOwner(peepBlock);
     this.#setBody(peepBlock);

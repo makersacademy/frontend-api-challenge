@@ -171,10 +171,14 @@
                 <a class="fa fa-user h2 p-1 px-2 rounded-circle bg-light"></a>
               </p>
             </div>
-            <div class="like" data-like="0">
+            <div
+              class="like"
+              data-like="0"
+              onclick="chitterApp.likePeep(1,this)"
+            >
               <i class="fa fa-thumbs-up"></i>
             </div>
-            <div class="unlike" data-unlike="">
+            <div class="unlike" onclick="chitterApp.likePeep(-1,this)">
               <i class="fa fa-thumbs-down"></i>
             </div>
           </div>

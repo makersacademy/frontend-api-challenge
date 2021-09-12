@@ -1,6 +1,6 @@
-let loginModal;
+let loginModal, chitterApp;
 document.addEventListener("DOMContentLoaded", () => {
-  let chitterApp = createApp();
+  chitterApp = createApp();
 
   function registerTooltips() {
     let tooltipTriggerList = [].slice.call(
