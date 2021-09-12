@@ -59,6 +59,23 @@ function createApp() {
       });
     }
 
+    async createPeep(_peep) {
+      this.chitterApi
+        .createPeep(this.userId, this.sessionKey, _peep)
+        .then((response) => {
+          console.log(response);
+          if ("errors" in response) {
+            this.createViews.reportFailure(
+              "#peepModalLabel",
+              "You need to Login first"
+            );
+          } else {
+            this.createViews.hideModal("#peepModalForm");
+            this.callPeeps();
+          }
+        });
+    }
+
     logout() {
       document.body.setAttribute("data-loggedin", "false");
       this.owner = "";

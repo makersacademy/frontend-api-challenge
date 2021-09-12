@@ -5,6 +5,8 @@ class chitterApi {
       "https://chitter-backend-api-v2.herokuapp.com/users";
     this.apiLoginUserUrl =
       "https://chitter-backend-api-v2.herokuapp.com/sessions";
+    this.apiCreatePeppUrl =
+      "https://chitter-backend-api-v2.herokuapp.com/peeps";
   }
   async fetchAll() {
     return await fetch(this.apiUrl)
@@ -47,6 +49,23 @@ class chitterApi {
         '", "password": "' +
         _password +
         '" } }',
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        return response;
+      });
+  }
+
+  async createPeep(_userId, _sessionKey, _peep) {
+    return await fetch(this.apiCreatePeppUrl, {
+      method: "POST",
+      headers: {
+        Authorization: "Token token=" + _sessionKey,
+        "Content-type": "application/json",
+      },
+      body:
+        '{ "peep": { "user_id": "' + _userId + '", "body": "' + _peep + '" } }',
     })
       .then((response) => response.json())
       .then((response) => {

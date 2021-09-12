@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function registerPeepModal() {
     let peepModal = new bootstrap.Modal(document.querySelector("#peepModal"));
     document.querySelector("#callPeep").addEventListener("click", function () {
+      resetPeepModal("#peepModalForm", "#peepModalLabel");
       peepModal.show();
     });
   }
@@ -65,7 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let submitPeep = document.querySelector("#peepModalForm");
     submitPeep.addEventListener("submit", (event) => {
       event.preventDefault();
-      console.log(submitPeep.parentElement.textContent);
+      let inputFields = submitPeep.querySelectorAll("textarea");
+      chitterApp.createPeep(inputFields[0].value);
       return;
     });
   }
@@ -104,6 +106,16 @@ document.addEventListener("DOMContentLoaded", () => {
     modalLabel = document.querySelector(modalLabel);
     modalForm.setAttribute("data-hide-body", "false");
     modalLabel.innerHTML = "Registration form";
+    modalLabel.setAttribute("data-error", "");
+  }
+
+  function resetPeepModal(modalForm, modalLabel) {
+    modalForm = document.querySelector(modalForm);
+    let modalFormInputs = modalForm.querySelectorAll("textarea");
+    modalFormInputs[0].value = "";
+    modalLabel = document.querySelector(modalLabel);
+    modalForm.setAttribute("data-hide-body", "false");
+    modalLabel.innerHTML = "Peep";
     modalLabel.setAttribute("data-error", "");
   }
 });
