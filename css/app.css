@@ -65,7 +65,7 @@ div[data-peep-message] {
   position: relative;
   margin-bottom: 1.6rem;
 }
-div[data-peep-message]:not(:focus)::after {
+div[data-peep-message]:not(:focus):not([id="lastPeep"])::after {
   content: "";
   position: absolute;
   height: 0.5rem;
@@ -75,7 +75,7 @@ div[data-peep-message]:not(:focus)::after {
   background-color: white;
   display: block;
 }
-div[data-peep-message="false"] {
+div[data-peep-message="false"]:not([id="lastPeep"]) {
   display: none;
 }
 div[data-peep-message][data-peep-mine="true"] .card-header {
@@ -125,12 +125,20 @@ div[data-peep-message] .card-text::before {
   background-color: white;
   box-shadow: 0 0.5rem 0.5rem 0 white, 0 -0.5rem 0.5rem 0 white;
 }
-.my-peeps .btn:first-of-type {
+.my-peeps .own-peeps,
+.my-peeps .all-peeps {
   width: calc(33.33% - 1rem) !important;
 }
-.my-peeps .btn:last-of-type {
+.my-peeps .set-peep {
   width: calc(66.66% - 0.5rem) !important;
   margin-left: 1.5rem;
+}
+
+.own-peeps:not(.data-own-peeps) + .all-peeps {
+  display: none;
+}
+.own-peeps.data-own-peeps {
+  display: none;
 }
 
 #peepModal textarea {
@@ -153,10 +161,28 @@ div[data-peep-message] .card-text::before {
   30%,
   50%,
   70% {
-    transform: translate3d(-3px, 0, 0);
+    transform: translate3d(-2px, 0, 0);
   }
   40%,
   60% {
-    transform: translate3d(3px, 0, 0);
+    transform: translate3d(2px, 0, 0);
   }
+}
+
+#lastPeep[data-peep-message="false"] a:link {
+  display: none;
+}
+#lastPeep[data-peep-message="false"] .card-text {
+  margin-bottom: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+.card-footer[data-peep-time]::before {
+  content: attr(data-peep-time);
+  margin-right: 0.5rem;
+}
+.card-footer[data-peep-time]::after {
+  content: attr(data-peep-ago) " ago.. ";
+  opacity: 0.2;
+  color: #000000;
+  margin-right: 0.2rem;
 }

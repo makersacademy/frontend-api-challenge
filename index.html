@@ -97,9 +97,20 @@
 
     <div class="container mt-0 peeps">
       <div class="mt-0 g-0 row my-peeps">
-        <button class="btn btn-secondary">Own peeps</button>
         <button
-          class="btn btn-primary"
+          class="btn btn-secondary own-peeps"
+          onclick="this.classList.toggle('data-own-peeps')"
+        >
+          Own peeps
+        </button>
+        <button
+          class="btn btn-success all-peeps"
+          onclick="this.previousElementSibling.classList.toggle('data-own-peeps')"
+        >
+          Check all peeps
+        </button>
+        <button
+          class="btn btn-primary set-peep"
           data-bs-toggle="modal"
           data-bs-target="#peepModal"
           id="callPeep"
@@ -111,50 +122,57 @@
         <div class="row">
           <div class="col-12 col-lg-4 mt-0 mt-lg-0 order-first order-lg-first">
             <!-- news start -->
-            <div class="card text-center mt-2">
+            <div
+              id="lastPeep"
+              class="card text-center mt-2"
+              data-peep-message="false"
+            >
               <div class="card-header">Last peep</div>
               <div class="card-body">
                 <h5 class="card-title d-none">Best to keep</h5>
                 <p class="card-text">
-                  With supporting text below as a natural lead-in to additional
-                  content.
+                  You have no peep visible, in the last 50 peeps.
                 </p>
                 <a href="#" class="btn btn-primary">Get to it</a>
               </div>
-              <div class="card-footer text-muted">2 days ago</div>
+              <div
+                class="card-footer text-muted"
+                data-peep-time=".."
+                data-peep-ago="time"
+              ></div>
             </div>
             <!-- news start -->
           </div>
           <!-- peeps start -->
-          <div id="peepContainer" class="col-12 col-lg-8 mt-2">
-            <div
-              class="card"
-              data-peep-message="true"
-              data-peep-mine="true"
-              tabindex="-1"
-            >
-              <div class="card-header" data-peep-owner="Radu">
-                <div data-peep-time="26" data-peep-ago="min"></div>
-              </div>
-              <div class="card-body pb-0">
-                <p class="card-text">
-                  <a class="fa fa-user h2 p-1 px-2 rounded-circle bg-light"></a>
-                  Some and some and then some more. Some and some and then some
-                  more. Some and some and then<br />
-                  some more. Some and some and then some more. Some and some and
-                  then some more. Some and some and then some more. Some and
-                  some and then some more. Some and some and then some more.
-                  Some and some and then some more.
-                </p>
-              </div>
-              <div class="like" data-like="22">
-                <i class="fa fa-thumbs-up"></i>
-              </div>
-              <div class="unlike" data-unlike="1">
-                <i class="fa fa-thumbs-down"></i>
-              </div>
+          <div
+            id="basePeep"
+            class="card"
+            data-peep-message="false"
+            data-peep-mine="true"
+            tabindex="-1"
+          >
+            <div class="card-header" data-peep-owner="Radu">
+              <div data-peep-time="26" data-peep-ago="min"></div>
+            </div>
+            <div class="card-body pb-0">
+              <p class="card-text">
+                <a class="fa fa-user h2 p-1 px-2 rounded-circle bg-light"></a>
+                Some and some and then some more. Some and some and then some
+                more. Some and some good and then<br />
+                some more. Some and some and then some more. Some and some and
+                then some more. Some and some and then some more. Some and some
+                and then some more. Some and some and then some more. Some and
+                some and then some more.
+              </p>
+            </div>
+            <div class="like" data-like="22">
+              <i class="fa fa-thumbs-up"></i>
+            </div>
+            <div class="unlike" data-unlike="1">
+              <i class="fa fa-thumbs-down"></i>
             </div>
           </div>
+          <div id="peepContainer" class="col-12 col-lg-8 mt-2"></div>
           <!-- peeps end -->
         </div>
         <div>
@@ -168,7 +186,7 @@
                 <br />
                 and very often far out of it.
               </p>
-              <a href="#top" class="btn btn-success">Scroll top</a>
+              <a href="#top" class="btn btn-secondary">Scroll top</a>
             </div>
           </div>
           <!-- features start -->
@@ -367,7 +385,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <form id="peepModalForm">
-            <div class="modal-header">
+            <div class="modal-header d-none">
               <h5 class="modal-title" id="peepModalLabel">Peep</h5>
               <button
                 type="button"
@@ -376,7 +394,7 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body pt-0 pb-0">
+            <div class="modal-body pt-2 pb-2">
               <div class="mb-1 mt-2 mb-2">
                 <textarea
                   class="form-control"
@@ -384,8 +402,7 @@
                   rows="4"
                   maxlength="50"
                   data-bs-toggle="tooltip"
-                  data-bs-original-title="Valid email
-                address"
+                  data-bs-original-title="Non-empty string, maximum length 50"
                   data-bs-trigger="focus hover"
                   pattern="((?![a-zA-Z0-9]).)+"
                   required
