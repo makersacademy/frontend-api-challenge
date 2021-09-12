@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let newListItem = document.createElement("li");
         newListItem.addEventListener("click", () => {
           document.querySelector("#timeline").style.display = "none";
+          document.querySelector("#addPeepContainer").style.display = "none";
           document.querySelector("#singlePeep").style.display = "block";
           document.querySelector("#singlePeepText").innerHTML = peep.body;
         })
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   document.querySelector("#showTimeline").addEventListener("click", () => {
     document.querySelector("#timeline").style.display = "block";
+    document.querySelector("#addPeepContainer").style.display = "block";
     document.querySelector("#singlePeep").style.display = "none";
 });
 
