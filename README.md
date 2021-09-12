@@ -1,3 +1,8 @@
+William's attempt at Front End Chitter Challenge (if you can call it that)
+
+I only had a few hours this weekend due to being out all day and night Saturday and having family over Sunday, but either way it felt like this challenge would have taken me more than just a weekend. I picked this challenge as it was the area I felt I needed most work on, but quite frankly after 2 and a bit hours with it, I gave up, I clearly was totally lost and had no idea what the fudge I was supposed to be doing, this felt like such a colossal step up from the Notes in the week with the Emojis, now and entire bunch of methods had to be sent across and I didn't even know where to start. None of the resources were particularly helpful, and all in all I feel like I didn't really gain anything from even attempting this besides a migraine. This weekend challenge felt way too hard and overtuned to be attempted solo, and I am glad I only wasted a few hours on it, and not the whole weekend.
+
+
 # Chitter API Frontend Challenge
 
 * Feel free to use Google, your notes, books, etc. but work on your own
