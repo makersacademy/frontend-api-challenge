@@ -54,16 +54,16 @@ div[data-peep-message] .card-text {
   padding-bottom: 0.5rem;
   max-height: 3.4rem;
   overflow: hidden;
-  transition: max-height ease 600ms;
+  transition: max-height ease 200ms;
 }
 div[data-peep-message]:focus .card-text {
   max-height: 10rem !important;
 
-  transition: max-height ease 600ms;
+  transition: max-height ease 200ms;
 }
 div[data-peep-message] {
   position: relative;
-  margin-bottom: 1.6rem;
+  margin-bottom: 2rem;
 }
 div[data-peep-message]:not(:focus):not([id="lastPeep"])::after {
   content: "";
@@ -145,7 +145,6 @@ div[data-peep-message] .card-text::before {
   resize: none;
 }
 
-#peepContainer > .card:hover,
 .btn:hover {
   animation: shake 0.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }

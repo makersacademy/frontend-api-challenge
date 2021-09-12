@@ -1,6 +1,9 @@
 class chitterApi {
+  constructor() {
+    this.apiUrl = "https://chitter-backend-api-v2.herokuapp.com/peeps";
+  }
   async fetchAll() {
-    return await fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
+    return await fetch(this.apiUrl)
       .then((response) => response.json())
       .then((response) => {
         console.log(response);

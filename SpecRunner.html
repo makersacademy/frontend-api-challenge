@@ -10,7 +10,11 @@
       href="lib/jasmine-3.9.0/jasmine_favicon.png"
     />
     <link rel="stylesheet" href="lib/jasmine-3.9.0/jasmine.css" />
+  </head>
 
+  <body>
+    <div id="basePeep"></div>
+    <div id="peepContainer" style="display: none"></div>
     <script src="lib/jasmine-3.9.0/jasmine.js"></script>
     <script src="lib/jasmine-3.9.0/jasmine-html.js"></script>
     <script src="lib/jasmine-3.9.0/boot0.js"></script>
@@ -19,12 +23,12 @@
 
     <!-- include source files here... -->
     <script src="src/chitterApi.js"></script>
+    <script src="src/createViews.js"></script>
     <script src="src/app.js"></script>
 
     <!-- include spec files here... -->
     <script src="spec/SpecHelper.js"></script>
     <script src="spec/appSpec.js"></script>
-  </head>
-
-  <body></body>
+    <script src="spec/createViewsSpec.js"></script>
+  </body>
 </html>
