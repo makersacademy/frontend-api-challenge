@@ -1,29 +1,30 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.getElementById("display").children;
   const form = document.getElementById("userForm");
   let user = new NewUser();
   let peepList = new PeepList();
   let userLogIn = new UserLogIn();
 
-  showPage();
+  showLink();
 
-  window.addEventListener("hashchange", getCurrentPage);
+  window.addEventListener("hashchange", getCurrentLink);
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     formRouter();
   });
 
-  function getCurrentPage() {
-    showPage(getPageFromUrl(window.location)[0]);
+  function getCurrentLink() {
+    showLink(getLinkFromUrl(window.location)[0]);
   }
 
-  function getPageFromUrl(location) {
+  function getLinkFromUrl(location) {
     return location.hash.split("#"[1]);
   }
 
-  function showPage(page = "#peeps") {
+  function showLink(page = "#peeps") {
     removeHash();
     hideDisplayElements();
     const element = page.substring(1);
@@ -49,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function hideDisplayElements() {
-    const elements = document.getElementById("display").children;
     let divArray = [];
     for (let i = 0; i < elements.length; i++) {
       divArray.push(elements[i].id);
@@ -74,6 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
     page === "#created"
       ? user.createUser(handle, password)
       : userLogIn.logIn(handle, password);
-    showPage(page);
+    showLink(page);
   }
 });
