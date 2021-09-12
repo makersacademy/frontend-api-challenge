@@ -17,7 +17,7 @@ class peepApi {
       method: 'POST',
       headers: {
         "Content-Type" : "application/json",
-        "Authorization" : "Token token=_2a_12_L1wlGBc2S7K5Fxo2dUOGi_"
+        "Authorization" : "Token token=_2a_12_XaF1txelAhWlNDv0U4d7_O"
       },
       mode: 'cors',
       cache: 'default',

@@ -1,8 +1,6 @@
 class userApi {
 
   static addUser(handle, password) {
-
-    console.log(handle, password)
     fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
       method: 'POST',
       headers: {
@@ -11,9 +9,8 @@ class userApi {
       mode: 'cors',
       cache: 'default',
       body: JSON.stringify({
-        "user": {"handle": "anotherHandle", "password": "anotherPassword"}
+        "user": {"handle": handle, "password": password}
       })
     });
-
   }
 }
