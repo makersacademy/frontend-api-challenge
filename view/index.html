@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="../public/myStyleSheet.css">
+
+  <script src="../src/User.js"></script>
+  <script src="../src/PeepList.js"></script>
+  <script src="../src/Peep.js"></script>
+  <script src="./Interface.js"></script>
+
+</head>
+
+<body>
+  <header> 
+  </header>
+   <!-- Navbar begin -->
+   <section id='nav-bar-section' class='nav_bar nav__bar'>
+    <h1>Chitter
+      <sub id='welcome-user'></sub>
+    </h1>
+
+      <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#login">login</a></li>
+        <li><a href="#signup">signup</a></li>
+      </ul>
+  </section>
+
+  <!-- Navbar end -->
+
+  <!-- Create User begin -->
+  <section id='signup-user-section'>
+    <label for='signup-user-form'>Sign Up</label>
+    <form id='signup-user-form'>
+      <ul>
+        <li>
+          <input type="text" id="signup-handle" class="create_or_login_user" placeholder="Enter handle">
+        </li>
+        <li>      
+          <input type="password" id="signup-password" class="create_or_login_user" placeholder="Enter password">
+        </li>
+        <li>
+          <button id="sign-up">Sign up</button>
+        </li>
+      </ul>
+    </form>
+  </section>
+  <!-- Create User end -->
+
+  <!-- Login User begin -->
+  <section id='login-user-section'>
+    <label for='login-user-form'>Login</label>
+    <form id='login-user-form'>
+      <ul>
+        <li>
+          <input type="text" id="login-handle" class="create_or_login_user" placeholder="Enter handle">
+        </li>
+        <li>      
+          <input type="password" id="login-password" class="create_or_login_user" placeholder="Enter password">
+        </li>
+        <li>
+          <button id="login">Login</button>
+        </li>
+      </ul>
+    </form>
+  </section>
+  <!-- Login User end -->
+
+  <!-- Peeps begin -->
+  <section id='peeps-list-section'>
+    <ul id='peeps-list' class='peeps_list'>
+
+    </ul>
+
+  </section>
+  <!-- Peeps end -->
+  <footer>
+
+  </footer>
+</body>
+</html>
