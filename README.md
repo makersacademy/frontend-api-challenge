@@ -1,3 +1,48 @@
+###Complete
+```
+* Creating Users
+* Logging in
+* Posting Peeps
+* Viewing all Peeps 
+* Viewing individual Peeps
+* Deleting Peeps
+* Liking Peeps
+* Unliking Peeps
+##Extra functionality
+* Loggin out
+* Peeps manipulation triggers the loading(async) and rendering of the peeps list
+* Login/Logout triggers the loading(async) and rendering of the peeps list
+* See only your peeps
+* See your last peep
+* See time since peep created(days or hours or minutes)
+* See if username is taken with relevant error message on registration
+* See if username and password do not match with relevant error message on login
+```
+
+```
+Under-tested maybe, I felt like the important test have been done, I might be wrong.(tested async in Jasmine).
+```
+
+```
+##How to run this app
+You need to have installed on your machine:
+###http-server
+- You can install http-server in the terminal
+with npm:
+using npm install --global http-server
+or with brew:
+brew install http-server
+
+Once installed run in the terminal:
+http-server ./ -c0
+```
+
+```
+It runs on Bootstrap and Font-awesome
+Api: data persistance : https://chitter-backend-api-v2.herokuapp.com
+```
+
+
 # Chitter API Frontend Challenge
 
 * Feel free to use Google, your notes, books, etc. but work on your own

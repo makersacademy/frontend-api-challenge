@@ -1,0 +1,232 @@
+.jumbotron h1 {
+  font-family: "Caveat";
+}
+.jumbotron {
+  background: url("/img/logo.svg") no-repeat left 60%;
+  background-size: 50% 100%;
+}
+.card-header[data-peep-owner]::before {
+  content: "@ ";
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 0.5;
+  color: #000000;
+  float: left;
+  margin-right: 0.2rem;
+}
+div.like,
+div.unlike {
+  cursor: pointer;
+  padding: 0.2rem 1rem;
+}
+div.like {
+  position: absolute;
+  bottom: -2.2rem;
+  right: 0rem;
+}
+div.delete-peep {
+  position: absolute;
+  bottom: -1.9rem;
+  left: 0;
+  width: 34%;
+}
+div.unlike {
+  position: absolute;
+  bottom: -2.2rem;
+  right: 4rem;
+  cursor: pointer;
+}
+div.like > i,
+div.unlike > i {
+  opacity: 0.4;
+  margin-right: 0.2rem;
+  margin-left: 0.2rem;
+}
+div.like:hover > i,
+div.unlike:hover > i {
+  opacity: 0.8;
+}
+div.like::before {
+  content: attr(data-like);
+  opacity: 0.8;
+  color: #000000;
+}
+div.unlike::after {
+  content: attr(data-unlike);
+  opacity: 0.8;
+  color: #000000;
+}
+#peepContainer div[data-peep-message] .card-text {
+  white-space: normal;
+  padding-bottom: 0.5rem;
+  max-height: 3.5rem;
+  overflow: hidden;
+  transition: max-height ease 200ms;
+}
+div[data-peep-message]:focus .card-text {
+  max-height: 10rem !important;
+
+  transition: max-height ease 200ms;
+}
+div[data-peep-message] {
+  position: relative;
+  margin-bottom: 2.4rem;
+}
+div[data-peep-message]:not(:focus):not([id="lastPeep"])::after {
+  content: "";
+  position: absolute;
+  height: 0.5rem;
+  width: 100%;
+  bottom: 0%;
+  right: 0;
+  background-color: white;
+  display: block;
+}
+div[data-peep-message="false"]:not([id="lastPeep"]) {
+  display: none;
+}
+div[data-peep-message][data-peep-mine="true"] .card-header {
+  box-shadow: inset var(--bs-primary) 0.2rem 0 0 0;
+}
+div[data-peep-message] .card-text::after {
+  content: "..";
+  opacity: 0.5;
+  color: #000000;
+}
+div[data-peep-message] .card-text > .fa {
+  float: left;
+  clear: left;
+  margin-top: -0.125rem;
+  margin-bottom: -1rem;
+  margin-right: 0.5rem;
+}
+div[data-peep-message] .card-text::before {
+  content: "# ";
+  opacity: 0.5;
+  color: #000000;
+  margin-left: 0.5rem;
+}
+.card-header[data-peep-owner]::after {
+  content: attr(data-peep-owner);
+  float: left;
+}
+.card-header > div[data-peep-time]::after {
+  content: attr(data-peep-time);
+  float: right;
+  opacity: 0.9;
+  margin-right: 0.5rem;
+}
+.card-header > div[data-peep-time]::before {
+  content: attr(data-peep-ago) " ago";
+  opacity: 0.5;
+  color: #000000;
+  float: right;
+}
+.peeps {
+  z-index: 99 !important;
+}
+.my-peeps {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0.2rem;
+  z-index: 99;
+  background-color: white;
+  box-shadow: 0 0.5rem 0.5rem 0 white, 0 -0.5rem 0.5rem 0 white;
+}
+.my-peeps .own-peeps,
+.my-peeps .all-peeps {
+  width: calc(33.33% - 1rem) !important;
+}
+.my-peeps .set-peep {
+  width: calc(66.66% - 0.5rem) !important;
+  margin-left: 1.5rem;
+}
+
+#callMyPeeps:not(.data-own-peeps) + #callAllPeeps {
+  display: none;
+}
+#callMyPeeps.data-own-peeps {
+  display: none;
+}
+
+#peepModal textarea {
+  resize: none;
+}
+
+div[data-peep-id]:hover {
+  box-shadow: 0 0 0.2rem 0 rgba(0, 0, 0, 0.5);
+}
+.btn:hover {
+  animation: shake 0.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(2px, 0, 0);
+  }
+}
+
+#lastPeep[data-peep-message="false"] a:link {
+  display: none;
+}
+#lastPeep[data-peep-message="false"] .card-text {
+  margin-bottom: 0rem !important;
+  padding-bottom: 0rem !important;
+}
+.card-footer[data-peep-time]::before {
+  content: attr(data-peep-time);
+  margin-right: 0.5rem;
+}
+.card-footer[data-peep-time]::after {
+  content: attr(data-peep-ago) " ago.. ";
+  opacity: 0.5;
+  color: #000000;
+  margin-right: 0.2rem;
+}
+
+.to-the-left {
+  margin-left: 9.5rem !important;
+}
+
+#registerModalLabel::after {
+  content: attr(data-error);
+  color: var(--bs-danger);
+}
+
+#loginModalLabel::after {
+  content: attr(data-error);
+  color: var(--bs-danger);
+}
+
+body[data-loggedin="false"] #callLogout,
+body[data-loggedin="false"] #lastPeep,
+body[data-loggedin="false"] #callPeepContainer,
+body[data-loggedin="true"] #infoPeep,
+body[data-loggedin="true"] #callLogin {
+  display: none;
+}
+
+#regisModalForm[data-hide-body="true"] > .modal-body,
+#loginModalForm[data-hide-body="true"] > .modal-body {
+  display: none;
+}
+#regisModalForm[data-hide-body="true"] > .modal-footer > button:last-of-type,
+#loginModalForm[data-hide-body="true"] > .modal-footer > button:last-of-type {
+  display: none;
+}
+
+#peepContainer.see-only-mine > div:not([data-peep-mine="true"]) {
+  display: none;
+}

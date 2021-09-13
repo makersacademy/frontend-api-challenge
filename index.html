@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chitter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/fontawesome-free-5.15.4-web/css/all.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/bootstrap511/css/bootstrap.min.css" />
+    <script src="/bootstrap511/js/bootstrap.min.js"></script>
+    <script src="/src/chitterApi.js"></script>
+    <script src="/src/app.js"></script>
+    <script src="/src/createViews.js"></script>
+    <script src="/src/interface.js"></script>
+  </head>
+  <body data-loggedin="false">
+    <header
+      class="
+        jumbotron
+        bg-mine-use3
+        rounded-0
+        mr-0
+        bot-white
+        pr-0
+        pl-0
+        pb-3
+        mt-4 mt-md-0
+        mb-3
+      "
+      id="top"
+    >
+      <div
+        class="
+          container
+          mr-0
+          pr-0
+          pl-md-0
+          ml-0 ml-md-auto
+          col-12 col-md-11
+          offset-1
+        "
+      >
+        <div class="row row-header mr-0">
+          <div
+            class="
+              col-12 col-md-7
+              m-md-0
+              mb-2
+              pb-0
+              pl-sm-4
+              pr-sm-4
+              pl-lg-0
+              pr-lg-0
+            "
+            style="z-index: 3"
+          >
+            <h1
+              class="mt-0 mb-0"
+              style="margin-left: -0.125rem; font-size: 2rem"
+            >
+              Chitter #
+            </h1>
+            <p class="text-muted mb-0">
+              <b style="font-size: 120%; font-weight: 300"></b>just like Twitter
+              <br />
+              sweeter
+              <br />with some extra glitter
+            </p>
+          </div>
+          <div
+            class="
+              col-12 col-md-4
+              offset-md-1
+              align-self-center
+              top-border-white
+              bot-border-white
+              mr-0
+              xhlist
+              pr-md-3
+            "
+          >
+            <button
+              class="btn btn-secondary py-2 px-4"
+              data-bs-animation="true"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal"
+              id="callLogin"
+            >
+              <i class="fa fa-user mr-2"> &nbsp;</i>
+              Login or register
+            </button>
+            <button class="btn btn-secondary py-2 px-4" id="callLogout">
+              <i class="fa fa-user mr-2"> &nbsp;</i>
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container mt-0 peeps">
+      <div class="mt-0 g-0 row my-peeps" id="callPeepContainer">
+        <button class="btn btn-secondary own-peeps" id="callMyPeeps">
+          Own peeps
+        </button>
+        <button class="btn btn-success all-peeps" id="callAllPeeps">
+          Check all peeps
+        </button>
+        <button
+          class="btn btn-secondary set-peep"
+          data-bs-toggle="modal"
+          data-bs-target="#peepModal"
+          id="callPeep"
+        >
+          Peep
+        </button>
+      </div>
+      <main>
+        <div class="row">
+          <div class="col-12 col-lg-4 mt-0 mt-lg-0 order-first order-lg-first">
+            <!-- lastPeep start -->
+            <div
+              id="lastPeep"
+              class="card text-center mt-2"
+              data-peep-message="false"
+            >
+              <div class="card-header">Last peep</div>
+              <div class="card-body">
+                <h5 class="card-title d-none">Best to keep</h5>
+                <p class="card-text">
+                  You have no peep visible, in the last 50 peeps.
+                </p>
+                <a href="#" class="btn btn-primary">Get to it</a>
+              </div>
+              <div
+                class="card-footer text-muted"
+                data-peep-time=".."
+                data-peep-ago="time"
+              ></div>
+            </div>
+            <!-- lastPeep end -->
+            <!-- lastPeep start -->
+            <div id="infoPeep" class="card text-center mt-2">
+              <div class="card-header bg-secondary text-white">Get ready</div>
+              <div class="card-body">
+                <h5 class="card-title d-none">here</h5>
+                <p class="card-text">
+                  Login and peep<br />even when you go to sleep..
+                </p>
+              </div>
+            </div>
+            <!-- lastPeep end -->
+          </div>
+          <!-- peeps start -->
+          <div
+            id="basePeep"
+            class="card"
+            data-peep-message="false"
+            data-peep-mine="false"
+            tabindex="-1"
+          >
+            <div class="card-header" data-peep-owner="">
+              <div data-peep-time="" data-peep-ago=""></div>
+            </div>
+            <div class="card-body pb-0">
+              <p class="card-text">
+                <a class="fa fa-user h2 p-1 px-2 rounded-circle bg-light"></a>
+              </p>
+            </div>
+            <div
+              class="like"
+              data-like="0"
+              onclick="chitterApp.likePeep(1,this)"
+            >
+              <i class="fa fa-thumbs-up"></i>
+            </div>
+            <div class="unlike" onclick="chitterApp.likePeep(-1,this)">
+              <i class="fa fa-thumbs-down"></i>
+            </div>
+          </div>
+          <div id="peepContainer" class="col-12 col-lg-8 mt-2"></div>
+          <!-- peeps end -->
+        </div>
+        <div>
+          <!-- features start -->
+          <div class="card mt-2 mb-5">
+            <div class="card-body">
+              <h5 class="card-title">Looks like you read all of our peeps</h5>
+              <p class="card-text">
+                Please remember to forget what others think, peeps are just a
+                measure of context
+                <br />
+                and very often far out of it.
+              </p>
+              <a href="#top" class="btn btn-secondary">Scroll top</a>
+            </div>
+          </div>
+          <!-- features start -->
+        </div>
+      </main>
+    </div>
+
+    <!-- login modal start -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <form id="loginModalForm" data-hide-body="false">
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel" data-error="">
+                Login form
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body pt-0">
+              <div class="mb-1 mt-2">
+                <label for="recipient-name" class="col-form-label">
+                  User:
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="user-name"
+                  data-bs-custom-class="to-the-left"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="3 to 16 Letters and digits"
+                  data-bs-trigger="focus hover"
+                  pattern="[a-zA-Z0-9]{3,16}"
+                  required
+                  placeholder="username"
+                />
+              </div>
+              <div class="mb-0">
+                <label for="recipient-name" class="col-form-label">
+                  Password:
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="user-password"
+                  data-bs-custom-class="to-the-left"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="8 to 16 Letters and digits"
+                  data-bs-trigger="focus hover"
+                  id="recipient-name"
+                  pattern="[a-zA-Z0-9]{8,16}"
+                  required
+                  placeholder="********"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                id="callRegis"
+                class="btn btn-success"
+                data-bs-dismiss="modal"
+              >
+                Register
+              </button>
+              <button
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                style="margin-right: auto !important"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                id="loginModalSubmit"
+                class="btn btn-primary"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- login modal end -->
+
+    <!-- register modal start -->
+    <div
+      class="modal fade"
+      id="registerModal"
+      tabindex="-1"
+      aria-labelledby="registerModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <form id="regisModalForm" data-hide-body="false">
+            <div class="modal-header">
+              <h5 class="modal-title" id="registerModalLabel" data-error="">
+                Registration form
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body pt-0">
+              <div class="mb-1 mt-2">
+                <label for="recipient-name" class="col-form-label">
+                  User:
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  data-bs-custom-class="to-the-left"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="3 to 16 Letter and digits"
+                  data-bs-trigger="focus hover"
+                  pattern="[a-zA-Z0-9]{3,16}"
+                  required
+                  placeholder="username"
+                />
+              </div>
+              <div class="mb-0">
+                <label for="recipient-name" class="col-form-label">
+                  Password:
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  data-bs-custom-class="to-the-left"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="8 to 16 Letters and digits"
+                  data-bs-trigger="focus hover"
+                  id="recipient-name"
+                  pattern="[a-zA-Z0-9]{8,16}"
+                  required
+                  placeholder="********"
+                />
+              </div>
+              <div class="mb-0 d-none">
+                <label for="recipient-name" class="col-form-label">
+                  Confirm password:
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirmPassword"
+                  data-bs-custom-class="to-the-left"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="8 to 16 : Letters and digits"
+                  data-bs-trigger="focus hover"
+                  id="recipient-name"
+                  pattern="[a-zA-Z0-9]{8,16}"
+                  placeholder="********"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                style="margin-right: auto !important"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                id="regisModalSubmit"
+                class="btn btn-primary"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- register modal end -->
+
+    <!-- peep modal start -->
+    <div
+      class="modal fade"
+      id="peepModal"
+      tabindex="-1"
+      aria-labelledby="peepModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <form id="peepModalForm">
+            <div class="modal-header">
+              <h5 class="modal-title" id="peepModalLabel" data-error="">
+                Peep
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body pt-2 pb-2">
+              <div class="mb-1 mt-2 mb-2">
+                <label for="recipient-name" class="col-form-label">
+                  Even when you go to sleep:
+                </label>
+                <textarea
+                  class="form-control"
+                  id="user-peep"
+                  rows="4"
+                  maxlength="200"
+                  data-bs-html="true"
+                  data-bs-custom-class="to-the-left"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="Up to 200 chars"
+                  data-bs-trigger="focus hover"
+                  pattern="((?![a-zA-Z0-9]).)+"
+                  required
+                  placeholder="Where you're at.."
+                ></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                style="margin-right: auto !important"
+              >
+                Peep later
+              </button>
+              <button
+                type="submit"
+                id="peepModalSubmit"
+                class="btn btn-primary"
+              >
+                Peep
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- peep modal end -->
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
