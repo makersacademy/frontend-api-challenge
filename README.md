@@ -13,9 +13,11 @@ Currently, all a user can do is load the app and press a refresh button to see t
 
 If required:
 
-```brew update
+```
+brew update
 brew install node
-brew upgrade node ```
+brew upgrade node
+```
 
 Then run
 
