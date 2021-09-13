@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./public/css/styles.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chitter</title>
+  </head>
+
+  <header>
+    <h1>Chitter</h1>
+    <a href="#create">Create User</a>
+    <a href="#login">Log in</a>
+    <a href="#peeps">See all Peeps</a>
+    <a href="#peep">Send a Peep</a>
+  </header>
+
+  <body>
+    <br>
+    <div id='display'>
+      <div id='create'>Please enter your details below</div>
+      <div id='login'>Please enter your log in details below</div>
+      <div id='siteform'>
+        <form id="userform">
+          Handle: <input type="text" name="handle"><br><br>
+          Password: <input type="text" name="password"><br><br>
+          <button>Submit</button>
+        </form>
+      </div>
+
+      <div id='peep'>
+        <form id="peepform">
+        <i></b>What's on your mind?</b></i><br>
+        <textarea style='resize: none;' maxlength='140' 
+        id='content' name='content' rows=5 required></textarea><br>
+        <button>Peep!</button>
+      </form>
+
+      </div>
+  
+      <div id='created'></div>
+
+      <div id='loggedon'></div>
+      
+      <div id='onepeep'></div>
+      
+      <div id='peeps'></div>
+
+      <div id='peepsent'></div>
+
+    </div>
+  
+    <script src="./src/newUser.js"></script>
+    <script src="./src/peep.js"></script>
+    <script src="./src/onePeep.js"></script>
+    <script src="./src/peepList.js"></script>
+    <script src="./src/userLogIn.js"></script>
+    <script src="./src/interface.js"></script>
+  </body>
+</html>
