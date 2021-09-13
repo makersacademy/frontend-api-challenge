@@ -2,7 +2,7 @@ import { Peep } from './peep.js'
 import { PeepCollection } from './peepCollection.js'
 
 document.addEventListener("DOMContentLoaded", () => {
-    showPeepWithID(700);
+    showAllPeeps();
 })
 
 function showAllPeeps() {
@@ -14,9 +14,9 @@ function showAllPeeps() {
 }
 
 function showAllBy(key, val) {
-    clearPage();
-
     let peeps = new PeepCollection(key, val);
+
+    clearPage();
 
     peeps.refresh()
     .then(() => peeps.all.forEach((peep) => showPeep(peep)))
@@ -24,10 +24,17 @@ function showAllBy(key, val) {
 
 function showPeepWithID(id) {
     Peep.fetchByID(id).then(() => {
-        let peep = Peep.selected
-
         clearPage();
-        showPeep(peep);
+        showPeep(Peep.selected);
+
+        let backDiv = document.createElement("div");
+        let backButton = document.createElement("button");
+
+        backButton.innerHTML = "All Peeps";
+        backButton.addEventListener("click", () => showAllPeeps());
+
+        backDiv.appendChild(backButton);
+        document.querySelector(".peep-div").append(backDiv);
     })
 }
 
@@ -47,6 +54,8 @@ function showPeep(peep) {
     peepBody.setAttribute("class", "peep-body");
     peepAuthor.setAttribute("class", "peep-author");
     peepDate.setAttribute("class", "peep-date");
+
+    peepBody.addEventListener("click", () => showPeepWithID(peep.id))
 
     peepInfo.appendChild(peepAuthor);
     peepInfo.appendChild(peepDate);
