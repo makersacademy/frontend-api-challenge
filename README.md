@@ -2,7 +2,7 @@
 
 ## About this app
 
-This (incomplete) program provides the front end for the Chitter API. You can:
+This (currently incomplete) single-page app provides the front end for the Chitter API. You can:
 
 - create a user
 - log in
