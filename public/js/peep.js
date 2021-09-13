@@ -2,12 +2,12 @@
 
 export class Peep {
     static all;
-    static current;
     static collection;
+    static selected;
 
-    static fetchID(peepID) {
+    static fetchByID(peepID) {
         let promise = this.fetchAll()
-        .then(() => this.current = Peep.all.find(peep => peep.id === peepID))
+        .then(() => this.selected = Peep.all.find(peep => peep.id === peepID))
 
         return promise;
     }
