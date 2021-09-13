@@ -1,37 +1,67 @@
-# Chitter API Frontend Challenge
+# Chitter API Challenge (front-end)
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Challenge:
--------
+## Summary
 
-As usual please start by forking this repo.
+This is an incomplete project. This weekend challenge my intention was to explore a new framework, so I spent some time reading about React and trying to get to grips with it. While that was mostly successful, I was blocked by the testing and struggled to write any meaningful tests. Because I was aiming to stick to the TDD approach as much as possible this meant I haven't implemented much functionality as of Monday 13th Sep.
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+Currently, all a user can do is load the app and press a "refresh feed" button to see the 50 most recent peeps, the username who posted them, and the time they were created.
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+## Installation instructions
 
-Here are some interactions the API supports. Implement as many as you see fit.
+If required:
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+```
+brew update
+brew install node
+brew upgrade node
+```
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+Then run
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+```
+npm install
+```
 
-## Utilities you might find useful
+to download dependencies.
 
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+## Running the app
+
+Either
+
+```
+npm start
+```
+
+or
+
+```
+yarn start
+```
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+## Running tests
+
+Either
+
+```
+npm test
+```
+
+or
+
+```
+yarn test
+```
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+
