@@ -31,9 +31,10 @@ body {
     margin-bottom: 0.8em;
 }
 
-.peep-author {
-}
+.peep-author {}
 
-.peep-date {
+.peep-date {}
 
+.peep-body, .handle, .back-link {
+    cursor: pointer;
 }
