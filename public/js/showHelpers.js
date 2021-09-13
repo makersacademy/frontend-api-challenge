@@ -16,6 +16,7 @@ export function allBy(key, val) {
 
     peeps.refresh()
     .then(() => peeps.all.forEach((peep) => one(peep)))
+    .then(() => document.querySelector("body").appendChild(backDiv()))
 }
 
 export function peepWithID(id) {
@@ -23,15 +24,7 @@ export function peepWithID(id) {
         clearPage();
         one(Peep.selected);
 
-        let backDiv = document.createElement("div");
-        let backLink = document.createElement("span");
-
-        backLink.setAttribute("class", "back-link")
-        backLink.innerHTML = "back to all peeps";
-        backLink.addEventListener("click", () => allPeeps());
-
-        backDiv.appendChild(backLink);
-        document.querySelector(".peep-div").append(backDiv);
+        document.querySelector(".peep-div").append(backDiv());
     })
 }
 
@@ -43,7 +36,7 @@ export function one(peep) {
     let peepDate = document.createElement("span");
 
     peepBody.innerHTML = peep.body;
-    peepAuthor.innerHTML = `posted by ${peep.user.handle} `;
+    peepAuthor.innerHTML = `posted by <span class="handle">${peep.user.handle}<span> `;
     peepDate.innerHTML = `on ${peep.created_at}`;
 
     peepDiv.setAttribute("class", "peep-div");
@@ -62,6 +55,19 @@ export function one(peep) {
     peepDiv.appendChild(peepInfo);
 
     document.querySelector("body").appendChild(peepDiv);
+}
+
+function backDiv() {
+    let div = document.createElement("div");
+    let link = document.createElement("span");
+
+    link.setAttribute("class", "back-link")
+    link.innerHTML = "back to all peeps";
+    link.addEventListener("click", () => allPeeps());
+
+    div.appendChild(link);
+
+    return div;
 }
 
 function clearPage() {
