@@ -5,7 +5,7 @@ describe('User', () => {
   let user;
 
   beforeEach(() => {
-    user = new User('Bob', 1234);
+    user = new User(0, 'Bob');
   })
 
   describe('new', () => {
@@ -15,7 +15,7 @@ describe('User', () => {
     })
 
     it('is expected to have attributes', () => {
-      expect(user).toEqual(jasmine.objectContaining({handle: 'Bob', password: 1234}))
+      expect(user).toEqual(jasmine.objectContaining({id: 0, handle: 'Bob'}))
     })
   })
 

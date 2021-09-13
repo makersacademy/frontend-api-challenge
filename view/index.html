@@ -2,6 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
+
+  <link rel="stylesheet" href="../public/myStyleSheet.css">
+
   <script src="../src/User.js"></script>
   <script src="../src/PeepList.js"></script>
   <script src="../src/Peep.js"></script>
@@ -14,7 +17,10 @@
   </header>
    <!-- Navbar begin -->
    <section id='nav-bar-section' class='nav_bar nav__bar'>
-    <h1>Chitter</h1>
+    <h1>Chitter
+      <sub id='welcome-user'></sub>
+    </h1>
+
       <ul>
         <li><a href="#home">HOME</a></li>
         <li><a href="#login">login</a></li>
@@ -25,18 +31,18 @@
   <!-- Navbar end -->
 
   <!-- Create User begin -->
-  <section id='create-user-section'>
-    <label for='create-user-form'>Sign Up</label>
-    <form id='create-user-form'>
+  <section id='signup-user-section'>
+    <label for='signup-user-form'>Sign Up</label>
+    <form id='signup-user-form'>
       <ul>
         <li>
-          <input type="text" name="handle" id="handle" class="create_or_login_user" placeholder="Enter handle">
+          <input type="text" id="signup-handle" class="create_or_login_user" placeholder="Enter handle">
         </li>
         <li>      
-          <input type="password" name="password" id="password" class="create_or_login_user" placeholder="Enter password">
+          <input type="password" id="signup-password" class="create_or_login_user" placeholder="Enter password">
         </li>
         <li>
-          <input type="submit" name="submit" placeholder="Submit">
+          <button id="sign-up">Sign up</button>
         </li>
       </ul>
     </form>
@@ -49,13 +55,13 @@
     <form id='login-user-form'>
       <ul>
         <li>
-          <input type="text" name="handle" id="handle" class="create_or_login_user" placeholder="Enter handle">
+          <input type="text" id="login-handle" class="create_or_login_user" placeholder="Enter handle">
         </li>
         <li>      
-          <input type="password" name="password" id="password" class="create_or_login_user" placeholder="Enter password">
+          <input type="password" id="login-password" class="create_or_login_user" placeholder="Enter password">
         </li>
         <li>
-          <input type="submit" name="submit" placeholder="Login">
+          <button id="login">Login</button>
         </li>
       </ul>
     </form>

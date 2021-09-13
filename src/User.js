@@ -2,10 +2,9 @@
 
 class User {
 
-  constructor(handle, password) {
+  constructor(id, handle) {
     this.handle = handle;
-    this.password = password;
-    this.peeps = [];
+    this.id = id;
   }
 
 }
