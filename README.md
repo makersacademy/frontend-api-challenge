@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Summary
+## Summary
 
 This is an incomplete project. This weekend challenge my intention was to explore a new framework, so I spent some time reading about React and trying to get to grips with it. While that was mostly successful, I was blocked by the testing and struggled to write any meaningful tests. Because I was aiming to stick to the TDD approach as much as possible this meant I haven't implemented much functionality as of Monday 13th Sep.
 
