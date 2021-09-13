@@ -1,37 +1,94 @@
 # Chitter API Frontend Challenge
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+```
+   ,_      _.
+  >' )    ( '<
+  ( ( \  / ) )
+   ''|\  /| ''
+```
 
-Challenge:
--------
+## What I've learned & need to improve:
 
-As usual please start by forking this repo.
+Having very limited time completing this weekend challenge I wanted to focus on interacting with the return key values from the given API.
+I was unsure on how to write tests in this context and tried to TDD with good planning and sudo code instead
+Keen on implementig more userstories in the coming days
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+## Implementation
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
+Functional representation of user requirements:
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+[Check out my workflow mindmap](https://github.com/CorinneBosch/frontend-api-challenge/blob/main/public/images/mindmap.png)
 
-Here are some interactions the API supports. Implement as many as you see fit.
+## Setup
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+1. **Fork** this [chitter-challenge repository](https://github.com/CorinneBosch/frontend-api-challenge/tree/main)
+2. Then clone **your** fork to your computer.
+3. Ensure you have `node` installed locally or gobally.
+4. Otherwise install node as shown below
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+```
+brew update
+brew install node
+brew upgrade node
+```
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+## How to run
 
-## Utilities you might find useful
+To interact with Zwitscher and stay up-to date with the world...
+Open up the index file in your terminal
 
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+```
+$ open index.html
+```
+
+## Run test
+
+Run Jasmine tests in browser
+
+```
+$ npx jasmine-browser-runner serve
+```
+
+Run Jasmine tests in your terminal
+
+```
+$ npx jasmine-browser-runner runSpecs
+```
+
+## The chitter-challenge is built upon the following user stories:
+
+```
+As a user
+So that I can read and judge whats going on in the world
+I would like to create a Zwitscher account
+
+As a user
+So that I can interact and participate in the social-media maddness
+I would like to login to Zwitscher
+
+As a user
+That I can share with the world my unnecessary and superficial opinions that no one really cares about
+I would like to post a peep
+
+As a user
+That I can fully indulge into the gossip & trauma that’s happening on Zwitscher
+I would like to view & read all peeps
+
+As a user
+That I can read particularly controversial peeps in full length
+I would like to view individual peeps
+
+As a user
+That I can hide immoral peeps I’ve made in the past  & pretend I am a better person now
+I would like to delete peeps
+
+As a user
+That I can advocate and hype up every mainstream peep to take sides in an argument
+I would like to be able to like peeps
+
+As a user
+To disassociate from peeps that become unpopular over time
+I would like to to be able to dislike peeps
+```
+
+Source of original Repository & README instuctions: [Makers Academy GitHub](https://github.com/makersacademy/frontend-api-challenge)

@@ -1,0 +1,131 @@
+body {
+  background-image: url('images/black.jpg');
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 200;
+  height: 4vh;
+  color: rgb(102, 204, 255);
+  /* font-family: courier-std, monospace; */
+}
+
+h1 {
+  font-size: 80px;
+  font-weight: 200;
+  height: 4vh;
+  color: rgb(102, 204, 255);
+}
+
+a,
+h2,
+h3,
+h5 {
+  text-align: center;
+  font-style: normal;
+  font-style: normal;
+  color: rgb(102, 204, 255);
+  font-weight: 200;
+  height: 1vh;
+}
+
+h4 {
+  text-align: center;
+  font-style: normal;
+  font-style: normal;
+  margin-top: 10%;
+  margin-right: 10%;
+  margin-left: 10%;
+  color: rgb(102, 204, 255);
+  font-weight: 200;
+  height: 1vh;
+}
+
+#box {
+  width: 75%;
+  margin: 0% auto;
+  height: 100vh;
+  border-radius: 40px;
+  /* overflow: scroll; */
+}
+
+#title_box {
+  text-align: center;
+  background-color: rgb(0, 51, 51, 0.3);
+  width: 75%;
+  margin: 5% auto;
+  height: 10vh;
+  border-radius: 30px;
+}
+
+#create_peep_box {
+  text-align: center;
+  width: 35%;
+  margin: 0 2%;
+  position: absolute;
+  height: 30vh;
+  background-color: rgb(0, 51, 51, 0.3);
+  border-radius: 30px;
+  float: left;
+  /* overflow: scroll; */
+}
+
+#full_note_box {
+  text-align: center;
+  width: 35%;
+  margin: 0 2%;
+  height: 40vh;
+  position: absolute;
+  bottom: 0;
+  background-color: rgb(0, 51, 51, 0.3);
+  border-radius: 30px;
+}
+
+#list_all_peeps_box {
+  text-align: left;
+  width: 45%;
+  margin: 0 2%;
+  height: 77vh;
+  background-color: rgb(0, 51, 51, 0.3);
+  border-radius: 30px;
+  float: right;
+}
+
+#close-note {
+  border-radius: 8px;
+  height: 4vh;
+  width: 120px;
+  margin: 35% auto;
+  font-family: 'Orbitron', sans-serif;
+  /* background-image: url('images/space1.jpg'); */
+  font-weight: 200;
+  color: white;
+  border: 1px solid #ccd9ff;
+}
+
+button {
+  border-radius: 8px;
+  height: 4vh;
+  width: 120px;
+  margin: 2% auto;
+  font-family: 'Orbitron', sans-serif;
+  /* background-image: url('images/space1.jpg'); */
+  font-weight: 200;
+  color: white;
+  border: 1px solid #ccd9ff;
+}
+
+button:hover {
+  opacity: 0.6;
+}
+
+textarea {
+  border-radius: 8px;
+  height: 8vh;
+  width: 250px;
+  margin: 5% auto;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 200;
+  /* background-image: url('images/space6-1.jpg'); */
+  /* background-image: url('images/space11.jpg'); */
+  /* background-image: url('images/space5-3.jpg'); */
+  border: 1px solid #ccd9ff;
+}

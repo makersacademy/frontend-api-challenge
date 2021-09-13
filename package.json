@@ -1,0 +1,22 @@
+{
+  "name": "frontend-api-challenge",
+  "version": "1.0.0",
+  "description": "Chitter Challenge with API",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CorinneBosch/frontend-api-challenge.git"
+  },
+  "author": "Corinne Bosch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CorinneBosch/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/CorinneBosch/frontend-api-challenge#readme",
+  "devDependencies": {
+    "jasmine-browser-runner": "^0.8.0"
+  }
+}
