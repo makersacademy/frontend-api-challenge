@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function registerLoginModal() {
     loginModal = new bootstrap.Modal(document.querySelector("#loginModal"));
     document.querySelector("#callLogin").addEventListener("click", function () {
-      resetModal("#loginModalForm", "#loginModalLabel");
+      resetModal("#loginModalForm", "#loginModalLabel", "Login");
       loginModal.show();
     });
   }
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector("#registerModal")
     );
     document.querySelector("#callRegis").addEventListener("click", function () {
-      resetModal("#regisModalForm", "#registerModalLabel");
+      resetModal("#regisModalForm", "#registerModalLabel", "Registration");
       registerModal.show();
     });
   }
@@ -98,14 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   registerCallAllPeeps();
 
-  function resetModal(modalForm, modalLabel) {
+  function resetModal(modalForm, modalLabel, formType) {
     modalForm = document.querySelector(modalForm);
     let modalFormInputs = modalForm.querySelectorAll("input[type]");
     modalFormInputs[0].value = "";
     modalFormInputs[1].value = "";
     modalLabel = document.querySelector(modalLabel);
     modalForm.setAttribute("data-hide-body", "false");
-    modalLabel.innerHTML = "Registration form";
+    modalLabel.innerHTML = formType + " form";
     modalLabel.setAttribute("data-error", "");
   }
 
