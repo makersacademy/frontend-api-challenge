@@ -1,0 +1,28 @@
+{
+  "name": "chitter",
+  "version": "0.0.1",
+  "description": "A single page app which interfaces with the Maker's Chitter API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sa-mcquanzie/frontend-api-challenge.git"
+  },
+  "keywords": [
+    "makers",
+    "chitter"
+  ],
+  "author": "Amelia Scott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sa-mcquanzie/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/sa-mcquanzie/frontend-api-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^3.0.0"
+  },
+  "type" : "module"
+}

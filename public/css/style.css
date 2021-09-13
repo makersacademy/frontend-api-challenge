@@ -1,0 +1,40 @@
+body {
+    background: black;
+    font-family: monospace;
+}
+
+.back-link {
+    color: yellow;
+    font-weight: 600;
+}
+
+.handle {
+    color: #FF00AA;
+    font-weight: 600;
+}
+
+.peep-div {
+    margin: 1em;
+    padding: 1em;
+    background: black;
+    border-bottom: 2px grey dotted;
+}
+
+.peep-body {
+    font-size: 1.2em;
+    color: #66ff00;
+    margin-bottom: 0.8em;
+}
+
+.peep-info {
+    color: white;
+    margin-bottom: 0.8em;
+}
+
+.peep-author {}
+
+.peep-date {}
+
+.peep-body, .handle, .back-link {
+    cursor: pointer;
+}
