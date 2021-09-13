@@ -1,4 +1,4 @@
-# #Chitter API Frontend Challenge
+# Chitter API Frontend Challenge
 
 ```
    ,_      _.
@@ -17,7 +17,7 @@ Keen on implementig more userstories in the coming days
 
 Functional representation of user requirements:
 
-[Check out my workflow mindmap](https://github.com/CorinneBosch/frontend-api-challenge/main/public/images/mindmap.png)
+[Check out my workflow mindmap](https://github.com/CorinneBosch/frontend-api-challenge/blob/main/public/images/mindmap.png)
 
 ## Setup
 
