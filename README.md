@@ -7,40 +7,45 @@
    ''|\  /| ''
 ```
 
-## To improve:
+## What I've learned & need to improve:
+
+Having very limited time completing this weekend challenge I wanted to focus on interacting with the return key values from the given API.
+I was unsure on how to write tests in this context and tried to TDD with good planning and sudo code instead
+Keen on implementig more userstories in the coming days
 
 ## Implementation
 
 Functional representation of user requirements:
 
-[Check out my workflow mindmap]()
+[Check out my workflow mindmap](https://github.com/CorinneBosch/frontend-api-challenge/main/public/images/mindmap.png)
 
 ## Setup
 
 1. **Fork** this [chitter-challenge repository](https://github.com/CorinneBosch/frontend-api-challenge/tree/main)
 2. Then clone **your** fork to your computer.
-3. Ensure you have `Ruby` and `rspec` installed.
-4. Run `gem install bundler` if you dont have bundler.
-5. Once installed, run `bundle`.
+3. Ensure you have `npm` or `npx` installed locally or gobally.
 
 ## How to run
 
-To interact and play rock-paper-scissors web app, run `rackup` or `ruby app.rb` to start `localhost`.
+To interact with Zwitscher and stay up-to date with the world...
+Open up the index file in your terminal
+
+```
+$ open index.html
+```
 
 ## Run test
 
-To test specific features in your terminal.
+Run Jasmine tests in browser
 
 ```
-$ rspec spec/unit/file_name.rb
-$ rspec spec/feature/file_name.rb
+$ npx jasmine-browser-runner serve
 ```
 
-To test all units and features at once in your terminal.
+Run Jasmine tests in your terminal
 
 ```
-$ cd chitter-challenge
-$ rspec
+$ npx jasmine-browser-runner runSpecs
 ```
 
 ## The chitter-challenge is built upon the following user stories:

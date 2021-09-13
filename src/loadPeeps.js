@@ -25,10 +25,10 @@ function loadPeepDB(data) {
 
 function arrangeData(data) {
   return `<div class="inner-peep-div">
-  <h3 class="peep-body">${data.body}</h3>
-  <h6 class="peep-name">${data.user.handle}</h6>
-  <h6 class="peep-time">${data.updated_at}</h6>
-  <h6 class="peep-likes">Likes: ${data.likes.length}</h6>
+    <h3 class="peep-body">${data.body}</h3>
+    <h6 class="peep-name">${data.user.handle}</h6>
+    <h6 class="peep-time">${data.updated_at}</h6>
+    <h6 class="peep-likes">Likes: ${data.likes.length}</h6>
   </div>
   <hr>`;
 }
