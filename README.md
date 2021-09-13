@@ -23,7 +23,14 @@ Functional representation of user requirements:
 
 1. **Fork** this [chitter-challenge repository](https://github.com/CorinneBosch/frontend-api-challenge/tree/main)
 2. Then clone **your** fork to your computer.
-3. Ensure you have `npm` or `npx` installed locally or gobally.
+3. Ensure you have `node` installed locally or gobally.
+4. Otherwise install node as shown below
+
+```
+brew update
+brew install node
+brew upgrade node
+```
 
 ## How to run
 
