@@ -1,42 +1,38 @@
 export class User {
     static current;
 
-    constructor(handle, password) {
-        this.handle = handle;
-        this.password = password;
-        this.id;
-    }
-
-    createAccount() {
+    static createAccount(handle, password) {
         let requestURL = "https://chitter-backend-api-v2.herokuapp.com/users";
-        let params = new URLSearchParams({
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body:
+        
+        let body = JSON.stringify({
+            user:
             {
-                "user":
-                {
-                    "handle": `${this.handle}`,
-                    "password": "`${this.password}`"
-                }
+                handle: `${handle}`,
+                password: `${password}`
             }
-        })
+        });
 
-        let promise = fetch(requestURL, params)
-        .then(response => response)
+        let promise = fetch(requestURL,
+            {
+                method: "POST",
+                headers: { "Content-Type":"application/json" },
+                body: body   
+            }
+        )
+        .then(response => response.json())
         .then(data => {
-            this.id = data.id;
-            this.current = this;
+            this.current = data;
+            console.log(this.current);
         })
 
         return promise;
     }
 
-    login() {
+    static login() {
 
     }
 
-    logout() {
+    static logout() {
 
     }
 }

@@ -57,6 +57,28 @@ export function one(peep) {
     document.querySelector("body").appendChild(peepDiv);
 }
 
+export function newUserForm() {
+    let newUserForm = document.createElement("form");
+    let handleField = document.createElement("input");
+    let passwordField = document.createElement("input");
+    let submitButton = document.createElement("button");
+
+    newUserForm.setAttribute("class", "new-user-form");
+    handleField.setAttribute("class", "handle-field");
+    passwordField.setAttribute("class", "password-field");
+
+    handleField.setAttribute("type", "text");
+    passwordField.setAttribute("type", "password");
+
+    submitButton.innerHTML = "create user";
+
+    newUserForm.appendChild(handleField);
+    newUserForm.appendChild(passwordField);
+    newUserForm.appendChild(submitButton);
+
+    document.querySelector("body").appendChild(newUserForm);
+}
+
 function backDiv() {
     let div = document.createElement("div");
     let link = document.createElement("span");

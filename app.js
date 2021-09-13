@@ -14,3 +14,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Chitter frontend running on http://localhost:${port}`)
 })
+

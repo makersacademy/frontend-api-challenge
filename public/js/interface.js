@@ -4,9 +4,11 @@ import { User } from './user.js'
 import * as Show from './showHelpers.js'
 
 document.addEventListener("DOMContentLoaded", () => {
-    let user = new User("testUser42", "testPassword42");
-    user.createAccount();
-    console.log(User.current);
-    Show.allPeeps();
+    Show.newUserForm();
+    // User.createAccount("testUser82", "testPassword82");
+
+    // user.createAccount();
+    // console.log(User.current);
+    // Show.allPeeps();
 })
 
