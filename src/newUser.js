@@ -17,5 +17,6 @@ class NewUser {
     } else {
       element.innerHTML = `${user.handle} created!`;
     }
+    // can't be blank is another error message to handle
   }
 }
