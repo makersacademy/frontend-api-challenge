@@ -9,7 +9,7 @@ This is an incomplete project. This weekend challenge my intention was to explor
 Currently, all a user can do is load the app and press a refresh button to see the 50 most recent peeps, the username who posted them, and the time they were created.
 
 
-### Installation instructions
+## Installation instructions
 
 If required:
 
@@ -27,7 +27,7 @@ npm install
 
 to download dependencies.
 
-### Running the app
+## Running the app
 
 Either
 
@@ -47,7 +47,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### Running tests
+## Running tests
 
 Either
 
