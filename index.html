@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chitter</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+  </head>
+  <script src="src/Interface.js"></script>
+  <script src="src/Peep.js"></script>
+  <script src="src/User.js"></script>
+  <script src="src/Session.js"></script>
+  <script src="src/peepApi.js"></script>
+  <script src="src/userApi.js"></script>
+  <script src="src/sessionApi.js"></script>
+    <h1>Chitter</h1>
+
+      <h3 id="greetUser"></h3>
+      <div id="userContainer">
+      <input type='text' id="newHandle" />
+      <br>
+      <input type='text' id="newPassword" />
+      <br></br>
+      <button value="submit" id="addUser" action=""><span>Sign up </span></button>
+      <br>
+      or
+      <br>
+      <button value="submit" id="goToLoginPage" action=""><span>Login</span></button>
+    </div>
+
+    <div id="loginContainer">
+      <button id="showTimeline">Return to Timeline</button>
+      <br>
+      <input type='text' id="loginHandle" />
+      <br>
+      <input type='text' id="loginPassword" />
+      <br></br>
+      <button value="submit" id="loginUser" action=""><span>Login </span></button>
+    </div>
+
+    <br>
+    <div id="addPeepContainer">
+      <textarea style="resize:none" maxlength="1000" id="peepText" 
+        name="peedText" rows="2" cols="20" placeholder="Peep!"></textarea><br>
+      <button value="submit" id="addPeep" action=""><span>Add Peep </span></button>
+    </div>
+
+
+    <ul id="timeline"></ul>
+    <div id="singlePeep">
+      <br>
+      <button id="showTimeline">Return to Timeline</button>
+      <li id="singlePeepText"></li>
+    </div>
+  </body>
+
+</html>

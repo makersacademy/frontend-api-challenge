@@ -1,0 +1,12 @@
+li:hover {
+  background-color: rgb(208, 208, 211);
+  border-radius: 12px;
+}
+
+#singlePeep {
+  display: none;
+}
+
+#loginContainer {
+  display: none;
+}
