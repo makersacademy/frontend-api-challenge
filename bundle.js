@@ -17,19 +17,21 @@
 
   // index.js
   var viewingPeeps = require_viewingPeeps();
-  var content = () => {
-    document.createElement("div");
+  var peepContainer = () => {
+    let container = document.createElement("div");
+    container.id = "peepContainer";
+    container.classList.add("container");
+    document.body.appendChild(container);
   };
-  content();
+  peepContainer();
   viewingPeeps((data) => {
     data.forEach((x) => {
       console.log(x);
-      document.write(x.body);
       let div = document.createElement("div");
       div.innerText = x.body;
       div.id = `peep${x.id}`;
       div.class = "peep";
-      document.body.appendChild(div);
+      document.getElementById("peepContainer").appendChild(div);
     });
   });
 })();
