@@ -1,0 +1,97 @@
+.header {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1000px auto;
+  margin: 0 auto;
+}
+
+.sidebar-menu {
+  position: fixed;
+}
+
+.sidebar-menu__item {
+  display: flex;
+  align-items: center;
+  padding: 5px 50px;
+}
+
+
+.new-peep {
+  margin-bottom: 2px;
+  padding: 30px 30px;
+}
+
+.peep {
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 2px;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.peep-focus {
+  display: flex;
+  border-bottom: 1px solid red;
+  padding: 35px 15px;
+  text-decoration: none;
+}
+
+
+.peep:hover {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.peep-focus:hover {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.peep__author-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.peep__header {
+  display: flex;
+}
+
+.peep__author-handle {
+  font-size: 15px;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.peep__content{
+  display: flex;
+  margin-top: 2px;
+}
+
+.peep__text {
+  font-size: 15px;
+  overflow-wrap: break-word;
+}
+
+.peep__time-since {
+  margin-left: 5px;
+  color: grey
+}
+
+.peep__footer {
+  display: flex;
+  margin-top: 10px;
+}
+
+.peep__like-icon {
+  margin-top: 4px;
+}
+
+.peep__like-count{
+  margin-top: 5px;
+  margin-left: 8px;
+}
+
