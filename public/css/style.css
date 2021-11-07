@@ -4,8 +4,16 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: 275px auto 350px;
+  grid-template-columns: 300px auto 300px;
   margin: 0 auto;
+}
+
+.layout__left-sidebar-container {
+  border-right: 1px solid lightgrey;
+}
+
+.layout__right-sidebar-container {
+  border-left: 1px solid lightgrey;
 }
 
 .header {
@@ -18,36 +26,53 @@ body {
   align-items: center;
   background-color: white;
   border-bottom: 1px solid lightgrey;
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
 }
 
 .feed {
   display: flex;
 }
 
+.layout__left-sidebar {
+  padding-left: 35px;
+}
+
+.layout__right-sidebar {
+  padding-left: 35px;
+  margin-top: 43px;
+}
+
 .sidebar-menu {
-  padding: 20px;
+  margin-top: 3px;
+  padding: 10px;
   position: fixed;
 }
 
-.sidebar-menu__item {
-  display: flex;
-  align-items: center;
-  padding: 5px 50px;
+.sidebar-menu__item:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
 }
 
+.sidebar-button {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  align-items: center;
+  padding: 10px 55px;
+  margin: 8px 0px;
+  background: rgb(255, 0, 0);
+  color: white;
+  border-radius: 20px;
+  transition-duration: 0.4s;
+}
 
-.new-peep {
-  margin-bottom: 2px;
-  padding: 30px 30px;
+.sidebar-button:hover {
+  cursor: pointer;
+  background-color: rgb(200, 0, 0);
 }
 
 .peep {
   display: flex;
   border-bottom: 1px solid lightgrey;
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
   margin-bottom: 2px;
   padding: 10px 15px;
   text-decoration: none;
@@ -62,11 +87,11 @@ body {
 
 
 .peep:hover {
-  background: rgba(0, 0, 0, 0.01);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .peep-focus:hover {
-  background: rgba(0, 0, 0, 0.01);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .peep__author-pic {
