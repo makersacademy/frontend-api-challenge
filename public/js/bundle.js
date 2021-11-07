@@ -1,51 +1,55 @@
 (() => {
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+
+  // public/templates/peep.js
+  var require_peep = __commonJS({
+    "public/templates/peep.js"(exports, module) {
+      var peepTemplate2 = (peep) => {
+        let likes = peep.likes.length;
+        if (peep.likes.length === 0) {
+          likes = "";
+        }
+        return `<div class="peep">
+      <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>
+      <div class="peep__main">
+        <div class="peep__header">
+          <div class="peep__author-handle">
+            ${peep.user.handle} 
+          </div>
+          <div class="peep__time-since">
+            time since
+          </div>
+        </div>
+        <div class="peep__content">
+          <div class="peep__text">
+            ${peep.body}
+          </div>
+        </div>
+        <div class="peep__footer">
+          <img class="peep__like-icon" src="/images/like_icon.png" width="20" height="20"></img>
+          <div class="peep__like-count">
+            ${likes}
+          </div>
+        </div>
+      </div>
+    </div>`;
+      };
+      module.exports = peepTemplate2;
+    }
+  });
+
   // public/js/index.js
+  var peepTemplate = require_peep();
   var peepList = document.getElementById("peep-list");
   var fetchAllPeeps = (callback) => {
     fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json().then((peeps) => callback(peeps)));
   };
   var showAllPeeps = (peeps) => {
     peeps.forEach((peep) => {
-      peepList.appendChild(createPeepElement(peep));
+      peepList.insertAdjacentHTML("beforeend", peepTemplate(peep));
     });
-  };
-  var createPeepElement = (peep) => {
-    let peepElement = document.createElement("div");
-    peepElement.setAttribute("class", "peep");
-    let profilePic = document.createElement("img");
-    profilePic.setAttribute("src", "/images/red_egg.jpeg");
-    profilePic.setAttribute("class", "peep__author-pic");
-    peepElement.appendChild(profilePic);
-    let peepMainElement = document.createElement("div");
-    peepMainElement.setAttribute("class", "peep__main");
-    peepElement.appendChild(peepMainElement);
-    let peepHeaderElement = document.createElement("div");
-    peepHeaderElement.setAttribute("class", "peep__header");
-    peepMainElement.appendChild(peepHeaderElement);
-    let peepAuthorHandleElement = document.createElement("div");
-    peepAuthorHandleElement.setAttribute("class", "peep__author-handle");
-    peepAuthorHandleElement.textContent = peep.user.handle;
-    peepHeaderElement.appendChild(peepAuthorHandleElement);
-    let peepContentElement = document.createElement("div");
-    peepContentElement.setAttribute("class", "peep__content");
-    let peepTextElement = document.createElement("div");
-    peepTextElement.setAttribute("class", "peep__text");
-    peepTextElement.textContent = peep.body;
-    peepContentElement.appendChild(peepTextElement);
-    peepMainElement.appendChild(peepContentElement);
-    let peepFooterElement = document.createElement("div");
-    peepFooterElement.setAttribute("class", "peep__footer");
-    peepMainElement.appendChild(peepFooterElement);
-    let likeIcon = document.createElement("img");
-    likeIcon.setAttribute("src", "/images/like_icon.png");
-    likeIcon.setAttribute("class", "peep__like-icon");
-    likeIcon.setAttribute("width", "18");
-    likeIcon.setAttribute("height", "18");
-    peepFooterElement.appendChild(likeIcon);
-    let likeCountElement = document.createElement("div");
-    likeCountElement.setAttribute("class", "peep__like-count");
-    peepFooterElement.appendChild(likeCountElement);
-    return peepElement;
   };
   fetchAllPeeps((peeps) => showAllPeeps(peeps));
 })();
