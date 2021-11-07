@@ -1,4 +1,5 @@
 const fetchPeeps = require('./fetchPeeps.js')
+const newUser = require('./newUser.js')
 
 fetchPeeps((jsonData) => {
   jsonData.forEach(element =>
