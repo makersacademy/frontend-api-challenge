@@ -18,7 +18,7 @@
             Back to top
           </div>
           <div class="sidebar-button">
-            (Peep)
+            -Peep
           </div>
         </div>
       </div>
@@ -33,16 +33,42 @@
     <div class="layout__right-sidebar-container">
       <div class="layout__right-sidebar">
         <div class="sidebar-menu">
+          <button data-target-modal="#signup-form" class="sidebar-button" id="signup-button">
+            Sign up
+          </button>
           <div class="sidebar-button">
             Log in
           </div>
           <div class="sidebar-button">
-            (Sign out)
+            -Sign out
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- modals -->
+  <div class="modal" id="signup-form">
+    <div data-modal-close class="modal__close-button">&times;</div>
+    <h2>Sign up</h2>
+    <div class="modal__form-element">
+      <input type="text" id="signup-form-handle" placeholder="Handle">
+    </div>
+    <div class="modal__form-element">
+      <input type="password" id="signup-form-password" placeholder="Password">
+    </div>
+    <div class="modal__form-element">
+      <button id="signup-form-submit">Create account</button>
+    </div>
+  </div>
+
+  <div class="modal" id="signup-success">
+    <div data-modal-close class="modal__close-button">&times;</div>
+    <h2 id="signup-welcome"></h2>
+  </div>
+
+  <div id="overlay"></div>
+
   <script type="text/javascript" src="js/bundle.js"></script>
 </body>
 </html>

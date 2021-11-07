@@ -1,10 +1,11 @@
-const peepTemplate = (peep) => {
+const renderPeep = (peep) => {
   let likes = peep.likes.length
-  if (peep.likes.length === 0) {
+  if (likes === 0) {
     likes = ""
   }
   let date = new Date(peep.updated_at).toString();
   date = date.substring(0, 21);
+  // to be improved
   return (
     `<div class="peep">
       <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>
@@ -33,4 +34,4 @@ const peepTemplate = (peep) => {
   )
 }
 
-module.exports = peepTemplate
+module.exports = renderPeep
