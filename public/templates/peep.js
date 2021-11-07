@@ -3,6 +3,8 @@ const peepTemplate = (peep) => {
   if (peep.likes.length === 0) {
     likes = ""
   }
+  let date = new Date(peep.updated_at).toString();
+  date = date.substring(0, 21);
   return (
     `<div class="peep">
       <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>
@@ -12,7 +14,7 @@ const peepTemplate = (peep) => {
             ${peep.user.handle} 
           </div>
           <div class="peep__time-since">
-            time since
+            ${date}
           </div>
         </div>
         <div class="peep__content">

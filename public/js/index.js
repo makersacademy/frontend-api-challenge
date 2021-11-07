@@ -1,6 +1,6 @@
 const peepTemplate = require("../templates/peep")
 
-const peepList = document.getElementById('peep-list');
+const feed = document.getElementById('feed');
 
 const fetchAllPeeps = (callback) => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
@@ -10,7 +10,7 @@ const fetchAllPeeps = (callback) => {
 
 const showAllPeeps = (peeps) => {
   peeps.forEach((peep) => {
-    peepList.insertAdjacentHTML('beforeend', peepTemplate(peep));
+    feed.insertAdjacentHTML('beforeend', peepTemplate(peep));
   })
 };
 

@@ -11,6 +11,8 @@
         if (peep.likes.length === 0) {
           likes = "";
         }
+        let date = new Date(peep.updated_at).toString();
+        date = date.substring(0, 21);
         return `<div class="peep">
       <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>
       <div class="peep__main">
@@ -19,7 +21,7 @@
             ${peep.user.handle} 
           </div>
           <div class="peep__time-since">
-            time since
+            ${date}
           </div>
         </div>
         <div class="peep__content">
@@ -42,13 +44,13 @@
 
   // public/js/index.js
   var peepTemplate = require_peep();
-  var peepList = document.getElementById("peep-list");
+  var feed = document.getElementById("feed");
   var fetchAllPeeps = (callback) => {
     fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json().then((peeps) => callback(peeps)));
   };
   var showAllPeeps = (peeps) => {
     peeps.forEach((peep) => {
-      peepList.insertAdjacentHTML("beforeend", peepTemplate(peep));
+      feed.insertAdjacentHTML("beforeend", peepTemplate(peep));
     });
   };
   fetchAllPeeps((peeps) => showAllPeeps(peeps));

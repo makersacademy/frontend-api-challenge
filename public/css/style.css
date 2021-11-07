@@ -1,15 +1,33 @@
-.header {
-  display: flex;
-  margin-bottom: 20px;
+body {
+  margin: 0;
 }
 
 .layout {
   display: grid;
-  grid-template-columns: 1000px auto;
+  grid-template-columns: 275px auto 350px;
   margin: 0 auto;
 }
 
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 20px 15px;
+  font-weight: 700;
+  font-size: 20px;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+}
+
+.feed {
+  display: flex;
+}
+
 .sidebar-menu {
+  padding: 20px;
   position: fixed;
 }
 
@@ -28,6 +46,8 @@
 .peep {
   display: flex;
   border-bottom: 1px solid lightgrey;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
   margin-bottom: 2px;
   padding: 10px 15px;
   text-decoration: none;
@@ -93,6 +113,6 @@
 .peep__like-count{
   font-size: 14px;
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 8px;
 }
 
