@@ -203,6 +203,15 @@ body {
   margin-top: 10px;
 }
 
+.error {
+  color: red;
+  display: none;
+}
+
+.error.active {
+  display: inline;
+}
+
 #overlay {
   z-index: 500;
   position: fixed;

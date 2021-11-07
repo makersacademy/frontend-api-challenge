@@ -2,6 +2,15 @@ const renderPeep = require("../templates/peep")
 
 const feed = document.getElementById('feed');
 
+const checkFetch = (response) => {
+  if (!response.ok) {
+    console.log(response)
+    throw Error(response.status);
+  } else {
+    return response;
+  }
+};
+
 const fetchAllPeeps = (callback) => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
   .then(response => response.json()
@@ -45,7 +54,7 @@ overlay.addEventListener('click', () => {
   // selecting all the active (visible) modals
   modals.forEach(modal => {
     hideModal(modal);
-  })
+  });
 });
 
 const showModal = (modal) => {
@@ -56,6 +65,10 @@ const showModal = (modal) => {
 const hideModal = (modal) => {
   modal.classList.remove('active');
   overlay.classList.remove('active');
+  let error = modal.querySelector('.error.active');
+  if (error) {
+    hideError(error);
+  };
 };
 
 const signupFormButton = document.getElementById('signup-form-submit')
@@ -73,7 +86,22 @@ const attemptSignup = (handle, password) => {
       'Content-Type': 'application/json'
     },
     body: `{"user": {"handle":"${handle}", "password":"${password}"}}`
-  }).then(flashSuccess(handle));
+  })
+  .then((response) => {
+    checkFetch(response);
+  })
+  .then(() => {
+    flashSuccess(handle);
+  })
+  .catch((error) => {
+    console.log('Sign up error:', error);
+    let errString = error.toString()
+    if (errString.includes('422')) {
+      errString = "That username is already taken"
+    }
+    let errorElement = document.getElementById('signup-error');
+    flashError(errString, errorElement);
+  });
 };
 
 const flashSuccess = (handle) => {
@@ -81,6 +109,23 @@ const flashSuccess = (handle) => {
   hideModal(signupFormModal);
   const successModal = document.getElementById('signup-success');
   const signupWelcome = document.getElementById('signup-welcome');
-  signupWelcome.innertext = `Your account has been created successfully, welcome to Chitter ${handle}.`;
+  signupWelcome.textContent = `Your account has been created successfully, welcome to Chitter ${handle}.`;
   showModal(successModal);
+  document.getElementById('signup-form-password').value = "";
+  document.getElementById('signup-form-handle').value = "";
+  // value don't reset because it's not a form
 };
+
+const flashError = (error, errorElement) => {
+  errorElement.textContent = error
+  showError(errorElement);
+}
+
+const showError = (error) => {
+  error.classList.add('active');
+};
+
+const hideError = (error) => {
+  error.classList.remove('active');
+};
+

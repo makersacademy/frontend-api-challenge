@@ -45,6 +45,14 @@
   // public/js/index.js
   var renderPeep = require_peep();
   var feed = document.getElementById("feed");
+  var checkFetch = (response) => {
+    if (!response.ok) {
+      console.log(response);
+      throw Error(response.status);
+    } else {
+      return response;
+    }
+  };
   var fetchAllPeeps = (callback) => {
     fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json().then((peeps) => callback(peeps)));
   };
@@ -82,6 +90,11 @@
   var hideModal = (modal) => {
     modal.classList.remove("active");
     overlay.classList.remove("active");
+    let error = modal.querySelector(".error.active");
+    if (error) {
+      hideError(error);
+    }
+    ;
   };
   var signupFormButton = document.getElementById("signup-form-submit");
   signupFormButton.addEventListener("click", () => {
@@ -96,14 +109,38 @@
         "Content-Type": "application/json"
       },
       body: `{"user": {"handle":"${handle}", "password":"${password}"}}`
-    }).then(flashSuccess(handle));
+    }).then((response) => {
+      checkFetch(response);
+    }).then(() => {
+      flashSuccess(handle);
+    }).catch((error) => {
+      console.log("Sign up error:", error);
+      let errString = error.toString();
+      if (errString.includes("422")) {
+        errString = "That username is already taken";
+      }
+      let errorElement = document.getElementById("signup-error");
+      flashError(errString, errorElement);
+    });
   };
   var flashSuccess = (handle) => {
     const signupFormModal = document.getElementById("signup-form");
     hideModal(signupFormModal);
     const successModal = document.getElementById("signup-success");
     const signupWelcome = document.getElementById("signup-welcome");
-    signupWelcome.innertext = `Your account has been created successfully, welcome to Chitter ${handle}.`;
+    signupWelcome.textContent = `Your account has been created successfully, welcome to Chitter ${handle}.`;
     showModal(successModal);
+    document.getElementById("signup-form-password").value = "";
+    document.getElementById("signup-form-handle").value = "";
+  };
+  var flashError = (error, errorElement) => {
+    errorElement.textContent = error;
+    showError(errorElement);
+  };
+  var showError = (error) => {
+    error.classList.add("active");
+  };
+  var hideError = (error) => {
+    error.classList.remove("active");
   };
 })();
