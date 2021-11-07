@@ -2,6 +2,8 @@ const renderPeep = require("../templates/peep")
 
 const feed = document.getElementById('feed');
 
+let Token = null
+
 const checkFetch = (response) => {
   if (!response.ok) {
     console.log(response)
@@ -15,6 +17,9 @@ const fetchAllPeeps = (callback) => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
   .then(response => response.json()
   .then(peeps => callback(peeps)))
+  .catch(error => {
+    console.log("Fetch all peeps error:", error)
+  })
 };
 
 const showAllPeeps = (peeps) => {
@@ -69,6 +74,11 @@ const hideModal = (modal) => {
   if (error) {
     hideError(error);
   };
+  let inputs = modal.querySelectorAll('input');
+  inputs.forEach((input) => {
+    input.value = ""
+  });
+  // value doesn't reset because it's not a form - might change this
 };
 
 const signupFormButton = document.getElementById('signup-form-submit')
@@ -91,7 +101,7 @@ const attemptSignup = (handle, password) => {
     checkFetch(response);
   })
   .then(() => {
-    flashSuccess(handle);
+    signUpSuccess(handle);
   })
   .catch((error) => {
     console.log('Sign up error:', error);
@@ -104,16 +114,35 @@ const attemptSignup = (handle, password) => {
   });
 };
 
-const flashSuccess = (handle) => {
+const signUpSuccess = (handle) => {
   const signupFormModal = document.getElementById('signup-form');
   hideModal(signupFormModal);
   const successModal = document.getElementById('signup-success');
   const signupWelcome = document.getElementById('signup-welcome');
   signupWelcome.textContent = `Your account has been created successfully, welcome to Chitter ${handle}.`;
   showModal(successModal);
-  document.getElementById('signup-form-password').value = "";
-  document.getElementById('signup-form-handle').value = "";
-  // value don't reset because it's not a form
+};
+
+const logInSuccess = (responseToken) => {
+  const loginFormModal = document.getElementById('login-form');
+  hideModal(loginFormModal);
+  Token = responseToken;
+  loggedInView()
+};
+
+const loggedInView = () => {
+  hideButton(document.getElementById('signup-button'));
+  hideButton(document.getElementById('login-button'));
+  showButton(document.getElementById('logout-button'));
+  showButton(document.getElementById('peep-button'));
+};
+
+const showButton = (button) => {
+  button.classList.add('active');
+};
+
+const hideButton = (button) => {
+  button.classList.remove('active');
 };
 
 const flashError = (error, errorElement) => {
@@ -129,3 +158,32 @@ const hideError = (error) => {
   error.classList.remove('active');
 };
 
+const attemptLogin = (handle, password) => {
+  fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: `{"session": {"handle":"${handle}", "password":"${password}"}}`
+  })
+  .then((response) => {
+    checkFetch(response);
+  })
+  .then(() => {
+    logInSuccess();
+  })
+  .catch((error) => {
+    console.log('Log in error:', error);
+    let errString = error.toString()
+    errorElement = document.getElementById('login-error');
+    flashError(errString, errorElement);
+  });
+};
+
+const loginFormButton = document.getElementById('login-form-submit')
+
+loginFormButton.addEventListener('click', () => {
+  let handle = document.getElementById('login-form-handle').value;
+  let password = document.getElementById('login-form-password').value;
+  attemptLogin(handle, password)
+});

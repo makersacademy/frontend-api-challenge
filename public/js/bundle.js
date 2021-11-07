@@ -45,6 +45,7 @@
   // public/js/index.js
   var renderPeep = require_peep();
   var feed = document.getElementById("feed");
+  var Token = null;
   var checkFetch = (response) => {
     if (!response.ok) {
       console.log(response);
@@ -54,7 +55,9 @@
     }
   };
   var fetchAllPeeps = (callback) => {
-    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json().then((peeps) => callback(peeps)));
+    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json().then((peeps) => callback(peeps))).catch((error) => {
+      console.log("Fetch all peeps error:", error);
+    });
   };
   var showAllPeeps = (peeps) => {
     peeps.forEach((peep) => {
@@ -95,6 +98,10 @@
       hideError(error);
     }
     ;
+    let inputs = modal.querySelectorAll("input");
+    inputs.forEach((input) => {
+      input.value = "";
+    });
   };
   var signupFormButton = document.getElementById("signup-form-submit");
   signupFormButton.addEventListener("click", () => {
@@ -112,30 +119,46 @@
     }).then((response) => {
       checkFetch(response);
     }).then(() => {
-      flashSuccess(handle);
+      signUpSuccess(handle);
     }).catch((error) => {
       console.log("Sign up error:", error);
       let errString = error.toString();
       if (errString.includes("422")) {
         errString = "That username is already taken";
       }
-      let errorElement = document.getElementById("signup-error");
-      flashError(errString, errorElement);
+      let errorElement2 = document.getElementById("signup-error");
+      flashError(errString, errorElement2);
     });
   };
-  var flashSuccess = (handle) => {
+  var signUpSuccess = (handle) => {
     const signupFormModal = document.getElementById("signup-form");
     hideModal(signupFormModal);
     const successModal = document.getElementById("signup-success");
     const signupWelcome = document.getElementById("signup-welcome");
     signupWelcome.textContent = `Your account has been created successfully, welcome to Chitter ${handle}.`;
     showModal(successModal);
-    document.getElementById("signup-form-password").value = "";
-    document.getElementById("signup-form-handle").value = "";
   };
-  var flashError = (error, errorElement) => {
-    errorElement.textContent = error;
-    showError(errorElement);
+  var logInSuccess = (responseToken) => {
+    const loginFormModal = document.getElementById("login-form");
+    hideModal(loginFormModal);
+    Token = responseToken;
+    loggedInView();
+  };
+  var loggedInView = () => {
+    hideButton(document.getElementById("signup-button"));
+    hideButton(document.getElementById("login-button"));
+    showButton(document.getElementById("logout-button"));
+    showButton(document.getElementById("peep-button"));
+  };
+  var showButton = (button) => {
+    button.classList.add("active");
+  };
+  var hideButton = (button) => {
+    button.classList.remove("active");
+  };
+  var flashError = (error, errorElement2) => {
+    errorElement2.textContent = error;
+    showError(errorElement2);
   };
   var showError = (error) => {
     error.classList.add("active");
@@ -143,4 +166,28 @@
   var hideError = (error) => {
     error.classList.remove("active");
   };
+  var attemptLogin = (handle, password) => {
+    fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: `{"session": {"handle":"${handle}", "password":"${password}"}}`
+    }).then((response) => {
+      checkFetch(response);
+    }).then(() => {
+      logInSuccess();
+    }).catch((error) => {
+      console.log("Log in error:", error);
+      let errString = error.toString();
+      errorElement = document.getElementById("login-error");
+      flashError(errString, errorElement);
+    });
+  };
+  var loginFormButton = document.getElementById("login-form-submit");
+  loginFormButton.addEventListener("click", () => {
+    let handle = document.getElementById("login-form-handle").value;
+    let password = document.getElementById("login-form-password").value;
+    attemptLogin(handle, password);
+  });
 })();

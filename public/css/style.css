@@ -4,7 +4,7 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: 300px auto 300px;
+  grid-template-columns: 375px auto 375px;
   margin: 0 auto;
 }
 
@@ -33,11 +33,11 @@ body {
 }
 
 .layout__left-sidebar {
-  padding-left: 35px;
+  padding-left: 110px;
 }
 
 .layout__right-sidebar {
-  padding-left: 35px;
+  padding-left: 25px;
   margin-top: 43px;
 }
 
@@ -47,13 +47,10 @@ body {
   position: fixed;
 }
 
-.sidebar-menu__item:hover {
-  background: rgba(0, 0, 0, 0.02);
-  border-radius: 20px;
-}
-
 .sidebar-button {
+  display: none;
   border: none;
+  width: 220px;
   text-align: center;
   font-size: 18px;
   font-weight: 700;
@@ -64,6 +61,10 @@ body {
   color: white;
   border-radius: 20px;
   transition-duration: 0.4s;
+}
+
+.sidebar-button.active {
+  display: unset;
 }
 
 .sidebar-button:hover {

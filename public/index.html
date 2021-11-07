@@ -13,13 +13,17 @@
     <div class="layout__left-sidebar-container">
       <div class="layout__left-sidebar">
         <div class="sidebar-menu">
-          <img class="sidebar-menu__logo" src="/images/chitter_logo.png" height="40px"></img>
-          <div class="sidebar-button">
-            Back to top
+          <div>
+            <img class="sidebar-menu__logo" src="/images/chitter_logo.png" height="40px"></img>
           </div>
-          <div class="sidebar-button">
-            -Peep
+          <div>
+            <button class="sidebar-button active">
+              Back to top
+            </button>
           </div>
+          <button class="sidebar-button" id="peep-button">
+            Peep
+          </button>
         </div>
       </div>
     </div>
@@ -33,15 +37,15 @@
     <div class="layout__right-sidebar-container">
       <div class="layout__right-sidebar">
         <div class="sidebar-menu">
-          <button data-target-modal="#signup-form" class="sidebar-button" id="signup-button">
+          <button data-target-modal="#signup-form" class="sidebar-button active" id="signup-button">
             Sign up
           </button>
-          <div class="sidebar-button">
+          <button data-target-modal="#login-form" class="sidebar-button active" id="login-button">
             Log in
-          </div>
-          <div class="sidebar-button">
-            -Sign out
-          </div>
+          </button>
+          <button class="sidebar-button" id="logout-button">
+            Log out
+          </button>
         </div>
       </div>
     </div>
@@ -66,6 +70,21 @@
   <div class="modal" id="signup-success">
     <div data-modal-close class="modal__close-button">&times;</div>
     <h2 id="signup-welcome"></h2>
+  </div>
+
+  <div class="modal" id="login-form">
+    <div data-modal-close class="modal__close-button">&times;</div>
+    <h2>Log in</h2>
+    <div class="modal__form-element">
+      <input type="text" id="login-form-handle" placeholder="Handle">
+    </div>
+    <div class="modal__form-element">
+      <input type="password" id="login-form-password" placeholder="Password">
+    </div>
+    <h3 class='error' id="login-error"></h3>
+    <div class="modal__form-element">
+      <button id="login-form-submit">Submit</button>
+    </div>
   </div>
 
   <div id="overlay"></div>
