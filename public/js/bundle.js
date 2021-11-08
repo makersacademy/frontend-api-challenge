@@ -183,9 +183,9 @@
   signupFormButton.addEventListener("click", () => {
     let handle = document.getElementById("signup-form-handle").value;
     let password = document.getElementById("signup-form-password").value;
-    attemptSignup(handle, password);
+    trySignup(handle, password);
   });
-  var attemptSignup = (handle, password) => {
+  var trySignup = (handle, password) => {
     fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
       method: "POST",
       headers: {
@@ -245,7 +245,7 @@
   var hideError = (error) => {
     error.classList.remove("active");
   };
-  var attemptLogin = (handle, password) => {
+  var tryLogin = (handle, password) => {
     fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
       method: "POST",
       headers: {
@@ -266,7 +266,7 @@
   loginFormButton.addEventListener("click", () => {
     let handle = document.getElementById("login-form-handle").value;
     let password = document.getElementById("login-form-password").value;
-    attemptLogin(handle, password);
+    tryLogin(handle, password);
   });
   var scrollToTopButton = document.getElementById("scroll-to-top-button");
   scrollToTopButton.addEventListener("click", () => {
@@ -276,9 +276,9 @@
   var createPeepButton = document.getElementById("peep-create-form-submit");
   createPeepButton.addEventListener("click", () => {
     let content = document.getElementById("peep-create-content").value;
-    attemptCreatePeep(content);
+    tryCreatePeep(content);
   });
-  var attemptCreatePeep = (content) => {
+  var tryCreatePeep = (content) => {
     fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
       method: "POST",
       headers: {
@@ -300,9 +300,15 @@
   var peepCreateSuccess = (response) => {
     const peepCreateModal = document.getElementById("peep-create-form");
     response.json().then((peep) => {
-      feed.insertAdjacentHTML("afterbegin", renderPeep(peep));
-      hideModal(peepCreateModal);
-    });
+      feed.insertAdjacentHTML("afterbegin", renderAuthoredPeep(peep, peep.id));
+      return peep;
+    }).then((peep) => {
+      let deleteButton = document.getElementById(`delete-button-${peep.id}`);
+      deleteButton.addEventListener("click", () => {
+        let peep2 = deleteButton.closest(".peep");
+        tryDeletePeep(peep2.dataset.peepId);
+      });
+    }).then(() => hideModal(peepCreateModal));
   };
   var tryDeletePeep = (peepid) => {
     fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepid}`, {
@@ -312,7 +318,9 @@
       }
     }).then((response) => {
       return checkFetch(response);
-    }).then(peepDeleteSuccess(peepid)).catch((error) => {
+    }).then(() => {
+      peepDeleteSuccess(peepid);
+    }).catch((error) => {
       console.log("Delete peep error:", error);
       let errString = error.toString();
       errorElement = document.getElementById("peep-create-error");
@@ -327,7 +335,9 @@
       }
     }).then((response) => {
       return checkFetch(response);
-    }).then(peepLikeSuccess(peepid)).catch((error) => {
+    }).then(() => {
+      peepLikeSuccess(peepid);
+    }).catch((error) => {
       console.log("Like peep error:", error);
       let errString = error.toString();
       errorElement = document.getElementById("peep-create-error");

@@ -26,7 +26,6 @@ node app.js
 
 ## Notes
 * Refreshing resets the page and the session
-* Some errors aren't handled correctly and it appears you can do things that haven't actually gone through to the server
 * Click anywhere on the background to close a modal
 
 # Major refactoring needed

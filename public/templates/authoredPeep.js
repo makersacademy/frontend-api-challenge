@@ -34,5 +34,4 @@ const renderAuthoredPeep = (peep, peepid) => {
     </div>`
   )
 }
-// delete button ids aren't necessary anymore but I've kept them for clarity
 module.exports = renderAuthoredPeep

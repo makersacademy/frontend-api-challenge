@@ -135,10 +135,10 @@ const signupFormButton = document.getElementById('signup-form-submit')
 signupFormButton.addEventListener('click', () => {
   let handle = document.getElementById('signup-form-handle').value;
   let password = document.getElementById('signup-form-password').value;
-  attemptSignup(handle, password)
+  trySignup(handle, password)
 });
 
-const attemptSignup = (handle, password) => {
+const trySignup = (handle, password) => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
     method: 'POST',
     headers: {
@@ -212,7 +212,7 @@ const hideError = (error) => {
   error.classList.remove('active');
 };
 
-const attemptLogin = (handle, password) => {
+const tryLogin = (handle, password) => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
   method: 'POST',
   headers: {
@@ -238,7 +238,7 @@ const loginFormButton = document.getElementById('login-form-submit')
 loginFormButton.addEventListener('click', () => {
   let handle = document.getElementById('login-form-handle').value;
   let password = document.getElementById('login-form-password').value;
-  attemptLogin(handle, password)
+  tryLogin(handle, password)
 });
 
 const scrollToTopButton = document.getElementById('scroll-to-top-button')
@@ -253,10 +253,10 @@ const createPeepButton = document.getElementById('peep-create-form-submit');
 
 createPeepButton.addEventListener('click', () => {
   let content = document.getElementById('peep-create-content').value;
-  attemptCreatePeep(content)
+  tryCreatePeep(content)
 });
 
-const attemptCreatePeep = (content) => {
+const tryCreatePeep = (content) => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
   method: 'POST',
   headers: {
@@ -282,9 +282,17 @@ const attemptCreatePeep = (content) => {
 const peepCreateSuccess = (response) => {
   const peepCreateModal = document.getElementById('peep-create-form');
   response.json().then((peep) => {
-    feed.insertAdjacentHTML('afterbegin', renderPeep(peep));
-    hideModal(peepCreateModal);
+    feed.insertAdjacentHTML('afterbegin', renderAuthoredPeep(peep, peep.id));
+    return peep;
   })
+  .then((peep) => {
+    let deleteButton = document.getElementById(`delete-button-${peep.id}`);
+    deleteButton.addEventListener('click', () => {
+      let peep = deleteButton.closest('.peep');
+      tryDeletePeep(peep.dataset.peepId);
+    });
+  })
+  .then(() => hideModal(peepCreateModal))
   // .then(refreshPeeps())
   /* I choose not to refresh here as if the program gets here the peep was
   created successfully, so a full refresh is unnecessary and slow */
@@ -299,9 +307,9 @@ const tryDeletePeep = (peepid) => {
   .then((response) => {
     return checkFetch(response);
   })
-  .then(
-    peepDeleteSuccess(peepid)
-  )
+  .then(() => {
+    peepDeleteSuccess(peepid);
+  })
   .catch((error) => {
     console.log('Delete peep error:', error)
     let errString = error.toString()
@@ -319,9 +327,9 @@ const tryLikePeep = (peepid, userid) => {
   .then((response) => {
     return checkFetch(response);
   })
-  .then(
-    peepLikeSuccess(peepid)
-  )
+  .then(() => {
+    peepLikeSuccess(peepid);
+  })
   .catch((error) => {
     console.log('Like peep error:', error)
     let errString = error.toString()
