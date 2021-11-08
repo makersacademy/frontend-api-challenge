@@ -143,6 +143,12 @@ body {
   margin-left: 8px;
 }
 
+.peep__delete-icon {
+  margin-top: 4px;
+  margin-left: 500px;
+  cursor: pointer;
+}
+
 .modal {
   display: none;
   position: fixed;

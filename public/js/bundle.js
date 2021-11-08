@@ -6,14 +6,14 @@
   // public/templates/peep.js
   var require_peep = __commonJS({
     "public/templates/peep.js"(exports, module) {
-      var renderPeep2 = (peep) => {
+      var renderPeep2 = (peep, peepid) => {
         let likes = peep.likes.length;
         if (likes === 0) {
           likes = "";
         }
         let date = new Date(peep.updated_at).toString();
         date = date.substring(0, 21);
-        return `<div class="peep">
+        return `<div class="peep" data-peep-id="${peepid}">
       <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>
       <div class="peep__main">
         <div class="peep__header">
@@ -42,8 +42,49 @@
     }
   });
 
+  // public/templates/authoredPeep.js
+  var require_authoredPeep = __commonJS({
+    "public/templates/authoredPeep.js"(exports, module) {
+      var renderAuthoredPeep2 = (peep, peepid) => {
+        let likes = peep.likes.length;
+        if (likes === 0) {
+          likes = "";
+        }
+        let date = new Date(peep.updated_at).toString();
+        date = date.substring(0, 21);
+        return `<div class="peep" data-peep-id="${peepid}">
+      <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>
+      <div class="peep__main">
+        <div class="peep__header">
+          <div class="peep__author-handle">
+            ${peep.user.handle} 
+          </div>
+          <div class="peep__time-since">
+            ${date}
+          </div>
+        </div>
+        <div class="peep__content">
+          <div class="peep__text">
+            ${peep.body}
+          </div>
+        </div>
+        <div class="peep__footer">
+          <img class="peep__like-icon" src="/images/like_icon.png" width="20" height="20"></img>
+          <div class="peep__like-count">
+            ${likes}
+          </div>
+          <img class="peep__delete-icon" id="delete-button-${peepid}" src="/images/delete_icon.png" width="20" height="20"></img>
+        </div>
+      </div>
+    </div>`;
+      };
+      module.exports = renderAuthoredPeep2;
+    }
+  });
+
   // public/js/index.js
   var renderPeep = require_peep();
+  var renderAuthoredPeep = require_authoredPeep();
   var feed = document.getElementById("feed");
   var currentUser = {
     userid: null,
@@ -62,17 +103,37 @@
       console.log("Fetch all peeps error:", error);
     });
   };
-  var showAllPeeps = (peeps) => {
-    peeps.forEach((peep) => {
-      feed.insertAdjacentHTML("beforeend", renderPeep(peep));
+  var setupDeleteButtons = () => {
+    let deletePeepButtons = document.querySelectorAll(".peep__delete-icon");
+    console.log("hello");
+    console.log(deletePeepButtons);
+    deletePeepButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        console.log("delete button clicked");
+        let peep = button.closest(".peep");
+        console.log("closest peep", peep);
+        tryDeletePeep(peep.dataset.peepId);
+      });
     });
   };
+  var showAllPeeps = (peeps) => {
+    console.log("inside show all peeps");
+    peeps.forEach((peep) => {
+      if (peep.user.id == currentUser.userid) {
+        feed.insertAdjacentHTML("beforeend", renderAuthoredPeep(peep, peep.id));
+      } else {
+        feed.insertAdjacentHTML("beforeend", renderPeep(peep, peep.id));
+      }
+    });
+    setupDeleteButtons();
+  };
   var refreshPeeps = () => {
+    feed.innerHTML = "";
     fetchAllPeeps((peeps) => showAllPeeps(peeps));
   };
   refreshPeeps();
   var modalButtons = document.querySelectorAll("[data-target-modal]");
-  var modalCloseButtons = document.querySelectorAll("[data-modal-close");
+  var modalCloseButtons = document.querySelectorAll("[data-modal-close]");
   var overlay = document.getElementById("overlay");
   modalButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -86,6 +147,27 @@
       hideModal(modal);
     });
   });
+  var tryDeletePeep = (peepid) => {
+    console.log("inside tryDeletePeep");
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepid}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Token token=${currentUser.token}`,
+        "Content-Type": "application/json"
+      }
+    }).then((response) => {
+      return checkFetch(response);
+    }).then(peepDeleteSuccess(peepid)).catch((error) => {
+      console.log("create peep error:", error);
+      let errString = error.toString();
+      errorElement = document.getElementById("peep-create-error");
+      flashError(errString, errorElement);
+    });
+  };
+  var peepDeleteSuccess = (peepid) => {
+    let peep = document.querySelector(`[data-peep-id="${peepid}"]`);
+    peep.remove();
+  };
   overlay.addEventListener("click", () => {
     let modals = document.querySelectorAll(".modal.active");
     modals.forEach((modal) => {
@@ -151,7 +233,7 @@
       currentUser.userid = body.user_id;
       currentUser.token = body.session_key;
       loggedInView();
-    });
+    }).then(refreshPeeps());
   };
   var loggedInView = () => {
     hideButton(document.getElementById("signup-button"));

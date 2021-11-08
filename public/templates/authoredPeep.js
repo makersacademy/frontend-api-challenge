@@ -1,4 +1,4 @@
-const renderPeep = (peep, peepid) => {
+const renderAuthoredPeep = (peep, peepid) => {
   let likes = peep.likes.length
   if (likes === 0) {
     likes = ""
@@ -28,10 +28,11 @@ const renderPeep = (peep, peepid) => {
           <div class="peep__like-count">
             ${likes}
           </div>
+          <img class="peep__delete-icon" id="delete-button-${peepid}" src="/images/delete_icon.png" width="20" height="20"></img>
         </div>
       </div>
     </div>`
   )
 }
-
-module.exports = renderPeep
+// delete button ids aren't necessary anymore but I've kept them for clarity
+module.exports = renderAuthoredPeep

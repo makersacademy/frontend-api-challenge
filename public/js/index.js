@@ -1,4 +1,5 @@
 const renderPeep = require("../templates/peep")
+const renderAuthoredPeep = require("../templates/authoredPeep")
 
 const feed = document.getElementById('feed');
 
@@ -25,30 +26,50 @@ const fetchAllPeeps = (callback) => {
   })
 };
 
+const setupDeleteButtons = () => {
+  let deletePeepButtons = document.querySelectorAll('.peep__delete-icon')
+  console.log('hello')
+  console.log(deletePeepButtons)
+  deletePeepButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      console.log('delete button clicked')
+      let peep = button.closest('.peep');
+      console.log('closest peep', peep);
+      tryDeletePeep(peep.dataset.peepId);
+    });
+  });
+};
+
+
 const showAllPeeps = (peeps) => {
+  console.log('inside show all peeps')
   peeps.forEach((peep) => {
-    feed.insertAdjacentHTML('beforeend', renderPeep(peep));
-  })
+    if (peep.user.id == currentUser.userid) {
+      feed.insertAdjacentHTML('beforeend', renderAuthoredPeep(peep, peep.id));
+    } else {
+      feed.insertAdjacentHTML('beforeend', renderPeep(peep, peep.id));
+    }
+  });
+  setupDeleteButtons();
 };
 
 const refreshPeeps = () => {
+  feed.innerHTML = "";
   fetchAllPeeps((peeps) => showAllPeeps(peeps));
 };
 
 refreshPeeps()
 
 const modalButtons = document.querySelectorAll('[data-target-modal]')
-// if it has this data attribute, it's a button that opens a modal
-const modalCloseButtons = document.querySelectorAll('[data-modal-close')
-// if it has this data attribute, it's a button that closes a modal
+const modalCloseButtons = document.querySelectorAll('[data-modal-close]')
 const overlay = document.getElementById('overlay')
 
 modalButtons.forEach(button => {
   button.addEventListener('click', () => {
     let modal = document.querySelector(button.dataset.targetModal);
-    // selecting the modal the button is targeting
-    // it converts the data attributes to camel case:
-    // button.target.modal = button.targetModal
+    /* selecting the modal the button is targeting,
+    it converts the data attributes to camel case:
+    button.target.modal = button.targetModal */
     showModal(modal);
   });
 });
@@ -60,6 +81,33 @@ modalCloseButtons.forEach(button => {
     hideModal(modal);
   });
 });
+
+const tryDeletePeep = (peepid) => {
+  console.log('inside tryDeletePeep');
+  fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepid}`, {
+  method: 'DELETE',
+  headers: {
+    'Authorization': `Token token=${currentUser.token}`,
+    'Content-Type': 'application/json'
+  }})
+  .then((response) => {
+    return checkFetch(response);
+  })
+  .then(
+    peepDeleteSuccess(peepid)
+  )
+  .catch((error) => {
+    console.log('create peep error:', error)
+    let errString = error.toString()
+    errorElement = document.getElementById('peep-create-error');
+    flashError(errString, errorElement);
+  });
+};
+
+const peepDeleteSuccess = (peepid) => {
+  let peep = document.querySelector(`[data-peep-id="${peepid}"]`);
+  peep.remove();
+};
 
 overlay.addEventListener('click', () => {
   let modals = document.querySelectorAll('.modal.active')
@@ -137,7 +185,7 @@ const logInSuccess = (handle, response) => {
     currentUser.userid = body.user_id;
     currentUser.token = body.session_key;
     loggedInView();
-  });
+  }).then(refreshPeeps())
 };
 
 const loggedInView = () => {
@@ -240,5 +288,8 @@ const peepCreateSuccess = (response) => {
   response.json().then((peep) => {
     feed.insertAdjacentHTML('afterbegin', renderPeep(peep));
     hideModal(peepCreateModal);
-  });
+  })
+  // .then(refreshPeeps())
+  /* I choose not to refresh here as if the program gets here the peep was
+  created successfully, so a full refresh is unnecessary and slow */
 };
