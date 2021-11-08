@@ -197,6 +197,8 @@ const hideButton = (button) => {
   button.classList.remove('active');
 };
 
+/* shows an error inside a specified element
+currently only working on modals */
 const flashError = (error, errorElement) => {
   errorElement.textContent = error
   showError(errorElement);
