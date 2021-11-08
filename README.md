@@ -9,7 +9,7 @@ Here are some interactions the API supports and the ones I have implemented:
 * ✔ Creating Users
 * ✔ Logging in
 * ✔ Posting Peeps
-* ✔ Viewing all Peeps *(I suggest you start here)*
+* ✔ Viewing all Peeps
 * Viewing individual Peeps
 * ✔ Deleting Peeps
 * ✔ Liking Peeps
@@ -23,5 +23,10 @@ cd frontend-api-challenge
 npm install
 node app.js
 ```
+
+## Notes
+* Refreshing resets the page and the session
+* Some errors aren't handled correctly and it appears you can do things that haven't actually gone through to the server
+* Click anywhere on the background to close a modal
 
 # Major refactoring needed

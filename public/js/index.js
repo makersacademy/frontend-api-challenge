@@ -3,12 +3,14 @@ const renderAuthoredPeep = require("../templates/authoredPeep")
 
 const feed = document.getElementById('feed');
 
+// storing the session
 let currentUser = {
   userid: null,
   handle: null,
   token: null
 };
 
+// this doesn't work properly, the promises still get executed
 const checkFetch = (response) => {
   if (!response.ok) {
     throw Error(response.status);
@@ -55,6 +57,7 @@ const showAllPeeps = (peeps) => {
       feed.insertAdjacentHTML('beforeend', renderPeep(peep, peep.id));
     }
   });
+  // these must be done after all peep elements have been made:
   setupDeleteButtons();
   setupLikeButtons();
 };
@@ -64,10 +67,15 @@ const refreshPeeps = () => {
   fetchAllPeeps((peeps) => showAllPeeps(peeps));
 };
 
+// showing the peeps when you initially load the page
 refreshPeeps()
 
+// anything with these data tags is a button targetting a modal
 const modalButtons = document.querySelectorAll('[data-target-modal]')
+
+// anything with these data tags is a modal close button
 const modalCloseButtons = document.querySelectorAll('[data-modal-close]')
+
 const overlay = document.getElementById('overlay')
 
 modalButtons.forEach(button => {
@@ -93,14 +101,16 @@ const peepDeleteSuccess = (peepid) => {
   peep.remove();
 };
 
+// when a modal is open, you can click on the background to close it
 overlay.addEventListener('click', () => {
   let modals = document.querySelectorAll('.modal.active')
-  // selecting all the active (visible) modals
   modals.forEach(modal => {
     hideModal(modal);
   });
 });
 
+/* active class is added which makes it visible in css
+this is used for all show/hide methods */
 const showModal = (modal) => {
   modal.classList.add('active');
   overlay.classList.add('active');
