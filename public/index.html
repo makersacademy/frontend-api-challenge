@@ -17,11 +17,11 @@
             <img class="sidebar-menu__logo" src="/images/chitter_logo.png" height="40px"></img>
           </div>
           <div>
-            <button class="sidebar-button active">
+            <button class="sidebar-button active" id="scroll-to-top-button">
               Back to top
             </button>
           </div>
-          <button class="sidebar-button" id="peep-button">
+          <button data-target-modal="#peep-create-form" class="sidebar-button" id="peep-button">
             Peep
           </button>
         </div>
@@ -84,6 +84,18 @@
     <h3 class='error' id="login-error"></h3>
     <div class="modal__form-element">
       <button id="login-form-submit">Submit</button>
+    </div>
+  </div>
+
+  <div class="modal" id="peep-create-form">
+    <div data-modal-close class="modal__close-button">&times;</div>
+    <h2>Make a new peep</h2>
+    <div class="modal__form-element">
+      <textarea id="peep-create-content" maxlength="280" rows="4" placeholder="What's on your mind..." required></textarea>
+    </div>
+    <h3 class='error' id="peep-create-error"></h3>
+    <div class="modal__form-element">
+      <button id="peep-create-form-submit">Peep</button>
     </div>
   </div>
 

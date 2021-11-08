@@ -2,11 +2,14 @@ const renderPeep = require("../templates/peep")
 
 const feed = document.getElementById('feed');
 
-let Token = null
+let currentUser = {
+  userid: null,
+  handle: null,
+  token: null
+};
 
 const checkFetch = (response) => {
   if (!response.ok) {
-    console.log(response)
     throw Error(response.status);
   } else {
     return response;
@@ -28,7 +31,11 @@ const showAllPeeps = (peeps) => {
   })
 };
 
-fetchAllPeeps((peeps) => showAllPeeps(peeps));
+const refreshPeeps = () => {
+  fetchAllPeeps((peeps) => showAllPeeps(peeps));
+};
+
+refreshPeeps()
 
 const modalButtons = document.querySelectorAll('[data-target-modal]')
 // if it has this data attribute, it's a button that opens a modal
@@ -98,13 +105,12 @@ const attemptSignup = (handle, password) => {
     body: `{"user": {"handle":"${handle}", "password":"${password}"}}`
   })
   .then((response) => {
-    checkFetch(response);
+    return checkFetch(response);
   })
   .then(() => {
     signUpSuccess(handle);
   })
   .catch((error) => {
-    console.log('Sign up error:', error);
     let errString = error.toString()
     if (errString.includes('422')) {
       errString = "That username is already taken"
@@ -123,11 +129,15 @@ const signUpSuccess = (handle) => {
   showModal(successModal);
 };
 
-const logInSuccess = (responseToken) => {
+const logInSuccess = (handle, response) => {
   const loginFormModal = document.getElementById('login-form');
   hideModal(loginFormModal);
-  Token = responseToken;
-  loggedInView()
+  currentUser.handle = handle;
+  response.json().then((body) => {
+    currentUser.userid = body.user_id;
+    currentUser.token = body.session_key;
+    loggedInView();
+  });
 };
 
 const loggedInView = () => {
@@ -167,13 +177,12 @@ const attemptLogin = (handle, password) => {
   body: `{"session": {"handle":"${handle}", "password":"${password}"}}`
   })
   .then((response) => {
-    checkFetch(response);
+    return checkFetch(response);
   })
-  .then(() => {
-    logInSuccess();
+  .then((response) => {
+    logInSuccess(handle, response);
   })
   .catch((error) => {
-    console.log('Log in error:', error);
     let errString = error.toString()
     errorElement = document.getElementById('login-error');
     flashError(errString, errorElement);
@@ -187,3 +196,49 @@ loginFormButton.addEventListener('click', () => {
   let password = document.getElementById('login-form-password').value;
   attemptLogin(handle, password)
 });
+
+const scrollToTopButton = document.getElementById('scroll-to-top-button')
+
+scrollToTopButton.addEventListener('click', () => {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0;
+  // for different browsers
+});
+
+const createPeepButton = document.getElementById('peep-create-form-submit');
+
+createPeepButton.addEventListener('click', () => {
+  let content = document.getElementById('peep-create-content').value;
+  attemptCreatePeep(content)
+});
+
+const attemptCreatePeep = (content) => {
+  fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+  method: 'POST',
+  headers: {
+    'Authorization': `Token token=${currentUser.token}`,
+    'Content-Type': 'application/json'
+  },
+  body: `{"peep": {"user_id": ${currentUser.userid}, "body":" ${content}"}}`
+  })
+  .then((response) => {
+    return checkFetch(response);
+  })
+  .then((response) => {
+    peepCreateSuccess(response);
+  })
+  .catch((error) => {
+    console.log('create peep error:', error)
+    let errString = error.toString()
+    errorElement = document.getElementById('peep-create-error');
+    flashError(errString, errorElement);
+  });
+};
+
+const peepCreateSuccess = (response) => {
+  const peepCreateModal = document.getElementById('peep-create-form');
+  response.json().then((peep) => {
+    feed.insertAdjacentHTML('afterbegin', renderPeep(peep));
+    hideModal(peepCreateModal);
+  });
+};

@@ -190,6 +190,22 @@ body {
   font-size: 15px;
 }
 
+.modal textarea {
+  resize: none;
+  display: block;
+  margin-top: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 10px 60px 10px;
+  outline: none;
+  border: 1px solid red;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 15px;
+  text-align: left;
+  overflow: scroll;
+}
+
 .modal__form-element button{
   width: 100%;
   height: 40px;

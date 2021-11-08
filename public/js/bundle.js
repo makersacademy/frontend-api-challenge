@@ -45,10 +45,13 @@
   // public/js/index.js
   var renderPeep = require_peep();
   var feed = document.getElementById("feed");
-  var Token = null;
+  var currentUser = {
+    userid: null,
+    handle: null,
+    token: null
+  };
   var checkFetch = (response) => {
     if (!response.ok) {
-      console.log(response);
       throw Error(response.status);
     } else {
       return response;
@@ -64,7 +67,10 @@
       feed.insertAdjacentHTML("beforeend", renderPeep(peep));
     });
   };
-  fetchAllPeeps((peeps) => showAllPeeps(peeps));
+  var refreshPeeps = () => {
+    fetchAllPeeps((peeps) => showAllPeeps(peeps));
+  };
+  refreshPeeps();
   var modalButtons = document.querySelectorAll("[data-target-modal]");
   var modalCloseButtons = document.querySelectorAll("[data-modal-close");
   var overlay = document.getElementById("overlay");
@@ -117,11 +123,10 @@
       },
       body: `{"user": {"handle":"${handle}", "password":"${password}"}}`
     }).then((response) => {
-      checkFetch(response);
+      return checkFetch(response);
     }).then(() => {
       signUpSuccess(handle);
     }).catch((error) => {
-      console.log("Sign up error:", error);
       let errString = error.toString();
       if (errString.includes("422")) {
         errString = "That username is already taken";
@@ -138,11 +143,15 @@
     signupWelcome.textContent = `Your account has been created successfully, welcome to Chitter ${handle}.`;
     showModal(successModal);
   };
-  var logInSuccess = (responseToken) => {
+  var logInSuccess = (handle, response) => {
     const loginFormModal = document.getElementById("login-form");
     hideModal(loginFormModal);
-    Token = responseToken;
-    loggedInView();
+    currentUser.handle = handle;
+    response.json().then((body) => {
+      currentUser.userid = body.user_id;
+      currentUser.token = body.session_key;
+      loggedInView();
+    });
   };
   var loggedInView = () => {
     hideButton(document.getElementById("signup-button"));
@@ -174,11 +183,10 @@
       },
       body: `{"session": {"handle":"${handle}", "password":"${password}"}}`
     }).then((response) => {
-      checkFetch(response);
-    }).then(() => {
-      logInSuccess();
+      return checkFetch(response);
+    }).then((response) => {
+      logInSuccess(handle, response);
     }).catch((error) => {
-      console.log("Log in error:", error);
       let errString = error.toString();
       errorElement = document.getElementById("login-error");
       flashError(errString, errorElement);
@@ -190,4 +198,40 @@
     let password = document.getElementById("login-form-password").value;
     attemptLogin(handle, password);
   });
+  var scrollToTopButton = document.getElementById("scroll-to-top-button");
+  scrollToTopButton.addEventListener("click", () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  });
+  var createPeepButton = document.getElementById("peep-create-form-submit");
+  createPeepButton.addEventListener("click", () => {
+    let content = document.getElementById("peep-create-content").value;
+    attemptCreatePeep(content);
+  });
+  var attemptCreatePeep = (content) => {
+    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+      method: "POST",
+      headers: {
+        "Authorization": `Token token=${currentUser.token}`,
+        "Content-Type": "application/json"
+      },
+      body: `{"peep": {"user_id": ${currentUser.userid}, "body":" ${content}"}}`
+    }).then((response) => {
+      return checkFetch(response);
+    }).then((response) => {
+      peepCreateSuccess(response);
+    }).catch((error) => {
+      console.log("create peep error:", error);
+      let errString = error.toString();
+      errorElement = document.getElementById("peep-create-error");
+      flashError(errString, errorElement);
+    });
+  };
+  var peepCreateSuccess = (response) => {
+    const peepCreateModal = document.getElementById("peep-create-form");
+    response.json().then((peep) => {
+      feed.insertAdjacentHTML("afterbegin", renderPeep(peep));
+      hideModal(peepCreateModal);
+    });
+  };
 })();
