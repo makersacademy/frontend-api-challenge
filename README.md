@@ -15,4 +15,13 @@ Here are some interactions the API supports and the ones I have implemented:
 * ✔ Liking Peeps
 * Unliking Peeps
 
+## Using the app
+
+```
+git clone https://github.com/ConorButler/frontend-api-challenge.git
+cd frontend-api-challenge
+npm install
+node app.js
+```
+
 # Major refactoring needed
