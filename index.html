@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post and repo</title>
+</head>
+<body>
+  <span id="warning" style="color: red;"></span>
+  <div>
+    <span id="user-logged" style="color: rgb(1, 77, 30);"></span>
+    <button id="logout">Logout</button>
+    <form id="signup-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+    </form>
+    <button id="add-user">Sign up</button>
+    <button id="login">Log in</button>
+    <br><br>
+  </div>
+  <div id="add-post">
+    <form>
+      <label for="content">Post content:</label><br>
+      <textarea type="text" id="content" name="content" rows="4" cols="50"></textarea><br>
+    </form>
+    <button id="add-note">Add post</button>
+  </div>
+  <h2>List of posts</h2>
+  <ul id="list">
+  </ul>
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
