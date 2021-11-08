@@ -134,6 +134,7 @@ body {
 }
 
 .peep__like-icon {
+  cursor: pointer;
   margin-top: 4px;
 }
 

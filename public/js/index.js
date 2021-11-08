@@ -28,21 +28,26 @@ const fetchAllPeeps = (callback) => {
 
 const setupDeleteButtons = () => {
   let deletePeepButtons = document.querySelectorAll('.peep__delete-icon')
-  console.log('hello')
-  console.log(deletePeepButtons)
   deletePeepButtons.forEach(button => {
     button.addEventListener('click', () => {
-      console.log('delete button clicked')
       let peep = button.closest('.peep');
-      console.log('closest peep', peep);
       tryDeletePeep(peep.dataset.peepId);
+    });
+  });
+};
+
+const setupLikeButtons = () => {
+  let likeButtons = document.querySelectorAll('.peep__like-icon')
+  likeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      let peep = button.closest('.peep');
+      tryLikePeep(peep.dataset.peepId, currentUser.userid);
     });
   });
 };
 
 
 const showAllPeeps = (peeps) => {
-  console.log('inside show all peeps')
   peeps.forEach((peep) => {
     if (peep.user.id == currentUser.userid) {
       feed.insertAdjacentHTML('beforeend', renderAuthoredPeep(peep, peep.id));
@@ -51,6 +56,7 @@ const showAllPeeps = (peeps) => {
     }
   });
   setupDeleteButtons();
+  setupLikeButtons();
 };
 
 const refreshPeeps = () => {
@@ -81,28 +87,6 @@ modalCloseButtons.forEach(button => {
     hideModal(modal);
   });
 });
-
-const tryDeletePeep = (peepid) => {
-  console.log('inside tryDeletePeep');
-  fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepid}`, {
-  method: 'DELETE',
-  headers: {
-    'Authorization': `Token token=${currentUser.token}`,
-    'Content-Type': 'application/json'
-  }})
-  .then((response) => {
-    return checkFetch(response);
-  })
-  .then(
-    peepDeleteSuccess(peepid)
-  )
-  .catch((error) => {
-    console.log('create peep error:', error)
-    let errString = error.toString()
-    errorElement = document.getElementById('peep-create-error');
-    flashError(errString, errorElement);
-  });
-};
 
 const peepDeleteSuccess = (peepid) => {
   let peep = document.querySelector(`[data-peep-id="${peepid}"]`);
@@ -276,7 +260,7 @@ const attemptCreatePeep = (content) => {
     peepCreateSuccess(response);
   })
   .catch((error) => {
-    console.log('create peep error:', error)
+    console.log('Create peep error:', error)
     let errString = error.toString()
     errorElement = document.getElementById('peep-create-error');
     flashError(errString, errorElement);
@@ -292,4 +276,49 @@ const peepCreateSuccess = (response) => {
   // .then(refreshPeeps())
   /* I choose not to refresh here as if the program gets here the peep was
   created successfully, so a full refresh is unnecessary and slow */
+};
+
+const tryDeletePeep = (peepid) => {
+  fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepid}`, {
+  method: 'DELETE',
+  headers: {
+    'Authorization': `Token token=${currentUser.token}`,
+  }})
+  .then((response) => {
+    return checkFetch(response);
+  })
+  .then(
+    peepDeleteSuccess(peepid)
+  )
+  .catch((error) => {
+    console.log('Delete peep error:', error)
+    let errString = error.toString()
+    errorElement = document.getElementById('peep-create-error');
+    flashError(errString, errorElement);
+  });
+};
+
+const tryLikePeep = (peepid, userid) => {
+  fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepid}/likes/${userid}`, {
+  method: 'PUT',
+  headers: {
+    'Authorization': `Token token=${currentUser.token}`,
+  }})
+  .then((response) => {
+    return checkFetch(response);
+  })
+  .then(
+    peepLikeSuccess(peepid)
+  )
+  .catch((error) => {
+    console.log('Like peep error:', error)
+    let errString = error.toString()
+    errorElement = document.getElementById('peep-create-error');
+    flashError(errString, errorElement);
+  });
+};
+
+const peepLikeSuccess = (peepid) => {
+  let likeCount = document.getElementById(`like-count-${peepid}`);
+  likeCount.textContent++
 };

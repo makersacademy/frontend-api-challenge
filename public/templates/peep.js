@@ -25,7 +25,7 @@ const renderPeep = (peep, peepid) => {
         </div>
         <div class="peep__footer">
           <img class="peep__like-icon" src="/images/like_icon.png" width="20" height="20"></img>
-          <div class="peep__like-count">
+          <div class="peep__like-count" id="like-count-${peepid}">
             ${likes}
           </div>
         </div>

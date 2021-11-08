@@ -25,7 +25,7 @@ const renderAuthoredPeep = (peep, peepid) => {
         </div>
         <div class="peep__footer">
           <img class="peep__like-icon" src="/images/like_icon.png" width="20" height="20"></img>
-          <div class="peep__like-count">
+          <div class="peep__like-count" id="like-count-${peepid}">
             ${likes}
           </div>
           <img class="peep__delete-icon" id="delete-button-${peepid}" src="/images/delete_icon.png" width="20" height="20"></img>
