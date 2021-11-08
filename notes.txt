@@ -1,0 +1,13 @@
+* Creating Users
+  New user box
+  
+* Logging in
+2 Posting Peeps
+  Add a peep in the frontend and backend
+1 Viewing all Peeps *(I suggest you start here)*
+  Get Peeps
+  List in desired format
+* Viewing individual Peeps
+* Deleting Peeps
+* Liking Peeps
+* Unliking Peeps
