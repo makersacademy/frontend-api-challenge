@@ -1,11 +1,12 @@
+const timeSince = require("../js/timeSince")
+
 const renderAuthoredPeep = (peep, peepid) => {
   let likes = peep.likes.length
   if (likes === 0) {
     likes = ""
   }
-  let date = new Date(peep.updated_at).toString();
-  date = date.substring(0, 21);
-  // to be improved
+  let dateObject = new Date(peep.updated_at);
+  let date = timeSince(dateObject);
   return (
     `<div class="peep" data-peep-id="${peepid}">
       <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>

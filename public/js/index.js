@@ -3,6 +3,9 @@ const renderAuthoredPeep = require("../templates/authoredPeep")
 
 const feed = document.getElementById('feed');
 
+// loading animation
+const loader = document.getElementById('loader');
+
 // storing the session
 let currentUser = {
   userid: null,
@@ -10,7 +13,6 @@ let currentUser = {
   token: null
 };
 
-// this doesn't work properly, the promises still get executed
 const checkFetch = (response) => {
   if (!response.ok) {
     throw Error(response.status);
@@ -22,7 +24,10 @@ const checkFetch = (response) => {
 const fetchAllPeeps = (callback) => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
   .then(response => response.json()
-  .then(peeps => callback(peeps)))
+  .then(peeps => {
+    loader.classList.remove('active');
+    callback(peeps);
+  }))
   .catch(error => {
     console.log("Fetch all peeps error:", error)
   })
@@ -37,6 +42,11 @@ const setupDeleteButtons = () => {
     });
   });
 };
+
+const fetchPeep = (peepid) => {
+  // a function that fetches a peep and returns a peep object
+};
+
 
 const setupLikeButtons = () => {
   let likeButtons = document.querySelectorAll('.peep__like-icon')
@@ -99,6 +109,7 @@ modalCloseButtons.forEach(button => {
 const peepDeleteSuccess = (peepid) => {
   let peep = document.querySelector(`[data-peep-id="${peepid}"]`);
   peep.remove();
+  // again, page isn't refreshed as it must be successful to reach here
 };
 
 // when a modal is open, you can click on the background to close it

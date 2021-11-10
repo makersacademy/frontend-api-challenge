@@ -3,16 +3,47 @@
     return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
+  // public/js/timeSince.js
+  var require_timeSince = __commonJS({
+    "public/js/timeSince.js"(exports, module) {
+      var timeSince = (dateObject) => {
+        const monthFormat = { month: "short" };
+        let yearStartDate = new Date(new Date().getFullYear(), 0, 1);
+        let yearStart = yearStartDate.getTime() / 1e3;
+        let time = Math.floor(dateObject.getTime() / 1e3);
+        if (time < yearStart) {
+          return `${dateObject.getDate()} ${dateObject.toLocaleDateString("en-US", monthFormat)} ${dateObject.getFullYear()}`;
+        }
+        let now = new Date().getTime() / 1e3;
+        let oneDayAgo = now - 86400;
+        if (time < oneDayAgo) {
+          return `${dateObject.getDate()} ${dateObject.toLocaleDateString("en-US", monthFormat)}`;
+        }
+        let secondsAgo = Math.floor(now) - time;
+        if (secondsAgo > 3600) {
+          return `${Math.floor(secondsAgo / 3600)}h`;
+        } else if (secondsAgo > 60) {
+          return `${Math.floor(secondsAgo / 60)}m`;
+        } else {
+          return `${secondsAgo}s`;
+        }
+        ;
+      };
+      module.exports = timeSince;
+    }
+  });
+
   // public/templates/peep.js
   var require_peep = __commonJS({
     "public/templates/peep.js"(exports, module) {
+      var timeSince = require_timeSince();
       var renderPeep2 = (peep, peepid) => {
         let likes = peep.likes.length;
         if (likes === 0) {
           likes = "";
         }
-        let date = new Date(peep.updated_at).toString();
-        date = date.substring(0, 21);
+        let dateObject = new Date(peep.updated_at);
+        let date = timeSince(dateObject);
         return `<div class="peep" data-peep-id="${peepid}">
       <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>
       <div class="peep__main">
@@ -45,13 +76,14 @@
   // public/templates/authoredPeep.js
   var require_authoredPeep = __commonJS({
     "public/templates/authoredPeep.js"(exports, module) {
+      var timeSince = require_timeSince();
       var renderAuthoredPeep2 = (peep, peepid) => {
         let likes = peep.likes.length;
         if (likes === 0) {
           likes = "";
         }
-        let date = new Date(peep.updated_at).toString();
-        date = date.substring(0, 21);
+        let dateObject = new Date(peep.updated_at);
+        let date = timeSince(dateObject);
         return `<div class="peep" data-peep-id="${peepid}">
       <img class="peep__author-pic" src="/images/red_egg.jpeg"></img>
       <div class="peep__main">
@@ -86,6 +118,7 @@
   var renderPeep = require_peep();
   var renderAuthoredPeep = require_authoredPeep();
   var feed = document.getElementById("feed");
+  var loader = document.getElementById("loader");
   var currentUser = {
     userid: null,
     handle: null,
@@ -99,7 +132,10 @@
     }
   };
   var fetchAllPeeps = (callback) => {
-    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json().then((peeps) => callback(peeps))).catch((error) => {
+    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json().then((peeps) => {
+      loader.classList.remove("active");
+      callback(peeps);
+    })).catch((error) => {
       console.log("Fetch all peeps error:", error);
     });
   };
