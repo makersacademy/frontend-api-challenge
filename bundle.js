@@ -6,7 +6,7 @@
   // addUser.js
   var require_addUser = __commonJS({
     "addUser.js"(exports, module) {
-      var createUser2 = (handle, password, callback) => {
+      var createUser = (handle, password) => {
         data = { "user": { "handle": `${handle}`, "password": `${password}` } };
         fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
           method: "POST",
@@ -15,37 +15,58 @@
           },
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
-          console.log("Success:", data2);
-          alert(data2.handle);
+          console.log(data2);
+          const success = document.createElement("P");
+          success.innerText = "user successfully created";
+          success.id = "success";
+          document.body.appendChild(success);
+          const del = () => {
+            success.remove();
+          };
+          setTimeout(del, 2e3);
         });
       };
-      module.exports.createUser = createUser2;
+      module.exports.createUser = createUser;
     }
   });
 
   // index.js
-  var { createUser, fetchUsers } = require_addUser();
-  var signup_button = document.querySelector("#signup");
-  signup_button.addEventListener("click", () => {
-    const form = document.createElement("form");
-    const handle = document.createElement("input");
-    const handle_label = document.createElement("label");
-    const password = document.createElement("input");
-    const password_label = document.createElement("label");
-    const button = document.createElement("button");
-    handle.id = "#handle";
-    handle_label.innerText = "Username";
-    handle.id = "#password";
-    password_label.innerText = "Password";
-    button.innerText = "Submit";
-    form.appendChild(handle_label);
-    form.appendChild(handle);
-    form.appendChild(password_label);
-    form.appendChild(password);
-    form.appendChild(button);
-    document.body.appendChild(form);
+  var require_frontend_api_challenge = __commonJS({
+    "index.js"(exports, module) {
+      var { createUser } = require_addUser();
+      callback = (data2) => {
+        data2;
+      };
+      var button = document.querySelector("#signup");
+      button.addEventListener("click", () => {
+        let form = document.createElement("form");
+        let handle = document.createElement("input");
+        let handle_label = document.createElement("label");
+        let password = document.createElement("input");
+        let password_label = document.createElement("label");
+        let button2 = document.createElement("button");
+        handle.id = "handle";
+        handle_label.innerText = "Username";
+        handle.id = "password";
+        password_label.innerText = "Password";
+        button2.innerText = "Submit";
+        button2.id = "submit";
+        form.appendChild(handle_label);
+        form.appendChild(handle);
+        form.appendChild(password_label);
+        form.appendChild(password);
+        form.appendChild(button2);
+        document.body.appendChild(form);
+        form.id = "form-1";
+        button2.addEventListener("click", (event) => {
+          event.preventDefault();
+          createUser(handle.value, password.value);
+          callback(document.querySelector("#form-1").remove());
+          return false;
+        });
+      });
+      module.exports.button = button;
+    }
   });
-  createUser("ben1230298", "pword", (data2) => {
-    data2;
-  });
+  require_frontend_api_challenge();
 })();
