@@ -1,4 +1,5 @@
-const { createUser } = require('./addUser')
+const { createUser } = require('./src/addUser')
+const { viewPeeps } = require('./src/viewPeeps')
 
 callback = (data) => {
   data
@@ -33,4 +34,4 @@ button.addEventListener('click', () => {
     })
   });
 
-module.exports.button = button
+viewPeeps();
