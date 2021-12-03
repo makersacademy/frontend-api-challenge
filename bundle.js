@@ -77,6 +77,9 @@
   // src/login.js
   var require_login = __commonJS({
     "src/login.js"(exports, module) {
+      callback = (data2) => {
+        data2;
+      };
       var login2 = (handle, password) => {
         sessionStorage.setItem("handle", `${handle}`);
         sessionStorage.setItem("handle", `${password}`);
@@ -88,6 +91,10 @@
           },
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
+          console.log(data2);
+          document.querySelector("#welcome").innerText = `Wow, you're back so soon. Let's get peeping!`;
+          document.querySelector("#signup").style.display = "none";
+          document.querySelector("#login").style.display = "none";
           const success = document.createElement("P");
           success.innerText = "successfully logged in";
           success.id = "success";
