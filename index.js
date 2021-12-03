@@ -2,6 +2,7 @@ const { createUser } = require('./src/addUser')
 const { viewPeeps } = require('./src/viewPeeps')
 const { postPeep } = require('./src/postPeep')
 const { sessionKey } = require('./src/sessionKey')
+const { login } = require('./src/login')
 
 callback = (data) => {
   data
@@ -59,7 +60,7 @@ signup_button.addEventListener('click', () => {
       form.id = 'login-form'
       button.addEventListener('click', (event) => {
         event.preventDefault();
-        sessionKey(handle.value, password.value);
+        login(handle.value, password.value);
         callback(document.querySelector('#login-form').remove())
         return false
       })

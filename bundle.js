@@ -74,11 +74,40 @@
     }
   });
 
+  // src/login.js
+  var require_login = __commonJS({
+    "src/login.js"(exports, module) {
+      var login2 = (handle, password) => {
+        sessionStorage.setItem("handle", `${handle}`);
+        sessionStorage.setItem("handle", `${password}`);
+        data = { "session": { "handle": `${handle}`, "password": `${password}` } };
+        fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        }).then((response) => response.json()).then((data2) => {
+          const success = document.createElement("P");
+          success.innerText = "successfully logged in";
+          success.id = "success";
+          document.body.appendChild(success);
+          const del = () => {
+            success.remove();
+          };
+          setTimeout(del, 2e3);
+        });
+      };
+      module.exports.login = login2;
+    }
+  });
+
   // index.js
   var { createUser } = require_addUser();
   var { viewPeeps } = require_viewPeeps();
   var { postPeep } = require_postPeep();
   var { sessionKey } = require_sessionKey();
+  var { login } = require_login();
   callback = (data2) => {
     data2;
   };
@@ -133,7 +162,7 @@
     form.id = "login-form";
     button.addEventListener("click", (event) => {
       event.preventDefault();
-      sessionKey(handle.value, password.value);
+      login(handle.value, password.value);
       callback(document.querySelector("#login-form").remove());
       return false;
     });
