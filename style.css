@@ -1,0 +1,16 @@
+.peep {
+  width: 300px;
+  height: 100px;
+}
+
+body {background-color: powderblue;}
+
+h1   {color: blue;}
+
+h5   {color: blue;}
+
+.p    {color: red; text-align: right}
+
+.banner {text-align: right}
+
+.peep-message	{	border: 1px solid black;}
