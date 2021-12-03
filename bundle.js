@@ -95,6 +95,8 @@
           document.querySelector("#welcome").innerText = `Wow, you're back so soon. Let's get peeping!`;
           document.querySelector("#signup").style.display = "none";
           document.querySelector("#login").style.display = "none";
+          document.querySelector("#post").style.display = "";
+          document.querySelector(".peep").style.display = "";
           const success = document.createElement("P");
           success.innerText = "successfully logged in";
           success.id = "success";
@@ -175,4 +177,6 @@
     });
   });
   viewPeeps();
+  document.querySelector("#post").style.display = "none";
+  document.querySelector(".peep").style.display = "none";
 })();

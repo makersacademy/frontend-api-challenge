@@ -66,5 +66,7 @@ signup_button.addEventListener('click', () => {
       })
     });
 
-
 viewPeeps();
+
+document.querySelector('#post').style.display = "none"
+document.querySelector('.peep').style.display = "none"
