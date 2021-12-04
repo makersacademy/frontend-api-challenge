@@ -34,11 +34,14 @@
   var require_viewPeeps = __commonJS({
     "src/viewPeeps.js"(exports, module) {
       var viewPeeps2 = () => {
+        let count = 1;
         fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data2) => {
           data2.forEach((peep) => {
             const div = document.createElement("p");
             div.innerText = peep.body;
+            div.id = `peep-${count}`;
             document.body.append(div);
+            count++;
           });
         });
       };
@@ -50,27 +53,22 @@
   var require_postPeep = __commonJS({
     "src/postPeep.js"(exports, module) {
       var postPeep2 = (body) => {
-      };
-      module.exports.postPeep = postPeep2;
-    }
-  });
-
-  // src/sessionKey.js
-  var require_sessionKey = __commonJS({
-    "src/sessionKey.js"(exports, module) {
-      var sessionKey2 = (handle, password) => {
-        data = { "session": { "handle": `${handle}`, "password": `${password}` } };
-        fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+        console.log(`Token token=${sessionStorage.getItem("key")}`);
+        data = { "peep": { "user_id": `${sessionStorage.getItem("id")}`, "body": `${body}` } };
+        fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
           method: "POST",
           headers: {
+            "Authorization": `Token token=${sessionStorage.getItem("key")}`,
             "Content-Type": "application/json"
           },
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
-          console.log(data2);
+          const div = document.createElement("p");
+          div.innerText = data2.body;
+          document.querySelector("#peep-1").insertBefore(div);
         });
       };
-      module.exports.sessionKey = sessionKey2;
+      module.exports.postPeep = postPeep2;
     }
   });
 
@@ -82,7 +80,7 @@
       };
       var login2 = (handle, password) => {
         sessionStorage.setItem("handle", `${handle}`);
-        sessionStorage.setItem("handle", `${password}`);
+        sessionStorage.setItem("password", `${password}`);
         data = { "session": { "handle": `${handle}`, "password": `${password}` } };
         fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
           method: "POST",
@@ -91,7 +89,8 @@
           },
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
-          console.log(data2);
+          sessionStorage.setItem("id", data2.user_id);
+          sessionStorage.setItem("key", data2.session_key);
           document.querySelector("#welcome").innerText = `Wow, you're back so soon. Let's get peeping!`;
           document.querySelector("#signup").style.display = "none";
           document.querySelector("#login").style.display = "none";
@@ -115,11 +114,11 @@
   var { createUser } = require_addUser();
   var { viewPeeps } = require_viewPeeps();
   var { postPeep } = require_postPeep();
-  var { sessionKey } = require_sessionKey();
   var { login } = require_login();
   callback = (data2) => {
     data2;
   };
+  login(sessionStorage.getItem("handle"), sessionStorage.getItem("password"));
   var signup_button = document.querySelector("#signup");
   signup_button.addEventListener("click", () => {
     let form = document.createElement("form");
@@ -177,6 +176,11 @@
     });
   });
   viewPeeps();
+  var peep_button = document.querySelector("#post");
+  peep_button.addEventListener("click", () => {
+    console.log(document.querySelector("#peep_body").value);
+    postPeep(document.querySelector("#peep_body").value);
+  });
   document.querySelector("#post").style.display = "none";
   document.querySelector(".peep").style.display = "none";
 })();

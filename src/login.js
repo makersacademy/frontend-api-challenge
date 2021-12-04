@@ -4,7 +4,7 @@ callback = (data) => {
 
 const login = (handle, password) => {
   sessionStorage.setItem("handle", `${handle}`)
-  sessionStorage.setItem("handle", `${password}`)
+  sessionStorage.setItem("password", `${password}`)
   data = {"session": {"handle":`${handle}`, "password":`${password}`}}
   fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
     method: 'POST',
@@ -15,7 +15,8 @@ const login = (handle, password) => {
   })
   .then(response => response.json())
   .then(data => {
-    console.log(data)
+    sessionStorage.setItem("id", data.user_id)
+    sessionStorage.setItem("key", data.session_key)
     document.querySelector('#welcome').innerText = `Wow, you're back so soon. Let's get peeping!`
     document.querySelector('#signup').style.display = "none"
     document.querySelector('#login').style.display = "none"

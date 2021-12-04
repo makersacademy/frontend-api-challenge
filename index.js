@@ -1,12 +1,13 @@
 const { createUser } = require('./src/addUser')
 const { viewPeeps } = require('./src/viewPeeps')
 const { postPeep } = require('./src/postPeep')
-const { sessionKey } = require('./src/sessionKey')
 const { login } = require('./src/login')
 
 callback = (data) => {
   data
 }
+
+login(sessionStorage.getItem("handle"), sessionStorage.getItem("password"))
 
 const signup_button = document.querySelector('#signup')
 signup_button.addEventListener('click', () => {
@@ -67,6 +68,12 @@ signup_button.addEventListener('click', () => {
     });
 
 viewPeeps();
+
+const peep_button = document.querySelector('#post')
+peep_button.addEventListener('click', () => {
+  console.log(document.querySelector('#peep_body').value)
+  postPeep(document.querySelector('#peep_body').value)
+})
 
 document.querySelector('#post').style.display = "none"
 document.querySelector('.peep').style.display = "none"
