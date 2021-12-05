@@ -1,5 +1,5 @@
- const newUser = (user) => {
-  fetch('https://chitter-backend-api-v2.herokuapp.com/users', {
+const newSession = (user) => {
+  fetch('https://chitter-backend-api-v2.herokuapp.com/sessions', {
     method: 'POST', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',
@@ -8,15 +8,11 @@
   })
   .then(response => response.json())
   .then(data => {
-    console.log('Success:', data);
+    console.log('Session key is: ', data['session_key']);
   })
   .catch((error) => {
     console.error('Error:', error);
   });
 }
 
-
-
-  module.exports = newUser
-
-
+module.exports = newSession

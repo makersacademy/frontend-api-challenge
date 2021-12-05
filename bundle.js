@@ -26,7 +26,7 @@
   // createUser.js
   var require_createUser = __commonJS({
     "createUser.js"(exports, module) {
-      newUser = (user2) => {
+      var newUser2 = (user2) => {
         fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
           method: "POST",
           headers: {
@@ -39,19 +39,42 @@
           console.error("Error:", error);
         });
       };
-      module.exports = newUser;
+      module.exports = newUser2;
+    }
+  });
+
+  // createSession.js
+  var require_createSession = __commonJS({
+    "createSession.js"(exports, module) {
+      var createSession2 = (user2) => {
+        fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(user2)
+        }).then((response) => response.json()).then((data) => {
+          console.log("Session key is: ", data["session_key"]);
+        }).catch((error) => {
+          console.error("Error:", error);
+        });
+      };
+      module.exports = createSession2;
     }
   });
 
   // index.js
   var fetchPeeps = require_fetchPeeps();
-  var newUser2 = require_createUser();
+  var newUser = require_createUser();
+  var createSession = require_createSession();
   var button = document.querySelector("#signup-button");
   button.addEventListener("click", () => {
     handle = document.querySelector("#username").value;
     password = document.querySelector("#password").value;
     user = { "user": { "handle": `${handle}`, "password": `${password}` } };
-    newUser2(user);
+    newUser(user);
+    sessionElement = { "session": { "handle": `${handle}`, "password": `${password}` } };
+    createSession(sessionElement);
   });
   fetchPeeps();
 })();

@@ -1,0 +1,18 @@
+#contentone{
+  position: absolute;
+  left: 70%;
+  top: 5%;
+
+}
+
+#buttons{
+  position: absolute;
+  left: 30%;
+  margin-top: 20px;
+}
+
+#login-button{
+  margin-left: 40px;
+  margin-right: 40px;
+
+}
