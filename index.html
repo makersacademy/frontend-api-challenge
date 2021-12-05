@@ -4,13 +4,36 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title></title>
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="icon" href="images/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="chitter.css">
+    <title>Chitter</title>
   </head>
 
   <body>
-    <script src="js/scripts.js"></script>
+    <h1>Welcome to Chitter!</h1>
+
+    <div>
+      <button id="logout-button">Log Out</button>
+      <form id="signup-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"/>
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password"/>
+        </form>
+        <button id="signup-button">Sign Up</button>
+        <button id="login-button">Log In</button>
+      </form>
+    </div>
+
+    <div id="add-content">
+      <form>
+        <label for="content"> Post Content Here!</label><br>
+        <textarea type="text" id="content" name="content" rows="4" cols="50"></textarea><br>
+      </form>
+      <button id="post-peep"> Post Peep! </button>
+    </div>
+
+
+
+    <script src="bundle.js"></script>
   </body>
 </html>
