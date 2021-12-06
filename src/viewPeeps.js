@@ -3,6 +3,7 @@ const viewPeeps = () => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
   .then(response => response.json())
   .then(data => {
+    console.log(data)
     data.forEach(peep => {
       const div = document.createElement('div')
       div.className = 'peeps'
@@ -13,10 +14,10 @@ const viewPeeps = () => {
       div.id = `peep-${count}`
       div1.className = 'peep_body'
       div1.innerText = peep.body
-      div3.className = 'liked by'
-      div3.innerText = `posted_by ${data.user_id}`
-      div2.className = 'likes'
-      div2.innerText = data.likes
+      div2.className = 'liked by'
+      div2.innerText = `posted_by ${peep.user.handle}`
+      div3.className = 'likes'
+      div3.innerText = `likes: ${peep.likes.length}`
       div.append(div1)
       div.append(div2)
       div.append(div3)

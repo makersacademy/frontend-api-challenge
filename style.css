@@ -21,6 +21,7 @@ h5   {color: blue;}
   grid-template-rows: 0.5fr 0.1fr; 
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  margin-bottom: 50px;
   }
   
   .peep_body { grid-area: 1 / 1 / 2 / 5; }
