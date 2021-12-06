@@ -45,10 +45,10 @@
             const div3 = document.createElement("div");
             div.className = "peeps";
             div.id = `peep-${count}`;
-            div1.className = "peep_body";
+            div1.className = "peep-body";
             div1.innerText = peep.body;
-            div2.className = "liked by";
-            div2.innerText = `posted_by ${peep.user.handle}`;
+            div2.className = "posted-by";
+            div2.innerText = `posted by ${peep.user.handle}`;
             div3.className = "likes";
             div3.innerText = `likes: ${peep.likes.length}`;
             div.append(div1);
