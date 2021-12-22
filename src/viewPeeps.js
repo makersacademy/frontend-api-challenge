@@ -5,23 +5,26 @@ const viewPeeps = () => {
   .then(data => {
     console.log(data)
     data.forEach(peep => {
-      const div = document.createElement('div')
-      div.className = 'peeps'
-      const div1 = document.createElement('div')
-      const div2 = document.createElement('div')
-      const div3 = document.createElement('div')
-      div.className = 'peeps'
-      div.id = `peep-${count}`
-      div1.className = 'peep-body'
-      div1.innerText = peep.body
-      div2.className = 'posted-by'
-      div2.innerText = `posted by ${peep.user.handle}`
-      div3.className = 'likes'
-      div3.innerText = `likes: ${peep.likes.length}`
-      div.append(div1)
-      div.append(div2)
-      div.append(div3)
-      document.body.append(div)
+      const peep_div = document.createElement('div')
+      peep_div.className = 'peeps'
+      peep_div.id = `peep-${count}`
+
+      const peep_body = document.createElement('div')
+      peep_body.className = 'peep-body'
+      peep_body.innerText = peep.body
+
+      const posted_by = document.createElement('div')
+      posted_by.className = 'posted-by'
+      posted_by.innerText = `posted by ${peep.user.handle}`
+
+      const likes = document.createElement('div')
+      likes.className = 'likes'
+      likes.innerText = `likes: ${peep.likes.length}`
+
+      peep_div.append(peep_body)
+      peep_div.append(posted_by)
+      peep_div.append(likes)
+      document.querySelector('.all_peeps').append(peep_div)
       count++
     })
   })
