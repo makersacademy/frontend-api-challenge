@@ -3,7 +3,6 @@ const viewPeeps = () => {
   fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
   .then(response => response.json())
   .then(data => {
-    console.log(data)
     data.forEach(peep => {
       const peep_div = document.createElement('div')
       peep_div.className = 'peeps'

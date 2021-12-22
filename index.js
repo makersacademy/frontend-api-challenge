@@ -3,6 +3,7 @@ const { viewPeeps } = require('./src/viewPeeps')
 const { postPeep } = require('./src/postPeep')
 const { login } = require('./src/login')
 
+// Login box appears and user is logged in with credentials
 document.querySelector("#show-login").addEventListener("click", () => {
   document.querySelector(".popup-login").classList.add("active");
   document.querySelector("#login").addEventListener('click', (event) => {
@@ -13,6 +14,7 @@ document.querySelector("#show-login").addEventListener("click", () => {
   })
 });
 
+// Sign up box appears and account is created with credentials
 document.querySelector("#show-signup").addEventListener("click", () => {
   document.querySelector(".popup-signup").classList.add("active");
   document.querySelector("#signup").addEventListener('click', (event) => {
@@ -23,23 +25,30 @@ document.querySelector("#show-signup").addEventListener("click", () => {
   })
 });
 
+// Close login box if x clicked
 document.querySelector(".popup-login .close-btn").addEventListener("click", () => {
   document.querySelector(".popup-login").classList.remove("active");
 });
 
+// Close singup box if x clicked
 document.querySelector(".popup-signup .close-btn").addEventListener("click", () => {
   document.querySelector(".popup-signup").classList.remove("active");
 });
 
-login(sessionStorage.getItem("handle"), sessionStorage.getItem("password"))
-
-viewPeeps();
-
-const peep_button = document.querySelector('#post')
-peep_button.addEventListener('click', () => {
-  console.log(document.querySelector('#peep_body').value)
+// Post a new peep if the button is clicked
+document.querySelector('#post').addEventListener('click', () => {
   postPeep(document.querySelector('#peep_body').value)
 })
 
-document.querySelector('#post').style.display = "none"
-document.querySelector('.peep').style.display = "none"
+// Hiding and showing depending on whether user is logged in
+if (sessionStorage.getItem("handle") === null) {
+  document.querySelectorAll(".user-sign-in").forEach(function(item) {
+    item.style.display = "none"
+  })
+} else {
+  document.querySelectorAll(".user-signed-in").forEach(function(item) {
+    item.style.display = "none"
+  })
+};
+
+viewPeeps();

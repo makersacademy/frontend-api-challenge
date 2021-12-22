@@ -16,14 +16,6 @@
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
           console.log(data2);
-          const success = document.createElement("P");
-          success.innerText = "user successfully created";
-          success.id = "success";
-          document.body.appendChild(success);
-          const del = () => {
-            success.remove();
-          };
-          setTimeout(del, 2e3);
         });
       };
       module.exports.createUser = createUser2;
@@ -36,7 +28,6 @@
       var viewPeeps2 = () => {
         let count = 1;
         fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data2) => {
-          console.log(data2);
           data2.forEach((peep) => {
             const peep_div = document.createElement("div");
             peep_div.className = "peeps";
@@ -88,9 +79,6 @@
   // src/login.js
   var require_login = __commonJS({
     "src/login.js"(exports, module) {
-      callback = (data2) => {
-        data2;
-      };
       var login2 = (handle, password) => {
         sessionStorage.setItem("handle", `${handle}`);
         sessionStorage.setItem("password", `${password}`);
@@ -102,21 +90,6 @@
           },
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
-          sessionStorage.setItem("id", data2.user_id);
-          sessionStorage.setItem("key", data2.session_key);
-          document.querySelector("#welcome").innerText = `Wow, you're back so soon. Let's get peeping!`;
-          document.querySelector("#signup").style.display = "none";
-          document.querySelector("#login").style.display = "none";
-          document.querySelector("#post").style.display = "";
-          document.querySelector(".peep").style.display = "";
-          const success = document.createElement("P");
-          success.innerText = "successfully logged in";
-          success.id = "success";
-          document.body.appendChild(success);
-          const del = () => {
-            success.remove();
-          };
-          setTimeout(del, 2e3);
         });
       };
       module.exports.login = login2;
@@ -152,13 +125,17 @@
   document.querySelector(".popup-signup .close-btn").addEventListener("click", () => {
     document.querySelector(".popup-signup").classList.remove("active");
   });
-  login(sessionStorage.getItem("handle"), sessionStorage.getItem("password"));
-  viewPeeps();
-  var peep_button = document.querySelector("#post");
-  peep_button.addEventListener("click", () => {
-    console.log(document.querySelector("#peep_body").value);
+  document.querySelector("#post").addEventListener("click", () => {
     postPeep(document.querySelector("#peep_body").value);
   });
-  document.querySelector("#post").style.display = "none";
-  document.querySelector(".peep").style.display = "none";
+  if (sessionStorage.getItem("handle") === null) {
+    document.querySelectorAll(".user-sign-in").forEach(function(item) {
+      item.style.display = "none";
+    });
+  } else {
+    document.querySelectorAll(".user-signed-in").forEach(function(item) {
+      item.style.display = "none";
+    });
+  }
+  viewPeeps();
 })();
