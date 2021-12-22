@@ -67,9 +67,8 @@
           },
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
-          const div = document.createElement("p");
-          div.innerText = data2.body;
-          document.querySelector("#peep-1").insertBefore(div);
+          console.log(data2);
+          window.location.reload();
         });
       };
       module.exports.postPeep = postPeep2;
@@ -90,6 +89,10 @@
           },
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
+          sessionStorage.setItem("id", data2.user_id);
+          sessionStorage.setItem("key", data2.session_key);
+          console.log(data2);
+          window.location.reload();
         });
       };
       module.exports.login = login2;

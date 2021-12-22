@@ -11,6 +11,10 @@ const login = (handle, password) => {
   })
   .then(response => response.json())
   .then(data => {
+    sessionStorage.setItem("id", data.user_id)
+    sessionStorage.setItem("key", data.session_key)
+    console.log(data);
+    window.location.reload();
   })
 }
 

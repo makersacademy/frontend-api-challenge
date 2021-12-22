@@ -11,9 +11,8 @@ const postPeep = (body) => {
   })
   .then(response => response.json())
   .then(data => {
-    const div = document.createElement('p')
-    div.innerText = data.body
-    document.querySelector('#peep-1').insertBefore(div)
+    console.log(data)
+    window.location.reload();
   })
 }
 
