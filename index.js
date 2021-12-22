@@ -7,6 +7,21 @@ callback = (data) => {
   data
 }
 
+document.querySelector("#show-login").addEventListener("click", () => {
+  document.querySelector(".popup").classList.add("active");
+  document.querySelector("#login").addEventListener('click', (event) => {
+    let handle = document.querySelector("#handle").value
+    let password = document.querySelector("#password").value
+    login(handle, password);
+    document.querySelector(".popup").classList.remove("active");
+  })
+});
+
+document.querySelector(".popup .close-btn").addEventListener("click", () => {
+  document.querySelector(".popup").classList.remove("active");
+});
+
+
 login(sessionStorage.getItem("handle"), sessionStorage.getItem("password"))
 
 const signup_button = document.querySelector('#signup')

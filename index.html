@@ -23,15 +23,37 @@
           </ul>
   
           <div class="text-end">
-            <button id="signup" type="button" class="btn btn-outline-light me-2">Login</button>
-            <button id="login" type="button" class="btn btn-warning">Sign-up</button>
+            <button id="show-login" type="button" class="btn btn-outline-light me-2">Login</button>
+            <button id="sign-up" type="button" class="btn btn-warning">Sign-up</button>
           </div>
         </div>
       </div>
     </header>
+
+    <div class="popup">
+      <div class="close-btn">&times;</div>
+      <div class="form">
+        <h2>Log in</h2>
+        <div class="form-element">
+          <label for="handle">Chitter handle</label>
+          <input type="text" id="handle" placeholder="Enter email">
+        </div>
+        <div class="form-element">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter password">
+        </div>
+        <div class="form-element">
+          <input type="checkbox" id="remember-me">
+          <label for="remember-me">Remember me</label>
+        </div>
+        <div class="form-element">
+          <button id="login">Sign in</button>
+        </div>
+      </div>
+    </div>
   
     <div>
-      <p id="welcome" class='centered'>You must sign in to post a peep</p>
+      <p id="welcome" class="centered">You must sign in to post a peep</p>
     </div>
   
     <div>
