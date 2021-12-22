@@ -1,24 +1,8 @@
-body {
-  background-color: #ffffff;
-  font-family: 'Lora', serif;
-  padding: 40px;
-  text-align: left;
-  color: #333;
-  font-size: 18px;
-  color: rgb(99, 99, 245);
-}
+body { font-family: 'Mukta', sans-serif; }
 
-  .navbar {
-    text-align: center;
-    background-color: #ffffff;  
-    width: 50%;
-    margin: 0 auto;
-    
-    padding: 15px 50px;
-    border-radius: 5px;
-  
-    margin-bottom: 30px;  
-  }
+.centered { margin: 50px auto; width: 60%; }
+
+.post { margin: 50px auto; }
 
 
   .peeps {
@@ -43,3 +27,5 @@ body {
       grid-area: 2 / 4 / 3 / 5; 
       padding: 10px;
     } 
+
+  
