@@ -9,15 +9,15 @@ const createUser = (handle, password) => {
   })
   .then(response => response.json())
   .then(data => {
-    console.log(data);
-    const success = document.createElement('P')
-    success.innerText = 'user successfully created'
-    success.id = 'success'
-    document.body.appendChild(success)
-    const del = () => {
-      success.remove()
-    }
-    setTimeout(del, 2000)
+      console.log(data);
+      const success = document.createElement('P')
+      success.innerText = 'user successfully created'
+      success.id = 'success'
+      document.body.appendChild(success)
+      const del = () => {
+        success.remove()
+      }
+      setTimeout(del, 2000)
   })
 }
 

@@ -128,78 +128,31 @@
   var { viewPeeps } = require_viewPeeps();
   var { postPeep } = require_postPeep();
   var { login } = require_login();
-  callback = (data2) => {
-    data2;
-  };
   document.querySelector("#show-login").addEventListener("click", () => {
-    document.querySelector(".popup").classList.add("active");
+    document.querySelector(".popup-login").classList.add("active");
     document.querySelector("#login").addEventListener("click", (event) => {
       let handle = document.querySelector("#handle").value;
       let password = document.querySelector("#password").value;
       login(handle, password);
-      document.querySelector(".popup").classList.remove("active");
+      document.querySelector(".popup-login").classList.remove("active");
     });
   });
-  document.querySelector(".popup .close-btn").addEventListener("click", () => {
-    document.querySelector(".popup").classList.remove("active");
+  document.querySelector("#show-signup").addEventListener("click", () => {
+    document.querySelector(".popup-signup").classList.add("active");
+    document.querySelector("#signup").addEventListener("click", (event) => {
+      let handle = document.querySelector("#signup-handle").value;
+      let password = document.querySelector("#signup-password").value;
+      createUser(handle, password);
+      document.querySelector(".popup-signup").classList.remove("active");
+    });
+  });
+  document.querySelector(".popup-login .close-btn").addEventListener("click", () => {
+    document.querySelector(".popup-login").classList.remove("active");
+  });
+  document.querySelector(".popup-signup .close-btn").addEventListener("click", () => {
+    document.querySelector(".popup-signup").classList.remove("active");
   });
   login(sessionStorage.getItem("handle"), sessionStorage.getItem("password"));
-  var signup_button = document.querySelector("#signup");
-  signup_button.addEventListener("click", () => {
-    let form = document.createElement("form");
-    let handle = document.createElement("input");
-    let handle_label = document.createElement("label");
-    let password = document.createElement("input");
-    let password_label = document.createElement("label");
-    let button = document.createElement("button");
-    handle.id = "handle";
-    handle_label.innerText = "Username";
-    handle.id = "password";
-    password_label.innerText = "Password";
-    button.innerText = "Submit";
-    button.id = "submit";
-    form.appendChild(handle_label);
-    form.appendChild(handle);
-    form.appendChild(password_label);
-    form.appendChild(password);
-    form.appendChild(button);
-    document.body.appendChild(form);
-    form.id = "signup-form";
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      createUser(handle.value, password.value);
-      callback(document.querySelector("#signup-form").remove());
-      return false;
-    });
-  });
-  var login_button = document.querySelector("#login");
-  login_button.addEventListener("click", () => {
-    let form = document.createElement("form");
-    let handle = document.createElement("input");
-    let handle_label = document.createElement("label");
-    let password = document.createElement("input");
-    let password_label = document.createElement("label");
-    let button = document.createElement("button");
-    handle.id = "handle";
-    handle_label.innerText = "Username";
-    handle.id = "password";
-    password_label.innerText = "Password";
-    button.innerText = "Submit";
-    button.id = "submit";
-    form.appendChild(handle_label);
-    form.appendChild(handle);
-    form.appendChild(password_label);
-    form.appendChild(password);
-    form.appendChild(button);
-    document.body.appendChild(form);
-    form.id = "login-form";
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      login(handle.value, password.value);
-      callback(document.querySelector("#login-form").remove());
-      return false;
-    });
-  });
   viewPeeps();
   var peep_button = document.querySelector("#post");
   peep_button.addEventListener("click", () => {

@@ -24,13 +24,13 @@
   
           <div class="text-end">
             <button id="show-login" type="button" class="btn btn-outline-light me-2">Login</button>
-            <button id="sign-up" type="button" class="btn btn-warning">Sign-up</button>
+            <button id="show-signup" type="button" class="btn btn-warning">Sign-up</button>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="popup">
+    <div class="popup popup-login">
       <div class="close-btn">&times;</div>
       <div class="form">
         <h2>Log in</h2>
@@ -47,7 +47,29 @@
           <label for="remember-me">Remember me</label>
         </div>
         <div class="form-element">
-          <button id="login">Sign in</button>
+          <button id="login">Login</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="popup popup-signup">
+      <div class="close-btn">&times;</div>
+      <div class="form">
+        <h2>Sign up</h2>
+        <div class="form-element">
+          <label for="handle">Chitter handle</label>
+          <input type="text" id="signup-handle" placeholder="Enter email">
+        </div>
+        <div class="form-element">
+          <label for="password">Password</label>
+          <input type="password" id="signup-password" placeholder="Enter password">
+        </div>
+        <div class="form-element">
+          <input type="checkbox" id="remember-me">
+          <label for="remember-me">Remember me</label>
+        </div>
+        <div class="form-element">
+          <button id="signup">Sign up</button>
         </div>
       </div>
     </div>
