@@ -1,6 +1,6 @@
 # Chitter API Frontend
 
-The task was to write a small Twitter clone using Javascript that will allow the users to post messages to a public stream. The backend API was already built and hosted on Heroku, [see the API documentation here.](https://github.com/makersacademy/chitter_api_backend).
+The task was to write a small Twitter clone using Javascript that will allow the users to post messages to a public stream. The backend API was already built and hosted on Heroku, [see the API documentation here.](https://github.com/makersacademy/chitter_api_backend)
 
 ### Use
 

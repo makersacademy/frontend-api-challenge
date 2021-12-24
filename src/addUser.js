@@ -10,6 +10,7 @@ const createUser = (handle, password) => {
   .then(response => response.json())
   .then(data => {
     console.log(data)
+    alert("User successfully created.")
   })
 }
 

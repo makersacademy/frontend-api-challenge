@@ -14,6 +14,7 @@ const login = (handle, password) => {
     sessionStorage.setItem("id", data.user_id)
     sessionStorage.setItem("key", data.session_key)
     console.log(data);
+    alert("Successfully logged in.")
     window.location.reload();
   })
 }

@@ -16,6 +16,7 @@
           body: JSON.stringify(data)
         }).then((response) => response.json()).then((data2) => {
           console.log(data2);
+          alert("User successfully created.");
         });
       };
       module.exports.createUser = createUser2;
@@ -92,6 +93,7 @@
           sessionStorage.setItem("id", data2.user_id);
           sessionStorage.setItem("key", data2.session_key);
           console.log(data2);
+          alert("Successfully logged in.");
           window.location.reload();
         });
       };
