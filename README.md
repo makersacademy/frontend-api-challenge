@@ -1,37 +1,26 @@
-# Chitter API Frontend Challenge
+# Chitter API Frontend
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+The task was to write a small Twitter clone using Javascript that will allow the users to post messages to a public stream. The backend API was already built and hosted on Heroku, [see the API documentation here.](https://github.com/makersacademy/chitter_api_backend)
 
-Challenge:
--------
+### Use
 
-As usual please start by forking this repo.
+Simply open the `index.html` file in a browser of your choice.
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+### Functionality
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
+* View the most recent 50 'peeps' from newest to oldest
+* Create user
+* Log in
+* Post peep
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+### Approach
 
-Here are some interactions the API supports. Implement as many as you see fit.
+My first focus was on using fetch to get the data to the page. I started with a simple GET request, using the developer console to guide and debug, before moving on to other routes.
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+Once I had the functionality I wanted I then began to think about what I wanted to learn from implementing a front end. I really wanted to see how a single webpage application would work and how it differs to a multi-webpage application, so the main area I decide to focus on was making a sign-up and log-in box appear on the screen. 
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+### Reflections
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+My first solution was a Javascript-heavy solution, whereby the HTML elements were created in Javascript when a button was clicked. This was largely done before researching the best way to implement my desired outcome and was not in hindsight the best approach, but it was helpful for learning purposes such as how to manipulate the DOM. I refined the approach with the help of resources. Instead, the elements were written in the HTML and CSS files, and Javascript was used simply to make the box appear/dissappear. 
 
-## Utilities you might find useful
-
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+Although I think I extracted much of what I wanted in terms of learning outcomes from this exercise, there are a few more actions I would like to take. I am less concerned with implementing more features, and more concerned with improving the depth of the coding. For example, I encountered the issue that the fetch API function is not readily available in NodeJS; I spent some time trying to mock or import a module to fix the issue, but in the end decided to direct my attention elsewhere. I would also like to look at edge cases, and look at how the code would differ with ES6 updates.
