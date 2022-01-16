@@ -141,7 +141,7 @@
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              "Authorization": user_data_for_posting[1]
+              "Authorization": `Token token=${user_data_for_posting[1]}`
             },
             body: JSON.stringify(newinput)
           }).then((response) => response.json()).then((data) => {
