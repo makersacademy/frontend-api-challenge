@@ -1,6 +1,9 @@
 const ChitterApi = require('./chitterApi');
+const ChitterView = require('./chitterView');
 
 const api = new ChitterApi;
-api.loadPeeps((peeps) => {
-  console.log(peeps);
-});
+const view = new ChitterView(api);
+
+// api.loadPeeps((peeps) => {
+//   view.display(peeps);
+// });

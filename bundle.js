@@ -18,10 +18,36 @@
     }
   });
 
+  // chitterView.js
+  var require_chitterView = __commonJS({
+    "chitterView.js"(exports, module) {
+      var ChitterApi2 = require_chitterApi();
+      var ChitterView2 = class {
+        constructor(api2) {
+          this.api = api2;
+          this.mainContainerEl = document.querySelector("#main-container");
+          this.viewButton = document.querySelector("#view-peeps-button");
+          this.viewButton.addEventListener("click", () => {
+            this.api.loadPeeps(this.displayPeeps);
+          });
+        }
+        displayPeeps(peeps) {
+          console.log(peeps);
+          peeps.forEach((peep) => {
+            const peepEl = document.createElement("div");
+            peepEl.innerText = peep.body + peep.user.handle;
+            peepEl.className = "peep";
+            document.querySelector("#main-container").append(peepEl);
+          });
+        }
+      };
+      module.exports = ChitterView2;
+    }
+  });
+
   // index.js
   var ChitterApi = require_chitterApi();
+  var ChitterView = require_chitterView();
   var api = new ChitterApi();
-  api.loadPeeps((peeps) => {
-    console.log(peeps);
-  });
+  var view = new ChitterView(api);
 })();
