@@ -13,6 +13,10 @@ class ChitterApi {
    {this.last_sign_in_outcome = 'No sign in'}
    else
    { this.last_sign_in_outcome= localStorage.getItem("lastsigninsuccess")}
+   if ( localStorage.getItem("created_account") === null)
+    {this.created_account= "No New account created"}
+    else
+    {this.created_account = localStorage.getItem("created_account")};
   }
 
 
@@ -37,7 +41,29 @@ class ChitterApi {
     window.location.reload()
   }
 
-  createUser(callback) {}
+  signUp(details) {
+    const user_details = {user:details}
+    fetch('https://chitter-backend-api-v2.herokuapp.com/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user_details),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          this.created_account = `Account created! Now please sign in`
+          console.log("Created")
+          localStorage.setItem('created_account', this.created_account)
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          this.created_account = `Account creation failed`
+          console.log("Failed")
+          localStorage.setItem('created_account', this.created_account)
+        });
+  }
 
   signIn(signInDetails) {
     console.log(signInDetails)
@@ -67,6 +93,35 @@ class ChitterApi {
           console.error('Error:', error);
           this.last_sign_in_outcome = `Sign in failed`
           localStorage.setItem('lastsigninsuccess', this.last_sign_in_outcome)
+          return error
+        });
+  }
+
+  postChitt(chitt) {
+    console.log(this.user_data)
+    const user_data_for_posting = this.user_data.split(",")
+    console.log(user_data_for_posting)
+    const newinput = {peep:{user_id: user_data_for_posting[0], body:chitt.body }}
+    console.log(JSON.stringify(newinput))
+    console.log(user_data_for_posting[1])
+    fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': user_data_for_posting[1]
+            
+          },
+          body: JSON.stringify(newinput)
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          window.location.reload()
+          return data
+        })
+        .catch((error) => {
+          console.log(error);
+          console.error('Error:', error);
           return error
         });
   }

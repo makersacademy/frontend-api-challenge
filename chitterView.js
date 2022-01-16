@@ -16,7 +16,8 @@ class ChitterView {
 
     this.user = `${this.username} Signed In`
 
-    this.mainContainerEl = document.querySelector('#main-container');
+    this.mainContainerEl = document.querySelector('#main-container')
+    this.secondContainerEl = document.querySelector('#sign-up-main-container');
     this.detailsEl = document.querySelector('#details-of-user')
 
     document.querySelector('#sign-out-button').addEventListener("click", ()=> {
@@ -29,8 +30,15 @@ signInForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const handle = String(document.querySelector('#username').value);
   const password = String(document.querySelector('#password').value);
-  console.log({handle:handle,password:password});
   this.api.signIn({handle:handle,password:password});
+});
+
+const postChitt = document.getElementById('post-chitt')
+
+postChitt.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const body= String(document.querySelector('#my-chitt').value);
+  this.api.postChitt({body:body});
 });
   }
 
