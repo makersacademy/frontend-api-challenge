@@ -19,7 +19,12 @@ class ChitterView {
     this.mainContainerEl = document.querySelector('#main-container');
     this.detailsEl = document.querySelector('#details-of-user')
 
+    document.querySelector('#sign-out-button').addEventListener("click", ()=> {
+      this.api.signOut();
+    });
+
     const signInForm = document.getElementById('sign-in')
+
 signInForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const handle = String(document.querySelector('#username').value);

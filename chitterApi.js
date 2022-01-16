@@ -27,9 +27,13 @@ class ChitterApi {
   }
 
   signOut() {
+    console.log("I'm signing out!")
     this.user_data = {user_id: 0, session_key: 0}
+    localStorage.setItem('user_data', this.user_data)
     this.username = 'No User'
-    this.last_sign_in_outcome = 'Signed Out'
+    localStorage.setItem('username', this.username)
+    this.last_sign_in_outcome = `Signed Out`
+    localStorage.setItem('lastsigninsuccess', this.last_sign_in_outcome)
     window.location.reload()
   }
 

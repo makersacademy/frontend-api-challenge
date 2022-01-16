@@ -67,9 +67,13 @@
           });
         }
         signOut() {
+          console.log("I'm signing out!");
           this.user_data = { user_id: 0, session_key: 0 };
+          localStorage.setItem("user_data", this.user_data);
           this.username = "No User";
-          this.last_sign_in_outcome = "Signed Out";
+          localStorage.setItem("username", this.username);
+          this.last_sign_in_outcome = `Signed Out`;
+          localStorage.setItem("lastsigninsuccess", this.last_sign_in_outcome);
           window.location.reload();
         }
         createUser(callback) {
@@ -131,6 +135,9 @@
           this.user = `${this.username} Signed In`;
           this.mainContainerEl = document.querySelector("#main-container");
           this.detailsEl = document.querySelector("#details-of-user");
+          document.querySelector("#sign-out-button").addEventListener("click", () => {
+            this.api.signOut();
+          });
           const signInForm = document.getElementById("sign-in");
           signInForm.addEventListener("submit", (e) => {
             e.preventDefault();
