@@ -50,9 +50,16 @@
           const chitts = this.model.getChitts();
           chitts.forEach((chitt) => {
             const chittEl = document.createElement("div");
-            chittEl.innerText = `${chitt.user}: ${chitt.chitt} 
+            let people;
+            if (chitt.likes === 1) {
+              people = "person";
+            } else {
+              people = "people";
+            }
+            chittEl.innerText = `
+ ${chitt.user}: ${chitt.chitt} 
  Posted at:${chitt.posted} 
- Liked by ${chitt.likes} people`;
+ Liked by ${chitt.likes} ${people}`;
             chittEl.className = `chitt ${chitt.id}${chitt.posted}`;
             this.mainContainerEl.append(chittEl);
           });

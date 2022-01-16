@@ -17,7 +17,10 @@ class ChitterView {
     
     chitts.forEach(chitt => {
       const chittEl = document.createElement('div')
-      chittEl.innerText = `${chitt.user}: ${chitt.chitt} \n Posted at:${chitt.posted} \n Liked by ${chitt.likes} people`;
+      let people
+      if (chitt.likes === 1) {people = 'person'}
+      else {people = 'people'}
+      chittEl.innerText = `\n ${chitt.user}: ${chitt.chitt} \n Posted at:${chitt.posted} \n Liked by ${chitt.likes} ${people}`;
       chittEl.className = `chitt ${chitt.id}${chitt.posted}`;
       this.mainContainerEl.append(chittEl);
     });
