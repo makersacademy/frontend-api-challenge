@@ -38,13 +38,119 @@
     }
   });
 
+  // chitterApi.js
+  var require_chitterApi = __commonJS({
+    "chitterApi.js"(exports, module) {
+      var ChitterApi2 = class {
+        constructor() {
+          if (localStorage.getItem("user_data") === null) {
+            this.user_data = { user_id: 0, session_key: 0 };
+          } else {
+            this.user_data = localStorage.getItem("user_data");
+          }
+          ;
+          if (localStorage.getItem("username") === null) {
+            this.username = "No User";
+          } else {
+            this.username = localStorage.getItem("username");
+          }
+          ;
+          if (localStorage.getItem("lastsigninsuccess") === null) {
+            this.last_sign_in_outcome = "No sign in";
+          } else {
+            this.last_sign_in_outcome = localStorage.getItem("lastsigninsuccess");
+          }
+        }
+        loadChitts(callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => {
+            callback(data);
+          });
+        }
+        signOut() {
+          this.user_data = { user_id: 0, session_key: 0 };
+          this.username = "No User";
+          this.last_sign_in_outcome = "Signed Out";
+          window.location.reload();
+        }
+        createUser(callback) {
+        }
+        signIn(signInDetails) {
+          console.log(signInDetails);
+          const input = { session: signInDetails };
+          console.log(input);
+          fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(input)
+          }).then((response) => response.json()).then((data) => {
+            console.log("Success:", data);
+            this.user_data = [data.user_id, data.session_key];
+            localStorage.setItem("user_data", this.user_data);
+            this.username = input.session.handle;
+            localStorage.setItem("username", this.username);
+            this.last_sign_in_outcome = `Signed in as ${this.username}`;
+            localStorage.setItem("lastsigninsuccess", this.last_sign_in_outcome);
+            window.location.reload();
+            return data;
+          }).catch((error) => {
+            console.log(error);
+            console.error("Error:", error);
+            this.last_sign_in_outcome = `Sign in failed`;
+            localStorage.setItem("lastsigninsuccess", this.last_sign_in_outcome);
+            return error;
+          });
+        }
+        my_username() {
+          return this.username;
+        }
+        user_details() {
+          return this.user_data;
+        }
+        last_sign_in() {
+          return this.last_sign_in_outcome;
+        }
+      };
+      module.exports = ChitterApi2;
+    }
+  });
+
   // chitterView.js
   var require_chitterView = __commonJS({
     "chitterView.js"(exports, module) {
+      var ChitterApi2 = require_chitterApi();
       var ChitterView2 = class {
-        constructor(model2) {
+        constructor(model2, api2) {
           this.model = model2;
+          this.api = api2;
+          this.signed_In = localStorage.getItem("sign_in_details");
+          this.username = this.api.my_username();
+          this.user_id = this.api.user_details().user_id;
+          this.user_id = this.api.user_details().session_key;
+          this.user = `${this.username} Signed In`;
           this.mainContainerEl = document.querySelector("#main-container");
+          this.detailsEl = document.querySelector("#details-of-user");
+          const signInForm = document.getElementById("sign-in");
+          signInForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const handle = String(document.querySelector("#username").value);
+            const password = String(document.querySelector("#password").value);
+            console.log({ handle, password });
+            this.api.signIn({ handle, password });
+          });
+        }
+        viewMyDetails() {
+          const myDetailsEl = document.createElement("div");
+          myDetailsEl.className = "my-details";
+          myDetailsEl.innerText = this.user;
+          this.detailsEl.append(myDetailsEl);
+        }
+        successful_signin(input) {
+          const myDetailsEl = document.createElement("div");
+          myDetailsEl.className = "my-details";
+          myDetailsEl.innerText = input;
+          this.detailsEl.append(myDetailsEl);
         }
         displayChitts() {
           const chitts = this.model.getChitts();
@@ -66,20 +172,6 @@
         }
       };
       module.exports = ChitterView2;
-    }
-  });
-
-  // chitterApi.js
-  var require_chitterApi = __commonJS({
-    "chitterApi.js"(exports, module) {
-      var ChitterApi2 = class {
-        loadChitts(callback) {
-          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => {
-            callback(data);
-          });
-        }
-      };
-      module.exports = ChitterApi2;
     }
   });
 
@@ -772,7 +864,7 @@
         }
         var runInContext = function runInContext2(context) {
           context = context == null ? root : _.defaults(root.Object(), context, _.pick(root, contextProps));
-          var Array2 = context.Array, Date = context.Date, Error2 = context.Error, Function2 = context.Function, Math2 = context.Math, Object2 = context.Object, RegExp2 = context.RegExp, String = context.String, TypeError2 = context.TypeError;
+          var Array2 = context.Array, Date = context.Date, Error2 = context.Error, Function2 = context.Function, Math2 = context.Math, Object2 = context.Object, RegExp2 = context.RegExp, String2 = context.String, TypeError2 = context.TypeError;
           var arrayProto = Array2.prototype, funcProto = Function2.prototype, objectProto = Object2.prototype;
           var coreJsData = context["__core-js_shared__"];
           var funcToString = funcProto.toString;
@@ -1091,7 +1183,7 @@
           Stack.prototype.has = stackHas;
           Stack.prototype.set = stackSet;
           function arrayLikeKeys(value, inherited) {
-            var isArr = isArray(value), isArg = !isArr && isArguments(value), isBuff = !isArr && !isArg && isBuffer(value), isType = !isArr && !isArg && !isBuff && isTypedArray(value), skipIndexes = isArr || isArg || isBuff || isType, result2 = skipIndexes ? baseTimes(value.length, String) : [], length = result2.length;
+            var isArr = isArray(value), isArg = !isArr && isArguments(value), isBuff = !isArr && !isArg && isBuffer(value), isType = !isArr && !isArg && !isBuff && isTypedArray(value), skipIndexes = isArr || isArg || isBuff || isType, result2 = skipIndexes ? baseTimes(value.length, String2) : [], length = result2.length;
             for (var key in value) {
               if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && (key == "length" || isBuff && (key == "offset" || key == "parent") || isType && (key == "buffer" || key == "byteLength" || key == "byteOffset") || isIndex(key, length)))) {
                 result2.push(key);
@@ -1255,7 +1347,7 @@
             if (typeof func != "function") {
               throw new TypeError2(FUNC_ERROR_TEXT);
             }
-            return setTimeout(function() {
+            return setTimeout2(function() {
               func.apply(undefined, args);
             }, wait);
           }
@@ -3064,7 +3156,7 @@
             return object[key];
           }
           var setData = shortOut(baseSetData);
-          var setTimeout = ctxSetTimeout || function(func, wait) {
+          var setTimeout2 = ctxSetTimeout || function(func, wait) {
             return root.setTimeout(func, wait);
           };
           var setToString = shortOut(baseSetToString);
@@ -3856,7 +3948,7 @@
             }
             function leadingEdge(time) {
               lastInvokeTime = time;
-              timerId = setTimeout(timerExpired, wait);
+              timerId = setTimeout2(timerExpired, wait);
               return leading ? invokeFunc(time) : result2;
             }
             function remainingWait(time) {
@@ -3872,7 +3964,7 @@
               if (shouldInvoke(time)) {
                 return trailingEdge(time);
               }
-              timerId = setTimeout(timerExpired, remainingWait(time));
+              timerId = setTimeout2(timerExpired, remainingWait(time));
             }
             function trailingEdge(time) {
               timerId = undefined;
@@ -3903,12 +3995,12 @@
                 }
                 if (maxing) {
                   clearTimeout(timerId);
-                  timerId = setTimeout(timerExpired, wait);
+                  timerId = setTimeout2(timerExpired, wait);
                   return invokeFunc(lastCallTime);
                 }
               }
               if (timerId === undefined) {
-                timerId = setTimeout(timerExpired, wait);
+                timerId = setTimeout2(timerExpired, wait);
               }
               return result2;
             }
@@ -5502,15 +5594,16 @@
   var model = new ChitterModel();
   var api = new ChitterApi();
   var view = new ChitterView(model, api);
+  view.viewMyDetails();
   api.loadChitts((chitts) => {
-    console.log(chitts);
-    chitts.forEach((chitt) => {
-      console.log(chitt.body);
-    });
-    console.log(chitts.body);
     model.setChitts(chitts);
     view.displayChitts();
   });
+  setTimeout(signing_in, 2e3);
+  function signing_in() {
+    const input = api.last_sign_in();
+    view.successful_signin(input);
+  }
 })();
 /**
  * @license
