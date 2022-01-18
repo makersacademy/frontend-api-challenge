@@ -1,0 +1,12 @@
+.ui.menu .item {
+  color: #1DA1F2 !important;
+  flex-flow: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  line-height: 2 !important;
+}
+
+.ui.menu .item i {
+  margin: auto !important;
+}

@@ -1,0 +1,8 @@
+.ui.message {
+  width: 100% !important;
+  position: absolute !important;
+  bottom: 0;
+  opacity: 0;
+  transition: all 2s ease-in-out !important;
+}
+
