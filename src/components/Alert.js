@@ -3,8 +3,6 @@ import './Alert.css'
 
 const Alert = ({alert}) => {
 
-  console.log(alert)
-
   if (alert) {
     const flash = document.querySelector('.flashAlert')
     flash.style.display = 'block'

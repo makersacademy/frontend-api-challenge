@@ -4,7 +4,6 @@ import SignIn from "./SignIn";
 import Account from './Account'
 
 const LogIn = ( {session, setSession, setAlert} ) => {
-
   const [showSignIn, setShowSignIn] = useState(true);
 
    if (session) {

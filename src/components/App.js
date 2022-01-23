@@ -13,8 +13,6 @@ const App = () => {
   const [session, setSession] = useState(false)
   const [alert, setAlert] = useState(false)
 
-  console.log(alert)
-
   localStorage.removeItem('user')
   localStorage.removeItem('user')
 

@@ -14,7 +14,7 @@ const Menu = ( { onSetOption, session } ) => {
     <div className="ui fluid three item menu">
       <div className={`item login ${option === 'LogIn' ? 'active' : ''}`} onClick={() => {setOption('LogIn')}}>
         <div><i className="user circle icon large"></i></div>
-        <div>{session ? session.handle : 'Log In' }</div>
+        <div data-testid="user" >{session ? session.handle : 'Log In' }</div>
       </div>
       <div className={`item feed ${option === 'Feed' ? 'active' : ''}`} onClick={() => {setOption('Feed')}}>
         <div><i className="earlybirds icon large"></i></div>

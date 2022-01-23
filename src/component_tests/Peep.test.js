@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Feed from '../components/Feed'
+import Peep from '../components/Peep'
 
-describe('Feed', () => {
-  it.todo('should render a Feed component')
+describe('Peep', () => {
+  it.todo('should render a Peep component')
 })
