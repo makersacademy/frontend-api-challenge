@@ -1,6 +1,6 @@
 # Chitter API Frontend Challenge
 
-Challenge:
+Challenge
 ----------
 
 **Write a small Twitter clone that will allow the users to post messages to a public stream.**
@@ -22,6 +22,8 @@ Used state and effect hooks to control the flow of information between component
 
 Adopted a TDD approach to reduce bugs and ensure app stability.
 
+<img src="./app_demo/ss_signin.png" alt="signin" width="200">
+
 ![signIn](./app_demo/ss_signin.png)
 
 ![signedIn](./app_demo/ss_signedin.png)
@@ -33,19 +35,24 @@ Adopted a TDD approach to reduce bugs and ensure app stability.
 ![feed](./app_demo/ss_feed.png)
 
 ## Technologies
-### Production 
+
+### Production
+
 React - *front-end framework*
 Semantic UI - *CSS library*
 
 ### Testing
+
 Jest - *JavaScript testing framework*
 React Testing Library - *React component testing library*
 Mock Service Worker - *API mocking library*
 
 ### Deployment
+
 Vercel - *automatic deployment solution*
 
 ## Challenges & Solutions
+
 *Whether caused by fundamental misunderstanding of the tools or simple oversights, each bug taught a valuable lesson*
 
 **Errors in test and behaviour when setting state on unmounted components**
@@ -97,23 +104,3 @@ Vercel - *automatic deployment solution*
 2. Deleting Peeps
 3. Liking Peeps
 4. Unliking Peeps
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
