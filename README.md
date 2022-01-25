@@ -1,37 +1,115 @@
 # Chitter API Frontend Challenge
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
-
 Challenge:
--------
+----------
 
-As usual please start by forking this repo.
+**Write a small Twitter clone that will allow the users to post messages to a public stream.**
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+## Undertaking
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
+Built a clean, mobile-friendly front-end twitter clone which implements the following features:
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
-
-Here are some interactions the API supports. Implement as many as you see fit.
-
-* Creating Users
+* Creating Users (Sign Up)
 * Logging in
 * Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+* Viewing all Peeps
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+![chitterDemo](./app_demo/chitterDemo.gif)
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+Directed requests to a [Pre-existing backend API](https://github.com/makersacademy/chitter_api_backend) built on express server, and integrated responses into a hooks-based react application.
 
-## Utilities you might find useful
+Used state and effect hooks to control the flow of information between components, and to conditionally render components for minimal reloading and enhanced user experience.
 
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+Adopted a TDD approach to reduce bugs and ensure app stability.
+
+![signIn](./app_demo/Screenshot 2022-01-25 at 21.38.37.png)
+![signedIn](./app_demo/Screenshot 2022-01-25 at 21.38.18.png)
+![peepPage](./app_demo/Screenshot 2022-01-25 at 21.35.57.png)
+![peep](./app_demo/Screenshot 2022-01-25 at 21.40.40.png)
+![feed](./app_demo/Screenshot 2022-01-25 at 21.34.47.png)
+
+## Technologies
+### Production 
+React - *front-end framework*
+Semantic UI - *CSS library*
+
+### Testing
+Jest - *JavaScript testing framework*
+React Testing Library - *React component testing library*
+Mock Service Worker - *API mocking library*
+
+### Deployment
+Vercel - *automatic deployment solution*
+
+## Challenges & Solutions
+*Whether caused by fundamental misunderstanding of the tools or simple oversights, each bug taught a valuable lesson*
+
+**Errors in test and behaviour when setting state on unmounted components**
+
+* Completly restructured how alerts are called and cancelled, moving control of the alert (esp. setTimeOuts) to the alert component rather than the component which initiates the alert
+* Generally took care to set states before rendering the next view
+* Simply reordering and rearranging lines of code in some cases
+
+**Problems accessing and rendering local storage data after reload**
+
+* Remember to call JSON.parse() when getting items from local storage 😅
+
+**Difficulty interecpting HTTP requests with Mocking Service Working and producing meaningful tests without accessing the database**
+
+* Reading the docs, going through various tutorials (as with any new tool).
+* Focused on testing what the user would see based on their use of the app (wherever possible)
+
+**Several errors when testing asynchronous behaviour within tests**
+
+* Docs, tutorials, stackoverflow and taking guidance from error messages in console
+* Heavy use of console.log() to understand what code was running and when. Also, to detect unresovled asynchronous operations.
+* Utilize more features and syntax of testing library
+
+**Difficulty interacting with the api endpoints created by a third party**
+
+* Reading axios docs, use of postman and using trial and error to format requests appropriately
+
+## Learnings
+
+* Although most of the async test errors didn't impact functionality, they exposed bad practices and potential memory leaks that could cause problems down th line. Debugging them was well worth the time and helped with overall code design and knowledge of react testing library.
+
+* Adopt a user-centric approach to front-end testing (instead of testing state), prioritising the appropriate behaviour of high value features. Design tests to simulate how a user would actually use the app.
+
+* Design modular components that control their own fate as much as possible. This makes it easier (and leads to fewer bugs) when guiding information through more complicated routes (e.g. from child - to parent - to child)
+
+## Potential Improvements & Extensions
+
+* Write JSX to enable selecting more elements by 'role' (keeping use of data-testid to a minimum)
+
+* Utliize a wider range of hooks which may help to simplify overall code design
+
+* End-to-End testing using cypress library
+
+* Add more alerts to take full advantage of this component
+
+* Implement additional features based on the remaining API endpoints:
+
+1. Viewing individual Peeps
+2. Deleting Peeps
+3. Liking Peeps
+4. Unliking Peeps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

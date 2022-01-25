@@ -10,15 +10,17 @@ const Peep = ({ redirect }) => {
   const onFormSubmit = async (event) => {
 
     event.preventDefault();
-    const emptyPeepMessage = ['Peeping should be fun, not empty. (write something)', 'If you don\'t peep, you won\'t know. (write something)', 'A rubbish peep is better than no peep at all. (write something)']
-    const noUserMessage = ['Log In to start peeping. (Sign In)', 'Don\'t peep alone, join the community of peepers today (Sign In)', 'Only a registered peeper can peep. (Sign In)']
-    const rand = Math.floor(Math.random()*3)
+    const emptyPeepMessage = ['Share an edgy peep, not an empty peep.', 'If you don\'t peep, you won\'t know.', 'A bland peep is better than a blank peep.', 'No peep, no cry, just try.']
+    const noUserMessage = ['Let\'s defend free peeps together.', 'Don\'t peep alone, join the community of peepers today', 'Only a registered peeper can peep.', 'Congratulations! You played yourself -__-']
+    const emptyPeepInstruction = '(write something)'
+    const noUserInstruction = '(Sign In)'
+    const rand = Math.floor(Math.random()*4)
 
     if (!peep) {
-      setPlaceholder(emptyPeepMessage[rand])
+      setPlaceholder(`${emptyPeepMessage[rand]} ${emptyPeepInstruction}`)
     } else if (!localStorage.getItem('user')) {
       setPeep('')
-      setPlaceholder(noUserMessage[rand])
+      setPlaceholder(`${noUserMessage[rand]} ${noUserInstruction}`)
     } else { 
       try {
         const { user_id, session_key } = JSON.parse(localStorage.getItem('user'))
@@ -32,13 +34,16 @@ const Peep = ({ redirect }) => {
             "Authorization": `Token token=${session_key}`
           }
         })
-        console.log(res)
-        redirect(true)
+        if (res) {
+          console.log(res)
+          redirect(true)
+        }
       } catch (e) {
         setPeep('')
         setPlaceholder('Sorry, something went wrong on our end :(')
         console.log(e)
       }
+      
     } 
 
   }

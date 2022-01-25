@@ -1,35 +1,50 @@
 import React from "react";
+import { useEffect } from "react/cjs/react.development";
 import './Alert.css'
 
-const Alert = ({alert}) => {
+const Alert = ({ alert, setAlert }) => {
+  
+  useEffect(() => {
 
-  if (alert) {
-    const flash = document.querySelector('.flashAlert')
-    flash.style.display = 'block'
-    flash.style.opacity = 1;
+    if (alert) {
+      const flash = document.querySelector('.flashAlert')
+      if (flash) {
+        flash.style.display = 'block'
+        flash.style.opacity = 1;
+      }
+  
+      let fadeTimeout = setTimeout(() => {
+        if (flash) {
+          flash.style.opacity = 0;
+        }
+      }, 2000)
+  
+      let showTimeout = setTimeout(() => {
+        if (flash) {
+          flash.style.display = 'none';
+        }
+      }, 4000)
+  
+      return () => {
+        setAlert(false)
+        const flash = document.querySelector('.flashAlert')
+        clearTimeout(fadeTimeout)
+        clearTimeout(showTimeout)
+        if (flash) {
+          flash.style.display = 'none'
+        }
+      }
+    }
 
-    setTimeout(() => {
-      flash.style.opacity = 0;
-    }, 2000)
-
-    setTimeout(() => {
-      flash.style.display = 'none';
-    }, 4000)
-  } 
-
-
+  }, [alert, setAlert])
 
     return (
-      <div className="ui success message flashAlert">
-        <i className="close icon"></i>
+      <div className={`ui ${alert.type} message flashAlert`} >
         <div className="header">
-          Registration Successful!
+          {alert.message}
         </div>
-        <p>Log-in with the username and password</p>
       </div>
     )
- 
-
  
 }
 

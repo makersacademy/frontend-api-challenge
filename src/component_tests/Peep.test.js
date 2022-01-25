@@ -4,6 +4,7 @@ import Peep from '../components/Peep'
 import './testHelpers'
 
 describe('Peep', () => {
+
   test('user must sign in to post new peep', async () => {
     render(<Peep />)
     userEvent.type(screen.getByPlaceholderText(/What's happening/i), 'Hello World!')

@@ -12,24 +12,18 @@ const App = () => {
   const [alert, setAlert] = useState(false)
   const [redirect, setRedirect] = useState(false)
 
-  console.log(`session: ${session}`)
-  console.log(`local storage: ${localStorage.getItem('user')}`)
-
-  useEffect(() => {
-    setRedirect(false)
-  }, [setOption])
 
   useEffect(() => {
     const user = localStorage.getItem('user')
     if (user) {
-      setSession(user)
+      setSession(JSON.parse(user))
     }
   }, [])
 
   return (
     <div className="app"> 
       <div className="ui top-bar">
-        <Menu onSetOption={setOption} session={session} redirect={redirect} />
+        <Menu onSetOption={setOption} session={session} redirect={redirect} setRedirect={setRedirect} />
       </div>
       <div className='ui container content-field'>
         {
@@ -38,10 +32,11 @@ const App = () => {
         option === 'Peep' ? <Peep redirect={setRedirect}/>
         : ''
         }
-      <Alert alert={alert}/>  
+      <Alert alert={alert} setAlert={setAlert} />  
       </div>
     </div>
   )
 }
 
 export default App
+

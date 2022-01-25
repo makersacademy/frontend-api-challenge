@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { render } from "react-dom";
 import './Menu.css'
 
-const Menu = ( { onSetOption, session, redirect } ) => {
+const Menu = ( { onSetOption, session, redirect, setRedirect } ) => {
 
   const [option, setOption] = useState('Feed')
-
 
   useEffect(() => {
     if (redirect) {
       setOption('Feed')
     }
-  }, [redirect])
+    setRedirect(false)
+  }, [redirect, setRedirect])
 
   useEffect(() => {
       onSetOption(option)

@@ -1,44 +1,38 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { rest } from "msw"
-import { setupServer } from "msw/node";
 import App from "../components/App";
 import signIn from "./testHelpers";
+import { server, rest } from '../testServer'
 
-const server = setupServer(
-  rest.post("https://chitter-backend-api-v2.herokuapp.com/sessions", (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({user_id: 835, session_key: '_2a_12_9hRKeEGk6cm4Cod0yWz0U_'}) 
-    )
-  }),
-
-  rest.post('*', (req, res, ctx) => {
-    console.error(`Please add request handler for ${req.url.toString()}`);
-    return res(
-      ctx.status(500),
-      ctx.json({ error: "Please add request handler" }) 
-    )
-  })
-);
-
-beforeAll(() => server.listen());
-afterAll(() => server.close());
-afterEach(() => {
-  server.resetHandlers()
-  console.log('clearing local storage...')
-  localStorage.removeItem('user')
-});
+// Test behaviours that span multiple App components
 
 describe("App", () => {
-
-  test.todo('user can sign up')
 
   test('user can sign in', async () => {
     render(<App />);
     signIn()
     await waitFor(() => expect(screen.getByTestId('user')).toHaveTextContent('jaskier'))
+  })
 
+  test('user can sign up', async () => {
+    server.use(
+      rest.post('https://chitter-backend-api-v2.herokuapp.com/users', (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json(
+            {"user": {"handle":"jeremy", "password":"yourpassword"}}
+          )
+        )
+      })
+    )
+    render(<App />)
+    userEvent.click(screen.getByText(/Log In/i))
+    userEvent.click(screen.getByText(/Sign Up/i))
+    userEvent.type(screen.getByLabelText(/Username/i), 'james')
+    userEvent.type(screen.getByLabelText("Password"), 'yourpassword')
+    userEvent.type(screen.getByLabelText("Confirm Password"), 'yourpassword')
+    userEvent.click(screen.getByRole(/button/i))
+    expect(await screen.findByText(/Registration Successful/i)).toBeInTheDocument() 
   })
 
   test('user can sign out', async () => {
@@ -48,7 +42,7 @@ describe("App", () => {
     expect(screen.getByTestId('user')).toHaveTextContent('Log In')
   })
 
-  test('user can post peep', async () => {
+  test('user can post peep and is redirected to feed', async () => {
     server.use(
       rest.post('https://chitter-backend-api-v2.herokuapp.com/peeps', (req, res, ctx) => {
         return res(
@@ -68,8 +62,8 @@ describe("App", () => {
                   "id": 1,
                   "handle": "kay"
                 }
-              }]}
-            ) 
+            } ]}
+          ) 
         )
       })
     )
@@ -81,19 +75,14 @@ describe("App", () => {
     expect(screen.getByTestId('user')).toHaveTextContent('jaskier')
     userEvent.type(screen.getByPlaceholderText(/What's happening/i), 'Hi Planet!')
     userEvent.click(screen.getByRole('button'))
-    expect(await screen.findByText(/Hi Planet!/i)).toBeInTheDocument()
-  
+    await waitForElementToBeRemoved(() => screen.queryByRole('button'))
+    expect(await screen.findByText(/let us peep!/i)).toBeInTheDocument()
   })
-
 
 });
 
-// Sign Up Test
-// Refactor test api calls
-// Put CSS in separate folder
-// --detectOpenHandles
+
 // ReadMe
-// keep pic on reload
 // Host on Vercel
 
 

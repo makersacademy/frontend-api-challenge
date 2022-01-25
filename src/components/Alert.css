@@ -3,6 +3,7 @@
   position: absolute !important;
   display: none;
   bottom: 0;
+  left: 0;
   opacity: 0;
   transition: all 2s ease-in-out !important;
 }

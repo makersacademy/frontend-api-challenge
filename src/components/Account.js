@@ -4,7 +4,6 @@ import './Account.css'
 const Account = ({ session, setSession }) => {
 
   const signOut = () => {
-    console.log('clearing local storage...')
     localStorage.removeItem('user')
     setSession(false)
   }
@@ -16,7 +15,7 @@ const Account = ({ session, setSession }) => {
           <img src={session.avatar} alt='my beautiful pic'/>
         </div>
         <div className="content">
-          <a className="header">{session.handle}</a>
+          <a href="#" className="header">{session.handle}</a>
           <div className="meta">
             <span className="date">Joined in 2019</span>
           </div>

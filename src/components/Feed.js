@@ -22,6 +22,10 @@ const Feed = () => {
       setPosts(response.data);
     };
     getPosts();
+
+    return () => {
+      setPosts({});
+    }
   }, []);
 
   return posts ? (
