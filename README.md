@@ -22,15 +22,15 @@ Used state and effect hooks to control the flow of information between component
 
 Adopted a TDD approach to reduce bugs and ensure app stability.
 
-![signIn](./app_demo/Screenshot 2022-01-25 at 21.38.37.png)
+![signIn](./app_demo/ss_signin.png)
 
-![signedIn](./app_demo/Screenshot 2022-01-25 at 21.38.18.png)
+![signedIn](./app_demo/ss_signedin.png)
 
-![peepPage](./app_demo/Screenshot 2022-01-25 at 21.35.57.png)
+![peepPage](./app_demo/ss_peepPage.png)
 
-![peep](./app_demo/Screenshot 2022-01-25 at 21.40.40.png)
+![peep](./app_demo/ss_peep.png)
 
-![feed](./app_demo/Screenshot 2022-01-25 at 21.34.47.png)
+![feed](./app_demo/ss_feed.png)
 
 ## Technologies
 ### Production 
