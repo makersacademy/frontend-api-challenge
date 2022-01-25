@@ -22,12 +22,13 @@ Used state and effect hooks to control the flow of information between component
 
 Adopted a TDD approach to reduce bugs and ensure app stability.
 
-<img src="./app_demo/ss_signin.png" alt="signin" width="200">
-<img src="./app_demo/ss_signedin.png" alt="signin" width="200">
-<img src="./app_demo/ss_peepPage.png" alt="signin" width="200">
-<img src="./app_demo/ss_peep.pngg" alt="signin" width="200">
-<img src="./app_demo/ss_feed.png" alt="signin" width="200">
+Sign In Page       |     Signed In     |    Peep Page
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="./app_demo/ss_signin.png" alt="signin" width="200">  |  ![]<img src="./app_demo/ss_signedin.png" alt="signedin" width="200">  |  <img src="./app_demo/ss_peepPage.png" alt="peepPage" width="200">
 
+  Write Peep      |     Feed
+:-------------------------:|:-------------------------:
+<img src="./app_demo/ss_peep.png" alt="peep" width="200"> | <img src="./app_demo/ss_feed.png" alt="feed" width="200">
 
 ## Technologies
 
