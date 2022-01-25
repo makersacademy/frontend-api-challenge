@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643149059551" clover="3.2.0">
-  <project timestamp="1643149059551" name="All files">
-    <metrics statements="139" coveredstatements="124" conditionals="53" coveredconditionals="42" methods="42" coveredmethods="37" elements="234" coveredelements="203" complexity="0" loc="139" ncloc="139" packages="3" files="9" classes="9"/>
+<coverage generated="1643149335061" clover="3.2.0">
+  <project timestamp="1643149335061" name="All files">
+    <metrics statements="138" coveredstatements="123" conditionals="53" coveredconditionals="42" methods="42" coveredmethods="37" elements="233" coveredelements="202" complexity="0" loc="138" ncloc="138" packages="3" files="9" classes="9"/>
     <package name="src">
       <metrics statements="12" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="5"/>
       <file name="testServer.js" path="/Users/james/OneDrive/Projects/_wknd07_chitter/src/testServer.js">
@@ -32,7 +32,7 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="122" coveredstatements="111" conditionals="53" coveredconditionals="42" methods="34" coveredmethods="31"/>
+      <metrics statements="121" coveredstatements="110" conditionals="53" coveredconditionals="42" methods="34" coveredmethods="31"/>
       <file name="Account.js" path="/Users/james/OneDrive/Projects/_wknd07_chitter/src/components/Account.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="4" count="2" type="stmt"/>
@@ -113,7 +113,7 @@
         <line num="29" count="1" type="cond" truecount="2" falsecount="0"/>
       </file>
       <file name="Peep.js" path="/Users/james/OneDrive/Projects/_wknd07_chitter/src/components/Peep.js">
-        <metrics statements="26" coveredstatements="23" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>
+        <metrics statements="25" coveredstatements="22" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>
         <line num="5" count="2" type="stmt"/>
         <line num="7" count="29" type="stmt"/>
         <line num="8" count="29" type="stmt"/>
@@ -134,12 +134,11 @@
         <line num="27" count="1" type="stmt"/>
         <line num="37" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="38" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="51" count="29" type="stmt"/>
-        <line num="54" count="22" type="stmt"/>
+        <line num="50" count="29" type="stmt"/>
+        <line num="53" count="22" type="stmt"/>
       </file>
       <file name="SignUp.js" path="/Users/james/OneDrive/Projects/_wknd07_chitter/src/components/SignUp.js">
         <metrics statements="32" coveredstatements="31" conditionals="15" coveredconditionals="13" methods="10" coveredmethods="10"/>

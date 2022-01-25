@@ -35,7 +35,6 @@ const Peep = ({ redirect }) => {
           }
         })
         if (res) {
-          console.log(res)
           redirect(true)
         }
       } catch (e) {
