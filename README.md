@@ -23,33 +23,28 @@ Used state and effect hooks to control the flow of information between component
 Adopted a TDD approach to reduce bugs and ensure app stability.
 
 <img src="./app_demo/ss_signin.png" alt="signin" width="200">
+<img src="./app_demo/ss_signedin.png" alt="signin" width="200">
+<img src="./app_demo/ss_peepPage.png" alt="signin" width="200">
+<img src="./app_demo/ss_peep.pngg" alt="signin" width="200">
+<img src="./app_demo/ss_feed.png" alt="signin" width="200">
 
-![signIn](./app_demo/ss_signin.png)
-
-![signedIn](./app_demo/ss_signedin.png)
-
-![peepPage](./app_demo/ss_peepPage.png)
-
-![peep](./app_demo/ss_peep.png)
-
-![feed](./app_demo/ss_feed.png)
 
 ## Technologies
 
 ### Production
 
-React - *front-end framework*
-Semantic UI - *CSS library*
+* React - front-end framework
+* Semantic UI - CSS library
 
 ### Testing
 
-Jest - *JavaScript testing framework*
-React Testing Library - *React component testing library*
-Mock Service Worker - *API mocking library*
+* Jest - JavaScript testing framework
+* React Testing Library - React component testing library
+* Mock Service Worker - API mocking library
 
 ### Deployment
 
-Vercel - *automatic deployment solution*
+* Vercel - automatic deployment solution
 
 ## Challenges & Solutions
 
