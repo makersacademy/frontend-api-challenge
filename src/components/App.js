@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Menu from './Menu'
 import LogIn from  './LogIn'
 import Feed from './Feed'
 import Peep from './Peep'
 import Alert from './Alert' 
-import { useEffect } from "react/cjs/react.development";
-
 
 const App = () => {
 
   const [option, setOption] = useState('Feed');
   const [session, setSession] = useState(false)
   const [alert, setAlert] = useState(false)
+  const [redirect, setRedirect] = useState(false)
 
-  localStorage.removeItem('user')
-  localStorage.removeItem('user')
+  console.log(`session: ${session}`)
+  console.log(`local storage: ${localStorage.getItem('user')}`)
+
+  useEffect(() => {
+    setRedirect(false)
+  }, [setOption])
 
   useEffect(() => {
     const user = localStorage.getItem('user')
@@ -24,17 +27,19 @@ const App = () => {
   }, [])
 
   return (
-    <div className="ui">
-      <Menu onSetOption={setOption} session={session} />
-      <div className='ui container'>
+    <div className="app"> 
+      <div className="ui top-bar">
+        <Menu onSetOption={setOption} session={session} redirect={redirect} />
+      </div>
+      <div className='ui container content-field'>
         {
         option === 'LogIn' ? <LogIn setSession={setSession} session={session} setAlert={setAlert} />  :
         option === 'Feed' ? <Feed /> :
-        option === 'Peep' ? <Peep />
+        option === 'Peep' ? <Peep redirect={setRedirect}/>
         : ''
         }
-      </div>
       <Alert alert={alert}/>  
+      </div>
     </div>
   )
 }

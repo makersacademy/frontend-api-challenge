@@ -1,0 +1,51 @@
+#root, html, body {
+  height: 100vh !important;
+}
+
+.app {
+  height: 100%;
+}
+
+.top-menu {
+  height: 10vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.content-field {
+  margin-top: 5% !important;
+  height: 85% !important;
+}
+
+.new-peep .field {
+  height: 100%;
+}
+
+.new-peep {
+  height: 100% !important;
+}
+
+.new-peep i,
+.new-peep button {
+  position: fixed !important;
+  bottom: 10% !important;
+  right: 10% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  opacity: 0.8 !important;
+  cursor: pointer !important;
+  z-index: 1 !important;
+}
+
+.new-peep i:hover {
+  opacity: 1 !important;
+}
+
+textarea {
+  max-height: 100% !important;
+  font-size: 2rem !important;
+  height: 100% !important;
+  resize: none !important;
+  border: none !important;
+}

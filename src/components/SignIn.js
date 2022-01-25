@@ -39,8 +39,9 @@ const SignIn = ({ setShowSignIn, setSession }) => {
          <input id="sign-in-password" type="password" value={password} name="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
        </div>
        <div>
-        No account yet? <a onClick={() => setShowSignIn(false)}>Sign Up.</a>
+        No account yet? <a href="#" onClick={() => setShowSignIn(false)}>Sign Up.</a>
        </div> 
+       <br />
      <button className="ui button blue" type="submit">Sign In</button>
    </form>
    )

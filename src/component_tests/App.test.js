@@ -24,9 +24,15 @@ const server = setupServer(
 
 beforeAll(() => server.listen());
 afterAll(() => server.close());
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers()
+  console.log('clearing local storage...')
+  localStorage.removeItem('user')
+});
 
 describe("App", () => {
+
+  test.todo('user can sign up')
 
   test('user can sign in', async () => {
     render(<App />);
@@ -42,9 +48,53 @@ describe("App", () => {
     expect(screen.getByTestId('user')).toHaveTextContent('Log In')
   })
 
+  test('user can post peep', async () => {
+    server.use(
+      rest.post('https://chitter-backend-api-v2.herokuapp.com/peeps', (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json(
+            {
+              "id": 3,
+              "body": "Hi Planet! :)",
+              "created_at": "2018-06-23T13:21:23.317Z",
+              "updated_at": "2018-06-23T13:21:23.317Z",
+              "user": {
+                "id": 1,
+                "handle": "jaskier"
+              },
+              "likes": [{
+                "user": {
+                  "id": 1,
+                  "handle": "kay"
+                }
+              }]}
+            ) 
+        )
+      })
+    )
+
+    render(<App />)
+    signIn()
+    expect(await screen.findByText('Sign Out')).toBeInTheDocument()
+    userEvent.click(await screen.findByText(/Peep/i))
+    expect(screen.getByTestId('user')).toHaveTextContent('jaskier')
+    userEvent.type(screen.getByPlaceholderText(/What's happening/i), 'Hi Planet!')
+    userEvent.click(screen.getByRole('button'))
+    expect(await screen.findByText(/Hi Planet!/i)).toBeInTheDocument()
+  
+  })
+
+
 });
 
-
+// Sign Up Test
+// Refactor test api calls
+// Put CSS in separate folder
+// --detectOpenHandles
+// ReadMe
+// keep pic on reload
+// Host on Vercel
 
 
 

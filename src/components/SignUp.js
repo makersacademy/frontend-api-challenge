@@ -65,8 +65,9 @@ const SignUp = ({ setShowSignIn, setAlert }) => {
     </div>
     {!matchingPasswords ? <div className="ui red message">Passwords do no match!</div> : ''}
     <div >
-      Already have an account? <a onClick={() => setShowSignIn(true)}>Sign In.</a>
+      Already have an account? <a href="#" onClick={() => setShowSignIn(true)}>Sign In.</a>
     </div>
+    <br />
     <button className="ui button blue" type="submit">Create Account</button>
   </form>
 )

@@ -4,6 +4,7 @@ import './Account.css'
 const Account = ({ session, setSession }) => {
 
   const signOut = () => {
+    console.log('clearing local storage...')
     localStorage.removeItem('user')
     setSession(false)
   }
@@ -31,7 +32,7 @@ const Account = ({ session, setSession }) => {
           </a>
         </div>
         <div className="signout extra content">
-          <a onClick={signOut}>Sign Out</a>
+          <a className="blue" href="#" onClick={signOut}>Sign Out</a>
         </div>
     </div>
   </div>
