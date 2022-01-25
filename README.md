@@ -3,7 +3,9 @@
 Challenge
 ----------
 
-**Write a small Twitter clone that will allow the users to post messages to a public stream.**
+**Write a small [Twitter clone](https://chitter-app.vercel.app) that will allow the users to post messages to a public stream.**
+
+[>> Visit Chitter App](https://chitter-app.vercel.app)
 
 ## Undertaking
 
