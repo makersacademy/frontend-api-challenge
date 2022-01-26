@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import React, { useState, useEffect } from "react";
 import chitter from "../apis/chitter";
 
 const SignUp = ({ setShowSignIn, setAlert }) => {
