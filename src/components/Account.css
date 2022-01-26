@@ -1,0 +1,9 @@
+.ui.card {
+  margin: auto !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+div.signout.extra.content a {
+  color: #4183c4 !important;
+}
