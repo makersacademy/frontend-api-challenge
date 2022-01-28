@@ -1,37 +1,37 @@
-# Chitter API Frontend Challenge
+# Chitter API frontend in pure vanilla JavaScript
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+![Homepage](https://i.gyazo.com/8c0c0eb4957b6bd482890c8b9f835492.png)
+![Sign up](https://i.gyazo.com/f20854129f91f1b45099c33cf6d94d30.png)
+![Deleting/Liking](https://i.gyazo.com/f309a8024a8b0a9a6220ba19b0f70768.gif)
 
-Challenge:
 -------
 
-As usual please start by forking this repo.
+Single page app Twitter clone using makers Chitter API.
+[The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+Here are some interactions the API supports and the ones I have implemented:
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
-
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
-
-Here are some interactions the API supports. Implement as many as you see fit.
-
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
+* ✔ Creating Users
+* ✔ Logging in
+* ✔ Posting Peeps
+* ✔ Viewing all Peeps
 * Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
+* ✔ Deleting Peeps (only if they are yours)
+* ✔ Liking Peeps
 * Unliking Peeps
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+## Using the app
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+```
+git clone https://github.com/ConorButler/frontend-api-challenge.git
+cd frontend-api-challenge
+npm install
+node app.js
+```
 
-## Utilities you might find useful
+## Notes
+* Refreshing resets the page and the session
+* Click anywhere on the background to close a modal
 
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+## My Approach
+This challenge consumes the Makers Academy Chitter API. As this was built without a framework (I didn't even know what they were at this point), I had trouble managing state, so users are not persisted between refreshes. I reused some styling from my full stack [Ruby twitter clone](https://github.com/ConorButler/chitter-challenge#readme), and tried to implement some fun features like modals, liking and deleting peeps instantly (by manipulating the DOM if the response is ok, instead of doing a full rerender of the feed), and conditionally rendering buttons.

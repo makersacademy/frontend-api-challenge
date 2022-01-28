@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chitter</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/global.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="layout">
+    <div class="layout__left-sidebar-container">
+      <div class="layout__left-sidebar">
+        <div class="sidebar-menu">
+          <div>
+            <img class="sidebar-menu__logo" src="/images/chitter_logo.png" height="40px"></img>
+          </div>
+          <div>
+            <button class="sidebar-button active" id="scroll-to-top-button">
+              Back to top
+            </button>
+          </div>
+          <button data-target-modal="#peep-create-form" class="sidebar-button" id="peep-button">
+            Peep
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="layout__main">
+      <div class="header">
+        Home
+      </div>
+      <div id="loader" class="active"></div>
+      <div id="feed">
+      </div>
+    </div>
+    <div class="layout__right-sidebar-container">
+      <div class="layout__right-sidebar">
+        <div class="sidebar-menu">
+          <button data-target-modal="#signup-form" class="sidebar-button active" id="signup-button">
+            Sign up
+          </button>
+          <button data-target-modal="#login-form" class="sidebar-button active" id="login-button">
+            Log in
+          </button>
+          <button class="sidebar-button" id="logout-button">
+            Log out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modals -->
+  <div class="modal" id="signup-form">
+    <div data-modal-close class="modal__close-button">&times;</div>
+    <h2>Sign up</h2>
+    <div class="modal__form-element">
+      <input type="text" id="signup-form-handle" placeholder="Handle">
+    </div>
+    <div class="modal__form-element">
+      <input type="password" id="signup-form-password" placeholder="Password">
+    </div>
+    <h3 class='error' id="signup-error"></h3>
+    <div class="modal__form-element">
+      <button type="submit" id="signup-form-submit">Create account</button>
+    </div>
+  </div>
+
+  <div class="modal" id="signup-success">
+    <div data-modal-close class="modal__close-button">&times;</div>
+    <h2 id="signup-welcome"></h2>
+  </div>
+
+  <div class="modal" id="login-form">
+    <div data-modal-close class="modal__close-button">&times;</div>
+    <h2>Log in</h2>
+    <div class="modal__form-element">
+      <input type="text" id="login-form-handle" placeholder="Handle">
+    </div>
+    <div class="modal__form-element">
+      <input type="password" id="login-form-password" placeholder="Password">
+    </div>
+    <h3 class='error' id="login-error"></h3>
+    <div class="modal__form-element">
+      <button type="submit" id="login-form-submit">Submit</button>
+    </div>
+  </div>
+
+  <div class="modal" id="peep-create-form">
+    <div data-modal-close class="modal__close-button">&times;</div>
+    <h2>Make a new peep</h2>
+    <div class="modal__form-element">
+      <textarea id="peep-create-content" maxlength="280" rows="4" placeholder="What's on your mind..." required></textarea>
+    </div>
+    <h3 class='error' id="peep-create-error"></h3>
+    <div class="modal__form-element">
+      <button type="submit" id="peep-create-form-submit">Peep</button>
+    </div>
+  </div>
+
+  <div id="overlay"></div>
+
+  <script type="text/javascript" src="js/bundle.js"></script>
+</body>
+</html>
