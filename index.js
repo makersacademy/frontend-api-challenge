@@ -6,6 +6,8 @@ const api = new ChittersApi()
 const model = new ChitterModel()
 const view = new ChitterView(model, api);
 
+view.displaySessionLogOn()
+
 api.loadPeeps((peeps) => {
   model.setPeeps(peeps);
   view.displayPeeps();

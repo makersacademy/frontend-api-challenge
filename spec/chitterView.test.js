@@ -9,11 +9,11 @@
 
  require('jest-fetch-mock').enableMocks()
 
- describe ('Chitter view', () => {
+ describe('Chitter view', () => {
 
   document.body.innerHTML = fs.readFileSync('./index.html');
 
-  describe ('#DisplayPeeps', () => {
+  describe('#DisplayPeeps', () => {
     it('displays a list of peeps', () => {
       const chitterModel = new ChitterModel();
       const chitterApi = new ChittersApi();
@@ -28,7 +28,20 @@
       expect(document.querySelectorAll('div.peep').length).toEqual(2);
       
     })
+  })
 
+  describe('#displaySession', () => {
+    it('displays the session log on fields', () => {
+      const chitterModel = new ChitterModel();
+      const chitterApi = new ChittersApi();
+      const chitterView = new ChitterView(chitterModel,chitterApi);
+
+      chitterView.displaySessionLogOn()
+
+      expect(document.querySelector('#handle')).not.toBeNull();
+      expect(document.querySelector('#password')).not.toBeNull();
+      expect(document.querySelector('#logon')).not.toBeNull();
+    })
 
   })
 
