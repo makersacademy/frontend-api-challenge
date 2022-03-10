@@ -15,8 +15,17 @@
 
   describe ('#DisplayPeeps', () => {
     it('displays a list of peeps', () => {
-      
+      const chitterModel = new ChitterModel();
+      const chitterApi = new ChittersApi();
+      const chitterView = new ChitterView(chitterModel,chitterApi);
 
+      let peepJSONArray = JSON.parse('[{"id": 3,"body": "my first peep :)"},{"id": 2,"body": "my second peep :)"}]')
+    
+      chitterModel.setPeeps(peepJSONArray);
+
+      chitterView.displayPeeps()
+
+      expect(document.querySelectorAll('div.peep').length).toEqual(2);
       
     })
 

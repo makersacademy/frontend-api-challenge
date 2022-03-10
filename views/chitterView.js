@@ -7,7 +7,16 @@ class ChitterView{
   }
 
   displayPeeps() {
+      const peeps = this.model.getPeeps()
 
+      document.querySelectorAll('.peep').forEach(e => e.remove());
+
+      peeps.forEach(peep => {
+        const peepEl = document.createElement('div')
+        peepEl.innerText = peep.body
+        peepEl.className = 'peep'
+        this.mainContainerEl.append(peepEl)
+      })
   }
 }
 
