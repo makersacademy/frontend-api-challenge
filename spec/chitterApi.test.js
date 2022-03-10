@@ -7,11 +7,25 @@ describe('ChitterApi class', () => {
   it('gets peeps from server ', async () => {
     const api = new ChitterApi();
     fetch.mockResponseOnce(JSON.stringify({
-      peep: 'This is a test peep'
+      body: 'This is a test peep'
     }));
 
     api.loadPeeps((peeps) => {
-      expect(peeps.peep).toBe('This is a test peep');
+      expect(peeps.body).toBe('This is a test peep');
     });
   });
+
+  it('creates a new session', async () => {
+    const api = new ChitterApi();
+    fetch.mockResponseOnce(JSON.stringify(
+        {user_id: 1, session_key: "a_valid_session_key" }
+        )
+      );
+
+    api.startSession("handle","password", (session) => {
+      expect(session.user_id).toBe(1);
+      expect(session.session_key).toBe("a_valid_session_key");
+    });
+  });
+  
 });
