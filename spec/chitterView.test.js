@@ -67,7 +67,6 @@
 
       chitterView.startSession()
 
-      console.log("Element: ", document.getElementById('welcome'))
       expect(document.querySelector('#welcome')).not.toBeNull();
       expect(document.querySelector('#handle')).toBeNull();
       expect(document.querySelector('#password')).toBeNull();

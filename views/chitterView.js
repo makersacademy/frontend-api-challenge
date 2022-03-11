@@ -27,7 +27,6 @@ class ChitterView{
 
     this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) =>{
       this.setLocalStorage(session)
-      console.log("Input Handle (startSession): ", session)
     })
 
     this.displayWelcome();
@@ -35,13 +34,11 @@ class ChitterView{
   }
   
   setLocalStorage(session){
-    console.log("Session:", session)
     localStorage.setItem("user-id", session.user_id)
     localStorage.setItem("session-key", session.session_key) 
   }
 
   displayWelcome(){
-    console.log("Inside Display Welcome", this.mainContainerEl)
     const welcomeEl = document.createElement('div')
     welcomeEl.id = "welcome"
     this.mainContainerEl.prepend(welcomeEl)
@@ -50,12 +47,9 @@ class ChitterView{
     welcomeTextEl.id = 'welcomeText'
     welcomeEl.appendChild(welcomeTextEl)
     welcomeTextEl.innerText = 'Welcome ' + localStorage.getItem('handle')
-
-
   }
 
   hideSessionLogOn(){
-    
     const formLogonEl = document.getElementById("logon-container");
     while (formLogonEl.firstChild) {
       formLogonEl.firstChild.remove()

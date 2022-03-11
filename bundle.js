@@ -47,18 +47,15 @@
           localStorage.setItem("handle", inputHandleEl.value);
           this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) => {
             this.setLocalStorage(session);
-            console.log("Input Handle (startSession): ", session);
           });
           this.displayWelcome();
           this.hideSessionLogOn();
         }
         setLocalStorage(session) {
-          console.log("Session:", session);
           localStorage.setItem("user-id", session.user_id);
           localStorage.setItem("session-key", session.session_key);
         }
         displayWelcome() {
-          console.log("Inside Display Welcome", this.mainContainerEl);
           const welcomeEl = document.createElement("div");
           welcomeEl.id = "welcome";
           this.mainContainerEl.prepend(welcomeEl);
@@ -118,10 +115,7 @@
               "content-type": "application/json"
             },
             body: JSON.stringify({ session: { handle: `${handle}`, password: `${password}` } })
-          }).then((response) => response.json()).then((data) => {
-            console.log("Data: ", data);
-            callback(data);
-          }).catch((error) => {
+          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => {
             console.error("Error:", error);
           });
         }
