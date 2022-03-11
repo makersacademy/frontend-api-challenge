@@ -44,7 +44,7 @@
             console.log("Success:", data);
           });
         }
-        createSession(username, password) {
+        createSession(username, password, callback) {
           const correctBody = { session: { handle: `${username}`, password: `${password}` } };
           fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
             method: "POST",
@@ -54,6 +54,7 @@
             body: JSON.stringify(correctBody)
           }).then((response) => response.json()).then((data) => {
             console.log("Success:", data);
+            console.log(callback(data));
           });
         }
         loadPosts(callback) {
@@ -82,6 +83,8 @@
       var ChitterView2 = class {
         constructor(model3, api3) {
           this.model = model3;
+          this.sessionKey = null;
+          this.userId = null;
           this.signinButtonEl = document.querySelector("#submit-user-button");
           this.signinUsernameEl = document.querySelector("#username-input");
           this.signinPasswordEl = document.querySelector("#password-input");
@@ -105,7 +108,10 @@
             this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value);
           });
           this.signinButtonEl.addEventListener("click", () => {
-            this.api.createSession(this.signinUsernameEl.value, this.signinPasswordEl.value);
+            this.api.createSession(this.signinUsernameEl.value, this.signinPasswordEl.value, (data) => {
+              this.setSessions(data);
+              console.log(this.userId);
+            });
           });
         }
         displayPosts() {
@@ -149,6 +155,10 @@
           document.querySelectorAll(".post").forEach((note) => {
             post.remove();
           });
+        }
+        setSessions(data) {
+          this.sessionKey = data.session_key;
+          this.userId = data.user_id;
         }
       };
       module.exports = ChitterView2;

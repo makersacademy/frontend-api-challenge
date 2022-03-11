@@ -6,6 +6,8 @@ const api = new ChitterApi;
 class ChitterView {
   constructor(model, api) {
     this.model = model;
+    this.sessionKey = null
+    this.userId = null
     this.signinButtonEl = document.querySelector('#submit-user-button');
     this.signinUsernameEl = document.querySelector('#username-input');
     this.signinPasswordEl = document.querySelector('#password-input');
@@ -30,7 +32,10 @@ class ChitterView {
       this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value)
     })
     this.signinButtonEl.addEventListener('click', () => {
-      this.api.createSession(this.signinUsernameEl.value, this.signinPasswordEl.value)
+      this.api.createSession(this.signinUsernameEl.value, this.signinPasswordEl.value, (data) => {
+        this.setSessions(data)
+        console.log(this.userId)
+      })
     })
 
     
@@ -92,6 +97,11 @@ class ChitterView {
     document.querySelectorAll('.post').forEach(note => {
       post.remove();
     });
+  }
+
+  setSessions(data) {
+    this.sessionKey = data.session_key;
+    this.userId = data.user_id;
   }
 
 }
