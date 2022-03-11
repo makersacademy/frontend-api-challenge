@@ -21,20 +21,29 @@ class ChitterView {
     this.api = api
 
     this.postButtonEl.addEventListener('click', () => {
-      this.displayPosts()
-      this.model.addPost(this.postInputEl.value)
+      this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
+      this.api.loadPosts((posts) => {
+        model.setPosts(posts);
+        this.displayPosts();
+      });
+
     })
     this.deletePostsButtonEl.addEventListener('click', () => {
       this.api.deletePost();
       this.deletePostsView();
       });
     this.signupButtonEl.addEventListener('click', () => {
-      this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value)
+      this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value);
+      this.signupUsernameEl.value = '';
+        this.signupPasswordEl.value = '';
     })
     this.signinButtonEl.addEventListener('click', () => {
       this.api.createSession(this.signinUsernameEl.value, this.signinPasswordEl.value, (data) => {
         this.setSessions(data)
         console.log(this.userId)
+        console.log(this.sessionKey)
+        this.signinUsernameEl.value = '';
+        this.signinPasswordEl.value = '';
       })
     })
 
@@ -56,19 +65,32 @@ class ChitterView {
     document.querySelectorAll('.post').forEach(post => {
       post.remove();
     });
+    document.querySelectorAll('.likes').forEach(post => {
+      post.remove();
+    });
     document.querySelectorAll('.date').forEach(post => {
       post.remove();
     });
     document.querySelectorAll('.handle').forEach(post => {
       post.remove();
     });
-    
+    document.querySelectorAll('.delete-peep-button').forEach(post => {
+      post.remove();
+    });
+    document.querySelectorAll('.like-button').forEach(post => {
+      post.remove();
+    });
+    document.querySelectorAll('.likes').forEach(post => {
+      post.remove();
+    });
     const posts = this.model.getPosts()
     posts.forEach(post => {
       const postEl = document.createElement('div');
       const dateEl = document.createElement('div');
       const handleEl = document.createElement('div');
       const likesEl = document.createElement('div');
+      const likeButtonEl = document.createElement('button')
+      const deletePeepEl =  document.createElement('button')
       postEl.innerText = post.body;
       postEl.className = ('post');
       dateEl.innerText = post.created_at;
@@ -77,8 +99,11 @@ class ChitterView {
       handleEl.className = ('handle');
       likesEl.innerText = `likes: ${post.likes}`;
       likesEl.className = ('likes');
-      
-      this.mainContainerEl.append(postEl, dateEl, handleEl, likesEl);
+      likeButtonEl.innerText = "like"
+      likeButtonEl.className = "like-button";
+      deletePeepEl.innerText = "delete";
+      deletePeepEl.className = "delete-peep-button";
+      this.mainContainerEl.append(postEl, dateEl, handleEl, likesEl, likeButtonEl, deletePeepEl);
     })
     this.postInputEl.value = ''
   }

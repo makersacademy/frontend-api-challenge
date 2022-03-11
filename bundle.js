@@ -57,10 +57,24 @@
             console.log(callback(data));
           });
         }
-        loadPosts(callback) {
+        loadPosts(callback, errorFunction) {
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => console.log(callback(data))).catch((error) => {
             errorFunction(error);
             console.log(`${error}`);
+          });
+        }
+        postPeeps(post2, userId, sessionKey, errorFunction) {
+          const correctBody = { peep: { user_id: `${userId}`, body: `${post2}` } };
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+            method: "POST",
+            headers: {
+              "Authorization": `Token token=${sessionKey}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(correctBody)
+          }).catch((error) => {
+            errorFunction(error);
+            console.log(`Posting: ${error}`);
           });
         }
         deletePosts() {
@@ -97,8 +111,11 @@
           this.signupButtonEl = document.querySelector("#sign-up-submit-button");
           this.api = api3;
           this.postButtonEl.addEventListener("click", () => {
-            this.displayPosts();
-            this.model.addPost(this.postInputEl.value);
+            this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
+            this.api.loadPosts((posts) => {
+              model3.setPosts(posts);
+              this.displayPosts();
+            });
           });
           this.deletePostsButtonEl.addEventListener("click", () => {
             this.api.deletePost();
@@ -106,16 +123,24 @@
           });
           this.signupButtonEl.addEventListener("click", () => {
             this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value);
+            this.signupUsernameEl.value = "";
+            this.signupPasswordEl.value = "";
           });
           this.signinButtonEl.addEventListener("click", () => {
             this.api.createSession(this.signinUsernameEl.value, this.signinPasswordEl.value, (data) => {
               this.setSessions(data);
               console.log(this.userId);
+              console.log(this.sessionKey);
+              this.signinUsernameEl.value = "";
+              this.signinPasswordEl.value = "";
             });
           });
         }
         displayPosts() {
           document.querySelectorAll(".post").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".likes").forEach((post2) => {
             post2.remove();
           });
           document.querySelectorAll(".date").forEach((post2) => {
@@ -124,12 +149,23 @@
           document.querySelectorAll(".handle").forEach((post2) => {
             post2.remove();
           });
+          document.querySelectorAll(".delete-peep-button").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".like-button").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".likes").forEach((post2) => {
+            post2.remove();
+          });
           const posts = this.model.getPosts();
           posts.forEach((post2) => {
             const postEl = document.createElement("div");
             const dateEl = document.createElement("div");
             const handleEl = document.createElement("div");
             const likesEl = document.createElement("div");
+            const likeButtonEl = document.createElement("button");
+            const deletePeepEl = document.createElement("button");
             postEl.innerText = post2.body;
             postEl.className = "post";
             dateEl.innerText = post2.created_at;
@@ -138,7 +174,11 @@
             handleEl.className = "handle";
             likesEl.innerText = `likes: ${post2.likes}`;
             likesEl.className = "likes";
-            this.mainContainerEl.append(postEl, dateEl, handleEl, likesEl);
+            likeButtonEl.innerText = "like";
+            likeButtonEl.className = "like-button";
+            deletePeepEl.innerText = "delete";
+            deletePeepEl.className = "delete-peep-button";
+            this.mainContainerEl.append(postEl, dateEl, handleEl, likesEl, likeButtonEl, deletePeepEl);
           });
           this.postInputEl.value = "";
         }
