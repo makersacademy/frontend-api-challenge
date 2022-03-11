@@ -29,8 +29,9 @@ class ChitterView{
       this.setLocalStorage(session)
     })
 
-    this.displayWelcome();
+    this.showWelcome();
     this.hideSessionLogOn();
+    this.showAddPeep();
   }
   
   setLocalStorage(session){
@@ -38,7 +39,7 @@ class ChitterView{
     localStorage.setItem("session-key", session.session_key) 
   }
 
-  displayWelcome(){
+  showWelcome(){
     const welcomeEl = document.createElement('div')
     welcomeEl.id = "welcome"
     this.mainContainerEl.prepend(welcomeEl)
@@ -49,6 +50,32 @@ class ChitterView{
     welcomeTextEl.innerText = 'Welcome ' + localStorage.getItem('handle')
   }
 
+  showAddPeep(){
+    const peepFormEl = document.createElement('form')
+    peepFormEl.id = 'peep-container'
+
+    const peepInputEl = document.createElement('input')
+    peepInputEl.id = "peep-input"
+    peepInputEl.setAttribute("type", "text")
+    peepInputEl.setAttribute("placeholder", "peep here")
+
+    const submitPeepEl = document.createElement('input')
+    submitPeepEl.id = "peep-submit"
+    submitPeepEl.setAttribute("type", "submit")
+    submitPeepEl.setAttribute("value", "Peep")
+    submitPeepEl.addEventListener("click", () =>  {
+      this.addPeep()
+    }); 
+
+    peepFormEl.appendChild(peepInputEl)
+    peepFormEl.appendChild(submitPeepEl)
+
+
+    this.mainContainerEl.prepend(peepFormEl)
+
+  }
+
+  
   hideSessionLogOn(){
     const formLogonEl = document.getElementById("logon-container");
     while (formLogonEl.firstChild) {

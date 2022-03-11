@@ -28,4 +28,17 @@ describe('ChitterApi class', () => {
     });
   });
   
+
+  it('creates a new peep', async () => {
+    const api = new ChitterApi();
+    fetch.mockResponseOnce(JSON.stringify(
+        {user_id: 1, body: "a peep" }
+        )
+      );
+
+    api.createPeep(1,"abc", "a peep" ,(peep) => {
+      expect(peep.body).toBe("a peep");
+    });
+  });
+
 });

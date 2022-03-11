@@ -48,14 +48,15 @@
           this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) => {
             this.setLocalStorage(session);
           });
-          this.displayWelcome();
+          this.showWelcome();
           this.hideSessionLogOn();
+          this.showAddPeep();
         }
         setLocalStorage(session) {
           localStorage.setItem("user-id", session.user_id);
           localStorage.setItem("session-key", session.session_key);
         }
-        displayWelcome() {
+        showWelcome() {
           const welcomeEl = document.createElement("div");
           welcomeEl.id = "welcome";
           this.mainContainerEl.prepend(welcomeEl);
@@ -63,6 +64,24 @@
           welcomeTextEl.id = "welcomeText";
           welcomeEl.appendChild(welcomeTextEl);
           welcomeTextEl.innerText = "Welcome " + localStorage.getItem("handle");
+        }
+        showAddPeep() {
+          const peepFormEl = document.createElement("form");
+          peepFormEl.id = "peep-container";
+          const peepInputEl = document.createElement("input");
+          peepInputEl.id = "peep-input";
+          peepInputEl.setAttribute("type", "text");
+          peepInputEl.setAttribute("placeholder", "peep here");
+          const submitPeepEl = document.createElement("input");
+          submitPeepEl.id = "peep-submit";
+          submitPeepEl.setAttribute("type", "submit");
+          submitPeepEl.setAttribute("value", "Peep");
+          submitPeepEl.addEventListener("click", () => {
+            this.addPeep();
+          });
+          peepFormEl.appendChild(peepInputEl);
+          peepFormEl.appendChild(submitPeepEl);
+          this.mainContainerEl.prepend(peepFormEl);
         }
         hideSessionLogOn() {
           const formLogonEl = document.getElementById("logon-container");
@@ -115,6 +134,18 @@
               "content-type": "application/json"
             },
             body: JSON.stringify({ session: { handle: `${handle}`, password: `${password}` } })
+          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => {
+            console.error("Error:", error);
+          });
+        }
+        createPeep(userId, sessionKey, body, callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              "Authorization": `'Token token=${sessionKey}'`
+            },
+            body: JSON.stringify({ peep: { user_id: `${userId}`, body: `${body}` } })
           }).then((response) => response.json()).then((data) => callback(data)).catch((error) => {
             console.error("Error:", error);
           });

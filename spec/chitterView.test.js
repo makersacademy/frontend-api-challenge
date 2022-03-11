@@ -67,6 +67,7 @@
 
       chitterView.startSession()
 
+      expect(document.querySelector('#peep-container')).not.toBeNull();
       expect(document.querySelector('#welcome')).not.toBeNull();
       expect(document.querySelector('#handle')).toBeNull();
       expect(document.querySelector('#password')).toBeNull();
