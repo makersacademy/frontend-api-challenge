@@ -22,5 +22,9 @@
     "url": "https://github.com/eddiearnoldz/frontend-api-challenge/issues"
   },
   "homepage": "https://github.com/eddiearnoldz/frontend-api-challenge#readme",
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-plugin-react": "^7.29.3"
+  }
 }

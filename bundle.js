@@ -14,8 +14,8 @@
         getPosts() {
           return this.posts;
         }
-        addPost(post) {
-          return this.posts.push(post);
+        addPost(post2) {
+          return this.posts.push(post2);
         }
         resetPosts() {
           return this.posts = [];
@@ -32,10 +32,38 @@
   var require_chitterApi = __commonJS({
     "chitterApi.js"(exports, module) {
       var ChitterApi2 = class {
-        loadPosts(url, extension) {
+        postUserInfo(username, password) {
+          const correctBody = { user: { handle: `${username}`, password: `${password}` } };
+          fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(correctBody)
+          }).then((response) => response.json()).then((data) => {
+            console.log("Success:", data);
+          });
         }
-        deletePosts(url, extension) {
-          fetch(`${url} + ${extension}`, {
+        createSession(username, password) {
+          const correctBody = { session: { handle: `${username}`, password: `${password}` } };
+          fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(correctBody)
+          }).then((response) => response.json()).then((data) => {
+            console.log("Success:", data);
+          });
+        }
+        loadPosts(callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => console.log(callback(data))).catch((error) => {
+            errorFunction(error);
+            console.log(`${error}`);
+          });
+        }
+        deletePosts() {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
             method: "DELETE"
           });
         }
@@ -54,28 +82,73 @@
       var ChitterView2 = class {
         constructor(model3, api3) {
           this.model = model3;
-          this.submitUserButtonEl = document.querySelector("#submit-user-button");
+          this.signinButtonEl = document.querySelector("#submit-user-button");
+          this.signinUsernameEl = document.querySelector("#username-input");
+          this.signinPasswordEl = document.querySelector("#password-input");
           this.deletePostsButtonEl = document.querySelector("#delete-posts-button");
           this.mainContainerEl = document.querySelector("#main-container");
-          this.postInputEl = document.querySelector("#user-input");
+          this.postInputEl = document.querySelector("#post-input");
           this.postButtonEl = document.querySelector("#post-button");
+          this.signupUsernameEl = document.querySelector("#username-input-signup");
+          this.signupPasswordEl = document.querySelector("#password-input-signup");
+          this.signupButtonEl = document.querySelector("#sign-up-submit-button");
+          this.api = api3;
           this.postButtonEl.addEventListener("click", () => {
-            model3.addPost(this.postInputEl.value);
             this.displayPosts();
+            this.model.addPost(this.postInputEl.value);
+          });
+          this.deletePostsButtonEl.addEventListener("click", () => {
+            this.api.deletePost();
+            this.deletePostsView();
+          });
+          this.signupButtonEl.addEventListener("click", () => {
+            this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value);
+          });
+          this.signinButtonEl.addEventListener("click", () => {
+            this.api.createSession(this.signinUsernameEl.value, this.signinPasswordEl.value);
           });
         }
         displayPosts() {
-          document.querySelectorAll(".post").forEach((post) => {
-            post.remove();
+          document.querySelectorAll(".post").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".date").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".handle").forEach((post2) => {
+            post2.remove();
           });
           const posts = this.model.getPosts();
-          posts.forEach((post) => {
+          posts.forEach((post2) => {
             const postEl = document.createElement("div");
-            postEl.innerText = post;
+            const dateEl = document.createElement("div");
+            const handleEl = document.createElement("div");
+            const likesEl = document.createElement("div");
+            postEl.innerText = post2.body;
             postEl.className = "post";
-            this.mainContainerEl.append(postEl);
+            dateEl.innerText = post2.created_at;
+            dateEl.className = "date";
+            handleEl.innerText = `posted by: ${post2.user.handle}`;
+            handleEl.className = "handle";
+            likesEl.innerText = `likes: ${post2.likes}`;
+            likesEl.className = "likes";
+            this.mainContainerEl.append(postEl, dateEl, handleEl, likesEl);
           });
           this.postInputEl.value = "";
+        }
+        displayError(error) {
+          document.querySelectorAll("#error-message").forEach((error2) => {
+            error2.remove();
+          });
+          const ErrorEl = document.createElement("div");
+          ErrorEl.innerText = error;
+          ErrorEl.setAttribute("id", "error-message");
+          this.mainContainerEl.append(ErrorEl);
+        }
+        deletePostsView() {
+          document.querySelectorAll(".post").forEach((note) => {
+            post.remove();
+          });
         }
       };
       module.exports = ChitterView2;
@@ -88,6 +161,11 @@
   var ChitterView = require_chitterView();
   var api = new ChitterApi();
   var model = new ChitterModel();
-  var view = new ChitterView(model);
-  view.displayPosts();
+  var view = new ChitterView(model, api);
+  api.loadPosts((posts) => {
+    model.setPosts(posts);
+    view.displayPosts();
+  }, (error) => {
+    view.displayError(error);
+  });
 })();

@@ -7,3 +7,16 @@ button {
   border: none;
   font-family: 'Barlow', sans-serif;
 }
+.post {
+  font-size: 12px;
+  max-width: 400px;
+}
+.handle {
+  font-size: 8px;
+}
+.date {
+  font-size: 8px;
+}
+.likes {
+  font-size: 8px;
+}

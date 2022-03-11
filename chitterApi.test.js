@@ -8,8 +8,12 @@ describe('ChitterApi class', () => {
     fetch.mockResponseOnce(JSON.stringify({
       posts: ["This note is coming from the server"]
     }));
-    api.loadNotes((posts) => {
+    api.loadPosts((posts) => {
       expect(posts.posts[0]).toEqual("This note is coming from the server");
     });
   });
+  it('posts the user info to the server', async () => {
+    const api = new ChitterApi();
+    
+  })
 })

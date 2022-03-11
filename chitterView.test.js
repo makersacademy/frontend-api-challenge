@@ -5,6 +5,7 @@
  */
 
  const ChitterView = require('./chitterView');
+ require('jest-fetch-mock').enableMocks()
  const fs = require('fs');
  const ChitterModel = require('./ChitterModel');
  let model
@@ -24,11 +25,10 @@
    });
    it('adds a note to the page from the user input', () => {
      model.addPost('Hang the DJ')
-     view.displayPosts()
      const postButtonEl = document.querySelector('#post-button');
      postButtonEl.click();
-     console.log(document.querySelector('div.post'))
-     expect(document.querySelectorAll('div.post')[0].innerText).toBe('Hang the DJ');
+     console.group(document.querySelectorAll('div.post').innerText)
+     expect(document.querySelectorAll('div.post').innerText).toBe('Hang the DJ');
    })
    it('clears the notes before showing the new list', () => {
      model.addPost('Bromley')

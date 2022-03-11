@@ -4,6 +4,11 @@ const ChitterView = require('./chitterView');
 
 const api = new ChitterApi();
 const model = new ChitterModel();
-const view = new ChitterView(model);
+const view = new ChitterView(model, api);
 
-view.displayPosts();
+api.loadPosts((posts) => {
+  model.setPosts(posts);
+  view.displayPosts();
+}, (error) => {
+  view.displayError(error);
+});
