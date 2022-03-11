@@ -41,7 +41,38 @@
             this.mainContainerEl.append(peepEl);
           });
         }
-        logon() {
+        startSession() {
+          const inputHandleEl = document.getElementById("handle");
+          const inputPasswordEl = document.getElementById("password");
+          localStorage.setItem("handle", inputHandleEl.value);
+          this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) => {
+            this.setLocalStorage(session);
+            console.log("Input Handle (startSession): ", session);
+          });
+          this.displayWelcome();
+          this.hideSessionLogOn();
+        }
+        setLocalStorage(session) {
+          console.log("Session:", session);
+          localStorage.setItem("user-id", session.user_id);
+          localStorage.setItem("session-key", session.session_key);
+        }
+        displayWelcome() {
+          console.log("Inside Display Welcome", this.mainContainerEl);
+          const welcomeEl = document.createElement("div");
+          welcomeEl.id = "welcome";
+          this.mainContainerEl.prepend(welcomeEl);
+          const welcomeTextEl = document.createElement("p");
+          welcomeTextEl.id = "welcomeText";
+          welcomeEl.appendChild(welcomeTextEl);
+          welcomeTextEl.innerText = "Welcome " + localStorage.getItem("handle");
+        }
+        hideSessionLogOn() {
+          const formLogonEl = document.getElementById("logon-container");
+          while (formLogonEl.firstChild) {
+            formLogonEl.firstChild.remove();
+          }
+          this.mainContainerEl.removeChild(formLogonEl);
         }
         displaySessionLogOn() {
           const logOnFormEl = document.createElement("form");
@@ -59,12 +90,12 @@
           submitButtonEl.setAttribute("type", "submit");
           submitButtonEl.setAttribute("value", "Log on");
           submitButtonEl.addEventListener("click", () => {
-            this.logon();
+            this.startSession();
           });
           logOnFormEl.appendChild(handleInputEl);
           logOnFormEl.appendChild(passwordInputEl);
           logOnFormEl.appendChild(submitButtonEl);
-          this.mainContainerEl.append(logOnFormEl);
+          this.mainContainerEl.appendChild(logOnFormEl);
         }
       };
       module.exports = ChitterView2;
@@ -87,7 +118,10 @@
               "content-type": "application/json"
             },
             body: JSON.stringify({ session: { handle: `${handle}`, password: `${password}` } })
-          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => {
+          }).then((response) => response.json()).then((data) => {
+            console.log("Data: ", data);
+            callback(data);
+          }).catch((error) => {
             console.error("Error:", error);
           });
         }
@@ -103,6 +137,7 @@
   var api = new ChittersApi();
   var model = new ChitterModel();
   var view = new ChitterView(model, api);
+  localStorage.clear();
   view.displaySessionLogOn();
   api.loadPeeps((peeps) => {
     model.setPeeps(peeps);

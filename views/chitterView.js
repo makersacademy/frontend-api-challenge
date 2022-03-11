@@ -19,11 +19,51 @@ class ChitterView{
     })
   }
 
-  logon(){
+  startSession(){
+    const inputHandleEl = document.getElementById("handle")
+    const inputPasswordEl = document.getElementById("password")
+
+    localStorage.setItem("handle", inputHandleEl.value)
+
+    this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) =>{
+      this.setLocalStorage(session)
+      console.log("Input Handle (startSession): ", session)
+    })
+
+    this.displayWelcome();
+    this.hideSessionLogOn();
+  }
+  
+  setLocalStorage(session){
+    console.log("Session:", session)
+    localStorage.setItem("user-id", session.user_id)
+    localStorage.setItem("session-key", session.session_key) 
+  }
+
+  displayWelcome(){
+    console.log("Inside Display Welcome", this.mainContainerEl)
+    const welcomeEl = document.createElement('div')
+    welcomeEl.id = "welcome"
+    this.mainContainerEl.prepend(welcomeEl)
+
+    const welcomeTextEl = document.createElement('p')
+    welcomeTextEl.id = 'welcomeText'
+    welcomeEl.appendChild(welcomeTextEl)
+    welcomeTextEl.innerText = 'Welcome ' + localStorage.getItem('handle')
+
 
   }
 
-  // Will extract this to a session view/model
+  hideSessionLogOn(){
+    
+    const formLogonEl = document.getElementById("logon-container");
+    while (formLogonEl.firstChild) {
+      formLogonEl.firstChild.remove()
+    }
+    this.mainContainerEl.removeChild(formLogonEl);
+  }
+
+  // I plan to extract this to a session view/model
   displaySessionLogOn() {
     const logOnFormEl = document.createElement('form')
     logOnFormEl.id = 'logon-container'
@@ -43,14 +83,14 @@ class ChitterView{
     submitButtonEl.setAttribute("type", "submit")
     submitButtonEl.setAttribute("value", "Log on")
     submitButtonEl.addEventListener("click", () =>  {
-      this.logon()
+      this.startSession()
     }); 
-
+    
     logOnFormEl.appendChild(handleInputEl)
     logOnFormEl.appendChild(passwordInputEl)
     logOnFormEl.appendChild(submitButtonEl)
 
-    this.mainContainerEl.append(logOnFormEl)
+    this.mainContainerEl.appendChild(logOnFormEl)
   }
 
 }
