@@ -1,0 +1,9 @@
+body {
+  font-family: 'Barlow', sans-serif;
+  background-color: rgb(94, 153, 253);
+}
+button {
+  border-radius: 4px;
+  border: none;
+  font-family: 'Barlow', sans-serif;
+}

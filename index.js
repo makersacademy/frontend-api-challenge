@@ -1,0 +1,1 @@
+const chitterModel = require('./chitterModel')
