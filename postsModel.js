@@ -4,8 +4,12 @@ class Posts {
 
   }
 
-  getNotes(){
+  getPosts(){
     return this.posts;
+  }
+
+  addPost(post){
+    this.posts.push(post);
   }
 }
 
