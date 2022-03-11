@@ -18,6 +18,7 @@ class ChitterView {
     this.signupUsernameEl = document.querySelector('#username-input-signup')
     this.signupPasswordEl = document.querySelector('#password-input-signup')
     this.signupButtonEl = document.querySelector('#sign-up-submit-button')
+    this.signoutButtonEl = document.querySelector('#sign-out-button')
     this.api = api
 
     this.postButtonEl.addEventListener('click', () => {
@@ -26,17 +27,19 @@ class ChitterView {
         model.setPosts(posts);
         this.displayPosts();
       });
-
     })
+
     this.deletePostsButtonEl.addEventListener('click', () => {
       this.api.deletePost();
       this.deletePostsView();
-      });
+    });
+
     this.signupButtonEl.addEventListener('click', () => {
       this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value);
       this.signupUsernameEl.value = '';
-        this.signupPasswordEl.value = '';
+      this.signupPasswordEl.value = '';
     })
+
     this.signinButtonEl.addEventListener('click', () => {
       this.api.createSession(this.signinUsernameEl.value, this.signinPasswordEl.value, (data) => {
         this.setSessions(data)
@@ -47,63 +50,24 @@ class ChitterView {
       })
     })
 
-    
-    // this.postButtonEl.addEventListener('click', () => {
-    //   this.api.postPosts(this.postInputEl.value, 853, (error) => {
-    //     this.displayError(error);
-    //   });
-    //   this.api.loadPosts(note => {
-    //     console.log(note);
-    //   });
-    //   model.addPost(this.postInputEl.value)
-    //   this.displayPosts();
-    // });
+    this.signoutButtonEl.addEventListener('click', () => {
+      this.sessionKey = null
+      this.userId = null
+      console.log(this.sessionKey)
+    })
 
+    this.viewButtonEl.addEventListener('click', () => {
+      this.sessionKey = null
+      this.userId = null
+      console.log(this.sessionKey)
+    })
   }
-
+ 
   displayPosts() {
-    document.querySelectorAll('.post').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.likes').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.date').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.handle').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.delete-peep-button').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.like-button').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.likes').forEach(post => {
-      post.remove();
-    });
+    this.clearPeeps()
     const posts = this.model.getPosts()
     posts.forEach(post => {
-      const postEl = document.createElement('div');
-      const dateEl = document.createElement('div');
-      const handleEl = document.createElement('div');
-      const likesEl = document.createElement('div');
-      const likeButtonEl = document.createElement('button')
-      const deletePeepEl =  document.createElement('button')
-      postEl.innerText = post.body;
-      postEl.className = ('post');
-      dateEl.innerText = post.created_at;
-      dateEl.className = ('date');
-      handleEl.innerText = `posted by: ${post.user.handle}`;
-      handleEl.className = ('handle');
-      likesEl.innerText = `likes: ${post.likes}`;
-      likesEl.className = ('likes');
-      likeButtonEl.innerText = "like"
-      likeButtonEl.className = "like-button";
-      deletePeepEl.innerText = "delete";
-      deletePeepEl.className = "delete-peep-button";
-      this.mainContainerEl.append(postEl, dateEl, handleEl, likesEl, likeButtonEl, deletePeepEl);
+      this.createPeep(post);
     })
     this.postInputEl.value = ''
   }
@@ -129,6 +93,56 @@ class ChitterView {
     this.userId = data.user_id;
   }
 
+  displayPeep(post) {
+    this.clearPeeps();
+    this.createPeep(post);
+  }
+
+  clearPeeps() {
+    document.querySelectorAll('.post').forEach(post => {
+      post.remove();
+    });
+    document.querySelectorAll('.likes').forEach(post => {
+      post.remove();
+    });
+    document.querySelectorAll('.date').forEach(post => {
+      post.remove();
+    });
+    document.querySelectorAll('.handle').forEach(post => {
+      post.remove();
+    });
+    document.querySelectorAll('.delete-peep-button').forEach(post => {
+      post.remove();
+    });
+    document.querySelectorAll('.view-button').forEach(post => {
+      post.remove();
+    });
+    document.querySelectorAll('.likes').forEach(post => {
+      post.remove();
+    });
+  }
+  createPeep(post) {
+    const postEl = document.createElement('div');
+    const dateEl = document.createElement('div');
+    const handleEl = document.createElement('div');
+    // const likesEl = document.createElement('div');
+    const viewButtonEl = document.createElement('button')
+    // const deletePeepEl =  document.createElement('button')
+    postEl.innerText = post.body;
+    postEl.className = ('post');
+    viewButtonEl.setAttribute("id", `${post.id}`)
+    dateEl.innerText = post.created_at.slice(0, 10);
+    dateEl.className = ('date');
+    handleEl.innerText = `posted by: ${post.user.handle}`;
+    handleEl.className = ('handle');
+    // likesEl.innerText = `likes: ${post.likes}`;
+    // likesEl.className = ('likes');
+    viewButtonEl.innerText = "view"
+    viewButtonEl.className = "view-button";
+    // deletePeepEl.innerText = "delete";
+    // deletePeepEl.className = "delete-peep-button";
+    this.mainContainerEl.append(postEl, dateEl, handleEl, viewButtonEl);
+  }
 }
 
 module.exports = ChitterView

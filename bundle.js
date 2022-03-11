@@ -77,6 +77,12 @@
             console.log(`Posting: ${error}`);
           });
         }
+        getIndividualPeep(peepId, callback, errorFunction) {
+          fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`).then((response) => response.json()).then((data) => console.log(callback(data))).catch((error) => {
+            errorFunction(error);
+            console.log(`${error}`);
+          });
+        }
         deletePosts() {
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
             method: "DELETE"
@@ -109,6 +115,7 @@
           this.signupUsernameEl = document.querySelector("#username-input-signup");
           this.signupPasswordEl = document.querySelector("#password-input-signup");
           this.signupButtonEl = document.querySelector("#sign-up-submit-button");
+          this.signoutButtonEl = document.querySelector("#sign-out-button");
           this.api = api3;
           this.postButtonEl.addEventListener("click", () => {
             this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
@@ -135,50 +142,22 @@
               this.signinPasswordEl.value = "";
             });
           });
+          this.signoutButtonEl.addEventListener("click", () => {
+            this.sessionKey = null;
+            this.userId = null;
+            console.log(this.sessionKey);
+          });
+          this.viewButtonEl.addEventListener("click", () => {
+            this.sessionKey = null;
+            this.userId = null;
+            console.log(this.sessionKey);
+          });
         }
         displayPosts() {
-          document.querySelectorAll(".post").forEach((post2) => {
-            post2.remove();
-          });
-          document.querySelectorAll(".likes").forEach((post2) => {
-            post2.remove();
-          });
-          document.querySelectorAll(".date").forEach((post2) => {
-            post2.remove();
-          });
-          document.querySelectorAll(".handle").forEach((post2) => {
-            post2.remove();
-          });
-          document.querySelectorAll(".delete-peep-button").forEach((post2) => {
-            post2.remove();
-          });
-          document.querySelectorAll(".like-button").forEach((post2) => {
-            post2.remove();
-          });
-          document.querySelectorAll(".likes").forEach((post2) => {
-            post2.remove();
-          });
+          this.clearPeeps();
           const posts = this.model.getPosts();
           posts.forEach((post2) => {
-            const postEl = document.createElement("div");
-            const dateEl = document.createElement("div");
-            const handleEl = document.createElement("div");
-            const likesEl = document.createElement("div");
-            const likeButtonEl = document.createElement("button");
-            const deletePeepEl = document.createElement("button");
-            postEl.innerText = post2.body;
-            postEl.className = "post";
-            dateEl.innerText = post2.created_at;
-            dateEl.className = "date";
-            handleEl.innerText = `posted by: ${post2.user.handle}`;
-            handleEl.className = "handle";
-            likesEl.innerText = `likes: ${post2.likes}`;
-            likesEl.className = "likes";
-            likeButtonEl.innerText = "like";
-            likeButtonEl.className = "like-button";
-            deletePeepEl.innerText = "delete";
-            deletePeepEl.className = "delete-peep-button";
-            this.mainContainerEl.append(postEl, dateEl, handleEl, likesEl, likeButtonEl, deletePeepEl);
+            this.createPeep(post2);
           });
           this.postInputEl.value = "";
         }
@@ -199,6 +178,49 @@
         setSessions(data) {
           this.sessionKey = data.session_key;
           this.userId = data.user_id;
+        }
+        displayPeep(post2) {
+          this.clearPeeps();
+          this.createPeep(post2);
+        }
+        clearPeeps() {
+          document.querySelectorAll(".post").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".likes").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".date").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".handle").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".delete-peep-button").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".view-button").forEach((post2) => {
+            post2.remove();
+          });
+          document.querySelectorAll(".likes").forEach((post2) => {
+            post2.remove();
+          });
+        }
+        createPeep(post2) {
+          const postEl = document.createElement("div");
+          const dateEl = document.createElement("div");
+          const handleEl = document.createElement("div");
+          const viewButtonEl = document.createElement("button");
+          postEl.innerText = post2.body;
+          postEl.className = "post";
+          viewButtonEl.setAttribute("id", `${post2.id}`);
+          dateEl.innerText = post2.created_at.slice(0, 10);
+          dateEl.className = "date";
+          handleEl.innerText = `posted by: ${post2.user.handle}`;
+          handleEl.className = "handle";
+          viewButtonEl.innerText = "view";
+          viewButtonEl.className = "view-button";
+          this.mainContainerEl.append(postEl, dateEl, handleEl, viewButtonEl);
         }
       };
       module.exports = ChitterView2;

@@ -56,6 +56,16 @@ class ChitterApi {
     });
   }
 
+  getIndividualPeep(peepId, callback, errorFunction) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`)
+    .then(response => response.json())
+    .then(data => console.log(callback(data)))
+    .catch((error) => {
+      errorFunction(error)
+      console.log(`${error}`)
+    });
+  }
+
   deletePosts() {
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
       method: 'DELETE'
