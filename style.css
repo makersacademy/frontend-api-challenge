@@ -23,7 +23,12 @@ nav {
   font-size: 8px;
   background-color: #010d14;
 }
-
+input {
+  border-radius: 10px;
+  border: none;
+  padding: 0.5%;
+  margin: 1%;
+}
 .info {
   display: flex;
   gap: 5px;
@@ -33,7 +38,8 @@ nav {
 button {
   border: none;
   border-radius: 10px;
-  font-size: 10px;
+  font-size: 8px;
+  background-color: yellow;
 }
 #sign-out-button {
   border: none;
@@ -52,13 +58,17 @@ img {
 }
 h1 {
   margin: 5%;
-  font-size: 50px;
+  font-size: 60px;
 }
 #intro {
   text-align: center;
 }
 .posts {
   text-align: left;
+  border: 1px solid black;
+  margin: 2%;
+  border-radius: 5px;
+  padding: 2%
 }
 #sign-up {
   display: block;
@@ -75,4 +85,13 @@ h1 {
   width: 60%;
   margin: auto;
   font-size: 8px;
+}
+.sign-in-buttons {
+  display: flex;
+  margin: auto;
+}
+.three-part-sign-in {
+  display: flex;
+  margin: auto;
+  justify-content: auto;
 }
