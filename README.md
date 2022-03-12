@@ -14,7 +14,7 @@
 * Install ESLint within project directory
 * Install ESBuild
 
-* Try to understand what I need to do...
+* Try to understand what I need to do:
 ![Diagram](images/Task_Diagram.png)
 
 * Start with idea for domain model and mock-up of MVP(for weekend)
@@ -23,16 +23,15 @@
 
 ![Diagram](images/Domain_model.png)
 
-* Set up core file structure: index.js & index.html
-
 * To solidify my understanding of what is supposed to happening in the front-end, I created a diagram of objects and how they interact.
 
 ![Diagram](images/Object_Model_Diagram_02.png)
 
 * Next, start coding with first test for chitterModel.js
+* Two tests added, add code to chitterModel.js to solve. Repeat test, code, commit!
 
-* Two tests added, add code to chitterModel.js to solve. Repeat!
-
+* To run in terminal use `npm ruun build`
+* To test in terminal run `jest`
 
 
 Brief:
