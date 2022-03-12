@@ -39,22 +39,50 @@
           document.querySelectorAll(".peep").forEach((e) => e.remove());
           peeps.forEach((peep) => {
             const peepEl = document.createElement("div");
-            peepEl.innerText = peep.body;
+            const paraEl = document.createElement("p");
+            paraEl.innerText = peep.body + " " + peep.user.handle;
             peepEl.className = "peep";
+            peepEl.appendChild(paraEl);
+            if (peep.user.id == localStorage.getItem("user-id")) {
+              const imgDelEl = this.createDeleteElement(peep);
+              peepEl.appendChild(imgDelEl);
+            }
             this.mainContainerEl.append(peepEl);
           });
+        }
+        createDeleteElement(peep) {
+          const imgDelEl = document.createElement("img");
+          imgDelEl.id = peep.id;
+          imgDelEl.src = "https://img.icons8.com/dotty/80/000000/filled-trash.png";
+          imgDelEl.style.width = "20px";
+          imgDelEl.style.height = "20px";
+          imgDelEl.addEventListener("click", (e) => {
+            this.deletePeep(peep.id);
+          });
+          return imgDelEl;
         }
         startSession() {
           localStorage.clear();
           const inputHandleEl = document.getElementById("handle");
           const inputPasswordEl = document.getElementById("password");
           localStorage.setItem("handle", inputHandleEl.value);
-          this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) => {
-            this.setLocalStorage(session);
+          var promise = new Promise((resolve) => {
+            this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) => {
+              resolve(session);
+            });
           });
-          this.showAddPeep();
-          this.showWelcome();
-          this.hideSessionLogOn();
+          promise.then((session) => {
+            this.setLocalStorage(session);
+            console.log(2);
+            this.displayPeeps();
+            this.showAddPeep();
+            this.showWelcome();
+            this.hideSessionLogOn();
+          });
+        }
+        deletePeep(peepId) {
+          const sessionKey = localStorage.getItem("session-key");
+          this.api.deletePeep(peepId, sessionKey);
         }
         addPeep() {
           const peepInputEl = document.getElementById("peep-input");
@@ -181,17 +209,21 @@
             callback(data);
           });
         }
-        startSession(handle, password, callback) {
+        async startSession(handle, password, callback) {
           let header = new Headers();
           header.set("content-type", "application/json");
-          const payload = JSON.stringify({ session: { handle, password } });
-          fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
-            method: "POST",
-            headers: header,
-            body: payload
-          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => {
+          try {
+            const payload = JSON.stringify({ session: { handle, password } });
+            const response = await fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+              method: "POST",
+              headers: header,
+              body: payload
+            });
+            const json = await response.json();
+            callback(json);
+          } catch (error) {
             console.error("Error:", error);
-          });
+          }
         }
         createPeep(userId, sessionKey, peep, callback) {
           const payload = JSON.stringify({ peep: { user_id: userId, body: peep } });
@@ -213,6 +245,14 @@
             },
             body: payload
           }).then((response) => response.json()).then((data) => callback(data)).catch((error) => console.error("Error:", error));
+        }
+        deletePeep(peepId, sessionKey) {
+          fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`, {
+            method: "DELETE",
+            headers: {
+              "Authorization": `Token token=${sessionKey}`
+            }
+          }).catch((error) => console.error("Error:", error));
         }
       };
       module.exports = ChitterApi;

@@ -53,4 +53,17 @@ describe('ChitterApi class', () => {
     });
   });
 
+  
+  it('deletes a peep', async () => {
+    const api = new ChitterApi();
+    fetch.mockResponseOnce(JSON.stringify(
+        {status : 204 }
+        )
+      );
+
+    api.deletePeep(1, "sesssionKey" ,(resonse) => {
+      expect(response.status).toBe(204);
+    });
+  });
+
 });

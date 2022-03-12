@@ -13,10 +13,34 @@ class ChitterView{
 
     peeps.forEach(peep => {
       const peepEl = document.createElement('div')
-      peepEl.innerText = peep.body
+      const paraEl = document.createElement('p')
+
+      paraEl.innerText = peep.body + ' ' + peep.user.handle
       peepEl.className = 'peep'
+      peepEl.appendChild(paraEl)
+
+      //console.log("Peep User Id",peep.user.id)
+      
+      
+      if (peep.user.id == localStorage.getItem("user-id")){
+        const imgDelEl = this.createDeleteElement(peep)
+        peepEl.appendChild(imgDelEl)
+      }
+
       this.mainContainerEl.append(peepEl)
     })
+  }
+
+  createDeleteElement(peep){
+    const imgDelEl = document.createElement('img')
+    imgDelEl.id = peep.id
+    imgDelEl.src = "https://img.icons8.com/dotty/80/000000/filled-trash.png"
+    imgDelEl.style.width = "20px"
+    imgDelEl.style.height = "20px"
+    imgDelEl.addEventListener("click", (e) =>  {
+      this.deletePeep(peep.id)
+    }); 
+    return imgDelEl
   }
 
   startSession(){
@@ -26,16 +50,28 @@ class ChitterView{
 
     localStorage.setItem("handle", inputHandleEl.value)
 
-    this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) =>{
-      this.setLocalStorage(session)
+    var promise = new Promise((resolve) => {
+      this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) =>{
+        resolve(session)
+      })
+  
     })
 
-    this.showAddPeep();
-    this.showWelcome();
-    this.hideSessionLogOn();
-   
+    promise.then((session) => {
+      this.setLocalStorage(session)
+      console.log(2)
+      this.displayPeeps()
+      this.showAddPeep();
+      this.showWelcome();
+      this.hideSessionLogOn();
+    })
+
   }
-  
+  deletePeep(peepId){
+    const sessionKey = localStorage.getItem("session-key");
+    this.api.deletePeep(peepId, sessionKey) 
+  }
+
   addPeep(){
     const peepInputEl = document.getElementById('peep-input');
     const userId =  localStorage.getItem("user-id");
