@@ -31,7 +31,7 @@
 
 * Next, start coding with first test for chitterModel.js
 
-* Two tests added, add code to chitterModel.js to solve.
+* Two tests added, add code to chitterModel.js to solve. Repeat!
 
 
 

@@ -1,3 +1,16 @@
-const model = new ChitterModel();
+class ChitterModel {
+  constructor() {
+    this.peeps = []
+  }
 
-model.get
+  getPeeps() {
+    return this.peeps
+  }
+
+  addPeep(peep) {
+    this.peeps.push(peep)
+  }
+
+}
+
+module.exports = ChitterModel;
