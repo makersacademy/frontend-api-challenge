@@ -65,15 +65,6 @@ class ChitterView {
       });
     });
 
-    this.deletePostsButtonEl.addEventListener('click', () => {
-      this.api.deletePost();
-      this.deletePostsView();
-      this.api.loadPosts((posts) => {
-        model.setPosts(posts);
-        this.displayPosts(posts);
-      });
-    });
-
     this.signupButtonEl.addEventListener('click', () => {
       this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value);
       this.signupUsernameEl.value = '';
@@ -92,9 +83,12 @@ class ChitterView {
     })
 
     this.signoutButtonEl.addEventListener('click', () => {
-      document.querySelector('#user-name').innerText = `goodbye`
-      location.reload()
-   
+      document.querySelector('#user-name').innerText = `goodbye`;
+      this.sessionKey = null;
+      this.userId = null;
+      setTimeout(function(){
+        document.getElementById("user-name").innerText = '';
+    }, 1500);
     })
   }
  
@@ -137,7 +131,6 @@ class ChitterView {
     document.querySelectorAll('.posts').forEach(post => {
       post.remove();
     });
-   
   }
 
   createPeep(data) {

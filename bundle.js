@@ -104,11 +104,6 @@
             }
           });
         }
-        deletePosts() {
-          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
-            method: "DELETE"
-          });
-        }
       };
       module.exports = ChitterApi2;
     }
@@ -183,14 +178,6 @@
               this.displayPosts(posts);
             });
           });
-          this.deletePostsButtonEl.addEventListener("click", () => {
-            this.api.deletePost();
-            this.deletePostsView();
-            this.api.loadPosts((posts) => {
-              model3.setPosts(posts);
-              this.displayPosts(posts);
-            });
-          });
           this.signupButtonEl.addEventListener("click", () => {
             this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value);
             this.signupUsernameEl.value = "";
@@ -208,7 +195,11 @@
           });
           this.signoutButtonEl.addEventListener("click", () => {
             document.querySelector("#user-name").innerText = `goodbye`;
-            location.reload();
+            this.sessionKey = null;
+            this.userId = null;
+            setTimeout(function() {
+              document.getElementById("user-name").innerText = "";
+            }, 1500);
           });
         }
         displayPosts() {

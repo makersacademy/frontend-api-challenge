@@ -1,32 +1,78 @@
 body {
-  font-family: 'Barlow', sans-serif;
-  background-color: rgb(94, 153, 253);
+  magin: 2%;
 }
-/* button {
-font-size: 10px;
-  border-radius: 4px;
-  border: none;
+
+#body {
+  margin: 0;
+  padding: 0;
   font-family: 'Barlow', sans-serif;
-  margin: 5px;
-} */
+  background-color: #1da1f2;
+  display: flex;
+  width: 100%;
+}
 .peep-body {
   color: black;
-  font-size: 14px;
+  font-size: 10px;
   max-width: 400px;
   text-decoration: none;
 }
 .peep-body:visited {
   color: black;
 }
-.handle, .likes, .date  {
-
-}
 nav {
-  display: flex;
-  gap: 10px;
+  font-size: 8px;
+  background-color: #010d14;
 }
+
 .info {
   display: flex;
   gap: 5px;
-  font-size: 15px;
+  font-size: px;
+  text-align: left;
+}
+button {
+  border: none;
+  border-radius: 10px;
+  font-size: 10px;
+}
+#sign-out-button {
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+img {
+  width: 20%;
+  height: auto;
+}
+#main-container {
+  margin-right: 10%;
+  text-align: left;
+  margin-top: 5%;
+  width: 40%;
+}
+h1 {
+  margin: 5%;
+  font-size: 50px;
+}
+#intro {
+  text-align: center;
+}
+.posts {
+  text-align: left;
+}
+#sign-up {
+  display: block;
+  margin-top: 10%;
+}
+#user-name {
+  color: rgb(238, 27, 27);
+  font-size: 12px;
+  margin: auto;
+}
+#sign-in {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto;
+  font-size: 8px;
 }
