@@ -1,5 +1,31 @@
 # Chitter API Frontend Challenge
 
+## My Process
+
+* Aim to use a TDD approach to completing the project, as set out below:
+   - Plan
+   - Test
+   - Implement
+   - Refactor
+   - Commit
+   
+* Fork Repo
+* Setup Jest within project directory
+* Install ESLint within project directory
+
+* Try to understand what I need to do...
+![Diagram](images/Task_Diagram.png)
+
+* Start with idea for domain model 
+
+
+
+
+
+
+Brief:
+-------
+
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
