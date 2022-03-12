@@ -1,7 +1,5 @@
 const ChitterModel = require('./chitterModel')
 const ChitterApi = require('./chitterApi')
-const model = new ChitterModel()
-const api = new ChitterApi()
 
 class ChitterView {
   constructor (model, api) {
@@ -108,12 +106,6 @@ class ChitterView {
     ErrorEl.innerText = error
     ErrorEl.setAttribute('id', 'error-message')
     this.mainContainerEl.append(ErrorEl)
-  }
-
-  deletePostsView () {
-    document.querySelectorAll('.post').forEach(post => {
-      post.remove()
-    })
   }
 
   setSessions (data) {

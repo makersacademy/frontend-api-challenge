@@ -114,12 +114,10 @@
     "chitterView.js"(exports, module) {
       var ChitterModel2 = require_chitterModel();
       var ChitterApi2 = require_chitterApi();
-      var model2 = new ChitterModel2();
-      var api2 = new ChitterApi2();
       var ChitterView2 = class {
-        constructor(model3, api3) {
-          this.model = model3;
-          this.api = api3;
+        constructor(model2, api2) {
+          this.model = model2;
+          this.api = api2;
           this.sessionKey = null;
           this.userId = null;
           this.signinButtonEl = document.querySelector("#submit-user-button");
@@ -136,7 +134,7 @@
           this.postButtonEl.addEventListener("click", () => {
             this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
             this.api.loadPosts((posts) => {
-              model3.setPosts(posts);
+              model2.setPosts(posts);
               this.displayPosts(posts);
             });
           });
@@ -147,7 +145,7 @@
               this.api.deleteIndividualPost(peepId, this.sessionKey);
             }
             this.api.loadPosts((posts) => {
-              model3.setPosts(posts);
+              model2.setPosts(posts);
               this.displayPosts(posts);
             });
           });
@@ -159,7 +157,7 @@
               likeButtonEl.disabled = true;
             }
             this.api.loadPosts((posts) => {
-              model3.setPosts(posts);
+              model2.setPosts(posts);
               this.displayPosts(posts);
             });
           });
@@ -171,7 +169,7 @@
               unlikeButtonEl.disabled = true;
             }
             this.api.loadPosts((posts) => {
-              model3.setPosts(posts);
+              model2.setPosts(posts);
               this.displayPosts(posts);
             });
           });
@@ -215,11 +213,6 @@
           ErrorEl.innerText = error;
           ErrorEl.setAttribute("id", "error-message");
           this.mainContainerEl.append(ErrorEl);
-        }
-        deletePostsView() {
-          document.querySelectorAll(".post").forEach((post) => {
-            post.remove();
-          });
         }
         setSessions(data) {
           this.sessionKey = data.session_key;
