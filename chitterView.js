@@ -1,4 +1,3 @@
-const { listenerCount } = require("process");
 
 class ChitterView {
   constructor(model) {
@@ -24,7 +23,7 @@ class ChitterView {
   addNewPeep(newPeep) {
     this.model.addPeep(newPeep);
     this.viewPeeps();
-  }
+  };
 };
 
 
