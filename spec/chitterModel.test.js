@@ -28,5 +28,14 @@ describe('Chitter class', () => {
     expect(chitterModel.getPeeps()[0].body).toEqual("my first peep :)");
   });
 
+  it('removes a peep', () => {
+    const peepJSONArray = JSON.parse('[{"id": 3,"body": "my first peep :)"},{"id": 2,"body": "my second peep :)"}]')
 
+    chitterModel.setPeeps(peepJSONArray);
+    chitterModel.removePeep(3)
+    expect(chitterModel.getPeeps().length).toEqual(1);
+    expect(chitterModel.getPeeps()[0].id).toEqual(2);
+    
+
+  });
 })

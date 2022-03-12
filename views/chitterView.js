@@ -4,9 +4,17 @@ class ChitterView{
     this.model = ChitterModel;
     this.api = api;
     this.mainContainerEl = document.querySelector('#main-container');
+
+    this.submitLogonEl = document.querySelector('#logon');
+
+    this.submitLogonEl.addEventListener("click", (e) =>  {
+      e.preventDefault()
+      this.startSession()
+    }); 
+
   }
 
-  displayPeeps() {
+  showPeeps() {
     const peeps = this.model.getPeeps()
 
     document.querySelectorAll('.peep').forEach(e => e.remove());
@@ -19,9 +27,6 @@ class ChitterView{
       peepEl.className = 'peep'
       peepEl.appendChild(paraEl)
 
-      //console.log("Peep User Id",peep.user.id)
-      
-      
       if (peep.user.id == localStorage.getItem("user-id")){
         const imgDelEl = this.createDeleteElement(peep)
         peepEl.appendChild(imgDelEl)
@@ -59,17 +64,18 @@ class ChitterView{
 
     promise.then((session) => {
       this.setLocalStorage(session)
-      console.log(2)
-      this.displayPeeps()
+      this.showPeeps()
       this.showAddPeep();
       this.showWelcome();
-      this.hideSessionLogOn();
+      //this.hideSessionLogOn();
     })
 
   }
   deletePeep(peepId){
     const sessionKey = localStorage.getItem("session-key");
     this.api.deletePeep(peepId, sessionKey) 
+    this.model.removePeep(peepId)
+    this.showPeeps()
   }
 
   addPeep(){
@@ -79,7 +85,7 @@ class ChitterView{
 
     this.api.createPeep(userId, sessionKey, peepInputEl.value, (response) => {
       this.model.addPeep(response)
-      this.displayPeeps()
+      this.showPeeps()
     })
 
     peepInputEl.value = ""
@@ -134,14 +140,6 @@ class ChitterView{
     this.mainContainerEl.prepend(peepFormEl)
   }
 
-  hideSessionLogOn(){
-    const formLogonEl = document.getElementById("logon-container");
-    while (formLogonEl.firstChild) {
-      formLogonEl.firstChild.remove()
-    }
-    this.mainContainerEl.removeChild(formLogonEl);
-  }
-
   hideCreateUser(){
     const formNewUserEl = document.getElementById("new-user-container");
     while (formNewUserEl.firstChild) {
@@ -178,37 +176,6 @@ class ChitterView{
     newUserFormEl.appendChild(submitButtonEl)
 
     this.mainContainerEl.prepend(newUserFormEl)
-  }
-
-  // I plan to extract this to a session view/model
-  showSessionLogOn() {
-    const logOnFormEl = document.createElement('form')
-    logOnFormEl.id = 'logon-container'
-
-    const handleInputEl = document.createElement('input')
-    handleInputEl.id = "handle"
-    handleInputEl.setAttribute("type", "text")
-    handleInputEl.setAttribute("placeholder", "handle")
-
-    const passwordInputEl = document.createElement('input')
-    passwordInputEl.id = "password"
-    passwordInputEl.setAttribute("type", "password")
-    passwordInputEl.setAttribute("placeholder", "Password")
-
-    const submitButtonEl = document.createElement('input')
-    submitButtonEl.id = "logon"
-    submitButtonEl.setAttribute("type", "submit")
-    submitButtonEl.setAttribute("value", "Log on")
-    submitButtonEl.addEventListener("click", (e) =>  {
-      e.preventDefault()
-      this.startSession()
-    }); 
-    
-    logOnFormEl.appendChild(handleInputEl)
-    logOnFormEl.appendChild(passwordInputEl)
-    logOnFormEl.appendChild(submitButtonEl)
-
-    this.mainContainerEl.prepend(logOnFormEl)
   }
 
 }

@@ -22,13 +22,13 @@
     chitterView = new ChitterView(chitterModel,chitterApi);
   })
 
-  describe('#DisplayPeeps', () => {
+  describe('#ShowPeeps', () => {
     it('displays a list of peeps', () => {
 
       let peepJSONArray = JSON.parse('[{"id": 3,"body": "my first peep :)", "user": {"id":1,"handle":"test"}},{"id": 2,"body": "my second peep :)","user": {"id":1,"handle":"test"}    }]')
     
       chitterModel.setPeeps(peepJSONArray);
-      chitterView.displayPeeps()
+      chitterView.showPeeps()
 
       expect(document.querySelectorAll('div.peep').length).toEqual(2);
       
@@ -62,8 +62,6 @@
   describe('#displaySession', () => {
     it('displays the session log on fields', () => {
 
-      chitterView.showSessionLogOn()
-
       expect(document.querySelector('#handle')).not.toBeNull();
       expect(document.querySelector('#password')).not.toBeNull();
       expect(document.querySelector('#logon')).not.toBeNull();
@@ -80,8 +78,6 @@
         )
       );
       
-      chitterView.showSessionLogOn()
-      
       const inputHandleEl = document.querySelector('#handle');
       inputHandleEl.value = "Test User"
       const inputPasswordEl = document.querySelector('#password');
@@ -93,9 +89,7 @@
       await new Promise((r) => setTimeout(r, 1000));
       expect(document.querySelector('#peep-container')).not.toBeNull();
       expect(document.querySelector('#welcome')).not.toBeNull();
-      expect(document.querySelector('#handle')).toBeNull();
-      expect(document.querySelector('#password')).toBeNull();
-      expect(document.querySelector('#logon')).toBeNull();
+
     })
   })
 

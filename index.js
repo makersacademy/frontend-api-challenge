@@ -1,6 +1,7 @@
 const ChitterModel = require('./lib/chitterModel');
 const ChitterView = require('./views/chitterView'); 
 const ChittersApi = require("./lib/chitterApi");
+const bootstrap = require('bootstrap') 
 
 const api = new ChittersApi()
 const model = new ChitterModel()
@@ -11,20 +12,10 @@ localStorage.clear()
 console.log(localStorage.getItem("user-id"))
 
 //view.showAddPeep();
-view.showSessionLogOn()
+//view.showSessionLogOn()
 view.showCreateUser()
-
-//view.showWelcome();
-
 
 api.loadPeeps((peeps) => {
   model.setPeeps(peeps);
-  view.displayPeeps();
+  view.showPeeps();
 });
-
-
-// curl "https://chitter-backend-api-v2.herokuapp.com/peeps" \
-//   -X POST \
-//   -H "Authorization: Token token=_2a_12_RSrGHwdvN6bwrzLICidS7e" \
-//   -H "Content-Type: application/json" \
-//   -d '{"peep": {"user_id":860, "body":"Still no worky"}}'

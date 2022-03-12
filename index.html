@@ -2,9 +2,23 @@
 <html>
    <head>
       <title>Chitter</title>
+      <link rel="stylesheet" href="styles.css">
    </head>
    <body>
-      <h1>Chitter</h1>
+
+      <div id="topnav" class="topnav">
+         <a class="active">Chitter</a>
+         <a href="#register">Sign Up</a>
+         <a href="#logoff">Log Off</a>
+         <div class="login-container" id="login-container">
+            <form>
+               <input type="text" placeholder="Handle" id="handle">
+               <input type="text" placeholder="Password" id="password">
+               <button type="submit" id="logon">Login</button>
+            </form>
+         </div>
+      </div>
+
       <div id="main-container">         
       </div>
    </body>
