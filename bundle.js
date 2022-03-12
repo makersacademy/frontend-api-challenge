@@ -201,16 +201,13 @@
               this.setSessions(data);
               console.log(this.userId);
               console.log(this.sessionKey);
-              this.signinUsernameEl.value = "";
-              this.signinPasswordEl.value = "";
             });
-            if (this.sessionKey !== null) {
-              () => {
-                document.querySelector("#user-name").value = `Signed in as ${this.userId}`;
-              };
-            }
+            document.querySelector("#user-name").innerText = `hello ${this.signinUsernameEl.value}`;
+            this.signinUsernameEl.value = "";
+            this.signinPasswordEl.value = "";
           });
           this.signoutButtonEl.addEventListener("click", () => {
+            document.querySelector("#user-name").innerText = `goodbye`;
             location.reload();
           });
         }
