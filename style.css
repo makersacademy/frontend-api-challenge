@@ -2,25 +2,31 @@ body {
   font-family: 'Barlow', sans-serif;
   background-color: rgb(94, 153, 253);
 }
-button {
+/* button {
+font-size: 10px;
   border-radius: 4px;
   border: none;
   font-family: 'Barlow', sans-serif;
   margin: 5px;
-}
-.post {
-  font-size: 12px;
+} */
+.peep-body {
+  color: black;
+  font-size: 14px;
   max-width: 400px;
+  text-decoration: none;
 }
-.handle {
-  font-size: 8px;
+.peep-body:visited {
+  color: black;
 }
-.date {
-  font-size: 8px;
-}
-.likes {
-  font-size: 8px;
+.handle, .likes, .date  {
+
 }
 nav {
   display: flex;
+  gap: 10px;
+}
+.info {
+  display: flex;
+  gap: 5px;
+  font-size: 15px;
 }

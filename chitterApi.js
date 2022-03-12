@@ -35,10 +35,10 @@ class ChitterApi {
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
     .then(response => response.json())
     .then(data => console.log(callback(data)))
-    .catch((error) => {
-      errorFunction(error)
-      console.log(`${error}`)
-    });
+    // .catch((error) => {
+    //   errorFunction(error)
+    //   console.log(`${error}`)
+    // });
   }
 
    postPeeps(post, userId, sessionKey, errorFunction) {
@@ -56,7 +56,7 @@ class ChitterApi {
     });
   }
 
-  getIndividualPeep(peepId, callback, errorFunction) {
+  getIndividualPeep(peepId, callback) {
     fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`)
     .then(response => response.json())
     .then(data => console.log(callback(data)))
@@ -65,6 +65,34 @@ class ChitterApi {
       console.log(`${error}`)
     });
   }
+
+  deleteIndividualPost(peepId, sessionKey) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${sessionKey}`,
+    }
+  })
+}
+
+  likePost(peepId, userId, sessionKey) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Token token=${sessionKey}`,
+    }
+  }).then(response => response.json())
+    .then(data => console.log((data)))
+}
+
+  dislikePost(peepId, userId, sessionKey) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${sessionKey}`,
+    }
+  })
+}
 
   deletePosts() {
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {

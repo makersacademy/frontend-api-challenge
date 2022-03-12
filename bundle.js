@@ -57,13 +57,10 @@
             console.log(callback(data));
           });
         }
-        loadPosts(callback, errorFunction) {
-          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => console.log(callback(data))).catch((error) => {
-            errorFunction(error);
-            console.log(`${error}`);
-          });
+        loadPosts(callback, errorFunction2) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => console.log(callback(data)));
         }
-        postPeeps(post2, userId, sessionKey, errorFunction) {
+        postPeeps(post2, userId, sessionKey, errorFunction2) {
           const correctBody = { peep: { user_id: `${userId}`, body: `${post2}` } };
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
             method: "POST",
@@ -73,14 +70,38 @@
             },
             body: JSON.stringify(correctBody)
           }).catch((error) => {
-            errorFunction(error);
+            errorFunction2(error);
             console.log(`Posting: ${error}`);
           });
         }
-        getIndividualPeep(peepId, callback, errorFunction) {
+        getIndividualPeep(peepId, callback) {
           fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`).then((response) => response.json()).then((data) => console.log(callback(data))).catch((error) => {
             errorFunction(error);
             console.log(`${error}`);
+          });
+        }
+        deleteIndividualPost(peepId, sessionKey) {
+          fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`, {
+            method: "DELETE",
+            headers: {
+              "Authorization": `Token token=${sessionKey}`
+            }
+          });
+        }
+        likePost(peepId, userId, sessionKey) {
+          fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`, {
+            method: "PUT",
+            headers: {
+              "Authorization": `Token token=${sessionKey}`
+            }
+          }).then((response) => response.json()).then((data) => console.log(data));
+        }
+        dislikePost(peepId, userId, sessionKey) {
+          fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`, {
+            method: "DELETE",
+            headers: {
+              "Authorization": `Token token=${sessionKey}`
+            }
           });
         }
         deletePosts() {
@@ -103,6 +124,7 @@
       var ChitterView2 = class {
         constructor(model3, api3) {
           this.model = model3;
+          this.api = api3;
           this.sessionKey = null;
           this.userId = null;
           this.signinButtonEl = document.querySelector("#submit-user-button");
@@ -116,13 +138,38 @@
           this.signupPasswordEl = document.querySelector("#password-input-signup");
           this.signupButtonEl = document.querySelector("#sign-up-submit-button");
           this.signoutButtonEl = document.querySelector("#sign-out-button");
-          this.api = api3;
           this.postButtonEl.addEventListener("click", () => {
             this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
               this.displayPosts(posts);
             });
+          });
+          this.mainContainerEl.addEventListener("click", (event) => {
+            const deleteButtonEl = event.target.closest("button.delete-button");
+            if (deleteButtonEl) {
+              const peepId = deleteButtonEl.closest("div.inner-peep").id;
+              this.api.deleteIndividualPost(peepId, this.sessionKey);
+            }
+            ;
+          });
+          this.mainContainerEl.addEventListener("click", (event) => {
+            const likeButtonEl = event.target.closest("button.like-button");
+            if (likeButtonEl) {
+              const peepId = likeButtonEl.closest("div.inner-peep").id;
+              this.api.likePost(peepId, this.userId, this.sessionKey);
+              likeButtonEl.disabled = true;
+            }
+            ;
+          });
+          this.mainContainerEl.addEventListener("click", (event) => {
+            let unlikeButtonEl = event.target.closest("button.unlike-button");
+            if (unlikeButtonEl) {
+              const peepId = unlikeButtonEl.closest("div.inner-peep").id;
+              this.api.dislikePost(peepId, this.userId, this.sessionKey);
+              unlikeButtonEl.disabled = true;
+            }
+            ;
           });
           this.deletePostsButtonEl.addEventListener("click", () => {
             this.api.deletePost();
@@ -143,9 +190,7 @@
             });
           });
           this.signoutButtonEl.addEventListener("click", () => {
-            this.sessionKey = null;
-            this.userId = null;
-            console.log(this.sessionKey);
+            location.reload();
           });
         }
         displayPosts() {
@@ -184,18 +229,23 @@
           });
         }
         createPeep(data) {
-          const link = document.createElement("a");
-          link.href = `#${data.id}`;
-          const div = document.createElement("div");
-          div.className = "posts";
-          div.innerHTML = `<div class="inner-peep-div">
-                        <h3 class="peep-body">${data.body}</h3>
-                        <h6 class="peep-name">${data.user.handle}</h6>
-                        <h6 class="peep-time">${data.updated_at}</h6>
-                        <h6 class="peep-likes">Likes: ${data.likes.length}</h6>
-                        </div>`;
-          link.appendChild(div);
-          document.querySelector("#main-container").appendChild(link);
+          const individualPeepEl = document.createElement("div");
+          individualPeepEl.className = "posts";
+          individualPeepEl.innerHTML = this.makePeep(data);
+          document.querySelector("#main-container").appendChild(individualPeepEl);
+        }
+        makePeep(data) {
+          return `<div id="${data.id}" class="inner-peep">
+            <a href="#${data.id}" class="peep-body">${data.body}</a>
+            <div class="info">
+              <h6 class="handle">${data.user.handle}</h6>
+              <h6 class="date">${data.updated_at.slice(0, 10)}</h6>
+              <h6 class="likes">Likes: ${data.likes.length}</h6>
+            </div>
+            <button class="like-button">like</button>
+            <button class="unlike-button">unlike</button>
+            <button class="delete-button">delete</button>
+            </div>`;
         }
       };
       module.exports = ChitterView2;
