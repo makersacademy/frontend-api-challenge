@@ -26,6 +26,7 @@ class ChitterView {
       this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
       this.api.loadPosts((posts) => {
         model.setPosts(posts);
+        console.log(posts)
         this.displayPosts(posts);
       });
     })

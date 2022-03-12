@@ -31,17 +31,13 @@ class ChitterApi {
     })
   }
 
-  loadPosts(callback, errorFunction) {
+  loadPosts(callback) {
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
     .then(response => response.json())
     .then(data => console.log(callback(data)))
-    // .catch((error) => {
-    //   errorFunction(error)
-    //   console.log(`${error}`)
-    // });
   }
 
-   postPeeps(post, userId, sessionKey, errorFunction) {
+   postPeeps(post, userId, sessionKey) {
     const correctBody = {peep: {user_id:`${userId}`, body:`${post}`}};
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
       method: 'POST',
@@ -50,13 +46,15 @@ class ChitterApi {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(correctBody),
-    }).catch((error) => {
-      errorFunction(error)
-      console.log(`Posting: ${error}`)
-    });
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      console.log(data)
+    })
   }
 
-  getIndividualPeep(peepId, callback) {
+  getIndividualPeep(peepId, callback, errorFunction) {
     fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`)
     .then(response => response.json())
     .then(data => console.log(callback(data)))

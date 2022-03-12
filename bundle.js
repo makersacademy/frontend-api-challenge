@@ -57,10 +57,10 @@
             console.log(callback(data));
           });
         }
-        loadPosts(callback, errorFunction2) {
+        loadPosts(callback) {
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => console.log(callback(data)));
         }
-        postPeeps(post2, userId, sessionKey, errorFunction2) {
+        postPeeps(post2, userId, sessionKey) {
           const correctBody = { peep: { user_id: `${userId}`, body: `${post2}` } };
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
             method: "POST",
@@ -69,12 +69,12 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify(correctBody)
-          }).catch((error) => {
-            errorFunction2(error);
-            console.log(`Posting: ${error}`);
+          }).then((response) => response.json()).then((data) => {
+            console.log("Success:", data);
+            console.log(data);
           });
         }
-        getIndividualPeep(peepId, callback) {
+        getIndividualPeep(peepId, callback, errorFunction) {
           fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`).then((response) => response.json()).then((data) => console.log(callback(data))).catch((error) => {
             errorFunction(error);
             console.log(`${error}`);
@@ -142,6 +142,7 @@
             this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
+              console.log(posts);
               this.displayPosts(posts);
             });
           });
