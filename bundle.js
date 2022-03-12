@@ -41,6 +41,14 @@
             e.preventDefault();
             this.startSession();
           });
+          this.registerEl = document.querySelector("#register");
+          this.registerEl.addEventListener("click", (e) => {
+            if (document.getElementById("new-user-container") == null) {
+              this.showCreateUser();
+            } else {
+              this.hideCreateUser();
+            }
+          });
         }
         showPeeps() {
           const peeps = this.model.getPeeps();
@@ -84,6 +92,7 @@
             this.showPeeps();
             this.showAddPeep();
             this.showWelcome();
+            this.hideCreateUser();
           });
         }
         deletePeep(peepId) {
@@ -143,12 +152,17 @@
         }
         hideCreateUser() {
           const formNewUserEl = document.getElementById("new-user-container");
-          while (formNewUserEl.firstChild) {
-            formNewUserEl.firstChild.remove();
+          if (formNewUserEl != null) {
+            while (formNewUserEl.firstChild) {
+              formNewUserEl.firstChild.remove();
+            }
+            this.mainContainerEl.removeChild(formNewUserEl);
           }
-          this.mainContainerEl.removeChild(formNewUserEl);
         }
         showCreateUser() {
+          if (document.getElementById("new-user-container") != null) {
+            return;
+          }
           const newUserFormEl = document.createElement("form");
           newUserFormEl.id = "new-user-container";
           const newUserHandleInputEl = document.createElement("input");
@@ -5206,7 +5220,6 @@
   var view = new ChitterView(model, api);
   localStorage.clear();
   console.log(localStorage.getItem("user-id"));
-  view.showCreateUser();
   api.loadPeeps((peeps) => {
     model.setPeeps(peeps);
     view.showPeeps();

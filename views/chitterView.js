@@ -12,6 +12,15 @@ class ChitterView{
       this.startSession()
     }); 
 
+    this.registerEl = document.querySelector('#register');
+
+    this.registerEl.addEventListener("click", (e) =>  {
+      if (document.getElementById('new-user-container') == null){
+        this.showCreateUser()
+      }else{
+        this.hideCreateUser()
+      }
+    }); 
   }
 
   showPeeps() {
@@ -67,7 +76,7 @@ class ChitterView{
       this.showPeeps()
       this.showAddPeep();
       this.showWelcome();
-      //this.hideSessionLogOn();
+      this.hideCreateUser();
     })
 
   }
@@ -142,13 +151,18 @@ class ChitterView{
 
   hideCreateUser(){
     const formNewUserEl = document.getElementById("new-user-container");
-    while (formNewUserEl.firstChild) {
-      formNewUserEl.firstChild.remove()
+    if (formNewUserEl != null){
+      while (formNewUserEl.firstChild) {
+        formNewUserEl.firstChild.remove()
+      }
+      this.mainContainerEl.removeChild(formNewUserEl);
     }
-    this.mainContainerEl.removeChild(formNewUserEl);
   }
 
   showCreateUser(){
+    if(document.getElementById('new-user-container') != null){
+      return
+    }
     const newUserFormEl = document.createElement('form')
     newUserFormEl.id = 'new-user-container'
 
