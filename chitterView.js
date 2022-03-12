@@ -25,7 +25,7 @@ class ChitterView {
       this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
       this.api.loadPosts((posts) => {
         model.setPosts(posts);
-        this.displayPosts();
+        this.displayPosts(posts);
       });
     })
 
@@ -56,11 +56,11 @@ class ChitterView {
       console.log(this.sessionKey)
     })
 
-    this.viewButtonEl.addEventListener('click', () => {
-      this.sessionKey = null
-      this.userId = null
-      console.log(this.sessionKey)
-    })
+    // this.viewButtonEl.addEventListener('click', () => {
+    //   this.sessionKey = null
+    //   this.userId = null
+    //   console.log(this.sessionKey)
+    // })
   }
  
   displayPosts() {
@@ -99,49 +99,25 @@ class ChitterView {
   }
 
   clearPeeps() {
-    document.querySelectorAll('.post').forEach(post => {
+    document.querySelectorAll('.posts').forEach(post => {
       post.remove();
     });
-    document.querySelectorAll('.likes').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.date').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.handle').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.delete-peep-button').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.view-button').forEach(post => {
-      post.remove();
-    });
-    document.querySelectorAll('.likes').forEach(post => {
-      post.remove();
-    });
+   
   }
-  createPeep(post) {
-    const postEl = document.createElement('div');
-    const dateEl = document.createElement('div');
-    const handleEl = document.createElement('div');
-    // const likesEl = document.createElement('div');
-    const viewButtonEl = document.createElement('button')
-    // const deletePeepEl =  document.createElement('button')
-    postEl.innerText = post.body;
-    postEl.className = ('post');
-    viewButtonEl.setAttribute("id", `${post.id}`)
-    dateEl.innerText = post.created_at.slice(0, 10);
-    dateEl.className = ('date');
-    handleEl.innerText = `posted by: ${post.user.handle}`;
-    handleEl.className = ('handle');
-    // likesEl.innerText = `likes: ${post.likes}`;
-    // likesEl.className = ('likes');
-    viewButtonEl.innerText = "view"
-    viewButtonEl.className = "view-button";
-    // deletePeepEl.innerText = "delete";
-    // deletePeepEl.className = "delete-peep-button";
-    this.mainContainerEl.append(postEl, dateEl, handleEl, viewButtonEl);
+  createPeep(data) {
+    const link = document.createElement('a');
+    link.href = `#${data.id}`;
+    const div = document.createElement('div');
+    div.className = 'posts';
+    div.innerHTML =  (`<div class="inner-peep-div">
+                        <h3 class="peep-body">${data.body}</h3>
+                        <h6 class="peep-name">${data.user.handle}</h6>
+                        <h6 class="peep-time">${data.updated_at}</h6>
+                        <h6 class="peep-likes">Likes: ${data.likes.length}</h6>
+                        </div>`
+                        );
+    link.appendChild(div);
+    document.querySelector('#main-container').appendChild(link);
   }
 }
 
