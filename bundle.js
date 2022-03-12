@@ -14,8 +14,8 @@
         getPosts() {
           return this.posts;
         }
-        addPost(post2) {
-          return this.posts.push(post2);
+        addPost(post) {
+          return this.posts.push(post);
         }
         resetPosts() {
           return this.posts = [];
@@ -60,12 +60,12 @@
         loadPosts(callback) {
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => console.log(callback(data)));
         }
-        postPeeps(post2, userId, sessionKey) {
-          const correctBody = { peep: { user_id: `${userId}`, body: `${post2}` } };
+        postPeeps(post, userId, sessionKey) {
+          const correctBody = { peep: { user_id: `${userId}`, body: `${post}` } };
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
             method: "POST",
             headers: {
-              "Authorization": `Token token=${sessionKey}`,
+              Authorization: `Token token=${sessionKey}`,
               "Content-Type": "application/json"
             },
             body: JSON.stringify(correctBody)
@@ -84,7 +84,7 @@
           fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`, {
             method: "DELETE",
             headers: {
-              "Authorization": `Token token=${sessionKey}`
+              Authorization: `Token token=${sessionKey}`
             }
           });
         }
@@ -92,7 +92,7 @@
           fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`, {
             method: "PUT",
             headers: {
-              "Authorization": `Token token=${sessionKey}`
+              Authorization: `Token token=${sessionKey}`
             }
           }).then((response) => response.json()).then((data) => console.log(data));
         }
@@ -100,7 +100,7 @@
           fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`, {
             method: "DELETE",
             headers: {
-              "Authorization": `Token token=${sessionKey}`
+              Authorization: `Token token=${sessionKey}`
             }
           });
         }
@@ -146,7 +146,6 @@
               const peepId = deleteButtonEl.closest("div.inner-peep").id;
               this.api.deleteIndividualPost(peepId, this.sessionKey);
             }
-            ;
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
               this.displayPosts(posts);
@@ -159,20 +158,18 @@
               this.api.likePost(peepId, this.userId, this.sessionKey);
               likeButtonEl.disabled = true;
             }
-            ;
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
               this.displayPosts(posts);
             });
           });
           this.mainContainerEl.addEventListener("click", (event) => {
-            let unlikeButtonEl = event.target.closest("button.unlike-button");
+            const unlikeButtonEl = event.target.closest("button.unlike-button");
             if (unlikeButtonEl) {
               const peepId = unlikeButtonEl.closest("div.inner-peep").id;
               this.api.dislikePost(peepId, this.userId, this.sessionKey);
               unlikeButtonEl.disabled = true;
             }
-            ;
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
               this.displayPosts(posts);
@@ -194,7 +191,7 @@
             this.signinPasswordEl.value = "";
           });
           this.signoutButtonEl.addEventListener("click", () => {
-            document.querySelector("#user-name").innerText = `goodbye`;
+            document.querySelector("#user-name").innerText = "goodbye";
             this.sessionKey = null;
             this.userId = null;
             setTimeout(function() {
@@ -205,8 +202,8 @@
         displayPosts() {
           this.clearPeeps();
           const posts = this.model.getPosts();
-          posts.forEach((post2) => {
-            this.createPeep(post2);
+          posts.forEach((post) => {
+            this.createPeep(post);
           });
           this.postInputEl.value = "";
         }
@@ -220,7 +217,7 @@
           this.mainContainerEl.append(ErrorEl);
         }
         deletePostsView() {
-          document.querySelectorAll(".post").forEach((note) => {
+          document.querySelectorAll(".post").forEach((post) => {
             post.remove();
           });
         }
@@ -228,13 +225,13 @@
           this.sessionKey = data.session_key;
           this.userId = data.user_id;
         }
-        displayPeep(post2) {
+        displayPeep(post) {
           this.clearPeeps();
-          this.createPeep(post2);
+          this.createPeep(post);
         }
         clearPeeps() {
-          document.querySelectorAll(".posts").forEach((post2) => {
-            post2.remove();
+          document.querySelectorAll(".posts").forEach((post) => {
+            post.remove();
           });
         }
         createPeep(data) {

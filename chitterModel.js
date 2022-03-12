@@ -1,18 +1,21 @@
 class ChitterModel {
-  constructor() {
+  constructor () {
     this.posts = []
   }
 
-  getPosts() {
-    return this.posts;
+  getPosts () {
+    return this.posts
   }
-  addPost(post) {
-    return this.posts.push(post);
+
+  addPost (post) {
+    return this.posts.push(post)
   }
-  resetPosts() {
-    return this.posts = [];
+
+  resetPosts () {
+    return this.posts = []
   }
-  setPosts(posts) {
+
+  setPosts (posts) {
     return this.posts = posts
   }
 }

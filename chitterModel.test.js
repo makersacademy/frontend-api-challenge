@@ -3,9 +3,9 @@ const ChitterModel = require('./chitterModel')
 describe('chitterModel', () => {
   let model
   beforeEach(() => {
-    model = new ChitterModel;
-  });
-  
+    model = new ChitterModel()
+  })
+
   it(' returns the list of notes', () => {
     expect(model.getPosts()).toEqual([])
   })
@@ -21,8 +21,8 @@ describe('chitterModel', () => {
     expect(model.getPosts()).toEqual([])
   })
   it('sets the notes to a given data structure', () => {
-    model.addPost('Post1');
-    model.setPosts(['Brazil']);
+    model.addPost('Post1')
+    model.setPosts(['Brazil'])
     expect(model.getPosts()).toEqual(['Brazil'])
-  });
-});
+  })
+})
