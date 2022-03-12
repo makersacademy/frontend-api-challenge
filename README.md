@@ -27,11 +27,11 @@
 
 * To solidify my understanding of what is supposed to happening in the front-end, I created a diagram of objects and how they interact.
 
-![Diagram](images/Object_Model_Diagram.png)
+![Diagram](images/Object_Model_Diagram_02.png)
 
 * Next, start coding with first test for chitterModel.js
 
-
+* Two tests added, add code to chitterModel.js to solve.
 
 
 
