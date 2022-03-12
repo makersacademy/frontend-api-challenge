@@ -10,14 +10,29 @@ describe(ChitterView, () => {
   describe('viewPeeps', () => {
     it('Shows all peeps', () => {
       document.body.innerHTML = fs.readFileSync('./index.html');
-      let chittermodel = new ChitterModel;
+      const chittermodel = new ChitterModel;
       chittermodel.addPeep('Hello, world');
       chittermodel.addPeep("It's great here");
 
-      let chitterview = new ChitterView(chittermodel);
+      const chitterview = new ChitterView(chittermodel);
       chitterview.viewPeeps();
 
       expect(document.querySelectorAll('div.peep').length).toEqual(2);
     });
   });
+  describe('add a new peep', () => {
+    it('adds a new peep on the web page', () => {
+      document.body.innerHTML = fs.readFileSync('./index.html');
+      const chittermodel = new ChitterModel;
+      const chitterView = new ChitterView(chittermodel);
+
+      const input = document.querySelector('#user-input');
+      input.value = "This is a peep!";
+      const button = document.querySelector('#submit-peep-button');
+      button.click();
+
+      expect(document.querySelectorAll('div.peep').length).toEqual(1);
+      expect(document.querySelectorAll('div.peep')[0].innerText).toEqual('This is a peep!');
+    })
+  })
 });

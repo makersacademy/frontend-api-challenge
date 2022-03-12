@@ -4,6 +4,11 @@ class ChitterView {
   constructor(model) {
     this.model = model;
     this.mainContainerEl = document.querySelector('#main-container');
+
+    document.querySelector('#submit-peep-button').addEventListener('click', () => {
+      let newPeep = document.querySelector('#user-input').value;
+      this.addNewPeep(newPeep);
+    })
   };
 
   viewPeeps(){
@@ -15,6 +20,11 @@ class ChitterView {
       this.mainContainerEl.append(div);
     });
   };
+
+  addNewPeep(newPeep) {
+    this.model.addPeep(newPeep);
+    this.viewPeeps();
+  }
 };
 
 
