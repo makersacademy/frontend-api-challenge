@@ -49,6 +49,14 @@ class ChitterView{
     peepInputEl.value = ""
   }
 
+  createUser(){
+    const inputHandleEl = document.getElementById("new-user-handle")
+    const inputPasswordEl = document.getElementById("new-user-password")
+
+    this.api.createUser(inputHandleEl.value, inputPasswordEl.value, (session) =>{
+      console.log(session)
+    })
+  }
 
   setLocalStorage(session){
     localStorage.setItem("user-id", session.user_id)
@@ -88,9 +96,7 @@ class ChitterView{
     peepFormEl.appendChild(submitPeepEl)
 
     this.mainContainerEl.prepend(peepFormEl)
-
   }
-
 
   hideSessionLogOn(){
     const formLogonEl = document.getElementById("logon-container");
@@ -128,7 +134,7 @@ class ChitterView{
     submitButtonEl.setAttribute("value", "Register")
     submitButtonEl.addEventListener("click", (e) =>  {
       e.preventDefault()
-      //this.createUser()
+      this.createUser()
     });   
 
     newUserFormEl.appendChild(newUserHandleInputEl)

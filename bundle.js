@@ -66,6 +66,13 @@
           });
           peepInputEl.value = "";
         }
+        createUser() {
+          const inputHandleEl = document.getElementById("new-user-handle");
+          const inputPasswordEl = document.getElementById("new-user-password");
+          this.api.createUser(inputHandleEl.value, inputPasswordEl.value, (session) => {
+            console.log(session);
+          });
+        }
         setLocalStorage(session) {
           localStorage.setItem("user-id", session.user_id);
           localStorage.setItem("session-key", session.session_key);
@@ -129,6 +136,7 @@
           submitButtonEl.setAttribute("value", "Register");
           submitButtonEl.addEventListener("click", (e) => {
             e.preventDefault();
+            this.createUser();
           });
           newUserFormEl.appendChild(newUserHandleInputEl);
           newUserFormEl.appendChild(newUserPasswordInputEl);
@@ -197,8 +205,8 @@
           }).then((response) => response.json()).then((data) => callback(data)).catch((error) => console.error("Error:", error));
         }
         createUser(handle, password, callback) {
-          const payload = JSON.stringify({ user: { handle: `${handle}`, password: `${password}` } });
-          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+          const payload = JSON.stringify({ user: { handle, password } });
+          fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
