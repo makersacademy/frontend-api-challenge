@@ -26,9 +26,8 @@ class ChitterView {
       this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
       this.api.loadPosts((posts) => {
         model.setPosts(posts);
-        console.log(posts)
         this.displayPosts(posts);
-      });
+      })
     })
     this.mainContainerEl.addEventListener( 'click',(event) => {
       const deleteButtonEl = event.target.closest('button.delete-button')
@@ -38,7 +37,6 @@ class ChitterView {
       };
       this.api.loadPosts((posts) => {
         model.setPosts(posts);
-        console.log(posts)
         this.displayPosts(posts);
       });
     });
@@ -51,7 +49,6 @@ class ChitterView {
       };
       this.api.loadPosts((posts) => {
         model.setPosts(posts);
-        console.log(posts)
         this.displayPosts(posts);
       });
     });
@@ -64,7 +61,6 @@ class ChitterView {
       };
       this.api.loadPosts((posts) => {
         model.setPosts(posts);
-        console.log(posts)
         this.displayPosts(posts);
       });
     });
@@ -74,7 +70,6 @@ class ChitterView {
       this.deletePostsView();
       this.api.loadPosts((posts) => {
         model.setPosts(posts);
-        console.log(posts)
         this.displayPosts(posts);
       });
     });

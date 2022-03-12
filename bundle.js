@@ -142,7 +142,6 @@
             this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
-              console.log(posts);
               this.displayPosts(posts);
             });
           });
@@ -155,7 +154,6 @@
             ;
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
-              console.log(posts);
               this.displayPosts(posts);
             });
           });
@@ -169,7 +167,6 @@
             ;
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
-              console.log(posts);
               this.displayPosts(posts);
             });
           });
@@ -183,7 +180,6 @@
             ;
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
-              console.log(posts);
               this.displayPosts(posts);
             });
           });
@@ -192,7 +188,6 @@
             this.deletePostsView();
             this.api.loadPosts((posts) => {
               model3.setPosts(posts);
-              console.log(posts);
               this.displayPosts(posts);
             });
           });

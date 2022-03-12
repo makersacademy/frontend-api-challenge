@@ -100,14 +100,3 @@ class ChitterApi {
 }
 
 module.exports = ChitterApi
-
- 
-
-
-  // async function loadPosters(table) {
-    //    const tableBody = table.querySelector("tbody");
-    //    const response = await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps');
-    //    const { data } = await response.json();
-    //    console.log(data)
-    //  }
-    // loadPosters(document.querySelector("table"))
