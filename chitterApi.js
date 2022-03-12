@@ -95,7 +95,7 @@ class ChitterApi {
   deletePosts() {
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
       method: 'DELETE'
-    });
+    })
   }
 }
 

@@ -153,6 +153,11 @@
               this.api.deleteIndividualPost(peepId, this.sessionKey);
             }
             ;
+            this.api.loadPosts((posts) => {
+              model3.setPosts(posts);
+              console.log(posts);
+              this.displayPosts(posts);
+            });
           });
           this.mainContainerEl.addEventListener("click", (event) => {
             const likeButtonEl = event.target.closest("button.like-button");
@@ -162,6 +167,11 @@
               likeButtonEl.disabled = true;
             }
             ;
+            this.api.loadPosts((posts) => {
+              model3.setPosts(posts);
+              console.log(posts);
+              this.displayPosts(posts);
+            });
           });
           this.mainContainerEl.addEventListener("click", (event) => {
             let unlikeButtonEl = event.target.closest("button.unlike-button");
@@ -171,10 +181,20 @@
               unlikeButtonEl.disabled = true;
             }
             ;
+            this.api.loadPosts((posts) => {
+              model3.setPosts(posts);
+              console.log(posts);
+              this.displayPosts(posts);
+            });
           });
           this.deletePostsButtonEl.addEventListener("click", () => {
             this.api.deletePost();
             this.deletePostsView();
+            this.api.loadPosts((posts) => {
+              model3.setPosts(posts);
+              console.log(posts);
+              this.displayPosts(posts);
+            });
           });
           this.signupButtonEl.addEventListener("click", () => {
             this.api.postUserInfo(this.signupUsernameEl.value, this.signupPasswordEl.value);
@@ -189,6 +209,11 @@
               this.signinUsernameEl.value = "";
               this.signinPasswordEl.value = "";
             });
+            if (this.sessionKey !== null) {
+              () => {
+                document.querySelector("#user-name").value = `Signed in as ${this.userId}`;
+              };
+            }
           });
           this.signoutButtonEl.addEventListener("click", () => {
             location.reload();

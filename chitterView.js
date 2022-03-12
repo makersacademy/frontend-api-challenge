@@ -36,6 +36,11 @@ class ChitterView {
         const peepId = deleteButtonEl.closest('div.inner-peep').id
         this.api.deleteIndividualPost(peepId, this.sessionKey);
       };
+      this.api.loadPosts((posts) => {
+        model.setPosts(posts);
+        console.log(posts)
+        this.displayPosts(posts);
+      });
     });
     this.mainContainerEl.addEventListener( 'click',(event) => {
       const likeButtonEl = event.target.closest('button.like-button')
@@ -44,6 +49,11 @@ class ChitterView {
         this.api.likePost(peepId, this.userId, this.sessionKey);
         likeButtonEl.disabled = true
       };
+      this.api.loadPosts((posts) => {
+        model.setPosts(posts);
+        console.log(posts)
+        this.displayPosts(posts);
+      });
     });
     this.mainContainerEl.addEventListener( 'click',(event) => {
       let unlikeButtonEl = event.target.closest('button.unlike-button')
@@ -52,11 +62,21 @@ class ChitterView {
         this.api.dislikePost(peepId, this.userId, this.sessionKey);
         unlikeButtonEl.disabled = true
       };
+      this.api.loadPosts((posts) => {
+        model.setPosts(posts);
+        console.log(posts)
+        this.displayPosts(posts);
+      });
     });
 
     this.deletePostsButtonEl.addEventListener('click', () => {
       this.api.deletePost();
       this.deletePostsView();
+      this.api.loadPosts((posts) => {
+        model.setPosts(posts);
+        console.log(posts)
+        this.displayPosts(posts);
+      });
     });
 
     this.signupButtonEl.addEventListener('click', () => {
@@ -73,6 +93,10 @@ class ChitterView {
         this.signinUsernameEl.value = '';
         this.signinPasswordEl.value = '';
       })
+      if(this.sessionKey !== null) {() => {
+       document.querySelector('#user-name').value = `Signed in as ${this.userId}`
+       }
+      }
     })
 
     this.signoutButtonEl.addEventListener('click', () => {
