@@ -11,6 +11,9 @@
         constructor() {
           this.peeps = [];
         }
+        addPeep(peep) {
+          this.peeps.unshift(peep);
+        }
         getPeeps() {
           return this.peeps;
         }
@@ -48,9 +51,15 @@
           this.api.startSession(inputHandleEl.value, inputPasswordEl.value, (session) => {
             this.setLocalStorage(session);
           });
-          this.showWelcome();
-          this.hideSessionLogOn();
-          this.showAddPeep();
+        }
+        addPeep() {
+          const peepInputEl = document.getElementById("peep-input");
+          const userId = localStorage.getItem("user-id");
+          const sessionKey = localStorage.getItem("session-key");
+          this.api.createPeep(userId, sessionKey, peepInputEl.value, (response) => {
+            this.model.addPeep(response);
+            this.displayPeeps();
+          });
         }
         setLocalStorage(session) {
           localStorage.setItem("user-id", session.user_id);
@@ -76,7 +85,8 @@
           submitPeepEl.id = "peep-submit";
           submitPeepEl.setAttribute("type", "submit");
           submitPeepEl.setAttribute("value", "Peep");
-          submitPeepEl.addEventListener("click", () => {
+          submitPeepEl.addEventListener("click", (e) => {
+            e.preventDefault();
             this.addPeep();
           });
           peepFormEl.appendChild(peepInputEl);
@@ -105,7 +115,8 @@
           submitButtonEl.id = "logon";
           submitButtonEl.setAttribute("type", "submit");
           submitButtonEl.setAttribute("value", "Log on");
-          submitButtonEl.addEventListener("click", () => {
+          submitButtonEl.addEventListener("click", (e) => {
+            e.preventDefault();
             this.startSession();
           });
           logOnFormEl.appendChild(handleInputEl);
@@ -128,25 +139,28 @@
           });
         }
         startSession(handle, password, callback) {
+          let header = new Headers();
+          header.set("content-type", "application/json");
           fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
             method: "POST",
-            headers: {
-              "content-type": "application/json"
-            },
+            headers: header,
             body: JSON.stringify({ session: { handle: `${handle}`, password: `${password}` } })
           }).then((response) => response.json()).then((data) => callback(data)).catch((error) => {
             console.error("Error:", error);
           });
         }
-        createPeep(userId, sessionKey, body, callback) {
+        createPeep(userId, sessionKey, peep, callback) {
+          const payload = { peep: { user_id: `${userId}`, body: `${peep}` } };
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
             method: "POST",
             headers: {
-              "content-type": "application/json",
-              "Authorization": `'Token token=${sessionKey}'`
+              "Authorization": `Token token=${sessionKey}`,
+              "Content-Type": "application/json"
             },
-            body: JSON.stringify({ peep: { user_id: `${userId}`, body: `${body}` } })
-          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => {
+            body: JSON.stringify(payload)
+          }).then((response) => {
+            return response.json();
+          }).then((data) => callback(data)).catch((error) => {
             console.error("Error:", error);
           });
         }
@@ -162,8 +176,9 @@
   var api = new ChittersApi();
   var model = new ChitterModel();
   var view = new ChitterView(model, api);
-  localStorage.clear();
   view.displaySessionLogOn();
+  view.showWelcome();
+  view.showAddPeep();
   api.loadPeeps((peeps) => {
     model.setPeeps(peeps);
     view.displayPeeps();

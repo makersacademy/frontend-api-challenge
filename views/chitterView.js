@@ -4,6 +4,8 @@ class ChitterView{
     this.model = ChitterModel;
     this.api = api;
     this.mainContainerEl = document.querySelector('#main-container');
+
+
   }
 
   displayPeeps() {
@@ -29,11 +31,28 @@ class ChitterView{
       this.setLocalStorage(session)
     })
 
-    this.showWelcome();
-    this.hideSessionLogOn();
-    this.showAddPeep();
+    //this.showWelcome();
+    //this.hideSessionLogOn();
+    //this.showAddPeep();
   }
   
+  addPeep(){
+    const peepInputEl = document.getElementById('peep-input');
+    const userId =  localStorage.getItem("user-id");
+    const sessionKey = localStorage.getItem("session-key");
+
+    this.api.createPeep(userId, sessionKey, peepInputEl.value, (response) => {
+      this.model.addPeep(response)
+      this.displayPeeps()
+    })
+
+
+    // this.showWelcome();
+    // this.showAddPeep();
+
+  }
+
+
   setLocalStorage(session){
     localStorage.setItem("user-id", session.user_id)
     localStorage.setItem("session-key", session.session_key) 
@@ -63,13 +82,13 @@ class ChitterView{
     submitPeepEl.id = "peep-submit"
     submitPeepEl.setAttribute("type", "submit")
     submitPeepEl.setAttribute("value", "Peep")
-    submitPeepEl.addEventListener("click", () =>  {
+    submitPeepEl.addEventListener("click", (e) =>  {
+      e.preventDefault()
       this.addPeep()
     }); 
 
     peepFormEl.appendChild(peepInputEl)
     peepFormEl.appendChild(submitPeepEl)
-
 
     this.mainContainerEl.prepend(peepFormEl)
 
@@ -103,7 +122,8 @@ class ChitterView{
     submitButtonEl.id = "logon"
     submitButtonEl.setAttribute("type", "submit")
     submitButtonEl.setAttribute("value", "Log on")
-    submitButtonEl.addEventListener("click", () =>  {
+    submitButtonEl.addEventListener("click", (e) =>  {
+      e.preventDefault()
       this.startSession()
     }); 
     
