@@ -25,6 +25,13 @@
 
 * Set up core file structure: index.js & index.html
 
+* To solidify my understanding of what is supposed to happening in the front-end, I created a diagram of objects and how they interact.
+
+![Diagram](images/Object_Model_Diagram.png)
+
+* Next, start coding with first test for chitterModel.js
+
+
 
 
 
