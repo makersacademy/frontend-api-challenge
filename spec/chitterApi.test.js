@@ -41,4 +41,16 @@ describe('ChitterApi class', () => {
     });
   });
 
+  it('creates a new user', async () => {
+    const api = new ChitterApi();
+    fetch.mockResponseOnce(JSON.stringify(
+        {user_id: 1, handle: "test" }
+        )
+      );
+
+    api.createUser("handle", "password" ,(user) => {
+      expect(user.handle).toBe("test");
+    });
+  });
+
 });

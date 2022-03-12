@@ -6,11 +6,16 @@ const api = new ChittersApi()
 const model = new ChitterModel()
 const view = new ChitterView(model, api);
 
-//localStorage.clear();
+//
+localStorage.clear()
+console.log(localStorage.getItem("user-id"))
 
-view.displaySessionLogOn()
-view.showWelcome();
-view.showAddPeep();
+//view.showAddPeep();
+view.showSessionLogOn()
+view.showCreateUser()
+
+//view.showWelcome();
+
 
 api.loadPeeps((peeps) => {
   model.setPeeps(peeps);

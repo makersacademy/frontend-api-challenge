@@ -11,7 +11,6 @@
 
  describe('Chitter view', () => {
 
-  
   let chitterModel;
   let chitterApi;
   let chitterView;
@@ -36,10 +35,34 @@
     })
   })
 
+  describe('#showCreateUser', () => {
+    it('displays the new user fields', () => {
+
+      chitterView.showCreateUser()
+
+      expect(document.querySelector('#new-user-handle')).not.toBeNull();
+      expect(document.querySelector('#new-user-password')).not.toBeNull();
+      expect(document.querySelector('#register')).not.toBeNull();
+    })
+  })
+
+  describe('#hideCreateUser', () => {
+    it('hides the new user fields', () => {
+
+      chitterView.showCreateUser()
+      chitterView.hideCreateUser()
+
+      expect(document.querySelector('#new-user-handle')).toBeNull();
+      expect(document.querySelector('#new-user-password')).toBeNull();
+      expect(document.querySelector('#register')).toBeNull();
+    })
+  })
+
+
   describe('#displaySession', () => {
     it('displays the session log on fields', () => {
 
-      chitterView.displaySessionLogOn()
+      chitterView.showSessionLogOn()
 
       expect(document.querySelector('#handle')).not.toBeNull();
       expect(document.querySelector('#password')).not.toBeNull();
@@ -48,7 +71,7 @@
   })
 
   describe('#startSession', () => {
-    xit('starts a user session', () => {
+    it('starts a user session', () => {
 
       //const spy = jest.spyOn(Storage.prototype, 'setItem');
       Storage.prototype.getItem = jest.fn(() => 'Test User');
@@ -58,7 +81,7 @@
         )
       );
       
-      chitterView.displaySessionLogOn()
+      chitterView.showSessionLogOn()
       
       const inputHandleEl = document.querySelector('#handle');
       inputHandleEl.value = "Test User"

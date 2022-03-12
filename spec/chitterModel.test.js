@@ -11,6 +11,13 @@ describe('Chitter class', () => {
     expect(chitterModel.getPeeps()).toEqual([])
   });
 
+
+  it('adds a peep', () => {
+    chitterModel.addPeep('Buy milk');
+
+    expect(chitterModel.getPeeps()).toEqual(['Buy milk']);
+  });
+
   it('creates a list of peeps from the passed data', () => {
 
     const peepJSONArray = JSON.parse('[{"id": 3,"body": "my first peep :)"},{"id": 2,"body": "my second peep :)"}]')
