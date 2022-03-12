@@ -12,13 +12,18 @@
 * Fork Repo
 * Setup Jest within project directory
 * Install ESLint within project directory
+* Install ESBuild
 
 * Try to understand what I need to do...
 ![Diagram](images/Task_Diagram.png)
 
-* Start with idea for domain model 
+* Start with idea for domain model and mock-up of MVP(for weekend)
 
+![Diagram](images/MVP_mock_up.png)
 
+![Diagram](images/Domain_model.png)
+
+* Set up core file structure: index.js & index.html
 
 
 
