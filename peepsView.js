@@ -3,7 +3,7 @@ class PeepsView {
       this.model = model;
       this.api = api;
       this.mainContainerEl = document.querySelector('.col-md-auto');
-      const peeps = this.model.setPeeps()
+      const peeps = this.model.setPeeps();
       this.api.loadPeeps(peeps => {
         this.display(peeps);
       });

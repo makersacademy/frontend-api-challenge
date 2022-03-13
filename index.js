@@ -9,5 +9,5 @@ const view = new PeepsView(model, api);
 api.loadPeeps((peeps) => {
     model.setPeeps(peeps);
     console.log(model.setPeeps(peeps));
-    view.display(peeps);
+    // view.display(peeps);
   });

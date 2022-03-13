@@ -17,10 +17,14 @@ Implemented interactions supported by the API
 - [ ] Liking Peeps.
 - [ ] Unliking Peeps.
 
-Well tested, easy to read, easy to change code is more important than the number of implemented interactions.
-
 Notes
 ---
 
 - Test coverage is low as I struggled to keep a TDD approach.
+- `peepsView.test.js` fails due to the introduction of the API component.
+- Most of the `Model` methods (`getPeeps`, `addPeep` and `reset()`) are not actually needed, and they are there as I built the first version following the Notes app tutorials.
+- Played around a bit until I managed to pull the list of peeps. Then played some more to display nested data (author, date).
+- Will try implement authenticationa and POST requests to the API in the future.
 - Added basic Bootstrap styling.
+
+![img](chitter-frontend.png)

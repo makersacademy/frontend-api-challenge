@@ -4,7 +4,6 @@ class ChitterApi {
         .then(response => response.json())
         .then(data => {
           callback(data)
-        //   console.log(callback(data))
         });
     }
   }

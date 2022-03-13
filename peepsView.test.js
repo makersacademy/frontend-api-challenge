@@ -16,8 +16,8 @@
      
      }));
      const model = new PeepsModel();
-    //  model.peeps = []
-    //  console.log(model.peeps)
+     model.peeps = []
+     console.log(model.peeps)
      const view = new PeepsView(model, api);
      model.addPeep('My first peep');
      model.addPeep('My second peep');
