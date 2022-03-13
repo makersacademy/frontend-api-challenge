@@ -13,7 +13,6 @@ class ChitterView{
     }); 
 
     this.registerEl = document.querySelector('#register');
-
     this.registerEl.addEventListener("click", (e) =>  {
       if (document.getElementById('new-user-container') == null){
         this.showCreateUser()
@@ -21,6 +20,14 @@ class ChitterView{
         this.hideCreateUser()
       }
     }); 
+
+    this.logOffEl = document.querySelector('#logoff');
+    this.logOffEl.addEventListener("click", (e) =>  {
+      localStorage.clear()
+      this.hideAddPeep()
+      this.hideWelcome()
+    }); 
+
   }
 
   showPeeps() {
@@ -125,6 +132,16 @@ class ChitterView{
     welcomeTextEl.innerText = 'Welcome ' + localStorage.getItem('handle')
   }
 
+  hideWelcome(){
+    const welcomeEl = document.getElementById("welcome");
+    if (welcomeEl != null){
+      while (welcomeEl.firstChild) {
+        welcomeEl.firstChild.remove()
+      }
+      this.mainContainerEl.removeChild(welcomeEl);
+    }
+  }
+
   showAddPeep(){
     const peepFormEl = document.createElement('form')
     peepFormEl.id = 'peep-container'
@@ -147,6 +164,16 @@ class ChitterView{
     peepFormEl.appendChild(submitPeepEl)
 
     this.mainContainerEl.prepend(peepFormEl)
+  }
+
+  hideAddPeep(){
+    const adPeepEl = document.getElementById("peep-container");
+    if (adPeepEl != null){
+      while (adPeepEl.firstChild) {
+        adPeepEl.firstChild.remove()
+      }
+      this.mainContainerEl.removeChild(adPeepEl);
+    }
   }
 
   hideCreateUser(){

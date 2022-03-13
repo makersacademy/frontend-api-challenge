@@ -49,6 +49,12 @@
               this.hideCreateUser();
             }
           });
+          this.logOffEl = document.querySelector("#logoff");
+          this.logOffEl.addEventListener("click", (e) => {
+            localStorage.clear();
+            this.hideAddPeep();
+            this.hideWelcome();
+          });
         }
         showPeeps() {
           const peeps = this.model.getPeeps();
@@ -131,6 +137,15 @@
           welcomeEl.appendChild(welcomeTextEl);
           welcomeTextEl.innerText = "Welcome " + localStorage.getItem("handle");
         }
+        hideWelcome() {
+          const welcomeEl = document.getElementById("welcome");
+          if (welcomeEl != null) {
+            while (welcomeEl.firstChild) {
+              welcomeEl.firstChild.remove();
+            }
+            this.mainContainerEl.removeChild(welcomeEl);
+          }
+        }
         showAddPeep() {
           const peepFormEl = document.createElement("form");
           peepFormEl.id = "peep-container";
@@ -149,6 +164,15 @@
           peepFormEl.appendChild(peepInputEl);
           peepFormEl.appendChild(submitPeepEl);
           this.mainContainerEl.prepend(peepFormEl);
+        }
+        hideAddPeep() {
+          const adPeepEl = document.getElementById("peep-container");
+          if (adPeepEl != null) {
+            while (adPeepEl.firstChild) {
+              adPeepEl.firstChild.remove();
+            }
+            this.mainContainerEl.removeChild(adPeepEl);
+          }
         }
         hideCreateUser() {
           const formNewUserEl = document.getElementById("new-user-container");
