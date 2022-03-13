@@ -13,20 +13,24 @@
             callback(data);
           });
         }
-      };
-      module.exports = ChitterAPI2;
-    }
-  });
-
-  // post.js
-  var require_post = __commonJS({
-    "post.js"(exports, module) {
-      var Post2 = class {
-        constructor(body) {
-          this.body = body;
+        newSession(username, password, callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json"
+            },
+            body: JSON.stringify({
+              session: {
+                handle: `${username}`,
+                password: `${password}`
+              }
+            })
+          }).then((response) => response.json()).then((data) => {
+            callback(data);
+          });
         }
       };
-      module.exports = Post2;
+      module.exports = ChitterAPI2;
     }
   });
 
@@ -52,18 +56,43 @@
     }
   });
 
+  // post.js
+  var require_post = __commonJS({
+    "post.js"(exports, module) {
+      var Post = class {
+        constructor(body) {
+          this.body = body;
+        }
+      };
+      module.exports = Post;
+    }
+  });
+
   // postsView.js
   var require_postsView = __commonJS({
     "postsView.js"(exports, module) {
-      var Post2 = require_post();
+      var Post = require_post();
       var PostsView2 = class {
         constructor(postsModel, api2) {
+          this.loggedInContainer = document.querySelector("#logged-in");
           this.postContainer = document.querySelector("#post-container");
           this.postsModel = postsModel;
           this.api = api2;
+          this.user_id = null;
+          this.session_key = null;
+          document.querySelector("#submit-login").addEventListener("click", () => {
+            const user = document.querySelector("#input-username");
+            const password = document.querySelector("#input-password");
+            let userVal = user.value;
+            this.api.newSession(userVal, password.value, (data) => {
+              this.startSession(userVal, data);
+            });
+            user.value = "";
+            password.value = "";
+          });
           document.querySelector("#add-new-post").addEventListener("click", () => {
             const newPost = document.querySelector("#input-new-post").value;
-            const post = new Post2(newPost);
+            const post = new Post(newPost);
             this.displayNewPost(post);
             document.querySelector("#input-new-post").value = "";
           });
@@ -81,6 +110,16 @@
           this.postsModel.addPost(post);
           this.displayPosts();
         }
+        startSession(userVal, data) {
+          this.user_id = data.user_id;
+          this.session_key = data.session_key;
+          if ("errors" in data) {
+            this.loggedInContainer.innerText = `${data.errors.password}`;
+          } else {
+            this.loggedInContainer.innerText = `${userVal} logged in`;
+            console.log(this.user_id, this.session_key);
+          }
+        }
       };
       module.exports = PostsView2;
     }
@@ -88,7 +127,6 @@
 
   // index.js
   var ChitterAPI = require_chitterAPI();
-  var Post = require_post();
   var Posts = require_postsModel();
   var PostsView = require_postsView();
   console.log("App is running");

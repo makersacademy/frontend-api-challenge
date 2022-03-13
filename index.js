@@ -1,5 +1,4 @@
 const ChitterAPI = require("./chitterAPI");
-const Post = require("./post");
 const Posts = require("./postsModel");
 const PostsView = require("./postsView");
 
