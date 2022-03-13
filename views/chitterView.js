@@ -1,8 +1,18 @@
+const TimeAgo = require('javascript-time-ago')
+const en = require('javascript-time-ago/locale/en.json')
+
+TimeAgo.addDefaultLocale(en)
+
 class ChitterView{
   
   constructor(ChitterModel, api){
     this.model = ChitterModel;
     this.api = api;
+
+
+    this.timeAgo = new TimeAgo('en-US')
+
+
     this.mainContainerEl = document.querySelector('#main-container');
 
     this.submitLogonEl = document.querySelector('#logon');
@@ -62,9 +72,15 @@ class ChitterView{
     peeps.forEach(peep => {
       const peepEl = document.createElement('div')
       const paraEl = document.createElement('p')
+      const paraEl2 = document.createElement('p')
+      const linebreakEl = document.createElement("br");
 
-      paraEl.innerText = peep.body + ' ' + peep.user.handle
+      
+      paraEl2.innerText =  peep.user.handle + ' ' + this.timeAgo.format(Date.parse(peep.created_at))
+      paraEl.innerText = peep.body 
+
       peepEl.className = 'peep'
+      peepEl.appendChild(paraEl2)
       peepEl.appendChild(paraEl)
 
       if (peep.user.id == localStorage.getItem("user-id")){

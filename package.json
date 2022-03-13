@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/nyahehnagi/frontend-api-challenge#readme",
   "dependencies": {
-    "bootstrap": "^5.1.3",
     "esbuild": "^0.14.5",
+    "javascript-time-ago": "^2.3.13",
     "jest": "^27.5.1",
     "jest-fetch-mock": "^3.0.3"
   }
