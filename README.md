@@ -35,3 +35,19 @@ Note that others may be doing the same task at the same time, so the data may ch
 
 * [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
 * [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+
+User Stories:
+-------
+```
+As a user
+So that I share my opinions with the world
+I would like to add a peep
+
+As a user
+So that I can remove peeps I have written and do not like
+I would like to delete a peep 
+
+As a user
+So that I can see all peeps that have been posted
+I would like to view all peeps
+```
