@@ -35,4 +35,22 @@ describe(ChitterView, () => {
       expect(document.querySelectorAll('div.peep')[0].innerText).toEqual('This is a peep!');
     })
   })
+  describe('Register user', () => {
+    it('Allows the user to register their details', () => {
+      document.body.innerHTML = fs.readFileSync('./index.html');
+      const chitterView = new ChitterView(chittermodel);
+
+      const username = document.querySelector('#username');
+      username.value = "Makers";
+      const password = document.querySelector('#password');
+      password.value = "Academy";
+
+      const button = document.querySelector('#button');
+      button.click();
+
+      expect
+
+  
+    })
+  })
 });

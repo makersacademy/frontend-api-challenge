@@ -12,7 +12,7 @@ class ChitterModel {
   }
 
   setPeeps(peeps) {
-    this.peeps = peeps;
+    return this.peeps = peeps;
   }
 
   deletePeep() {

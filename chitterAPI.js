@@ -8,8 +8,10 @@ class ChitterApi{
     });
   };
 
-  createPeep(peep) {
-    const usersPeep = {body:peep.body}
+  createPeep(newPeep) {
+    const usersPeep = {peep:{ body:peep.body }};
+    // const formData = new FormData
+    // formData.append
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
       method: 'POST',
       headers: {
@@ -19,8 +21,11 @@ class ChitterApi{
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Working?:', data);
+      console.log('Success:', data);
       return data
+    })
+    .catch((error) => {
+      console.error('Error:', error);
     });
   };
 }; 
