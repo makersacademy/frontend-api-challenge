@@ -1,7 +1,9 @@
+const ChitterApi = require('./chitterApi');
 
 class ChitterView {
-  constructor(model) {
+  constructor(model, api) {
     this.model = model;
+    this.api = api;
     this.mainContainerEl = document.querySelector('#main-container');
 
     document.querySelector('#submit-peep-button').addEventListener('click', () => {

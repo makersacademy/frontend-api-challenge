@@ -25,12 +25,41 @@
     }
   });
 
+  // chitterApi.js
+  var require_chitterApi = __commonJS({
+    "chitterApi.js"(exports, module) {
+      var ChitterApi = class {
+        loadPeeps(callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => {
+            callback(data);
+          });
+        }
+        createPeep(peep) {
+          const usersPeep = { peep, body: peep.body };
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(usersPeep)
+          }).then((response) => response.json()).then((data) => {
+            console.log("Working?:", data);
+            return data;
+          });
+        }
+      };
+      module.exports = ChitterApi;
+    }
+  });
+
   // chitterView.js
   var require_chitterView = __commonJS({
     "chitterView.js"(exports, module) {
+      var ChitterApi = require_chitterApi();
       var ChitterView2 = class {
-        constructor(model2) {
+        constructor(model2, api) {
           this.model = model2;
+          this.api = api;
           this.mainContainerEl = document.querySelector("#main-container");
           document.querySelector("#submit-peep-button").addEventListener("click", () => {
             let newPeep = document.querySelector("#user-input").value;
