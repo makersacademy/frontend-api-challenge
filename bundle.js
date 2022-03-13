@@ -41,20 +41,37 @@
             e.preventDefault();
             this.startSession();
           });
-          this.registerEl = document.querySelector("#register");
-          this.registerEl.addEventListener("click", (e) => {
-            if (document.getElementById("new-user-container") == null) {
-              this.showCreateUser();
-            } else {
-              this.hideCreateUser();
-            }
-          });
           this.logOffEl = document.querySelector("#logoff");
           this.logOffEl.addEventListener("click", (e) => {
             localStorage.clear();
             this.hideAddPeep();
             this.hideWelcome();
+            this.showPeeps();
           });
+          this.modalEl = document.getElementById("registration-modal");
+          this.registerEl = document.querySelector("#register");
+          this.registerEl.addEventListener("click", (e) => {
+            this.showRegisterModal();
+          });
+          this.spanEl = document.getElementsByClassName("close")[0];
+          this.spanEl.addEventListener("click", () => {
+            console.log("Clicked span");
+            this.modalEl.style.display = "none";
+          });
+          window.addEventListener("click", (e) => {
+            console.log("In Window");
+            if (e.target == this.modalEl) {
+              this.modalEl.style.display = "none";
+            }
+          });
+          this.registerButtonEl = document.getElementById("create-user");
+          this.registerButtonEl.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.createUser();
+          });
+        }
+        showRegisterModal() {
+          this.modalEl.style.display = "block";
         }
         showPeeps() {
           const peeps = this.model.getPeeps();
@@ -98,7 +115,8 @@
             this.showPeeps();
             this.showAddPeep();
             this.showWelcome();
-            this.hideCreateUser();
+            inputHandleEl.value = "";
+            inputPasswordEl.value = "";
           });
         }
         deletePeep(peepId) {
@@ -173,42 +191,6 @@
             }
             this.mainContainerEl.removeChild(adPeepEl);
           }
-        }
-        hideCreateUser() {
-          const formNewUserEl = document.getElementById("new-user-container");
-          if (formNewUserEl != null) {
-            while (formNewUserEl.firstChild) {
-              formNewUserEl.firstChild.remove();
-            }
-            this.mainContainerEl.removeChild(formNewUserEl);
-          }
-        }
-        showCreateUser() {
-          if (document.getElementById("new-user-container") != null) {
-            return;
-          }
-          const newUserFormEl = document.createElement("form");
-          newUserFormEl.id = "new-user-container";
-          const newUserHandleInputEl = document.createElement("input");
-          newUserHandleInputEl.id = "new-user-handle";
-          newUserHandleInputEl.setAttribute("type", "text");
-          newUserHandleInputEl.setAttribute("placeholder", "handle");
-          const newUserPasswordInputEl = document.createElement("input");
-          newUserPasswordInputEl.id = "new-user-password";
-          newUserPasswordInputEl.setAttribute("type", "password");
-          newUserPasswordInputEl.setAttribute("placeholder", "Password");
-          const submitButtonEl = document.createElement("input");
-          submitButtonEl.id = "register";
-          submitButtonEl.setAttribute("type", "submit");
-          submitButtonEl.setAttribute("value", "Register");
-          submitButtonEl.addEventListener("click", (e) => {
-            e.preventDefault();
-            this.createUser();
-          });
-          newUserFormEl.appendChild(newUserHandleInputEl);
-          newUserFormEl.appendChild(newUserPasswordInputEl);
-          newUserFormEl.appendChild(submitButtonEl);
-          this.mainContainerEl.prepend(newUserFormEl);
         }
       };
       module.exports = ChitterView2;

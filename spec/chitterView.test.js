@@ -60,30 +60,6 @@
     })
   })
 
-  describe('#showCreateUser', () => {
-    it('displays the new user fields', () => {
-
-      chitterView.showCreateUser()
-
-      expect(document.querySelector('#new-user-handle')).not.toBeNull();
-      expect(document.querySelector('#new-user-password')).not.toBeNull();
-   
-    })
-  })
-
-  describe('#hideCreateUser', () => {
-    it('hides the new user fields', () => {
-
-      chitterView.showCreateUser()
-      chitterView.hideCreateUser()
-
-      expect(document.querySelector('#new-user-handle')).toBeNull();
-      expect(document.querySelector('#new-user-password')).toBeNull();
-
-    })
-  })
-
-
   describe('#displaySession', () => {
     it('displays the session log on fields', () => {
 

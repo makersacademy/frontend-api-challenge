@@ -11,10 +11,6 @@ const view = new ChitterView(model, api);
 localStorage.clear()
 console.log(localStorage.getItem("user-id"))
 
-//view.showAddPeep();
-//view.showSessionLogOn()
-//view.showCreateUser()
-
 api.loadPeeps((peeps) => {
   model.setPeeps(peeps);
   view.showPeeps();

@@ -10,15 +10,7 @@ class ChitterView{
     this.submitLogonEl.addEventListener("click", (e) =>  {
       e.preventDefault()
       this.startSession()
-    }); 
 
-    this.registerEl = document.querySelector('#register');
-    this.registerEl.addEventListener("click", (e) =>  {
-      if (document.getElementById('new-user-container') == null){
-        this.showCreateUser()
-      }else{
-        this.hideCreateUser()
-      }
     }); 
 
     this.logOffEl = document.querySelector('#logoff');
@@ -26,7 +18,40 @@ class ChitterView{
       localStorage.clear()
       this.hideAddPeep()
       this.hideWelcome()
+      this.showPeeps()
     }); 
+
+    this.modalEl = document.getElementById("registration-modal");
+
+    this.registerEl = document.querySelector('#register');
+    this.registerEl.addEventListener("click", (e) =>  {
+      this.showRegisterModal()
+    }); 
+
+
+    this.spanEl = document.getElementsByClassName("close")[0];
+    this.spanEl.addEventListener('click', () => {
+      console.log("Clicked span")
+      this.modalEl.style.display = "none";
+    })
+
+    window.addEventListener('click', (e) => {
+      console.log("In Window")
+      if (e.target == this.modalEl) {
+        this.modalEl.style.display = "none";
+      }
+    })
+
+    this.registerButtonEl = document.getElementById('create-user')
+    this.registerButtonEl.addEventListener("click", (e) =>  {
+      e.preventDefault()
+      this.createUser()
+    });  
+  }
+
+  showRegisterModal(){
+   
+    this.modalEl.style.display = "block";
 
   }
 
@@ -83,7 +108,8 @@ class ChitterView{
       this.showPeeps()
       this.showAddPeep();
       this.showWelcome();
-      this.hideCreateUser();
+      inputHandleEl.value = ""
+      inputPasswordEl.value = ""
     })
 
   }
@@ -108,6 +134,7 @@ class ChitterView{
   }
 
   createUser(){
+
     const inputHandleEl = document.getElementById("new-user-handle")
     const inputPasswordEl = document.getElementById("new-user-password")
 
@@ -176,48 +203,48 @@ class ChitterView{
     }
   }
 
-  hideCreateUser(){
-    const formNewUserEl = document.getElementById("new-user-container");
-    if (formNewUserEl != null){
-      while (formNewUserEl.firstChild) {
-        formNewUserEl.firstChild.remove()
-      }
-      this.mainContainerEl.removeChild(formNewUserEl);
-    }
-  }
+  // hideCreateUser(){
+  //   const formNewUserEl = document.getElementById("new-user-container");
+  //   if (formNewUserEl != null){
+  //     while (formNewUserEl.firstChild) {
+  //       formNewUserEl.firstChild.remove()
+  //     }
+  //     this.mainContainerEl.removeChild(formNewUserEl);
+  //   }
+  // }
 
-  showCreateUser(){
-    if(document.getElementById('new-user-container') != null){
-      return
-    }
-    const newUserFormEl = document.createElement('form')
-    newUserFormEl.id = 'new-user-container'
+  // showCreateUser(){
+  //   if(document.getElementById('new-user-container') != null){
+  //     return
+  //   }
+  //   const newUserFormEl = document.createElement('form')
+  //   newUserFormEl.id = 'new-user-container'
 
-    const newUserHandleInputEl = document.createElement('input')
-    newUserHandleInputEl.id = "new-user-handle"
-    newUserHandleInputEl.setAttribute("type", "text")
-    newUserHandleInputEl.setAttribute("placeholder", "handle")
+  //   const newUserHandleInputEl = document.createElement('input')
+  //   newUserHandleInputEl.id = "new-user-handle"
+  //   newUserHandleInputEl.setAttribute("type", "text")
+  //   newUserHandleInputEl.setAttribute("placeholder", "handle")
 
-    const newUserPasswordInputEl = document.createElement('input')
-    newUserPasswordInputEl.id = "new-user-password"
-    newUserPasswordInputEl.setAttribute("type", "password")
-    newUserPasswordInputEl.setAttribute("placeholder", "Password")
+  //   const newUserPasswordInputEl = document.createElement('input')
+  //   newUserPasswordInputEl.id = "new-user-password"
+  //   newUserPasswordInputEl.setAttribute("type", "password")
+  //   newUserPasswordInputEl.setAttribute("placeholder", "Password")
 
-    const submitButtonEl = document.createElement('input')
-    submitButtonEl.id = "register"
-    submitButtonEl.setAttribute("type", "submit")
-    submitButtonEl.setAttribute("value", "Register")
-    submitButtonEl.addEventListener("click", (e) =>  {
-      e.preventDefault()
-      this.createUser()
-    });   
+  //   const submitButtonEl = document.createElement('input')
+  //   submitButtonEl.id = "register"
+  //   submitButtonEl.setAttribute("type", "submit")
+  //   submitButtonEl.setAttribute("value", "Register")
+  //   submitButtonEl.addEventListener("click", (e) =>  {
+  //     e.preventDefault()
+  //     this.createUser()
+  //   });   
 
-    newUserFormEl.appendChild(newUserHandleInputEl)
-    newUserFormEl.appendChild(newUserPasswordInputEl)
-    newUserFormEl.appendChild(submitButtonEl)
+  //   newUserFormEl.appendChild(newUserHandleInputEl)
+  //   newUserFormEl.appendChild(newUserPasswordInputEl)
+  //   newUserFormEl.appendChild(submitButtonEl)
 
-    this.mainContainerEl.prepend(newUserFormEl)
-  }
+  //   this.mainContainerEl.prepend(newUserFormEl)
+  // }
 
 }
 
