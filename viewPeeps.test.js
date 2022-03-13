@@ -1,1 +1,0 @@
-const Peeps = require('./peeps');
