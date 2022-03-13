@@ -27,7 +27,7 @@ describe('PeepModel', () => {
     it('adds three peeps to the feed', () => {
       model.addPeep('Hello, world');
       model.addPeep('Its a sunny day!');
-      model.addPeep('Plants are great :)')
+      model.addPeep('Plants are great :)');
 
       expect(model.getPeeps().length).toBe(3);
       expect(model.getPeeps()).toEqual(['Hello, world', 'Its a sunny day!', 'Plants are great :)']);
