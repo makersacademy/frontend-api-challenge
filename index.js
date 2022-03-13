@@ -2,7 +2,7 @@ const ChitterAPI = require("./chitterAPI");
 const Posts = require("./postsModel");
 const PostsView = require("./postsView");
 
-console.log('App is running');
+console.log('Chitter!');
 
 const api = new ChitterAPI();
 const posts = new Posts();

@@ -21,13 +21,16 @@ class PostsView{
 
     document.querySelector('#add-new-post').addEventListener('click', () => {
       const newPost = document.querySelector('#input-new-post').value;
-      const post = new Post(newPost);
-      this.displayNewPost(post);
+      this.displayNewPost(newPost);
       document.querySelector('#input-new-post').value = "";
     })
   }
 
   displayPosts(){
+    document.querySelectorAll('.post').forEach((div) => {
+      div.remove()
+    });
+
     const posts = this.postsModel.getPosts();
 
     posts.forEach(post => {
@@ -40,8 +43,10 @@ class PostsView{
   }
 
   displayNewPost(post){
-    this.postsModel.addPost(post);
-    this.displayPosts();
+    this.api.createPost(this.user_id, this.session_key, post, (data) => {
+      this.postsModel.addPost(data);
+      this.displayPosts();
+    })
   }
 
   startSession(userVal, data){

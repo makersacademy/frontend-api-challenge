@@ -13,6 +13,21 @@
             callback(data);
           });
         }
+        createPost(userId, session_key, post, callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+            method: "POST",
+            headers: {
+              "Authorization": `Token token=${session_key}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              peep: {
+                user_id: `${userId}`,
+                body: `${post}`
+              }
+            })
+          }).then((response) => response.json()).then((data) => callback(data));
+        }
         newSession(username, password, callback) {
           fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
             method: "POST",
@@ -49,7 +64,7 @@
           this.posts = loaded_posts;
         }
         addPost(post) {
-          this.posts.push(post);
+          this.posts.unshift(post);
         }
       };
       module.exports = Posts2;
@@ -92,12 +107,14 @@
           });
           document.querySelector("#add-new-post").addEventListener("click", () => {
             const newPost = document.querySelector("#input-new-post").value;
-            const post = new Post(newPost);
-            this.displayNewPost(post);
+            this.displayNewPost(newPost);
             document.querySelector("#input-new-post").value = "";
           });
         }
         displayPosts() {
+          document.querySelectorAll(".post").forEach((div) => {
+            div.remove();
+          });
           const posts2 = this.postsModel.getPosts();
           posts2.forEach((post) => {
             const postDiv = document.createElement("div");
@@ -107,8 +124,10 @@
           });
         }
         displayNewPost(post) {
-          this.postsModel.addPost(post);
-          this.displayPosts();
+          this.api.createPost(this.user_id, this.session_key, post, (data) => {
+            this.postsModel.addPost(data);
+            this.displayPosts();
+          });
         }
         startSession(userVal, data) {
           this.user_id = data.user_id;
@@ -129,7 +148,7 @@
   var ChitterAPI = require_chitterAPI();
   var Posts = require_postsModel();
   var PostsView = require_postsView();
-  console.log("App is running");
+  console.log("Chitter!");
   var api = new ChitterAPI();
   var posts = new Posts();
   var view = new PostsView(posts, api);

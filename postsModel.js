@@ -1,7 +1,6 @@
 class Posts {
   constructor(){
     this.posts = []
-
   }
 
   getPosts(){
@@ -14,7 +13,7 @@ class Posts {
   }
 
   addPost(post){
-    this.posts.push(post);
+    this.posts.unshift(post);
   }
 }
 

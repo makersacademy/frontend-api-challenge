@@ -21,6 +21,18 @@ describe('ChitterAPI', () => {
     })
   })
 
+  describe('createPost', () => {
+    it('adds a post to the server', async () => {
+      fetch.mockResponseOnce(JSON.stringify({
+          user_id: 1,
+          body: "Test Peep"
+      }));
+      api.createPost(1, "Sample_Session_Key", "Test Peep", (post) => {
+        expect(post.body).toEqual("Test Peep");
+      })
+    })
+  })
+
   describe('newSession', () => {
     it('starts a session for a user', async () => {
       fetch.mockResponseOnce(JSON.stringify({
@@ -34,4 +46,5 @@ describe('ChitterAPI', () => {
     })
 
   })
+
 })
