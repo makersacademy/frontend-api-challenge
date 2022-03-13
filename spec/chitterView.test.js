@@ -35,6 +35,31 @@
     })
   })
 
+  describe('#Logoff', () => {
+    it('logs off a user', async () => {
+      // Sets a mock for return of getItem from localStorage
+      Storage.prototype.getItem = jest.fn(() => 'Test User');
+
+      fetch.mockResponseOnce(JSON.stringify(
+        {user_id: 1, session_key: "a_valid_session_key" }
+        )
+      );
+      
+      const inputHandleEl = document.querySelector('#handle');
+      inputHandleEl.value = "Test User"
+      const inputPasswordEl = document.querySelector('#password');
+      inputPasswordEl.value = "password"
+
+      chitterView.startSession()
+      // Must be a better way to do this? Need Coach feedback
+      await new Promise((r) => setTimeout(r, 1000));
+      document.querySelector('#logoff').click()
+      
+      expect(document.querySelector('#welcome')).toBeNull();
+
+    })
+  })
+
   describe('#showCreateUser', () => {
     it('displays the new user fields', () => {
 
@@ -42,7 +67,7 @@
 
       expect(document.querySelector('#new-user-handle')).not.toBeNull();
       expect(document.querySelector('#new-user-password')).not.toBeNull();
-      expect(document.querySelector('#register')).not.toBeNull();
+   
     })
   })
 
@@ -54,7 +79,7 @@
 
       expect(document.querySelector('#new-user-handle')).toBeNull();
       expect(document.querySelector('#new-user-password')).toBeNull();
-      expect(document.querySelector('#register')).toBeNull();
+
     })
   })
 
