@@ -9,7 +9,7 @@ class ChitterApi{
   };
 
   createPeep(peep) {
-    const usersPeep = {peep, body:peep.body}
+    const usersPeep = {body:peep.body}
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
       method: 'POST',
       headers: {

@@ -4,38 +4,17 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
-  // chitterModel.js
-  var require_chitterModel = __commonJS({
-    "chitterModel.js"(exports, module) {
-      var ChitterModel2 = class {
-        constructor() {
-          this.peeps = [];
-        }
-        getPeeps() {
-          return this.peeps;
-        }
-        addPeep(peep) {
-          return this.peeps.push(peep);
-        }
-        deletePeep() {
-          return this.peeps = [];
-        }
-      };
-      module.exports = ChitterModel2;
-    }
-  });
-
   // chitterApi.js
   var require_chitterApi = __commonJS({
     "chitterApi.js"(exports, module) {
-      var ChitterApi = class {
+      var ChitterApi2 = class {
         loadPeeps(callback) {
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => {
             callback(data);
           });
         }
-        createPeep(peep) {
-          const usersPeep = { peep, body: peep.body };
+        createPeep(peep2) {
+          const usersPeep = { body: peep2.body };
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
             method: "POST",
             headers: {
@@ -48,18 +27,42 @@
           });
         }
       };
-      module.exports = ChitterApi;
+      module.exports = ChitterApi2;
+    }
+  });
+
+  // chitterModel.js
+  var require_chitterModel = __commonJS({
+    "chitterModel.js"(exports, module) {
+      var ChitterModel2 = class {
+        constructor() {
+          this.peeps = [];
+        }
+        getPeeps() {
+          return this.peeps;
+        }
+        addPeep(peep2) {
+          return this.peeps.push(peep2);
+        }
+        setPeeps(peeps) {
+          this.peeps = peeps;
+        }
+        deletePeep() {
+          return this.peeps = [];
+        }
+      };
+      module.exports = ChitterModel2;
     }
   });
 
   // chitterView.js
   var require_chitterView = __commonJS({
     "chitterView.js"(exports, module) {
-      var ChitterApi = require_chitterApi();
+      var ChitterApi2 = require_chitterApi();
       var ChitterView2 = class {
-        constructor(model2, api) {
+        constructor(model2, api2) {
           this.model = model2;
-          this.api = api;
+          this.api = api2;
           this.mainContainerEl = document.querySelector("#main-container");
           document.querySelector("#submit-peep-button").addEventListener("click", () => {
             let newPeep = document.querySelector("#user-input").value;
@@ -74,9 +77,9 @@
             element.remove();
           });
           let allPeeps = this.model.getPeeps();
-          allPeeps.forEach((peep) => {
+          allPeeps.forEach((peep2) => {
             let div = document.createElement("div");
-            div.innerText = peep;
+            div.innerText = peep2;
             div.className = "peep";
             this.mainContainerEl.append(div);
           });
@@ -91,12 +94,18 @@
   });
 
   // index.js
+  var ChitterApi = require_chitterApi();
   var ChitterModel = require_chitterModel();
   var ChitterView = require_chitterView();
+  var api = new ChitterApi();
   var model = new ChitterModel();
-  var view = new ChitterView(model);
-  model.addPeep("Hello world");
-  model.addPeep("This is a peep!");
-  model.addPeep("I am making a front end Chitter");
-  view.viewPeeps();
+  var view = new ChitterView(model, api);
+  api.loadPeeps((peeps) => {
+    model.addPeep("Hello world");
+    model.addPeep("This is a peep!");
+    model.addPeep("I am making a front end Chitter");
+    model.addPeep("Server??");
+    model.setPeeps(peep);
+    view.viewPeeps();
+  });
 })();
