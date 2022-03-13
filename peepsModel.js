@@ -2,7 +2,11 @@ class PeepsModel {
     constructor() {
        this.peeps = [];
     }
- 
+    
+    setPeeps(peeps) {
+        this.peeps = peeps
+    }
+
     getPeeps() {
        return this.peeps;
     }

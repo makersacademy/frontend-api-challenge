@@ -8,8 +8,8 @@ describe('Chitter class', () => {
     
     }));
 
-    api.getPeeps((peepInfo) => {
-      expect(peepInfo.description).toBe('');
+    api.loadPeeps((peeps) => {
+      expect(loadPeeps.peeps.size).toEqual(50);
     });
   });
 });

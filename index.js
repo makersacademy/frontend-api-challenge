@@ -6,4 +6,8 @@ const api = new ChitterApi();
 const model = new PeepsModel();
 const view = new PeepsView(model, api);
 
-view.displayPeeps();
+api.loadPeeps((peeps) => {
+    model.setPeeps(peeps);
+    console.log(model.setPeeps(peeps));
+    view.display(peeps);
+  });
