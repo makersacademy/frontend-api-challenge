@@ -1,5 +1,82 @@
 # Chitter API Frontend Challenge
 
+## Approach by Claire Nelson
+
+#### Break down the requirements 
+
+- Capture the flow of how the backend and front end talk to each other [flow diagram](https://github.com/nelsonclaire/frontend-api-challenge/blob/master/images/using-fetch.png). 
+- Use https://chitter-backend-api-v2.herokuapp.com/users to test for users you have created and errors for those that already exist.
+
+
+## Technologies used
+
+- Javascript
+- Jest (test framework)
+- Esbuild (build tool)
+- ESLint (code checker)
+
+
+## Steps to download
+
+1. Install node if required, which will execute the javascript, from [here](https://nodejs.org/en/)
+
+2. Fork this [repo](https://github.com/nelsonclaire/frontend-api-challenge)
+
+3. `git clone git@github.com:<userName>/frontend-api-challenge.git` onto your local machine
+
+## To bundle the javascript files
+
+1. After cloning run `npm install -g esbuild` from [esbuild](https://esbuild.github.io/getting-started/)
+
+2. Run `npm install`
+
+
+## To run tests
+
+1. After cloning run `npm init -y`
+
+2. Copy into package.json `"build": "esbuild index.js --bundle  --outfile=bundle.js --watch"` under scripts as show below:
+```
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild index.js --bundle  --outfile=bundle.js --watch"
+  },
+```
+
+3. Run `npm install jest` or `npm install --save jest`
+
+4. Run `npm install --save jest-fetch-mock` for mocks in tests from [jest mock](https://www.npmjs.com/package/jest-fetch-mock)
+
+4. Run `jest` directly in root of your local project
+
+## To install ESLint
+
+1. Run `npm install eslint --save-dev`
+
+2. Install configuration file by running `npm init @eslint/config` (do this after you have package.json installed by running `npm init`)
+
+3. Run `npx eslint yourfile.js` directly in root of your local project
+
+## My approach
+
+1. Break down into simple steps 
+
+2. Write first unit test 
+
+3. Follow red, green, refactor cycle for each test with commits before a refactor
+
+4. Continue with simple tests 
+
+5. Repeat until basic user story functionality is covered
+
+#### Structure
+- Specs: `.test.js`
+- Models: `.js`
+
+#### What I know I need to work on
+
+
+
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
