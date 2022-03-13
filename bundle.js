@@ -9,7 +9,7 @@
     "peepsApi.js"(exports, module) {
       var PeepsApi2 = class {
         getPeeps(callback) {
-          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps$top=50").then((response) => response.json()).then((data) => {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => {
             callback(data);
             console.log(data);
           });
@@ -25,8 +25,22 @@
       var PeepsView2 = class {
         constructor(api2) {
           this.api = api2;
+          const viewPeepsButtonEl = document.querySelector("#view-peeps-button");
+          this.peepsEl = document.querySelector("#peeps");
+          viewPeepsButtonEl.addEventListener("click", () => {
+            console.log("i was clicked");
+            this.api.getPeeps((peepData) => {
+              console.log(peepData);
+              this.displayPeeps(peepData);
+            });
+          });
         }
-        displayPeeps() {
+        displayPeeps(peepData) {
+          peepData.forEach((peep) => {
+            let bodyEl = document.createElement("div");
+            bodyEl.innerText = peep.body;
+            this.peepsEl.append(bodyEl);
+          });
         }
       };
       module.exports = PeepsView2;
@@ -39,6 +53,4 @@
   console.log("Hello from the developer console!");
   var api = new PeepsApi();
   var view = new PeepsView(api);
-  view.displayPeeps();
-  console.log(view.displayPeeps());
 })();

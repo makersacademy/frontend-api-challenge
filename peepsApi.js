@@ -1,7 +1,7 @@
 class PeepsApi {
 
   getPeeps(callback) {
-    fetch('https://chitter-backend-api-v2.herokuapp.com/peeps$top=50')
+    fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
       .then(response => response.json())
       .then(data => {
         callback(data)

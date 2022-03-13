@@ -9,5 +9,5 @@ console.log('Hello from the developer console!');
 const api  = new PeepsApi()
 const view = new PeepsView(api)
 
-view.displayPeeps()
-console.log(view.displayPeeps())
+// view.displayPeeps()
+// console.log(view.displayPeeps())
