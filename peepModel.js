@@ -1,9 +1,14 @@
 class PeepModel {
   constructor() {
-    this.feed = []
-  }
+    this.feed = [];
+  };
+
   getPeeps() {
-    return this.feed
+    return this.feed;
+  };
+
+  addPeep(peep) {
+    this.feed.push(peep);
   }
 }
 
