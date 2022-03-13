@@ -60,7 +60,7 @@
         loadPosts(callback) {
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => console.log(callback(data)));
         }
-        postPeeps(post, userId, sessionKey) {
+        postPeeps(post, userId, sessionKey, callback) {
           const correctBody = { peep: { user_id: `${userId}`, body: `${post}` } };
           fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
             method: "POST",
@@ -70,8 +70,8 @@
             },
             body: JSON.stringify(correctBody)
           }).then((response) => response.json()).then((data) => {
+            callback(data);
             console.log("Success:", data);
-            console.log(data);
           });
         }
         getIndividualPeep(peepId, callback, errorFunction) {
@@ -94,7 +94,7 @@
             headers: {
               Authorization: `Token token=${sessionKey}`
             }
-          }).then((response) => response.json()).then((data) => console.log(data));
+          });
         }
         dislikePost(peepId, userId, sessionKey) {
           fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`, {
@@ -123,7 +123,6 @@
           this.signinButtonEl = document.querySelector("#submit-user-button");
           this.signinUsernameEl = document.querySelector("#username-input");
           this.signinPasswordEl = document.querySelector("#password-input");
-          this.deletePostsButtonEl = document.querySelector("#delete-posts-button");
           this.mainContainerEl = document.querySelector("#main-container");
           this.postInputEl = document.querySelector("#post-input");
           this.postButtonEl = document.querySelector("#post-button");
@@ -132,10 +131,11 @@
           this.signupButtonEl = document.querySelector("#sign-up-submit-button");
           this.signoutButtonEl = document.querySelector("#sign-out-button");
           this.postButtonEl.addEventListener("click", () => {
-            this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey);
-            this.api.loadPosts((posts) => {
-              model2.setPosts(posts);
-              this.displayPosts(posts);
+            this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey, (posts) => {
+              this.api.loadPosts((posts2) => {
+                model2.setPosts(posts2);
+                this.displayPosts(posts2);
+              });
             });
           });
           this.mainContainerEl.addEventListener("click", (event) => {

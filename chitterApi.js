@@ -35,7 +35,7 @@ class ChitterApi {
       .then(data => console.log(callback(data)))
   }
 
-  postPeeps (post, userId, sessionKey) {
+  postPeeps (post, userId, sessionKey, callback) {
     const correctBody = { peep: { user_id: `${userId}`, body: `${post}` } }
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
       method: 'POST',
@@ -47,8 +47,8 @@ class ChitterApi {
     })
       .then(response => response.json())
       .then(data => {
+        callback(data)
         console.log('Success:', data)
-        console.log(data)
       })
   }
 
@@ -77,8 +77,7 @@ class ChitterApi {
       headers: {
         Authorization: `Token token=${sessionKey}`
       }
-    }).then(response => response.json())
-      .then(data => console.log((data)))
+    })
   }
 
   dislikePost (peepId, userId, sessionKey) {

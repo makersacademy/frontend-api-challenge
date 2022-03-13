@@ -10,7 +10,6 @@ class ChitterView {
     this.signinButtonEl = document.querySelector('#submit-user-button')
     this.signinUsernameEl = document.querySelector('#username-input')
     this.signinPasswordEl = document.querySelector('#password-input')
-    this.deletePostsButtonEl = document.querySelector('#delete-posts-button')
     this.mainContainerEl = document.querySelector('#main-container')
     this.postInputEl = document.querySelector('#post-input')
     this.postButtonEl = document.querySelector('#post-button')
@@ -20,12 +19,13 @@ class ChitterView {
     this.signoutButtonEl = document.querySelector('#sign-out-button')
 
     this.postButtonEl.addEventListener('click', () => {
-      this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey)
-      this.api.loadPosts((posts) => {
-        model.setPosts(posts)
-        this.displayPosts(posts)
-      })
-    })
+      this.api.postPeeps(this.postInputEl.value, this.userId, this.sessionKey, (posts =>{
+        this.api.loadPosts((posts) => {
+          model.setPosts(posts)
+          this.displayPosts(posts)
+         })
+      }))
+    });
     this.mainContainerEl.addEventListener('click', (event) => {
       const deleteButtonEl = event.target.closest('button.delete-button')
       if (deleteButtonEl) {
