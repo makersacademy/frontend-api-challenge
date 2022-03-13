@@ -1,3 +1,6 @@
+## Bromley pointed out that I was pushing an array into array.
+## Claire helped show me where I was going wrong using the model.js 
+
 # Chitter API Frontend Challenge
 
 * Feel free to use Google, your notes, books, etc. but work on your own
