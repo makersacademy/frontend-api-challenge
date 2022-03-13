@@ -1,7 +1,8 @@
 class PeepsView {
 
-  constructor(api) {
+  constructor(api, model) {
     this.api = api
+    this.model = model
 
     const viewPeepsButtonEl = document.querySelector('#view-peeps-button');
     this.peepsEl = document.querySelector('#peeps')

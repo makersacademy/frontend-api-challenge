@@ -19,12 +19,34 @@
     }
   });
 
+  // peepsModel.js
+  var require_peepsModel = __commonJS({
+    "peepsModel.js"(exports, module) {
+      var PeepsModel2 = class {
+        constructor() {
+          this.peeps = [];
+        }
+        getPeeps() {
+          return this.peeps;
+        }
+        addPeep(peep) {
+          this.peeps.push(peep);
+        }
+        setPeeps(peeps) {
+          this.peeps = peeps;
+        }
+      };
+      module.exports = PeepsModel2;
+    }
+  });
+
   // peepsView.js
   var require_peepsView = __commonJS({
     "peepsView.js"(exports, module) {
       var PeepsView2 = class {
-        constructor(api2) {
+        constructor(api2, model2) {
           this.api = api2;
+          this.model = model2;
           const viewPeepsButtonEl = document.querySelector("#view-peeps-button");
           this.peepsEl = document.querySelector("#peeps");
           viewPeepsButtonEl.addEventListener("click", () => {
@@ -49,8 +71,14 @@
 
   // index.js
   var PeepsApi = require_peepsApi();
+  var PeepsModel = require_peepsModel();
   var PeepsView = require_peepsView();
   console.log("Hello from the developer console!");
   var api = new PeepsApi();
-  var view = new PeepsView(api);
+  var model = new PeepsModel();
+  var view = new PeepsView(api, model);
+  api.getPeeps((peeps) => {
+    model.setPeeps(peeps);
+    view.displayPeeps(peeps);
+  });
 })();
