@@ -17,10 +17,22 @@ describe('PeepModel', () => {
   });
 
   describe('#addPeep', () => {
-    it('adds one peep to array', () => {
+    it('adds one peep to feed', () => {
       model.addPeep('Hello, world');
 
+      expect(model.getPeeps().length).toBe(1);
       expect(model.getPeeps('Hello, world')).toEqual(['Hello, world']);
     });
-  })
+
+    it('adds three peeps to the feed', () => {
+      model.addPeep('Hello, world');
+      model.addPeep('Its a sunny day!');
+      model.addPeep('Plants are great :)')
+
+      expect(model.getPeeps().length).toBe(3);
+      expect(model.getPeeps()).toEqual(['Hello, world', 'Its a sunny day!', 'Plants are great :)']);
+    });
+  });
+
+
 })
