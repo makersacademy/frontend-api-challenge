@@ -3,5 +3,11 @@
 // to help in debugging and getting visibility in your JS code.
 //
 // on Mac (using Chrome), use Option+Command+J to open the console and see this message.
-
+const PeepsApi  = require('./peepsApi.js');
+const PeepsView = require('./peepsView.js')
 console.log('Hello from the developer console!');
+const api  = new PeepsApi()
+const view = new PeepsView(api)
+
+view.displayPeeps()
+console.log(view.displayPeeps())

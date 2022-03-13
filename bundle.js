@@ -1,4 +1,44 @@
 (() => {
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+
+  // peepsApi.js
+  var require_peepsApi = __commonJS({
+    "peepsApi.js"(exports, module) {
+      var PeepsApi2 = class {
+        getPeeps(callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps$top=50").then((response) => response.json()).then((data) => {
+            callback(data);
+            console.log(data);
+          });
+        }
+      };
+      module.exports = PeepsApi2;
+    }
+  });
+
+  // peepsView.js
+  var require_peepsView = __commonJS({
+    "peepsView.js"(exports, module) {
+      var PeepsView2 = class {
+        constructor(api2) {
+          this.api = api2;
+        }
+        displayPeeps() {
+        }
+      };
+      module.exports = PeepsView2;
+    }
+  });
+
   // index.js
+  var PeepsApi = require_peepsApi();
+  var PeepsView = require_peepsView();
   console.log("Hello from the developer console!");
+  var api = new PeepsApi();
+  var view = new PeepsView(api);
+  view.displayPeeps();
+  console.log(view.displayPeeps());
 })();
