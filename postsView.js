@@ -2,6 +2,12 @@ class PostsView{
   constructor(postsModel){
     this.postContainer = document.querySelector("#post-container")
     this.postsModel = postsModel;
+
+    document.querySelector('#add-new-post').addEventListener('click', () => {
+      const newPost = document.querySelector(('#input-new-post')).value;
+      this.displayNewPost(newPost)
+      document.querySelector('#input-new-post').value = "";
+    })
   }
 
   displayPosts(){
@@ -14,6 +20,11 @@ class PostsView{
       this.postContainer.append(postDiv);
     })
 
+  }
+
+  displayNewPost(post){
+    this.postsModel.addPost(post);
+    this.displayPosts();
   }
 }
 
