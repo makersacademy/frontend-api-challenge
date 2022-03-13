@@ -53,12 +53,13 @@
             console.log("i was clicked");
             this.api.getPeeps((peepData) => {
               console.log(peepData);
-              this.displayPeeps(peepData);
+              this.displayPeeps();
             });
           });
         }
-        displayPeeps(peepData) {
-          peepData.forEach((peep) => {
+        displayPeeps() {
+          const peeps = this.model.getPeeps();
+          peeps.forEach((peep) => {
             let bodyEl = document.createElement("div");
             bodyEl.innerText = peep.body;
             this.peepsEl.append(bodyEl);
