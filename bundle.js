@@ -18,6 +18,18 @@
     }
   });
 
+  // post.js
+  var require_post = __commonJS({
+    "post.js"(exports, module) {
+      var Post2 = class {
+        constructor(body) {
+          this.body = body;
+        }
+      };
+      module.exports = Post2;
+    }
+  });
+
   // postsModel.js
   var require_postsModel = __commonJS({
     "postsModel.js"(exports, module) {
@@ -43,13 +55,16 @@
   // postsView.js
   var require_postsView = __commonJS({
     "postsView.js"(exports, module) {
+      var Post2 = require_post();
       var PostsView2 = class {
-        constructor(postsModel) {
+        constructor(postsModel, api2) {
           this.postContainer = document.querySelector("#post-container");
           this.postsModel = postsModel;
+          this.api = api2;
           document.querySelector("#add-new-post").addEventListener("click", () => {
             const newPost = document.querySelector("#input-new-post").value;
-            this.displayNewPost(newPost);
+            const post = new Post2(newPost);
+            this.displayNewPost(post);
             document.querySelector("#input-new-post").value = "";
           });
         }
@@ -57,7 +72,7 @@
           const posts2 = this.postsModel.getPosts();
           posts2.forEach((post) => {
             const postDiv = document.createElement("div");
-            postDiv.innerText = post;
+            postDiv.innerText = post.body;
             postDiv.className = "post";
             this.postContainer.append(postDiv);
           });
@@ -73,12 +88,13 @@
 
   // index.js
   var ChitterAPI = require_chitterAPI();
+  var Post = require_post();
   var Posts = require_postsModel();
   var PostsView = require_postsView();
   console.log("App is running");
   var api = new ChitterAPI();
   var posts = new Posts();
-  var view = new PostsView(posts);
+  var view = new PostsView(posts, api);
   api.loadPosts((loaded_posts) => {
     posts.setPosts(loaded_posts);
     view.displayPosts();

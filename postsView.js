@@ -1,11 +1,15 @@
+const Post = require("./post");
+
 class PostsView{
-  constructor(postsModel){
+  constructor(postsModel, api){
     this.postContainer = document.querySelector("#post-container")
     this.postsModel = postsModel;
+    this.api = api;
 
     document.querySelector('#add-new-post').addEventListener('click', () => {
       const newPost = document.querySelector(('#input-new-post')).value;
-      this.displayNewPost(newPost)
+      const post = new Post(newPost);
+      this.displayNewPost(post);
       document.querySelector('#input-new-post').value = "";
     })
   }
@@ -15,7 +19,7 @@ class PostsView{
 
     posts.forEach(post => {
       const postDiv = document.createElement('div');
-      postDiv.innerText = post;
+      postDiv.innerText = post.body;
       postDiv.className = "post";
       this.postContainer.append(postDiv);
     })

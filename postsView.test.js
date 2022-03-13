@@ -5,21 +5,25 @@
 const fs = require('fs');
 const PostsView = require('./postsView');
 const Posts = require('./postsModel');
+const ChitterAPI = require('./chitterAPI');
 
+let api;
 let posts;
 let view;
 
 describe('View Page', () => {
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync('./index.html');
-    posts = new Posts(); 
-    view = new PostsView(posts);
+    doublePost = { body: () => 'Test Post' }
+    api = new ChitterAPI();
+    posts = new Posts();
+    view = new PostsView(posts, api);
   })
   
   describe('Posts visible on main page', () => {
     it('displays 2 posts', () => {
-      posts.addPost('Peep');
-      posts.addPost('Peep2');
+      posts.addPost(doublePost);
+      posts.addPost(doublePost);
   
       view.displayPosts();
   

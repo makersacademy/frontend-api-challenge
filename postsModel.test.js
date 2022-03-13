@@ -4,6 +4,7 @@ let posts;
 
 describe('Posts', () => {
   beforeEach(() => {
+    postDouble = { body: () => 'Test Post'}
     posts = new Posts();
   })
 
@@ -13,17 +14,17 @@ describe('Posts', () => {
     })
 
     it('should return multiple posts', () => {
-      posts.addPost('Test Post');
-      posts.addPost('Test two');
-      expect(posts.getPosts()).toEqual(['Test Post', 'Test two']);
+      posts.addPost(postDouble);
+      posts.addPost(postDouble);
+      expect(posts.getPosts()).toEqual([postDouble, postDouble]);
     })
 
   })
 
   describe('addPost', () => {
     it('adds a post to the model', () => {
-      posts.addPost('Test Post');
-      expect(posts.getPosts()).toEqual(['Test Post']);
+      posts.addPost(postDouble);
+      expect(posts.getPosts()).toEqual([postDouble]);
     })
   })
 
