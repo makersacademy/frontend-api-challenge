@@ -1,5 +1,5 @@
-## Bromley pointed out that I was pushing an array into array.
-## Claire helped show me where I was going wrong using the model.js 
+Bromley pointed out that I was pushing an array into array.
+Claire helped show me where I was going wrong using the model.js 
 
 # Chitter API Frontend Challenge
 
