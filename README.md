@@ -5,6 +5,7 @@ This is a front end web app that emulates albeit poorly a messaging app
 Currently looks like this... hmmm
 
 ![alt text](https://github.com/nyahehnagi/frontend-api-challenge/blob/master/docs/chitter2.png)
+![alt text](https://github.com/nyahehnagi/frontend-api-challenge/blob/master/docs/chitter_register.png)
 
 ----------------------
 ## Installation

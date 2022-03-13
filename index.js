@@ -1,7 +1,6 @@
 const ChitterModel = require('./lib/chitterModel');
 const ChitterView = require('./views/chitterView'); 
 const ChittersApi = require("./lib/chitterApi");
-const bootstrap = require('bootstrap') 
 
 const api = new ChittersApi()
 const model = new ChitterModel()
