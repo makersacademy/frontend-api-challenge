@@ -4,7 +4,7 @@ class PeepsView {
     this.api = api
     this.model = model
 
-    const viewPeepsButtonEl = document.querySelector('#view-peeps-button');
+    const viewPeepsButtonEl = document.querySelector('#add-peep-button');
     this.peepsEl = document.querySelector('#peeps')
 
     viewPeepsButtonEl.addEventListener('click', () => {

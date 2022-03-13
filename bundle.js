@@ -47,7 +47,7 @@
         constructor(api2, model2) {
           this.api = api2;
           this.model = model2;
-          const viewPeepsButtonEl = document.querySelector("#view-peeps-button");
+          const viewPeepsButtonEl = document.querySelector("#add-peep-button");
           this.peepsEl = document.querySelector("#peeps");
           viewPeepsButtonEl.addEventListener("click", () => {
             console.log("i was clicked");
