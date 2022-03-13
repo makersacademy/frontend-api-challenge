@@ -8,7 +8,7 @@ const fs = require('fs');
 
 describe(PeepsView, () => {
   
-  describe('displayPeeps', () => {
+  xdescribe('displayPeeps', () => {
     it('displays a list of peeps', () => {
       document.body.innerHTML = fs.readFileSync('./index.html');
 
