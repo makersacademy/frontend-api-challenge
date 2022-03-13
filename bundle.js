@@ -4,6 +4,20 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
+  // chitterAPI.js
+  var require_chitterAPI = __commonJS({
+    "chitterAPI.js"(exports, module) {
+      var ChitterAPI2 = class {
+        loadPosts(callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => {
+            callback(data);
+          });
+        }
+      };
+      module.exports = ChitterAPI2;
+    }
+  });
+
   // postsModel.js
   var require_postsModel = __commonJS({
     "postsModel.js"(exports, module) {
@@ -13,6 +27,10 @@
         }
         getPosts() {
           return this.posts;
+        }
+        setPosts(loaded_posts) {
+          console.log(loaded_posts);
+          this.posts = loaded_posts;
         }
         addPost(post) {
           this.posts.push(post);
@@ -45,11 +63,15 @@
   });
 
   // index.js
+  var ChitterAPI = require_chitterAPI();
   var Posts = require_postsModel();
   var PostsView = require_postsView();
   console.log("App is running");
+  var api = new ChitterAPI();
   var posts = new Posts();
   var view = new PostsView(posts);
-  posts.addPost("test");
-  view.displayPosts();
+  api.loadPosts((loaded_posts) => {
+    posts.setPosts(loaded_posts);
+    view.displayPosts();
+  });
 })();
