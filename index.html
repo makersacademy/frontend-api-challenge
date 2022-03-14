@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+   <head>
+      <title>Chitter</title>
+      <link rel="stylesheet" href="public/styles.css">
+   </head>
+   <body>
+
+      <div id="topnav" class="topnav">
+         <a class="active">Chitter</a>
+         <a id="register" href="#register">Sign Up</a>
+         <a id="logoff" href="#logoff">Log Off</a>
+         <div class="login-container" id="login-container">
+            <form>
+               <input type="text" placeholder="Handle" id="handle">
+               <input type="text" placeholder="Password" id="password">
+               <button type="submit" id="logon">Login</button>
+            </form>
+         </div>
+      </div>
+
+      <!-- Registration Modal -->
+      <div id="registration-modal" class="modal">
+
+         <!-- Modal content -->
+         <div class="modal-content">
+         <span class="close">&times;</span>
+         <p>Register User</p>
+         <form>
+            <input type="text" placeholder="Handle" id="new-user-handle">
+            <input type="password" placeholder="Password" id="new-user-password"><br><br>
+            <button type="submit" id="create-user">Register</button>
+         </form>
+         </div>
+      </div>
+
+      <div id="main-container">         
+      </div>
+   </body>
+   <script type="text/javascript" src="bundle.js"></script>
+</html>

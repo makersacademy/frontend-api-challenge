@@ -1,5 +1,40 @@
 # Chitter API Frontend Challenge
 
+This is a front end web app that emulates albeit poorly a messaging app
+
+Main page
+
+![alt text](https://github.com/nyahehnagi/frontend-api-challenge/blob/master/docs/chitter2.png)
+
+Registration modal
+
+![alt text](https://github.com/nyahehnagi/frontend-api-challenge/blob/master/docs/chitter_register.png)
+
+----------------------
+## Installation
+----------------------
+Install node via your favourite package manager if required, see [here](https://nodejs.org/en/ "Node") for more details
+
+Install jest if not already
+~~~~
+npm install --save-dev jest
+~~~~
+
+To install this code from the latest source
+~~~~
+git clone git@github.com:nyahehnagi/frontend-api-challenge.git
+~~~~
+
+
+## Testing
+-----------------------
+To run jest tests
+~~~~
+$> npx jest
+~~~~
+
+
+------------------------------------------------
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
