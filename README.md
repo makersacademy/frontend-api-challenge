@@ -11,6 +11,8 @@ Please ensure node.js is installed
 - to install the code run ```git clone https://github.com/eddiearnoldz/frontend-api-challenge.git```
 - run the command ```npm install``` in the root directory.
 - run the command ```npm run build```
+- if you have LiverServer for VS code then load it with the index.html page. 
+  otherwise copy the path of index.html and open in the Chrome or the browser of your choice.
 
 # Screenshot
 
