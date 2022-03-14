@@ -1,0 +1,28 @@
+{
+  "name": "frontend-api-challenge",
+  "version": "1.0.0",
+  "description": "## Approach by Claire Nelson",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild index.js --bundle  --outfile=bundle.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nelsonclaire/frontend-api-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nelsonclaire/frontend-api-challenge/issues"
+  },
+  "homepage": "https://github.com/nelsonclaire/frontend-api-challenge#readme",
+  "dependencies": {
+    "jest": "^27.5.1",
+    "jest-fetch-mock": "^3.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0"
+  }
+}
