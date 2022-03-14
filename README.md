@@ -2,6 +2,8 @@
 
 ## Approach by Claire Nelson
 
+[Current front end](https://github.com/nelsonclaire/frontend-api-challenge/blob/master/public/images/chitter-front-end.png)
+
 #### Break down the requirements 
 
 - Capture the flow of how the backend and front end talk to each other [flow diagram](https://github.com/nelsonclaire/frontend-api-challenge/blob/master/public/images/using-fetch.png). 
