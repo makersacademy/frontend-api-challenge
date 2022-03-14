@@ -1,5 +1,10 @@
 # Chitter API Frontend Challenge
 
+* Jane's weekend challenge
+* I have only managed to get the 50 peeps displaying
+* It is not tested - apologies
+* TODO - more experimentation with this challenge
+
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
