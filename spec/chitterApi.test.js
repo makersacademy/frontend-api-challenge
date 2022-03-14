@@ -61,7 +61,7 @@ describe('ChitterApi class', () => {
         )
       );
 
-    api.deletePeep(1, "sesssionKey" ,(resonse) => {
+    api.deletePeep(1, "sesssionKey" ,(response) => {
       expect(response.status).toBe(204);
     });
   });
