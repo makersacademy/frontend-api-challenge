@@ -13,41 +13,113 @@
             callback(data);
           });
         }
+        createUser(handle, password, callback) {
+          const dataString = JSON.stringify({ user: { handle, password } });
+          fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: dataString
+          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => console.error("Error:", error));
+        }
+        createSession(handle, password, callback) {
+          const dataString = JSON.stringify({ session: { handle, password } });
+          fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: dataString
+          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => console.error("Error:", error));
+        }
+        postPeep(userId, sessionKey, peep, callback) {
+          const dataString = JSON.stringify({ peep: { user_id: userId, body: peep } });
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+            method: "POST",
+            headers: {
+              "Authorization": `Token token=${sessionKey}`,
+              "Content-Type": "application/json"
+            },
+            body: dataString
+          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => console.error("Error:", error));
+        }
       };
       module.exports = ChitterApi2;
     }
   });
 
-  // feedView.js
-  var require_feedView = __commonJS({
-    "feedView.js"(exports, module) {
-      var FeedView2 = class {
+  // chitterView.js
+  var require_chitterView = __commonJS({
+    "chitterView.js"(exports, module) {
+      var ChitterView2 = class {
         constructor(model, api2) {
           this.model = model;
           this.api = api2;
-          this.feedContainerEl = document.querySelector("#feed-container");
-          this.displayPeeps();
+          const newUserButtonEl = document.querySelector("#new-user-button");
+          newUserButtonEl.addEventListener("click", (button) => {
+            button.preventDefault();
+            this.createNewUser();
+          });
+          const loginButtonEl = document.querySelector("#login-button");
+          loginButtonEl.addEventListener("click", (button) => {
+            button.preventDefault();
+            this.loginUser();
+          });
+          const peepButtonEl = document.querySelector("#new-peep-button");
+          peepButtonEl.addEventListener("click", (button) => {
+            button.preventDefault();
+            this.addPeep();
+          });
         }
-        displayPeeps() {
-          const peeps = this.model.getPeeps();
+        displayPeeps(peeps) {
+          const feedContainerEl = document.querySelector("#feed-container");
+          document.querySelectorAll(".peep").forEach((p) => {
+            p.remove();
+          });
           peeps.forEach((peep) => {
             const peepEl = document.createElement("feed");
             const br = document.createElement("br");
             peepEl.innerText = `${peep.body}, by ${peep.user.handle}`;
             peepEl.className = "peep";
-            this.feedContainerEl.append(peepEl);
-            this.feedContainerEl.append(br);
+            feedContainerEl.append(peepEl);
+            feedContainerEl.append(br);
+          });
+        }
+        createNewUser() {
+          const newHandleEl = document.getElementById("new-handle-input");
+          const newPasswordEl = document.getElementById("new-password-input");
+          this.api.createUser(newHandleEl.value, newPasswordEl.value, (data) => {
+            console.log(data);
+          });
+          this.api.createSession(newHandle);
+        }
+        loginUser() {
+          const handleEl = document.getElementById("handle-input");
+          const passwordEl = document.getElementById("password-input");
+          this.api.createSession(handleEl.value, passwordEl.value, (data) => {
+            sessionStorage.userId = data.user_id;
+            sessionStorage.sessionKey = data.session_key;
+          });
+        }
+        addPeep() {
+          const peepEl = document.getElementById("new-peep");
+          console.log(sessionStorage.userId);
+          this.api.postPeep(sessionStorage.userId, sessionStorage.sessionKey, peepEl.value, (data) => {
+            this.api.loadPeeps((data2) => {
+              this.displayPeeps(data2);
+            });
           });
         }
       };
-      module.exports = FeedView2;
+      module.exports = ChitterView2;
     }
   });
 
-  // feedModel.js
-  var require_feedModel = __commonJS({
-    "feedModel.js"(exports, module) {
-      var FeedModel2 = class {
+  // chitterModel.js
+  var require_chitterModel = __commonJS({
+    "chitterModel.js"(exports, module) {
+      var ChitterModel2 = class {
         constructor() {
           this.peeps = [];
         }
@@ -57,20 +129,22 @@
         setPeeps(peeps) {
           this.peeps = peeps;
         }
+        clearPeeps() {
+          this.peeps = [];
+        }
       };
-      module.exports = FeedModel2;
+      module.exports = ChitterModel2;
     }
   });
 
   // index.js
   var ChitterApi = require_chitterApi();
-  var FeedView = require_feedView();
-  var FeedModel = require_feedModel();
+  var ChitterView = require_chitterView();
+  var ChitterModel = require_chitterModel();
   var api = new ChitterApi();
-  var feedModel = new FeedModel();
-  var feedView = new FeedView(feedModel, api);
+  var chitterModel = new ChitterModel();
+  var chitterView = new ChitterView(chitterModel, api);
   api.loadPeeps((peeps) => {
-    feedModel.setPeeps(peeps);
-    feedView.displayPeeps();
+    chitterView.displayPeeps(peeps);
   });
 })();

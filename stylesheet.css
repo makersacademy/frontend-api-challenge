@@ -1,0 +1,38 @@
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 55px;
+  color: white;
+  text-align: center;
+}
+
+h2 {
+  color: white;
+  text-align: center;
+}
+
+h3 {
+  color: black;
+  text-align: center;
+  font-size: 30px;
+}
+
+form {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  background-color: rgb(34, 89, 207);
+  text-align: center;
+  color: black
+}
+
+div {
+  justify-content: center;
+  display: 
+  flex-wrap: wrap;
+  color: white;
+}

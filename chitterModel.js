@@ -1,4 +1,4 @@
-class FeedModel {
+class ChitterModel {
   constructor() {
     this.peeps = []
   }
@@ -10,6 +10,10 @@ class FeedModel {
   setPeeps(peeps) {
     this.peeps = peeps
   }
+
+  clearPeeps() {
+    this.peeps = []
+  }
 }
 
-module.exports = FeedModel;
+module.exports = ChitterModel;

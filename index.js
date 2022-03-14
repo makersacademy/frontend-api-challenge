@@ -1,12 +1,11 @@
 const ChitterApi = require('./chitterApi');
-const FeedView = require('./feedView');
-const FeedModel = require('./feedModel')
+const ChitterView = require('./chitterView');
+const ChitterModel = require('./chitterModel')
 
 const api = new ChitterApi();
-const feedModel = new FeedModel();
-const feedView = new FeedView(feedModel, api);
+const chitterModel = new ChitterModel();
+const chitterView = new ChitterView(chitterModel, api);
 
 api.loadPeeps((peeps) => {
-  feedModel.setPeeps(peeps);
-  feedView.displayPeeps();
+  chitterView.displayPeeps(peeps);
 })

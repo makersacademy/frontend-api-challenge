@@ -4,7 +4,6 @@
 
 const FeedView = require('./feedView')
 const fs = require('fs');
-const { hasUncaughtExceptionCaptureCallback } = require('process');
 
 describe('Chitter feed', () => {
   it('shows a list of the last 50 peeps', () => {
