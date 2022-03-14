@@ -7,15 +7,9 @@ class ChitterApi {
     });
   };
 
-
-  createPeep(peep, callback) {
-    //console.log("CREATE PEEEP"); 
-    const userId=906; 
-    const sessionKey = "_2a_12_of40eJQ4vUPfupwnhoVj8O";
-   // const newPeep = JSON.stringify({peep: {user_id:userId, body:peep}});
+    createPeep(peep, userId, sessionKey, callback) {
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
       method: 'POST',
-      data: { username: 'SaM', password: 'SAMpassword' },
       headers: {
         'Authorization': `Token token=${sessionKey}`,
         'Content-Type': 'application/json',
@@ -26,5 +20,23 @@ class ChitterApi {
     .then(data => callback(data))
     .catch(error => console.error('Error:', error));
   }
+
+  startChitterSession(handle, password, callback) {
+    fetch('https://chitter-backend-api-v2.herokuapp.com/sessions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify( {session: {handle:handle, password:password}})
+    })
+      .then(response => response.json())
+      .then(data => callback(data))
+      .catch(error => {
+       alert("Your handle or password is incorrect");
+        // .catch(error => 
+        // console.error('Error:', error));
+     })
+  };
+ 
 }
   module.exports = ChitterApi;

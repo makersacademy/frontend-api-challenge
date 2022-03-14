@@ -1,10 +1,10 @@
-const ChitterModel = require('./chitterModel');
+// const ChitterModel = require('./chitterModel');
 
-describe('chitterModel', () => {
+// describe('chitterModel', () => {
 
-    it('can return a list of empty peeps', () => { 
-      let model = new ChitterModel();
-      expect(model.getPeep()).toEqual([]);
-    })
+//     it('can return a list of empty peeps', () => { 
+//       let model = new ChitterModel();
+//       expect(model.getPeep()).toEqual([]);
+//     })
 
-  });
+//   });

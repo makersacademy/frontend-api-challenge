@@ -1,5 +1,6 @@
-Bromley pointed out that I was pushing an array into array.
-Claire helped show me where I was going wrong using the model.js 
+A big help from Claire to show me where I was going wrong using the model.js and helping with the sessions! I would have been stuck without her help.
+Bromley helped with the array processing in the model.js and gave a steer on the addEventListener when creating the form.
+
 
 # Chitter API Frontend Challenge
 

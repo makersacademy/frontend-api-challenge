@@ -11,11 +11,6 @@ const api = new ChitterApi();
 const model = new ChitterModel();
 const view = new ChitterView(model, api);
 
-// api.loadPeep((peeps) => {//
-//   console.log("LOAD PEEEP"); 
-//   model.setNotes(peeps); 
-//   view.displayPeeps();
-// });
 
 
 
