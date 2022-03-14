@@ -13,6 +13,10 @@ class ChitterModel {
   reset() {
     this.peeps = []
   }
+
+  setPeeps(data) {
+    this.peeps = data
+  }
 }
 
 module.exports = ChitterModel

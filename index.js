@@ -1,8 +1,12 @@
+const ChitterApi = require('./chitterApi');
 const ChitterModel = require('./chitterModel');
 const ChitterView = require('./chitterView');
 
+const api = new ChitterApi();
 const model = new ChitterModel();
-const view = new ChitterView(model);
+const view = new ChitterView(model, api);
 
-model.addPeep('test peep one')
-view.displayPeeps()
+api.loadPeeps((peeps) => {
+  model.setPeeps(peeps);
+  view.displayPeeps();
+});
