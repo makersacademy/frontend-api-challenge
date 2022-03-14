@@ -1,7 +1,10 @@
 {
-  "name": "example-1",
+  "dependencies": {
+    "jest": "^27.5.1",
+    "jest-fetch-mock": "^3.0.3"
+  },
+  "name": "ztest",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,9 +13,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "esbuild": "^0.14.2",
-    "jest": "^27.4.3",
-    "jest-fetch-mock": "^3.0.3"
-  }
+  "description": ""
 }

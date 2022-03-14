@@ -1,75 +1,99 @@
 (() => {
+  var __getOwnPropNames = Object.getOwnPropertyNames;
   var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
-  // githubApi.js
-  var require_githubApi = __commonJS({
-    "githubApi.js"(exports, module) {
-      var GithubApi2 = class {
-        getRepoInfo(repoName, callback) {
-          fetch("https://api.github.com/repos/" + repoName).then((response) => response.json()).then((data) => {
-            callback(data);
+  // chitterModel.js
+  var require_chitterModel = __commonJS({
+    "chitterModel.js"(exports, module) {
+      var ChitterModel2 = class {
+        constructor() {
+          this.peeps = [];
+        }
+        getPeeps() {
+          return this.peeps;
+        }
+        addPeeps(peep) {
+          this.peeps.push(peep);
+        }
+        reset() {
+          this.peeps = [];
+        }
+        set(peeps) {
+          this.peeps = peeps;
+        }
+      };
+      module.exports = ChitterModel2;
+    }
+  });
+
+  // chitterApi.js
+  var require_chitterApi = __commonJS({
+    "chitterApi.js"(exports, module) {
+      var ChitterApi2 = class {
+        getChitterData(callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((data) => console.log(callback(data)));
+        }
+        createPeep() {
+          const data = { username: "example" };
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+          }).then((response) => response.json()).then((data2) => {
+            console.log("Success:", data2);
+          }).catch((error) => {
+            console.error("Error:", error);
           });
         }
       };
-      module.exports = GithubApi2;
+      module.exports = ChitterApi2;
     }
   });
 
-  // githubModel.js
-  var require_githubModel = __commonJS({
-    "githubModel.js"(exports, module) {
-      var GithubModel2 = class {
-        constructor() {
-          this.repoInfo = null;
-        }
-        setRepoInfo(repoInfo) {
-          this.repoInfo = repoInfo;
-        }
-        getRepoInfo() {
-          return this.repoInfo;
-        }
-      };
-      module.exports = GithubModel2;
-    }
-  });
-
-  // githubView.js
-  var require_githubView = __commonJS({
-    "githubView.js"(exports, module) {
-      var GithubView2 = class {
+  // chitterView.js
+  var require_chitterView = __commonJS({
+    "chitterView.js"(exports, module) {
+      var ChitterModel2 = require_chitterModel();
+      var ChitterApi2 = require_chitterApi();
+      var ChitterView2 = class {
         constructor(model2, api2) {
           this.model = model2;
           this.api = api2;
-          const submitButtonEl = document.querySelector("#submit-button");
-          const repoInputEl = document.querySelector("#repo-name-input");
-          submitButtonEl.addEventListener("click", () => {
-            const repoName = repoInputEl.value;
-            this.api.getRepoInfo(repoName, (repoData) => {
-              console.log(repoData);
-              this.repoName = repoData.name;
-              this.repoDescription = repoData.description;
-              this.display();
-            });
+          this.mainContainerEl = document.querySelector("#main-container");
+          this.buttonEl = document.querySelector("#show-peeps-button");
+          this.api.getChitterData((data) => {
+            console.log(data);
+            console.log(this.model.getPeeps());
           });
         }
+        add() {
+        }
         display() {
-          let names = document.querySelector("#repo-name");
-          let descriptions = document.querySelector("#repo-description");
-          names.innerText = this.repoName;
-          descriptions.innerText = this.repoDescription;
+          const peeps = this.model.getPeeps();
+          peeps.forEach((element) => {
+            const peepEl = document.createElement("div");
+            peepEl.innerText = element.body;
+            this.mainContainerEl.append(peepEl);
+          });
         }
       };
-      module.exports = GithubView2;
+      module.exports = ChitterView2;
     }
   });
 
   // index.js
-  var GithubApi = require_githubApi();
-  var GithubModel = require_githubModel();
-  var GithubView = require_githubView();
-  var api = new GithubApi();
-  var model = new GithubModel();
-  var view = new GithubView(model, api);
+  var ChitterModel = require_chitterModel();
+  var ChitterApi = require_chitterApi();
+  var ChitterView = require_chitterView();
+  var model = new ChitterModel();
+  var api = new ChitterApi();
+  var view = new ChitterView(model, api);
+  api.getChitterData((data) => {
+    model.set(data);
+    view.display();
+  });
 })();
