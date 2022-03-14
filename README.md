@@ -77,11 +77,12 @@
 #### What I know I need to work on
 - Error handling so, for example, you must get success before you can peep
 - CSS
-- Looking at what other jest tests can be done
 - Finishing calls to API
 - Likes/unlikes/deletes
 - Replies to peeps
-- Fixing other bugs
+- Looking at what other jest tests can be done
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
