@@ -7,7 +7,7 @@ const PeepModel = require('./peepModel');
 describe('PeepModel', () => {
   let model;
   beforeEach(() => {
-    model = new PeepModel;
+    model = new PeepModel();
   });
 
   describe('#getPeeps', () => {

@@ -4,29 +4,6 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
-  // peepView.js
-  var require_peepView = __commonJS({
-    "peepView.js"(exports, module) {
-      var PeepView2 = class {
-        constructor(model2) {
-          this.model = model2;
-          this.mainContainerEl = document.querySelector("#main-container");
-          this.displayPeeps();
-        }
-        displayPeeps() {
-          const feed = this.model.getPeeps();
-          feed.forEach((peep) => {
-            const peepEl = document.createElement("div");
-            peepEl.innerText = peep;
-            peepEl.className = "peep";
-            this.mainContainerEl.append(peepEl);
-          });
-        }
-      };
-      module.exports = PeepView2;
-    }
-  });
-
   // peepModel.js
   var require_peepModel = __commonJS({
     "peepModel.js"(exports, module) {
@@ -45,10 +22,42 @@
     }
   });
 
+  // peepView.js
+  var require_peepView = __commonJS({
+    "peepView.js"(exports, module) {
+      var PeepView2 = class {
+        constructor(model2) {
+          this.model = model2;
+          this.mainContainerEl = document.querySelector("#main-container");
+          console.log(this.mainContainerEl);
+          this.peepButtonEl = document.querySelector("#add-peep-button");
+          console.log(this.peepButtonEl);
+          this.peepButtonEl.addEventListener("click", () => {
+            this.peepInputEl = document.querySelector("#add-peep-input").value;
+            this.displayPeeps();
+          });
+        }
+        displayPeeps() {
+          const feed = this.model.getPeeps();
+          feed.forEach((peep) => {
+            const peepEl = document.createElement("div");
+            peepEl.innerText = peep;
+            peepEl.className = "peep";
+            this.mainContainerEl.append(peepEl);
+            document.querySelector("#add-peep-input").value = "";
+          });
+        }
+      };
+      module.exports = PeepView2;
+    }
+  });
+
   // index.js
-  var PeepView = require_peepView();
   var PeepModel = require_peepModel();
+  var PeepView = require_peepView();
   var model = new PeepModel();
-  var view = new PeepView();
+  var view = new PeepView(model);
+  model.addPeep("Hello, world");
+  view.displayPeeps();
   console.log("Everything is running");
 })();
