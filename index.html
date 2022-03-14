@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <link href="stylesheet.css" rel="stylesheet">
+    <head>
+        <title>Welcome to Chitter</title>
+        <h1> Chitter </h1>
+        <img src="./public/image.jpeg" style="width:220px;height:200px">
+    </head>
+    <body>
+      
+      <div id="user-container">
+
+      <form>
+        <h3> Sign up to Chitter! </h3>
+        Username:<br>
+        <input id="new-handle-input" type="text" /> <br>
+        Password:<br>
+        <input id="new-password-input" type="password" /> <br> <br>
+        <button type="submit" id="new-user-button">Submit</button>
+
+
+        <h3> Login to Chitter! </h3>
+        Username:<br>
+        <input id="handle-input" type="text" /> <br>
+        Password:<br>
+        <input id="password-input" type="password" /> <br> <br>
+        <button type="submit" id="login-button">Submit</button>
+      </form>
+    
+
+      </div>
+
+      <div>
+        <h2> Peep the World!! </h2>
+        <input id="new-peep" type="text" /><br> <br>
+        <button type="submit" id="new-peep-button">Share the wisdom!</button> <br> <br>
+      </div>
+        
+      <div id="peep-container">
+
+      </div>
+
+      <h2> Chitter Feed </h2>
+
+      <div id="feed-container">
+      </div>
+
+      <script src="bundle.js"></script>
+    </body>
+</html>
