@@ -181,6 +181,16 @@ class ChitterView {
 
   }
 
+  displayError (error) {
+    document.querySelectorAll('#error-message').forEach(error => {
+      error.remove()
+    })
+    const ErrorEl = document.createElement('div')
+    ErrorEl.innerText = error
+    ErrorEl.setAttribute('id', 'error-message')
+    this.mainContainerEl.append(ErrorEl)
+  }
+
 }
 
 module.exports = ChitterView;

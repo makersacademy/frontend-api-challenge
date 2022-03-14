@@ -1,7 +1,7 @@
 class ChitterApi {
 
   loadPeeps(peeps) {
-    
+
     fetch('https://chitter-backend-api-v2.herokuapp.com/peeps')
       .then(response => response.json())
       .then(data => {
@@ -53,7 +53,11 @@ class ChitterApi {
       })
       .then(response => response.json())
       .then(data => callback(data))
-      .catch(error => console.error('Error:', error));
+      // .catch(error => console.error('Error:', error));
+      .catch((error) => { 
+        error("User already exists")
+        console.log(`${error}`)
+      });
 
   };
    

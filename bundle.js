@@ -63,7 +63,10 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify({ user: { handle, password } })
-          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => console.error("Error:", error));
+          }).then((response) => response.json()).then((data) => callback(data)).catch((error) => {
+            error("User already exists");
+            console.log(`${error}`);
+          });
         }
       };
       module.exports = ChitterApi2;
@@ -96,13 +99,13 @@
           });
           peepData.forEach((peep) => {
             const peepEl = document.createElement("div");
-            peepEl.innerText = peep.body + " by " + peep.user.handle;
+            peepEl.innerText = peep.body + " by " + peep.user.handle + " at " + new Date(peep.created_at).toLocaleString("en-GB");
             peepEl.className = "peep";
             this.mainContainerEl.append(peepEl);
           });
         }
         startSession() {
-          this.localStorage.clear();
+          // this.localStorage.clear();
           const inputHandleEl = document.getElementById("handle");
           const inputPasswordEl = document.getElementById("password");
           localStorage.setItem("handle", inputHandleEl.value);
@@ -196,6 +199,15 @@
           logOnFormEl.appendChild(passwordInputEl);
           logOnFormEl.appendChild(submitButtonEl);
           this.mainContainerEl.prepend(logOnFormEl);
+        }
+        displayError(error) {
+          document.querySelectorAll("#error-message").forEach((error2) => {
+            error2.remove();
+          });
+          const ErrorEl = document.createElement("div");
+          ErrorEl.innerText = error;
+          ErrorEl.setAttribute("id", "error-message");
+          this.mainContainerEl.append(ErrorEl);
         }
       };
       module.exports = ChitterView2;

@@ -4,7 +4,7 @@
 
 #### Break down the requirements 
 
-- Capture the flow of how the backend and front end talk to each other [flow diagram](https://github.com/nelsonclaire/frontend-api-challenge/blob/master/images/using-fetch.png). 
+- Capture the flow of how the backend and front end talk to each other [flow diagram](https://github.com/nelsonclaire/frontend-api-challenge/blob/master/public/images/using-fetch.png). 
 - Use https://chitter-backend-api-v2.herokuapp.com/users to test for users you have created and errors for those that already exist.
 
 
@@ -14,6 +14,7 @@
 - Jest (test framework)
 - Esbuild (build tool)
 - ESLint (code checker)
+- CSS
 
 
 ## Steps to download
@@ -74,8 +75,13 @@
 - Models: `.js`
 
 #### What I know I need to work on
-
-
+- Error handling so, for example, you must get success before you can peep
+- CSS
+- Looking at what other jest tests can be done
+- Finishing calls to API
+- Likes/unlikes/deletes
+- Replies to peeps
+- Fixing other bugs
 
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
