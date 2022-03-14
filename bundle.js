@@ -31,9 +31,10 @@
           this.mainContainerEl = document.querySelector("#main-container");
           console.log(this.mainContainerEl);
           this.peepButtonEl = document.querySelector("#add-peep-button");
+          this.peepInputEl = document.querySelector("#add-peep-input");
           console.log(this.peepButtonEl);
           this.peepButtonEl.addEventListener("click", () => {
-            this.peepInputEl = document.querySelector("#add-peep-input").value;
+            const peepContent = this.peepInputEl.value;
             this.displayPeeps();
           });
         }
@@ -44,7 +45,6 @@
             peepEl.innerText = peep;
             peepEl.className = "peep";
             this.mainContainerEl.append(peepEl);
-            document.querySelector("#add-peep-input").value = "";
           });
         }
       };

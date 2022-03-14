@@ -27,6 +27,7 @@ describe('PeepView', () => {
 
   it('Adds a peep when the button is clicked', () => {
     const peepInputEl = document.querySelector('#add-peep-input');
+  
     peepInputEl.value = 'Goodnight London';
 
     const peepButtonEl = document.querySelector('#add-peep-button');
