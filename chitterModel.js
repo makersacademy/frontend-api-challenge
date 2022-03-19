@@ -7,10 +7,13 @@ class ChitterModel {
     return this.peeps
   }
 
-  addPeep(peep) {
-    this.peeps.push(peep)
+  setPeeps(returnedPeeps) {
+    this.peeps = returnedPeeps;
   }
 
+  addPeeps(peep) {
+    this.peeps.unshift(peep);
+  }
 }
 
 module.exports = ChitterModel;

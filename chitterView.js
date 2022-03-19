@@ -1,15 +1,18 @@
 class ChitterView {
-  constructor(model) {
-    this.model = model
+  constructor(model, api) {
+    this.model = model;
+    this.api = api;
     this.mainContainerEl = document.querySelector('#main-container');
   }
 
   displayPeeps() {
-    const peeps = this.model.getPeeps()
+    // remove old peeps first
+
+    const peeps = this.model.getPeeps();
 
     peeps.forEach(peep => {
       const peepEl = document.createElement('div');
-      peepEl.innerText = peep;
+      peepEl.innerText = peep.body;
       peepEl.classname = 'peep';
       this.mainContainerEl.append(peepEl);
     })

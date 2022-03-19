@@ -4,16 +4,19 @@
 //
 // on Mac (using Chrome), use Option+Command+J to open the console and see this message.
 
-console.log('Chitter app is running');
+console.log('#1 Chitter app is running');
 
+const ChitterApi = require ('./chitterApi')
 const ChitterModel = require('./chitterModel')
 const ChitterView = require('./chitterView')
 
+let api = new ChitterApi();
 let model = new ChitterModel();
-let view = new ChitterView(model);
+let view = new ChitterView(model, api);
 
-model.addPeep('Peep peep peep');
-model.addPeep('Peep peep peep peep!');
-view.displayPeeps();
+api.loadPeeps((peeps) => {
+  model.setPeeps(peeps);
+  view.displayPeeps();
+});
 
-console.log('Chitter app is still running!');
+console.log('#2 Chitter app is still running!');
