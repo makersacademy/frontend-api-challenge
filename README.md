@@ -39,7 +39,9 @@
 * API class added, tested with mock, and checked in browser.
 
 * HTML updated, buttons added.
-![Homepage](images/Homepage_02.png)
+![Homepage](images/Homepage_03.png)
+
+* Like & unlike buttons added. Next step is to consider how to individualy control the buttons and save the information.
 
 
 Brief:

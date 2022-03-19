@@ -24,6 +24,8 @@
       var ChitterModel2 = class {
         constructor() {
           this.peeps = [];
+          this.likeCounter = 0;
+          this.unlikeCounter = 0;
         }
         getPeeps() {
           return this.peeps;
@@ -33,6 +35,18 @@
         }
         addPeeps(peep) {
           this.peeps.unshift(peep);
+        }
+        getLikeCounter() {
+          return this.likeCounter;
+        }
+        addLike() {
+          this.likeCounter++;
+        }
+        getUnlikeCounter() {
+          return this.unikeCounter;
+        }
+        addUnlike() {
+          this.unlikeCounter--;
         }
       };
       module.exports = ChitterModel2;
@@ -53,15 +67,15 @@
           peeps.forEach((peep) => {
             const peepEl = document.createElement("div");
             peepEl.innerText = peep.body;
-            peepEl.classname = "peep";
+            peepEl.className = "block subtitle is-4 box has-text-primary-dark";
             this.mainContainerEl.append(peepEl);
             const likeButtonEl = document.createElement("button");
-            likeButtonEl.className = "block";
-            likeButtonEl.innerHTML = "<strong>like</strong>";
+            likeButtonEl.className += "button block";
+            likeButtonEl.innerHTML = "like";
             this.mainContainerEl.append(likeButtonEl);
             const unlikeButtonEl = document.createElement("button");
-            unlikeButtonEl.classname = "button";
-            unlikeButtonEl.innerHTML = "<strong>unlike</strong>";
+            unlikeButtonEl.className += "button block";
+            unlikeButtonEl.innerHTML = "unlike";
             this.mainContainerEl.append(unlikeButtonEl);
           });
         }
