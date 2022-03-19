@@ -1,10 +1,10 @@
 # Chitter API Frontend Challenge
 
 ## To run
-* to install code and run locally `git clone https://github.com/mmguinness/frontend-api-challenge.git`
-* note node.js required
+* To install code and run locally `git clone https://github.com/mmguinness/frontend-api-challenge.git`
+* Note, node.js required
 * In terminal run `npm intall`   
-* To run in terminal use `npm run build`
+* In terminal run `npm run build`
 * To test in terminal run `jest`
 
 ## My Process
@@ -37,7 +37,7 @@
 * Two tests added, add code to chitterModel.js to solve. Repeat TDD process.
 
 * API class added, tested with mock, and checked in browser.
-
+![Homepage](images/Homepage_01.png)
 
 
 Brief:
