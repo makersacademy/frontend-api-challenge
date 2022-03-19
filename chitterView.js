@@ -6,8 +6,6 @@ class ChitterView {
   }
 
   displayPeeps() {
-    // remove old peeps first
-
     const peeps = this.model.getPeeps();
 
     peeps.forEach(peep => {
@@ -15,6 +13,16 @@ class ChitterView {
       peepEl.innerText = peep.body;
       peepEl.classname = 'peep';
       this.mainContainerEl.append(peepEl);
+
+      const likeButtonEl = document.createElement('button');
+      likeButtonEl.className = 'block';
+      likeButtonEl.innerHTML = '<strong>like</strong>';
+      this.mainContainerEl.append(likeButtonEl);
+
+      const unlikeButtonEl = document.createElement('button');
+      unlikeButtonEl.classname = 'button';
+      unlikeButtonEl.innerHTML = '<strong>unlike</strong>';
+      this.mainContainerEl.append(unlikeButtonEl);
     })
   }
 }

@@ -37,7 +37,9 @@
 * Two tests added, add code to chitterModel.js to solve. Repeat TDD process.
 
 * API class added, tested with mock, and checked in browser.
-![Homepage](images/Homepage_01.png)
+
+* HTML updated, buttons added.
+![Homepage](images/Homepage_02.png)
 
 
 Brief:
