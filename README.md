@@ -1,5 +1,52 @@
 # Chitter API Frontend Challenge
 
+## To run
+* To install code and run locally `git clone https://github.com/mmguinness/frontend-api-challenge.git`
+* Note, node.js required
+* In terminal run `npm intall`   
+* In terminal run `npm run build`
+* To test in terminal run `jest`
+
+## My Process
+* Aim to use a TDD approach to completing the project, as set out below:
+   - Plan
+   - Test
+   - Implement
+   - Refactor
+   - Commit
+   
+* Fork Repo
+* Setup Jest within project directory
+* Install ESLint within project directory
+* Install ESBuild
+
+* Try to understand what I need to do:
+![Diagram](images/Task_Diagram.png)
+
+* Start with idea for domain model and mock-up of MVP(for weekend)
+
+![Diagram](images/MVP_mock_up.png)
+
+![Diagram](images/Domain_model.png)
+
+* To solidify my understanding of what is supposed to happening in the front-end, I created a diagram of objects and how they interact.
+
+![Diagram](images/Object_Model_Diagram_02.png)
+
+* Next, start coding with first test for chitterModel.js
+* Two tests added, add code to chitterModel.js to solve. Repeat TDD process.
+
+* API class added, tested with mock, and checked in browser.
+
+* HTML updated, buttons added.
+![Homepage](images/Homepage_03.png)
+
+* Like & unlike buttons added. Next step is to consider how to individually control the buttons and save the information.
+
+
+Brief:
+-------
+
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
