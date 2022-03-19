@@ -41,7 +41,7 @@
 * HTML updated, buttons added.
 ![Homepage](images/Homepage_03.png)
 
-* Like & unlike buttons added. Next step is to consider how to individualy control the buttons and save the information.
+* Like & unlike buttons added. Next step is to consider how to individually control the buttons and save the information.
 
 
 Brief:
