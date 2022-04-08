@@ -1,2 +1,12 @@
+# Main Diagram file
 diagrams/Chitter-Frontend.drawio
+
+# Documentation
 PK-Notes-README.md
+Backend-README.md
+
+# Node Modules
+node_modules
+
+# Jest-generated coverage files
+coverage
