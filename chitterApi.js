@@ -3,7 +3,7 @@ class ChitterApi {
     this.baseUrl = "https://chitter-backend-api-v2.herokuapp.com/";
   }
 
-  getPeeps(errorCallback, callback) {
+  getPeepsFromServer(errorCallback, callback) {
     try {
       fetch(this.baseUrl + "/peeps")
         .then((response) => response.json())

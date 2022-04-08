@@ -30,16 +30,13 @@ describe("ChitterApi", () => {
     chitterApi = new ChitterApi();
   });
 
-  describe("getPeeps", () => {
+  describe("getPeepsFromServer", () => {
     fetch.mockResponseOnce(JSON.stringify(examplePeep));
     it("fetches a list of peeps from the backend", (done) => {
-      console.log(
-        chitterApi.getPeeps(errorCallback, (data) => {
-          console.log(`I'm in the callback passed to getPeeps`);
-          expect(data.body).toEqual("We out here peeping");
-          done();
-        })
-      );
+      chitterApi.getPeepsFromServer(errorCallback, (data) => {
+        expect(data.body).toEqual("We out here peeping");
+        done();
+      });
     });
   });
 });
