@@ -1,0 +1,104 @@
+html {
+  background: whitesmoke;
+}
+
+body {
+  --twitter-blue: #1d9bf0;
+  --twitter-light-blue: #50b7f5;
+  --twitter-grey: #536471;
+  --twitter-black: #0f1419;
+  --twitter-light-blue-hover: #3091cd;
+  --twitter-white: #e6ecf0;
+  --twitter-white-hover: #bdcbd4;
+  background: var(--twitter-white);
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: var(--twitter-grey);
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Header */
+
+.left {
+  margin-right: auto;
+}
+
+.button {
+  background-color: var(--twitter-light-blue);
+  border-radius: 8px;
+  color: var(--twitter-black);
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.button:hover {
+  background-color: var(--twitter-light-blue-hover);
+  color: var(--twitter-white);
+}
+
+.navbar {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: right;
+
+  padding: 0px;
+}
+
+/* peep */
+
+.peep-container {
+  border-bottom: 1px solid var(--twitter-grey);
+  padding: 15px;
+}
+
+.peep-container:hover {
+  cursor: pointer;
+  background-color: var(--twitter-white-hover);
+}
+
+.peep-author {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.peep-handle {
+  font-size: 15px;
+}
+
+.peep-body {
+  flex: 1;
+  padding: 10px;
+}
+
+.peep-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.peep-likes:hover {
+  color: rgb(233, 97, 126);
+}
+
+.peep-comments:hover {
+  color: rgb(21, 183, 129);
+}
+
+.peep-repeeps:hover {
+  color: rgb(69, 128, 224);
+}
