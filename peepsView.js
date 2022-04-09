@@ -6,24 +6,27 @@ class PeepsView {
   }
 
   displayPeeps() {
-    this.model.getPeeps().forEach((peep) => {
-      const peepEl = document.createElement("div");
-      peepEl.className = "peep";
+    this.model.getPeeps((peeps) => {
+      peeps.forEach((peep) => {
+        //console.log(peep);
+        const peepEl = document.createElement("div");
+        peepEl.className = "peep";
 
-      const usernameEl = document.createElement("p");
-      usernameEl.innerText = peep.username;
-      peepEl.append(usernameEl);
+        const usernameEl = document.createElement("p");
+        usernameEl.innerText = peep.user.handle;
+        peepEl.append(usernameEl);
 
-      const peepItemEl = document.createElement("p");
-      peepItemEl.className = "peep-item";
-      peepItemEl.innerText = peep.peep;
-      peepEl.append(peepItemEl);
+        const peepItemEl = document.createElement("p");
+        peepItemEl.className = "peep-item";
+        peepItemEl.innerText = peep.body;
+        peepEl.append(peepItemEl);
 
-      const dateEl = document.createElement("p");
-      dateEl.innerText = peep.date;
-      peepEl.append(dateEl);
+        const dateEl = document.createElement("p");
+        dateEl.innerText = peep.created_at;
+        peepEl.append(dateEl);
 
-      this.peepsContainer.append(peepEl);
+        this.peepsContainer.append(peepEl);
+      });
     });
   }
 }

@@ -4,8 +4,10 @@ class PeepsModel {
     this.api = api;
   }
 
-  getPeeps() {
-    return this.api.loadPeeps();
+  getPeeps(callback) {
+    this.api.loadPeeps((data) => {
+      callback(data);
+    });
   }
 
   addPeep(peep) {

@@ -1,15 +1,10 @@
 class PeepsApi {
-  loadPeeps() {
-    const peeps = [
-      { username: "Goldie", peep: "First peep", date: "2022-04-09" },
-      {
-        username: "Gordon",
-        peep: "Masters this year is shite",
-        date: "2022-04-08",
-      },
-    ];
-
-    return peeps;
+  async loadPeeps(callback) {
+    const response = await fetch(
+      "https://chitter-backend-api-v2.herokuapp.com/peeps"
+    );
+    const data = await response.json();
+    callback(data);
   }
 }
 
