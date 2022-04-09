@@ -22,4 +22,11 @@ describe("ChitterView", () => {
       done();
     });
   });
+  describe("displayButtons", () => {
+    it("displays buttons in the navabr", (done) => {
+      chitterView.displayButtons();
+      expect(document.querySelectorAll(".button").length).toEqual(3);
+      done();
+    });
+  });
 });

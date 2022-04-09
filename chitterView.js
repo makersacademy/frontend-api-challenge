@@ -21,12 +21,13 @@ class ChitterView {
     // let buttonsArray = ["Sign Up", "Sign In"];
     buttonsArray.forEach((buttonText) => {
       let buttonEl = document.createElement("button");
-      buttonEl.addEventListener("click", (target) => {
-        console.log(`Target: ${target.target.innerText}`);
-        console.log(`${buttonText} button has been clicked`);
-      });
+      // buttonEl.addEventListener("click", (target) => {
+      //   console.log(`Target: ${target.target.innerText}`);
+      //   console.log(`${buttonText} button has been clicked`);
+      // });
       Object.assign(buttonEl, {
         className: "button",
+        id: buttonText.toLowerCase().split(" ").join("-"),
         innerText: buttonText,
       });
       navbarEl.append(buttonEl);

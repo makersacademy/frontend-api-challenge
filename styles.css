@@ -100,5 +100,24 @@ body {
 }
 
 .peep-repeeps:hover {
-  color: rgb(69, 128, 224);
+  color: rgb(2 177 255);
+}
+
+/* Login Form */
+
+.login-form {
+  padding: 1em 0 0;
+  display: none;
+}
+.login-form .container {
+  padding: 0 0.5em;
+}
+
+.login-form input {
+  width: calc(100% - 1em);
+  border: none;
+}
+.login-form .sign-in-button {
+  text-align: center;
+  cursor: pointer;
 }

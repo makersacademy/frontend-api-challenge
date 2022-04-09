@@ -18,7 +18,7 @@ class ChitterModel {
       },
       (peepList) => {
         peepList.forEach((peep) => {
-          console.log(`Peep: ${peep}`);
+          // console.log(`Peep: ${peep}`);
           this.peeps.push(peep);
         });
         callback();

@@ -10,7 +10,6 @@
   </head>
   <body>
     <div id="header">
-      <!-- From ScareBnB -->
       <ul class="navbar" id="navbar">
         <div class="left">
           <ul>
@@ -18,16 +17,31 @@
           </ul>
         </div>
       </ul>
-      <!-- End of From ScareBnB -->
+    </div>
+    <!-- Login Form -->
+    <div class="login-form">
+      <div class="container">
+        <form>
+          <h4>Username</h4>
+          <input class="username" />
+          <h4>Password</h4>
+          <input type="password" />
+          <input class="sign-in-button" type="submit" value="Sign In" />
+        </form>
+      </div>
     </div>
     <div id="main-container">
       <div id="peep-list"></div>
     </div>
     <!-- Scripts loaded at end of body -->
-    <script type="text/javascript" src="bundle.js"></script>
+    <!--The jQuery library-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- FontAwesome Script -->
     <script
       src="https://kit.fontawesome.com/23260f25ae.js"
       crossorigin="anonymous"
     ></script>
+    <!-- Local Bundle.js -->
+    <script type="text/javascript" src="bundle.js"></script>
   </body>
 </html>

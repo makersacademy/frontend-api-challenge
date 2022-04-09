@@ -42,7 +42,6 @@
             console.log(`Error in Load Peeps: ${error}`);
           }, (peepList) => {
             peepList.forEach((peep) => {
-              console.log(`Peep: ${peep}`);
               this.peeps.push(peep);
             });
             callback();
@@ -75,12 +74,9 @@
           let buttonsArray = ["Sign Up", "Sign In", "Sign Out"];
           buttonsArray.forEach((buttonText) => {
             let buttonEl = document.createElement("button");
-            buttonEl.addEventListener("click", (target) => {
-              console.log(`Target: ${target.target.innerText}`);
-              console.log(`${buttonText} button has been clicked`);
-            });
             Object.assign(buttonEl, {
               className: "button",
+              id: buttonText.toLowerCase().split(" ").join("-"),
               innerText: buttonText
             });
             navbarEl.append(buttonEl);
@@ -149,5 +145,24 @@
   view.displayButtons();
   model.loadPeeps(() => {
     view.displayPeeps();
+  });
+  $(document).ready(() => {
+    const $signUpButton = $("#sign-up");
+    const $signInButton = $("#sign-in");
+    const $signOutButton = $("#sign-out");
+    const $loginForm = $(".login-form");
+    $signUpButton.on("click", () => {
+      console.log("JQuery sign up clicked");
+    });
+    $signInButton.on("click", () => {
+      $loginForm.slideDown();
+      console.log("JQuery sign in clicked");
+    });
+    $signOutButton.on("click", () => {
+      console.log("JQuery sign out clicked");
+    });
+    $loginForm.on("mouseleave", () => {
+      $loginForm.slideUp();
+    });
   });
 })();
