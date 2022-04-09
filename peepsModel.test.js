@@ -1,20 +1,23 @@
 const PeepsModel = require("./peepsModel");
+const PeepsApi = require("./peepsApi");
+const { beforeEach } = require("@jest/globals");
+
+let model;
+beforeEach(() => {
+  const fakeApi = {
+    loadPeeps: (callback) => {
+      [{ body: "peep1" }, { body: "peep2" }];
+    },
+  };
+  model = new PeepsModel(fakeApi);
+});
 
 describe("Peeps Model", () => {
   describe("get Peeps class", () => {
-    it("starts with no peeps", () => {
-      const model = new PeepsModel();
-      expect(model.getPeeps()).toEqual([]);
-    });
-
-    it("adds peeps", () => {
-      const model = new PeepsModel();
-      model.addPeep("My first peep!");
-      model.addPeep("The Masters just got boring");
-      expect(model.getPeeps()).toEqual([
-        "My first peep!",
-        "The Masters just got boring",
-      ]);
+    it("loads peeps from the api", () => {
+      model.getPeeps((data) => {
+        expect(data).toEqual([{ body: "peep1" }, { body: "peep2" }]);
+      });
     });
   });
 });
