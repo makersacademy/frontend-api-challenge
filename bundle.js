@@ -7,7 +7,7 @@
   // chitterApi.js
   var require_chitterApi = __commonJS({
     "chitterApi.js"(exports, module) {
-      var ChitterApi2 = class {
+      var ChitterApi = class {
         constructor(baseUrl = "https://chitter-backend-api-v2.herokuapp.com/") {
           this.baseUrl = baseUrl;
         }
@@ -19,17 +19,17 @@
           }
         }
       };
-      module.exports = ChitterApi2;
+      module.exports = ChitterApi;
     }
   });
 
   // chitterModel.js
   var require_chitterModel = __commonJS({
     "chitterModel.js"(exports, module) {
-      var ChitterApi2 = require_chitterApi();
+      var ChitterApi = require_chitterApi();
       var ChitterModel2 = class {
-        constructor(api2 = new ChitterApi2()) {
-          this.api = api2;
+        constructor(api = new ChitterApi()) {
+          this.api = api;
           this.peeps = [
             { id: 1, body: "Default Peep 1", user: { handle: "default" }, likes: [] },
             { id: 2, body: "Default Peep 2", user: { handle: "default" }, likes: [] },
@@ -71,12 +71,23 @@
           });
         }
         displayButtons() {
+          let navbarEl = document.querySelector("#navbar");
+          let buttonsArray = ["Sign Up", "Sign In", "Sign Out"];
+          buttonsArray.forEach((buttonText) => {
+            let buttonEl = document.createElement("button");
+            buttonEl.addEventListener("click", (target) => {
+              console.log(`Target: ${target.target.innerText}`);
+              console.log(`${buttonText} button has been clicked`);
+            });
+            Object.assign(buttonEl, {
+              className: "button",
+              innerText: buttonText
+            });
+            navbarEl.append(buttonEl);
+          });
         }
         generatePeep(peepObject) {
           let peepContainer = document.createElement("div");
-          peepContainer.addEventListener("click", () => {
-            console.log(`Peep ${peepObject.id} has been clicked`);
-          });
           Object.assign(peepContainer, {
             className: "peep-container",
             id: peepObject.id
@@ -133,10 +144,9 @@
   // index.js
   var ChitterView = require_chitterView();
   var ChitterModel = require_chitterModel();
-  var ChitterApi = require_chitterApi();
-  var api = new ChitterApi();
   var model = new ChitterModel();
   var view = new ChitterView(model);
+  view.displayButtons();
   model.loadPeeps(() => {
     view.displayPeeps();
   });

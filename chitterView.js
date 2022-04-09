@@ -15,13 +15,29 @@ class ChitterView {
     });
   }
 
-  displayButtons() {}
+  displayButtons() {
+    let navbarEl = document.querySelector("#navbar");
+    let buttonsArray = ["Sign Up", "Sign In", "Sign Out"];
+    // let buttonsArray = ["Sign Up", "Sign In"];
+    buttonsArray.forEach((buttonText) => {
+      let buttonEl = document.createElement("button");
+      buttonEl.addEventListener("click", (target) => {
+        console.log(`Target: ${target.target.innerText}`);
+        console.log(`${buttonText} button has been clicked`);
+      });
+      Object.assign(buttonEl, {
+        className: "button",
+        innerText: buttonText,
+      });
+      navbarEl.append(buttonEl);
+    });
+  }
 
   generatePeep(peepObject) {
     let peepContainer = document.createElement("div");
-    peepContainer.addEventListener("click", () => {
-      console.log(`Peep ${peepObject.id} has been clicked`);
-    });
+    // peepContainer.addEventListener("click", () => {
+    //   console.log(`Peep ${peepObject.id} has been clicked`);
+    // });
     Object.assign(peepContainer, {
       className: "peep-container",
       id: peepObject.id,
