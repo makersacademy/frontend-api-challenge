@@ -1,16 +1,29 @@
 const ChitterApi = require("./chitterApi.js");
 
 class ChitterModel {
-  constructor(api = ChitterApi) {
+  constructor(api = new ChitterApi()) {
     this.api = api;
-    this.peeps = [];
+    this.peeps = [
+      { id: 1, body: "Default Peep 1", user: { handle: "default" } },
+      { id: 2, body: "Default Peep 2", user: { handle: "default" } },
+      { id: 3, body: "Default Peep 3", user: { handle: "default" } },
+    ];
   }
 
-  loadPeeps() {
+  loadPeeps(callback) {
     this.peeps = [];
-    this.api.getPeepsFromServer().forEach((peepObject) => {
-      this.peeps.push(peepObject);
-    });
+    this.api.getPeepsFromServer(
+      (error) => {
+        console.log(`Error in Load Peeps: ${error}`);
+      },
+      (peepList) => {
+        peepList.forEach((peep) => {
+          console.log(`Peep: ${peep}`);
+          this.peeps.push(peep);
+        });
+        callback();
+      }
+    );
   }
 }
 

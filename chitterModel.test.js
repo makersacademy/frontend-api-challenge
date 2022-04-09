@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const ChitterModel = require("./chitterModel.js");
 const ChitterApi = require("./chitterApi.js");
 
@@ -12,12 +16,17 @@ describe("ChitterModel", () => {
     chitterModel = new ChitterModel(apiMock);
   });
 
-  describe("peeps", () => {
-    it("returns the peeps stored in the model", () => {
-      apiMock.getPeepsFromServer.mockImplementationOnce(() => {
-        return ["Hello darkness my old friend"];
-      });
-      chitterModel.loadPeeps();
+  describe("loadPeeps", () => {
+    it("loads peeps from the server into the model", () => {
+      // getPeepsFromServer takes two arguments, so these need to be accounted for in the mocking implementation
+      apiMock.getPeepsFromServer.mockImplementationOnce(
+        (_errorCallback, callback) => {
+          callback(["Hello darkness my old friend"]);
+        }
+      );
+
+      // loadPeeps takes a callback which is usually used to callback to the View
+      chitterModel.loadPeeps(() => {});
       expect(chitterModel.peeps).toEqual(["Hello darkness my old friend"]);
     });
   });

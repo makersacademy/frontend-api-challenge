@@ -1,6 +1,6 @@
 class ChitterApi {
-  constructor() {
-    this.baseUrl = "https://chitter-backend-api-v2.herokuapp.com/";
+  constructor(baseUrl = "https://chitter-backend-api-v2.herokuapp.com/") {
+    this.baseUrl = baseUrl;
   }
 
   getPeepsFromServer(errorCallback, callback) {

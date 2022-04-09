@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const ChitterApi = require("./chitterApi.js");
 require("jest-fetch-mock").enableMocks();
 
@@ -31,8 +35,8 @@ describe("ChitterApi", () => {
   });
 
   describe("getPeepsFromServer", () => {
-    fetch.mockResponseOnce(JSON.stringify(examplePeep));
     it("fetches a list of peeps from the backend", (done) => {
+      fetch.mockResponseOnce(JSON.stringify(examplePeep));
       chitterApi.getPeepsFromServer(errorCallback, (data) => {
         expect(data.body).toEqual("We out here peeping");
         done();
