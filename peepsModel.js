@@ -1,10 +1,11 @@
 class PeepsModel {
-  constructor() {
+  constructor(api) {
     this.peeps = [];
+    this.api = api;
   }
 
   getPeeps() {
-    return this.peeps;
+    return this.api.loadPeeps();
   }
 
   addPeep(peep) {

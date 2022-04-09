@@ -1,16 +1,12 @@
 class PeepsView {
-  constructor() {
+  constructor(model) {
+    this.model = model;
     this.mainContainer = document.querySelector("#main-container");
     this.peepsContainer = document.querySelector("#peeps-container");
   }
 
   displayPeeps() {
-    const peeps = [
-      { username: "Gaya", peep: "First peep", date: "2022-04-09" },
-      { username: "Gordon", peep: "Golf is shite", date: "2022-04-08" },
-    ];
-
-    peeps.forEach((peep) => {
+    this.model.getPeeps().forEach((peep) => {
       const peepEl = document.createElement("div");
       peepEl.className = "peep";
 

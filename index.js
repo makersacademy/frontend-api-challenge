@@ -1,5 +1,9 @@
 const PeepsView = require("./peepsView");
+const PeepsModel = require("./peepsModel");
+const PeepsApi = require("./peepsApi");
 
-const view = new PeepsView();
+const api = new PeepsApi();
+const model = new PeepsModel(api);
+const view = new PeepsView(model);
 
 view.displayPeeps();
