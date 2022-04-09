@@ -20,5 +20,8 @@
   "homepage": "https://github.com/gdrmvrm/frontend-api-challenge#readme",
   "devDependencies": {
     "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "jest-fetch-mock": "^3.0.3"
   }
 }

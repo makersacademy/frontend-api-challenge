@@ -27,7 +27,17 @@ body {
 }
 
 .peep-item {
-  font-size: 20px;
+  font-size: 22px;
+}
+
+.peep-user {
+  font-size: 15px;
+  color: rgb(137, 136, 136);
+}
+
+.peep-date {
+  font-size: 13px;
+  color: blue;
 }
 
 /* input[type="text"] {

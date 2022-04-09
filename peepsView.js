@@ -8,11 +8,11 @@ class PeepsView {
   displayPeeps() {
     this.model.getPeeps((peeps) => {
       peeps.forEach((peep) => {
-        //console.log(peep);
         const peepEl = document.createElement("div");
         peepEl.className = "peep";
 
         const usernameEl = document.createElement("p");
+        usernameEl.className = "peep-user";
         usernameEl.innerText = peep.user.handle;
         peepEl.append(usernameEl);
 
@@ -22,7 +22,15 @@ class PeepsView {
         peepEl.append(peepItemEl);
 
         const dateEl = document.createElement("p");
-        dateEl.innerText = peep.created_at;
+        dateEl.className = "peep-date";
+        const date = new Date(peep.created_at).toLocaleDateString("en-uk", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        dateEl.innerText = date;
         peepEl.append(dateEl);
 
         this.peepsContainer.append(peepEl);
