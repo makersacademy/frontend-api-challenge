@@ -6,6 +6,10 @@ class PeepsModel {
   getPeeps() {
     return this.peeps;
   }
+
+  addPeep(peep) {
+    this.peeps.push(peep);
+  }
 }
 
 module.exports = PeepsModel;
