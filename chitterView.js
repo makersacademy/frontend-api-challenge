@@ -19,6 +19,8 @@ class ChitterView {
   }
 
   displayPeeps() {
+    this.clearAllPeeps();
+
     const mainContainerEl = document.querySelector('#main-container')
 
     this.model.getPeeps().forEach(peep => {
@@ -27,6 +29,13 @@ class ChitterView {
       div.innerText = peep;
 
       mainContainerEl.append(div);
+    })
+  }
+
+  clearAllPeeps() {
+    const allPeeps = document.querySelectorAll('.peep')
+    allPeeps.forEach(peep => {
+      peep.remove();
     })
   }
 }

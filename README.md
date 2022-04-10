@@ -62,5 +62,14 @@ To complete this I will add a button allowing users to add a new peep to the Chi
 
 - [x] Create a test that fills in a field with a new peep looks for a button, clicks it and expect the new peep to be added to the page.
 - [x] begin by creating the input field and the Add Peep button
-- [ ] Create a method called addNewPeep() in ChitterView which adds the content in the input field to the ChitterModel
-- [ ] Then add an event listener to this button which calls addNewPeep() to add a peep and then calls displayPeeps() to refresh the page
+- [x] Create a method called addNewPeep() in ChitterView which adds the content in the input field to the ChitterModel
+- [x] Then add an event listener to this button which calls addNewPeep() to add a peep and then calls displayPeeps() to refresh the page
+
+Now the new peeps are successfully being added to the page, however the older peeps are not being removed so we are ending up with duplicates, and the input field is not being cleared.
+
+Lets solve these issues before moving on to the next feature.
+
+- [x] let begin by creating a test that adds two peeps and expects that only those two peeps remain on the page i.e. expects no duplicate peeps to show up
+
+The problem is that whenever displayPeeps() is called it just generates all the peeps without clearing the page of the previous peeps
+- [x] to pass this test I will need to create a method to clear all peeps from the page and make displayPeeps() call this method first before doing anything that way it can start with a clean page.
