@@ -75,14 +75,14 @@ body {
   flex-basis: 100%;
 }
 
-.peep-active {
+/* .peep-active {
   background-color: green;
-}
+} */
 
-/* .peep-container:hover {
+.peep-container:hover {
   cursor: pointer;
   background-color: var(--twitter-white-hover);
-} */
+}
 
 .peep-avatar img {
   border-radius: 50%;

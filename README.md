@@ -4,9 +4,13 @@
 
 Implement a frontend in JavaScript for a backend application that allows users to interact with a database of 'peeps'
 
-This is the current view of the app after the peeps have loaded. The symbols beneath each peep change colour on hover, and register a click through jQuery event handlers.
+This is the current view of the app after the peeps have loaded.
 
 ![Index Screenshot](./diagrams/Chitter-Frontend-Screenshot.png)
+
+The peep container and the symbols beneath each peep change colour on hover, and register a click through jQuery event handlers.
+
+![Hover Screenshot](./diagrams/Chitter-Frontend-Hover.png)
 
 ## Approach
 
