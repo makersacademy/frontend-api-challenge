@@ -6,6 +6,7 @@ body {
   --twitter-blue: #1d9bf0;
   --twitter-light-blue: #50b7f5;
   --twitter-grey: #536471;
+  --twitter-light-grey: #b0b3b6;
   --twitter-black: #0f1419;
   --twitter-light-blue-hover: #3091cd;
   --twitter-white: #e6ecf0;
@@ -34,7 +35,7 @@ body {
 
 .button {
   background-color: var(--twitter-light-blue);
-  border-radius: 8px;
+  border-radius: 20px;
   color: var(--twitter-black);
   padding: 15px 25px;
   text-align: center;
@@ -54,7 +55,7 @@ body {
   list-style-type: none;
   display: flex;
   justify-content: flex-end;
-  align-items: right;
+  align-items: center;
 
   padding: 0px;
 }
@@ -62,27 +63,56 @@ body {
 /* peep */
 
 .peep-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
   border-bottom: 1px solid var(--twitter-grey);
   padding: 15px;
 }
 
-.peep-container:hover {
+.peep-body {
+  align-content: space-between;
+  flex-basis: 100%;
+}
+
+.peep-active {
+  background-color: green;
+}
+
+/* .peep-container:hover {
   cursor: pointer;
   background-color: var(--twitter-white-hover);
+} */
+
+.peep-avatar img {
+  border-radius: 50%;
+  height: 50px;
+  margin: 10px;
+}
+
+.peep-flex-header {
+  display: flex;
+  flex-wrap: nowrap;
+  /* padding: 15px; */
+  align-content: space-between;
 }
 
 .peep-author {
   font-size: 20px;
   text-transform: capitalize;
+  margin: 0 10px 0 0;
 }
 
 .peep-handle {
-  font-size: 15px;
+  font-size: 20px;
+  color: var(--twitter-light-grey);
+  margin: 0 10px 0 0;
 }
 
-.peep-body {
-  flex: 1;
-  padding: 10px;
+.peep-text {
+  /* flex: 1; */
+  padding: 12px 0 18px 0;
+  font-size: 25px;
 }
 
 .peep-footer {
@@ -111,13 +141,19 @@ body {
 }
 .login-form .container {
   padding: 0 0.5em;
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .login-form input {
   width: calc(100% - 1em);
+  height: 2em;
   border: none;
 }
-.login-form .sign-in-button {
+.login-form .sign-in {
   text-align: center;
   cursor: pointer;
+  margin: 10px 0 10px 0;
 }

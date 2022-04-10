@@ -10,3 +10,4 @@ node_modules
 
 # Jest-generated coverage files
 coverage
+.DS_Store

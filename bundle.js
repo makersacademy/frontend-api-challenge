@@ -88,14 +88,23 @@
             className: "peep-container",
             id: peepObject.id
           });
-          let peepHeader = document.createElement("div");
-          Object.assign(peepHeader, {
-            className: "peep-header",
-            innerHTML: `<span class="peep-author">${peepObject.user.handle}</span> <span class="peep-handle">@${peepObject.user.handle}<span>`
+          let peepAvatar = document.createElement("div");
+          Object.assign(peepAvatar, {
+            className: "peep-avatar",
+            innerHTML: `<img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt="${peepObject.user.handle}"/>`
           });
           let peepBody = document.createElement("div");
           Object.assign(peepBody, {
-            className: "peep-body",
+            className: "peep-body"
+          });
+          let peepHeader = document.createElement("div");
+          Object.assign(peepHeader, {
+            className: "peep-flex-header",
+            innerHTML: `<span class="peep-author">${peepObject.user.handle}</span> <span class="peep-handle">@${peepObject.user.handle}<span>`
+          });
+          let peepText = document.createElement("div");
+          Object.assign(peepText, {
+            className: "peep-text",
             innerHTML: `<p></>${peepObject.body}</p>`
           });
           let peepLikes = document.createElement("div");
@@ -108,6 +117,7 @@
           });
           let peepRepeeps = document.createElement("div");
           Object.assign(peepRepeeps, {
+            className: "peep-repeeps",
             innerHTML: `<p class="peep-repeeps"><i class="fa-solid fa-retweet peep-repeeps"></i> ${peepObject.likes.length}</p>`
           });
           peepRepeeps.addEventListener("click", () => {
@@ -115,6 +125,7 @@
           });
           let peepComments = document.createElement("div");
           Object.assign(peepComments, {
+            className: "peep-comments",
             innerHTML: `<p class="peep-comments"><i class="fa-solid fa-message peep-comments"></i> ${peepObject.likes.length}</p>`
           });
           peepComments.addEventListener("click", () => {
@@ -127,9 +138,11 @@
           peepFooter.append(peepLikes);
           peepFooter.append(peepRepeeps);
           peepFooter.append(peepComments);
-          peepContainer.append(peepHeader);
+          peepBody.append(peepHeader);
+          peepBody.append(peepText);
+          peepBody.append(peepFooter);
+          peepContainer.append(peepAvatar);
           peepContainer.append(peepBody);
-          peepContainer.append(peepFooter);
           return peepContainer;
         }
       };
@@ -151,6 +164,18 @@
     const $signInButton = $("#sign-in");
     const $signOutButton = $("#sign-out");
     const $loginForm = $(".login-form");
+    const $peepList = $("#peep-list");
+    const $peepLikes = $(".peep-likes");
+    const $peepRepeeps = $(".peep-repeeps");
+    const $peepComments = $(".peep-comments");
+    $peepList.on("mouseenter", "peep-container", (event) => {
+      console.log("Hovering");
+      $(event.currentTarget).toggleClass("peep-active");
+    });
+    $("peep-container").on("mouseenter mouseleave", (event) => {
+      console.log("Mouse Enter or Leave");
+      $(event.currentTarget).addClass("peep-active");
+    });
     $signUpButton.on("click", () => {
       console.log("JQuery sign up clicked");
     });
@@ -163,6 +188,15 @@
     });
     $loginForm.on("mouseleave", () => {
       $loginForm.slideUp();
+    });
+    $peepLikes.on("click", (event) => {
+      console.log("jQuery:", $(event.currentTarget));
+    });
+    $peepRepeeps.on("click", (event) => {
+      console.log("jQuery:", $(event.currentTarget));
+    });
+    $peepComments.on("click", (event) => {
+      console.log("jQuery:", $(event.currentTarget));
     });
   });
 })();

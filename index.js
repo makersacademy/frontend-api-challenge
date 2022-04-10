@@ -17,6 +17,21 @@ $(document).ready(() => {
 
   const $loginForm = $(".login-form");
 
+  const $peepList = $("#peep-list");
+  const $peepLikes = $(".peep-likes");
+  const $peepRepeeps = $(".peep-repeeps");
+  const $peepComments = $(".peep-comments");
+
+  $peepList.on("mouseenter", "peep-container", (event) => {
+    console.log("Hovering");
+    $(event.currentTarget).toggleClass("peep-active");
+  });
+
+  $("peep-container").on("mouseenter mouseleave", (event) => {
+    console.log("Mouse Enter or Leave");
+    $(event.currentTarget).addClass("peep-active");
+  });
+
   $signUpButton.on("click", () => {
     console.log("JQuery sign up clicked");
   });
@@ -29,5 +44,14 @@ $(document).ready(() => {
   });
   $loginForm.on("mouseleave", () => {
     $loginForm.slideUp();
+  });
+  $peepLikes.on("click", (event) => {
+    console.log("jQuery:", $(event.currentTarget));
+  });
+  $peepRepeeps.on("click", (event) => {
+    console.log("jQuery:", $(event.currentTarget));
+  });
+  $peepComments.on("click", (event) => {
+    console.log("jQuery:", $(event.currentTarget));
   });
 });
