@@ -85,4 +85,13 @@ The simplest way to empty the input field is to replace the text currently in th
 
 Now we have the frontend set up to display and add new peeps, now lets introduce the backend server using a fetch command. Let start with fetching the peeps from the backend server and displaying them on our website.
 
-- [ ] To begin lets testdrive the creation of a ChitterApi class with a method to loadPeeps() from the backend make sure to mock fetch in this situation.
+- [x] To begin lets testdrive the creation of a ChitterApi class with a method to loadPeeps() from the backend make sure to mock fetch in this situation.
+
+- [x] Pass this test by fulfilling all promises and extracting the JSON data from the fetch response. 
+
+Now that we can loadPeeps() from a backend server we need to:
+- [x] testdrive a setPeeps() method in our ChitterModel which is responsible for setting the array of peeps received from the backend server into the model
+  - Added note to self, after checking out the backend link on a chrome browser it looks like an array of hashes, we should try to extract the info we want, for now its just the body.
+
+
+- [x] Lets implement this in our main index.js file and check out the website to ensure the peeps are being loaded from the backend server

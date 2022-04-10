@@ -11,6 +11,13 @@ class ChitterModel {
     this.peepsArray.push(peep);
     return peep
   }
+
+  setPeeps(peepsFromBackend) {
+    peepsFromBackend.forEach(peep => {
+      this.peepsArray.push(peep.body)
+    })
+    return this.peepsArray
+  }
 }
 
 module.exports = ChitterModel;

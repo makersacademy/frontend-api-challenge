@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "esbuild index.js --bundle  --outfile=bundle.js --watch"
-
   },
   "repository": {
     "type": "git",
@@ -18,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/arhussain1/frontend-api-challenge/issues"
   },
-  "homepage": "https://github.com/arhussain1/frontend-api-challenge#readme"
+  "homepage": "https://github.com/arhussain1/frontend-api-challenge#readme",
+  "dependencies": {
+    "jest-fetch-mock": "^3.0.3"
+  }
 }

@@ -18,4 +18,16 @@ describe('ChitterModel', ()=> {
       expect(model.getPeeps()).toEqual([peep])
     })
   })
+
+  describe('setPeeps()', () => {
+    it('should take the peeps from the backend and add them to the model', () => {
+      model = new ChitterModel();
+      const peepsFromBackend = [{"id": 1, "body": "Hey"}, {"id": 2, "body": "Hello"}]
+
+      model.setPeeps(peepsFromBackend);
+
+      expect(model.getPeeps()).toEqual(["Hey", "Hello"])
+
+    })
+  })
 })
