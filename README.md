@@ -73,3 +73,16 @@ Lets solve these issues before moving on to the next feature.
 
 The problem is that whenever displayPeeps() is called it just generates all the peeps without clearing the page of the previous peeps
 - [x] to pass this test I will need to create a method to clear all peeps from the page and make displayPeeps() call this method first before doing anything that way it can start with a clean page.
+
+now lets clear the message input
+- [x] lets create a test which fills the input field and clicks Add peep button and expects the input field value to be null
+
+The simplest way to empty the input field is to replace the text currently in the input field with a pair of quotes "" i.e an empty string 
+- [x] create a method called clearInputField() which replaces the inputEl value with an empty string
+
+
+#### Linking the backend server
+
+Now we have the frontend set up to display and add new peeps, now lets introduce the backend server using a fetch command. Let start with fetching the peeps from the backend server and displaying them on our website.
+
+- [ ] To begin lets testdrive the creation of a ChitterApi class with a method to loadPeeps() from the backend make sure to mock fetch in this situation.

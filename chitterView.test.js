@@ -33,20 +33,16 @@ describe ('ChitterView', () => {
 
       inputEl = document.querySelector('#peep-input');
       buttonEl = document.querySelector('#add-peep-button');
+
+      inputEl.value = 'Hey';
+      buttonEl.click();
     })
 
     it('should add a new peep when the user clicks the button Add Peep', () => {
-      inputEl.value = 'Hey';
-      buttonEl.click();
-
       expect(document.querySelector('.peep').innerText).toEqual('Hey');
     })
 
     it('should clear previous peeps and reload all peeps from the model with no duplications', () => {
-      // first peep
-      inputEl.value = 'Hey';
-      buttonEl.click();
-
       // second peep
       inputEl.value = 'Hello';
       buttonEl.click();
@@ -54,6 +50,10 @@ describe ('ChitterView', () => {
       expect(document.querySelectorAll('.peep').length).toEqual(2);
       expect(document.querySelector('.peep').innerText).toEqual('Hey')
       expect(document.querySelectorAll('.peep')[1].innerText).toEqual('Hello');
+    })
+
+    it('should clear the input field after a new peep is added', () => {
+      expect(inputEl.value).toBe("")
     })
   })
 })

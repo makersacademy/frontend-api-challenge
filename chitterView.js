@@ -9,17 +9,17 @@ class ChitterView {
 
     this.buttonEl.addEventListener('click', () => {
       if (this.inputEl) {this.addNewPeep(this.inputEl.value)};
-
       this.displayPeeps()
     })
   }
 
   addNewPeep(peep) {
     this.model.addPeep(peep);
+    this.clearInputField();
   }
 
   displayPeeps() {
-    this.clearAllPeeps();
+    this.clearAllPeeps();                    
 
     const mainContainerEl = document.querySelector('#main-container')
 
@@ -37,6 +37,10 @@ class ChitterView {
     allPeeps.forEach(peep => {
       peep.remove();
     })
+  }
+
+  clearInputField() {
+    this.inputEl.value = null;
   }
 }
 
