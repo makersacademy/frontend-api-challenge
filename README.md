@@ -4,6 +4,10 @@
 
 Implement a frontend in JavaScript for a backend application that allows users to interact with a database of 'peeps'
 
+This is the current view of the app after the peeps have loaded. The symbols beneath each peep change colour on hover, and register a click through jQuery event handlers.
+
+![Index Screenshot](./diagrams/Chitter-Frontend-Screenshot.png)
+
 ## Approach
 
 - Followed the steps in the [Makers Pill](https://github.com/makersacademy/javascript-web-applications/blob/main/pills/setup_minimal_frontend_webapp.md) to set-up a minimal frontend application.
@@ -52,7 +56,7 @@ Implement a frontend in JavaScript for a backend application that allows users t
 
 # Appendix
 
-## Technologies Ueed
+## Technologies Used
 
 - JavaScript (Node.js)
 - jQuery
