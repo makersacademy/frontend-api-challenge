@@ -3,38 +3,56 @@ class PeepsView {
     this.model = model;
     this.mainContainer = document.querySelector("#main-container");
     this.peepsContainer = document.querySelector("#peeps-container");
+    this.buttonEl = document.querySelector("#add-peep-button");
+    this.inputEl = document.querySelector("#peep-input");
+
+    this.buttonEl.addEventListener("click", () => {
+      const newPeep = this.inputEl.value;
+      this.model.addPeep(newPeep, (data) => {
+        this.displayPeeps(data);
+      });
+      this.inputEl.value = "";
+    });
   }
 
-  displayPeeps() {
+  getListOfPeeps() {
     this.model.getPeeps((peeps) => {
-      peeps.forEach((peep) => {
-        const peepEl = document.createElement("div");
-        peepEl.className = "peep";
+      this.displayPeeps(peeps);
+    });
+  }
 
-        const usernameEl = document.createElement("p");
-        usernameEl.className = "peep-user";
-        usernameEl.innerText = peep.user.handle;
-        peepEl.append(usernameEl);
+  displayPeeps(peeps) {
+    document.querySelectorAll(".peep").forEach((element) => {
+      element.remove();
+    });
 
-        const peepItemEl = document.createElement("p");
-        peepItemEl.className = "peep-item";
-        peepItemEl.innerText = peep.body;
-        peepEl.append(peepItemEl);
+    peeps.forEach((peep) => {
+      const peepEl = document.createElement("div");
+      peepEl.className = "peep";
 
-        const dateEl = document.createElement("p");
-        dateEl.className = "peep-date";
-        const date = new Date(peep.created_at).toLocaleDateString("en-uk", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-        dateEl.innerText = date;
-        peepEl.append(dateEl);
+      const usernameEl = document.createElement("p");
+      usernameEl.className = "peep-user";
+      usernameEl.innerText = peep.user.handle;
+      peepEl.append(usernameEl);
 
-        this.peepsContainer.append(peepEl);
+      const peepItemEl = document.createElement("p");
+      peepItemEl.className = "peep-item";
+      peepItemEl.innerText = peep.body;
+      peepEl.append(peepItemEl);
+
+      const dateEl = document.createElement("p");
+      dateEl.className = "peep-date";
+      const date = new Date(peep.created_at).toLocaleDateString("en-uk", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
       });
+      dateEl.innerText = date;
+      peepEl.append(dateEl);
+
+      this.peepsContainer.append(peepEl);
     });
   }
 }

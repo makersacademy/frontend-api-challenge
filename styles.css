@@ -40,20 +40,21 @@ body {
   color: blue;
 }
 
-/* input[type="text"] {
+input[type="text"] {
   width: 80%;
   background: #fefefe;
+  padding: 10px 10px;
+  margin: 15px 15px;
   border-radius: 4px;
-  padding: 10px 8px;
   border: 1px solid #444;
   font-size: 20px;
 }
 
 button {
-  background: #9efa82;
+  background: #eff2edc0;
   border-radius: 4px;
   padding: 10px 8px;
   border: 1px solid #444;
   font-size: 18px;
   cursor: pointer;
-} */
+}

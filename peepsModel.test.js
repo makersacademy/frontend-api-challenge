@@ -8,6 +8,7 @@ beforeEach(() => {
     loadPeeps: (callback) => {
       [{ body: "peep1" }, { body: "peep2" }];
     },
+    createPeep: ("Hello!", (callback) => {}),
   };
   model = new PeepsModel(fakeApi);
 });
@@ -17,6 +18,12 @@ describe("Peeps Model", () => {
     it("loads peeps from the api", () => {
       model.getPeeps((data) => {
         expect(data).toEqual([{ body: "peep1" }, { body: "peep2" }]);
+      });
+    });
+
+    it("adds peep to the api", () => {
+      model.addPeep((data) => {
+        expect(data).toEqual();
       });
     });
   });
