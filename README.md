@@ -35,3 +35,14 @@ Note that others may be doing the same task at the same time, so the data may ch
 
 * [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
 * [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+
+
+### My Approach
+
+I will begin by tackling the first challenge which is to simply view all peeps, to do this I will begin by test driving the following
+
+- [x] Begin by setting up the directory with the necessary packages and a simple index.html which displays Chitter
+
+<!-- chitterModel class:
+- [ ] This will be responsible for communicating with the backend database
+- [ ]  -->
