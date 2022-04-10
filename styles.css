@@ -1,0 +1,159 @@
+html {
+  background: whitesmoke;
+}
+
+body {
+  --twitter-blue: #1d9bf0;
+  --twitter-light-blue: #50b7f5;
+  --twitter-grey: #536471;
+  --twitter-light-grey: #b0b3b6;
+  --twitter-black: #0f1419;
+  --twitter-light-blue-hover: #3091cd;
+  --twitter-white: #e6ecf0;
+  --twitter-white-hover: #bdcbd4;
+  background: var(--twitter-white);
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: var(--twitter-grey);
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Header */
+
+.left {
+  margin-right: auto;
+}
+
+.button {
+  background-color: var(--twitter-light-blue);
+  border-radius: 20px;
+  color: var(--twitter-black);
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.button:hover {
+  background-color: var(--twitter-light-blue-hover);
+  color: var(--twitter-white);
+}
+
+.navbar {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 0px;
+}
+
+/* peep */
+
+.peep-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid var(--twitter-grey);
+  padding: 15px;
+}
+
+.peep-body {
+  align-content: space-between;
+  flex-basis: 100%;
+}
+
+/* .peep-active {
+  background-color: green;
+} */
+
+.peep-container:hover {
+  cursor: pointer;
+  background-color: var(--twitter-white-hover);
+}
+
+.peep-avatar img {
+  border-radius: 50%;
+  height: 50px;
+  margin: 10px;
+}
+
+.peep-flex-header {
+  display: flex;
+  flex-wrap: nowrap;
+  /* padding: 15px; */
+  align-content: space-between;
+}
+
+.peep-author {
+  font-size: 20px;
+  text-transform: capitalize;
+  margin: 0 10px 0 0;
+}
+
+.peep-handle {
+  font-size: 20px;
+  color: var(--twitter-light-grey);
+  margin: 0 10px 0 0;
+}
+
+.peep-text {
+  /* flex: 1; */
+  padding: 12px 0 18px 0;
+  font-size: 25px;
+}
+
+.peep-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.peep-likes:hover {
+  color: rgb(233, 97, 126);
+}
+
+.peep-comments:hover {
+  color: rgb(21, 183, 129);
+}
+
+.peep-repeeps:hover {
+  color: rgb(2 177 255);
+}
+
+/* Login Form */
+
+.login-form {
+  padding: 1em 0 0;
+  display: none;
+}
+.login-form .container {
+  padding: 0 0.5em;
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.login-form input {
+  width: calc(100% - 1em);
+  height: 2em;
+  border: none;
+}
+.login-form .sign-in {
+  text-align: center;
+  cursor: pointer;
+  margin: 10px 0 10px 0;
+}
