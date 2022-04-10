@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chitter app</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      <div class="logo-image">
+        <img src="public/peeplogo.jpeg" width="70" height="70" />
+      </div>
+      <button type="button" id="register-button">Register</button>
+      <button type="button" id="signin-button">Sign In</button>
+    </div>
+
+    <div id="registration" style="display: none">
+      <h2>Register</h2>
+      <p>Please fill in the form to create an account</p>
+      <label for="username"></label>
+      <input
+        type="text"
+        class="registration-input"
+        placeholder="Username"
+        name="username"
+        id="register-username"
+        required
+      />
+      <label for="psw"></label>
+      <input
+        type="text"
+        class="registration-input"
+        placeholder="Password"
+        name="psw"
+        id="register-psw"
+        required
+      />
+      <button type="button" id="register-submit" class="submit">
+        Register
+      </button>
+    </div>
+
+    <div id="sign-in" style="display: none">
+      <h2>Sign-in</h2>
+      <label for="username"></label>
+      <input
+        type="text"
+        class="registration-input"
+        placeholder="Username"
+        name="username"
+        id="signin-username"
+        required
+      />
+      <label for="psw"></label>
+      <input
+        type="text"
+        class="registration-input"
+        placeholder="Password"
+        name="psw"
+        id="signin-psw"
+        required
+      />
+      <button type="button" id="signin-submit" class="submit">Enter</button>
+    </div>
+
+    <div id="main-container">
+      <div class="input">
+        <h2>Latest Peeps...</h2>
+        <input type="text" class="peep-input" id="peep-input" />
+        <button type="button" id="add-peep-button">Add peeps</button>
+      </div>
+
+      <div id="peeps-container"></div>
+    </div>
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
