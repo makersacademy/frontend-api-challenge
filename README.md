@@ -39,6 +39,9 @@ Note that others may be doing the same task at the same time, so the data may ch
 
 ### My Approach
 
+
+#### View all Peeps
+
 I will begin by tackling the first challenge which is to simply view all peeps, to do this I will begin by test driving the following
 
 - [x] Begin by setting up the directory with the necessary packages and a simple index.html which displays Chitter
@@ -52,3 +55,12 @@ chitterView class:
 - [x] This class will be responsible for displaying the data from the model and database
 - [x] should be able to displayPeeps() from the ChitterModel 
 
+
+#### Posting Peeps
+
+To complete this I will add a button allowing users to add a new peep to the ChitterModel, this button should also refresh the page showing the new peep added to the webpage.
+
+- [x] Create a test that fills in a field with a new peep looks for a button, clicks it and expect the new peep to be added to the page.
+- [x] begin by creating the input field and the Add Peep button
+- [ ] Create a method called addNewPeep() in ChitterView which adds the content in the input field to the ChitterModel
+- [ ] Then add an event listener to this button which calls addNewPeep() to add a peep and then calls displayPeeps() to refresh the page
