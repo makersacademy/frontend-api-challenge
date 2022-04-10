@@ -43,6 +43,12 @@ I will begin by tackling the first challenge which is to simply view all peeps, 
 
 - [x] Begin by setting up the directory with the necessary packages and a simple index.html which displays Chitter
 
-<!-- chitterModel class:
-- [ ] This will be responsible for communicating with the backend database
-- [ ]  -->
+chitterModel class:
+- [x] This will be responsible for holding all the peeps and in the future communicating with the backend database
+- [x] should be able to getPeeps() which should return all peeps
+- [x] should be able to add a new peep
+
+chitterView class:
+- [x] This class will be responsible for displaying the data from the model and database
+- [x] should be able to displayPeeps() from the ChitterModel 
+
