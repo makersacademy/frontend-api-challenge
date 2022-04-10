@@ -6,10 +6,59 @@ class PeepsView {
     this.buttonEl = document.querySelector("#add-peep-button");
     this.inputEl = document.querySelector("#peep-input");
 
+    this.registerButtonEl = document.querySelector("#register-button");
+    this.registrationEl = document.querySelector("#registration");
+
+    this.registerButtonEl.addEventListener("click", () => {
+      if (this.registrationEl.style.display === "none") {
+        this.registrationEl.style.display = "block";
+      } else {
+        this.registrationEl.style.display = "none";
+      }
+    });
+
+    this.registerSubmitEl = document.querySelector("#register-submit");
+    this.usernameInputEl = document.querySelector("#register-username");
+    this.pswInputEl = document.querySelector("#register-psw");
+
+    this.registerSubmitEl.addEventListener("click", () => {
+      console.log("hello");
+      const newUser = this.usernameInputEl.value;
+      const password = this.pswInputEl.value;
+      this.model.addUser(newUser, password, () => {
+        console.log("registered");
+      });
+    });
+
+    this.signinButtonEl = document.querySelector("#signin-button");
+    this.signinEl = document.querySelector("#sign-in");
+
+    this.signinButtonEl.addEventListener("click", () => {
+      if (this.signinEl.style.display === "none") {
+        this.signinEl.style.display = "block";
+      } else {
+        this.signinEl.style.display = "none";
+      }
+    });
+
+    this.signinSubmitEl = document.querySelector("#signin-submit");
+    this.signinUserInputEl = document.querySelector("#signin-username");
+    this.signinPswInputEl = document.querySelector("#signin-psw");
+
+    this.signinSubmitEl.addEventListener("click", () => {
+      console.log("XYZ");
+      const signinUser = this.signinUserInputEl.value;
+      const signinPassword = this.signinPswInputEl.value;
+      this.model.signinUser(signinUser, signinPassword, () => {
+        console.log("registered");
+      });
+    });
+
     this.buttonEl.addEventListener("click", () => {
       const newPeep = this.inputEl.value;
-      this.model.addPeep(newPeep, (data) => {
-        this.displayPeeps(data);
+      this.model.addPeep(newPeep, () => {
+        peeps = this.getListOfPeeps();
+        this.displayPeeps(peeps);
       });
       this.inputEl.value = "";
     });
