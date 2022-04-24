@@ -22,8 +22,48 @@ function GetUsers(){
   console.log("inside GetPeepsWithID")
   userId = document.getElementById("peepsid").value;
   console.log(userId)
+  
 
-  fetch('https://chitter-backend-api-v2.herokuapp.com/peeps/'+userId)
+// api result will look like:
+/*
+body: "Congrats for successfully requesting the peeps from the Chitter API! This is the first peep :)"
+created_at: "2020-03-06T17:16:22.601Z"
+id: 1
+likes: (4) [{…}, {…}, {…}, {…}]
+updated_at: "2020-03-06T17:16:22.601Z"
+user: {id: 1, handle: 'edward'}
+*/
+// likes is an ARRAY and will look like this:
+/*
+[
+{
+"user": {
+"id": 162,
+"handle": "Kristof"
+}
+},
+{
+"user": {
+"id": 170,
+"handle": "amit"
+}
+},
+{
+"user": {
+"id": 40,
+"handle": "maria"
+}
+},
+{
+"user": {
+"id": 92,
+"handle": "Mokk"
+}
+}
+]
+
+*/
+fetch('https://chitter-backend-api-v2.herokuapp.com/peeps/'+userId)
 .then(data => {
 if (!data.ok) {
 console.log(data)
