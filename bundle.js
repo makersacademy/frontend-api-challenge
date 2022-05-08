@@ -25,6 +25,29 @@
     }
   });
 
+  // chitterView.js
+  var require_chitterView = __commonJS({
+    "chitterView.js"(exports, module) {
+      var ChitterView2 = class {
+        constructor(model) {
+          this.model = model;
+          this.mainContainerEl = document.querySelector("#main-container");
+        }
+        viewPeeps() {
+          let displayPeeps = this.model.getPeeps();
+          displayPeeps.forEach((peep) => {
+            let div = document.createElement("div");
+            div.innerText = peep;
+            div.className = "peep";
+            this.mainContainerEl.append(div);
+          });
+        }
+      };
+      module.exports = ChitterView2;
+    }
+  });
+
   // index.js
   var ChitterModel = require_chitterModel();
+  var ChitterView = require_chitterView();
 })();
