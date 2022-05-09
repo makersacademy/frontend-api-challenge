@@ -29,12 +29,15 @@
   var require_chitterView = __commonJS({
     "chitterView.js"(exports, module) {
       var ChitterView2 = class {
-        constructor(model) {
-          this.model = model;
+        constructor(model2) {
+          this.model = model2;
           this.mainContainerEl = document.querySelector("#main-container");
           document.querySelector("#submit-peep-button").addEventListener("click", () => {
-            let newPeeps = document.querySelector("#user-input").value;
-            this.addNewPeeps(newPeeps);
+            let newPeep = document.querySelector("#user-input").value;
+            this.addNewPeeps(newPeep);
+            const clearInputField = document.getElementById("user-input");
+            const btn = document.getElementById("#submit-peep-button");
+            clearInputField.value = " ";
           });
         }
         addNewPeeps(newPeeps) {
@@ -42,6 +45,9 @@
           this.viewPeeps();
         }
         viewPeeps() {
+          document.querySelectorAll(".peep").forEach((element) => {
+            element.remove();
+          });
           let displayPeeps = this.model.getPeeps();
           displayPeeps.forEach((peep) => {
             let div = document.createElement("div");
@@ -58,4 +64,7 @@
   // index.js
   var ChitterModel = require_chitterModel();
   var ChitterView = require_chitterView();
+  var model = new ChitterModel();
+  var view = new ChitterView(model);
+  view.viewPeeps();
 })();
