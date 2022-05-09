@@ -1,5 +1,40 @@
 # Chitter API Frontend Challenge
 
+CURRENT BUILD HAS VERY BASIC POSTING PEEPS FUNCTIONALITY WITH NO API/FETCH INTERACTION YET...
+
+# TO RUN:
+-Go to Ramble-Tamble-70/frontend-api-challenge Repo
+-Fork Repo
+- git clone https://github.com/Ramble-Tamble-70/frontend-api-challenge.git 
+in local repo
+
+If you already have NVM installed, to run tests in command line type:
+- nvm use node
+- npm install -g jest esbuild (to install globally)
+- npm install
+
+To run app in its current state, In command line type:
+- npm run build
+- open index.html
+
+App will open up in browser automatically-
+Current basic functionality is just adding peeps
+
+NEXT STAGES:
+
+To learn Fetch API requests
+To add...
+
+Deleting Peeps
+Liking & Unliking Peeps
+
+Creating Users & Logging in
+
+Start improving aesthetics of interface with CSS/HTML
+
+
+---------------------------------------------------------------------
+
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
