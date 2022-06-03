@@ -25,4 +25,28 @@ describe("ChitterApi", () => {
       );
     });
   });
+
+  describe("createUser", () => {
+    it("should post new user and return user id", async () => {
+      fetch.mockResponseOnce(async () => {
+        return JSON.stringify({
+          id: 1,
+          handle: "luke",
+        });
+      });
+
+      const response = await api.createUser("luke", "mypassword");
+
+      expect(response.handle).toBe("luke");
+      expect(response.id).toBe(1);
+      expect(fetch.mock.calls.length).toBe(1);
+      expect(fetch.mock.calls[0][1].method).toEqual("POST");
+      expect(fetch.mock.calls[0][1].body).toEqual(
+        '{"user":{"handle":"luke","password":"mypassword"}}'
+      );
+      expect(fetch.mock.calls[0][0]).toEqual(
+        "https://chitter-backend-api-v2.herokuapp.com/users"
+      );
+    });
+  });
 });
