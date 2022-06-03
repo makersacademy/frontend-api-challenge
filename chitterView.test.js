@@ -16,5 +16,15 @@
     console.log('4')
     expect(document.querySelector('.chit').length).toBe(1)
   })
+
+  it('displays two chits', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html')
+    const chitterView = new ChitterView
+    const chitterModel = new ChitterModel 
+    chitterModel.addChit('hello') 
+    chitterModel.addChit('hello hello') 
+    chitterView.displayChits()
+    expect(document.querySelectorAll('.chit').length).toBe(2)
+  })
  })
 

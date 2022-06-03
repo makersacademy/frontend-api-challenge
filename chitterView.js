@@ -2,17 +2,29 @@ class ChitterView {
   constructor(model) {
     this.chitterModel = model;
     this.maincontainerEl = document.querySelector('#main-container'); 
-    console.log('hello10')
+    this.addChitButtonEl = document.querySelector('#add-chit-button')
+    this.addChitButtonEl.addEventListener('click', () => {
+      const textInput = document.querySelector('#text-input').value;  
+      this.addChit(textInput)
+    });
+  }
+
+  addChit(chit) {
+    this.chitterModel.addChit(chit)
+    this.displayChits()
   }
 
   displayChits() {
+    document.querySelectorAll('.chit').forEach(chit => {
+      chit.remove();
+    });
     (this.chitterModel.getChits().forEach(chit => {
       const chitEl = document.createElement('div')
       chitEl.innerText = chit
       chitEl.className = 'chit';
       this.maincontainerEl.append(chitEl);
+      document.querySelector('#text-input').value = ''
     }))
-    console.log('hello11')
     
   }
 
