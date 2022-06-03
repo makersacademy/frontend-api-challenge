@@ -1,8 +1,11 @@
 class ChitterApi {
-  getPeeps(callback) {
-    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
-      .then((response) => response.json())
-      .then((peeps) => callback(peeps));
+  async fetchPeeps() {
+    const response = await fetch(
+      "https://chitter-backend-api-v2.herokuapp.com/peeps"
+    );
+
+    const peeps = await response.json();
+    return peeps;
   }
 }
 
