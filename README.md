@@ -1,6 +1,5 @@
 # Chitter API Frontend Challenge
 
-* Challenge time: rest of the day and weekend, until Monday 9am
 * Feel free to use Google, your notes, books, etc. but work on your own
 * If you refer to the solution of another coach or student, please put a link to that in your README
 * If you have a partial solution, **still check in a partial solution**
@@ -36,3 +35,5 @@ Note that others may be doing the same task at the same time, so the data may ch
 
 * [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
 * [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+
+//////////////////////
