@@ -20,4 +20,17 @@ describe("ChitterModel", () => {
 
     expect(model.getPeeps()).toEqual([]);
   });
+
+  it("takes an array of peeps and adds them to the model", () => {
+    model.setPeeps(["New peep", "Another peep"]);
+
+    expect(model.getPeeps()).toEqual(["New peep", "Another peep"]);
+  });
+
+  it("resets the peeps before adding them to the model", () => {
+    model.setPeeps(["New peep", "Another peep"]);
+    model.setPeeps(["Test peep"]);
+
+    expect(model.getPeeps()).toEqual(["Test peep"]);
+  });
 });

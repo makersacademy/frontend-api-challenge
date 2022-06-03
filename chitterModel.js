@@ -11,6 +11,11 @@ class ChitterModel {
     this.peeps.push(peep);
   }
 
+  setPeeps(peeps) {
+    this.reset();
+    peeps.forEach((peep) => this.addPeep(peep));
+  }
+
   reset() {
     this.peeps = [];
   }
