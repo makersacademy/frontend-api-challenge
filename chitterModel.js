@@ -10,6 +10,10 @@ class ChitterModel {
   addPeep(peep) {
     this.peeps.push(peep);
   }
+
+  reset() {
+    this.peeps = [];
+  }
 }
 
 module.exports = ChitterModel;

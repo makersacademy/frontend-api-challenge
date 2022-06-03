@@ -14,4 +14,10 @@ describe("ChitterModel", () => {
 
     expect(model.getPeeps()).toEqual(["New peep"]);
   });
+
+  it("resets the peeps to be empty", () => {
+    model.reset();
+
+    expect(model.getPeeps()).toEqual([]);
+  });
 });
