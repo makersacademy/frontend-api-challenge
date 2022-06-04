@@ -1,6 +1,15 @@
 class ChitterModel {
   constructor() {
     this.peeps = [];
+    this.session = null;
+  }
+
+  getSession() {
+    return this.session;
+  }
+
+  saveSession(session) {
+    this.session = session;
   }
 
   getPeeps() {
