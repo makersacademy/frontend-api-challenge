@@ -5,11 +5,14 @@ describe('chitterModel', () => {
 
   describe('#getChitters', () => {
     it('returns an empty array with no chitters', () => {
-      expect(model.getChitters()).toEqual([]);
+      expect(model.getPeeps()).toEqual([]);
     })
 
-    it('', () => {
-
+    it('returns the peeps present in the array', () => {
+      model.addPeep('Bipolar weather we have today');
+      model.addPeep('Queen\'s jubilee weekend');
+      expect(model.getPeeps()).toEqual(['Bipolar weather we have today', 'Queen\'s jubilee weekend']);
+      
     })
   })
 })

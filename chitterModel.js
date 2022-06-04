@@ -1,10 +1,11 @@
 class ChitterModel {
   constructor() {
-    this.chitts = []
+    this.peeps = []
   }
 
-  getChitters = () => this.chitts;
+  getPeeps = () => this.peeps;
 
+  addPeep = (peep) => this.peeps.push(peep);
 
 
 }
