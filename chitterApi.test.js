@@ -49,4 +49,28 @@ describe("ChitterApi", () => {
       );
     });
   });
+
+  describe("logInUser", () => {
+    it("should log in a user", async () => {
+      fetch.mockResponseOnce(async () => {
+        return JSON.stringify({
+          user_id: 1,
+          session_key: "a_valid_session_key",
+        });
+      });
+
+      const response = await api.logInUser("luke", "mypassword");
+
+      expect(response.session_key).toBe("a_valid_session_key");
+      expect(response.user_id).toBe(1);
+      expect(fetch.mock.calls.length).toBe(1);
+      expect(fetch.mock.calls[0][1].method).toEqual("POST");
+      expect(fetch.mock.calls[0][1].body).toEqual(
+        '{"session":{"handle":"luke","password":"mypassword"}}'
+      );
+      expect(fetch.mock.calls[0][0]).toEqual(
+        "https://chitter-backend-api-v2.herokuapp.com/sessions"
+      );
+    });
+  });
 });
