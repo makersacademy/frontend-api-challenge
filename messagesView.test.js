@@ -30,13 +30,13 @@ describe('MessagesView', () => {
     expect(document.querySelectorAll('div.message')[0].innerText).toBe('First message');
   });
 
-  // it('adds a message', () => {
-  //   const inputEl = document.querySelector('#add-message-input');
-  //   const buttonEl = document.querySelector('#add-message-button');
-  //   inputEl.value = 'Second message';
-  //   buttonEl.click();
+  it('adds a message', () => {
+    const inputEl = document.querySelector('#add-message-input');
+    const buttonEl = document.querySelector('#add-message-button');
+    inputEl.value = 'Second message';
+    buttonEl.click();
 
-  //   expect(document.querySelectorAll('div.message').length).toEqual(1);
-  //   expect(document.querySelectorAll('div.message')[0].innerText).toBe('Second message');
-  // });
+    expect(document.querySelectorAll('div.message').length).toEqual(1);
+    expect(document.querySelectorAll('div.message')[0].innerText).toBe('Second message');
+  });
 });
