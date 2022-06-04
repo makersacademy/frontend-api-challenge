@@ -6,12 +6,12 @@ describe('MessagesModel', () => {
     model = new MessagesModel();
   });
 
-  it('displays all the messages', () => {
-    expect(model.displayMessages()).toEqual([]);
+  it('gets the messages', () => {
+    expect(model.getMessages()).toEqual([]);
   });
 
   it('adds a message', () => {
     model.addMessage('First message');
-    expect(model.displayMessages()).toEqual(['First message']);
+    expect(model.getMessages()).toEqual(['First message']);
   });
 });

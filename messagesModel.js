@@ -4,7 +4,7 @@ class MessagesModel {
     this.messages = [];
   }
 
-  displayMessages() {
+  getMessages() {
     return this.messages;    
   }
 
