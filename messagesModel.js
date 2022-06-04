@@ -9,7 +9,11 @@ class MessagesModel {
   }
 
   addMessage(text) {
-    this.messages.push(text);
+    this.messages.push({body: text});
+  }
+
+  setMessages(arrayOfMessages) {
+    this.messages = arrayOfMessages;
   }
 };
 

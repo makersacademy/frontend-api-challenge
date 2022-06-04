@@ -12,6 +12,11 @@ describe('MessagesModel', () => {
 
   it('adds a message', () => {
     model.addMessage('First message');
-    expect(model.getMessages()).toEqual(['First message']);
+    expect(model.getMessages()).toEqual([{body: 'First message'}]);
+  });
+
+  it('sets the messages', () => {
+    model.setMessages(['First one', 'Second one']);
+    expect(model.getMessages()).toEqual(['First one', 'Second one']);
   });
 });

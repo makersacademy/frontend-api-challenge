@@ -1,6 +1,7 @@
 class MessagesView {
-  constructor(model) {
+  constructor(model, api) {
     this.model = model;
+    this.api = api;
 
     this.mainContainerEl = document.querySelector('#main-container');
     this.addMessageInput = document.querySelector('#add-message-input');
@@ -24,9 +25,16 @@ class MessagesView {
 
     messages.forEach(message => {
       const messageEl = document.createElement('div');
-      messageEl.innerText = message;
+      messageEl.innerText = message.body;
       messageEl.className = 'message';
       this.mainContainerEl.append(messageEl);
+    });
+  }
+
+  displayMessagesFromApi() {
+    this.api.loadMessages(data => {
+      this.model.setMessages(data);
+      this.displayMessages();
     });
   }
 };
