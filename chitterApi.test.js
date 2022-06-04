@@ -21,6 +21,14 @@ describe('ChitterApi class', () => {
       );
     });
   })
+
+  it('catches errors', () => {
+    fetch.mockReject(() => 'API Failure');
+
+    const api = new ChitterApi;
+    api.fetchPeeps((peepsObject) => {
+      expect(peepsObject).toEqual(null);
+    })
+  })
 })
 
-//{"id":1349,"body":"luke is the best","created_at":"2022-06-03T17:43:02.492Z","updated_at":"2022-06-03T17:43:02.492Z","user":{"id":975,"handle":"lukeyluke"},"likes":[]},
