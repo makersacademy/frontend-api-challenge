@@ -4,6 +4,12 @@ class ChitterModel {
     this.loadedPeeps = peeps;
   }
 
+  loadPeeps(peeps) {
+    peeps.forEach((peep) => {
+      this.loadedPeeps.push(peep);
+    })
+  }
+
   returnLoadedPeeps() {
     return this.loadedPeeps;
   }
