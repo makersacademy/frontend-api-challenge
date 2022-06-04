@@ -12,7 +12,11 @@ describe('chitterModel', () => {
       model.addPeep('Bipolar weather we have today');
       model.addPeep('Queen\'s jubilee weekend');
       expect(model.getPeeps()).toEqual(['Bipolar weather we have today', 'Queen\'s jubilee weekend']);
-      
+    })
+
+    it('return an empty array when the peeps are reset', () => {
+      model.reset();
+      expect(model.getPeeps()).toEqual([]);
     })
   })
 })
