@@ -15,6 +15,10 @@ describe('ChitterApi class', () => {
     api.fetchPeeps((peepsObject) => {
       let peeps = peepsObject;
       expect(peeps[0].body).toEqual("Testing testing 1,2");
+      expect(fetch).toHaveBeenCalledTimes(1);
+      expect(fetch).toHaveBeenCalledWith(
+        "https://chitter-backend-api-v2.herokuapp.com/peeps"
+      );
     });
   })
 })
