@@ -28,10 +28,14 @@ describe("ChitterView", () => {
       return { user_id: 1, session_key: "a_valid_session_key" };
     });
 
+    api.createPeep.mockImplementation(() => {
+      return { body: "my first peep" };
+    });
+
     view = new ChitterView(model, api);
   });
 
-  describe("displayPeeps", () => {
+  describe("displayPeepsFromApi", () => {
     it("should display peeps from server on page", async () => {
       await view.displayPeepsFromApi();
 
@@ -86,6 +90,32 @@ describe("ChitterView", () => {
         user_id: 1,
         session_key: "a_valid_session_key",
       });
+    });
+  });
+
+  describe("newPeep", () => {
+    it("should create a new peep", async () => {
+      const session = await api.logInUser("luke", "password123");
+
+      await view.newPeep(session.session_key, session.user_id, "my first peep");
+
+      expect(document.querySelectorAll("div.peep").length).toBe(1);
+      expect(document.querySelectorAll("div.peep")[0].innerText).toBe(
+        "my first peep"
+      );
+    });
+
+    it("should allow the user to create a new peep", async () => {
+      const session = await view.signIn("luke", "password123");
+
+      view.peepInput.value = "my first peep";
+      view.peepSubmit.click();
+
+      expect(api.createPeep).toBeCalledWith(
+        "a_valid_session_key",
+        1,
+        "my first peep"
+      );
     });
   });
 });

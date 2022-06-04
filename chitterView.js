@@ -32,6 +32,16 @@ class ChitterView {
     this.loginSubmit.addEventListener("click", () => {
       this.signIn(this.loginHandleInput.value, this.loginPasswordInput.value);
     });
+
+    this.peepInput = document.querySelector("#peep-input");
+    this.peepSubmit = document.querySelector("#peep-submit");
+    this.peepSubmit.addEventListener("click", () => {
+      this.newPeep(
+        this.model.getSession().session_key,
+        this.model.getSession().user_id,
+        this.peepInput.value
+      );
+    });
   }
 
   async displayPeepsFromApi() {
@@ -41,10 +51,18 @@ class ChitterView {
   }
 
   displayPeeps() {
+    this.clearPeepDivs();
     let peeps = this.model.getPeeps();
 
     peeps.forEach((peep) => {
       this.addPeepEl(peep.body);
+    });
+  }
+
+  clearPeepDivs() {
+    const peeps = document.querySelectorAll("div.peep");
+    peeps.forEach((peep) => {
+      peep.remove();
     });
   }
 
@@ -65,7 +83,7 @@ class ChitterView {
     if (handle && password) {
       const response = await this.api.logInUser(handle, password);
 
-      view.model.saveSession(response);
+      this.model.saveSession(response);
 
       this.noticeEl.innerText = `Thanks ${response.session_key} you have successfully logged in`;
 
@@ -73,7 +91,17 @@ class ChitterView {
       this.loginPasswordInput.value = null;
 
       this.showAndHide("#login-container");
+      this.showAndHide("#peep-container");
     }
+  }
+
+  async newPeep(session_key, user_id, body) {
+    const peep = await this.api.createPeep(session_key, user_id, body);
+
+    this.model.addNewPeep(peep);
+    this.displayPeeps();
+
+    this.peepInput.value = null;
   }
 
   addPeepEl(peepBody) {
