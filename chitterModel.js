@@ -8,7 +8,11 @@ class ChitterModel {
   }
 
   addPeep(peep) {
-    this.peeps.push(peep)
+    this.peeps.push(peep);
+  }
+
+  setPeeps(peeps) {
+    this.peeps = peeps;
   }
 }
 
