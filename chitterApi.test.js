@@ -23,6 +23,32 @@ describe("Api", () => {
         expect(fetch.mock.calls[0][0]).toEqual("http://localhost:3000/peeps");
 
         done();
+
+      });
+    });
+  });
+
+  describe("createPeep", () => {
+    it("creates a new peep on the server", (done) => {
+      const api = new ChitterApi();
+
+      fetch.mockResponseOnce(async (request) => {
+        try {
+          expect(request.method).toBe("POST");
+          const requestBody = await request.json();
+          expect(requestBody.content).toEqual("New peep");
+        } catch (error) {
+          console.log(error);
+          done(error);
+        }
+
+        return JSON.stringify(["New peep"]);
+      });
+
+      api.createPeep("New peep", (response) => {
+        expect(response[0]).toBe("New peep");
+
+        done();
       });
     });
   });
