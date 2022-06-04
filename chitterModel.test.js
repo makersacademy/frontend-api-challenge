@@ -34,6 +34,13 @@ describe("ChitterModel", () => {
 
       expect(model.getPeeps()).toEqual(["Test peep"]);
     });
+
+    it("allows a new peep to be added to the start of the list of peeps", () => {
+      model.addPeep("first peep");
+      model.addNewPeep("second peep");
+
+      expect(model.getPeeps()).toEqual(["second peep", "first peep"]);
+    });
   });
 
   describe("sessions", () => {
