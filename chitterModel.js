@@ -1,7 +1,7 @@
 class ChitterModel {
 
-  constructor() {
-    this.loadedPeeps = [];
+  constructor(peeps = []) {
+    this.loadedPeeps = peeps;
   }
 
   returnLoadedPeeps() {
