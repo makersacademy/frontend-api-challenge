@@ -1,0 +1,1 @@
+console.log("The Chitter app is running");
