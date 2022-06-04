@@ -41,6 +41,24 @@ class ChitterApi {
     const confirmation = await response.json();
     return confirmation;
   }
+
+  async createPeep(session_key, user_id, body) {
+    const response = await fetch(
+      "https://chitter-backend-api-v2.herokuapp.com/peeps",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Token token=${session_key}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          peep: { user_id: user_id, body: body },
+        }),
+      }
+    );
+    const peep = await response.json();
+    return peep;
+  }
 }
 
 module.exports = ChitterApi;

@@ -73,4 +73,38 @@ describe("ChitterApi", () => {
       );
     });
   });
+
+  describe("createPeep", () => {
+    it("should create a peeps", async () => {
+      fetch.mockResponseOnce(async () => {
+        return JSON.stringify({
+          id: 1,
+          body: "my first peep",
+          user: {
+            id: 1,
+            handle: "luke",
+          },
+        });
+      });
+
+      const response = await api.createPeep(
+        "a_valid_session_key",
+        1,
+        "my first peep"
+      );
+
+      expect(response.body).toBe("my first peep");
+      expect(fetch.mock.calls.length).toBe(1);
+      expect(fetch.mock.calls[0][1].method).toEqual("POST");
+      expect(fetch.mock.calls[0][1].headers.Authorization).toEqual(
+        "Token token=a_valid_session_key"
+      );
+      expect(fetch.mock.calls[0][1].body).toEqual(
+        '{"peep":{"user_id":1,"body":"my first peep"}}'
+      );
+      expect(fetch.mock.calls[0][0]).toEqual(
+        "https://chitter-backend-api-v2.herokuapp.com/peeps"
+      );
+    });
+  });
 });
