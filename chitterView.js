@@ -4,19 +4,17 @@ class ChitterView {
     this.api = api;
 
     this.mainContainerEl = document.querySelector("#main-container");
-    this.createAccountBtn = document.querySelector("#create-account-btn");
     this.noticeEl = document.querySelector("#notice");
 
+    this.createAccountBtn = document.querySelector("#create-account-btn");
     this.createHandleInput = document.querySelector("#create-account-handle");
     this.createPasswordInput = document.querySelector(
       "#create-account-password"
     );
     this.createAccountSubmit = document.querySelector("#create-account-submit");
-
     this.createAccountBtn.addEventListener("click", () => {
       this.showAndHide("#create-account-container");
     });
-
     this.createAccountSubmit.addEventListener("click", () => {
       this.createAccount(
         this.createHandleInput.value,
@@ -28,11 +26,9 @@ class ChitterView {
     this.loginHandleInput = document.querySelector("#login-handle");
     this.loginPasswordInput = document.querySelector("#login-password");
     this.loginSubmit = document.querySelector("#login-submit");
-
     this.loginBtn.addEventListener("click", () => {
       this.showAndHide("#login-container");
     });
-
     this.loginSubmit.addEventListener("click", () => {
       this.signIn(this.loginHandleInput.value, this.loginPasswordInput.value);
     });
