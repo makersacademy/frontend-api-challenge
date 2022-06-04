@@ -65,6 +65,8 @@ class ChitterView {
     if (handle && password) {
       const response = await this.api.logInUser(handle, password);
 
+      view.model.saveSession(response);
+
       this.noticeEl.innerText = `Thanks ${response.session_key} you have successfully logged in`;
 
       this.loginHandleInput.value = null;

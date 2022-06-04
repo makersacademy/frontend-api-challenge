@@ -43,7 +43,7 @@ describe("ChitterView", () => {
   });
 
   describe("createAccount", () => {
-    it("should allow the user to sign up", async () => {
+    it("signs up the user", async () => {
       await view.createAccount("luke", "password123");
 
       expect(document.querySelector("#notice").innerText).toEqual(
@@ -77,6 +77,15 @@ describe("ChitterView", () => {
       view.loginSubmit.click();
 
       expect(api.logInUser).toBeCalledWith("luke", "password123");
+    });
+
+    it("saves the session in the model", async () => {
+      await view.signIn("luke", "password123");
+
+      expect(model.getSession()).toEqual({
+        user_id: 1,
+        session_key: "a_valid_session_key",
+      });
     });
   });
 });
