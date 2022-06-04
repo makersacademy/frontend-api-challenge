@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ErlantzR/frontend-api-challenge#readme",
   "dependencies": {
-    "jest": "^28.1.0"
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0"
   }
 }
