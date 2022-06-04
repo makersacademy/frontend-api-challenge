@@ -5,6 +5,10 @@ class ChitterModel {
 
   getChitters = () => this.chitts;
 
+
+
 }
 
 module.exports = ChitterModel;
+
+//  api > model > view

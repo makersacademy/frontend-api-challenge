@@ -7,6 +7,10 @@ describe('chitterModel', () => {
     it('returns an empty array with no chitters', () => {
       expect(model.getChitters()).toEqual([]);
     })
+
+    it('', () => {
+
+    })
   })
 })
 

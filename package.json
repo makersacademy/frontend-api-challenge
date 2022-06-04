@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Farzan-I/frontend-api-challenge#readme",
   "dependencies": {
-    "jest": "^28.1.0"
+    "jest": "^28.1.0",
+    "jest-fetch-mock": "^3.0.3"
   }
 }
