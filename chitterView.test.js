@@ -27,8 +27,8 @@ describe ('ChitterView class ', () => {
 
       view.displayPeeps();
 
-      expect(document.querySelectorAll('il.peeps').length).toBe(2);
-      expect(document.querySelector('il.peeps').innerText).toBe('This is a test peep');
+      expect(document.querySelectorAll('div.peeps').length).toBe(2);
+      expect(document.querySelector('div.peeps').innerText).toBe('This is a test peep');
     });
   })
 })

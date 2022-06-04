@@ -4,6 +4,7 @@ class ChitterView {
   }
 
   displayPeeps() {
+    console.log(this.model);
     this.model.getPeeps().forEach((peep) => {
       const peepEl = document.createElement('div');
       peepEl.className = 'peeps';
