@@ -20,6 +20,10 @@ describe("ChitterView", () => {
       createUser: () => {
         return { handle: "luke", id: 1 };
       },
+
+      logInUser: () => {
+        return { user_id: 1, session_key: "a_valid_session_key" };
+      },
     };
 
     view = new ChitterView(model, mockApi);
@@ -34,23 +38,19 @@ describe("ChitterView", () => {
     );
   });
 
-  it("should allow the user to login", async () => {
-    const createAccountBtn = document.querySelector("#create-account-btn");
-    createAccountBtn.click();
+  it("should allow the user to sign up", async () => {
+    await view.createAccount("luke", "password123");
 
-    const handleInput = document.querySelector("#create-account-handle");
-    handleInput.value = "luke";
+    expect(document.querySelector("#notice").innerText).toEqual(
+      "Thanks luke your account has been created"
+    );
+  });
 
-    const passwordInput = document.querySelector("#create-account-password");
-    passwordInput.value = "password123";
+  it("should allow the user to log in", async () => {
+    await view.signIn("luke", "password123");
 
-    const createSubmitBtn = document.querySelector("#create-account-submit");
-    createSubmitBtn.click();
-
-    setTimeout(() => {
-      expect(document.querySelector("#notice").innerText).toEqual(
-        "Thanks luke your account has been created"
-      );
-    }, 0);
+    expect(document.querySelector("#notice").innerText).toEqual(
+      "Thanks a_valid_session_key you have successfully logged in"
+    );
   });
 });
