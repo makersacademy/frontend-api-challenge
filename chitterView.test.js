@@ -3,6 +3,7 @@
  */
 
 const fs = require('fs');
+const ChitterApi = require('./chitterApi');
 const ChitterModel = require('./chitterModel');
 const ChitterView = require('./chitterView');
 
@@ -31,4 +32,5 @@ describe('ChitterView class', () => {
     expect(displayedPeeps.length).toEqual(1);
     expect(displayedPeeps[0].innerText).toEqual("this is a test");
   });
+
 });

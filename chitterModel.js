@@ -8,6 +8,8 @@ class ChitterModel {
     peeps.forEach((peep) => {
       this.loadedPeeps.push(peep);
     })
+    console.log('Loaded peeps are as follows:')
+    console.log(this.loadedPeeps);
   }
 
   returnLoadedPeeps() {
