@@ -3,9 +3,9 @@ class ChitterModel {
     this.peeps = [];
   }
  
-  setPeeps(peeps){
+  setPeeps(peeps) {
     this.reset();
-    peeps.forEach((peep) => this.addPeep(peep));
+    peeps.forEach(peep => this.addPeep(peep));
   }
  
   getPeeps() {

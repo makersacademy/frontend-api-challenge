@@ -3,53 +3,26 @@ const ChitterApi = require('./chitterApi');
 require('jest-fetch-mock').enableFetchMocks()
 
 describe('Chitter Api class', () => {
+
+  beforeEach(() => {
+    api = new ChitterApi();
+  })
+
   describe('#loadPeeps', () => {
-    it('calls fetch (GET request) and loads peeps from the backend server', (done) => {
-      const api = new ChitterApi();
+    it('calls fetch (GET request) and loads peeps from the backend server', async () => {
 
-      fetch.mockResponseOnce( async (request) => {
-        try { 
-          expect(request.method).toBe('GET');
-        } catch (error) {
-          console.log('error:', error);
-          done(error);
-        }
+      fetch.mockResponseOnce(
+        JSON.stringify({
+          peep: "Test peep.",
+        })
+      );
 
-        return JSON.stringify([`This is a peep from the backend server`]);
+      const response = await api.loadPeeps();
 
-      });
-
-      api.loadPeeps((response) => {
-        expect(response[0]).toBe(`This is a peep from the backend server`);
-        expect(fetch.mock.calls[0][0]).toEqual(`https://chitter-backend-api-v2.herokuapp.com/peeps`);
-        done();
-      })
+      expect(response.peep).toBe('Test peep.');
+      expect(fetch.mock.calls.length).toBe(1);
+      expect(fetch.mock.calls[0][0]).toEqual(`https://chitter-backend-api-v2.herokuapp.com/peeps`)
     });
   });
 
-  describe('#createPeep', () => {
-    it('calls fetch (POST request) and creates a note on the backend server', (done) => {
-      const api = new ChitterApi();
-
-      fetch.mockResponseOnce( async (request) => {
-        try {
-          expect(request.method).toBe('POST');
-          const requestBody = await request.json();
-          expect(requestBody.content).toEqual('A new peep.');
-        } catch (error) {
-          console.log('error:', error);
-          done(error);
-        }
-
-        return JSON.stringify(['A new peep.']);
-
-      });
-
-      api.createPeep('A new peep.', (response) => {
-        expect(response[0]).toBe('A new peep.');
-
-        done();
-      });
-    });
-  });
 });
