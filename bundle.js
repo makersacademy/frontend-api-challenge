@@ -94,13 +94,13 @@
             body: `{"peep": {"user_id":1013, "body":"${chit}"}}`
           });
         }
-        createUser(callback) {
+        createUser(username, password, callback) {
           fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: '{"user": {"handle":"stevie15", "password":"1234"}}'
+            body: `{"user": {"handle":"${username}", "password":"${password}"}}`
           }).then((response) => response.json()).then((data) => {
             callback(data);
             console.log("Success:", data);
@@ -109,13 +109,17 @@
           });
         }
         createSession() {
-          "https://chitter-backend-api-v2.herokuapp.com/sessions", {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify('{"session": {"handle":"stevie6", "password":"1234"}}')
-          };
+            body: '{"session": {"handle":"stevie18", "password":"1234"}}'
+          }).then((response) => response.json()).then((data) => {
+            console.log("Success:", data);
+          }).catch((error) => {
+            console.error("Error:", error);
+          });
         }
       };
       module.exports = ChitterApi2;
@@ -131,9 +135,7 @@
   var chitterView = new ChitterView(chitterModel, api);
   chitterModel.addChit("chitterModel.addChit works");
   chitterView.displayChits();
-  api.createUser((data) => {
-    api.createSession(data);
-  });
+  api.createSession();
   api.loadChits((chits2) => {
     chitterModel.setChits(chits2);
     chitterView.displayChits();
