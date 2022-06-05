@@ -32,6 +32,27 @@ class ChitterApi {
       console.error('There was an error!', error); 
     }
   }
+
+  postPeep(sessionKey, userID, peepContent, callback) {
+    try {
+      fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Token token=${sessionKey}`
+        },
+        body: JSON.stringify({
+          "peep": {
+            "user_id": userID, 
+            "body": peepContent
+        }})
+      })
+      .then(response => response.json())
+      .then(data => callback(data));
+    } catch (error) {
+      console.error('There was an error!', error); 
+    }
+  }
 }
 
 module.exports = ChitterApi;

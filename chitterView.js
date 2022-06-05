@@ -12,6 +12,10 @@ class ChitterView {
     this.loginButtonEl.addEventListener('click', () => {
       this.checkAuthorisation();
     });
+    this.newPeepButtonEl = document.querySelector('#peep-button');
+    this.newPeepButtonEl.addEventListener('click', () => {
+      this.newPeepToApi();
+    });
   }
 
   importPeepsFromServer() {
@@ -41,8 +45,17 @@ class ChitterView {
       this.sessionKey = response.session_key;
       console.log(this.userID, this.sessionKey);
     });
-  };
+  }
 
-}
+  newPeepToApi() {
+    if (this.sessionKey === null) {
+      throw new Error('Not Logged In');
+    };
+    let peepContent = document.querySelector('#new-peep').value;
+    this.api.postPeep(this.sessionKey, this.userID, peepContent, (result) => {
+      console.log(result);
+    })
+  }
+};
 
 module.exports = ChitterView;
