@@ -3,18 +3,17 @@ class ChitterView {
     this.model = model;
     this.api = api;
 
-    this.mainContainerEl = document.querySelector("#main-container");
-    this.noticeEl = document.querySelector("#notice");
+    this.peepList = document.querySelector("#peep-list");
+    this.successAlert = document.querySelector("#success-alert");
+    this.failAlert = document.querySelector("#fail-alert");
 
-    this.createAccountBtn = document.querySelector("#create-account-btn");
+    this.createAccountBtn = document.querySelector("#user-create-btn");
     this.createHandleInput = document.querySelector("#create-account-handle");
     this.createPasswordInput = document.querySelector(
       "#create-account-password"
     );
     this.createAccountSubmit = document.querySelector("#create-account-submit");
-    this.createAccountBtn.addEventListener("click", () => {
-      this.showAndHide("#create-account-container");
-    });
+
     this.createAccountSubmit.addEventListener("click", () => {
       this.createAccount(
         this.createHandleInput.value,
@@ -22,13 +21,10 @@ class ChitterView {
       );
     });
 
-    this.loginBtn = document.querySelector("#login-btn");
+    this.loginBtn = document.querySelector("#user-login-btn");
     this.loginHandleInput = document.querySelector("#login-handle");
     this.loginPasswordInput = document.querySelector("#login-password");
     this.loginSubmit = document.querySelector("#login-submit");
-    this.loginBtn.addEventListener("click", () => {
-      this.showAndHide("#login-container");
-    });
     this.loginSubmit.addEventListener("click", () => {
       this.signIn(this.loginHandleInput.value, this.loginPasswordInput.value);
     });
@@ -55,12 +51,12 @@ class ChitterView {
     let peeps = this.model.getPeeps();
 
     peeps.forEach((peep) => {
-      this.addPeepEl(peep.body);
+      this.addPeepLi(peep);
     });
   }
 
   clearPeepDivs() {
-    const peeps = document.querySelectorAll("div.peep");
+    const peeps = document.querySelectorAll("li.peep");
     peeps.forEach((peep) => {
       peep.remove();
     });
@@ -70,27 +66,30 @@ class ChitterView {
     if (handle && password) {
       const user = await this.api.createUser(handle, password);
 
-      this.noticeEl.innerText = `Thanks ${user.handle} your account has been created`;
+      // this.showAndHide("#success-alert");
+      // this.successAlert.innerText = `Thanks ${user.handle} your account has been created`;
 
       this.createHandleInput.value = null;
       this.createPasswordInput.value = null;
 
-      this.showAndHide("#create-account-container");
+      this.signIn(handle, password);
     }
   }
 
   async signIn(handle, password) {
     if (handle && password) {
       const response = await this.api.logInUser(handle, password);
-
+      
       this.model.saveSession(response);
 
-      this.noticeEl.innerText = `Thanks ${response.session_key} you have successfully logged in`;
+      this.showAndHide("#success-alert");
+      this.successAlert.innerText = `Thanks ${response.session_key} you have successfully logged in`;
 
       this.loginHandleInput.value = null;
       this.loginPasswordInput.value = null;
 
-      this.showAndHide("#login-container");
+      this.showAndHide("#user-container");
+
       this.showAndHide("#peep-container");
     }
   }
@@ -104,16 +103,25 @@ class ChitterView {
     this.peepInput.value = null;
   }
 
-  addPeepEl(peepBody) {
-    const newDiv = document.createElement("div");
-    newDiv.innerText = peepBody;
-    newDiv.setAttribute("class", "peep");
-    this.mainContainerEl.append(newDiv);
+  addPeepLi(peep) {
+    const time = this.formatTime(peep);
+
+    this.peepList.innerHTML += `<li class="list-group-item peep">
+      <h5 class="fw-bold">${peep.user.handle}</h5>
+      <p class="text-muted mb-2 fw-bold">${time}</p>
+      <p class="text-muted mb-0 peep">${peep.body}</p>
+    </li>`;
+  }
+
+  formatTime(peep) {
+    let time = new Date(peep.created_at);
+
+    return time.toDateString();
   }
 
   showAndHide(element) {
     var x = document.querySelector(element);
-    if (x.style.display == "none") {
+    if (x.style.display === "none") {
       x.style.display = "block";
     } else {
       x.style.display = "none";
