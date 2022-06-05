@@ -54,7 +54,33 @@ describe('MessagesView', () => {
     
     // expect(document.querySelectorAll('div.message').length).toEqual(1);
     // expect(document.querySelectorAll('div.message')[0].innerText).toBe('Api test message');
-  })
+  });
+
+  it('displays the registration form and allows user to submit their details', () => {
+    document.querySelector('#sign-up-button').click();
+    document.querySelector('#handle-input').value = 'john';
+    document.querySelector('#password-input').value = '123';
+    document.querySelector('#sign-up-submit-button').click();
+
+    expect(api.createNewUser).toHaveBeenCalled();
+  });
+
+  it('registers the user', () => {
+
+  });
+
+  it('displays the login form and allows user to submit their details', () => {
+    document.querySelector('#login-button').click();
+    document.querySelector('#handle-input-login').value = 'john';
+    document.querySelector('#password-input-login').value = '123';
+    document.querySelector('#login-submit-button').click();
+
+    expect(api.newSession).toHaveBeenCalled();
+  });
+
+  it('logs in the user', () => {
+
+  });
 
   it('adds a message', () => {
     const inputEl = document.querySelector('#add-message-input');
