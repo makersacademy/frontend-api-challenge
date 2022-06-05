@@ -1,3 +1,26 @@
+Russell's Frontend-api-Chitter Challenge in JS:
+=================
+
+Progress.
+
+I can display the body of the last 50 peeps. Currently View tests are throwing up errors.
+
+Didn't get a chance to implement the others below.
+
+* Creating Users
+* Logging in
+* Posting Peeps
+* Viewing all Peeps (Semi-Completed: Can view the body, not the user id, time or like/dislike) 
+* Viewing individual Peeps
+* Deleting Peeps
+* Liking Peeps
+* Unliking Peeps
+
+Planning
+-------
+
+Followed through using the GitHubApi and Notes-App from last week.
+
 # Chitter API Frontend Challenge
 
 * Feel free to use Google, your notes, books, etc. but work on your own
