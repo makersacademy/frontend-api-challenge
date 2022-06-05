@@ -108,15 +108,17 @@
             console.error("Error:", error);
           });
         }
-        createSession() {
+        createSession(data, password) {
+          console.log("here's the session", data);
+          console.log(data.handle);
           fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: '{"session": {"handle":"stevie18", "password":"1234"}}'
-          }).then((response) => response.json()).then((data) => {
-            console.log("Success:", data);
+            body: `{"session": {"handle":"${data.handle}", "password":"${password}"}}`
+          }).then((response) => response.json()).then((data2) => {
+            console.log("Success:", data2);
           }).catch((error) => {
             console.error("Error:", error);
           });
@@ -135,7 +137,9 @@
   var chitterView = new ChitterView(chitterModel, api);
   chitterModel.addChit("chitterModel.addChit works");
   chitterView.displayChits();
-  api.createSession();
+  api.createUser("stevie27", "1234", (data) => {
+    api.createSession(data, "1234");
+  });
   api.loadChits((chits2) => {
     chitterModel.setChits(chits2);
     chitterView.displayChits();

@@ -9,10 +9,10 @@ chitterModel.addChit('chitterModel.addChit works');
 
 chitterView.displayChits() 
 // api.createChit('hello')
-// api.createUser('stevie18', '1234', data => {
-//    api.createSession(data)
-// })
-api.createSession()
+api.createUser('stevie27', '1234', data => {
+   api.createSession(data, '1234')
+})
+// api.createSession()
 // chitterView.addChit('hello')
 api.loadChits((chits) => {
   chitterModel.setChits(chits)
