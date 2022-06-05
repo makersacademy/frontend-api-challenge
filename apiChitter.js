@@ -10,13 +10,13 @@ class ApiChitter {
   }
 
   createPeep(body, handle, callback) {
-    fetch('https://chitter-backend-api-v2.herokuapp.com/users', {
+    fetch(this.api, {
       headers: { 'Content-Type': 'application/json' },
       method: 'POST',
       body: JSON.stringify({
         user: {
-          body: body,
-          handle: handle
+          body: 'body',
+          handle: 'handle',
         },
       }),
     })
