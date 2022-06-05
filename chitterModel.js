@@ -1,4 +1,5 @@
 class ChitterModel {
+
   constructor() {
     this.peeps = []
   }
@@ -13,4 +14,5 @@ class ChitterModel {
 
 module.exports = ChitterModel;
 
-//  api > model > view
+// best way to approach this task:
+// 1.api > 2.model > 3.view
