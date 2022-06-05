@@ -9,8 +9,8 @@
  describe('ChitterView', () => {
    it('displays a chit', () => {
     document.body.innerHTML = fs.readFileSync('./index.html')
-    const chitterView = new ChitterView
-    const chitterModel = new ChitterModel    
+    const chitterModel = new ChitterModel  
+    const chitterView = new ChitterView(chitterModel)
     chitterModel.addChit('hello')    
     chitterView.displayChits() 
     console.log('4')
@@ -19,8 +19,8 @@
 
   it('displays two chits', () => {
     document.body.innerHTML = fs.readFileSync('./index.html')
-    const chitterView = new ChitterView
     const chitterModel = new ChitterModel 
+    const chitterView = new ChitterView(chitterModel)
     chitterModel.addChit('hello') 
     chitterModel.addChit('hello hello') 
     chitterView.displayChits()

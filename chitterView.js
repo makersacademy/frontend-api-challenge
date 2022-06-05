@@ -1,6 +1,8 @@
 class ChitterView {
   constructor(model) {
+    console.log(model)
     this.chitterModel = model;
+    console.log(this.chitterModel)
     this.maincontainerEl = document.querySelector('#main-container'); 
     this.addChitButtonEl = document.querySelector('#add-chit-button')
     this.addChitButtonEl.addEventListener('click', () => {
@@ -9,12 +11,17 @@ class ChitterView {
     });
   }
 
-  addChit(chit) {
-    this.chitterModel.addChit(chit)
+  addChit(input) {
+    console.log('test10')
+    this.chitterModel.addChit(input)
+    console.log('test20')
+    // this.api.createChit(input)
+    console.log('test30')
     this.displayChits()
   }
 
   displayChits() {
+    console.log(this.chitterModel)
     document.querySelectorAll('.chit').forEach(chit => {
       chit.remove();
     });
@@ -29,6 +36,7 @@ class ChitterView {
   }
 
   // displayChits() {
+  //   // console.log(this.chitterModel)
   //   this.chitterModel.getChits()
   //   chits = this.chitterModel.getChits()
   //   chits.forEach(chit => {

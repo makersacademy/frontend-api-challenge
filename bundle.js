@@ -17,6 +17,13 @@
         addChit(chit) {
           this.chits.push(chit);
         }
+        reset() {
+          this.chits = [];
+        }
+        setChits(chits2) {
+          this.reset();
+          chits2.forEach((chit) => this.chits.push(`${chit.user.handle}: ${chit.body}`));
+        }
       };
       module.exports = ChitterModel2;
     }
@@ -27,7 +34,9 @@
     "chitterView.js"(exports, module) {
       var ChitterView2 = class {
         constructor(model) {
+          console.log(model);
           this.chitterModel = model;
+          console.log(this.chitterModel);
           this.maincontainerEl = document.querySelector("#main-container");
           this.addChitButtonEl = document.querySelector("#add-chit-button");
           this.addChitButtonEl.addEventListener("click", () => {
@@ -35,11 +44,15 @@
             this.addChit(textInput);
           });
         }
-        addChit(chit) {
-          this.chitterModel.addChit(chit);
+        addChit(input) {
+          console.log("test10");
+          this.chitterModel.addChit(input);
+          console.log("test20");
+          console.log("test30");
           this.displayChits();
         }
         displayChits() {
+          console.log(this.chitterModel);
           document.querySelectorAll(".chit").forEach((chit) => {
             chit.remove();
           });
@@ -63,15 +76,64 @@
     }
   });
 
+  // chitterApi.js
+  var require_chitterApi = __commonJS({
+    "chitterApi.js"(exports, module) {
+      var ChitterApi2 = class {
+        loadChits(callback) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps").then((response) => response.json()).then((jsonData) => {
+            callback(jsonData);
+          });
+        }
+        createChit(chit) {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: `{"peep": {"user_id":1013, "body":"${chit}"}}`
+          });
+        }
+        createUser() {
+          fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: '{"user": {"handle":"stevie13", "password":"1234"}}'
+          }).then((response) => response.json()).then((data) => {
+            console.log("Success:", data);
+          }).catch((error) => {
+            console.error("Error:", error);
+          });
+        }
+        createSession() {
+          "https://chitter-backend-api-v2.herokuapp.com/sessions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify('{"session": {"handle":"stevie6", "password":"1234"}}')
+          };
+        }
+      };
+      module.exports = ChitterApi2;
+    }
+  });
+
   // index.js
   var ChitterModel = require_chitterModel();
   var ChitterView = require_chitterView();
+  var ChitterApi = require_chitterApi();
   var chitterModel = new ChitterModel();
-  chitterModel.addChit("example chit");
-  chitterModel.addChit("example chit2");
-  chitterModel.addChit("example chit3");
-  chitterModel.addChit("example chit4");
-  console.log(chitterModel.chits);
-  var chitterView = new ChitterView(chitterModel);
+  var api = new ChitterApi();
+  var chitterView = new ChitterView(chitterModel, api);
+  chitterModel.addChit("chitterModel.addChit works");
   chitterView.displayChits();
+  api.createUser();
+  api.loadChits((chits2) => {
+    chitterModel.setChits(chits2);
+    chitterView.displayChits();
+    console.log("is console.log a callback here (index.js)?", chits2);
+  });
 })();
