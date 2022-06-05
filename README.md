@@ -1,37 +1,19 @@
 # Chitter API Frontend Challenge
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+### Steps, thoughts and learnings
 
-Challenge:
--------
+I started by using mocks set up a test in and index test suite that helps me to start the project in line with what Justin Searls was talking about. <br>
 
-As usual please start by forking this repo.
+He talks about "write the code I wish I had" <br>
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+In thinking about this project I wished I had something to access the chitter api, something to fetch peeps, and something to display them, so the first thing I did, and I guess that this was part of a "Given" or "Assert" phase was to require these three fictional items and to mock them. <br>
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
+I then created the subject of the test, index in this case. <br>
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
+And then in the given of the test itself I assigned class instances of my three mocked classed. <br>
 
-Here are some interactions the API supports. Implement as many as you see fit.
+In the when phase I called chitterView.all <br>
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+And then I wrote a very simple test that expects to see more than 1 peep - I'm not sure this is good enough, but to stay with the concept that the purpose of this test in a TDD sense was to help me set up, think about what I need and what the contracts are between them
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
-
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
-
-## Utilities you might find useful
-
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+// so I now feel like this test suite is leading me to work on a new test suite for chitterApi even though I am still setting this one up
