@@ -15,8 +15,8 @@ describe('MessagesView', () => {
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     model = new MessagesModel();
-    api = new ChitterApi();
-    view = new MessagesView(model, api);
+    mockApi = new ChitterApi();
+    view = new MessagesView(model, mockApi);
   });
 
   it ('initializes an instance of view', () => {
@@ -36,19 +36,21 @@ describe('MessagesView', () => {
   });
 
   it('displays messages from ChitterApi', () => {
-    const model = new MessagesModel();
-    const mockApi = new ChitterApi();
-    
-    mockApi.loadMessages.mockImplementation(() => {
-      JSON.stringify([{
+    mockApi.loadMessages.mockReturnValue(
+      [{
         id: 134,
         body: 'Api test message'
-      }]);
-    });
+      }]
+    );
 
-    view = new MessagesView(model, mockApi);
+    console.log(`before the api call`);
+    model.getMessages().forEach(message => console.log(message));
 
-    view.displayMessagesFromApi();
+    view.displayMessagesFromApi(); // should call the api & set model messages with returned data
+
+    console.log(`after the api call`);
+    model.getMessages().forEach(message => console.log(message));
+    // it is not happening, however, the api works
 
     expect(mockApi.loadMessages).toHaveBeenCalled();
     
@@ -62,11 +64,18 @@ describe('MessagesView', () => {
     document.querySelector('#password-input').value = '123';
     document.querySelector('#sign-up-submit-button').click();
 
-    expect(api.createNewUser).toHaveBeenCalled();
+    expect(mockApi.createNewUser).toHaveBeenCalled();
   });
 
   it('registers the user', () => {
-
+    mockApi.createNewUser.mockReturnValue(
+      [{
+        id: 107,
+        handle: 'john'
+      }]
+    );
+    view.register('john', '123');
+    expect(mockApi.createNewUser).toHaveBeenCalled();
   });
 
   it('displays the login form and allows user to submit their details', () => {
@@ -75,11 +84,18 @@ describe('MessagesView', () => {
     document.querySelector('#password-input-login').value = '123';
     document.querySelector('#login-submit-button').click();
 
-    expect(api.newSession).toHaveBeenCalled();
+    expect(mockApi.newSession).toHaveBeenCalled();
   });
 
   it('logs in the user', () => {
-
+    mockApi.newSession.mockReturnValue(
+      [{
+        user_id: 134,
+        session_key: '2e475'
+      }]
+    );
+    view.login('john', '123');
+    expect(mockApi.newSession).toHaveBeenCalled();
   });
 
   it('adds a message', () => {
@@ -91,6 +107,5 @@ describe('MessagesView', () => {
     expect(document.querySelectorAll('div.message').length).toEqual(1);
     expect(document.querySelectorAll('div.message')[0].innerText).toBe('Second message');
   });
-
 
 });
