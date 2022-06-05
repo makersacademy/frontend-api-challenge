@@ -43,5 +43,20 @@ describe('ChitterApi class', () => {
       expect(result.session_key).toEqual("_3b_65_WEjfcW0unkmN9uVtIMa24f");
     })
   })
+
+  it('raises an error when wrong credentials are provided', () => {
+    // I'd like to write this test so that I'm checkng for an error instead of a string
+    // but I can't figure out the syntax.
+    fetch.mockResponseOnce(JSON.stringify({
+      "errors":{
+        "password":"Invalid username or password"
+      }
+    }));
+
+    const api = new ChitterApi;
+    api.userAuthorisation('testName', 'password123', (result) => {
+      expect(result.errors.password).toEqual("Invalid username or password");
+    })
+  })
 })
 
