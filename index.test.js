@@ -5,16 +5,16 @@
  const fs = require('fs');
 
 //write the code I wish I had
-jest.mock('./accessServer');
-jest.mock('./getAllPeeps');
-jest.mock('./putPeepsOnScreen');
+jest.mock('./chitterApi');
+jest.mock('./chitterModel');
+jest.mock('./chitterView');
 
 //I wish I had something that accessed the server
 const ChitterApi = require('./chitterApi');
 // I wish I had something that got all the peepr
 const ChitterModel = require('./chitterModel');
 // I wish I had something that put the peeps on the screen
-const PeepsView = require('./PeepsView');
+const ChitterView = require('./chitterView');
 
 //and I need a subject
 const subject = require('./index');
@@ -30,12 +30,11 @@ describe('index', () => {
   it('displays all current peeps', () => {
     const chitterApi = new ChitterApi();
     const chitterModel = new ChitterModel(chitterApi);
-    const peepsView = new PeepsView(chitterModel);
+    const chitterView = new ChitterView(chitterModel);
 
-    peepsView.all();
+    chitterView.all();
 
     expect(document.querySelectorAll('.peeps')).toBeGreaterThan(1);
   })
 })
 
-// so what I am trying to do here is set up a test that helps me to start in line with what Justin Searls was talking about
