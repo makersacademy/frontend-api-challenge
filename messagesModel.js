@@ -17,4 +17,5 @@ class MessagesModel {
   }
 };
 
+
 module.exports = MessagesModel;
