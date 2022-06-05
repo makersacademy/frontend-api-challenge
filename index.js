@@ -8,9 +8,9 @@ const chitterView = new ChitterView(chitterModel, api)
 chitterModel.addChit('chitterModel.addChit works');
 
 chitterView.displayChits() 
-api.createUser('stevie200', '1234', userdata => {
+api.createUser('stevie204', '1234', userdata => {
    api.createSession(userdata, '1234', sessiondata => {
-     api.createChit(sessiondata, 'this is the chit')
+     api.createChit(sessiondata, "all in all we're just throwing chits at the wall")
    })
 })
 // api.createSession()

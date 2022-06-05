@@ -85,15 +85,6 @@
             callback(jsonData);
           });
         }
-        createChit(chit) {
-          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: `{"peep": {"user_id":1013, "body":"${chit}"}}`
-          });
-        }
         createUser(username, password, callback) {
           fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
             method: "POST",
@@ -108,8 +99,8 @@
             console.error("Error:", error);
           });
         }
-        createSession(data, password) {
-          console.log("here's the session", data);
+        createSession(data, password, callback) {
+          console.log("here's the data from createUser", data);
           console.log(data.handle);
           fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
             method: "POST",
@@ -118,9 +109,24 @@
             },
             body: `{"session": {"handle":"${data.handle}", "password":"${password}"}}`
           }).then((response) => response.json()).then((data2) => {
+            callback(data2);
             console.log("Success:", data2);
           }).catch((error) => {
             console.error("Error:", error);
+          });
+        }
+        createChit(sessiondata, chit) {
+          console.log("data from the session:", sessiondata);
+          console.log("the chit:", chit);
+          console.log("user id", sessiondata.user_id);
+          console.log("sessionkey", sessiondata.session_key);
+          fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Token token=${sessiondata.session_key}`
+            },
+            body: `{"peep": {"user_id":${sessiondata.user_id}, "body":"${chit}"}}`
           });
         }
       };
@@ -137,8 +143,10 @@
   var chitterView = new ChitterView(chitterModel, api);
   chitterModel.addChit("chitterModel.addChit works");
   chitterView.displayChits();
-  api.createUser("stevie27", "1234", (data) => {
-    api.createSession(data, "1234");
+  api.createUser("stevie204", "1234", (userdata) => {
+    api.createSession(userdata, "1234", (sessiondata) => {
+      api.createChit(sessiondata, "all in all we're just throwing chits at the wall");
+    });
   });
   api.loadChits((chits2) => {
     chitterModel.setChits(chits2);
