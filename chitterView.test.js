@@ -23,8 +23,9 @@ describe('ChitterView class', () => {
       "likes":[]
     }];
 
+    const api = new ChitterApi
     const model = new ChitterModel(testPeep);
-    const view = new ChitterView(model);
+    const view = new ChitterView(model, api);
 
     view.displayPeeps();
     const displayedPeeps = document.querySelectorAll('div.peep');

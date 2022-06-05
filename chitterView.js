@@ -3,7 +3,15 @@ class ChitterView {
   constructor(model, api) {
     this.model = model;
     this.api = api;
+
+    this.userID = null;
+    this.sessionKey = null;
+
     this.peepContainerEl = document.querySelector('#peep-container');
+    this.loginButtonEl = document.querySelector('#login-button');
+    this.loginButtonEl.addEventListener('click', () => {
+      this.checkAuthorisation();
+    });
   }
 
   importPeepsFromServer() {
@@ -25,7 +33,16 @@ class ChitterView {
     });
   };
 
-  
+  checkAuthorisation() {
+    let userHandle = document.querySelector('#handle').value;
+    let userPassword = document.querySelector('#password').value;
+    this.api.userAuthorisation(userHandle, userPassword, response => {
+      this.userID = response.user_id;
+      this.sessionKey = response.session_key;
+      console.log(this.userID, this.sessionKey);
+    });
+  };
+
 }
 
 module.exports = ChitterView;
