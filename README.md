@@ -14,6 +14,10 @@ And then in the given of the test itself I assigned class instances of my three 
 
 In the when phase I called chitterView.all <br>
 
-And then I wrote a very simple test that expects to see more than 1 peep - I'm not sure this is good enough, but to stay with the concept that the purpose of this test in a TDD sense was to help me set up, think about what I need and what the contracts are between them
+And then I wrote a very simple test that expects to see more than 1 peep - I'm not sure this is good enough, but to stay with the concept that the purpose of this test in a TDD sense was to help me set up, think about what I need and what the contracts are between them<br>
 
-// so I now feel like this test suite is leading me to work on a new test suite for chitterApi even though I am still setting this one up
+So once all the files are created it's now telling me that ChitterApi is not a constructor - I'm going to just follow this test, even though it feels strange creating these files from this test, I'm going to do as it says and see where it leads me <br>
+
+So all the files got created, and the empty classes and functions, and to be honest it all felt very supportive and nice and TDD - I knew what I was doing, I had a process. <br>
+
+I then put some template boilerplate HTML in the index.html and added two fake peeps as the simplest way to pass the test. So far I like this way <br>
