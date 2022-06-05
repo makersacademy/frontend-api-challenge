@@ -10,6 +10,8 @@
       var ChitterModel2 = class {
         constructor() {
           this.chits = [];
+          this.session = [];
+          console.log("session contents", this.session);
         }
         getChits() {
           return this.chits;
@@ -23,6 +25,10 @@
         setChits(chits2) {
           this.reset();
           chits2.forEach((chit) => this.chits.push(`${chit.user.handle}: ${chit.body}`));
+        }
+        openSession(sessiondata) {
+          console.log("this is coming from the model:", sessiondata.session_key);
+          this.session.push(sessiondata.session_key);
         }
       };
       module.exports = ChitterModel2;
@@ -142,12 +148,17 @@
   var api = new ChitterApi();
   var chitterView = new ChitterView(chitterModel, api);
   chitterModel.addChit("chitterModel.addChit works");
-  chitterView.displayChits();
-  api.createUser("stevie204", "1234", (userdata) => {
-    api.createSession(userdata, "1234", (sessiondata) => {
-      api.createChit(sessiondata, "all in all we're just throwing chits at the wall");
+  if (chitterModel.session.length === 0) {
+    api.createUser("stevie235", "1234", (userdata) => {
+      api.createSession(userdata, "1234", (sessiondata) => {
+        chitterModel.openSession(sessiondata);
+        console.log("just made a session");
+        console.log("session array length:", chitterModel.session.length);
+      });
     });
-  });
+  } else {
+    console.log("session already created");
+  }
   api.loadChits((chits2) => {
     chitterModel.setChits(chits2);
     chitterView.displayChits();
