@@ -21,7 +21,7 @@ describe('Chitter Api class', () => {
 
       api.loadPeeps((response) => {
         expect(response[0]).toBe(`This is a peep from the backend server`);
-        expect(fetch.mock.calls[0][0]).toEqual(`https://chitter-backend-api-v2.herokuapp.com/`);
+        expect(fetch.mock.calls[0][0]).toEqual(`https://chitter-backend-api-v2.herokuapp.com/peeps`);
         done();
       })
     });
@@ -45,7 +45,7 @@ describe('Chitter Api class', () => {
 
       });
 
-      api.createNote('A new peep.', (response) => {
+      api.createPeep('A new peep.', (response) => {
         expect(response[0]).toBe('A new peep.');
 
         done();
