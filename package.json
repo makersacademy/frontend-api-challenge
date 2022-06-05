@@ -19,7 +19,10 @@
   },
   "homepage": "https://github.com/laura-voss/Chitter-frontend-api-challenge#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "jest-environment-jsdom": "^28.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest-fetch-mock": "^3.0.3"
+  }
 }
