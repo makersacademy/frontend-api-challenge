@@ -40,12 +40,14 @@ describe('ChitterApi', () => {
     });
   });
 
-    // it('posts the new message', () => {
-  //   fetch.mockResponseOnce(JSON.stringify({
-  //     id: 134,
-  //     body: 'Api test message'
-  //   }));
+  it('posts a new message', () => {
+    fetch.mockResponseOnce(JSON.stringify({
+      id: 1034,
+      body: 'Api test message'
+    }));
 
-  //   api.postMessage(())
-  // });
+    api.postMessage(131, '2e350', 'Api test message', returnedData => {
+      expect(returnedData).toEqual({id: 1034, body: 'Api test message'});
+    });
+  });
 });

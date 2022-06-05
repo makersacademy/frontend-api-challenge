@@ -32,20 +32,23 @@ class ChitterApi {
     }).then(response => response.json())
       .then(data => callback(data))
   }
-};
 
-  // postMessge(user_id, session_key, message, callback) {
-  //   fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps?token=${session_key}`, {
-  //     headers: {'Content-Type': 'application/json'},
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       peeps: {
-  //         user_id: user_id,
-  //         body: message
-  //       }
-  //     })
-  //   }).then(response => response.json())
-  //     .then(data => callback(data))
-  // }
+  postMessage(userId, sessionKey, text, callback) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token token=${sessionKey}`
+      },
+      method: "POST",
+      body: JSON.stringify({
+        peep: {
+          user_id: userId,
+          body: text
+        }
+      })
+    }).then(response => response.json())
+      .then(data => callback(data))
+  }
+};
 
 module.exports = ChitterApi;

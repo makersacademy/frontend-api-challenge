@@ -30,8 +30,13 @@ class MessagesView {
   }
 
   addMessage(text) {
-    this.model.addMessage(text);
-    this.displayMessages();
+    const userId = this.user.getUserId();
+    const sessionKey = this.user.getSessionKey();
+
+    this.api.postMessage(userId, sessionKey, text, (data) => {
+      console.log(data);
+      this.displayMessagesFromApi();
+    });
   }
 
   displayMessages() {
@@ -115,6 +120,8 @@ class MessagesView {
     this.api.newSession(handle, password, (data) => {
       console.log(data);
       this.user.setSessionKey(data.session_key);
+      this.user.setHandle(handle);
+      this.user.setUserId(data.user_id);
       console.log('user logged in')
     });
   }

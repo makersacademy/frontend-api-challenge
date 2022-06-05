@@ -76,10 +76,10 @@ describe('MessagesView', () => {
 
   it('registers the user', () => {
     mockApi.createNewUser.mockReturnValue(
-      [{
+      {
         id: 107,
         handle: 'john'
-      }]
+      }
     );
     view.register('john', '123');
 
@@ -99,25 +99,42 @@ describe('MessagesView', () => {
 
   it('logs in the user', () => {
     mockApi.newSession.mockReturnValue(
-      [{
+      {
         user_id: 134,
         session_key: '2e475'
-      }]
+      }
     );
+
     view.login('john', '123');
     expect(mockApi.newSession).toHaveBeenCalled();
   });
 
-  it('adds a message', () => {
+  it('displays the add message form and allows user to submit the message', () => {
+    mockApi.postMessage.mockReturnValue(
+      {
+        id: 1304,
+        body: 'test message'
+      }
+    );
+    
     const inputEl = document.querySelector('#add-message-input');
     const buttonEl = document.querySelector('#add-message-button');
     inputEl.value = 'Second message';
     buttonEl.click();
 
-    expect(document.querySelectorAll('div.message').length).toEqual(1);
-    expect(document.querySelectorAll('div.message')[0].innerText).toBe('Second message');
+    expect(mockApi.postMessage).toHaveBeenCalled();    
   });
 
-  
+  it('posts a message', () => {
+    mockApi.postMessage.mockReturnValue(
+      {
+        id: 1304,
+        body: 'test message'
+      }
+    );
+
+    view.addMessage('test message');
+    expect(mockApi.postMessage).toHaveBeenCalled();
+  });
 
 });
