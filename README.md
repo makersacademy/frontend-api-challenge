@@ -1,4 +1,4 @@
-Russell's Bowling Challenge in JS:
+Russell's Frontend-api-Chitter Challenge in JS:
 =================
 
 Progress.
