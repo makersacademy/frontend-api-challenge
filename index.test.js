@@ -34,7 +34,9 @@ describe('index', () => {
 
     chitterView.all();
 
-    expect(document.querySelectorAll('.peeps')).toBeGreaterThan(1);
+    result = document.querySelectorAll('.peeps');
+
+    expect(result.length).toBeGreaterThan(1);
   })
 })
 
