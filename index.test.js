@@ -32,7 +32,10 @@ describe('index', () => {
     const chitterModel = new ChitterModel(chitterApi);
     const chitterView = new ChitterView(chitterModel);
 
-    chitterView.all();
+    chitterApi.loadPeeps((peeps) => {
+      chitterModel.setPeeps(peeps);
+      chitterView.displayPeeps();
+    })
 
     result = document.querySelectorAll('.peeps');
 
