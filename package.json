@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/gawainhewitt/frontend-api-challenge#readme",
   "dependencies": {
-    "jest": "^28.1.0"
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "jsdom": "^19.0.0"
   }
 }
