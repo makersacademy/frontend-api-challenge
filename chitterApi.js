@@ -26,8 +26,10 @@ class ChitterApi {
       })
       .then(response => response.json())
       .then(data => callback(data));
+      // catch doesn't seem to be working as I want it to.
+      // doesn't log the error in the format I want.
     } catch (error) {
-      console.log(error);
+      console.error('There was an error!', error); 
     }
   }
 }

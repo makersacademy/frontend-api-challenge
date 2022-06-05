@@ -30,5 +30,18 @@ describe('ChitterApi class', () => {
       expect(peepsObject).toEqual(null);
     })
   })
+
+  it('sends authorisation requests and returns session keys', () => {
+    fetch.mockResponseOnce(JSON.stringify({
+      "user_id":12345,
+      "session_key":"_3b_65_WEjfcW0unkmN9uVtIMa24f"
+    }));
+
+    const api = new ChitterApi;
+    api.userAuthorisation('testName', 'password123', (result) => {
+      expect(result.user_id).toEqual(12345);
+      expect(result.session_key).toEqual("_3b_65_WEjfcW0unkmN9uVtIMa24f");
+    })
+  })
 })
 
