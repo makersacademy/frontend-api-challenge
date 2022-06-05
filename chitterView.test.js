@@ -22,13 +22,23 @@ describe ('ChitterView class ', () => {
       const model = new ChitterModel;
       const view = new ChitterView(model);
 
-      model.addPeep({body: 'This is a test peep'});
-      model.addPeep({body: 'This is a second test peep'});
+      model.addPeep({
+        id: 1,
+        body: 'This is a test peep', 
+        user: {handle: 'test'}, 
+        created_at: 'time'
+      });
+      model.addPeep({
+        id: 2, 
+        body: 'This is a second test peep', 
+        user: {handle: 'test'}, 
+        created_at: 'time'
+      });
 
       view.displayPeeps();
 
       expect(document.querySelectorAll('div.peeps').length).toBe(2);
-      expect(document.querySelector('div.peeps').innerText).toBe('This is a test peep');
+      expect(document.querySelector('div.message').innerText).toMatch('This is a test peep');
     });
   })
 
@@ -37,7 +47,12 @@ describe ('ChitterView class ', () => {
       const model = new ChitterModel;
       const apiDouble = {
         loadPeeps: (callback) => {
-          callback([{body: 'test peep'}]);
+          callback([{
+            id:1, 
+            body: 'test peep', 
+            user: {handle: 'test'}, 
+            created_at: 'time'
+          }]);
         }
       };
       const view = new ChitterView(model, apiDouble);
@@ -45,7 +60,7 @@ describe ('ChitterView class ', () => {
       view.displayPeepsFromApi();
 
       expect(document.querySelectorAll('div.peeps').length).toBe(1);
-      expect(document.querySelector('div.peeps').innerText).toBe('test peep');
+      expect(document.querySelector('div.message').innerText).toMatch('test peep');
     })
   })
 })
