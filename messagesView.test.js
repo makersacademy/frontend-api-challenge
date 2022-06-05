@@ -6,6 +6,7 @@ const fs = require('fs');
 const ChitterApi = require('./chitterApi');
 const MessagesModel = require('./messagesModel');
 const MessagesView = require('./messagesView');
+const UserModel = require('./userModel');
 
 require('jest-fetch-mock').enableMocks();
 jest.mock('./chitterApi');
@@ -15,8 +16,10 @@ describe('MessagesView', () => {
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     model = new MessagesModel();
+    ChitterApi.mockClear();
     mockApi = new ChitterApi();
-    view = new MessagesView(model, mockApi);
+    user = new UserModel();
+    view = new MessagesView(model, mockApi, user);
   });
 
   it ('initializes an instance of view', () => {
@@ -58,6 +61,10 @@ describe('MessagesView', () => {
     // expect(document.querySelectorAll('div.message')[0].innerText).toBe('Api test message');
   });
 
+  it('initializes with user as an argument', () => {
+    expect(view.user).toBe(user);
+  });
+
   it('displays the registration form and allows user to submit their details', () => {
     document.querySelector('#sign-up-button').click();
     document.querySelector('#handle-input').value = 'john';
@@ -75,7 +82,10 @@ describe('MessagesView', () => {
       }]
     );
     view.register('john', '123');
+
     expect(mockApi.createNewUser).toHaveBeenCalled();
+    // expect(user.getHandle()).toBe('john');
+    // expect(user.getUserId()).toBe(107);
   });
 
   it('displays the login form and allows user to submit their details', () => {
@@ -107,5 +117,7 @@ describe('MessagesView', () => {
     expect(document.querySelectorAll('div.message').length).toEqual(1);
     expect(document.querySelectorAll('div.message')[0].innerText).toBe('Second message');
   });
+
+  
 
 });

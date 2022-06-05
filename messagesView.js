@@ -1,7 +1,8 @@
 class MessagesView {
-  constructor(model, api) {
+  constructor(model, api, user) {
     this.model = model;
     this.api = api;
+    this.user = user;
 
     this.mainContainerEl = document.querySelector('#main-container');
 
@@ -80,6 +81,9 @@ class MessagesView {
   register(handle, password) {
     this.api.createNewUser(handle, password, (data) => {
       console.log(data);
+      this.user.setHandle(data.handle);
+      this.user.setUserId(data.id);
+      console.log('user registered');
     });
   }
 
@@ -110,6 +114,8 @@ class MessagesView {
   login(handle, password) {
     this.api.newSession(handle, password, (data) => {
       console.log(data);
+      this.user.setSessionKey(data.session_key);
+      console.log('user logged in')
     });
   }
 };
