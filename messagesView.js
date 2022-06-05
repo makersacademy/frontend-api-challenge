@@ -39,16 +39,37 @@ class MessagesView {
     });
   }
 
+  displayTime(timeString) {
+    let date = timeString.substring(0, 10);
+    let time = timeString.substring(11, 19);
+    return time + "  " + date;
+  }
+
   displayMessages() {
     document.querySelectorAll('.message').forEach(element => element.remove());
 
     const messages = this.model.getMessages();
 
     messages.forEach(message => {
-      const messageEl = document.createElement('div');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message-cont';
+      
+      const messageEl = document.createElement('p');
       messageEl.innerText = message.body;
-      messageEl.className = 'message';
-      this.mainContainerEl.append(messageEl);
+      messageEl.className = 'message-text';
+
+      const authorDiv = document.createElement('div');
+      authorDiv.className = 'message-author';
+      authorDiv.innerText = message.user.handle;
+
+      const timeDiv = document.createElement('div');
+      timeDiv.className = 'message-time';
+      timeDiv.innerText = this.displayTime(message.updated_at);
+
+      messageDiv.append(messageEl);
+      messageDiv.append(authorDiv);
+      messageDiv.append(timeDiv);
+      this.mainContainerEl.append(messageDiv);
     });
   }
 

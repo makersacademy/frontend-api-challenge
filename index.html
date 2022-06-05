@@ -4,24 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>My web page</title>
+    <link href='./styles.css' rel="stylesheet" type="text/css">
+    <title>Chitter</title>
   </head>
 
   <body>
-    <h1>My web page</h1>
-    <div class="header">
-      <button id="sign-up-button">Sign Up</button>
-      <div id="sign-up-container"></div>
-      <button id="login-button">Log In</button>
-      <div id="login-container"></div>
-    </div>
-    <div>
-      <input type="text" id="add-message-input" autofocus />
-      <button id="add-message-button">Post</button>
-    </div>
-    <div id="main-container">
-    </div>
-    <script type="text/javascript" src="bundle.js"></script>
+    <header>
+      <div class="title-cont">
+        <h1>Chitter</h1>
+      </div>
+      <div class="login-cont">
+        <button id="sign-up-button">Sign Up</button>
+        <div id="sign-up-container"></div>
+        <button id="login-button">Log In</button>
+        <div id="login-container"></div>
+      </div>
+    </header>
+
+    <main>
+      <div class="main-cont">
+        <div class="post-cont">
+          <input type="text" id="add-message-input" />
+          <button id="add-message-button">Post</button>
+        </div>
+        <div id="main-container">
+        </div>
+        <script type="text/javascript" src="bundle.js"></script>
+      </div>
+    </main>
   </body>
 </html>
