@@ -60,7 +60,7 @@ class ChitterView {
   createTimeEl(time, id) {
     const timeEl = document.createElement('div');
     timeEl.className = 'time_created';
-    timeEl.innerText = `Created at: ${time}`;
+    timeEl.innerText = `Created at: ${time.substr(0,10)} ${time.substr(11,5)}`;
     document.querySelector('div#message_' + id).appendChild(timeEl);
   }
 
@@ -86,6 +86,7 @@ class ChitterView {
     document.querySelector('#user-login').remove();
     const loginMessageEl = document.createElement('div');
     loginMessageEl.innerText = `${this.user.username} has logged in`;
+    loginMessageEl.id = 'logged-in-message';
     document.querySelector('#login').append(loginMessageEl);
   }
 

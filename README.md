@@ -1,37 +1,32 @@
-# Chitter API Frontend Challenge
+Chitter API Frontend Challenge (JavaScript)
+=================
 
-* Feel free to use Google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+The purpose of the challenge was to create a single page Twitter clone, using only frontend JavaScript using an external API to manage the messages, users and likes. Documentation about API can be found here: [API documentation](https://github.com/makersacademy/chitter_api_backend).
 
-Challenge:
--------
+At the current state, the page will show the last 50 messages written by the users, indicating the user who wrote them and the time they were created.
 
-As usual please start by forking this repo.
+It also allows to login into the web with you username and password (at current state, user needs to have been created manually in advance using curl or browser console).
 
-We are going to write a small Twitter clone that will allow the users to post messages to a public stream.
+Once logged in, user can write a new message and post it. The message will be saved on the server and the page will refresh automatically to show this last message and clear the input box to write a new message if wanted to.
 
-The scenario is similar to the [Chitter Challenge](https://github.com/makersacademy/chitter-challenge), except someone has already built a backend API for you and hosted it on Heroku.
+Added some CSS to make the page look nicer.
 
-Your task is to build a front-end single-page-app to interface with this API. You can do this in any framework you like, or in pure Javascript. [The API documentation is here.](https://github.com/makersacademy/chitter_api_backend)
 
-Here are some interactions the API supports. Implement as many as you see fit.
+Getting started:
+-----
 
-* Creating Users
-* Logging in
-* Posting Peeps
-* Viewing all Peeps *(I suggest you start here)*
-* Viewing individual Peeps
-* Deleting Peeps
-* Liking Peeps
-* Unliking Peeps
+Install package:
+```
+npm install
+```
 
-We are looking for well tested, easy to read, easy to change code. This is more important than the number of interactions you implement.
+Usage:
+-----
 
-Note that others may be doing the same task at the same time, so the data may change as you are using it.
+Run on the terminal `open index.html` to open the page on the browser
 
-## Utilities you might find useful
 
-* [The Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) for making requests.
-* [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/) for exploring the API.
+Running tests:
+-----
+
+Run `jest` on main folder

@@ -34,6 +34,7 @@ body {
   padding: 15px;
   font-family: 'Trebuchet MS';
   font-size: 30px;
+  font-weight: lighter;
 }
 
 input {
@@ -61,10 +62,16 @@ button {
 }
 
 .user {
-  font-weight: bold;
+  font-weight: normal;
   font-size: 20px;
   margin-bottom: 5px;
   font-style: italic;
+  border: 1px solid #aaa;
+  width: 35%;
+  padding: 3px;
+  background: darkslategray;
+  border-radius: 4px;
+  color: white;
 }
 
 .time_created {
@@ -75,5 +82,11 @@ button {
 }
 
 .message {
+  font-weight: lighter;
+}
 
+#logged-in-message {
+  font-weight: bold;
+  font-family: sans-serif;
+  color:crimson;
 }
