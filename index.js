@@ -8,9 +8,10 @@ const chitterView = new ChitterView(chitterModel, api)
 chitterModel.addChit('chitterModel.addChit works');
 
 chitterView.displayChits() 
-// api.createChit('hello')
-api.createUser('stevie27', '1234', data => {
-   api.createSession(data, '1234')
+api.createUser('stevie200', '1234', userdata => {
+   api.createSession(userdata, '1234', sessiondata => {
+     api.createChit(sessiondata, 'this is the chit')
+   })
 })
 // api.createSession()
 // chitterView.addChit('hello')
