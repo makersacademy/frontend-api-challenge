@@ -29,10 +29,56 @@ body {
   font-weight: 400;
 }
 
+.bird-img-cont {
+  width: 7%;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+#bird-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  -webkit-filter: drop-shadow(1px 1px 0 black)
+                  drop-shadow(-1px -1px 0 black);
+  filter: drop-shadow(1px 1px 0 black) 
+          drop-shadow(-1px -1px 0 black);
+}
+
+.cat-cont {
+  width: 60%;
+  margin: 5% auto 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.cat-img-cont {
+  width: 40%;
+  text-align: center;
+}
+
+#cat-img {
+  width: 100%;
+  max-height: auto;
+  display: block;
+  margin: auto;
+}
+
+.paw-img-cont {
+  width: 13%;
+}
+
+.paw-img {
+  width: 100%;
+  max-height: auto;
+  display: block;
+}
+
 .main-cont {
   width: 60%;
   margin: 0 auto;
-  margin-top: 10%;
   text-align: center;
   background-color: rgb(218, 232, 252);
   border: 0.3rem solid rgb(108, 142,191);

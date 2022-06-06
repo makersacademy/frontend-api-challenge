@@ -31,7 +31,6 @@ describe('MessagesView', () => {
   });
 
   it('displays all messages', () => {
-    // model.addMessage('First message');
     model.setMessages([{body: 'First message', user: {handle: 'author'}, updated_at: '2022-06-05T15:34:31.085Z'}]);
     view.displayMessages();
 

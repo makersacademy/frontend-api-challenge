@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href='./styles.css' rel="stylesheet" type="text/css">
+    <link href='./public/styles.css' rel="stylesheet" type="text/css">
     <title>Chitter</title>
   </head>
 
@@ -22,14 +22,24 @@
     </header>
 
     <main>
-      <div class="main-cont">
-        <div class="post-cont">
-          <input type="text" id="add-message-input" />
-          <button id="add-message-button">Post</button>
+      <div class="all-cont">
+        <div class="bird-img-cont"><img id="bird-img" src="./public/images/bird.png" /></div>
+
+        <div class="cat-cont">
+          <div class="paw-img-cont"><img class="paw-img" src="./public/images/paw_left.png" /></div>
+          <div class="cat-img-cont"><img id="cat-img" src="./public/images/cat.png" /></div>
+          <div class="paw-img-cont"><img class="paw-img" src="./public/images/paw_right.png" /></div>
         </div>
-        <div id="main-container">
+        
+        <div class="main-cont">
+          <div class="post-cont">
+            <input type="text" id="add-message-input" />
+            <button id="add-message-button">Post</button>
+          </div>
+          <div id="main-container">
+          </div>
+          <script type="text/javascript" src="bundle.js"></script>
         </div>
-        <script type="text/javascript" src="bundle.js"></script>
       </div>
     </main>
   </body>
