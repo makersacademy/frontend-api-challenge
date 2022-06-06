@@ -1,7 +1,7 @@
 class ChitterApi {
   async loadPeeps(callback) {
     try {
-      const response = await fetch("http://localhost:3000/peeps");
+      const response = await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps');
       const notes = await response.json();
       return callback(notes);
     } catch (error) {
@@ -11,7 +11,7 @@ class ChitterApi {
 
   async createPeep(peep, callback) {
     try {
-      const response = await fetch("http://localhost:3000/peeps", {
+      const response = await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -41,7 +41,7 @@
           peeps.forEach((peep) => {
             const peepEl = document.createElement("div");
             peepEl.innerText = peep;
-            peepEl.classname = "peep";
+            peepEl.className = "peep";
             this.mainContainerEl.append(peepEl);
           });
         }

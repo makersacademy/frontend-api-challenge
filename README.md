@@ -38,6 +38,4 @@ Note that others may be doing the same task at the same time, so the data may ch
 4. Use `open index.html` in the original terminal to open the webpage in your default browser
 
 ## Conclusion:
-- Test within chitterView is failing (expected two peeps displayed, got 0)
 - Had issues trying to `npm run build` and had to copy a line from package.json from another exercise to make it work
-- Peeps displayed are 
