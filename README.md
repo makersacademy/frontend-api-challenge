@@ -5,6 +5,11 @@
 * If you have a partial solution, **still check in a partial solution**
 * You must submit a pull request to this repo with your code by 9am Monday morning
 
+Chitter frontend:
+-------
+
+![website](https://dl.dropboxusercontent.com/s/kmetuii4l3iu28j/Chitter%20cat.png?dl=0)
+
 Challenge:
 -------
 
