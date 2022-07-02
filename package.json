@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "esbuild index.js --bundle  --outfile=bundle.js --watch"
   },
+  "engines": {
+    "node": "18.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ErlantzR/frontend-api-challenge.git"
