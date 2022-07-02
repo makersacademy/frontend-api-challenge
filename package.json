@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ErlantzR/frontend-api-challenge#readme",
   "dependencies": {
+    "esbuild": "^0.14.48",
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
     "jest-fetch-mock": "^3.0.3"
