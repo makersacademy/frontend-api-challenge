@@ -8,11 +8,7 @@
 
 # User Stories
 
-STRAIGHT UP
-
-`As a Maker` \
-`So that I can let people know what I am doing` \
-`I want to post a message (peep) to chitter` 
+TO BEGIN
 
 `As a maker` \
 `So that I can see what others are saying` \
@@ -22,25 +18,28 @@ STRAIGHT UP
 `So that I can better appreciate the context of a peep` \
 `I want to see the time at which it was made` 
 
+THEN: USER
+
 `As a Maker` \
 `So that I can post messages on Chitter as me` \
 `I want to sign up for Chitter` 
-
-HARDER
 
 `As a Maker` \
 `So that only I can post messages on Chitter as me` \
 `I want to log in to Chitter` 
 
-`As a Maker` \
-`So that I can avoid others posting messages on Chitter as me` \
-`I want to log out of Chitter` 
-
-ADVANCED
+THEN: POST INTERACTION
 
 `As a Maker` \
-`So that I can stay constantly tapped in to the shouty box of Chitter` \
-`I want to receive an email if I am tagged in a Peep`
+`So that I can let people know what I am doing` \
+`I want to post a message (peep) to chitter` 
+
+`As a Maker` \
+`So that I can show my appreciation for a peep` \
+`I want to be able to like a peep`
+
+
+
 
 Challenge:
 -------
