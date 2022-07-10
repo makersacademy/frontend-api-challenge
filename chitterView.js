@@ -20,7 +20,7 @@ class ChitterView {
         welcomeMessage.innerText = `Welcome to Chitter, @${approvedUserName}!`;
         welcomeMessage.id = 'welcome-message';
         this.signUpContainer.append(welcomeMessage);
-        
+
       }))
     })
 
@@ -55,7 +55,5 @@ class ChitterView {
     return `${time} ${day}/${month}/${year}`
   }
 }
-
-"2022-07-03T15:55:57.177Z"
 
 module.exports = ChitterView;
