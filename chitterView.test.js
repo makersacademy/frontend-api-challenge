@@ -6,7 +6,7 @@ const ChitterView = require('./chitterView');
 const fs = require('fs')
 
 describe(ChitterView,() => {
-  it('returns a list of peeps when you display peeps',() => {
+  beforeEach(() => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     const fakePeepData = {
       "id":1444,
@@ -18,9 +18,16 @@ describe(ChitterView,() => {
     this.fakeApi = {
       loadPeeps: (callback) => {callback([fakePeepData, fakePeepData, fakePeepData])}
     }
+  })
+
+  it('shows a list of peeps when you display peeps',() => {
     const view = new ChitterView(this.fakeApi);
     view.displayPeeps();
     expect(document.querySelectorAll('div.peep').length).toEqual(3);
+  })
+
+  it('shows the timestamp and user handle of a peep',() => {
+
   })
 })
 

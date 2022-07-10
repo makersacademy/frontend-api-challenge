@@ -3,7 +3,7 @@ const ChitterApi = require('./chitterApi');
 require('jest-fetch-mock').enableMocks()
 
 describe(ChitterApi,() => {
-  it('returns a list of the most recent peeps in reverse order',() => {
+  it('returns a list of the most recent peeps',() => {
     const api = new ChitterApi();
     const fakePeep = {
       "id":1444,
