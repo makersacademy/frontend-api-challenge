@@ -26,7 +26,7 @@ class ChitterView {
         welcomeMessage.id = 'welcome-message';
         this.signUpContainer.append(welcomeMessage);
         this.displayAddPeep();
-
+        this.displayPeeps();
       }))
     })
 
@@ -42,6 +42,7 @@ class ChitterView {
         loginMessage.innerText = `Welcome back, @${loginUsername.value}`;
         this.loginContainer.append(loginMessage);
         this.displayAddPeep();
+        this.displayPeeps();
       })
     })
 
@@ -49,6 +50,11 @@ class ChitterView {
 
 
   displayPeeps() {
+    let currentPeeps = document.querySelectorAll('div.peep');
+    currentPeeps.forEach((peep) => {
+      peep.remove()
+    })
+
     this.api.loadPeeps((peeps) => {
       peeps.forEach((peep) => {
         let div = document.createElement("div");
@@ -106,6 +112,7 @@ class ChitterView {
       this.api.addPeep(sessionKey, sessionID, peep, (response) => {
         if (response.body === peepInput.value) {
           console.log("it's a success");
+          peep = ""
           this.displayPeeps();
         }
       })

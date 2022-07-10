@@ -6,4 +6,4 @@ const api = new ChitterApi();
 const model = new ChitterModel();
 const view = new ChitterView(api, model);
 
-view.displayPeeps();
+
