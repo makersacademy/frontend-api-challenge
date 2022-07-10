@@ -20,4 +20,20 @@ describe(ChitterApi,() => {
       expect(peeps).toEqual([fakePeep, fakePeep])
     })
   })
+
+  it('signs up a user and returns the user ID and handle',() => {
+    const api = new ChitterApi();
+    const fakeUser = {
+        "id" : 1,
+        "handle" : "kay"
+    }
+
+    fetch.mockResponseOnce(JSON.stringify(fakeUser));
+
+    api.addUser('kay', 'spinach', (response) => {
+        expect(response.id).toEqual(1);
+        expect(response.handle).toEqual('kay');
+      })
+    expect(fetch.mock.lastCall[0]).toBe("https://chitter-backend-api-v2.herokuapp.com/users");
+  })
 })
