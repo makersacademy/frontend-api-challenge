@@ -51,9 +51,58 @@ describe(ChitterApi,() => {
     })
     expect(fetch.mock.lastCall[0]).toBe("https://chitter-backend-api-v2.herokuapp.com/sessions");
   })
+
+  it('adds a peep successfully',() => {
+    const api = new ChitterApi();
+
+    fetch.mockResponseOnce(JSON.stringify({
+      "id": 3,
+      "body": "my first peep :)",
+      "created_at": "2018-06-23T13:21:23.317Z",
+      "updated_at": "2018-06-23T13:21:23.317Z",
+      "user": {
+        "id": 1,
+        "handle": "kay"
+      },
+      "likes": [{
+        "user": {
+          "id": 1,
+          "handle": "kay"
+        }
+      }]
+    }))
+
+    api.addPeep("a_valid_session_key", "kay", "my first peep :)", (response) => {
+      expect(response.body).toEqual("my first peep :)");
+      expect(response.id).toEqual(3)
+    })
+
+    expect(fetch.mock.lastCall[0]).toBe("https://chitter-backend-api-v2.herokuapp.com/peeps");
+
+  })
 })
 
-// curl "https://chitter-backend-api-v2.herokuapp.com/sessions" \
+
+// curl "https://chitter-backend-api-v2.herokuapp.com/peeps" \
 //   -X POST \
+//   -H "Authorization: Token token=a_valid_session_key" \
 //   -H "Content-Type: application/json" \
-//   -d '{"session": {"handle":"kay", "password":"mypassword"}}'
+//   -d '{"peep": {"user_id":1, "body":"my first peep :)"}}'
+// On success, the above command returns JSON structured like this:
+
+// {
+//   "id": 3,
+//   "body": "my first peep :)",
+//   "created_at": "2018-06-23T13:21:23.317Z",
+//   "updated_at": "2018-06-23T13:21:23.317Z",
+//   "user": {
+//     "id": 1,
+//     "handle": "kay"
+//   },
+//   "likes": [{
+//     "user": {
+//       "id": 1,
+//       "handle": "kay"
+//     }
+//   }]
+// }
