@@ -19,7 +19,7 @@ class ChitterApi {
   }
 
   login(username, password, callback) {
-    const data = {"seesion": {"handle":username, "password":password}}
+    const data = {"session": {"handle":username, "password":password}}
     fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
       method: 'POST',
       headers: {

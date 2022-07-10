@@ -41,6 +41,7 @@ class ChitterView {
         loginMessage.id = 'login-message';
         loginMessage.innerText = `Welcome back, @${loginUsername.value}`;
         this.loginContainer.append(loginMessage);
+        this.displayAddPeep();
       })
     })
 

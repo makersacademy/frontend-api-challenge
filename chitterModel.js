@@ -3,8 +3,12 @@ class ChitterModel {
 
   }
 
-  addSessionKey () {
+  addSessionKey(key) {
+    this.key = key;
+  }
 
+  sessionKey() {
+    return this.key;
   }
 }
 
