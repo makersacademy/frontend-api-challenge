@@ -1,6 +1,6 @@
 class ChitterModel {
-  addSessionID() {
-
+  addSessionID(userID) {
+    this.userID = userID;
   }
 
   addSessionKey(key) {
@@ -9,6 +9,10 @@ class ChitterModel {
 
   sessionKey() {
     return this.key;
+  }
+
+  sessionID() {
+    return this.userID
   }
 }
 
