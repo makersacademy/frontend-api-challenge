@@ -3,6 +3,7 @@
  */
 
 const ChitterView = require('./chitterView');
+const ChitterModel = require('./chitterModel');
 const fs = require('fs')
 
 describe(ChitterView,() => {
@@ -51,6 +52,30 @@ describe(ChitterView,() => {
     expect(document.querySelector('#welcome-message').innerText).toEqual('Welcome to Chitter, @yak!');
   })
 
+  it('allows you to login',() => {
+    const model = new ChitterModel();
+    const fakeApi = {
+      loadPeeps: (callback) => {callback([this.fakePeepData])},
+      addUser: (handle, password, callback) => {callback({"id":1104,"handle":"yak"})},
+      login: (username, password, callback) => {callback({
+        "user_id": 1,
+        "session_key": "a_valid_session_key"
+      })} 
+    }
+
+    const view = new ChitterView(fakeApi, model);
+    let userNameInput = document.querySelector('#login-username')
+    userNameInput.value = 'yak'
+    
+    let passwordInput = document.querySelector('#login-password');
+    passwordInput.value = 'password'
+
+    let loginButton = document.querySelector('#login-button');
+    loginButton.click();
+    
+    expect(document.querySelector('#login-message').innerText).toEqual('Welcome back, @yak');
+  })
+
   describe('formatTime',() => {
     it('formats a timestamp',() => {
       const view = new ChitterView();
@@ -65,6 +90,15 @@ describe(ChitterView,() => {
       expect(document.querySelector('#peep-input').placeholder).toEqual("What's peeping?");
       expect(document.querySelector('#peep-header').innerText).toEqual('Share your peep');
     })
+
+    it('allows you to add a peep that then joins the list of peeps',() => {
+
+    })
   })
 })
+
+
+
+
+
 

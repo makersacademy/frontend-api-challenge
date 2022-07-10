@@ -1,10 +1,14 @@
 class ChitterView {
-  constructor(api) {
+  constructor(api, model) {
     this.mainContainerEl = document.querySelector('#main-container');
     this.signUpContainer = document.querySelector('#sign-up-container');
-    this.api = api
+    this.api = api;
+    this.model = model;
     this.signUpButton = document.querySelector('#sign-up');
     this.addPeepContainer = document.querySelector('#add-a-peep');
+    this.loginContainer = document.querySelector('#login-container');
+    this.loginButton = document.querySelector('#login-button');
+
 
     this.signUpButton.addEventListener('click',() => {
       console.log('you clicked sign up');
@@ -21,8 +25,23 @@ class ChitterView {
         welcomeMessage.innerText = `Welcome to Chitter, @${approvedUserName}!`;
         welcomeMessage.id = 'welcome-message';
         this.signUpContainer.append(welcomeMessage);
+        this.displayAddPeep();
 
       }))
+    })
+
+    this.loginButton.addEventListener('click',() => {
+      let loginUsername = document.querySelector('#login-username');
+      let loginPassword = document.querySelector('#login-password');
+      this.api.login(loginUsername.value, loginPassword.value, (response) => {
+        this.model.addSessionID(response.user_id);
+        this.model.addSessionKey(response.session_key);
+
+        const loginMessage = document.createElement('p');
+        loginMessage.id = 'login-message';
+        loginMessage.innerText = `Welcome back, @${loginUsername.value}`;
+        this.loginContainer.append(loginMessage);
+      })
     })
 
   }
