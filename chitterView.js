@@ -4,6 +4,7 @@ class ChitterView {
     this.signUpContainer = document.querySelector('#sign-up-container');
     this.api = api
     this.signUpButton = document.querySelector('#sign-up');
+    this.addPeepContainer = document.querySelector('#add-a-peep');
 
     this.signUpButton.addEventListener('click',() => {
       console.log('you clicked sign up');
@@ -53,6 +54,24 @@ class ChitterView {
     const day = timestamp.substr(8, 2);
     const time = timestamp.substr(11, 5);
     return `${time} ${day}/${month}/${year}`
+  }
+
+  displayAddPeep() {
+    const peepForm = document.createElement('div');
+
+    const header = document.createElement('p');
+    header.id = 'peep-header'
+    header.innerText = 'Share your peep';
+    peepForm.append(header);
+
+    const peepInput = document.createElement('input');
+    peepInput.type = 'text';
+    peepInput.id = 'peep-input';
+    peepInput.placeholder = "What's peeping?";
+    peepForm.append(peepInput);
+
+    this.addPeepContainer.append(peepForm);
+
   }
 }
 

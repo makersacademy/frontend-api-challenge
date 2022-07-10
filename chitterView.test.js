@@ -57,5 +57,14 @@ describe(ChitterView,() => {
       expect(view.formatTime("2022-07-03T15:55:57.177Z")).toEqual("15:55 03/07/2022");
     })
   })
+
+  describe('displayAddPeep',() => {
+    it('shows a form to add a peep',() => {
+      const view = new ChitterView();
+      view.displayAddPeep();
+      expect(document.querySelector('#peep-input').placeholder).toEqual("What's peeping?");
+      expect(document.querySelector('#peep-header').innerText).toEqual('Share your peep');
+    })
+  })
 })
 
