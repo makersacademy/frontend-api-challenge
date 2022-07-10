@@ -33,8 +33,22 @@ describe(ChitterView,() => {
     const view = new ChitterView(fakeApi);
     view.displayPeeps();
     peepDiv = document.querySelector("div.peep")
-    //expect(peepDiv.querySelector(".time").InnerText).toEqual("15:55 03/07/2022");
     expect(peepDiv.querySelector('.peep-details').innerText).toEqual("@jayjay || 15:55 03/07/2022")
+  })
+
+  it('creates a user',() => {
+    const fakeApi = {
+      loadPeeps: (callback) => {callback([this.fakePeepData])},
+      addUser: (handle, password, callback) => {callback({"id":1104,"handle":"yak"})}
+    }
+    const view = new ChitterView(fakeApi);
+    let usernameInput = document.querySelector('#username-input');
+    let signUpButton = document.querySelector('#sign-up');
+    usernameInput.value = 'yak';
+    let passwordInput = document.querySelector('#password-input');
+    passwordInput.value = 'aPassword';
+    signUpButton.click();
+    expect(document.querySelector('#welcome-message').innerText).toEqual('Welcome to Chitter, @yak!');
   })
 
   describe('formatTime',() => {

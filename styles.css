@@ -1,0 +1,25 @@
+h1, p, * {
+  font-family: sans-serif;
+}
+
+html {
+  background:#c1dd67;
+}
+
+body {
+  background: white;
+  width: 600px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.peep {
+  border-bottom: 1px solid #aaa;
+  padding: 15px;
+}
+
+.peep-details {
+  font-weight: bold;
+}

@@ -1,8 +1,26 @@
 class ChitterView {
   constructor(api) {
     this.mainContainerEl = document.querySelector('#main-container');
+    this.signUpContainer = document.querySelector('#sign-up-container');
     this.api = api
+    this.signUpButton = document.querySelector('#sign-up');
+
+    this.signUpButton.addEventListener('click',() => {
+      console.log('you clicked sign up');
+      let newUserHandle = document.querySelector('#username-input');
+      let newPassword = document.querySelector('#password-input');
+      this.api.addUser(newUserHandle, newPassword, ((response) => {
+        let approvedUserName = response.handle;
+        const welcomeMessage = document.createElement('p');
+        welcomeMessage.innerText = `Welcome to Chitter, @${approvedUserName}!`;
+        welcomeMessage.id = 'welcome-message';
+        console.log(welcomeMessage.innerText);
+        this.signUpContainer.append(welcomeMessage);
+      }))
+    })
+
   }
+
 
   displayPeeps() {
     this.api.loadPeeps((peeps) => {
