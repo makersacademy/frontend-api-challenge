@@ -92,11 +92,80 @@ describe(ChitterView,() => {
     })
 
     it('allows you to add a peep that then joins the list of peeps',() => {
+      const model = new ChitterModel();
+      const fakeApi = {
+        loadPeeps: (callback) => {callback([{
+          "id": 3,
+          "body": "Ha ha peep",
+          "created_at": "2018-06-23T13:21:23.317Z",
+          "updated_at": "2018-06-23T13:21:23.317Z",
+          "user": {
+            "id": 1,
+            "handle": "yak"
+          },
+          "likes": []
+        }])},
+        addUser: (handle, password, callback) => {callback({"id":1104,"handle":"yak"})},
+        login: (username, password, callback) => {callback({
+          "user_id": 1,
+          "session_key": "a_valid_session_key"
+        })} ,
+        addPeep: (userId, sessionKey, peep, callback) => {callback({
+          "id": 3,
+          "body": "Ha ha peep",
+          "created_at": "2018-06-23T13:21:23.317Z",
+          "updated_at": "2018-06-23T13:21:23.317Z",
+          "user": {
+            "id": 1,
+            "handle": "yak"
+          },
+          "likes": [{
+            "user": {
+              "id": 1,
+              "handle": "yak"
+            }
+          }]
+        })}
+      }
+      const view = new ChitterView(fakeApi, model);
+      view.displayAddPeep();
 
+      let peepInput = document.querySelector('#peep-input');
+      let addPeepButton = document.querySelector('#add-peep-button');
+      
+      peepInput.value = 'Ha ha peep';
+      addPeepButton.click();
+
+      let latestPeep = document.querySelector('div.peep');
+      expect(latestPeep.innerText).toEqual('Ha ha peep');
+      expect(latestPeep.querySelector('.peep-details').innerText).toEqual("@yak || 13:21 23/06/2018");
     })
   })
 })
 
+// curl "https://chitter-backend-api-v2.herokuapp.com/peeps" \
+//   -X POST \
+//   -H "Authorization: Token token=a_valid_session_key" \
+//   -H "Content-Type: application/json" \
+//   -d '{"peep": {"user_id":1, "body":"my first peep :)"}}'
+// On success, the above command returns JSON structured like this:
+
+// {
+//   "id": 3,
+//   "body": "my first peep :)",
+//   "created_at": "2018-06-23T13:21:23.317Z",
+//   "updated_at": "2018-06-23T13:21:23.317Z",
+//   "user": {
+//     "id": 1,
+//     "handle": "kay"
+//   },
+//   "likes": [{
+//     "user": {
+//       "id": 1,
+//       "handle": "kay"
+//     }
+//   }]
+// }
 
 
 

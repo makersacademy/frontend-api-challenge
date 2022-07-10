@@ -90,8 +90,26 @@ class ChitterView {
     peepInput.placeholder = "What's peeping?";
     peepForm.append(peepInput);
 
+    const addPeepButton = document.createElement('button');
+    addPeepButton.innertext = 'Share'
+    addPeepButton.id = 'add-peep-button';
+    peepForm.append(addPeepButton);
+
     this.addPeepContainer.append(peepForm);
 
+    addPeepButton.addEventListener('click',() => {
+      const sessionID = this.model.sessionID();
+      const sessionKey = this.model.sessionKey();
+
+      let peep = peepInput.value;
+
+      this.api.addPeep(sessionKey, sessionID, peep, (response) => {
+        if (response.body === peepInput.value) {
+          console.log("it's a success");
+          this.displayPeeps();
+        }
+      })
+    })
   }
 }
 
