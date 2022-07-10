@@ -20,23 +20,3 @@ class ChitterApi {
 }
 
 module.exports = ChitterApi;
-
-// const data = { content: note }
-// fetch('http://localhost:3000/notes', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify(data),  
-// })
-// .then(response => response.json())
-// .then(data => { callback(data) })
-// .catch((error) => {
-//   console.error(error);
-//   errorCallback()
-// // });
-
-// curl "https://chitter-backend-api-v2.herokuapp.com/users" \
-//   -X POST \
-//   -H "Content-Type: application/json" \
-//   -d '{"user": {"handle":"kay", "password":"mypassword"}}'

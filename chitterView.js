@@ -10,12 +10,17 @@ class ChitterView {
       let newUserHandle = document.querySelector('#username-input');
       let newPassword = document.querySelector('#password-input');
       this.api.addUser(newUserHandle.value, newPassword.value, ((response) => {
+
+        newUserHandle.value = "";
+        newPassword.value = "";
+
         let approvedUserName = response.handle;
+
         const welcomeMessage = document.createElement('p');
         welcomeMessage.innerText = `Welcome to Chitter, @${approvedUserName}!`;
         welcomeMessage.id = 'welcome-message';
-        console.log(welcomeMessage.innerText);
         this.signUpContainer.append(welcomeMessage);
+        
       }))
     })
 
