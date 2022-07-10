@@ -21,5 +21,8 @@
   "dependencies": {
     "esbuild": "^0.14.48",
     "jest": "^28.1.2"
+  },
+  "devDependencies": {
+    "jest-environment-jsdom": "^28.1.2"
   }
 }
