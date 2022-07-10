@@ -34,7 +34,14 @@ describe(ChitterView,() => {
     view.displayPeeps();
     peepDiv = document.querySelector("div.peep")
     //expect(peepDiv.querySelector(".time").InnerText).toEqual("15:55 03/07/2022");
-    expect(peepDiv.querySelector('.user-handle').innerText).toEqual("@jayjay")
+    expect(peepDiv.querySelector('.peep-details').innerText).toEqual("@jayjay || 15:55 03/07/2022")
+  })
+
+  describe('formatTime',() => {
+    it('formats a timestamp',() => {
+      const view = new ChitterView();
+      expect(view.formatTime("2022-07-03T15:55:57.177Z")).toEqual("15:55 03/07/2022");
+    })
   })
 })
 

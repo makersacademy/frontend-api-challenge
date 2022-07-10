@@ -27,6 +27,16 @@ class ChitterView {
       })
     })
   }
+
+  formatTime(timestamp) {
+    const year = timestamp.substr(0, 4);
+    const month = timestamp.substr(5, 2);
+    const day = timestamp.substr(8, 2);
+    const time = timestamp.substr(11, 5);
+    return `${time} ${day}/${month}/${year}`
+  }
 }
+
+"2022-07-03T15:55:57.177Z"
 
 module.exports = ChitterView;
