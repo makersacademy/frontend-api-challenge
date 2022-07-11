@@ -76,13 +76,6 @@ describe(ChitterView,() => {
     expect(document.querySelector('#login-message').innerText).toEqual('Welcome back, @yak');
   })
 
-  describe('formatTime',() => {
-    it('formats a timestamp',() => {
-      const view = new ChitterView();
-      expect(view.formatTime("2022-07-03T15:55:57.177Z")).toEqual("15:55 03/07/2022");
-    })
-  })
-
   describe('displayAddPeep',() => {
     it('shows a form to add a peep',() => {
       const view = new ChitterView();
