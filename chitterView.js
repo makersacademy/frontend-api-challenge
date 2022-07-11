@@ -11,23 +11,7 @@ class ChitterView {
 
 
     this.signUpButton.addEventListener('click',() => {
-      console.log('you clicked sign up');
-      let newUserHandle = document.querySelector('#username-input');
-      let newPassword = document.querySelector('#password-input');
-      this.api.addUser(newUserHandle.value, newPassword.value, ((response) => {
-
-        newUserHandle.value = "";
-        newPassword.value = "";
-
-        let approvedUserName = response.handle;
-
-        const welcomeMessage = document.createElement('p');
-        welcomeMessage.innerText = `Welcome to Chitter, @${approvedUserName}!`;
-        welcomeMessage.id = 'welcome-message';
-        this.signUpContainer.append(welcomeMessage);
-        this.displayAddPeep();
-        this.displayPeeps();
-      }))
+      this.#signUp();
     })
 
     this.loginButton.addEventListener('click',() => {
@@ -118,6 +102,27 @@ class ChitterView {
       })
     })
   }
+
+  #signUp() {
+    console.log('you clicked sign up');
+      let newUserHandle = document.querySelector('#username-input');
+      let newPassword = document.querySelector('#password-input');
+      this.api.addUser(newUserHandle.value, newPassword.value, ((response) => {
+
+        newUserHandle.value = "";
+        newPassword.value = "";
+
+        let approvedUserName = response.handle;
+
+        const welcomeMessage = document.createElement('p');
+        welcomeMessage.innerText = `Welcome to Chitter, @${approvedUserName}!`;
+        welcomeMessage.id = 'welcome-message';
+        this.signUpContainer.append(welcomeMessage);
+        this.displayAddPeep();
+        this.displayPeeps();
+      }))
+  }
+
 }
 
 module.exports = ChitterView;
