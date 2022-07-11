@@ -15,19 +15,7 @@ class ChitterView {
     })
 
     this.loginButton.addEventListener('click',() => {
-      let loginUsername = document.querySelector('#login-username');
-      let loginPassword = document.querySelector('#login-password');
-      this.api.login(loginUsername.value, loginPassword.value, (response) => {
-        this.model.addSessionID(response.user_id);
-        this.model.addSessionKey(response.session_key);
-
-        const loginMessage = document.createElement('p');
-        loginMessage.id = 'login-message';
-        loginMessage.innerText = `Welcome back, @${loginUsername.value}`;
-        this.loginContainer.append(loginMessage);
-        this.displayAddPeep();
-        this.displayPeeps();
-      })
+      this.#login();
     })
 
   }
@@ -121,6 +109,22 @@ class ChitterView {
         this.displayAddPeep();
         this.displayPeeps();
       }))
+  }
+
+  #login() {
+    let loginUsername = document.querySelector('#login-username');
+      let loginPassword = document.querySelector('#login-password');
+      this.api.login(loginUsername.value, loginPassword.value, (response) => {
+        this.model.addSessionID(response.user_id);
+        this.model.addSessionKey(response.session_key);
+
+        const loginMessage = document.createElement('p');
+        loginMessage.id = 'login-message';
+        loginMessage.innerText = `Welcome back, @${loginUsername.value}`;
+        this.loginContainer.append(loginMessage);
+        this.displayAddPeep();
+        this.displayPeeps();
+      })
   }
 
 }
