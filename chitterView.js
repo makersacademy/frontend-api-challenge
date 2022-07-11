@@ -35,39 +35,23 @@ class ChitterView {
 
   displayAddPeep() {
     const peepForm = document.createElement('div');
+    this.#createElementsForPeepform(peepForm, (addPeepButton, peepInput) => {
+      this.addPeepContainer.append(peepForm);
 
-    const header = document.createElement('p');
-    header.id = 'peep-header'
-    header.innerText = 'Share your peep';
-    peepForm.append(header);
-
-    const peepInput = document.createElement('input');
-    peepInput.type = 'text';
-    peepInput.id = 'peep-input';
-    peepInput.placeholder = "What's peeping?";
-    peepForm.append(peepInput);
-
-    const addPeepButton = document.createElement('button');
-    addPeepButton.innertext = 'Share'
-    addPeepButton.id = 'add-peep-button';
-    peepForm.append(addPeepButton);
-
-    this.addPeepContainer.append(peepForm);
-
-    addPeepButton.addEventListener('click',() => {
-      const sessionID = this.model.sessionID();
-      const sessionKey = this.model.sessionKey();
-
-      let peep = peepInput.value;
-
-      this.api.addPeep(sessionKey, sessionID, peep, (response) => {
-        if (response.body === peepInput.value) {
-          console.log("it's a success");
-          peep = ""
-          this.displayPeeps();
-        }
+      addPeepButton.addEventListener('click',() => {
+        const sessionID = this.model.sessionID();
+        const sessionKey = this.model.sessionKey();
+        let peep = peepInput.value;
+  
+        this.api.addPeep(sessionKey, sessionID, peep, (response) => {
+          if (response.body === peepInput.value) {
+            console.log("it's a success");
+            peep = ""
+            this.displayPeeps();
+          }
+        })
       })
-    })
+    });
   }
 
   #signUp() {
@@ -128,6 +112,25 @@ class ChitterView {
     const day = timestamp.substr(8, 2);
     const time = timestamp.substr(11, 5);
     return `${time} ${day}/${month}/${year}`
+  }
+
+  #createElementsForPeepform(peepForm, callback) {
+    const header = document.createElement('p');
+    header.id = 'peep-header'
+    header.innerText = 'Share your peep';
+    peepForm.append(header);
+
+    const peepInput = document.createElement('input');
+    peepInput.type = 'text';
+    peepInput.id = 'peep-input';
+    peepInput.placeholder = "What's peeping?";
+    peepForm.append(peepInput);
+
+    const addPeepButton = document.createElement('button');
+    addPeepButton.innertext = 'Share'
+    addPeepButton.id = 'add-peep-button';
+    peepForm.append(addPeepButton);
+    callback(addPeepButton, peepInput);
   }
 
 }
