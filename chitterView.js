@@ -17,7 +17,6 @@ class ChitterView {
     this.loginButton.addEventListener('click',() => {
       this.#login();
     })
-
   }
 
 
@@ -29,19 +28,7 @@ class ChitterView {
 
     this.api.loadPeeps((peeps) => {
       peeps.forEach((peep) => {
-        let div = document.createElement("div");
-        div.className = "peep";
-        div.innerText = peep.body;
-
-        let peepDetails = document.createElement("p");
-        let time = this.formatTime(peep.created_at);
-        peepDetails.innerText = `@${peep.user.handle} || ${time}`;
-        peepDetails.className = "peep-details";
-        div.append(peepDetails);
-
-        console.log(div);
-
-        this.mainContainerEl.append(div);
+        this.#formatAndDisplayPeep(peep); 
       })
     })
   }
@@ -125,6 +112,22 @@ class ChitterView {
         this.displayAddPeep();
         this.displayPeeps();
       })
+  }
+
+  #formatAndDisplayPeep(peep) {
+    let div = document.createElement("div");
+    div.className = "peep";
+    div.innerText = peep.body;
+
+    let peepDetails = document.createElement("p");
+    let time = this.formatTime(peep.created_at);
+    peepDetails.innerText = `@${peep.user.handle} || ${time}`;
+    peepDetails.className = "peep-details";
+    div.append(peepDetails);
+
+    console.log(div);
+
+    this.mainContainerEl.append(div);
   }
 
 }
