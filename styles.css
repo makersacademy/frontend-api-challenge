@@ -3,13 +3,26 @@ h1, p, * {
   }
   
   html {
-    background:#c1dd67;
+    /* background:#F9F7FD; */
+    background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    display: flex;
+    justify-content: center;
   }
+
+  h1{
+    color: #4eb4e2;
+    display: flex;
+    justify-content: center;
+  }
+
   
   body {
-    background: white;
+    display: flex;
+    justify-content: center;
+    background: #F3EEED;
     width: 600px;
-    margin: auto;
+    margin: 0 auto;
+   
     margin-top: 20px;
     padding: 20px;
     border-radius: 10px;
@@ -25,14 +38,18 @@ h1, p, * {
   }
   
   .signup {
+    display: flex;
+    justify-content: center;
     border-radius: 10px;
     padding: 20px;
     border-bottom: 1px solid #aaa;
   }
   
   .login {
+    display: flex;
+    justify-content: center;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
     border-bottom: 1px solid #aaa;
   }
   
