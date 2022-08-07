@@ -2,7 +2,7 @@
   "name": "frontend-api-challenge",
   "version": "1.0.0",
   "description": "* Feel free to use Google, your notes, books, etc. but work on your own * If you refer to the solution of another coach or student, please put a link to that in your README * If you have a partial solution, **still check in a partial solution** * You must submit a pull request to this repo with your code by 9am Monday morning",
-  "main": "index.js",
+  "main": "chitterModel.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "esbuild ./index.js --bundle  --outfile=bundle.js --watch"
@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/Saraesabbagh/frontend-api-challenge#readme",
   "dependencies": {
-    "esbuild": "^0.14.51",
     "jest": "^28.1.3",
     "jest-fetch-mock": "^3.0.3"
   },

@@ -1,12 +1,19 @@
-class ChitterModel{
-    constructor() {
-        this.peeps =[]
+class ChitterModel {
+    addSessionID(userID) {
+      this.userID = userID;
     }
-
-    getPeeps = () => this.peeps;
-
-    addPeep = (peep) => this.peeps.push(peep);
-
-    reset = () => this.peeps = [];
-}
-module.exports = ChitterModel;
+  
+    addSessionKey(key) {
+      this.key = key;
+    }
+  
+    sessionKey() {
+      return this.key;
+    }
+  
+    sessionID() {
+      return this.userID
+    }
+  }
+  
+  module.exports = ChitterModel;
