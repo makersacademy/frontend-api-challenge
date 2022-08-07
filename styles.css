@@ -19,7 +19,7 @@ h1, p, * {
   body {
     display: flex;
     justify-content: center;
-    background: #F3EEED;
+    color: wheat;
     width: 600px;
     margin: 0 auto;
    
@@ -31,6 +31,10 @@ h1, p, * {
   .peep {
     border-bottom: 1px solid #aaa;
     padding: 15px;
+    background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   .peep-details {
