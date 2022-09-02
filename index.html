@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Chitter</title>
+    <!-- icon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3050/3050939.png" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+  </head>
+  <body>
+    <!-- Start your project here-->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2" href="">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3050/3050939.png"
+        height="40"
+        alt="Chitter logo"
+        loading="lazy"
+        style="margin-top: -1px;"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarButtonsExample"
+      aria-controls="navbarButtonsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <h2><a class="nav-link" href="">Chitter</a></h2>
+        </li>
+      </ul>
+      <!-- Left links -->
+
+      <div class="d-flex align-items-center">
+
+        <!-- Button trigger modal -->
+        <div id="user-container" style="display:block">
+          <button id="user-create-btn" type="button" class="btn btn-primary me-3" data-mdb-toggle="modal" data-mdb-target="#createAccountModal">
+            Sign up to peep
+          </button>
+
+          <button id="user-login-btn" type="submit" class="btn btn-link px-3 me-2" data-mdb-toggle="modal" data-mdb-target="#loginModal">
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+
+
+
+<!-- Sign up Modal -->
+<div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="createAccountModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createAccountModal">Sign up for an account</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Handle input -->
+          <div class="form-outline mb-4">
+            <input type="text" id="create-account-handle" class="form-control" required />
+            <label class="form-label" for="create-account-handle">Handle</label>
+          </div>
+        
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" id="create-account-password" class="form-control" required />
+            <label class="form-label" for="create-account-password">Password</label>
+          </div>
+        
+          <!-- Submit button -->
+          <button id="create-account-submit" type="button" class="btn btn-primary btn-block mb" data-mdb-dismiss="modal">Create Account</button>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Log in Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModal">Log in to your account</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Handle input -->
+          <div class="form-outline mb-4">
+            <input type="text" id="login-handle" class="form-control" required />
+            <label class="form-label" for="login-handle">Handle</label>
+          </div>
+        
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" id="login-password" class="form-control" required/>
+            <label class="form-label" for="login-password">Password</label>
+          </div>
+        
+          <!-- Submit button -->
+          <button id="login-submit" type="button" class="btn btn-primary btn-block mb-4" data-mdb-dismiss="modal">Sign in</button>
+        
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+
+<section class="w-100 p-4 pb-4 d-flex justify-content-center">
+  <div>
+    <div id="success-alert" class="alert alert-success" role="alert" style="display:none">
+    </div>
+
+    <div id="fail-alert" class="alert alert-danger" role="alert" style="display:none">
+    </div>
+
+    <div id="peep-container" style="display:none">
+      <form>
+        <!-- Message input -->
+        <div class="form-outline mb-4">
+          <input class="form-control" id="peep-input" required></input>
+          <label class="form-label" for="peep-input">What's on your peeping mind?</label>
+        </div>
+      
+        <!-- Submit button -->
+        <button id="peep-submit" type="button" class="btn btn-primary btn-block mb-4">Peep</button>
+      </form>
+    </div>
+
+    <!-- Peeps -->
+    <ol id="peep-list" class="list-group list-group-light mb-3">
+    </ol>
+    <a class="btn btn-outline-dark btn-rounded w-100" href="#" role="button" data-ripple-color="dark">Load more peeps</a>
+  </div>
+</section>
+    <!-- End your project here-->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
