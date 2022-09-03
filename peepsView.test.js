@@ -19,13 +19,13 @@ describe('PeepsView class', () => {
     expect(document.querySelector('div.peep').textContent).toEqual('test peep');
   })
 
-
-  // it('clears peeps', () => {
-  //   const peepsView = new PeepsView(model)
-  //   model.setPeeps(['test peep']);
-  //   peepsView.displayClear()
-  //   expect(document.querySelectorAll('div.peep').length).toBe(0)
-  // })
+  it('clears peeps', () => {
+    const peepsView = new PeepsView(model)
+    model.setPeeps([{ body: 'test peep' }]);
+    peepsView.displayPeeps();
+    peepsView.displayClear()
+    expect(document.querySelectorAll('div.peep').length).toBe(0)
+  })
 
   // it('displayPeeps method', () => {
   //   const peep = [
