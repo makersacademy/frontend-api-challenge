@@ -13,9 +13,14 @@ class PeepsView {
   displayPeeps() {
     this.displayClear()
     this.model.getPeeps().forEach((peep) => {
+      const titleEl = document.createElement('p');
+      const peepEl = document.createElement('p');
       const divEl = document.createElement('div');
       divEl.className = 'peep';
-      divEl.textContent = peep.body;
+      titleEl.textContent = `${peep.user.handle} - ${this.elapsedDays(peep.created_at)}`
+      peepEl.textContent = peep.body;
+      divEl.append(titleEl);
+      divEl.append(peepEl);
       this.mainContainerEl.append(divEl);
     })
   }
@@ -25,6 +30,11 @@ class PeepsView {
       this.model.setPeeps(peeps);
       this.displayPeeps();
     })
+  }
+
+  elapsedDays(dateStr) {
+    const milliseconds = (new Date) - (new Date(dateStr));
+    return `${Math.floor(milliseconds / 86400000)}d`;
   }
 }
 
