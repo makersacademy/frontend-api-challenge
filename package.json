@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/stephenfletchtek/frontend-api-challenge/issues"
   },
-  "homepage": "https://github.com/stephenfletchtek/frontend-api-challenge#readme"
+  "homepage": "https://github.com/stephenfletchtek/frontend-api-challenge#readme",
+  "dependencies": {
+    "jest-environment-jsdom": "^29.0.2"
+  }
 }
