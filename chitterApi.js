@@ -6,5 +6,17 @@ class ChitterApi {
       .then(response => response.json())
       .then((data) => callbackFn(data));
   }
+
+  createUser(user, callback) {
+    const callbackFn = callback || (() => { })
+    fetch('https://chitter-backend-api-v2.herokuapp.com/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user)
+    })
+      .then(response => response.json())
+      .then(data => callbackFn(data));
+  }
 }
+
 module.exports = ChitterApi;
