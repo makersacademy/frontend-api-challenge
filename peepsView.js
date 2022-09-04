@@ -20,22 +20,16 @@ class PeepsView {
     const passwordEl = this.makeElement('#user', 'input', 'password');
     passwordEl.type = 'text';
 
-
-    // a rough workaround to the timing issue
-    if (this.userName == null) {
-      this.userName = document.querySelector('#user-name').value;
-    }
-    if (this.password == null) {
-      this.password = document.querySelector('password').value;
-    }
-
-
-    const user = { user: { handle: this.userName, password: this.password } };
-
     const submitEl = this.makeElement('#user', 'button', 'create-user');
     submitEl.textContent = 'Submit';
 
     submitEl.addEventListener('click', () => {
+      const user = {
+        user: {
+          handle: document.querySelector('#user-name').value,
+          password: document.querySelector('#password').value
+        }
+      };
       this.api.createUser(user);
     });
   }
