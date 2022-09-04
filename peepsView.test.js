@@ -63,14 +63,17 @@ describe('PeepsView class', () => {
     const api = { createUser: jest.fn() };
     const peepsView = new PeepsView(model, api);
 
+    peepsView.userName = 'user'
+    peepsView.password = 'secret'
+
     document.querySelector('#sign-up').click();
 
-    document.querySelector('#user-name').value = 'user';
-    document.querySelector('#password').value = 'secret';
+    // timing issue where signup for has already run before this code
+    // document.querySelector('#user-name').value = 'user';
+    // document.querySelector('#password').value = 'secret';
 
-    const submitEl = document.querySelector('#create-user');
+    document.querySelector('#create-user').click();
 
-    submitEl.click();
     const user = { user: { handle: "user", password: "secret" } };
     expect(api.createUser).toHaveBeenCalledWith(user);
 

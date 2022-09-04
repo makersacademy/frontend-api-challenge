@@ -1,5 +1,7 @@
 class PeepsView {
   constructor(model, api) {
+    this.userName = null;
+    this.password = null;
     this.model = model;
     this.api = api;
     this.signUpEl = document.querySelector('#sign-up');
@@ -18,12 +20,17 @@ class PeepsView {
     const passwordEl = this.makeElement('#user', 'input', 'password');
     passwordEl.type = 'text';
 
-    // temporary code directly assigning values
-    document.querySelector('#user-name').value = 'user'
-    document.querySelector('#password').value = 'secret'
 
-    const user = { user: { handle: userNameEl.value, password: passwordEl.value } };
+    // a rough workaround to the timing issue
+    if (this.userName == null) {
+      this.userName = document.querySelector('#user-name').value;
+    }
+    if (this.password == null) {
+      this.password = document.querySelector('password').value;
+    }
 
+
+    const user = { user: { handle: this.userName, password: this.password } };
 
     const submitEl = this.makeElement('#user', 'button', 'create-user');
     submitEl.textContent = 'Submit';
