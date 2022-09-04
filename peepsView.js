@@ -27,8 +27,19 @@ class PeepsView {
     submitEl.textContent = 'Submit';
 
     submitEl.addEventListener('click', () => {
+      const session = {
+        session: {
+          handle: document.querySelector('#user-name').value,
+          password: document.querySelector('#password').value
+        }
+      }
+
       const statusEl = this.makeElement('#user', 'p', 'status')
-      statusEl.value = 'Logged in as User: 1'
+
+      this.api.loadSession(session, (response) => {
+        statusEl.value = 'Logged in as User: 1'
+        console.log(response)
+      })
     })
   }
 
@@ -61,7 +72,6 @@ class PeepsView {
     document.querySelector(parent).append(El)
     return El
   }
-
 
   displayClear() {
     const peeps = document.querySelectorAll('div.peep');

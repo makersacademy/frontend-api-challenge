@@ -60,14 +60,14 @@ describe('PeepsView class', () => {
   })
 
   it('signs up a user', () => {
-    const peep = [
+    const peeps = [
       {
         "body": "my first peep :)",
         "created_at": "2018-06-23T13:21:23.317Z",
         "user": { "handle": "kay" }
       }
     ]
-    const api = { createUser: jest.fn(), loadPeeps: (callback) => callback(peep) };
+    const api = { createUser: jest.fn(), loadPeeps: (callback) => callback(peeps) };
     new PeepsView(model, api);
 
     document.querySelector('#sign-up').click();
@@ -84,16 +84,15 @@ describe('PeepsView class', () => {
   })
 
   it('creates a session', () => {
-    const session = { session: { handle: "test", password: "test" } }
     const response = { user_id: 1, session_key: "stuff" }
-    const api = { loadSession: (session, (callback) => callback(response)) }
+    const api = { loadSession: (session, callback) => callback(response) }
     new PeepsView(model, api)
     document.querySelector('#sign-in').click();
 
     const userEl = document.querySelector('#user-name');
-    userEl.value = 'user';
+    userEl.value = 'test';
     const pwdEl = document.querySelector('#password');
-    pwdEl.value = 'secret';
+    pwdEl.value = 'test';
 
     document.querySelector('#create-session').click()
     const statusEl = document.querySelector('#status')
