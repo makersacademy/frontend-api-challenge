@@ -38,4 +38,22 @@ describe("API class", () => {
       });
     });
   });
+  it("Creates a new user", () => {
+    const api = new Api();
+    fetch.mockResponseOnce(
+      JSON.stringify({ id: 1131, handle: "InitalUserTest" })
+    );
+    api.createUser((data) => {
+      expect(data).toEqual({ id: 1131, handle: "InitalUserTest" });
+    });
+  });
+  it("Confirms the session", () => {
+    const api = new Api();
+    fetch.mockResponseOnce(
+      JSON.stringify({ user_id: 1131, handle: "InitalUserTest" })
+    );
+    api.createUser((data) => {
+      expect(data).toEqual({ user_id: 1131, handle: "InitalUserTest" });
+    });
+  });
 });

@@ -1,12 +1,12 @@
 class UserModel {
   constructor() {
-    this.users = [];
+    this.user = {};
   }
-  getUsers() {
-    return this.users;
+  getUser() {
+    return this.user;
   }
-  addUser(user) {
-    this.users.push(user);
+  addUser(username, password) {
+    this.user = { handle: username, password: password };
   }
   setUsers(users) {
     this.users = users;
