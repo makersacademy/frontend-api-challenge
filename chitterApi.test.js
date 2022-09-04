@@ -20,6 +20,16 @@ describe('ChitterApi class', () => {
     api.createUser({ user: { handle: "user", password: "secret" } }, (response) => {
       expect(response.id).toEqual(1);
       expect(response.handle).toEqual('user');
-    });
+    })
+  })
+
+  it('creates a session', () => {
+    expect.assertions(2);
+    fetch.mockResponseOnce(JSON.stringify({ user_id: 1130, session_key: "_2a_12_ceWuBTFo9X2gVazI54T0ne" }));
+    const session = { session: { handle: "makersduck", password: "quack!" } }
+    api.loadSession(session, (response) => {
+      expect(response.user_id).toEqual(1130);
+      expect(response.session_key).toEqual("_2a_12_ceWuBTFo9X2gVazI54T0ne");
+    })
   })
 })

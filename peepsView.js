@@ -29,6 +29,8 @@ class PeepsView {
         }
       };
       this.api.createUser(user);
+      // no success message at the moment
+      // this.displayFromApi();
     });
   }
 
