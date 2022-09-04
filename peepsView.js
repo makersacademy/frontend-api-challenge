@@ -23,7 +23,8 @@ class PeepsView {
   }
 
   postPeepForm() {
-    const divEl = this.makeElement('#main-container', 'div', 'post-peep');
+    // const divEl = this.makeElement('#main-container', 'div', 'post-peep');
+    const divEl = document.querySelector('#post-peep')
 
     const peepEl = this.makeElement('#post-peep', 'input', 'post-content');
     peepEl.type = 'text';
