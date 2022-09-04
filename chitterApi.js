@@ -1,5 +1,5 @@
-// class ChitterApi {
+class ChitterApi {
 
-// }
+}
 
-// module.exports = ChitterApi;
+module.exports = ChitterApi;
