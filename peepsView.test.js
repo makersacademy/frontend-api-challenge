@@ -60,7 +60,9 @@ describe('PeepsView class', () => {
   })
 
   it('signs up a user', () => {
+    const user = { user: { handle: "user", password: "secret" } };
     const api = { createUser: jest.fn() };
+
     const peepsView = new PeepsView(model, api);
 
     document.querySelector('#sign-up').click();
@@ -72,7 +74,6 @@ describe('PeepsView class', () => {
 
     document.querySelector('#create-user').click();
 
-    const user = { user: { handle: "user", password: "secret" } };
     expect(api.createUser).toHaveBeenCalledWith(user);
 
   })

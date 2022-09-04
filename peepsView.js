@@ -1,7 +1,5 @@
 class PeepsView {
   constructor(model, api) {
-    this.userName = null;
-    this.password = null;
     this.model = model;
     this.api = api;
     this.signUpEl = document.querySelector('#sign-up');
