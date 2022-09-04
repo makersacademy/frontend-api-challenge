@@ -19,4 +19,4 @@ describe(ChitterApi,() => {
       expect(peeps).toEqual([peepData, peepData])
     });
   });
-});
+}); 
