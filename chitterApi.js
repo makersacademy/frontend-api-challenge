@@ -28,6 +28,21 @@ class ChitterApi {
       .then(response => response.json())
       .then(data => callbackFn(data));
   }
+
+  postPeep(token, peep, callback) {
+    const callbackFn = callback || (() => { })
+    fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token token=' + token
+      },
+      body: JSON.stringify(peep)
+    })
+      .then(response => response.json())
+      .then(data => callbackFn(data));
+  }
+
 }
 
 module.exports = ChitterApi;

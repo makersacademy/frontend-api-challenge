@@ -32,4 +32,13 @@ describe('ChitterApi class', () => {
       expect(response.session_key).toEqual("stuff");
     })
   })
+
+  it('creates a peep', () => {
+    expect.assertions(1);
+    fetch.mockResponseOnce(JSON.stringify({ body: 'quack!' }));
+    api.postPeep('fake', 'whassup?', (response) => {
+      expect(response.body).toEqual('quack!');
+    })
+  })
+
 })

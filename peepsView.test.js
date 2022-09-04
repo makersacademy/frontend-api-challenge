@@ -96,7 +96,7 @@ describe('PeepsView class', () => {
 
     document.querySelector('#create-session').click()
     const statusEl = document.querySelector('#status')
-    expect(statusEl.innerHTML).toEqual('Logged in as User: 1')
+    expect(statusEl.textContent).toEqual('Logged in as User: 1')
 
   })
 })

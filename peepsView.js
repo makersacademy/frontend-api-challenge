@@ -1,10 +1,17 @@
 class PeepsView {
   constructor(model, api) {
+    this.user_id = "";
+    this.session_key = "";
     this.model = model;
     this.api = api;
+    this.postEl = document.querySelector('#post');
     this.signUpEl = document.querySelector('#sign-up');
     this.signInEl = document.querySelector('#sign-in');
     this.mainContainerEl = document.querySelector('#main-container');
+
+    this.postEl.addEventListener('click', () => {
+      this.postPeepForm();
+    })
 
     this.signUpEl.addEventListener('click', () => {
       this.signUpForm();
@@ -13,7 +20,20 @@ class PeepsView {
     this.signInEl.addEventListener('click', () => {
       this.signInForm();
     })
+  }
 
+  postPeepForm() {
+    const divEl = this.makeElement('#main-container', 'div', 'post-peep');
+
+    const peepEl = this.makeElement('#post-peep', 'input', 'post-content');
+    peepEl.type = 'text';
+
+    const submitEl = this.makeElement('#post-peep', 'button', 'create-peep');
+    submitEl.textContent = 'Submit';
+
+    submitEl.addEventListener('click', () => {
+      // stuff
+    })
   }
 
   signInForm() {
@@ -35,10 +55,12 @@ class PeepsView {
       }
 
       this.api.loadSession(session, (response) => {
+        this.user_id = response.user_id;
+        this.session_key = response.session_key;
         const logins = document.querySelectorAll('#status');
         logins.forEach(login => login.remove());
-        const statusEl = this.makeElement('#user', 'p', 'status')
-        statusEl.innerHTML = `Logged in as User: ${response.user_id}`
+        const statusEl = this.makeElement('#user', 'p', 'status');
+        statusEl.textContent = `Logged in as User: ${response.user_id}`;
       })
     })
   }
