@@ -18,8 +18,10 @@ class PeepsView {
     const passwordEl = this.makeElement('#user', 'input', 'password');
     passwordEl.type = 'text';
 
-    userNameEl.value = 'user'
-    passwordEl.value = 'secret'
+    // temporary code directly assigning values
+    document.querySelector('#user-name').value = 'user'
+    document.querySelector('#password').value = 'secret'
+
     const user = { user: { handle: userNameEl.value, password: passwordEl.value } };
 
 

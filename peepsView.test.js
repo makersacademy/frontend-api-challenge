@@ -65,12 +65,11 @@ describe('PeepsView class', () => {
 
     document.querySelector('#sign-up').click();
 
-    const userNameEl = document.querySelector('#user-name');
-    const passwordEl = document.querySelector('#password');
+    document.querySelector('#user-name').value = 'user';
+    document.querySelector('#password').value = 'secret';
+
     const submitEl = document.querySelector('#create-user');
 
-    // userNameEl.value = 'user';
-    // passwordEl.value = 'secret';
     submitEl.click();
     const user = { user: { handle: "user", password: "secret" } };
     expect(api.createUser).toHaveBeenCalledWith(user);
