@@ -11,34 +11,24 @@ class PeepsView {
     })
   }
 
-  signUpForm(callback) {
-    let callbackFn = callback || (() => { })
+  signUpForm() {
+    const userNameEl = this.makeElement('#user', 'input', 'user-name');
+    userNameEl.type = 'text';
 
-    // callbackFn = console.log
+    const passwordEl = this.makeElement('#user', 'input', 'password');
+    passwordEl.type = 'text';
 
-    // const userNameEl = this.makeInput('#user', 'input', 'user-name')
-    //   .then(result => callbackFn(result.value));
+    userNameEl.value = 'user'
+    passwordEl.value = 'secret'
+    const user = { user: { handle: userNameEl.value, password: passwordEl.value } };
 
-    // const passwordEl = this.makeInput('#user', 'input', 'password')
-    //   .then(result => callbackFn(result.value));
 
-    const submitEl = this.makeElement('#user', 'button', 'create-user')
-    submitEl.textContent = 'Submit'
+    const submitEl = this.makeElement('#user', 'button', 'create-user');
+    submitEl.textContent = 'Submit';
 
-    const user = { user: { handle: 'user', password: 'secret' } }
     submitEl.addEventListener('click', () => {
       this.api.createUser(user);
     });
-
-    console.log('here')
-  }
-
-  async makeInput(parent, type, id) {
-    const El = document.createElement(type);
-    El.id = id
-    El.type = 'text'
-    document.querySelector(parent).append(El)
-    return El
   }
 
   makeElement(parent, type, id) {
