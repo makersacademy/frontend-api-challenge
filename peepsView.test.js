@@ -97,6 +97,29 @@ describe('PeepsView class', () => {
     document.querySelector('#create-session').click()
     const statusEl = document.querySelector('#status')
     expect(statusEl.textContent).toEqual('Logged in as User: 1')
+  })
+
+  it('posts a peep', () => {
+    const peeps = [
+      {
+        "body": "my first peep :)",
+        "created_at": "2018-06-23T13:21:23.317Z",
+        "user": { "handle": "kay" }
+      }
+    ]
+    const api = {
+      postPeep: (token, peep, callback) => callback({ body: 'quack!' }),
+      loadPeeps: (callback) => callback(peeps)
+    }
+    new PeepsView(model, api)
+    document.querySelector('#post').click();
+
+    const peepEl = document.querySelector('#post-content');
+    peepEl.value = 'quack!';
+
+    document.querySelector('#create-peep').click()
+    expect(document.querySelector('div.peep').textContent).toBe('kay - 1534dmy first peep :)');
+
 
   })
 })

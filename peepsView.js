@@ -32,7 +32,18 @@ class PeepsView {
     submitEl.textContent = 'Submit';
 
     submitEl.addEventListener('click', () => {
-      // stuff
+      const peep = {
+        peep: {
+          user_id: this.user_id,
+          body: document.querySelector('#post-content').value
+        }
+      }
+      this.api.postPeep(this.session_key, peep, (response) => {
+        console.log(response)
+        const postForm = document.querySelectorAll('#post-peep');
+        postForm.forEach(element => element.remove());
+        this.displayFromApi()
+      })
     })
   }
 
