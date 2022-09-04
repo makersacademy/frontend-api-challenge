@@ -2,7 +2,7 @@ class NotesApi {
   loadAllPeeps(callback) {
     fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
       .then((response) => response.json())
-      .then((json) => callback(json));
+      .then((data) => callback(data));
   }
   // createNote() {
   //   fetch("https://example.com/profile", {
