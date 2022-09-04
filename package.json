@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jest-environment-jsdom": "^29.0.2",
     "jest-fetch-mock": "^3.0.3"
   }
 }
