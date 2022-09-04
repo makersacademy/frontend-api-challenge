@@ -34,11 +34,11 @@ class PeepsView {
         }
       }
 
-      const statusEl = this.makeElement('#user', 'p', 'status')
-
       this.api.loadSession(session, (response) => {
-        statusEl.value = 'Logged in as User: 1'
-        console.log(response)
+        const logins = document.querySelectorAll('#status');
+        logins.forEach(login => login.remove());
+        const statusEl = this.makeElement('#user', 'p', 'status')
+        statusEl.innerHTML = `Logged in as User: ${response.user_id}`
       })
     })
   }
