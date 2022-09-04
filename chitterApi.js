@@ -20,7 +20,7 @@ class ChitterApi {
 
   loadSession(session, callback) {
     const callbackFn = callback || (() => { })
-    fetch('https://chitter-backend-api-v2.herokuapp.com/sessions"', {
+    fetch('https://chitter-backend-api-v2.herokuapp.com/sessions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(session)
