@@ -58,4 +58,22 @@ describe('PeepsView class', () => {
     date = "2018-06-23T13:21:23.317Z"
     expect(peepsView.elapsedDays(date)).toBe('1533d')
   })
+
+  it('signs up a user', () => {
+    const api = { createUser: jest.fn() };
+    const peepsView = new PeepsView(model, api);
+
+    document.querySelector('#sign-up').click();
+
+    const userNameEl = document.querySelector('#user-name');
+    const passwordEl = document.querySelector('#password');
+    const submitEl = document.querySelector('#create-user');
+
+    // userNameEl.value = 'user';
+    // passwordEl.value = 'secret';
+    submitEl.click();
+    const user = { user: { handle: "user", password: "secret" } };
+    expect(api.createUser).toHaveBeenCalledWith(user);
+
+  })
 })
