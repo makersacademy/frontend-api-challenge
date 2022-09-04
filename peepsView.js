@@ -3,11 +3,32 @@ class PeepsView {
     this.model = model;
     this.api = api;
     this.signUpEl = document.querySelector('#sign-up');
+    this.signInEl = document.querySelector('#sign-in');
     this.mainContainerEl = document.querySelector('#main-container');
 
     this.signUpEl.addEventListener('click', () => {
       this.signUpForm();
+    })
 
+    this.signInEl.addEventListener('click', () => {
+      this.signInForm();
+    })
+
+  }
+
+  signInForm() {
+    const userNameEl = this.makeElement('#user', 'input', 'user-name');
+    userNameEl.type = 'text';
+
+    const passwordEl = this.makeElement('#user', 'input', 'password');
+    passwordEl.type = 'text';
+
+    const submitEl = this.makeElement('#user', 'button', 'create-session');
+    submitEl.textContent = 'Submit';
+
+    submitEl.addEventListener('click', () => {
+      const statusEl = this.makeElement('#user', 'p', 'status')
+      statusEl.value = 'Logged in as User: 1'
     })
   }
 
@@ -30,7 +51,7 @@ class PeepsView {
       };
       this.api.createUser(user);
       // no success message at the moment
-      // this.displayFromApi();
+      this.displayFromApi();
     });
   }
 

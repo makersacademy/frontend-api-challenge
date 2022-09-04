@@ -60,20 +60,44 @@ describe('PeepsView class', () => {
   })
 
   it('signs up a user', () => {
-    const api = { createUser: jest.fn() };
+    const peep = [
+      {
+        "body": "my first peep :)",
+        "created_at": "2018-06-23T13:21:23.317Z",
+        "user": { "handle": "kay" }
+      }
+    ]
+    const api = { createUser: jest.fn(), loadPeeps: (callback) => callback(peep) };
     new PeepsView(model, api);
 
     document.querySelector('#sign-up').click();
 
-    const userEl = document.querySelector('#user-name')
+    const userEl = document.querySelector('#user-name');
     userEl.value = 'user';
-    const pwdEl = document.querySelector('#password')
+    const pwdEl = document.querySelector('#password');
     pwdEl.value = 'secret';
 
     document.querySelector('#create-user').click();
 
     const user = { user: { handle: "user", password: "secret" } };
     expect(api.createUser).toHaveBeenCalledWith(user);
+  })
+
+  it('creates a session', () => {
+    const session = { session: { handle: "test", password: "test" } }
+    const response = { user_id: 1, session_key: "stuff" }
+    const api = { loadSession: (session, (callback) => callback(response)) }
+    new PeepsView(model, api)
+    document.querySelector('#sign-in').click();
+
+    const userEl = document.querySelector('#user-name');
+    userEl.value = 'user';
+    const pwdEl = document.querySelector('#password');
+    pwdEl.value = 'secret';
+
+    document.querySelector('#create-session').click()
+    const statusEl = document.querySelector('#status')
+    expect(statusEl.value).toEqual('Logged in as User: 1')
 
   })
 })

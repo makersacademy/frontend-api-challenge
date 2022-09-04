@@ -25,11 +25,11 @@ describe('ChitterApi class', () => {
 
   it('creates a session', () => {
     expect.assertions(2);
-    fetch.mockResponseOnce(JSON.stringify({ user_id: 1130, session_key: "_2a_12_ceWuBTFo9X2gVazI54T0ne" }));
-    const session = { session: { handle: "makersduck", password: "quack!" } }
+    fetch.mockResponseOnce(JSON.stringify({ user_id: 1, session_key: "stuff" }));
+    const session = { session: { handle: "test", password: "test" } }
     api.loadSession(session, (response) => {
-      expect(response.user_id).toEqual(1130);
-      expect(response.session_key).toEqual("_2a_12_ceWuBTFo9X2gVazI54T0ne");
+      expect(response.user_id).toEqual(1);
+      expect(response.session_key).toEqual("stuff");
     })
   })
 })
