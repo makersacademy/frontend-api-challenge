@@ -1,0 +1,80 @@
+
+body {
+  font-size: 67.5%;
+  font-family: sans-serif;
+  text-align: center;
+
+}
+header {
+  text-align: center;
+  font-size: 1.8rem;
+}
+.root-container {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.5rem;
+}
+form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+textarea {
+  padding: .5rem;
+  outline: #ddd;
+  font-size: 1.2rem;
+}
+.submit {
+  width: 100%;
+  text-align: right;
+}
+.submit button {
+  padding: 1.2rem;
+  border-radius: .3rem;
+  width: 10rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: dodgerblue;
+  box-shadow: 4px 5px 5px #ddd;
+  color: #ddd;
+  opacity: .9;
+}
+.submit button:hover {
+  opacity: 1;
+}
+.tweets {
+  width: 100%;
+  margin-top: 3rem;
+}
+ul {
+  list-style: none;
+}
+.tweet-item {
+  display: flex;
+  align-items: center;
+  margin: 3rem 0;
+}
+.tweet-text {
+  margin: .7rem 0 0 0;
+}
+.avatar {
+  background-color: maroon;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 5rem;
+  margin-right: 2rem;
+  color: #ddd;
+}
+.author {
+  padding-bottom: 1rem;
+}
+.timestamp {
+  color: #666;
+}
