@@ -1,9 +1,12 @@
 const ChitterApi = require("./api");
 const PeepModel = require("./peepModel");
 const PeepView = require("./peepView");
+const UserModel = require("./userModel");
+const UserView = require("./userView");
 
 const model = new PeepModel();
 const api = new ChitterApi();
+const userModel = new UserModel();
 
 model.addPeep({
   id: 1494,
@@ -15,6 +18,7 @@ model.addPeep({
 });
 
 const view = new PeepView(model, api);
+const userView = new UserView(userModel, api);
 
 view.displayPeepsFromApi();
 api.createUser("InitalUserTest", "InitalPasswordTest");

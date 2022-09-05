@@ -14,10 +14,10 @@ class ChitterApi {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Success:", data);
+        console.log("Success:", data);
       })
       .catch((error) => {
-        // console.error("Error:", error);
+        console.error("Error:", error);
       });
   }
   logInSession(handle, password) {
@@ -30,28 +30,12 @@ class ChitterApi {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Success:", data);
+        console.log("Success:", data);
       })
       .catch((error) => {
-        // console.error("Error:", error);
+        console.error("Error:", error);
       });
   }
-  // createNote() {
-  //   fetch("https://example.com/profile", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("Success:", data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // }
 }
 
 module.exports = ChitterApi;

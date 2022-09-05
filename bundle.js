@@ -19,7 +19,9 @@
             },
             body: JSON.stringify({ user: { handle, password } })
           }).then((response) => response.json()).then((data) => {
+            console.log("Success:", data);
           }).catch((error) => {
+            console.error("Error:", error);
           });
         }
         logInSession(handle, password) {
@@ -30,7 +32,9 @@
             },
             body: JSON.stringify({ session: { handle, password } })
           }).then((response) => response.json()).then((data) => {
+            console.log("Success:", data);
           }).catch((error) => {
+            console.error("Error:", error);
           });
         }
       };
@@ -92,12 +96,70 @@
     }
   });
 
+  // userModel.js
+  var require_userModel = __commonJS({
+    "userModel.js"(exports, module) {
+      var UserModel2 = class {
+        constructor() {
+          this.user = {};
+        }
+        getUser() {
+          return this.user;
+        }
+        addUser(username, password) {
+          this.user = { handle: username, password };
+        }
+        setUsers(users) {
+          this.users = users;
+        }
+        reset() {
+          this.users = [];
+        }
+      };
+      module.exports = UserModel2;
+    }
+  });
+
+  // userView.js
+  var require_userView = __commonJS({
+    "userView.js"(exports, module) {
+      var UserView2 = class {
+        constructor(model2, api2) {
+          this.model = model2;
+          this.api = api2;
+          this.signUpBtn = document.querySelector("#sign-up-button");
+          this.logInBtn = document.querySelector("#log-in-button");
+          this.username = document.querySelector("#username-input");
+          this.password = document.querySelector("#password-input");
+          this.signUpBtn.addEventListener("click", () => {
+            this.signUp();
+          });
+          this.logInBtn.addEventListener("click", () => {
+            this.logIn();
+          });
+        }
+        signUp() {
+          this.api.createUser(this.username.value, this.password.value);
+        }
+        logIn() {
+          this.api.logInSession(this.username.value, this.password.value);
+        }
+        showCurrentUser() {
+        }
+      };
+      module.exports = UserView2;
+    }
+  });
+
   // index.js
   var ChitterApi = require_api();
   var PeepModel = require_peepModel();
   var PeepView = require_peepView();
+  var UserModel = require_userModel();
+  var UserView = require_userView();
   var model = new PeepModel();
   var api = new ChitterApi();
+  var userModel = new UserModel();
   model.addPeep({
     id: 1494,
     body: "First peep",
@@ -107,6 +169,7 @@
     likes: [{ user: { id: 1120, handle: "margaritapeter" } }]
   });
   var view = new PeepView(model, api);
+  var userView = new UserView(userModel, api);
   view.displayPeepsFromApi();
   api.createUser("InitalUserTest", "InitalPasswordTest");
 })();
