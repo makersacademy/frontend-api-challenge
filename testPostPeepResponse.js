@@ -7,14 +7,7 @@ const testPostPeepResponse = {
     id: 1,
     handle: "kay",
   },
-  likes: [
-    {
-      user: {
-        id: 1,
-        handle: "kay",
-      },
-    },
-  ],
+  likes: [],
 };
 
 module.exports = testPostPeepResponse;

@@ -1,5 +1,5 @@
 class DisplaySinglePeep {
-  display(peep) {
+  display(peep, userId) {
     const peepsContainerEl = document.querySelector("#display-peeps-container");
     const peepDivEl = document.createElement("div");
     peepDivEl.className = "peep";
@@ -7,6 +7,9 @@ class DisplaySinglePeep {
     peepDivEl.append(this.createPeepUserHandle(peep));
     peepDivEl.append(this.createPeepDatetimeCreated(peep));
     peepDivEl.append(this.createPeepLikesCount(peep));
+    if (userId === peep.user.id) {
+      peepDivEl.append(this.createDeletePeepButton(peep));
+    }
     peepsContainerEl.append(peepDivEl);
   }
 
@@ -42,6 +45,14 @@ class DisplaySinglePeep {
       likesCount === 1 ? "like" : "likes"
     }`;
     return peepLikesCountEl;
+  }
+
+  createDeletePeepButton(peep) {
+    const deletePeepButtonEl = document.createElement("button");
+    deletePeepButtonEl.className = "delete-peep-button";
+    deletePeepButtonEl.id = `delete-button-id-${peep.id}`;
+    deletePeepButtonEl.textContent = "delete peep";
+    return deletePeepButtonEl;
   }
 }
 

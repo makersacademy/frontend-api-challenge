@@ -50,6 +50,13 @@ class ChitterApi {
       .then((response) => response.json())
       .then(callback);
   }
+
+  deletePeep(peepId, sessionKey, callback) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Token token=${sessionKey}` },
+    }).then(callback);
+  }
 }
 
 module.exports = ChitterApi;

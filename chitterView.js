@@ -6,6 +6,7 @@ class ChitterView {
     this.createUserContainerEl = document.querySelector(
       "div#create-user-container"
     );
+
     this.newUsernameInputEl = document.querySelector("input#create-username");
     this.newPasswordInputEl = document.querySelector("input#create-password");
 
@@ -18,11 +19,7 @@ class ChitterView {
           this.newUsernameInputEl.value,
           this.newPasswordInputEl.value,
           (data) => {
-            if (data.handle[0] === "has already been taken") {
-              this.handleTaken();
-            } else {
-              this.userCreated();
-            }
+            this.handleTakenLogic(data);
             this.newUsernameInputEl.value = "";
             this.newPasswordInputEl.value = "";
           }
@@ -42,6 +39,7 @@ class ChitterView {
           this.model.setSessionKey(data.session_key);
           this.loginUsernameEl.value = "";
           this.loginPasswordEl.value = "";
+          setTimeout(this.displayPeepsFromApi(), 500);
         }
       );
     });
@@ -50,7 +48,45 @@ class ChitterView {
     document.querySelector("#logout-button").addEventListener("click", () => {
       this.model.resetSessionKey();
       this.model.resetUserId();
+      setTimeout(this.displayPeepsFromApi(), 500);
     });
+
+    this.postPeepBodyEl = document.querySelector("#post-peep-body");
+
+    // post peep button listener
+    document
+      .querySelector("#post-peep-button")
+      .addEventListener("click", () => {
+        this.api.postPeep(
+          this.model.loadSessionKey(),
+          this.model.loadUserId(),
+          this.postPeepBodyEl.value,
+          () => {
+            this.createPeepSuccessMesage();
+            this.postPeepBodyEl.value = "";
+            setTimeout(this.displayPeepsFromApi(), 500);
+          }
+        );
+      });
+  }
+
+  addDeleteButtonListeners() {
+    document.querySelectorAll(".delete-peep-button").forEach((element) => {
+      const peepId = element.id.split("-")[3];
+      element.addEventListener("click", () => {
+        this.api.deletePeep(peepId, this.model.loadSessionKey(), (data) => {
+          setTimeout(this.displayPeepsFromApi(), 500);
+        });
+      });
+    });
+  }
+  createPeepSuccessMesage() {
+    const postPeepSuccessMessageEl = document.createElement("p");
+    postPeepSuccessMessageEl.id = "post-peep-success-message";
+    postPeepSuccessMessageEl.textContent = "Peep posted successfully!";
+    document
+      .querySelector("div#post-peep-container")
+      .append(postPeepSuccessMessageEl);
   }
 
   removeUserCreatedMessages() {
@@ -58,6 +94,14 @@ class ChitterView {
       document.querySelector("#handle-taken-message").remove();
     if (document.querySelector("#new-user-created-message") !== null)
       document.querySelector("#new-user-created-message").remove();
+  }
+
+  handleTakenLogic(data) {
+    if (data.handle[0] === "has already been taken") {
+      this.handleTaken();
+    } else {
+      this.userCreated();
+    }
   }
 
   handleTaken() {
@@ -75,9 +119,17 @@ class ChitterView {
   }
 
   displayPeeps() {
+    if (document.querySelectorAll("div.peep").length > 0) {
+      document
+        .querySelectorAll("div.peep")
+        .forEach((element) => element.remove());
+    }
     this.model
       .loadPeeps()
-      .forEach((peep) => this.displaySinglePeep.display(peep));
+      .forEach((peep) =>
+        this.displaySinglePeep.display(peep, this.model.loadUserId())
+      );
+    this.addDeleteButtonListeners();
   }
 
   displayPeepsFromApi() {

@@ -34,6 +34,9 @@ describe("ChitterView", () => {
       postPeep: jest.fn((sessionKey, userId, peepBody, callback) =>
         callback(fakeCallbackResponse())
       ),
+      deletePeep: jest.fn((peepId, sessionKey, callback) =>
+        callback(fakeCallbackResponse())
+      ),
     };
 
     displaySinglePeep = new DisplaySinglePeep();
@@ -72,6 +75,15 @@ describe("ChitterView", () => {
     );
   });
 
+  it("doesn't add new peeps with each successive call of displayPeeps", () => {
+    fakeCallbackResponse.mockReturnValue(testPeepsArray);
+    view.displayPeepsFromApi();
+    expect(mockApi.fetchPeeps).toHaveBeenCalled();
+    view.displayPeepsFromApi();
+    const peepDivEls = document.querySelectorAll("div.peep");
+    expect(peepDivEls.length).toBe(2);
+  });
+
   it("creates a new user", () => {
     fakeCallbackResponse.mockReturnValueOnce(testUserSessionResponse);
     document.querySelector("input#create-username").value = "username";
@@ -105,10 +117,12 @@ describe("ChitterView", () => {
   });
 
   it("logs in a user", () => {
-    fakeCallbackResponse.mockReturnValueOnce({
-      user_id: 1,
-      session_key: "a_valid_session_key",
-    });
+    fakeCallbackResponse
+      .mockReturnValueOnce({
+        user_id: 1,
+        session_key: "a_valid_session_key",
+      })
+      .mockReturnValueOnce(testPeepsArray);
     document.querySelector("input#login-username").value = "username";
     document.querySelector("input#login-password").value = "password";
     document.querySelector("#login-button").click();
@@ -119,55 +133,82 @@ describe("ChitterView", () => {
     expect(document.querySelector("input#login-password").value).toBe("");
     expect(model.loadUserId()).toBe(1);
     expect(model.loadSessionKey()).toBe("a_valid_session_key");
+    expect(mockApi.fetchPeeps).toHaveBeenCalled();
   });
 
   it("logs a user out", () => {
-    fakeCallbackResponse.mockReturnValueOnce({
+    fakeCallbackResponse.mockReturnValue(testPeepsArray).mockReturnValueOnce({
       user_id: 1,
       session_key: "a_valid_session_key",
     });
     document.querySelector("input#login-username").value = "username";
     document.querySelector("input#login-password").value = "password";
     document.querySelector("#login-button").click();
+    expect(mockApi.fetchPeeps).toHaveBeenCalled();
     document.querySelector("#logout-button").click();
     expect(model.loadUserId()).toBe(null);
     expect(model.loadSessionKey()).toBe(null);
+    expect(mockApi.fetchPeeps).toHaveBeenCalled();
   });
 
   it("posts a Peep", () => {
-    fakeCallbackResponse.mockReturnValueOnce({
-      user_id: 1,
-      session_key: "a_valid_session_key",
-    });
+    fakeCallbackResponse
+      .mockReturnValueOnce({
+        user_id: 1,
+        session_key: "a_valid_session_key",
+      })
+      .mockReturnValueOnce(testPeepsArray);
     document.querySelector("input#login-username").value = "kay";
     document.querySelector("input#login-password").value = "mypassword";
     document.querySelector("#login-button").click();
-
-    fakeCallbackResponse.mockReturnValueOnce(testPostPeepResponse);
-    document.querySelector("#post-peep-body").value = "this is a new peep";
+    fakeCallbackResponse
+      .mockReturnValueOnce(testPostPeepResponse)
+      .mockReturnValueOnce([testPostPeepResponse].concat(testPeepsArray));
+    document.querySelector("#post-peep-body").value = "my first peep :)";
     document.querySelector("#post-peep-button").click();
-    document.querySelector("#post-peep-body").value = "";
     expect(mockApi.postPeep).toHaveBeenCalled();
     expect(mockApi.postPeep.mock.calls[0][0]).toBe("a_valid_session_key");
     expect(mockApi.postPeep.mock.calls[0][1]).toBe(1);
-    expect(mockApi.postPeep.mock.calls[0][2]).toBe("this is a new peep");
+    expect(mockApi.postPeep.mock.calls[0][2]).toBe("my first peep :)");
+    expect(document.querySelector("#post-peep-body").value).toBe("");
     document.querySelector("#post-peep-success-message").textContent =
       "Peep posted successfully!";
 
-    testPeepsArray.unshift(testPostPeepResponse);
-    fakeCallbackResponse.mockReturnValueOnce(testPeepsArray);
-    const newPeepEl = document.querySelector("div.peep");
-    expect(newPeepEl.querySelector(".peep-body").textContent).toBe(
-      "this is a new peep"
+    expect(mockApi.fetchPeeps).toHaveBeenCalled();
+    const newPeepEls = document.querySelectorAll("div.peep");
+    expect(newPeepEls.length).toBe(3);
+    expect(newPeepEls[0].querySelector(".peep-body").textContent).toBe(
+      "my first peep :)"
     );
-    expect(newPeepEl.querySelector(".peep-user-handle")).textContent.toBe(
+    expect(newPeepEls[0].querySelector(".peep-user-handle").textContent).toBe(
       "kay"
     );
-    expect(newPeepEl.querySelector(".peep-datetime-created").textContent).toBe(
-      "14:21 Sat Jun 23 2018"
-    );
-    expect(newPeepEl.querySelector(".peep-likes-count").textContent).toBe(
+    expect(
+      newPeepEls[0].querySelector(".peep-datetime-created").textContent
+    ).toBe("14:21 Sat Jun 23 2018");
+    expect(newPeepEls[0].querySelector(".peep-likes-count").textContent).toBe(
       "0 likes"
     );
+  });
+
+  it("deletes a peep", () => {
+    fakeCallbackResponse
+      .mockReturnValueOnce({
+        user_id: 1124,
+        session_key: "a_valid_session_key",
+      })
+      .mockReturnValue(testPeepsArray);
+    document.querySelector("input#login-username").value = "jony144";
+    document.querySelector("input#login-password").value = "mypassword";
+    document.querySelector("#login-button").click();
+    expect(document.querySelectorAll(".delete-peep-button").length).toBe(1);
+    document
+      .querySelectorAll("div.peep")[0]
+      .querySelector(".delete-peep-button")
+      .click();
+    expect(mockApi.deletePeep).toHaveBeenCalled();
+    expect(mockApi.deletePeep.mock.calls[0][0]).toBe("1494");
+    expect(mockApi.deletePeep.mock.calls[0][1]).toBe("a_valid_session_key");
+    expect(mockApi.fetchPeeps).toHaveBeenCalledTimes(2);
   });
 });
