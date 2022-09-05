@@ -60,9 +60,3 @@ class ChitterApi {
 }
 
 module.exports = ChitterApi;
-
-// curl "https://chitter-backend-api-v2.herokuapp.com/peeps" \
-//   -X POST \
-//   -H "Authorization: Token token=a_valid_session_key" \
-//   -H "Content-Type: application/json" \
-//   -d '{"peep": {"user_id":1, "body":"my first peep :)"}}'

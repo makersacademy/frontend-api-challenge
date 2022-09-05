@@ -3,9 +3,6 @@ class ChitterView {
     this.model = model;
     this.api = api;
     this.displaySinglePeep = displaySinglePeep;
-    this.createUserContainerEl = document.querySelector(
-      "div#create-user-container"
-    );
 
     this.newUsernameInputEl = document.querySelector("input#create-username");
     this.newPasswordInputEl = document.querySelector("input#create-password");
@@ -80,6 +77,7 @@ class ChitterView {
       });
     });
   }
+
   createPeepSuccessMesage() {
     const postPeepSuccessMessageEl = document.createElement("p");
     postPeepSuccessMessageEl.id = "post-peep-success-message";
