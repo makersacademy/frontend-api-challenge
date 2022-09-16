@@ -12,8 +12,23 @@
 
 <body>
   <div id="container-login">
+    <form>
+      <label>Please enter your Username:</label>
+      <input type="text" value="username" placeholder="Username" maxlength='20' required/>
+      <label>Please enter your Password:</label>
+      <input type="text" value="username" placeholder="Password" maxlength='20' required/>
+    </form>
 
-
+  </div>
+  <button id='showCreateUser' name="Create an account"></button>
+  <div id="container-createUser" style='visibility:hidden'>
+    <form>
+      <label>Please enter a Username:</label>
+      <input type="text" value="username" placeholder="Username" maxlength='20' required/>
+      <label>Please enter a Password:</label>
+      <input type="text" value="username" placeholder="Password" maxlength='20' required/>
+      <input type="submit" value='Create an account' />
+    </form>
   </div>
 
   <div id="container-makepost">
