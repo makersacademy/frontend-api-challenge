@@ -6,28 +6,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style/style.css">
   <title>Welcome to Chitter!</title>
 </head>
 
 <body>
   <div id="container-login">
-    <form>
+    <form id="loginForm" style="visibility: visible">
       <label>Please enter your Username:</label>
-      <input type="text" value="username" placeholder="Username" maxlength='20' required/>
+      <input type="text" name="username" placeholder="Username" maxlength='20' required/>
       <label>Please enter your Password:</label>
-      <input type="text" value="username" placeholder="Password" maxlength='20' required/>
+      <input type="text" name="password" placeholder="Password" maxlength='20' required/>
+      <input type="submit" value="Login"/>
     </form>
 
   </div>
-  <button id='showCreateUser' name="Create an account"></button>
-  <div id="container-createUser" style='visibility:hidden'>
-    <form>
+  <button id='showCreateUser'>Create an account</button>
+  <div id="container-createUser" style='visibility: hidden'>
+    <form id="createUserForm">
       <label>Please enter a Username:</label>
-      <input type="text" value="username" placeholder="Username" maxlength='20' required/>
+      <input type="text" id="createUsername" name="username" placeholder="Username" maxlength='20' required/>
       <label>Please enter a Password:</label>
-      <input type="text" value="username" placeholder="Password" maxlength='20' required/>
-      <input type="submit" value='Create an account' />
+      <input type="text" id="createPassword" name="password" placeholder="Password" maxlength='20' required/>
+      <input id="createUserFormBtn" type="submit" value='Create an account' />
     </form>
   </div>
 
