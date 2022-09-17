@@ -1,35 +1,40 @@
 class Api {
-  loadPeeps(callback){}
+  loadPeeps(callback) {}
 
   createSession(username, password, callback) {
-    fetch('https://chitter-backend-api-v2.herokuapp.com/sessions', {
-      method: 'POST',
+    fetch("https://chitter-backend-api-v2.herokuapp.com/sessions", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        session: {handle:`${username}`, password:`${password}`}
-      })
+        session: { handle: `${username}`, password: `${password}` },
+      }),
     })
-    .then((response) => response.json())
-    .then((data) => callback(data))
+      .then((response) => response.json())
+      .then((data) => callback(data));
   }
 
   createUser(username, password, callback) {
-    fetch("https://chitter-backend-api-v2.herokuapp.com/users",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: { handle: username, password: password },
-        }),
+    fetch("https://chitter-backend-api-v2.herokuapp.com/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: { handle: username, password: password },
+      }),
     })
-    .then(response => response.json())
-    .then(data => callback(data))
-    .catch(error => console.log(error))
+      .then((response) => response.json())
+      .then((data) => callback(data))
+      .catch((error) => console.log(error));
+  }
+
+  loadPeeps(callback) {
+    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
+      .then((response) => response.json())
+      .then((data) => callback(data));
   }
 }
 
-module.exports = Api
+module.exports = Api;

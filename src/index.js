@@ -1,8 +1,9 @@
 const Api = require("./api");
-const PeepsView = require('./views/peepsView')
-const PeepModel = require ('./model/user')
+const PeepsView = require("./views/peepsView");
+const PeepModel = require("./model/peepModel");
 
-const api = new Api
-const peepModel = new PeepModel
-const peepsView = new PeepsView(peepModel, api)
- 
+const api = new Api();
+const peepModel = new PeepModel(api);
+const peepsView = new PeepsView(peepModel, api);
+
+peepsView.displayPeeps();
