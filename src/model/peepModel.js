@@ -11,7 +11,7 @@ class PeepModel {
   loadPeepsData(callback) {
     this.api.loadPeeps((data) => {
       this.peeps = data;
-      callback(data)
+      callback(data);
     });
   }
 }
