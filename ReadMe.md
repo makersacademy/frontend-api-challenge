@@ -15,8 +15,8 @@ It certainly raised lots of questions on efficiency and code structure... JQuery
 
 1. Home page with dynamic login, sticky navbar, and view of all peeps on the page.
 
-!(Homepage)[https://i.imgur.com/yan7jML.png]
+![Homepage](https://i.imgur.com/yan7jML.png)
 
 2. Once logged in, a user has a unique 'session id' which allows them to access posting peeps and liking existing peeps.
 
-!(Homepage when logged in)[https://i.imgur.com/F4etZeQ.png]
+![Homepage when logged in](https://i.imgur.com/F4etZeQ.png)
