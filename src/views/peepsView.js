@@ -81,7 +81,11 @@ class PeepsView {
     newPeepDiv.append(newPeepDate);
 
     const newPeepUser = document.createElement("p");
-    newPeepUser.innerHTML = `<span>Peep by: ${peep.user.handle}</span>`;
+    if (peep.user.id === this.user_id) {
+      newPeepUser.innerHTML = `<span>Peep by: YOU!</span>`;
+    } else {
+      newPeepUser.innerHTML = `<span>Peep by: ${peep.user.handle}</span>`;
+    }
     newPeepUser.className = "peep-user";
     newPeepDiv.append(newPeepUser);
 
@@ -89,6 +93,18 @@ class PeepsView {
     newPeepBody.textContent = peep.body;
     newPeepBody.className = "peep-body";
     newPeepDiv.append(newPeepBody);
+
+
+    if (peep.user.id === this.user_id) {
+      const newPeepDeleteBtn = document.createElement("button")
+      newPeepDeleteBtn.id = peep.id
+      newPeepDeleteBtn.addEventListener('click', (event) => {
+        this.api.deletePeep(event.target.id, this.session_key, () => {
+          this.displayPeeps()
+        });
+      })
+      newPeepDiv.append(newPeepDeleteBtn)
+    }
 
     this.containerPosts.append(newPeepDiv);
   }
@@ -121,6 +137,7 @@ class PeepsView {
       if (this.session_key) { // Hides user header, shows post form
         this.containerCreatePost.style.display = 'block';
         this.usersHeader.style.display = 'none';
+        this.displayPeeps()
       }
 
     })

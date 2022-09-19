@@ -52,6 +52,19 @@ class Api {
       .then((data) => callback(data))
       .catch((error) => console.log(error))
   }
+
+  deletePeep(peep_id, user_session, callback) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peep_id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": "Token token=" + user_session
+      }
+    })
+    .then(response => {
+      callback()
+    })
+  }
+
 }
 
 module.exports = Api;
