@@ -17,6 +17,9 @@ It certainly raised lots of questions on efficiency and code structure... JQuery
 
 ![Homepage](https://i.imgur.com/yan7jML.png)
 
-2. Once logged in, a user has a unique 'session id' which allows them to access posting peeps and liking existing peeps.
+2. Once logged in, a user has a unique 'session id' which allows them to access various features, including:
+- Posting a peep
+- Deleting an existing peep that they have written
+- Liking other peeps
 
 ![Homepage when logged in](https://i.imgur.com/F4etZeQ.png)
