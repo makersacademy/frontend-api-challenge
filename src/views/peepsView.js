@@ -2,21 +2,31 @@ class PeepsView {
   constructor(model, api) {
     this.model = model;
     this.api = api;
+
+    this.session_key = null;
+    this.user_id = null
+
+    // Elements
+    this.loginButton = document.getElementById('loginButton')
     this.containerCreateUser = document.getElementById("container-createUser");
     this.showCreateUserbtn = document.getElementById("showCreateUser");
     this.createUserFormBtn = document.getElementById("createUserFormBtn");
     this.containerPosts = document.getElementById("container-posts");
     this.loginForm = document.getElementById('loginForm');
+    this.containerCreatePost = document.getElementById('container-makepost');
+    this.usersHeader = document.getElementById('users-header')
+    this.createPeepBtn = document.getElementById("createPeepBtn")
+    this.createPeepContent = document.getElementById('newPeep-content')
 
     //Create User Button
     this.showCreateUserbtn.addEventListener("click", () => {
-      if (this.containerCreateUser.style.visibility === "hidden") {
-        this.containerCreateUser.style.visibility = "visible";
-        this.loginForm.style.visibility = 'hidden';
+      if (this.containerCreateUser.style.display === "none") {
+        this.containerCreateUser.style.display = "block";
+        this.loginForm.style.display = 'none';
         this.showCreateUserbtn.textContent = "Cancel creating an account";
       } else {
-        this.containerCreateUser.style.visibility = "hidden";
-        this.loginForm.style.visibility = 'visible';
+        this.containerCreateUser.style.display = "none";
+        this.loginForm.style.display = 'block';
 
         this.showCreateUserbtn.textContent = "Create an account";
       }
@@ -27,6 +37,18 @@ class PeepsView {
       event.preventDefault();
       this.createUser();
     });
+
+    //Login button
+
+    this.loginButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      this.signInUser();
+    });
+
+    this.createPeepBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.createPeep()
+    })
   }
 
   createUser() {
@@ -68,22 +90,49 @@ class PeepsView {
     newPeepBody.className = "peep-body";
     newPeepDiv.append(newPeepBody);
 
-
-
     this.containerPosts.append(newPeepDiv);
   }
 
   displayPeeps() {
+    // Remove existing peeps first
     const pagepeeps = document.querySelectorAll(".peep");
     pagepeeps.forEach((element) => {
       element.remove();
     });
-
+    // Add peeps to the page from the API
     this.model.loadPeepsData((peepObjects) => {
       peepObjects.forEach((peep) => {
         this.addpeepToPage(peep);
       });
     });
+  }
+
+  signInUser() {
+    const username = document.getElementById("loginUsername").value
+    const password = document.getElementById("loginPassword").value
+
+    this.api.createSession(username, password, (response) => {
+      console.log("Login attempt:" + response.session_key)
+
+      this.session_key = response.session_key
+      this.user_id = response.user_id
+      console.log('user_id = ' + this.user_id)
+
+      if (this.session_key) { // Hides user header, shows post form
+        this.containerCreatePost.style.display = 'block';
+        this.usersHeader.style.display = 'none';
+      }
+
+    })
+
+  }
+
+  createPeep() {
+    this.api.postPeep(this.createPeepContent.value, this.user_id, this.session_key, (data) => {
+      console.log("Peep has been posted!: " + data.body + " " + "user_handle: " + data.user.handle);
+
+      this.displayPeeps()
+    })
   }
 }
 

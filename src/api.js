@@ -12,7 +12,8 @@ class Api {
       }),
     })
       .then((response) => response.json())
-      .then((data) => callback(data));
+      .then((data) => callback(data))
+      .catch((error) => console.log(error));
   }
 
   createUser(username, password, callback) {
@@ -34,6 +35,22 @@ class Api {
     fetch("https://chitter-backend-api-v2.herokuapp.com/peeps")
       .then((response) => response.json())
       .then((data) => callback(data));
+  }
+
+  postPeep(peepContent, user_id, user_session, callback) {
+    fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
+      method: "POST",
+      headers: {
+        "Authorization": "Token token=" + user_session,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        peep: { user_id: user_id, body: peepContent }
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => callback(data))
+      .catch((error) => console.log(error))
   }
 }
 

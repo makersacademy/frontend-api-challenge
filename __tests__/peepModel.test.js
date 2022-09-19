@@ -19,10 +19,12 @@ describe("PeepModel", function () {
     };
 
     peepModel = new PeepModel(api);
-    peepModel.loadPeepsData();
+    peepModel.loadPeepsData((data) => console.log(data));
 
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    await new Promise((resolve) => setTimeout(resolve, 800));
 
-    expect(peepModel.getPeeps[0].body).toBe("test peep");
+    const peeps = peepModel.getPeeps[0]
+    console.log(peeps)
+    expect(peeps.body).toBe("test peep");
   });
 });

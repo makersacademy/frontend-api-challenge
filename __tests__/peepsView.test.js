@@ -16,14 +16,14 @@ describe("PeepsView", function () {
     const view = new PeepsView(model, api);
 
     expect(
-      document.getElementById("container-createUser").style.visibility
-    ).toBe("hidden");
+      document.getElementById("container-createUser").style.display
+    ).toBe("none");
 
     const button = document.getElementById("showCreateUser"); //collects the button
     button.click(); //clicks the button
 
     expect(
-      document.getElementById("container-createUser").style.visibility
-    ).toBe("visible");
+      document.getElementById("container-createUser").style.display
+    ).toBe("block");
   });
 });
