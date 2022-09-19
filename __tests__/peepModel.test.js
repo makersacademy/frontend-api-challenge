@@ -3,7 +3,6 @@
  */
 
 const fs = require("fs");
-const Api = require("../src/api");
 const PeepModel = require("../src/model/peepModel");
 
 describe("PeepModel", function () {
@@ -18,13 +17,9 @@ describe("PeepModel", function () {
         ]),
     };
 
-    peepModel = new PeepModel(api);
+    const peepModel = new PeepModel(api);
     peepModel.loadPeepsData((data) => console.log(data));
 
-    await new Promise((resolve) => setTimeout(resolve, 800));
-
-    const peeps = peepModel.getPeeps[0]
-    console.log(peeps)
-    expect(peeps.body).toBe("test peep");
+    expect(peepModel.getPeeps()[0].body).toBe("test peep");
   });
 });
