@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&display=swap" rel="stylesheet">
+    <title>Welcome to Chitter!</title>
+  </head>
+
+  <header>
+    <div id="users-header">
+      <div id="container-login" >
+        <form id="loginForm" style="display: block">
+          <label>Please enter your Username:</label>
+          <input
+            type="text"
+            id="loginUsername"
+            name="username"
+            placeholder="Username"
+            maxlength="20"
+            required
+          />
+          <label>Please enter your Password:</label>
+          <input
+            type="text"
+            id="loginPassword"
+            name="password"
+            placeholder="Password"
+            minlength="5"
+            maxlength="20"
+            required
+          />
+          <input type="submit" id="loginButton" value="Login" />
+        </form>
+      </div>
+      <button id="showCreateUser">Create an account</button>
+      <div id="container-createUser" style="display: none">
+        <form id="createUserForm">
+          <label>Please enter a Username:</label>
+          <input
+            type="text"
+            id="createUsername"
+            name="username"
+            placeholder="Username"
+            maxlength="20"
+            required
+          />
+          <label>Please enter a Password:</label>
+          <input
+            type="text"
+            id="createPassword"
+            name="password"
+            placeholder="Password"
+            maxlength="20"
+            required
+          />
+          <input id="createUserFormBtn" type="submit" value="Create an account" />
+        </form>
+      </div>
+    </div>
+
+  </header>
+  <body>
+    
+    <div id="container-makepost" style="padding-left:15%; padding-right:15%; position:relative; display: none">
+      <br>
+      <form>
+        <textarea id="newPeep-content" style="width:100%" placeholder="Write what you are thinking!"required></textarea>
+        <br>
+        <input type="submit" id="createPeepBtn" style="float:right" value="Post your Peep!"/>
+        <br>
+      </form>
+
+    </div>
+
+    <div id="container-posts"></div>
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
