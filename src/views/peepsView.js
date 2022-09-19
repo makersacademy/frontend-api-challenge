@@ -94,12 +94,46 @@ class PeepsView {
     newPeepBody.className = "peep-body";
     newPeepDiv.append(newPeepBody);
 
+    if (this.session_key) {
+      const newPeepLikeBtn = document.createElement("button")
+      newPeepLikeBtn.className = peep.id
+      newPeepLikeBtn.style = 'float:right'
+
+      newPeepLikeBtn.addEventListener('click', (event) => {
+        this.api.likePeep(event.target.className, this.user_id, this.session_key, (response) => {
+          console.log("Post is liked by:" + response.user)
+          event.target.innerText = `${peep.likes.length + 1} Likes. You have already liked this peep!`
+        });
+      })
+
+      newPeepLikeBtn.innerText = `${peep.likes.length} Likes. Login to like this Peep`
+
+      peep.likes.forEach(like => {
+        if(like.user.id === this.user_id) {
+          newPeepLikeBtn.innerText = `${peep.likes.length} Likes. You have already liked this peep!`
+        }
+      });
+
+      newPeepDiv.append(newPeepLikeBtn)
+
+    } else {
+      const newPeepLikeBtnNoClick = document.createElement("button")
+      newPeepLikeBtnNoClick.className = peep.id
+      newPeepLikeBtnNoClick.innerText = `${peep.likes.length} Likes. Login to like this Peep`
+      newPeepLikeBtnNoClick.style = 'float:right'
+      newPeepDiv.append(newPeepLikeBtnNoClick)
+    }
+
+    /// Delete button on peep card
 
     if (peep.user.id === this.user_id) {
       const newPeepDeleteBtn = document.createElement("button")
-      newPeepDeleteBtn.id = peep.id
+      newPeepDeleteBtn.className = peep.id
+      newPeepDeleteBtn.innerText = 'Delete Peep'
+      newPeepDeleteBtn.style = 'float:right'
       newPeepDeleteBtn.addEventListener('click', (event) => {
-        this.api.deletePeep(event.target.id, this.session_key, () => {
+        this.api.deletePeep(event.target.className, this.session_key, () => {
+          console.log(`Post has been deleted`)
           this.displayPeeps()
         });
       })

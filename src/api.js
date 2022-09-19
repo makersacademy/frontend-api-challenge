@@ -65,6 +65,18 @@ class Api {
     })
   }
 
+  likePeep(peep_id, user_id, user_session, callback) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peep_id}/likes/${user_id}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": "Token token=" + user_session
+      }
+    })
+    .then(response => {
+      callback(response)
+    })
+  }
+
 }
 
 module.exports = Api;
