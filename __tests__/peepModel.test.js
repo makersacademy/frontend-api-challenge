@@ -16,7 +16,7 @@ describe("PeepModel", function () {
           },
         ]),
     };
- 
+  
     const peepModel = new PeepModel(api);
     peepModel.loadPeepsData((data) => console.log(data));
 
