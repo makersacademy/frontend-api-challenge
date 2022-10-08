@@ -22,4 +22,15 @@ describe("ChitterApi", () => {
       expect(data[0].id).toEqual("1");
     });
   });
+  it("creates a session", () => {
+    fetch.mockResponseOnce(
+      JSON.stringify([{ user_id: "1", session_key: "a_valid_session_key" }])
+    );
+
+    const chitterApi = new ChitterApi();
+
+    chitterApi.createSession("test", "password", (data) => {
+      expect(data[0].user_id).toEqual("1");
+    });
+  });
 });
