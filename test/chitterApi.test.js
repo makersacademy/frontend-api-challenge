@@ -8,6 +8,7 @@ describe("ChitterApi", () => {
     fetch.mockResponseOnce(JSON.stringify([{ body: "123" }]));
 
     const chitterApi = new ChitterApi();
+
     chitterApi.getPeeps((data) => {
       expect(data[0].body).toBe("123");
     });
@@ -17,8 +18,7 @@ describe("ChitterApi", () => {
 
     const chitterApi = new ChitterApi();
 
-    const user = { user: { handle: "test", password: "password" } };
-    chitterApi.createUser(user, (data) => {
+    chitterApi.createUser("test", "password", (data) => {
       expect(data[0].id).toEqual("1");
     });
   });
