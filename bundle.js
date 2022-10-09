@@ -102,16 +102,16 @@
             "sm:py-4",
             "leading-relaxed",
             "bg-gradient-to-r",
-            "from-blue-100",
-            "to-blue-300"
+            "from-pink-50"
           );
           let peepStrong = document.createElement("strong");
+          peepStrong.classList.add("text-blue-900");
           peepStrong.innerText = "@" + peep.user.handle;
           let peepSpan = document.createElement("span");
           peepSpan.classList.add("float-right", "text-xs", "text-gray-400");
           peepSpan.innerText = peep.created_at;
           let peepBody = document.createElement("p");
-          peepBody.classList.add("text-sm");
+          peepBody.classList.add("text-sm", "text-blue-700");
           peepBody.innerText = peep.body;
           peepBodyWrapper.appendChild(peepStrong);
           peepBodyWrapper.appendChild(peepSpan);

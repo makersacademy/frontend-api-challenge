@@ -5,11 +5,63 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="./dist/output.css" rel="stylesheet">
   </head>
-  <body>
-    <div class="grid h-screen place-items-center">
-      <div id="peeps" class="relative space-y-4 w-3/5 h-3/5 bg-white overflow-y-scroll shadow-lg sm:rounded-3xl sm:p-10">
+  <body style="background-image:linear-gradient(rgba(252, 252, 252, 0.9), rgba(255, 244, 255, 0.9)), url(./img/Happy-Bunch.png)">
+    <div id="logo" class="flex"><img class="flex-auto" src="img/Chitter.svg" ></div>
+    <div class="flex h-screen items-top space-x-10 p-10">
+      <div class="flex-initial">
+        <form>
+        <p class="mb-4">Please login to your account</p>
+        <div class="mb-4">
+          <input
+            type="text"
+            class="form-control logBtn"
+            id="exampleFormControlInput1"
+            placeholder="Username"
+          />
+        </div>
+        <div class="mb-4">
+          <input
+            type="password"
+            class="form-control logBtn"
+            id="exampleFormControlInput1"
+            placeholder="Password"
+          />
+        </div>
+        <div class="text-center pt-1 mb-12 pb-1">
+          <button
+            class="subBtn"
+            type="button"
+            data-mdb-ripple="true"
+            data-mdb-ripple-color="light"
+            style="
+              background: linear-gradient(
+                to right,
+                #8babfd,
+                #579dff,
+                #3c41db,
+                #2924b9
+              );
+            "
+          >
+            Log in
+          </button>
+        </div>
+        <div class="flex items-center justify-between pb-6">
+          <p class="mb-0 mr-2">Don't have an account?</p>
+          <button
+            type="button"
+            class="inline-block px-6 py-3 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+            data-mdb-ripple="true"
+            data-mdb-ripple-color="light"
+          >
+            sign up
+          </button>
+        </div>
+      </form>
+    </div>
+      <div id="peeps" class="relative peepScrollBox">
       </div>
     </div>
   <script type="text/javascript" src="bundle.js"></script>
