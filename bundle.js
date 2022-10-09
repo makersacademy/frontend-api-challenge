@@ -61,12 +61,16 @@
       var ChitterModel2 = class {
         constructor() {
           this.peeps = [];
+          this.session = {};
         }
         getPeeps = () => {
           return this.peeps;
         };
         setPeeps = (peeps) => {
           this.peeps = peeps;
+        };
+        setSession = (session) => {
+          this.session = session;
         };
       };
       module.exports = ChitterModel2;
@@ -80,8 +84,13 @@
         constructor(model2, api2) {
           this.model = model2;
           this.api = api2;
+          this.logBtn = document.getElementById("log-btn");
+          this.logBtn.addEventListener("click", () => {
+            this.login();
+          });
         }
-        renderPeeps = (peeps) => {
+        renderPeeps = () => {
+          const peeps = this.model.getPeeps();
           const peepList = document.getElementById("peeps");
           peepList.innerHTML = "";
           peeps.forEach((peep) => {
@@ -92,18 +101,7 @@
           let peepItem = document.createElement("div");
           peepItem.classList.add("flex");
           let peepBodyWrapper = document.createElement("div");
-          peepBodyWrapper.classList.add(
-            "flex-1",
-            "border",
-            "rounded-lg",
-            "px-4",
-            "py-2",
-            "sm:px-6",
-            "sm:py-4",
-            "leading-relaxed",
-            "bg-gradient-to-r",
-            "from-pink-50"
-          );
+          peepBodyWrapper.classList.add("peepBody");
           let peepStrong = document.createElement("strong");
           peepStrong.classList.add("text-blue-900");
           peepStrong.innerText = "@" + peep.user.handle;
@@ -112,7 +110,7 @@
           peepSpan.innerText = peep.created_at;
           let peepBody = document.createElement("p");
           peepBody.classList.add("text-sm", "text-blue-700");
-          peepBody.innerText = peep.body;
+          peepBody.textContent = peep.body;
           peepBodyWrapper.appendChild(peepStrong);
           peepBodyWrapper.appendChild(peepSpan);
           peepBodyWrapper.appendChild(peepBody);
@@ -122,7 +120,12 @@
         loadPeeps = () => {
           this.api.getPeeps((peeps) => {
             this.model.setPeeps(peeps);
-            this.renderPeeps(peeps);
+            this.renderPeeps();
+          });
+        };
+        login = (handle, password) => {
+          this.api.createSession(handle, password, (data) => {
+            this.model.setSession(data);
           });
         };
       };

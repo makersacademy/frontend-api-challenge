@@ -7,4 +7,5 @@ const api = new ChitterApi();
 const view = new ChitterView(model, api);
 
 view.loadPeeps();
+
 console.log("The Chitter app has loaded");
