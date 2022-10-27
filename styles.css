@@ -3,18 +3,46 @@ h1 {
 }
 
 html {
-  background:#f2d8ee;
+  background:#fdf0f0;
 }
 
 body {
+  margin: 0;
   font-family: 'Asap', sans-serif;
   font-family: 'Roboto', sans-serif;
-  background: white;
+}
+
+.peeps-feed {
+  background: #ffffff;
   width: 700px;
   margin: auto;
-  margin-top: 200px;
+  margin-top: 100px;
   padding: 20px;
   border-radius: 10px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #1f4172;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 25px 25px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #febbbb;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #febbbb;
+  color: white;
 }
 
 img {
@@ -29,7 +57,7 @@ img {
 
 .peep-wrap {
   max-width:600px;
-  background: #fff;
+  background: #ffffff;
   margin: 0 auto;
   margin-top: 30px;
   border-radius:3px;
