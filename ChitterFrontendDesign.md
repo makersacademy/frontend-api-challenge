@@ -23,13 +23,21 @@ To build a front-end single-page-app to interface with the API
 
 ```javascript
 class chitterClient {
-  loadPeeps() {}
+  loadPeeps() {
+    // GET all peeps data
+  }
 
-  createUser(userId, passowrd) {}
+  createUser(userId, passowrd) {
+    // POST to create a new user
+  }
 
-  newSession(userId, password) {}
+  newSession(userId, password) {
+    // POST to create a new log in session
+  }
 
-  addPeep(uerId, sessionKey, newPeep) {}
+  addPeep(uerId, sessionKey, newPeep) {
+    // POST to add new peep
+  }
 }
 ```
 
@@ -39,11 +47,17 @@ class chitterClient {
 
 ```javascript
 class PeepModel {
-  getPeeps() {}
+  getPeeps() {
+    // returns the list of peeps
+  }
 
-  addPeep() {}
+  addPeep(peep) {
+    // adds new peep
+  }
 
-  setPeeps() {}
+  setPeeps() {
+    // retrieve peeps from the API
+  }
 }
 ```
 
