@@ -19,23 +19,23 @@ class View {
     console.log(allPeeps); // remove later
     
     allPeeps.forEach(peep => {
-      const peepDiv = document.createElement('div');
-      peepDiv.className = 'peep';
-      this.mainContainerEl.append(peepDiv);
-
-      this.createParagraph(peep.body, peepDiv, 'message');
-      this.createParagraph(peep.created_at, peepDiv, 'date');
-      this.createParagraph(peep.user.handle, peepDiv, 'user');
-      this.createParagraph(peep.likes.length, peepDiv, 'likes');
-    
+      const cardTemplate = document.getElementById("peep-template");
+      const div = cardTemplate.content.cloneNode(true);
+      div.getElementById('user-name').textContent = peep.user.handle;
+      div.getElementById('time').textContent = this.timeFormatted(peep.created_at);
+      div.getElementById('date').textContent = this.dateFormatted(peep.created_at);
+      div.getElementById('peep-content').textContent = peep.body;
+      div.getElementById('likes-count').textContent = peep.likes.length;
+      this.mainContainerEl.append(div);    
     });
   }
 
-  createParagraph = (peepData, div, tag) => {
-    const peepPart = document.createElement('p');
-    peepPart.className = tag;
-    peepPart.textContent = peepData;
-    div.append(peepPart);
+  dateFormatted = (createdAt) => {
+    return createdAt.substr(0,10);
+  }
+  
+  timeFormatted = (createdAt) => {
+    return createdAt.substr(11,5);
   }
 
 }

@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
   <title>Chitter</title>
 </head>
 <body>
@@ -12,8 +18,35 @@
   <input id="peep-input" type="text">
   <button id="post-peep-button">Peep!</button>
 
-  <div id="main-container"></div>
- 
+  
+
+  <div id="main-container">
+
+    <template id="peep-template">
+      <div class="peep-wrap">
+
+        <div class="peep-header">
+          <img src="images/bird-avator.png" alt="avator" class="avator">
+          
+          <div class="peep-header-info">
+            <span id="user-name"></span>
+            <span id="time"></span>  
+            <span id="date"></span>
+            <p id="peep-content"></p>
+          </div>
+        </div>
+  
+        <div class="likes-container">
+          <div class="likes">
+            <button id="likes-button"> <i class="fa-regular fa-heart"></i></button>
+            <span id="likes-count"></span>
+          </div>
+        </div>
+      </div>
+    </template>
+  
+  </div>
+
   <script src="bundle.js"></script>
 </body>
 </html>
