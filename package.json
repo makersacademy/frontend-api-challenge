@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "esbuild index.js --bundle  --outfile=bundle.js --watch"
+    "build": "esbuild ./src/index.js --bundle  --outfile=bundle.js --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest-environment-jsdom": "^29.2.2"
+  },
+  "dependencies": {
+    "jest-fetch-mock": "^3.0.3"
   }
 }

@@ -22,12 +22,30 @@ class ChitterClient{
     fetch((this.#BASE_URL + "users"), content)
       .then((response) => response.json())
       .then((data) => { 
-        console.log("Success!")
+        console.log("A new user created")
         cb(data)
       })
       .catch(error => {
         console.log("Failed!", error);
       })
+  }
+
+  newSession(userId, password, cb) {
+    const content = {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ "session": {"handle":userId, "password":password} })
+    }
+
+    fetch((this.#BASE_URL + "sessions"), content)
+    .then((response) => response.json())
+    .then((data) => { 
+      console.log("A session created!")
+      cb(data)
+    })
+    .catch(error => {
+      console.log("Failed!", error);
+    })
   }
 }
 

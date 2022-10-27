@@ -22,14 +22,14 @@ To build a front-end single-page-app to interface with the API
 - fetch API to make an HTTP request to back-end server
 
 ```javascript
-class ChitterClient {
+class chitterClient {
   loadPeeps() {}
 
-  createUser() {}
+  createUser(userId, passowrd) {}
 
-  newSession() {}
+  newSession(userId, password) {}
 
-  postPeep() {}
+  addPeep(uerId, sessionKey, newPeep) {}
 }
 ```
 
