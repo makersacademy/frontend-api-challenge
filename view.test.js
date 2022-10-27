@@ -29,4 +29,19 @@ describe('View', () => {
     expect(secondPeep.querySelector('p.user').textContent).toBe('user_2');
     expect(secondPeep.querySelector('p.likes').textContent).toBe('2');
   });
+
+  it('Retrieves peeps from the server', () => {
+    const clientMock = {
+      loadPeeps: (callback) => {
+        callback([{body: 'Peep from server', created_at: '2022', user: {handle: 'user'}, likes: [1] }])
+      }
+    }
+    const model = new Model;
+    const view = new View(model, clientMock);
+
+    view.displayPeepsFromApi();
+
+    const firstPeep = document.querySelectorAll('div.peep')[0];
+    expect(firstPeep.querySelector('p.message').textContent).toBe('Peep from server');
+  })
 });

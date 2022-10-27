@@ -7,7 +7,7 @@ class View {
     this.PeepButtonEl = document.querySelector('#post-peep-button');
   }
 
-  getPeepsFromApi = () => {
+  displayPeepsFromApi = () => {
     this.client.loadPeeps((peeps) => {
       this.model.setPeeps(peeps);
       this.displayPeeps();
