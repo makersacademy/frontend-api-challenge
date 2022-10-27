@@ -47,6 +47,27 @@ class ChitterClient{
       console.log("Failed!", error);
     })
   }
+
+  addPeep(userId, sessionKey, newPeep, cb) {
+    const content = {
+      method: 'POST',
+      headers: { 
+        "Content-Type": "application/json",
+        "Authorization": `Token token=${sessionKey}`
+     },
+      body: JSON.stringify({"peep": {"user_id":userId, "body": newPeep}})
+    }
+    
+    fetch((this.#BASE_URL + "peeps"), content)
+    .then((response) => response.json())
+    .then((data) => { 
+      console.log("A new peep created!")
+      cb(data)
+    })
+    .catch(error => {
+      console.log("Failed!", error);
+    })
+  }
 }
 
 module.exports = ChitterClient;

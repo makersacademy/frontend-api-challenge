@@ -22,7 +22,7 @@ describe('Client class', () => {
 
       done();
     });
-  });
+  })
 
   it('calls fetch and create a new user', (done) => {
     const client = new ChitterClient();
@@ -31,7 +31,7 @@ describe('Client class', () => {
       "handle": "maker"
     }));
 
-    client.createUser('newUser', 'password123', returnedData => {
+    client.createUser('newUser', 'password123', (returnedData) => {
       expect(returnedData).toEqual({
         "id": 1,
         "handle": "maker"
@@ -48,20 +48,30 @@ describe('Client class', () => {
       "session_key": "a_valid_session_key"
     }));
 
-    client.newSession('maker', 'password123', returnedData => {
+    client.newSession('maker', 'password123', (returnedData) => {
       expect(returnedData).toEqual({
         "user_id": 1,
         "session_key": "a_valid_session_key"
-      })
+      });
 
       done();
-    })
+    });
   })
 
-  // it('calls fetch and create a new peep', (done) => {
-  //   const client = new ChitterClient();
-  //   fetch.mockResponseOnce(JSON.stringify());
+  it('calls fetch and create a new peep', (done) => {
+    const client = new ChitterClient();
+    fetch.mockResponseOnce(JSON.stringify({
+      "id": 3,
+      "body": "This is a new peep"
+    }));
 
-  //   client.addPeep('maker', '')
-  // })
+    client.addPeep(1, "a_valid_session_key", 'This is a new peep', (returnedData) => {
+      expect(returnedData).toEqual({
+        "id": 3,
+        "body": "This is a new peep"
+      });
+
+      done();
+    });
+  })
 });
