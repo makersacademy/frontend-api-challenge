@@ -1,5 +1,3 @@
-const NotesClient = require("../../../note-app/notesClient");
-
 class PeepModel {
   constructor() {
     this.peepList = [];
