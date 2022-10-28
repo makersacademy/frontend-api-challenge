@@ -8,6 +8,13 @@ class View {
 
     this.showSignupForm();
     this.closeSignupForm();
+
+    this.showSigninForm();
+    this.closeSigninForm();
+
+    this.showPeepForm();
+    this.closePeepForm();
+
     this.submitNewUser();
 
   }
@@ -80,27 +87,56 @@ class View {
   displaySignupStatus = (message) => {
     const signupForm = document.querySelector('.signup-form')
     
-    const messageTemplate = document.querySelector("#singup-message").content.cloneNode(true);
+    const messageTemplate = document.querySelector("#signup-message").content.cloneNode(true);
     
     if (message.id === undefined) {
-      messageTemplate.querySelector('#message').textContent = 'Incorrect input: ' + message.handle;
+      messageTemplate.querySelector('#status-signup-message').textContent = 'Incorrect input: ' + message.handle;
     } else {
-      messageTemplate.querySelector('#message').textContent = `User ${message.handle} was successfully created!`;
-      messageTemplate.querySelector('#message').style.color = 'green';
+      messageTemplate.querySelector('#status-signup-message').textContent = `User ${message.handle} was successfully created!`;
+      messageTemplate.querySelector('#status-signup-message').style.color = 'green';
     }
 
     signupForm.append(messageTemplate);
   }
 
   resetMessage = () => {
-    if (document.querySelector("#message") != null) {
-      document.querySelector("#message").remove();
+    if (document.querySelector("#status-signup-message") != null) {
+      document.querySelector("#status-signup-message").remove();
     }
   }
-
-
   //SIGN UP ENDS
 
+  // SIGN IN
+  showSigninForm = () => {
+    document.querySelector('#show-signin').addEventListener("click", () => {
+      document.querySelector(".popup-signin").classList.add("active");
+      document.querySelector("#form-background").style.display = 'block';
+    });
+  }
+
+  closeSigninForm = () => {
+    document.querySelector('.popup-signin .close-btn-signin').addEventListener("click", () => {
+      document.querySelector(".popup-signin").classList.remove("active");
+      document.querySelector("#form-background").style.display = 'none';
+    });
+  }
+  // SIGN IN ENDS
+
+  // PEEP FORM
+  showPeepForm = () => {
+    document.querySelector('#show-peepform').addEventListener("click", () => {
+      document.querySelector(".popup-peep").classList.add("active");
+      document.querySelector("#form-background").style.display = 'block';
+    });
+  }
+
+  closePeepForm = () => {
+    document.querySelector('.popup-peep .close-btn-peep').addEventListener("click", () => {
+      document.querySelector(".popup-peep").classList.remove("active");
+      document.querySelector("#form-background").style.display = 'none';
+    });
+  }
+  // PEEP FORM ENDS
 
 }
 

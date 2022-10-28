@@ -17,8 +17,9 @@
   <!-- NAVBAR -->
   <div class="topnav">
     <a class="active" href="#home">Home</a>
-    <a id="show-login">Log in</a>
+    <a id="show-signin">Sign in</a>
     <a id="show-signup">Sign up</a>
+    <a id="show-peepform">Peep!</a>
   </div>
   <!-- NAVBAR ENDS -->
 
@@ -38,21 +39,62 @@
       <div class="signup-form-element">
         <button id="submit-new-user-button">Sign up</button>
       </div>
-      <template id="singup-message">
-        <div id="message">
+      <template id="signup-message">
+        <div id="status-signup-message">
         </div>
       </template>
     </div>
   </div>
   <!-- POP UP SIGN UP FORM ENDS -->
 
+   <!-- POP UP SIGN IN FORM -->
+   <div class="popup-signin">
+    <div class="close-btn-signin">&times;</div>
+    <div class="signin-form">
+      <h2>Sign in</h2>
+      <div class="signin-form-element">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username">
+      </div>
+      <div class="signin-form-element">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password">
+      </div>
+      <div class="signin-form-element">
+        <button id="submit-existing-user-button">Sign up</button>
+      </div>
+      <template id="signin-message">
+        <div id="status-signin-message">
+        </div>
+      </template>
+    </div>
+  </div>
+  <!-- POP UP SIGN IN FORM ENDS -->
+
+   <!-- POP UP PEEP FORM -->
+   <div class="popup-peep">
+    <div class="close-btn-peep">&times;</div>
+    <div class="peep-form">
+      <h2>Write peep</h2>
+      <div class="peep-form-element">
+        <label for="peep">Peep here &#128037;</label>
+        <textarea name="peep" id="peep" cols="25" rows="8"></textarea>
+      </div>
+      <div class="peep-form-element">
+        <button id="submit-peep-button">Peep!</button>
+      </div>
+      <template id="peep-message">
+        <div id="status-peep-message">
+        </div>
+      </template>
+    </div>
+  </div>
+  <!-- POP UP PEEP FORM ENDS -->
+
   <div class="peeps-feed">
 
-    <h1>Chitter. Just Peep.</h1>
-
-    <input id="peep-input" type="text">
-    <button id="post-peep-button">Peep!</button>
-  
+    <h1>Welcome to Chitter &#128075;</h1>
+    <h2>See latest peeps &#128064;</h2>
     
   <!-- PEEPS FEED -->
     <div id="main-container">

@@ -1,6 +1,12 @@
-h1 {
+* {
+  font-family: 'Asap', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2 {
   text-align: center;
 }
+
 
 html {
   background:#fdf0f0;
@@ -21,8 +27,6 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Asap', sans-serif;
-  font-family: 'Roboto', sans-serif;
 }
 
 .peeps-feed {
@@ -76,7 +80,59 @@ body {
   transform 200ms ease-in-out 0ms;
 }
 
+.popup-signin {
+  position: absolute;
+  z-index: 1000;
+  top:-150%;
+  left:50%;
+  opacity: 0;
+  transform:translate(-50%,-50%) scale(1.25);
+  width: 380px;
+  padding: 20px 25px;
+  background: #fff;
+  box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  transition:top 0ms ease-in-out 200ms,
+  opacity 200ms ease-in-out 0ms,
+  transform 200ms ease-in-out 0ms;
+}
+
+.popup-peep {
+  position: absolute;
+  z-index: 1000;
+  top:-150%;
+  left:50%;
+  opacity: 0;
+  transform:translate(-50%,-50%) scale(1.25);
+  width: 380px;
+  padding: 20px 25px;
+  background: #fff;
+  box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  transition:top 0ms ease-in-out 200ms,
+  opacity 200ms ease-in-out 0ms,
+  transform 200ms ease-in-out 0ms;
+}
+
 .popup-signup.active {
+  top: 50%;
+  opacity: 1;
+  transform:translate(-50%,-50%) scale(1);
+  transition:top 0ms ease-in-out 0ms,
+  opacity 200ms ease-in-out 0ms,
+  transform 200ms ease-in-out 0ms;
+}
+
+.popup-signin.active {
+  top: 50%;
+  opacity: 1;
+  transform:translate(-50%,-50%) scale(1);
+  transition:top 0ms ease-in-out 0ms,
+  opacity 200ms ease-in-out 0ms,
+  transform 200ms ease-in-out 0ms;
+}
+
+.popup-peep.active {
   top: 50%;
   opacity: 1;
   transform:translate(-50%,-50%) scale(1);
@@ -99,7 +155,49 @@ body {
   cursor: pointer;
 }
 
+.popup-signin .close-btn-signin {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  background: #1f4172;
+  color: #f2f2f2;
+  text-align: center;
+  line-height: 15px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.popup-peep .close-btn-peep {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  background: #1f4172;
+  color: #f2f2f2;
+  text-align: center;
+  line-height: 15px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
 .popup-signup .signup-form h2 {
+  text-align: center;
+  color: #222;
+  margin: 10px 0px 20px;
+  font-size: 25px;
+}
+
+.popup-signin .signin-form h2 {
+  text-align: center;
+  color: #222;
+  margin: 10px 0px 20px;
+  font-size: 25px;
+}
+
+.popup-peep .peep-form h2 {
   text-align: center;
   color: #222;
   margin: 10px 0px 20px;
@@ -110,8 +208,26 @@ body {
   margin: 15px 45px;
 }
 
+.popup-signin .signin-form .signin-form-element {
+  margin: 15px 45px;
+}
+
+.popup-peep .peep-form .peep-form-element {
+  margin: 15px 45px;
+}
+
 .popup-signup .signup-form .signup-form-element label {
   font-size: 14px;
+  color: #222;
+}
+
+.popup-signin .signin-form .signin-form-element label {
+  font-size: 14px;
+  color: #222;
+}
+
+.popup-peep .peep-form .peep-form-element label {
+  font-size: 16px;
   color: #222;
 }
 
@@ -126,7 +242,52 @@ body {
   border-radius: 5px;
 }
 
+.popup-signin .signin-form .signin-form-element input[type="text"],
+.popup-signin .signin-form .signin-form-element input[type="password"] {
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.popup-peep .peep-form .peep-form-element textarea {
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
 .popup-signup .signup-form .signup-form-element button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #1f4172;
+  color: #f2f2f2;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.popup-signin .signin-form .signin-form-element button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #1f4172;
+  color: #f2f2f2;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.popup-peep .peep-form .peep-form-element button {
   width: 100%;
   height: 40px;
   border: none;
@@ -155,7 +316,6 @@ img {
   margin-top: 30px;
   border-radius:3px;
   padding: 15px;
-  border-bottom: 1px solid #e6ecf0;
   border-top: 1px solid #e6ecf0;
 }
 
@@ -220,7 +380,17 @@ img {
   cursor: pointer;
 }
 
-#message {
+#status-signup-message {
+  text-align: center;
+  color: darkred;
+}
+
+#status-signin-message {
+  text-align: center;
+  color: darkred;
+}
+
+#status-peep-message {
   text-align: center;
   color: darkred;
 }
