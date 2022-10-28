@@ -5,33 +5,65 @@
 const fs = require('fs');
 const PeepModel = require('../src/models/peepModel');
 const ChitterView = require('../src/views/chitterView');
-const ChitterClient = require('../src/chitterClient.js');
-const { hasUncaughtExceptionCaptureCallback } = require('process');
-
-require('jest-fetch-mock').enableMocks()
 
 describe('Chitter view', () => {
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync('./index.html');
-    fetch.resetMocks();
-  });
+    this.mockedData = [{
+      "id": 3,
+      "body": "my first peep :)",
+      "created_at": "2022-10-28T13:21:23.317Z",
+      "updated_at": "2022-10-28T13:21:23.317Z",
+      "user": { "id": 1, "handle": "maker" },
+      "likes": [{ "user": { "id": 1, "handle": "maker" } }]
+    }]  
+  })
+
+  it('displays a peep', () => {
+    const model = new PeepModel();
+    const view = new ChitterView(model);
+
+    model.addPeep(this.mockedData[0]);
+  
+    view.displayPeeps();
+
+    expect(document.querySelectorAll('.peep').length).toBe(1);
+    expect(document.querySelectorAll('.peep-body')[0].textContent).toBe('my first peep :) @maker');
+  })
 
   it('displays the list of peeps', () => {
     const model = new PeepModel();
-    const client = new ChitterClient();
-    const view = new ChitterView(model, client);
+    const view = new ChitterView(model);
 
+    model.addPeep(this.mockedData[0]);
     model.addPeep({
-      "id": 1,
-      "body": "my first peep :)",
-      "created_at": "2022-10-27T13:21:23.317Z",
-      "updated_at": "2022-10-27T13:21:23.317Z",
-      "user": { "id": 1, "handle": "javaS" },
-      "likes": [{ "user": { "id": 1, "handle": "maker12" } }]
+      "id": 4,
+      "body": "Hello",
+      "created_at": "2022-10-28T13:21:23.317Z",
+      "updated_at": "2022-10-28T13:21:23.317Z",
+      "user": { "id": 1, "handle": "stranger" },
+      "likes": [{ "user": { "id": 1, "handle": "stranger" } }]
     });
+  
+    view.displayPeeps();
 
-    view.displayPeep();
+    expect(document.querySelectorAll('.peep').length).toBe(2);
+    expect(document.querySelectorAll('.peep-body')[1].textContent).toBe('Hello @stranger');
 
-    expect(document.querySelectorAll('div.peep').length).toBe(1);
+  })
+
+  it('displays the list of peeps from API', () => {
+    const mockedApi = {
+      loadPeeps: (cb) => {
+        cb(this.mockedData)
+      }
+    }
+    const model = new PeepModel();
+    const view = new ChitterView(model, mockedApi);
+
+    view.displayPeepsFromAPI();
+
+    expect(document.querySelectorAll('.peep').length).toBe(1);
+    expect(document.querySelectorAll('.peep-body')[0].textContent).toBe('my first peep :) @maker');
   })
 })

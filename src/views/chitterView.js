@@ -11,17 +11,32 @@ class ChitterView {
     this.model.addNote(newPeep);
   }
 
-  displayPeep() {
+  displayPeeps() {
     const allPeeps = this.model.getPeeps();
 
-    allPeeps.forEach((note) => {
+    allPeeps.forEach((peep) => {
       const peepEl = document.createElement('div');
-      peepEl.textContent = note
       peepEl.className = 'peep';
 
-      document.querySelector('#peep-input').vallue = '';
+      const peepBody = document.createElement('p');
+      peepBody.textContent = `${peep.body} @${peep.user.handle}`;
+      peepBody.className = 'peep-body';
+
+      const createdTimeEl = document.createElement('div');
+      createdTimeEl.textContent = peep.updated_at;
+      createdTimeEl.className = 'peep-updated-time';
+      
+      peepEl.append(peepBody);
+      peepEl.append(createdTimeEl);
       this.mainContainerEl.append(peepEl);
-    })
+    });
+  }
+
+  displayPeepsFromAPI() {
+    this.client.loadPeeps((response) => {
+      this.model.setPeep(response);
+      this.displayPeeps();
+    });
   }
 }
 
