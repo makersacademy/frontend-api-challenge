@@ -28,4 +28,11 @@ describe('User model', () => {
     expect(model.getSession().user_id).toBe(1);
     expect(model.getSession().session_key).toBe('a_valid_session_key');
   })
+
+  it('resets the session', () => {
+    const model = new UserModel();
+
+    model.resetSession();
+    expect(model.getSession()).toEqual({});
+  })
 })

@@ -81,7 +81,7 @@ class UserModel {
     // retrieve user session data from the API
   }
 
-  reset() {
+  resetSession() {
     // reset the session
   }
 }

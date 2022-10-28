@@ -18,6 +18,10 @@ class UserModel {
   setSession(userId, sessionKey) {
     this.session = { "user_id": userId, "session_key": sessionKey}
   }
+
+  resetSession() {
+    this.session = {};
+  }
 }
 
 module.exports = UserModel;
