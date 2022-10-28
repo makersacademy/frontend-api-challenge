@@ -58,6 +58,7 @@ class View {
       document.querySelector("#form-background").style.display = 'none';
     });
   }
+  //SIGN UP ENDS
 
 
 }
