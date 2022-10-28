@@ -220,4 +220,9 @@ img {
   cursor: pointer;
 }
 
+#message {
+  text-align: center;
+  color: darkred;
+}
+
 

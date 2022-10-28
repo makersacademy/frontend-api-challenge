@@ -31,7 +31,7 @@ describe('View', () => {
   it('Retrieves peeps from the server', () => {
     const clientMock = {
       loadPeeps: (callback) => {
-        callback([{body: 'Peep from server', created_at: '2022', user: {handle: 'user'}, likes: [1] }])
+        callback([{body: 'Peep from server', created_at: '2022', user: {handle: 'user'}, likes: [1] }]);
       }
     }
     const model = new Model;
@@ -42,5 +42,15 @@ describe('View', () => {
     const allPeeps = document.querySelectorAll('div.peep-header-info');
 
     expect(allPeeps[0].querySelector('#peep-content').textContent).toBe('Peep from server');
+  });
+
+  it('Displays successfull status', () => {
+    const model = new Model;
+    const view = new View(model);
+
+    const message = {id: 1, handle: 'user123'};
+    view.displaySignupStatus(message);
+
+    expect(document.querySelector("#message").textContent).toBe('User user123 was successfully created!')
   });
 });
