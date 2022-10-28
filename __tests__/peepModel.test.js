@@ -1,7 +1,7 @@
 const PeepModel = require('../src/models/peepModel')
 
 describe("PeepModel", () => {
-  it('returns an empty array', () => {
+  it('initially returns an empty array', () => {
     const model = new PeepModel();
 
     expect(model.getPeeps()).toEqual([])

@@ -65,11 +65,25 @@ class PeepModel {
 
 ```javascript
 class UserModel {
-  getUser() {}
+  getUser() {
+    // returns user object with userId and handle
+  }
 
-  setUser() {}
+  setUser(UserId, userHandle) {
+    // retrieve user data from the API after creating a new user
+  }
 
-  addUser() {}
+  getSession() {
+    // get session to start a new session
+  }
+
+  setSession(userId, sessionKey) {
+    // retrieve user session data from the API
+  }
+
+  reset() {
+    // reset the session
+  }
 }
 ```
 
@@ -79,11 +93,17 @@ class UserModel {
 
 ```javascript
 class ChitterView {
-  addNewPeep() {}
+  addNewPeep(newPeep) {
+    // add peeps into the peepModel
+  }
 
-  displayPeeps() {}
+  displayPeeps() {
+    // display all peeps added
+  }
 
-  displayPeepsFromApi() {}
+  displayPeepsFromApi() {
+    // display all peeps data from Api
+  }
 
   signUP() {}
 
