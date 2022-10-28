@@ -5,8 +5,13 @@ class View {
 
     this.mainContainerEl = document.querySelector('#main-container');
     this.PeepButtonEl = document.querySelector('#post-peep-button');
+
+    this.showSignupForm();
+    this.closeSignupForm();
+
   }
 
+  // VIEWING ALL PEEPS
   displayPeepsFromApi = () => {
     this.client.loadPeeps((peeps) => {
       this.model.setPeeps(peeps);
@@ -37,6 +42,23 @@ class View {
   timeFormatted = (createdAt) => {
     return createdAt.substr(11,5);
   }
+  // VIEWING ALL PEEPS ENDS
+
+  //SIGN UP
+  showSignupForm = () => {
+    document.querySelector('#show-signup').addEventListener("click", () => {
+      document.querySelector(".popup-signup").classList.add("active");
+      document.querySelector("#form-background").style.display = 'block';
+    });
+  }
+
+  closeSignupForm = () => {
+    document.querySelector('.popup-signup .close-btn-signup').addEventListener("click", () => {
+      document.querySelector(".popup-signup").classList.remove("active");
+      document.querySelector("#form-background").style.display = 'none';
+    });
+  }
+
 
 }
 

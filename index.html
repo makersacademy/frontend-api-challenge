@@ -13,14 +13,36 @@
   <title>Chitter</title>
 </head>
 <body>
-
+  <div id="form-background"></div>
   <!-- NAVBAR -->
   <div class="topnav">
     <a class="active" href="#home">Home</a>
-    <a href="#news">Log in</a>
-    <a href="#contact">Sign up</a>
+    <a id="show-login">Log in</a>
+    <a id="show-signup">Sign up</a>
   </div>
   <!-- NAVBAR END -->
+
+  <!-- POP SIGN UP FORM -->
+  <div class="popup-signup">
+    <div class="close-btn-signup">&times;</div>
+    <div class="signup-form">
+      <h2>Sing up</h2>
+      <div class="signup-form-element">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username">
+      </div>
+      <div class="signup-form-element">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password">
+      </div>
+      <div class="signup-form-element">
+        <button>Sign up</button>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- POP UP SIGN UP FORM -->
 
   <div class="peeps-feed">
 
@@ -59,7 +81,6 @@
     </div>
   <!-- PEEPS FEED ENDS -->
   </div>
-
 
   <script src="bundle.js"></script>
 </body>
