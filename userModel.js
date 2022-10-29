@@ -10,6 +10,10 @@ class UserModel {
   getUserDetails = () => {
     return this.userDetails;
   }
-}
+
+  isUserLoggedIn = () => {
+    return this.userDetails.session_key != undefined;
+  }
+} 
 
 module.exports = UserModel;

@@ -1,10 +1,10 @@
 class View {
-  constructor(peepModel, client) {
+  constructor(peepModel, userModel, client) {
     this.peepModel = peepModel;
+    this.userModel = userModel;
     this.client = client;
 
     this.mainContainerEl = document.querySelector('#main-container');
-    this.PeepButtonEl = document.querySelector('#post-peep-button');
 
     this.showSignupForm();
     this.closeSignupForm();
@@ -16,8 +16,18 @@ class View {
     this.closePeepForm();
 
     this.submitNewUser();
-
+    this.submitExistingUser();
   }
+
+  // USER SESSION DEPENDABLE ELEMENTS - MAYBE LATER
+  // changeElements = () => {
+  //   if (this.userModel.isUserLoggedIn()) {
+  //     const userDetails = this.userModel.getUserDetails();
+  //     document.querySelector('#welcome-user').textContent = `Welcome to Chitter ${userDetail.} &#128075;`
+  //   }
+  // }
+
+  // USER SESSION DEPENDABLE ELEMENTS ENDS
 
   // VIEWING ALL PEEPS
   displayPeepsFromApi = () => {
@@ -64,7 +74,7 @@ class View {
     document.querySelector('.popup-signup .close-btn-signup').addEventListener("click", () => {
       document.querySelector(".popup-signup").classList.remove("active");
       document.querySelector("#form-background").style.display = 'none';
-      this.resetMessage();
+      this.resetSignupMessage();
     });
   }
 
@@ -76,7 +86,7 @@ class View {
       const password = document.querySelector('.signup-form-element #password');
 
       this.client.createUser(username.value, password.value, (message) => {
-        this.resetMessage();
+        this.resetSignupMessage();
         username.value = '';
         password.value = '';
         this.displaySignupStatus(message);
@@ -99,7 +109,7 @@ class View {
     signupForm.append(messageTemplate);
   }
 
-  resetMessage = () => {
+  resetSignupMessage = () => {
     if (document.querySelector("#status-signup-message") != null) {
       document.querySelector("#status-signup-message").remove();
     }
@@ -118,7 +128,49 @@ class View {
     document.querySelector('.popup-signin .close-btn-signin').addEventListener("click", () => {
       document.querySelector(".popup-signin").classList.remove("active");
       document.querySelector("#form-background").style.display = 'none';
+      this.resetSigninMessage();
     });
+  }
+
+  submitExistingUser = () => {
+    const signinButton = document.querySelector('#submit-existing-user-button');
+
+    signinButton.addEventListener('click', () => {
+      const username = document.querySelector('.signin-form-element #username');
+      const password = document.querySelector('.signin-form-element #password');
+
+      this.client.signinUser(username.value, password.value, (outcome) => {
+        this.resetSigninMessage(); 
+        this.userModel.setUserDetails(outcome);
+        username.value = '';
+        password.value = '';
+        this.displaySigninOutcome(outcome);
+      });
+    });
+  }
+
+  displaySigninOutcome = () => {
+    if (this.userModel.isUserLoggedIn()) {
+      // close the form
+      document.querySelector(".popup-signin").classList.remove("active");
+      document.querySelector("#form-background").style.display = 'none';
+    } else {
+      this.displaySigninError();
+    }
+  }
+
+  displaySigninError = () => {
+    const signinForm = document.querySelector('.signin-form')
+    const messageTemplate = document.querySelector("#signin-message").content.cloneNode(true);
+    const error = this.userModel.getUserDetails();
+    messageTemplate.querySelector('#status-signin-message').textContent = error.errors.password;
+    signinForm.append(messageTemplate);
+  }
+
+  resetSigninMessage = () => {
+    if (document.querySelector("#status-signin-message") != null) {
+      document.querySelector("#status-signin-message").remove();
+    }
   }
   // SIGN IN ENDS
 

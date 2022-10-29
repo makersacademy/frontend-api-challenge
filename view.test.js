@@ -4,6 +4,7 @@
 
  const fs = require('fs');
 const PeepModel = require('./peepModel');
+const UserModel = require('./userModel');
 const View = require('./view');
  
 describe('View', () => {
@@ -34,8 +35,9 @@ describe('View', () => {
         callback([{body: 'Peep from server', created_at: '2022', user: {handle: 'user'}, likes: [1] }]);
       }
     }
+    const userModel = new UserModel;
     const peepModel = new PeepModel;
-    const view = new View(peepModel, clientMock);
+    const view = new View(peepModel, userModel, clientMock);
 
     view.displayPeepsFromApi();
 
@@ -44,7 +46,7 @@ describe('View', () => {
     expect(allPeeps[0].querySelector('#peep-content').textContent).toBe('Peep from server');
   });
 
-  it('Displays successfull status', () => {
+  it('Displays successfull sign up status', () => {
     const peepModel = new PeepModel;
     const view = new View(peepModel);
 
@@ -53,4 +55,29 @@ describe('View', () => {
 
     expect(document.querySelector("#status-signup-message").textContent).toBe('User user123 was successfully created!')
   });
+
+  it('Closes the sign in form if successfull login', () => {
+    const peepModel = new PeepModel;
+    const userModel = new UserModel;
+    const view = new View(peepModel, userModel);
+  
+    userModel.setUserDetails({"user_id":1,"session_key":"random"});
+    
+    document.querySelector(".popup-signin").classList.add("active"); // open form first
+    view.displaySigninOutcome();
+    expect(document.querySelector(".popup-signin").classList).not.toBe("active"); // form must be closed
+  });
+
+  it('Displays error message if unsuccesfull login', () => {
+    const peepModel = new PeepModel;
+    const userModel = new UserModel;
+    const view = new View(peepModel, userModel);
+  
+    userModel.setUserDetails({"errors":{"password":"Invalid username or password"}});
+
+    view.displaySigninOutcome();
+
+    expect(document.querySelector('#status-signin-message').textContent).toBe('Invalid username or password');
+  });
+  
 });
