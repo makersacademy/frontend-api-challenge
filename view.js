@@ -20,12 +20,12 @@ class View {
   }
 
   // USER SESSION DEPENDABLE ELEMENTS - MAYBE LATER
-  // changeElements = () => {
-  //   if (this.userModel.isUserLoggedIn()) {
-  //     const userDetails = this.userModel.getUserDetails();
-  //     document.querySelector('#welcome-user').textContent = `Welcome to Chitter ${userDetail.} &#128075;`
-  //   }
-  // }
+  changeElements = () => {
+    if (this.userModel.isUserLoggedIn()) {
+      document.querySelector('#welcome-user').textContent = this.userModel.username;
+      document.querySelector('#show-peepform').style.display = 'block';
+    }
+  }
 
   // USER SESSION DEPENDABLE ELEMENTS ENDS
 
@@ -142,18 +142,21 @@ class View {
       this.client.signinUser(username.value, password.value, (outcome) => {
         this.resetSigninMessage(); 
         this.userModel.setUserDetails(outcome);
+        this.displaySigninOutcome(username.value);
         username.value = '';
         password.value = '';
-        this.displaySigninOutcome(outcome);
       });
     });
   }
 
-  displaySigninOutcome = () => {
+  displaySigninOutcome = (username) => {
     if (this.userModel.isUserLoggedIn()) {
-      // close the form
+      // close the form and save username
       document.querySelector(".popup-signin").classList.remove("active");
       document.querySelector("#form-background").style.display = 'none';
+      this.userModel.setUsername(username);
+
+      this.changeElements();
     } else {
       this.displaySigninError();
     }

@@ -395,4 +395,12 @@ img {
   color: darkred;
 }
 
+#welcome-user {
+  color: #febbbb;
+}
+
+#show-peepform {
+  display: none;
+}
+
 

@@ -1,6 +1,7 @@
 class UserModel {
   constructor() {
     this.userDetails;
+    this.username;
   }
 
   setUserDetails = (details) => {
@@ -13,6 +14,10 @@ class UserModel {
 
   isUserLoggedIn = () => {
     return this.userDetails.session_key != undefined;
+  }
+
+  setUsername = (username) => {
+    this.username = username;
   }
 } 
 
