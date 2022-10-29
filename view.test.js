@@ -3,7 +3,7 @@
  */
 
  const fs = require('fs');
-const Model = require('./model');
+const PeepModel = require('./peepModel');
 const View = require('./view');
  
 describe('View', () => {
@@ -13,11 +13,11 @@ describe('View', () => {
   });
 
   it('Displays peeps on the page', () => {
-    const model = new Model;
-    const view = new View(model);
+    const peepModel = new PeepModel;
+    const view = new View(peepModel);
 
-    model.addPeep({body: 'Peep 1', created_at: '2022-09-19T13:31:46.990Z', user: {handle: 'user_1'}, likes: [1, 2, 3]  });
-    model.addPeep({body: 'Peep 2', created_at: '2022-09-19T13:32:47.990Z', user: {handle: 'user_2'}, likes: [1, 2]  });
+    peepModel.addPeep({body: 'Peep 1', created_at: '2022-09-19T13:31:46.990Z', user: {handle: 'user_1'}, likes: [1, 2, 3]  });
+    peepModel.addPeep({body: 'Peep 2', created_at: '2022-09-19T13:32:47.990Z', user: {handle: 'user_2'}, likes: [1, 2]  });
 
     view.displayPeeps();
 
@@ -34,8 +34,8 @@ describe('View', () => {
         callback([{body: 'Peep from server', created_at: '2022', user: {handle: 'user'}, likes: [1] }]);
       }
     }
-    const model = new Model;
-    const view = new View(model, clientMock);
+    const peepModel = new PeepModel;
+    const view = new View(peepModel, clientMock);
 
     view.displayPeepsFromApi();
 
@@ -45,12 +45,12 @@ describe('View', () => {
   });
 
   it('Displays successfull status', () => {
-    const model = new Model;
-    const view = new View(model);
+    const peepModel = new PeepModel;
+    const view = new View(peepModel);
 
     const message = {id: 1, handle: 'user123'};
     view.displaySignupStatus(message);
 
-    expect(document.querySelector("#message").textContent).toBe('User user123 was successfully created!')
+    expect(document.querySelector("#status-signup-message").textContent).toBe('User user123 was successfully created!')
   });
 });

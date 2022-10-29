@@ -1,9 +1,9 @@
 const Client = require("./client");
-const Model = require("./model");
+const PeepModel = require("./peepModel");
 const View = require("./view");
 
 const client = new Client;
-const model = new Model;
-const view = new View(model, client);
+const peepModel = new PeepModel;
+const view = new View(peepModel, client);
 
 view.displayPeepsFromApi();

@@ -1,6 +1,6 @@
 class View {
-  constructor(model, client) {
-    this.model = model;
+  constructor(peepModel, client) {
+    this.peepModel = peepModel;
     this.client = client;
 
     this.mainContainerEl = document.querySelector('#main-container');
@@ -22,13 +22,13 @@ class View {
   // VIEWING ALL PEEPS
   displayPeepsFromApi = () => {
     this.client.loadPeeps((peeps) => {
-      this.model.setPeeps(peeps);
+      this.peepModel.setPeeps(peeps);
       this.displayPeeps();
     })
   }
 
   displayPeeps = () => {
-    const allPeeps = this.model.getPeeps();
+    const allPeeps = this.peepModel.getPeeps();
     console.log(allPeeps); // remove later
     
     allPeeps.forEach(peep => {

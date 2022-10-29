@@ -1,4 +1,4 @@
-class Model {
+class PeepModel {
   constructor() {
     this.peeps = [];
   }
@@ -16,4 +16,4 @@ class Model {
   }
 }
 
-module.exports = Model;
+module.exports = PeepModel;
