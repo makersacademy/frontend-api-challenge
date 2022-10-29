@@ -46,6 +46,27 @@ class Client {
       console.log(error); // change to Display Error method?
     })
   }
+
+  postPeep = (userId, sessionKey, peepBody, displayResult) => {
+    fetch('https://chitter-backend-api-v2.herokuapp.com/peeps', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Token token=' + sessionKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({peep: {user_id:userId, body:peepBody}})
+    })
+    .then((response) => response.json())
+    .then((output) => {
+      console.log(output); // remove later maybe
+      displayResult(output);
+    })
+    .catch((error) => {
+      console.log(error); // change to Display Error method?
+    })
+  }
+
+
 }
 
 module.exports = Client;

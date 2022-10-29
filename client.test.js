@@ -55,10 +55,27 @@ describe('Client', () => {
 
     client.signinUser(inputUsername, inputPassword, () => {
       expect(fetch.mock.calls.length).toEqual(1);
-      console.log(fetch.mock.calls[0]);
       expect(fetch.mock.calls[0][1].body).toEqual(JSON.stringify({session: {handle:inputUsername, password:inputPassword}}));
       done();
     });
-    
+  });
+
+  it('Posts peep to the server', (done) => {
+    const client = new Client;
+
+    fetch.mockResponseOnce(JSON.stringify({
+      id:1,
+      body:"Test peep"
+    }));
+
+    let userId = 1;
+    let sessionKey = 'random';
+    let peepBody = 'Test peep';
+
+    client.postPeep(userId, sessionKey, peepBody, () => {
+      expect(fetch.mock.calls.length).toEqual(1);
+      expect(fetch.mock.calls[0][1].body).toEqual(JSON.stringify({peep: {user_id:userId, body:peepBody}}));
+      done();
+    });
   });
 }); 
