@@ -17,6 +17,7 @@ class View {
 
     this.submitNewUser();
     this.submitExistingUser();
+    this.submitPeep();
   }
 
   // USER SESSION DEPENDABLE ELEMENTS - MAYBE LATER
@@ -40,7 +41,7 @@ class View {
   displayPeeps = () => {
     const allPeeps = this.peepModel.getPeeps();
     console.log(allPeeps); // remove later
-    
+
     allPeeps.forEach(peep => {
       const cardTemplate = document.getElementById("peep-template");
       const div = cardTemplate.content.cloneNode(true);
@@ -190,6 +191,58 @@ class View {
       document.querySelector(".popup-peep").classList.remove("active");
       document.querySelector("#form-background").style.display = 'none';
     });
+  }
+
+  submitPeep = () => {
+    const peepButton = document.querySelector('#submit-peep-button');
+
+    peepButton.addEventListener('click', () => {
+      this.resetPeepMessage();
+      const userId = this.userModel.getUserId();
+      const sessionKey = this.userModel.getSessionKey();
+      const peepBody = document.querySelector('.peep-form-element #peep');
+
+      this.client.postPeep(userId, sessionKey, peepBody.value, (outcome) => {
+        this.displayPeepOutcome(peepBody.value, outcome);
+        peepBody.textContent = '';
+      });
+    });
+  }
+
+  displayPeepOutcome = (peepBody, outcome) => {
+    if (peepBody === '') {
+      this.displayPeepError(outcome);
+    } else {
+      // close the form and add Peep to feed
+      document.querySelector(".popup-peep").classList.remove("active");
+      document.querySelector("#form-background").style.display = 'none';
+
+      this.addNewPeep(outcome);
+    }
+  }
+
+  displayPeepError = (error) => {
+    const peepForm = document.querySelector('.peep-form')
+    const messageTemplate = document.querySelector("#peep-message").content.cloneNode(true);
+    messageTemplate.querySelector('#status-peep-message').textContent = `Your peep ${error.body}!`;
+    peepForm.append(messageTemplate);
+  }
+
+  resetPeepMessage = () => {
+    if (document.querySelector("#status-peep-message") != null) {
+      document.querySelector("#status-peep-message").remove();
+    }
+  }
+
+  addNewPeep = (peep) => {
+    const cardTemplate = document.getElementById("peep-template");
+    const div = cardTemplate.content.cloneNode(true);
+    div.getElementById('user-name').textContent = peep.user.handle;
+    div.getElementById('time').textContent = this.timeFormatted(peep.created_at);
+    div.getElementById('date').textContent = this.dateFormatted(peep.created_at);
+    div.getElementById('peep-content').textContent = peep.body;
+    div.getElementById('likes-count').textContent = peep.likes.length;
+    this.mainContainerEl.prepend(div);   
   }
   // PEEP FORM ENDS
 

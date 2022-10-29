@@ -12,7 +12,7 @@ class PeepModel {
   }
 
   addPeep = (peep) => {
-    this.peeps.push(peep);
+    this.peeps.unshift(peep);
   }
 }
 

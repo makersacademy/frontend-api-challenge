@@ -19,4 +19,12 @@ describe('User Model', () => {
     userModel.setUserDetails({"errors":{"password":"Invalid username or password"}});
     expect(userModel.isUserLoggedIn()).toBe(false);
   });
+
+  it('Returns user id and session key', () => {
+    const userModel = new UserModel;
+    const details = {"user_id":1,"session_key":"random"};
+    userModel.setUserDetails(details);
+    expect(userModel.getUserId()).toBe(1);
+    expect(userModel.getSessionKey()).toBe("random");
+  });
  });

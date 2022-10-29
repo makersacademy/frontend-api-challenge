@@ -24,9 +24,9 @@ describe('View', () => {
 
     const allPeeps = document.querySelectorAll('div.peep-header-info');
 
-    expect(allPeeps[0].querySelector('#peep-content').textContent).toBe('Peep 1');
+    expect(allPeeps[0].querySelector('#peep-content').textContent).toBe('Peep 2');
     expect(allPeeps[0].querySelector('#date').textContent).toBe('2022-09-19');
-    expect(allPeeps[1].querySelector('#time').textContent).toBe('13:32');
+    expect(allPeeps[1].querySelector('#time').textContent).toBe('13:31');
   });
 
   it('Retrieves peeps from the server', () => {

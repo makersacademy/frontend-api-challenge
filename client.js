@@ -65,8 +65,6 @@ class Client {
       console.log(error); // change to Display Error method?
     })
   }
-
-
 }
 
 module.exports = Client;

@@ -19,6 +19,14 @@ class UserModel {
   setUsername = (username) => {
     this.username = username;
   }
+
+  getUserId = () => {
+    return this.userDetails.user_id;
+  }
+
+  getSessionKey = () => {
+    return this.userDetails.session_key;
+  }
 } 
 
 module.exports = UserModel;
