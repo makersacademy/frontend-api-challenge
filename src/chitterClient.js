@@ -13,11 +13,11 @@ class ChitterClient{
     })
   }
 
-  createUser(userId, password, cb) {
+  createUser(username, password, cb) {
     const content = {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ "user": {"handle": userId, "password": password} })
+      body: JSON.stringify({ "user": {"handle": username, "password": password} })
     }
     fetch((this.#BASE_URL + "users"), content)
       .then((response) => response.json())

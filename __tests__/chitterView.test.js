@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 const PeepModel = require('../src/models/peepModel');
+const UserModel = require('../src/models/userModel');
 const ChitterView = require('../src/views/chitterView');
 
 describe('Chitter view', () => {
@@ -65,5 +66,27 @@ describe('Chitter view', () => {
 
     expect(document.querySelectorAll('.peep').length).toBe(1);
     expect(document.querySelectorAll('.peep-body')[0].textContent).toBe('my first peep :) @maker');
+  })
+
+  it('clicks the sign up button and creates a new user', () => {
+    const mockedApi = {
+      createUser: (username, password, cb) => {
+        cb({ "id" : 1, "handle" : "maker"})
+      }
+    }
+    const model = new PeepModel();
+    const user = new UserModel();
+    const view = new ChitterView(model, mockedApi, user);
+    
+    const userNameInput = document.querySelector('#username-input');
+    userNameInput.value = 'maker';
+    const passwordInput = document.querySelector('#password-input');
+    passwordInput.value = 'password123';
+
+    const signupButton = document.querySelector('#sign-up');
+    signupButton.click();
+    
+    view.signUp(userNameInput, passwordInput);
+    expect(document.querySelector('.sign-up-message').textContent).toBe('Welcome maker, thanks for joining us!')
   })
 })

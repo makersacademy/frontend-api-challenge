@@ -28,13 +28,13 @@ describe('Client class', () => {
     const client = new ChitterClient();
     fetch.mockResponseOnce(JSON.stringify({
       "id": 1,
-      "handle": "maker"
+      "handle": "newUser"
     }));
 
     client.createUser('newUser', 'password123', (returnedData) => {
       expect(returnedData).toEqual({
         "id": 1,
-        "handle": "maker"
+        "handle": "newUser"
       });
 
       done();

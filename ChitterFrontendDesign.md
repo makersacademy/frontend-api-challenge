@@ -105,7 +105,7 @@ class ChitterView {
     // display all peeps data from Api
   }
 
-  signUP() {}
+  signUp() {}
 
   logIn() {}
 }
