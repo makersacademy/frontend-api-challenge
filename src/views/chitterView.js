@@ -5,21 +5,27 @@ class ChitterView {
     this.user = user;
     
     this.mainContainerEl = document.querySelector('#main-container');
-    this.signUpEl = document.querySelector('#sign-up'); 
-    this.signupButton = document.querySelector('#sign-up-message');
-
+    this.signupButton = document.querySelector('#sign-up-btn');
+    this.logInButton = document.querySelector('#log-in-btn');
+    this.createPeepButton = document.querySelector('#add-peep-btn');
+    
     this.signupButton.addEventListener('click', () => {
-      const username = document.querySelector('#username-input').value;
-      const password = document.querySelector('#password-input').value;
+      this.signUp();
+    });
 
-      this.signUp(username, password);
+    this.logInButton.addEventListener('click', () => {
+      this.logIn();
+    });
+
+    this.createPeepButton.addEventListener('click', () => {
+      this.createPeep();
     });
   }
-
+  
   addNewPeep(newPeep) {
-    this.model.addNote(newPeep);
+    this.model.addPeep(newPeep);
   }
-
+  
   displayPeeps() {
     const allPeeps = this.model.getPeeps();
 
@@ -48,24 +54,68 @@ class ChitterView {
     });
   }
 
-  signUp(username, password) {
+  signUp() {
+    const username = document.querySelector('#new-username-input').value;
+    const password = document.querySelector('#new-password-input').value;
+
     this.client.createUser(username, password, (response) => {
       const userId = response.id;
       const handle = response.handle;
       this.user.setUser(userId, handle);
 
       this.signUpMessage(handle);
+      this.displayPeeps();
     });
   }
 
-  signUpMessage(handle) {
+  logIn() {
+    const username = document.querySelector('#username-input').value;
+    const password = document.querySelector('#password-input').value;
+
+    this.client.newSession(username, password, (response) => {
+      const userId = response.id;
+      const handle = response.handle;
+      this.user.setSession(userId, handle);
+
+      this.logInMessage(username);
+      this.displayPeeps();
+    });
+  }
+  
+  createPeep() { 
+    const userId = this.user.getSession.user_id;
+    const sessionKey = this.user.getSession.session_key;
+    const peepInput = document.querySelector('#peep-input').value; 
+
+    this.client.addPeep(userId, sessionKey, peepInput, (response) => {
+
+      this.addNewPeep(response);
+      this.displayPeeps();
+    });
+  }
+
+  signUpMessage(username) {
+    const signUpEl = document.querySelector('#sign-up'); 
+    document.querySelector('#new-username-input').value = '';
+    document.querySelector('#new-password-input').value = '';
+
+    const signUpMessageEl = document.createElement('p');
+    signUpMessageEl.className = 'sign-up-message';
+    signUpMessageEl.textContent = `Welcome ${username}, thanks for joining us!`;
+
+    signUpEl.append(signUpMessageEl);
+  }
+
+  logInMessage(username) {
+    const logInEl = document.querySelector('#log-in');
     document.querySelector('#username-input').value = '';
     document.querySelector('#password-input').value = '';
 
-    const welcomeMessageEl = document.createElement('p');
-    welcomeMessageEl.className = 'sign-up-message';
-    welcomeMessageEl.textContent = `Welcome ${handle}, thanks for joining us!`
-    this.signUpEl.append(welcomeMessageEl);
+    const loginMessageEl = document.createElement('p');
+    loginMessageEl.className = 'log-in-message';
+    loginMessageEl.textContent = `Hello ${username}! Make your peep`;
+
+    logInEl.append(loginMessageEl);
   }
 
 }

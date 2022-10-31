@@ -30,11 +30,11 @@ class ChitterClient{
       })
   }
 
-  newSession(userId, password, cb) {
+  newSession(username, password, cb) {
     const content = {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ "session": {"handle":userId, "password":password} })
+      body: JSON.stringify({ "session": { "handle":username, "password":password } })
     }
 
     fetch((this.#BASE_URL + "sessions"), content)

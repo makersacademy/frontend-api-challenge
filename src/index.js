@@ -9,3 +9,4 @@ const user = new UserModel();
 const view = new ChitterView(model, client, user);
 
 view.displayPeepsFromAPI();
+
