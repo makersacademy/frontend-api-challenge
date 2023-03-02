@@ -13,3 +13,11 @@ export type peepType = {
     user: userType;
   }[];
 };
+
+export type sessionType = {
+  user_id?: number;
+  session_key?: string;
+  errors?: {
+    password: string;
+  };
+};
