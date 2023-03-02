@@ -41,7 +41,7 @@ describe("ChitterClient", () => {
     });
 
     it("should handle an error correctly", async () => {
-      const peepId: number = 50;
+      const peepId: number = 999999;
       mock.onGet(`${baseURL}/peeps/${peepId}`).networkErrorOnce();
       await expect(client.findPeepById(peepId)).rejects.toThrow(
         `Failed to fetch the peep with ID: ${peepId}. Please try again later.`

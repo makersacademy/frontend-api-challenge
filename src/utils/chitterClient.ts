@@ -1,11 +1,8 @@
 import { peepType, sessionType } from "../../types/apiData";
 import axios, { AxiosError } from "axios";
 
-const baseURL = "https://chitter-backend-api-v2.herokuapp.com";
-
+const url = "https://chitter-backend-api-v2.herokuapp.com";
 class ChitterClient {
-  constructor() {}
-
   // creates a new user
   createUser() {}
 
@@ -21,11 +18,10 @@ class ChitterClient {
       },
     };
     try {
-      const res = await axios.post(`${baseURL}/sessions`, data, axiosConfig);
+      const res = await axios.post(`${url}/sessions`, data, axiosConfig);
       return res.data as sessionType;
     } catch (e: any) {
       const error = e as AxiosError;
-
       if (error.response?.status == 422) {
         const data = error.response.data as sessionType;
         throw new Error(data.errors?.password);
@@ -38,7 +34,7 @@ class ChitterClient {
   // returns a list of the last 50 peeps
   async getAllPeeps(): Promise<peepType[]> {
     try {
-      const res = await axios.get(`${baseURL}/peeps`);
+      const res = await axios.get(`${url}/peeps`);
       return res.data as peepType[];
     } catch (e) {
       throw new Error("Failed to fetch peeps. Please try again later.");
@@ -51,7 +47,7 @@ class ChitterClient {
   // returns a single Peep
   async findPeepById(peepId: number): Promise<peepType> {
     try {
-      const res = await axios.get(`${baseURL}/peeps/${peepId}`);
+      const res = await axios.get(`${url}/peeps/${peepId}`);
       return res.data as peepType;
     } catch (e) {
       throw new Error(
