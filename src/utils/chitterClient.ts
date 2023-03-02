@@ -45,7 +45,7 @@ class ChitterClient {
   createPeep() {}
 
   // returns a single Peep
-  async findPeepById(peepId: number): Promise<peepType> {
+  async findPeepById({ peepId }: any): Promise<peepType> {
     try {
       const res = await axios.get(`${url}/peeps/${peepId}`);
       return res.data as peepType;
