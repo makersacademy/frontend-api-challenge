@@ -15,8 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["node", "jest"]
+    "types": ["cypress"]
   },
-  "include": ["src", "__test__/**/*.spec.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["e2e/**/*.cy.ts", "component/**/*.cy.tsx"]
 }
