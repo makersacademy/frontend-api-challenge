@@ -16,7 +16,9 @@ function Home() {
     <div>
       {isLoading && <Loader />}
       <div className="flex flex-col">
-        {!isLoading && data && data.map((peep) => <PeepCard {...peep} />)}
+        {!isLoading &&
+          data &&
+          data.map((peep) => <PeepCard key={peep.id} {...peep} />)}
       </div>
     </div>
   );

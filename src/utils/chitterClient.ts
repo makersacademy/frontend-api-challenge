@@ -4,6 +4,8 @@ import {
   peepType,
   SessionError,
   sessionType,
+  UserCredential,
+  userType,
 } from "../../types/apiData";
 import axios, { AxiosError } from "axios";
 import { QueryKeyType } from "../hooks/useFetch";
@@ -49,15 +51,20 @@ class ChitterClient {
       },
     };
     try {
-      const res = await axios.post(`${url}/sessions`, data, axiosConfig);
-      return res.data as sessionType;
+      const sessionRes = await axios.post(`${url}/sessions`, data, axiosConfig);
+      const session: sessionType = sessionRes.data;
+      const userRes = await axios.get(`${url}/users/${session.user_id}`);
+      const user: userType = userRes.data;
+      return { ...session, handle: user.handle };
     } catch (e: any) {
       const error = e as AxiosError;
       if (error.response?.status == 422) {
         const data = error.response.data as SessionError;
         throw new Error(data.errors?.password);
       } else {
-        throw new Error("Failed to get session. Please try again later.");
+        throw new Error(
+          "No record is found for this username. Have you registered?"
+        );
       }
     }
   }

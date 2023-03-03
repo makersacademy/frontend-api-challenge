@@ -8,17 +8,29 @@ import {
 interface Session {
   userId: number | null;
   sessionKey: string | null;
+  handle: string | null;
 }
 
 type Action = {
   type: string;
   userId?: number;
   sessionKey?: string;
+  handle?: string;
 };
 
-const initialSession: Session = {
+const getSessionFromStorage = (): Session | null => {
+  const sessionInStorge = localStorage.getItem("chitter_session");
+  if (sessionInStorge) {
+    return JSON.parse(sessionInStorge) as Session;
+  } else {
+    return null;
+  }
+};
+
+const initialSession: Session = getSessionFromStorage() || {
   userId: null,
   sessionKey: null,
+  handle: null,
 };
 
 const SessionContext = createContext(initialSession);
@@ -29,15 +41,19 @@ const SessionDispatchContext = createContext(
 const sessionReducer = (session: Session, action: Action): Session => {
   switch (action.type) {
     case "login": {
-      return {
+      const new_session = {
         userId: action.userId || null,
         sessionKey: action.sessionKey || null,
+        handle: action.handle || null,
       };
+      localStorage.setItem("chitter_session", JSON.stringify(new_session));
+      return new_session;
     }
     case "logout": {
       return {
         userId: null,
         sessionKey: null,
+        handle: null,
       };
     }
     default: {

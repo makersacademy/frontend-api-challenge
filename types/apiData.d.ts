@@ -26,10 +26,16 @@ export type peepType = {
 export type sessionType = {
   user_id?: number;
   session_key?: string;
+  handle?: string;
 };
 
 export type SessionError = {
   errors: {
     password: string;
   };
+};
+
+export type UserCredential = {
+  handle: string;
+  password: string;
 };

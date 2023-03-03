@@ -93,7 +93,7 @@ export const sessionSample: sessionType = {
   session_key: "terry_session_key",
 };
 
-export const createUserSample: CreateUserRes = {
+export const UserSample: CreateUserRes = {
   id: 1,
   handle: "kay",
 };

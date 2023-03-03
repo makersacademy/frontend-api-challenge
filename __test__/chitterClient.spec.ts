@@ -2,10 +2,10 @@ import ChitterClient from "../src/utils/chitterClient";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import {
-  createUserSample,
   getAllPeepsDataSample,
   sessionSample,
   signlePeepSample,
+  UserSample,
 } from "../src/utils/mockApiData";
 
 describe("ChitterClient", () => {
@@ -54,11 +54,13 @@ describe("ChitterClient", () => {
   describe("#getSession", () => {
     it("should return user_id and session_key", async () => {
       mock.onPost(`${baseURL}/sessions`).replyOnce(200, sessionSample);
+      mock.onGet(`${baseURL}/users/1`).replyOnce(200, UserSample);
       const session = await client.getSession({
         handle: "kay",
         password: "password",
       });
       expect(session.user_id).toEqual(1);
+      expect(session.handle).toEqual("kay");
       expect(session.session_key).toEqual("terry_session_key");
     });
 
@@ -66,7 +68,9 @@ describe("ChitterClient", () => {
       mock.onPost(`${baseURL}/sessions`).networkErrorOnce();
       await expect(
         client.getSession({ handle: "kay", password: "password" })
-      ).rejects.toThrow("Failed to get session. Please try again later.");
+      ).rejects.toThrow(
+        "No record is found for this username. Have you registered?"
+      );
     });
 
     it("should return errors with wrong input credentials", async () => {
@@ -83,7 +87,7 @@ describe("ChitterClient", () => {
 
   describe("#createUser", () => {
     it("should return user_id and user_handle", async () => {
-      mock.onPost(`${baseURL}/users`).replyOnce(200, createUserSample);
+      mock.onPost(`${baseURL}/users`).replyOnce(200, UserSample);
       const res = await client.createUser({
         handle: "kay",
         password: "password",

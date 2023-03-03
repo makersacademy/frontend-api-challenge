@@ -35,12 +35,12 @@ export const NavBar = () => {
       {/* NavBar */}
       <ul className="flex flex-col gap-4">
         {navList.map((nav) => (
-          <NavButton {...nav} />
+          <NavButton key={nav.text} {...nav} />
         ))}
       </ul>
       {/* Create Tweet Button */}
       <Link to="/">
-        <div className="bg-primary text-white p-2 xl:p-4 xl:py-3 rounded-full font-bold text-center hover:bg-[#1a8cd8]">
+        <div className="blue-btn">
           <span className="hidden xl:block">Tweet</span>
           <span className="text-2xl xl:hidden">+</span>
         </div>

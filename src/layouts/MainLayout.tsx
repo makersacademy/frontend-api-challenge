@@ -26,7 +26,7 @@ export const MainLayout = () => {
       <div className="flex max-w-[1400px] m-auto">
         <div className="flex flex-col justify-between xl:p-4 xl:min-w-[250px]">
           <NavBar />
-          {session.userId && <UserBox />}
+          {session.userId && <UserBox {...session} />}
         </div>
         <main className="flex-1 border-x-2 h-[100vh] overflow-y-scroll">
           <div className="p-6 sticky bg-white bg-opacity-90 top-0 z-20">
