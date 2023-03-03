@@ -2,6 +2,7 @@ import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { WarningMsg } from "../components/WarningMsg";
 import { useGlobalContext } from "../Context/globalContext";
 import { useSession, useSessionDispatch } from "../Context/sessionContext";
 import { QueryKeyType } from "../hooks/useFetch";
@@ -77,11 +78,7 @@ export const Login = () => {
           />
         )}
       </form>
-      {isError && (
-        <div className="bg-red-100 p-4 text-red-600 rounded-md mt-4">
-          {errorMsg}
-        </div>
-      )}
+      {isError && <WarningMsg message={errorMsg} />}
     </div>
   );
 };

@@ -4,7 +4,6 @@ import {
   peepType,
   SessionError,
   sessionType,
-  UserCredential,
   userType,
 } from "../../types/apiData";
 import axios, { AxiosError } from "axios";

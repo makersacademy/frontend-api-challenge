@@ -13,15 +13,6 @@ type Props = {
 
 export const NavButton = ({ Icon, text, url }: Props) => {
   const { pathname } = useLocation();
-  const session = useSession();
-
-  if (text == "Log In" && session.userId) {
-    return <></>;
-  }
-
-  if (text == "Log Out" && !session.userId) {
-    return <></>;
-  }
 
   return (
     <Link to={url}>

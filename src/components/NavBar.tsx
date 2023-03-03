@@ -36,13 +36,16 @@ export const NavBar = () => {
       </Link>
       {/* NavBar */}
       <ul className="flex flex-col gap-4">
-        {navList.map((nav) => (
-          <NavButton key={nav.text} {...nav} />
-        ))}
+        <NavButton {...navList[0]} />
+        {session.userId ? (
+          <NavButton {...navList[2]} />
+        ) : (
+          <NavButton {...navList[1]} />
+        )}
       </ul>
       {/* Create Tweet Button */}
       {session.userId && (
-        <Link to="/">
+        <Link to="/create-peep">
           <div className="blue-btn">
             <span className="hidden xl:block">Tweet</span>
             <span className="text-2xl xl:hidden">+</span>
