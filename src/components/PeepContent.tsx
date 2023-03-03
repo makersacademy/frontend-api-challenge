@@ -81,11 +81,14 @@ export const PeepContent = ({
                     <img
                       src={`https://robohash.org/${user.id}`}
                       alt=""
-                      className="object-cover border rounded-full"
+                      className={`object-cover border rounded-full group-hover:bg-[rgba(0,0,0,0.1)] transition-all ${
+                        user.id === session.userId &&
+                        "border-primary bg-primary bg-opacity-20"
+                      }`}
                     />
                   </div>
                   <div className="hidden group-hover:block absolute text-white -bottom-4 bg-[rgba(0,0,0,0.7)] p-1 px-3 rounded-md text-center capitalize transition-all text-sm">
-                    {user.handle}
+                    {user.id === session.userId ? "You" : user.handle}
                   </div>
                 </div>
               ))

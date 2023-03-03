@@ -1,17 +1,53 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { peepType } from "../../types/apiData";
 import { ReactComponent as Tick } from "../assets/golden_tick.svg";
 import { ReactComponent as Like } from "../assets/like.svg";
+import { useGlobalContext } from "../Context/globalContext";
 import { useSession } from "../Context/sessionContext";
 import { timeCalculator } from "../utils/timeCalculator";
 
 export const PeepCard = (props: peepType) => {
   const session = useSession();
-  const [isLike, setIsLike] = useState(false);
+  const { client } = useGlobalContext();
+  const nagivate = useNavigate();
+  const isLikeByUser =
+    props.likes.filter(({ user }) => user.id === session.userId).length > 0;
+  const [isLike, setIsLike] = useState(isLikeByUser);
+  const [likeNum, setLikeNum] = useState(props.likes.length);
 
-  const likeHandler = () => {
-    setIsLike(!isLike);
+  useEffect(() => {}, [likeNum]);
+
+  const likeHandler = async () => {
+    // check if the user is logged in
+    if (!session.userId || !session.sessionKey) {
+      alert("You have to log in to like a peep.");
+      nagivate("/login");
+    } else {
+      try {
+        if (isLike) {
+          // dislike if isLike == true
+          await client.dislikePeep({
+            peepId: props.id.toString(),
+            userId: session.userId.toString(),
+            sessionKey: session.sessionKey,
+          });
+          setIsLike(!isLike);
+          setLikeNum(likeNum - 1);
+        } else {
+          // like if isLike == false
+          await client.likePeep({
+            peepId: props.id.toString(),
+            userId: session.userId.toString(),
+            sessionKey: session.sessionKey,
+          });
+          setIsLike(!isLike);
+          setLikeNum(likeNum + 1);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   return (
@@ -60,7 +96,7 @@ export const PeepCard = (props: peepType) => {
               isLike ? "text-twred font-semibold" : "group-hover:text-twred"
             } text-sm xl:text-base transition-all`}
           >
-            {props.likes.length != 0 && props.likes.length}
+            {likeNum != 0 && likeNum}
           </p>
         </button>
       </div>
