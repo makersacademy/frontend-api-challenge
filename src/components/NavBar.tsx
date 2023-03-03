@@ -4,8 +4,10 @@ import { ReactComponent as LogInIcon } from "../assets/login.svg";
 import { ReactComponent as LogOutIcon } from "../assets/logout.svg";
 import { NavButton } from "./NavButton";
 import { Link } from "react-router-dom";
+import { useSession } from "../Context/sessionContext";
 
 export const NavBar = () => {
+  const session = useSession();
   const navList = [
     {
       Icon: HomeIcon,
@@ -39,12 +41,14 @@ export const NavBar = () => {
         ))}
       </ul>
       {/* Create Tweet Button */}
-      <Link to="/">
-        <div className="blue-btn">
-          <span className="hidden xl:block">Tweet</span>
-          <span className="text-2xl xl:hidden">+</span>
-        </div>
-      </Link>
+      {session.userId && (
+        <Link to="/">
+          <div className="blue-btn">
+            <span className="hidden xl:block">Tweet</span>
+            <span className="text-2xl xl:hidden">+</span>
+          </div>
+        </Link>
+      )}
     </nav>
   );
 };

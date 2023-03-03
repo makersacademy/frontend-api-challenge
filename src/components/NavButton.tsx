@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useSession } from "../Context/sessionContext";
 
 type Props = {
   Icon: React.FunctionComponent<
@@ -12,6 +13,16 @@ type Props = {
 
 export const NavButton = ({ Icon, text, url }: Props) => {
   const { pathname } = useLocation();
+  const session = useSession();
+
+  if (text == "Log In" && session.userId) {
+    return <></>;
+  }
+
+  if (text == "Log Out" && !session.userId) {
+    return <></>;
+  }
+
   return (
     <Link to={url}>
       <li

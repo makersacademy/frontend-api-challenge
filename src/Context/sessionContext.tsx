@@ -50,6 +50,7 @@ const sessionReducer = (session: Session, action: Action): Session => {
       return new_session;
     }
     case "logout": {
+      localStorage.removeItem("chitter_session");
       return {
         userId: null,
         sessionKey: null,

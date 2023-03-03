@@ -3,6 +3,7 @@ import { MainLayout } from "./layouts/MainLayout";
 import { Error } from "./pages/Error";
 import Home from "./pages/Home";
 import { Login } from "./pages/Login";
+import { Logout } from "./pages/Logout";
 import { Peep } from "./pages/Peep";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/peep/:id" element={<Peep />} />
         <Route path="*" element={<Error />} />
       </Route>

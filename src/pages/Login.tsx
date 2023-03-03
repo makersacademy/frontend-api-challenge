@@ -7,12 +7,7 @@ import { useSession, useSessionDispatch } from "../Context/sessionContext";
 import { QueryKeyType } from "../hooks/useFetch";
 
 export const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<QueryKeyType>();
+  const { register, handleSubmit, reset } = useForm<QueryKeyType>();
   const { client } = useGlobalContext();
   const dispatch = useSessionDispatch();
   const navigate = useNavigate();
