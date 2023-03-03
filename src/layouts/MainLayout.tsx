@@ -3,6 +3,8 @@ import { NavBar } from "../components/NavBar";
 import { SideBar } from "../components/SideBar";
 import { UserBox } from "../components/UserBox";
 import { useSession } from "../Context/sessionContext";
+import { ReactComponent as BackArrow } from "../assets/backArrow.svg";
+import { Link } from "react-router-dom";
 
 export const MainLayout = () => {
   const { pathname } = useLocation();
@@ -17,7 +19,7 @@ export const MainLayout = () => {
       case "/login":
         return "Log in";
       default:
-        return "Tweet";
+        return "Peep";
     }
   };
 
@@ -29,8 +31,14 @@ export const MainLayout = () => {
           {session.userId && <UserBox {...session} />}
         </div>
         <main className="flex-1 border-x-2 h-[100vh] overflow-y-scroll">
-          <div className="p-6 sticky bg-white bg-opacity-90 top-0 z-20">
-            <h1 className="font-bold text-xl">{getTitle()}</h1>
+          <div className="p-6 sticky bg-white bg-opacity-90 top-0 z-20 flex items-center gap-4">
+            <Link
+              to="/"
+              className={`${getTitle() === "Peep" ? "block" : "hidden"}`}
+            >
+              <BackArrow className="w-10 p-2 rounded-full hover:bg-[rgba(0,0,0,0.05)]" />
+            </Link>
+            <h1 className="font-bold text-md xl:text-xl">{getTitle()}</h1>
           </div>
           <Outlet />
         </main>

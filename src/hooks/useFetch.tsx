@@ -7,6 +7,8 @@ export type QueryKeyType = {
   token?: string;
   handle?: string;
   password?: string;
+  content?: string;
+  sessionKey?: string;
 };
 
 type PropsType<T> = {

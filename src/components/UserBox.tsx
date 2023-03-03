@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useFetch } from "../hooks/useFetch";
 
 type Props = {
   userId: number | null;
@@ -9,7 +8,7 @@ type Props = {
 
 export const UserBox: FC<Props> = ({ userId, handle }) => {
   return (
-    <div className="flex gap-2 px-4 py-2 items-center justify-center hover:bg-lightblue rounded-full">
+    <div className="flex gap-2 px-4 py-2 items-center justify-center rounded-full">
       <div className="relative w-10 xl:w-12">
         <img
           src={`https://robohash.org/${userId}`}

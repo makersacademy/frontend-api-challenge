@@ -79,7 +79,30 @@ class ChitterClient {
   }
 
   // creates a new peep
-  createPeep() {}
+  async createPeep({
+    userId,
+    sessionKey,
+    content,
+  }: QueryKeyType): Promise<peepType> {
+    try {
+      const body = {
+        peep: {
+          user_id: userId,
+          body: content,
+        },
+      };
+      const axiosConfig = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token token=${sessionKey}`,
+        },
+      };
+      const res = await axios.post(`${url}/peeps`, body, axiosConfig);
+      return res.data as peepType;
+    } catch (error) {
+      throw new Error(`Failed to create a peep. Please try again later.`);
+    }
+  }
 
   // returns a single Peep
   async findPeepById({ peepId }: QueryKeyType): Promise<peepType> {

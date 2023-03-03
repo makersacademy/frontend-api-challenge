@@ -1,6 +1,11 @@
+import { AxiosError } from "axios";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { WarningMsg } from "../components/WarningMsg";
-import { useSession } from "../Context/sessionContext";
+import { useGlobalContext } from "../Context/globalContext";
+import { useSession, useSessionDispatch } from "../Context/sessionContext";
+import { QueryKeyType } from "../hooks/useFetch";
 
 type InputData = {
   content: string;
@@ -11,11 +16,37 @@ export const CreatePeep = () => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<InputData>();
+    reset,
+  } = useForm<QueryKeyType>();
+  const { client } = useGlobalContext();
   const session = useSession();
+  const navigate = useNavigate();
 
-  const submitHandler: SubmitHandler<InputData> = (data) => {
-    console.log(data);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  useEffect(() => {
+    !session.userId && navigate("/");
+  }, []);
+
+  const submitHandler: SubmitHandler<QueryKeyType> = async ({ content }) => {
+    setIsError(false);
+    setIsLoading(true);
+    try {
+      await client.createPeep({
+        userId: session.userId!.toString(),
+        sessionKey: session.sessionKey!,
+        content,
+      });
+      navigate("/");
+    } catch (e) {
+      setIsError(true);
+      const error = e as AxiosError;
+      setErrorMsg(error.message);
+      reset();
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -40,10 +71,21 @@ export const CreatePeep = () => {
           className="form-field p-4 mb-0"
         />
         {errors.content && <WarningMsg message="This field is required." />}
-        <input
-          type="submit"
-          className="blue-btn rounded-lg cursor-pointer mt-4"
-        />
+        {isLoading ? (
+          <input
+            type="submit"
+            value="Submit"
+            disabled
+            className="blue-btn rounded-lg cursor-pointer mt-4 disabled:cursor-default disabled:bg-slate-200"
+          />
+        ) : (
+          <input
+            type="submit"
+            value="Submit"
+            className="blue-btn rounded-lg cursor-pointer mt-4"
+          />
+        )}
+        {isError && <WarningMsg message={errorMsg} />}
       </form>
     </div>
   );

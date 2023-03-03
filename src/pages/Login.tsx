@@ -53,6 +53,7 @@ export const Login = () => {
         <input
           type="text"
           id="handle"
+          value="terryhycheng"
           {...register("handle", { required: true })}
           className="form-field"
         />
@@ -60,6 +61,7 @@ export const Login = () => {
         <input
           type="password"
           id="password"
+          value="password"
           {...register("password", { required: true })}
           className="form-field"
         />

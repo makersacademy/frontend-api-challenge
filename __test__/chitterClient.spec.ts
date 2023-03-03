@@ -112,4 +112,24 @@ describe("ChitterClient", () => {
       ).rejects.toThrow("has already been taken");
     });
   });
+
+  describe('#createPeep', () => {
+    it('should return the peep after it has been successfully created', async () => {
+      mock.onPost(`${baseURL}/peeps`).reply(200, signlePeepSample)
+      const peep = await client.createPeep({ userId: "123", sessionKey:"session_key", content:"content" })
+      expect(peep.id).toEqual(1640);
+      expect(peep.body).toEqual("hello")
+    });
+
+    it("should handle an error correctly", async () => {
+      mock.onPost(`${baseURL}/peeps`).reply(404);
+      await expect(
+        client.createPeep({
+          userId: "123",
+          sessionKey: "session_key",
+          content: "content",
+        })
+      ).rejects.toThrow("Failed to create a peep. Please try again later.");
+    });
+  });
 });

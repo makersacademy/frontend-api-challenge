@@ -17,7 +17,6 @@ const globalContext = {
 };
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
     <GlobalContext.Provider value={globalContext}>
       <SessionProvider>
         <BrowserRouter>
@@ -25,5 +24,4 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </BrowserRouter>
       </SessionProvider>
     </GlobalContext.Provider>
-  </React.StrictMode>
 );
