@@ -36,14 +36,16 @@ describe("ChitterClient", () => {
     it("should return one peep with the correct ID", async () => {
       const peepId: number = 1640;
       mock.onGet(`${baseURL}/peeps/${peepId}`).replyOnce(200, signlePeepSample);
-      const peep = await client.findPeepById({ peepId: peepId });
+      const peep = await client.findPeepById({ peepId: peepId.toString() });
       expect(peep.id).toEqual(peepId);
     });
 
     it("should handle an error correctly", async () => {
       const peepId: number = 999999;
       mock.onGet(`${baseURL}/peeps/${peepId}`).networkErrorOnce();
-      await expect(client.findPeepById({ peepId: peepId })).rejects.toThrow(
+      await expect(
+        client.findPeepById({ peepId: peepId.toString() })
+      ).rejects.toThrow(
         `Failed to fetch the peep with ID: ${peepId}. Please try again later.`
       );
     });

@@ -1,17 +1,19 @@
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 
-type propsType = {
-  querykey?: {
-    userId?: string;
-    peepId?: string;
-    token?: string;
-  };
-  queryFn: (queryKey: any) => Promise<any>;
+export type QueryKeyType = {
+  userId?: string;
+  peepId?: string;
+  token?: string;
 };
 
-export const useFetch = ({ querykey, queryFn }: propsType) => {
-  const [data, setData] = useState<any>();
+type PropsType<T> = {
+  querykey: QueryKeyType;
+  queryFn: (queryKey: QueryKeyType) => Promise<T>;
+};
+
+export const useFetch = <T,>({ querykey, queryFn }: PropsType<T>) => {
+  const [data, setData] = useState<T | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState("");
@@ -23,8 +25,8 @@ export const useFetch = ({ querykey, queryFn }: propsType) => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const api_data = await queryFn(querykey);
-      setData(api_data);
+      const apiData = await queryFn(querykey);
+      setData(apiData);
     } catch (error) {
       const e = error as AxiosError;
       setIsError(true);

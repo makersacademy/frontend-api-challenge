@@ -1,5 +1,6 @@
 import { peepType, sessionType } from "../../types/apiData";
 import axios, { AxiosError } from "axios";
+import { QueryKeyType } from "../hooks/useFetch";
 
 const url = "https://chitter-backend-api-v2.herokuapp.com";
 class ChitterClient {
@@ -45,7 +46,7 @@ class ChitterClient {
   createPeep() {}
 
   // returns a single Peep
-  async findPeepById({ peepId }: any): Promise<peepType> {
+  async findPeepById({ peepId }: QueryKeyType): Promise<peepType> {
     try {
       const res = await axios.get(`${url}/peeps/${peepId}`);
       return res.data as peepType;

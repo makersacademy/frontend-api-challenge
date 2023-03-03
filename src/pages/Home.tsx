@@ -1,17 +1,23 @@
+import { Link } from "react-router-dom";
 import { peepType } from "../../types/apiData";
+import { Loader } from "../components/Loader";
+import { PeepCard } from "../components/PeepCard";
 import { useGlobalContext } from "../Context/globalContext";
 import { useFetch } from "../hooks/useFetch";
 
 function Home() {
   const { client } = useGlobalContext();
-  const [data, isLoading] = useFetch({
+  const [data, isLoading] = useFetch<peepType[]>({
+    querykey: {},
     queryFn: client.getAllPeeps,
   });
 
   return (
-    <div className="font-bold text-xl">
-      {isLoading && <h1>Loading...</h1>}
-      {data && data.map((peep: peepType) => <h2 key={peep.id}>{peep.body}</h2>)}
+    <div>
+      {isLoading && <Loader />}
+      <div className="flex flex-col">
+        {!isLoading && data && data.map((peep) => <PeepCard {...peep} />)}
+      </div>
     </div>
   );
 }
