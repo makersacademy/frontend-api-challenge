@@ -15,7 +15,7 @@ export const NavButton = ({ Icon, text, url }: Props) => {
   return (
     <Link to={url}>
       <li
-        className={`flex gap-2 items-center font-bold justify-center xl:justify-start hover:bg-lightblue p-2 px-4 rounded-full transition-all ${
+        className={`flex gap-3 items-center font-bold justify-center xl:justify-start hover:bg-lightblue p-2 px-4 rounded-full transition-all ${
           pathname == url && "fill-primary text-primary bg-lightblue"
         }`}
       >

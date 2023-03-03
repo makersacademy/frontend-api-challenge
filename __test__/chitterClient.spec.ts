@@ -1,4 +1,4 @@
-import ChitterClient, { chitterClientType } from "../src/utils/chitterClient";
+import ChitterClient from "../src/utils/chitterClient";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import {
@@ -9,12 +9,11 @@ import {
 } from "../src/utils/mockApiData";
 
 describe("ChitterClient", () => {
-  let client: chitterClientType;
+  const client = new ChitterClient();
   const baseURL = "https://chitter-backend-api-v2.herokuapp.com";
   const mock = new MockAdapter(axios);
 
   beforeEach(() => {
-    client = new ChitterClient();
     mock.reset();
   });
 
