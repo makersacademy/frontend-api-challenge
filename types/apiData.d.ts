@@ -1,3 +1,12 @@
+export type CreateUserRes = {
+  id: number;
+  handle: string;
+};
+
+export type CreateUserErrorRes = {
+  handle: string[];
+};
+
 export type userType = {
   id: number;
   handle: string;
@@ -17,7 +26,10 @@ export type peepType = {
 export type sessionType = {
   user_id?: number;
   session_key?: string;
-  errors?: {
+};
+
+export type SessionError = {
+  errors: {
     password: string;
   };
 };

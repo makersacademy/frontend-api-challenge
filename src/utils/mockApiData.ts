@@ -1,4 +1,4 @@
-import { peepType, sessionType } from "../../types/apiData";
+import { CreateUserRes, peepType, sessionType } from "../../types/apiData";
 
 export const getAllPeepsDataSample: peepType[] = [
   {
@@ -91,4 +91,9 @@ export const signlePeepSample: peepType = {
 export const sessionSample: sessionType = {
   user_id: 1,
   session_key: "terry_session_key",
+};
+
+export const createUserSample: CreateUserRes = {
+  id: 1,
+  handle: "kay",
 };

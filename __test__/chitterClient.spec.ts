@@ -2,6 +2,7 @@ import ChitterClient, { chitterClientType } from "../src/utils/chitterClient";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import {
+  createUserSample,
   getAllPeepsDataSample,
   sessionSample,
   signlePeepSample,
@@ -54,16 +55,19 @@ describe("ChitterClient", () => {
   describe("#getSession", () => {
     it("should return user_id and session_key", async () => {
       mock.onPost(`${baseURL}/sessions`).replyOnce(200, sessionSample);
-      const session = await client.getSession("testing", "password");
+      const session = await client.getSession({
+        handle: "kay",
+        password: "password",
+      });
       expect(session.user_id).toEqual(1);
       expect(session.session_key).toEqual("terry_session_key");
     });
 
     it("should handle an error correctly", async () => {
       mock.onPost(`${baseURL}/sessions`).networkErrorOnce();
-      await expect(client.getSession("testing", "password")).rejects.toThrow(
-        "Failed to get session. Please try again later."
-      );
+      await expect(
+        client.getSession({ handle: "kay", password: "password" })
+      ).rejects.toThrow("Failed to get session. Please try again later.");
     });
 
     it("should return errors with wrong input credentials", async () => {
@@ -72,9 +76,37 @@ describe("ChitterClient", () => {
           password: "Invalid username or password",
         },
       });
-      await expect(client.getSession("testing", "password")).rejects.toThrow(
-        "Invalid username or password"
-      );
+      await expect(
+        client.getSession({ handle: "kay", password: "password" })
+      ).rejects.toThrow("Invalid username or password");
+    });
+  });
+
+  describe("#createUser", () => {
+    it("should return user_id and user_handle", async () => {
+      mock.onPost(`${baseURL}/users`).replyOnce(200, createUserSample);
+      const res = await client.createUser({
+        handle: "kay",
+        password: "password",
+      });
+      expect(res.id).toEqual(1);
+      expect(res.handle).toEqual("kay");
+    });
+
+    it("should handle an error correctly", async () => {
+      mock.onPost(`${baseURL}/users`).networkErrorOnce();
+      await expect(
+        client.createUser({ handle: "kay", password: "password" })
+      ).rejects.toThrow("Failed to create user. Please try again later.");
+    });
+
+    it("should return errors with wrong input credentials", async () => {
+      mock.onPost(`${baseURL}/users`).reply(422, {
+        handle: ["has already been taken"],
+      });
+      await expect(
+        client.createUser({ handle: "kay", password: "password" })
+      ).rejects.toThrow("has already been taken");
     });
   });
 });

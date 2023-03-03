@@ -5,6 +5,8 @@ export type QueryKeyType = {
   userId?: string;
   peepId?: string;
   token?: string;
+  handle?: string;
+  password?: string;
 };
 
 type PropsType<T> = {

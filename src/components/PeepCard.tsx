@@ -40,7 +40,7 @@ export const PeepCard = (props: peepType) => {
         </Link>
         <button
           onClick={likeHandler}
-          className="mt-1 xl:mt-2 text-secondary text-base font-light flex gap-[0.4rem] group items-center transition-all"
+          className="mt-1 xl:mt-2 text-secondary text-base font-light flex gap-[0.4rem] group items-center transition-all w-fit"
         >
           <Like
             className={`w-4 xl:w-7 ${

@@ -1,17 +1,47 @@
-import { peepType, sessionType } from "../../types/apiData";
+import {
+  CreateUserErrorRes,
+  CreateUserRes,
+  peepType,
+  SessionError,
+  sessionType,
+} from "../../types/apiData";
 import axios, { AxiosError } from "axios";
 import { QueryKeyType } from "../hooks/useFetch";
 
 const url = "https://chitter-backend-api-v2.herokuapp.com";
 class ChitterClient {
   // creates a new user
-  createUser() {}
+  async createUser({ handle, password }: QueryKeyType): Promise<CreateUserRes> {
+    const body = {
+      user: {
+        handle,
+        password,
+      },
+    };
+    const axiosConfig = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(`${url}/users`, body, axiosConfig);
+      return res.data as CreateUserRes;
+    } catch (e) {
+      const error = e as AxiosError;
+      if (error.response?.status == 422) {
+        const data = error.response.data as CreateUserErrorRes;
+        throw new Error(data.handle[0]);
+      } else {
+        throw new Error("Failed to create user. Please try again later.");
+      }
+    }
+  }
 
   // creates a new session
-  async getSession(handle: string, password: string): Promise<sessionType> {
+  async getSession({ handle, password }: QueryKeyType): Promise<sessionType> {
     const data = {
-      handle: handle,
-      password: password,
+      handle,
+      password,
     };
     const axiosConfig = {
       headers: {
@@ -24,7 +54,7 @@ class ChitterClient {
     } catch (e: any) {
       const error = e as AxiosError;
       if (error.response?.status == 422) {
-        const data = error.response.data as sessionType;
+        const data = error.response.data as SessionError;
         throw new Error(data.errors?.password);
       } else {
         throw new Error("Failed to get session. Please try again later.");
