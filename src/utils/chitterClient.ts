@@ -117,10 +117,50 @@ class ChitterClient {
   }
 
   // adds a like to the peep by the user
-  likeByUser(peepId: number, userId: number) {}
+  async likePeep({ peepId, userId, sessionKey }: QueryKeyType) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Token token=${sessionKey}`,
+      },
+    };
+    try {
+      await axios.put(
+        `${url}/peeps/${peepId}/likes/${userId}`,
+        {},
+        axiosConfig
+      );
+    } catch (error) {
+      throw new Error(`Failed to like a peep. Please try again later.`);
+    }
+  }
 
   // removes the like on the peep by the user
-  dislikeByUser(peepId: number, userId: number) {}
+  async dislikePeep({ peepId, userId, sessionKey }: QueryKeyType) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Token token=${sessionKey}`,
+      },
+    };
+    try {
+      await axios.delete(`${url}/peeps/${peepId}/likes/${userId}`, axiosConfig);
+    } catch (error) {
+      throw new Error(`Failed to dislike a peep. Please try again later.`);
+    }
+  }
+
+  // removes a peep
+  async deletePeep({ peepId, sessionKey }: QueryKeyType) {
+    const axiosConfig = {
+      headers: {
+        Authorization: `Token token=${sessionKey}`,
+      },
+    };
+    try {
+      await axios.delete(`${url}/peeps/${peepId}`, axiosConfig);
+    } catch (error) {
+      throw new Error(`Failed to delete a peep. Please try again later.`);
+    }
+  }
 }
 
 export type { ChitterClient as chitterClientType };
