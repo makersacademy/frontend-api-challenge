@@ -1,13 +1,17 @@
+import { Fragment, useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Peeps from "./components/Peeps";
 
 const queryClient = new QueryClient();
 
 function App() {
+  const [page, setPage] = useState("Home");
   return (
-    <QueryClientProvider client={queryClient}>
-      <Peeps />
-    </QueryClientProvider>
+    <Fragment>
+      <QueryClientProvider client={queryClient}>
+        <Peeps />
+      </QueryClientProvider>
+    </Fragment>
   );
 }
 

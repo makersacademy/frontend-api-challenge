@@ -15,11 +15,8 @@ function Peeps() {
     <div className="peeps-container">
       {data.map((peep, index) => {
         return (
-          <div
-            key={index}
-            className="peep container w-1/2 mx-auto px-5 border-solid border-2 border-sky-500 my-2 rounded"
-          >
-            <p className="">{`User: ${peep.user.handle}`}</p>
+          <div key={index} className="peep">
+            <p>{`User: ${peep.user.handle}`}</p>
             <p>{`Body: ${peep.body}`}</p>
             <p>{`Created at: ${peep.created_at}`}</p>
           </div>
