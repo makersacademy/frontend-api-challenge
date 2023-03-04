@@ -24,7 +24,7 @@ class PeepsView {
       peepEl.className = 'peep';
       this.mainContainerEl.append(peepEl);
     });
-  }
+  } 
 }
 
 module.exports = PeepsView;
