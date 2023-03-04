@@ -6,6 +6,7 @@ import { WarningMsg } from "../components/WarningMsg";
 import { useGlobalContext } from "../Context/globalContext";
 import { useSession, useSessionDispatch } from "../Context/sessionContext";
 import { QueryKeyType } from "../hooks/useFetch";
+import { useSubmitForm } from "../hooks/useSubmitForm";
 
 type InputData = {
   content: string;
@@ -21,32 +22,21 @@ export const CreatePeep = () => {
   const { client } = useGlobalContext();
   const session = useSession();
   const navigate = useNavigate();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>("");
+  const { error, isError, isLoading, callSubmit } = useSubmitForm({
+    queryFn: client.createPeep,
+  });
 
   useEffect(() => {
     !session.userId && navigate("/");
   }, []);
 
   const submitHandler: SubmitHandler<QueryKeyType> = async ({ content }) => {
-    setIsError(false);
-    setIsLoading(true);
-    try {
-      await client.createPeep({
-        userId: session.userId!.toString(),
-        sessionKey: session.sessionKey!,
-        content,
-      });
-      navigate("/");
-    } catch (e) {
-      setIsError(true);
-      const error = e as AxiosError;
-      setErrorMsg(error.message);
-      reset();
-    }
-    setIsLoading(false);
+    const data = await callSubmit({
+      userId: session.userId!.toString(),
+      sessionKey: session.sessionKey!,
+      content,
+    });
+    data ? navigate("/") : reset();
   };
 
   return (
@@ -85,7 +75,7 @@ export const CreatePeep = () => {
             className="blue-btn rounded-lg cursor-pointer mt-4"
           />
         )}
-        {isError && <WarningMsg message={errorMsg} />}
+        {isError && <WarningMsg message={error} />}
       </form>
     </div>
   );

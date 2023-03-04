@@ -3,10 +3,10 @@ import { timeCalculator } from "../utils/timeCalculator";
 import { useSession } from "../Context/sessionContext";
 import { peepType } from "../../types/apiData";
 import { useGlobalContext } from "../Context/globalContext";
-import { useState } from "react";
-import { AxiosError } from "axios";
 import { WarningMsg } from "./WarningMsg";
 import { useNavigate } from "react-router-dom";
+import { useSubmitForm } from "../hooks/useSubmitForm";
+import { LikedUserIcon } from "./LikedUserIcon";
 
 export const PeepContent = ({
   id,
@@ -19,26 +19,16 @@ export const PeepContent = ({
   const { client } = useGlobalContext();
   const isMyPeep = user.id === session.userId;
   const navigate = useNavigate();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>("");
+  const { isLoading, isError, error, callSubmit } = useSubmitForm({
+    queryFn: client.deletePeep,
+  });
 
   const deleteHandler = async () => {
-    setIsError(false);
-    setIsLoading(true);
-    try {
-      await client.deletePeep({
-        peepId: id.toString(),
-        sessionKey: session.sessionKey!,
-      });
-      navigate("/");
-    } catch (e) {
-      setIsError(true);
-      const error = e as AxiosError;
-      setErrorMsg(error.message);
-    }
-    setIsLoading(false);
+    await callSubmit({
+      peepId: id.toString(),
+      sessionKey: session.sessionKey!,
+    });
+    navigate("/");
   };
 
   return (
@@ -74,25 +64,10 @@ export const PeepContent = ({
         </div>
         <hr className="w-full my-4" />
         <div className="flex gap-2 flex-wrap justify-center">
-          {likes.length
-            ? likes.map(({ user }) => (
-                <div key={user.id} className="group relative">
-                  <div className="relative w-12 mb-3">
-                    <img
-                      src={`https://robohash.org/${user.id}`}
-                      alt=""
-                      className={`object-cover border rounded-full group-hover:bg-[rgba(0,0,0,0.1)] transition-all ${
-                        user.id === session.userId &&
-                        "border-primary bg-primary bg-opacity-20 group-hover:bg-primary group-hover:bg-opacity-40"
-                      }`}
-                    />
-                  </div>
-                  <div className="hidden group-hover:block absolute text-white -bottom-4 bg-[rgba(0,0,0,0.7)] p-1 px-3 rounded-md text-center capitalize transition-all text-sm">
-                    {user.id === session.userId ? "You" : user.handle}
-                  </div>
-                </div>
-              ))
-            : ""}
+          {likes.length &&
+            likes.map(({ user }) => (
+              <LikedUserIcon key={user.id} user={user} />
+            ))}
         </div>
         <div className="font-bold">
           {likes.length} <span className="ml-1 font-normal">Likes</span>
@@ -117,7 +92,7 @@ export const PeepContent = ({
             Delete
           </button>
         )}
-        {isError && <WarningMsg message={errorMsg} />}
+        {isError && <WarningMsg message={error} />}
       </div>
     </div>
   );

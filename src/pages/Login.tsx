@@ -1,11 +1,12 @@
-import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { sessionType } from "../../types/apiData";
 import { WarningMsg } from "../components/WarningMsg";
 import { useGlobalContext } from "../Context/globalContext";
 import { useSession, useSessionDispatch } from "../Context/sessionContext";
 import { QueryKeyType } from "../hooks/useFetch";
+import { useSubmitForm } from "../hooks/useSubmitForm";
 
 export const Login = () => {
   const { register, handleSubmit, reset } = useForm<QueryKeyType>();
@@ -13,34 +14,27 @@ export const Login = () => {
   const dispatch = useSessionDispatch();
   const navigate = useNavigate();
   const session = useSession();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>("");
+  const { error, isError, isLoading, callSubmit } = useSubmitForm<sessionType>({
+    queryFn: client.getSession,
+  });
 
   useEffect(() => {
     session.userId && navigate("/");
   }, []);
 
   const submitHandler: SubmitHandler<QueryKeyType> = async (inputData) => {
-    setIsError(false);
-    setIsLoading(true);
-    try {
-      const session = await client.getSession(inputData);
+    const data = await callSubmit(inputData);
+    if (data) {
       dispatch({
         type: "login",
-        userId: session.user_id,
-        sessionKey: session.session_key,
-        handle: session.handle,
+        userId: data.user_id,
+        sessionKey: data.session_key,
+        handle: data.handle,
       });
       navigate("/");
-    } catch (e) {
-      setIsError(true);
-      const error = e as AxiosError;
-      setErrorMsg(error.message);
+    } else {
       reset();
     }
-    setIsLoading(false);
   };
 
   return (
@@ -54,6 +48,7 @@ export const Login = () => {
         <input
           type="text"
           id="handle"
+          value="terryhycheng"
           {...register("handle", { required: true })}
           className="form-field"
         />
@@ -61,6 +56,7 @@ export const Login = () => {
         <input
           type="password"
           id="password"
+          value="password"
           {...register("password", { required: true })}
           className="form-field"
         />
@@ -85,7 +81,7 @@ export const Login = () => {
           </Link>
         </p>
       </form>
-      {isError && <WarningMsg message={errorMsg} />}
+      {isError && <WarningMsg message={error} />}
     </div>
   );
 };

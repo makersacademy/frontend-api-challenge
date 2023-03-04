@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { peepType } from "../../types/apiData";
 import { Loader } from "../components/Loader";
 import { PeepCard } from "../components/PeepCard";

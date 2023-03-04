@@ -6,16 +6,16 @@ import { WarningMsg } from "../components/WarningMsg";
 import { useGlobalContext } from "../Context/globalContext";
 import { useSession } from "../Context/sessionContext";
 import { QueryKeyType } from "../hooks/useFetch";
+import { useSubmitForm } from "../hooks/useSubmitForm";
 
 export const Signup = () => {
   const { register, handleSubmit, reset } = useForm<QueryKeyType>();
   const { client } = useGlobalContext();
   const navigate = useNavigate();
   const session = useSession();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>("");
+  const { error, isError, isLoading, callSubmit } = useSubmitForm({
+    queryFn: client.createUser,
+  });
 
   useEffect(() => {
     session.userId && navigate("/");
@@ -25,21 +25,15 @@ export const Signup = () => {
     handle,
     password,
   }) => {
-    setIsError(false);
-    setIsLoading(true);
-    try {
-      await client.createUser({ handle, password });
+    const data = await callSubmit({ handle, password });
+    if (data) {
       alert(
         "You have successfully register! Please log in with your credentials."
       );
       navigate("/login");
-    } catch (e) {
-      const error = e as AxiosError;
-      setIsError(true);
-      setErrorMsg(error.message);
+    } else {
       reset();
     }
-    setIsLoading(false);
   };
 
   return (
@@ -89,7 +83,7 @@ export const Signup = () => {
           Go back
         </Link>
       </form>
-      {isError && <WarningMsg message={errorMsg} />}
+      {isError && <WarningMsg message={error} />}
     </div>
   );
 };

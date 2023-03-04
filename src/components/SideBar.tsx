@@ -96,7 +96,10 @@ export const SideBar = () => {
       <div className="py-6 mt-4 bg-lightblue rounded-xl">
         <h2 className="px-6 text-xl font-bold mb-3">Who to follow</h2>
         {whoToFollowData.map(({ title, subtitle, imageUrl, urlTo }) => (
-          <div className="px-6 py-3 flex items-center gap-3 hover:bg-[rgba(0,0,0,0.05)]">
+          <div
+            key={crypto.randomUUID()}
+            className="px-6 py-3 flex items-center gap-3 hover:bg-[rgba(0,0,0,0.05)]"
+          >
             <div className="relative rounded-full w-14 h-14 border overflow-hidden">
               <img src={imageUrl} className="object-cover h-full" alt="" />
             </div>
