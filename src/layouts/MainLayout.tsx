@@ -38,7 +38,10 @@ export const MainLayout = () => {
               to="/"
               className={`${getTitle() === "Peep" ? "block" : "hidden"}`}
             >
-              <BackArrow className="w-8 p-1 rounded-full hover:bg-[rgba(0,0,0,0.05)]" />
+              <BackArrow
+                data-cy="back-btn"
+                className="w-8 p-1 rounded-full hover:bg-[rgba(0,0,0,0.05)]"
+              />
             </Link>
             <h1 className="font-bold text-md xl:text-xl">{getTitle()}</h1>
           </div>

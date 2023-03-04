@@ -54,7 +54,10 @@ export const PeepCard = (props: peepType) => {
   };
 
   return (
-    <div className="border-b p-2 xl:p-4 hover:bg-[rgba(0,0,0,0.03)] flex xl:gap-4 gap-2 xl:min-h-[110px] items-center transition-all">
+    <div
+      data-cy="peep-card"
+      className="border-b p-2 xl:p-4 hover:bg-[rgba(0,0,0,0.03)] flex xl:gap-4 gap-2 xl:min-h-[110px] items-center transition-all"
+    >
       <div className="relative w-11 xl:w-16 self-start">
         <img
           src={`https://robohash.org/${props.user.id}`}
@@ -63,7 +66,7 @@ export const PeepCard = (props: peepType) => {
         />
       </div>
       <div className="flex flex-col w-full">
-        <Link to={`/peep/${props.id}`}>
+        <Link data-cy="post-link" to={`/peep/${props.id}`}>
           <div className="flex-1 flex flex-col gap-1">
             <div className="flex xl:gap-1 xl:items-center flex-col xl:flex-row">
               <div className="flex gap-1">
@@ -80,7 +83,9 @@ export const PeepCard = (props: peepType) => {
                 @{props.user.handle} · {timeCalculator(props.created_at)}
               </h4>
             </div>
-            <div className="text-sm xl:text-base">{props.body}</div>
+            <div data-cy="body" className="text-sm xl:text-base">
+              {props.body}
+            </div>
           </div>
         </Link>
         {!isLoading ? (
@@ -89,6 +94,7 @@ export const PeepCard = (props: peepType) => {
             className="mt-1 xl:mt-2 text-secondary text-base font-light flex gap-[0.4rem] group items-center transition-all w-fit"
           >
             <Like
+              data-cy="like-btn"
               className={`w-5 p-[2px] xl:w-7 ${
                 isLike
                   ? "fill-white bg-twred bg-opacity-90"

@@ -9,8 +9,8 @@ describe("LikedUserIcon Component Test", () => {
         handle: "Terry",
       };
       cy.mount(<LikedUserIcon user={user} userId={1} />);
-      cy.get('[data-cy="username"]').as("username");
-      cy.get('[data-cy="image"]').as("image");
+      cy.get('[data-cy="icon-username"]').as("username");
+      cy.get('[data-cy="icon-image"]').as("image");
     });
 
     it("should display an image and text", () => {
@@ -25,7 +25,7 @@ describe("LikedUserIcon Component Test", () => {
     });
 
     it("should have a correct hover effect", () => {
-      cy.get('[data-cy="container"]').realHover();
+      cy.get('[data-cy="icon-container"]').realHover();
       cy.get("@username").should("be.visible");
     });
   });
@@ -37,8 +37,8 @@ describe("LikedUserIcon Component Test", () => {
         handle: "Terry",
       };
       cy.mount(<LikedUserIcon user={user} userId={123} />);
-      cy.get('[data-cy="username"]').as("username");
-      cy.get('[data-cy="image"]').as("image");
+      cy.get('[data-cy="icon-username"]').as("username");
+      cy.get('[data-cy="icon-image"]').as("image");
     });
 
     it("should display with blue background", () => {

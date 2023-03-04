@@ -8,10 +8,10 @@ type Props = {
 
 export const LikedUserIcon = ({ user, userId }: Props) => {
   return (
-    <div data-cy="container" key={user.id} className="group relative">
+    <div data-cy="icon-container" key={user.id} className="group relative">
       <div className="relative w-12 mb-3">
         <img
-          data-cy="image"
+          data-cy="icon-image"
           src={`https://robohash.org/${user.id}`}
           alt=""
           className={`object-cover border rounded-full group-hover:bg-[rgba(0,0,0,0.1)] transition-all ${
@@ -21,7 +21,7 @@ export const LikedUserIcon = ({ user, userId }: Props) => {
         />
       </div>
       <div
-        data-cy="username"
+        data-cy="icon-username"
         className="hidden group-hover:block absolute text-white -bottom-4 bg-[rgba(0,0,0,0.7)] p-1 px-3 rounded-md text-center capitalize transition-all text-sm"
       >
         {user.id === userId ? "You" : user.handle}
