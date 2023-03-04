@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { useSession } from "../Context/sessionContext";
 
 type Props = {
   Icon: React.FunctionComponent<

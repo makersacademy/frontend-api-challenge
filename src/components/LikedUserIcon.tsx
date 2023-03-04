@@ -1,5 +1,4 @@
 import { userType } from "../../types/apiData";
-import { useSession } from "../Context/sessionContext";
 
 type Props = {
   user: userType;

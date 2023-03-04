@@ -1,16 +1,11 @@
-import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { WarningMsg } from "../components/WarningMsg";
 import { useGlobalContext } from "../Context/globalContext";
-import { useSession, useSessionDispatch } from "../Context/sessionContext";
+import { useSession } from "../Context/sessionContext";
 import { QueryKeyType } from "../hooks/useFetch";
 import { useSubmitForm } from "../hooks/useSubmitForm";
-
-type InputData = {
-  content: string;
-};
 
 export const CreatePeep = () => {
   const {

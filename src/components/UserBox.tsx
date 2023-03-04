@@ -1,12 +1,10 @@
-import { FC } from "react";
-
 type Props = {
   userId: number | null;
   sessionKey: string | null;
   handle: string | null;
 };
 
-export const UserBox: FC<Props> = ({ userId, handle }) => {
+export const UserBox = ({ userId, handle }: Props) => {
   return (
     <div
       data-cy="user-box"
