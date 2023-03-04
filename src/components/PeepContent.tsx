@@ -66,7 +66,11 @@ export const PeepContent = ({
         <div className="flex gap-2 flex-wrap justify-center">
           {likes.length &&
             likes.map(({ user }) => (
-              <LikedUserIcon key={user.id} user={user} />
+              <LikedUserIcon
+                key={user.id}
+                user={user}
+                userId={session.userId}
+              />
             ))}
         </div>
         <div className="font-bold">
