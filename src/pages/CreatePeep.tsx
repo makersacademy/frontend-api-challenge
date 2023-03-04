@@ -81,7 +81,7 @@ export const CreatePeep = () => {
         ) : (
           <input
             type="submit"
-            value="Submit"
+            value="Share"
             className="blue-btn rounded-lg cursor-pointer mt-4"
           />
         )}

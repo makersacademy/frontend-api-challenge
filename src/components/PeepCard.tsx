@@ -89,7 +89,7 @@ export const PeepCard = (props: peepType) => {
             className="mt-1 xl:mt-2 text-secondary text-base font-light flex gap-[0.4rem] group items-center transition-all w-fit"
           >
             <Like
-              className={`w-4 xl:w-7 ${
+              className={`w-5 p-[2px] xl:w-7 ${
                 isLike
                   ? "fill-white bg-twred bg-opacity-90"
                   : "fill-secondary group-hover:bg-twred group-hover:bg-opacity-20 group-hover:fill-twred"

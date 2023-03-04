@@ -27,10 +27,10 @@ export const NavBar = () => {
   ];
 
   return (
-    <nav className="p-2 flex flex-col gap-6">
+    <nav className="xl:p-2 flex flex-col gap-6">
       {/* Logo */}
       <Link to="/">
-        <div className="flex justify-center items-center xl:justify-start mt-2">
+        <div className="flex justify-center items-center xl:justify-start">
           <TwitterLogo className="fill-primary w-12 xl:w-14 hover:bg-primary hover:bg-opacity-10 p-2 rounded-full transition-all" />
         </div>
       </Link>
@@ -46,7 +46,7 @@ export const NavBar = () => {
       {/* Create Tweet Button */}
       {session.userId && (
         <Link to="/create-peep">
-          <div className="blue-btn">
+          <div className="blue-btn mx-2 xl:mx-0">
             <span className="hidden xl:block">Tweet</span>
             <span className="text-2xl xl:hidden">+</span>
           </div>

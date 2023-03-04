@@ -46,11 +46,13 @@ export const Signup = () => {
     <div className="mx-6">
       <form
         onSubmit={handleSubmit(submitHandler)}
-        className="flex flex-col p-6 py-14 border rounded-xl justify-center gap-2"
+        className="flex flex-col p-4 xl:p-6 py-10 xl:py-14 border rounded-xl justify-center gap-2"
       >
         <div className="flex items-center mb-6 gap-4">
-          <img src="/makers_duck.png" className="w-12" alt="" />
-          <h2 className="font-bold text-2xl">Sign Up to Connect with Makers</h2>
+          <img src="/makers_duck.png" className="w-10 xl:w-12" alt="" />
+          <h2 className="font-bold text-xl xl:text-2xl">
+            Sign Up to Connect with Makers
+          </h2>
         </div>
         <label htmlFor="handle">Username</label>
         <input
