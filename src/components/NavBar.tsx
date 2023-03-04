@@ -13,16 +13,19 @@ export const NavBar = () => {
       Icon: HomeIcon,
       text: "Home",
       url: "/",
+      testId: "nav-home",
     },
     {
       Icon: LogInIcon,
       text: "Log In",
       url: "/login",
+      testId: "nav-login",
     },
     {
       Icon: LogOutIcon,
       text: "Log Out",
       url: "/logout",
+      testId: "nav-logout",
     },
   ];
 

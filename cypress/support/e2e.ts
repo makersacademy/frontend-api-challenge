@@ -14,7 +14,22 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      login(email: string, password: string): void;
+    }
+  }
+}
+
+Cypress.Commands.add("login", (username: string, password: string) => {
+  cy.visit("/login");
+  cy.get('[data-cy="handle"]').type(username);
+  cy.get('[data-cy="password"]').type(password);
+  cy.get('[data-cy="submit-btn"]').click();
+});
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

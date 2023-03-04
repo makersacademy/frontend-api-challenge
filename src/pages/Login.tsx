@@ -43,12 +43,14 @@ export const Login = () => {
         onSubmit={handleSubmit(submitHandler)}
         className="flex flex-col p-6 py-10 border rounded-xl justify-center gap-2"
       >
-        <h2 className="font-bold text-2xl mb-6">Welcome to Chitter</h2>
+        <h2 data-cy="login-title" className="font-bold text-2xl mb-6">
+          Welcome to Chitter
+        </h2>
         <label htmlFor="handle">Username</label>
         <input
           type="text"
           id="handle"
-          value="terryhycheng"
+          data-cy="handle"
           {...register("handle", { required: true })}
           className="form-field"
         />
@@ -56,7 +58,7 @@ export const Login = () => {
         <input
           type="password"
           id="password"
-          value="password"
+          data-cy="password"
           {...register("password", { required: true })}
           className="form-field"
         />
@@ -65,18 +67,24 @@ export const Login = () => {
             type="submit"
             value="Log in"
             disabled
+            data-cy="disabled-btn"
             className="blue-btn rounded-lg cursor-pointer mt-4 disabled:cursor-default disabled:bg-slate-200"
           />
         ) : (
           <input
             type="submit"
             value="Log in"
+            data-cy="submit-btn"
             className="blue-btn rounded-lg cursor-pointer mt-4"
           />
         )}
         <p className="text-center my-4 text-secondary text-sm font-light">
           You don't have an account? Sign up{" "}
-          <Link to="/signup" className="text-primary underline">
+          <Link
+            data-cy="sign-up-link"
+            to="/signup"
+            className="text-primary underline"
+          >
             here
           </Link>
         </p>

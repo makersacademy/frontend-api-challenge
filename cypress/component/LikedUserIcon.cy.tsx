@@ -9,26 +9,24 @@ describe("LikedUserIcon Component Test", () => {
         handle: "Terry",
       };
       cy.mount(<LikedUserIcon user={user} userId={1} />);
+      cy.get('[data-cy="username"]').as("username");
+      cy.get('[data-cy="image"]').as("image");
     });
 
     it("should display an image and text", () => {
-      cy.get('[data-cy="image"]').should(
-        "have.attr",
-        "src",
-        "https://robohash.org/123"
-      );
-      cy.get('[data-cy="username"]').should("have.text", "Terry");
-      cy.get('[data-cy="username"]').should("have.class", "hidden");
-      cy.get('[data-cy="image"]').should(
+      cy.get("@image").should("have.attr", "src", "https://robohash.org/123");
+      cy.get("@username").should("have.text", "Terry");
+      cy.get("@username").should("have.class", "hidden");
+      cy.get("@image").should(
         "not.have.class",
         "border-primary bg-primary bg-opacity-20"
       );
-      cy.get('[data-cy="username"]').should("not.be.visible");
+      cy.get("@username").should("not.be.visible");
     });
 
     it("should have a correct hover effect", () => {
       cy.get('[data-cy="container"]').realHover();
-      cy.get('[data-cy="username"]').should("be.visible");
+      cy.get("@username").should("be.visible");
     });
   });
 
@@ -39,21 +37,19 @@ describe("LikedUserIcon Component Test", () => {
         handle: "Terry",
       };
       cy.mount(<LikedUserIcon user={user} userId={123} />);
+      cy.get('[data-cy="username"]').as("username");
+      cy.get('[data-cy="image"]').as("image");
     });
 
     it("should display with blue background", () => {
-      cy.get('[data-cy="image"]').should(
-        "have.attr",
-        "src",
-        "https://robohash.org/123"
-      );
-      cy.get('[data-cy="image"]').should(
+      cy.get("@image").should("have.attr", "src", "https://robohash.org/123");
+      cy.get("@image").should(
         "have.class",
         "border-primary bg-primary bg-opacity-20"
       );
-      cy.get('[data-cy="username"]').should("have.text", "You");
-      cy.get('[data-cy="username"]').should("have.class", "hidden");
-      cy.get('[data-cy="username"]').should("not.be.visible");
+      cy.get("@username").should("have.text", "You");
+      cy.get("@username").should("have.class", "hidden");
+      cy.get("@username").should("not.be.visible");
     });
   });
 });

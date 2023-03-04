@@ -44,7 +44,7 @@ export const Signup = () => {
       >
         <div className="flex items-center mb-6 gap-4">
           <img src="/makers_duck.png" className="w-10 xl:w-12" alt="" />
-          <h2 className="font-bold text-xl xl:text-2xl">
+          <h2 data-cy="signup-title" className="font-bold text-xl xl:text-2xl">
             Sign Up to Connect with Makers
           </h2>
         </div>
@@ -52,6 +52,7 @@ export const Signup = () => {
         <input
           type="text"
           id="handle"
+          data-cy="handle"
           {...register("handle", { required: true })}
           className="form-field"
         />
@@ -59,6 +60,7 @@ export const Signup = () => {
         <input
           type="password"
           id="password"
+          data-cy="password"
           {...register("password", { required: true })}
           className="form-field"
         />
@@ -73,11 +75,13 @@ export const Signup = () => {
           <input
             type="submit"
             value="Register"
+            data-cy="submit-btn"
             className="blue-btn-outline rounded-lg cursor-pointer mt-4"
           />
         )}
         <Link
           to="/login"
+          data-cy="back-btn"
           className="blue-btn-outline border-gray-300 text-gray-300 hover:border-red-500 hover:bg-white hover:text-red-500 rounded-lg cursor-pointer mt-2"
         >
           Go back
