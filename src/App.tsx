@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Logout } from "./pages/Logout";
 import { Peep } from "./pages/Peep";
+import { Signup } from "./pages/Signup";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/create-peep" element={<CreatePeep />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/peep/:id" element={<Peep />} />
         <Route path="*" element={<Error />} />
       </Route>

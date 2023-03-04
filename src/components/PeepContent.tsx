@@ -68,7 +68,7 @@ export const PeepContent = ({
           {new Date(created_at).toUTCString()}
         </p>
         <div className="my-4">
-          <p className=" italic font-semibold text-xl xl:text-2xl text-center">
+          <p className="font-semibold text-xl xl:text-2xl text-center">
             "{body}"
           </p>
         </div>
@@ -83,7 +83,7 @@ export const PeepContent = ({
                       alt=""
                       className={`object-cover border rounded-full group-hover:bg-[rgba(0,0,0,0.1)] transition-all ${
                         user.id === session.userId &&
-                        "border-primary bg-primary bg-opacity-20"
+                        "border-primary bg-primary bg-opacity-20 group-hover:bg-primary group-hover:bg-opacity-40"
                       }`}
                     />
                   </div>

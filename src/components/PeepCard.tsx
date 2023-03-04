@@ -14,11 +14,13 @@ export const PeepCard = (props: peepType) => {
   const isLikeByUser =
     props.likes.filter(({ user }) => user.id === session.userId).length > 0;
   const [isLike, setIsLike] = useState(isLikeByUser);
+  const [isLoading, setIsLoading] = useState(false);
   const [likeNum, setLikeNum] = useState(props.likes.length);
 
   useEffect(() => {}, [likeNum]);
 
   const likeHandler = async () => {
+    setIsLoading(true);
     // check if the user is logged in
     if (!session.userId || !session.sessionKey) {
       alert("You have to log in to like a peep.");
@@ -48,6 +50,7 @@ export const PeepCard = (props: peepType) => {
         console.error(error);
       }
     }
+    setIsLoading(false);
   };
 
   return (
@@ -80,25 +83,29 @@ export const PeepCard = (props: peepType) => {
             <div className="text-sm xl:text-base">{props.body}</div>
           </div>
         </Link>
-        <button
-          onClick={likeHandler}
-          className="mt-1 xl:mt-2 text-secondary text-base font-light flex gap-[0.4rem] group items-center transition-all w-fit"
-        >
-          <Like
-            className={`w-4 xl:w-7 ${
-              isLike
-                ? "fill-white bg-twred bg-opacity-90"
-                : "fill-secondary group-hover:bg-twred group-hover:bg-opacity-20 group-hover:fill-twred"
-            } xl:p-1 rounded-full transition-all`}
-          />
-          <p
-            className={`${
-              isLike ? "text-twred font-semibold" : "group-hover:text-twred"
-            } text-sm xl:text-base transition-all`}
+        {!isLoading ? (
+          <button
+            onClick={likeHandler}
+            className="mt-1 xl:mt-2 text-secondary text-base font-light flex gap-[0.4rem] group items-center transition-all w-fit"
           >
-            {likeNum != 0 && likeNum}
-          </p>
-        </button>
+            <Like
+              className={`w-4 xl:w-7 ${
+                isLike
+                  ? "fill-white bg-twred bg-opacity-90"
+                  : "fill-secondary group-hover:bg-twred group-hover:bg-opacity-20 group-hover:fill-twred"
+              } xl:p-1 rounded-full transition-all`}
+            />
+            <p
+              className={`${
+                isLike ? "text-twred font-semibold" : "group-hover:text-twred"
+              } text-sm xl:text-base transition-all`}
+            >
+              {likeNum != 0 && likeNum}
+            </p>
+          </button>
+        ) : (
+          <div className="like-loader mt-4 mb-3"></div>
+        )}
       </div>
     </div>
   );
