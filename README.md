@@ -6,8 +6,8 @@
     <img src="public/tw-logo.jpeg" alt="Logo" width="100" height="100">
   </a>
 
-<h3 align="center">Chitter in <strong>ReactJS</strong></h3>
-<p>A type-save, test-covered Twitter clone front-end project</p>
+<h3 align="center">Chitter in <strong>ReactJS</strong> & <strong>Typescript</strong></h3>
+<p>A Scalable ReactJS Twitter Clone with Type-Safety and User-Friendly Design</p>
 
   <p align="center">
     <a href="https://frontend-api-challenge-ten.vercel.app/">App Demo</a>
@@ -22,6 +22,7 @@
 
 - [Table of Contents](#table-of-contents)
 - [About The Project](#about-the-project)
+  - [Key Features](#key-features)
   - [Built With](#built-with)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -40,6 +41,14 @@ Chitter is a **Twitter clone app** built with cutting-edge technologies includin
 The project showcases the effectiveness of **TypeScript** in building a **type-safe, well-tested** application. Custom hooks were developed to handle data fetching and form submission, and the app includes comprehensive **end-to-end** and **unit tests** using **Cypress and Jest**.
 
 Overall, this project represents a significant achievement in my development career, showcasing my expertise in building scalable and maintainable front-end applications using the latest technologies and development practices.
+
+### Key Features
+
+- ✅ User registration and login
+- ✅ Ability to create, view, and delete peeps (tweets)
+- ✅ Ability to like and unlike peeps
+- ✅ Custom hooks for data fetching and form submission
+- ✅ User interface based on the real Twitter for a familiar experience
 
 ### Built With
 
