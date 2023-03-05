@@ -37,4 +37,14 @@ describe('Peeps View', () => {
     expect(peepEl.length).toEqual(1);
     expect(peepEl[0].textContent).toContain('It is Sunday');
   });
-})
+
+  it('clears existing displayed peeps before displaying again with new peep added', () => {
+    model.addPeep('This is peep one');
+    model.addPeep('This is peep two');
+    view.displayPeeps();
+    view.displayPeeps();
+
+    const peepEl = document.querySelectorAll('.peep');
+    expect(peepEl.length).toEqual(2);
+  });
+})  
