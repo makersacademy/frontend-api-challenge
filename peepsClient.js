@@ -5,7 +5,9 @@ class PeepsClient {
     .then(response => response.json())
     .then(data => 
       callback(data))
-  }
-}
+    .catch(error => {
+      displayError(error);  
+  })
+}}
 
 module.exports = PeepsClient;
