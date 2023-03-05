@@ -24,13 +24,13 @@ describe("ChitterModel", () => {
   it("returns the peeps that match the user ID", () => {
     const mockPeep1 = {
       id: 1,
-      body: "my first peep :)",
+      body: "my first peep",
       created_at: "2018-06-23T13:12:29.945Z",
       updated_at: "2018-06-23T13:12:29.945Z",
     };
     const mockPeep2 = {
       id: 2,
-      body: "my second peep :)",
+      body: "my second peep",
       created_at: "2022-02-23T13:12:29.945Z",
       updated_at: "2022-02-23T13:12:29.945Z",
     };
