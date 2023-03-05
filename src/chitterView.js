@@ -7,10 +7,9 @@ class ChitterView {
 
   displayPeeps() {
     const peeps = this.model.getPeeps();
-    console.log(peeps);
     peeps.forEach((peep) => {
       const newPeepEl = document.createElement("div");
-      newPeepEl.textContent = peep;
+      newPeepEl.textContent = `User: ${peep.user.handle} Peep: ${peep.body}`;
       newPeepEl.className = "peep";
       this.mainContainerEl.append(newPeepEl);
     });
