@@ -113,12 +113,16 @@ describe("ChitterClient", () => {
     });
   });
 
-  describe('#createPeep', () => {
-    it('should return the peep after it has been successfully created', async () => {
-      mock.onPost(`${baseURL}/peeps`).reply(200, signlePeepSample)
-      const peep = await client.createPeep({ userId: "123", sessionKey:"session_key", content:"content" })
+  describe("#createPeep", () => {
+    it("should return the peep after it has been successfully created", async () => {
+      mock.onPost(`${baseURL}/peeps`).reply(200, signlePeepSample);
+      const peep = await client.createPeep({
+        userId: "123",
+        sessionKey: "session_key",
+        content: "content",
+      });
       expect(peep.id).toEqual(1640);
-      expect(peep.body).toEqual("hello")
+      expect(peep.body).toEqual("hello");
     });
 
     it("should handle an error correctly", async () => {
@@ -130,6 +134,44 @@ describe("ChitterClient", () => {
           content: "content",
         })
       ).rejects.toThrow("Failed to create a peep. Please try again later.");
+    });
+  });
+
+  describe("#likePeep", () => {
+    it("should handle the error correctly", async () => {
+      mock.onPost(`${baseURL}/peeps/1/likes/1`).networkErrorOnce();
+      await expect(
+        client.likePeep({
+          peepId: "1",
+          userId: "1",
+          sessionKey: "key",
+        })
+      ).rejects.toThrow("Failed to like a peep. Please try again later.");
+    });
+  });
+
+  describe("#dislikePeep", () => {
+    it("should handle the error correctly", async () => {
+      mock.onDelete(`${baseURL}/peeps/1/likes/1`).networkErrorOnce();
+      await expect(
+        client.dislikePeep({
+          peepId: "1",
+          userId: "1",
+          sessionKey: "key",
+        })
+      ).rejects.toThrow("Failed to dislike a peep. Please try again later.");
+    });
+  });
+
+  describe("#deletePeep", () => {
+    it("should handle the error correctly", async () => {
+      mock.onDelete(`${baseURL}/peeps/1`).networkErrorOnce();
+      await expect(
+        client.deletePeep({
+          peepId: "1",
+          sessionKey: "key",
+        })
+      ).rejects.toThrow("Failed to delete a peep. Please try again later.");
     });
   });
 });

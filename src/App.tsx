@@ -18,7 +18,10 @@ function App() {
         <Route path="/create-peep" element={<CreatePeep />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/peep/:id" element={<Peep />} />
-        <Route path="*" element={<Error />} />
+        <Route
+          path="*"
+          element={<Error message={"Please check if the URL is correct."} />}
+        />
       </Route>
     </Routes>
   );

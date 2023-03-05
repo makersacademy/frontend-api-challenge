@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { peepType } from "../../types/apiData";
 import { Loader } from "../components/Loader";
 import { PeepContent } from "../components/PeepContent";
 import { useGlobalContext } from "../Context/globalContext";
 import { useFetch } from "../hooks/useFetch";
+import { Error } from "./Error";
 
 export const Peep = () => {
   const { id } = useParams();
@@ -16,7 +18,7 @@ export const Peep = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {isError && <h1>{error}</h1>}
+      {isError && <Error message={error} />}
       {!isLoading && data && <PeepContent {...data} />}
     </>
   );

@@ -1,6 +1,7 @@
 <a name="readme-top"></a>
 
 <br />
+<!-- PROJECT LOGO -->
 <div align="center">
   <a href="https://github.com/terryhycheng/frontend-api-challenge">
     <img src="public/tw-logo.jpeg" alt="Logo" width="100" height="100">
@@ -10,13 +11,15 @@
 <p>A Scalable ReactJS Twitter Clone with Type-Safety and User-Friendly Design</p>
 
   <p align="center">
-    <a href="https://frontend-api-challenge-ten.vercel.app/">App Demo</a>
+    <a href="https://frontend-api-challenge-ten.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/terryhycheng/frontend-api-challenge/issues">Report Bug</a>
     ·
     <a href="https://github.com/terryhycheng/frontend-api-challenge/issues">Request Feature</a>
   </p>
 </div>
+
+<!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
 
@@ -36,11 +39,15 @@
 
 ## About The Project
 
+![preview](public/preview.png)
+
 Chitter is a **Twitter clone app** built with cutting-edge technologies including **ReactJS, TypeScript, and TailwindCSS**, featuring a user interface similar to Twitter.
 
 The project showcases the effectiveness of **TypeScript** in building a **type-safe, well-tested** application. Custom hooks were developed to handle data fetching and form submission, and the app includes comprehensive **end-to-end** and **unit tests** using **Cypress and Jest**.
 
 Overall, this project represents a significant achievement in my development career, showcasing my expertise in building scalable and maintainable front-end applications using the latest technologies and development practices.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Key Features
 
@@ -49,6 +56,8 @@ Overall, this project represents a significant achievement in my development car
 - ✅ Ability to like and unlike peeps
 - ✅ Custom hooks for data fetching and form submission
 - ✅ User interface based on the real Twitter for a familiar experience
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
@@ -105,6 +114,8 @@ You have to make sure that `npm` and `node` have been installed in your local ma
    yarn
    ```
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ---
 
 ### Running Tests
@@ -137,6 +148,8 @@ Before compiling the codes into production-ready Javascript, you should run the 
    ```
 
 Then, test coverage reports will be automatically generated in the folder `coverage`. You can modify the setting in `package.json` to remove the command `--coverage`.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
