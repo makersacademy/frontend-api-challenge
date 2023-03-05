@@ -4,26 +4,16 @@ require('jest-fetch-mock').enableMocks();
 
 describe('peepsClient', () => {
   describe('loadPeeps', () => {
+    beforeEach(() => {
+      fetch.resetMocks();
+    });
+
     it('should return peeps with correct properties', async () => {
-      const responseData = [ // mocking res
-        {
-          id: 1,
-          body: 'Hello, world!',
-          created_at: '2022-03-05T12:00:00.000Z',
-          updated_at: '2022-03-05T12:00:00.000Z',
-          user: {
-            id: 1,
-            handle: 'user1'
-          },
-          likes: []
+      const responseData = [ { id: 1, body: 'Hello, world!', created_at: '2022-03-05T12:00:00.000Z',          updated_at: '2022-03-05T12:00:00.000Z',          user: {            id: 1,            handle: 'user1'          },          likes: []
         }
       ];
 
-      global.fetch.mockImplementation(() =>
-        Promise.resolve({
-          json: () => Promise.resolve(responseData)
-        })
-      );
+      fetch.mockResponseOnce(JSON.stringify(responseData));
 
       const peepsClient = new PeepsClient();
       const peeps = await peepsClient.loadPeeps();
@@ -43,20 +33,32 @@ describe('peepsClient', () => {
         expect(like.user.handle).toBeDefined();
       }
     });
+
+    it('throws an error when fetch fails', async () => {
+      const fetchError = new Error('Fetch error');
+      fetch.mockReject(fetchError);
+      const client = new PeepsClient();
+
+      await expect(client.loadPeeps()).rejects.toThrow(fetchError);
+    });
   });
 
-describe('createPeep', () => {
-  it('sends a POST request to the peeps backend to create new peep', async () => {
-    const client = new PeepsClient();
+  describe('createPeep', () => {
+    beforeEach(() => {
+      fetch.resetMocks();
+    });
 
-    fetch.mockResponseOnce(JSON.stringify({
-      name: 'another peep',
-      id: 456
-    }));
+    it('sends a POST request to the peeps backend to create new peep', async () => {
+      const client = new PeepsClient();
 
-    const returnedDataFromApi = await client.createPeep('another peep');
-    expect(returnedDataFromApi.name).toEqual('another peep');
-    expect(returnedDataFromApi.id).toEqual(456);
+      fetch.mockResponseOnce(JSON.stringify({
+        name: 'another peep',
+        id: 456
+      }));
+
+      const returnedDataFromApi = await client.createPeep('another peep');
+      expect(returnedDataFromApi.name).toEqual('another peep');
+      expect(returnedDataFromApi.id).toEqual(456);
+    });
   });
 });
-})
