@@ -17,25 +17,25 @@ function App() {
   };
   return (
     <Fragment>
-      {page === "Home" && (
-        <>
-          <button
-            id="create-user-btn"
-            onClick={onCreateUser}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Create User
-          </button>
-          <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        {page === "Home" && (
+          <>
+            <button
+              id="create-user-btn"
+              onClick={onCreateUser}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Create User
+            </button>
             <Peeps />
-          </QueryClientProvider>
-        </>
-      )}
-      {page === "Create-User" && (
-        <>
-          <CreateUser onChangePage={onChangePage} />
-        </>
-      )}
+          </>
+        )}
+        {page === "Create-User" && (
+          <>
+            <CreateUser onChangePage={onChangePage} />
+          </>
+        )}
+      </QueryClientProvider>
     </Fragment>
   );
 }

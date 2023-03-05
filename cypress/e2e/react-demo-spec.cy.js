@@ -17,5 +17,6 @@ describe("template spec", () => {
     cy.get("button").contains("Create User").click();
     cy.get("input#username").should("exist");
     cy.get("input#password").should("exist");
+    cy.getByData("submit-btn").contains("Create User");
   });
 });

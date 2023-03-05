@@ -1,7 +1,25 @@
+import { useState } from "react";
+import axios from "axios";
+
 const CreateUser = ({ onChangePage }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function createUser(username, password) {
+    const response = await axios.post(
+      "https://chitter-backend-api-v2.herokuapp.com/users",
+      {
+        user: { handle: username, password: password },
+      }
+    );
+    console.log(response);
+  }
+
   const onCreateFormSubmit = (event) => {
     event.preventDefault();
-    onChangePage("Home");
+    console.log(username, password);
+    createUser(username, password).then(() => onChangePage("Home"));
+    // onChangePage("Home");
   };
   return (
     <div className="w-full max-w-xs">
@@ -21,6 +39,8 @@ const CreateUser = ({ onChangePage }) => {
             id="username"
             type="text"
             placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div className="mb-6">
@@ -35,12 +55,15 @@ const CreateUser = ({ onChangePage }) => {
             id="password"
             type="password"
             placeholder="******************"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            data-test="submit-btn"
           >
             Create User
           </button>
