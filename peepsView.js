@@ -34,6 +34,10 @@ class PeepsView {
       this.displayPeeps();
     });
   }
+
+  displayError = (error)  => {
+    this.mainContainerEl.append('Oops, something went wrong!');
+  }
 }
 
 module.exports = PeepsView;

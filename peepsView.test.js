@@ -60,4 +60,10 @@ describe('Peeps View', () => {
     expect(PeepEl.textContent).toEqual('This is another mock peep');
     done();
   });
+
+  it('can display an error message on the page', () => {
+    view.displayError();
+    const mainCont = document.querySelector('#main-container');
+    expect(mainCont.textContent).toContain('Oops, something went wrong!');
+  });
 })  
