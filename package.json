@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/iamdobbs/frontend-api-challenge#readme",
   "dependencies": {
-    "jest-environment-jsdom": "^29.4.3"
+    "jest-environment-jsdom": "^29.4.3",
+    "jest-fetch-mock": "^3.0.3"
   }
 }
