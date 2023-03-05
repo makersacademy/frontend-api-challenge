@@ -25,7 +25,7 @@ describe("ChitterView", () => {
     expect(document.querySelectorAll("div.peep").length).toEqual(2);
   });
 
-  it.only("displays peeps from the API", () => {
+  it("displays peeps from the API", () => {
     const model = new ChitterModel();
     const mockClient = new ChitterClient();
     const view = new ChitterView(model, mockClient);

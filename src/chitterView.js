@@ -6,12 +6,8 @@ class ChitterView {
   }
 
   displayPeeps() {
-    document.querySelectorAll(".peep").forEach((element) => {
-      element.remove();
-    });
-
     const peeps = this.model.getPeeps();
-
+    console.log(peeps);
     peeps.forEach((peep) => {
       const newPeepEl = document.createElement("div");
       newPeepEl.textContent = peep;
