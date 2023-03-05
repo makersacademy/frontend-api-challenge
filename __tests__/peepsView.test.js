@@ -72,5 +72,21 @@ describe('Peeps view', () => {
       expect(peepE1s[0].textContent).toEqual('mock peep');
       done();
     });
-  });  
+  });
+
+  it('sends a POST request to create a new peep', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    PeepsClient.mockClear();
+
+    const fakeClient = {loadPeeps: () => Promise.resolve(['mock peep'])};
+    const client = new PeepsClient();
+    const model = new PeepsModel();
+    const view = new PeepsView(model, fakeClient);
+
+    view.addNewPeep('mock note')
+
+    const peepE1 = document.querySelectorAll('.peep');
+    expect(peepE1.length).toEqual(1);
+    expect(peepE1[0].textContent).toEqual('mock note');
+  })
 })
