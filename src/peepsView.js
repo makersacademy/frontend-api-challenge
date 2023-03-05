@@ -2,6 +2,11 @@ class PeepsView {
   constructor(model) {
     this.model = model;
     this.mainContainerE1 = document.querySelector('#main-container');
+
+    document.querySelector('#add-peep-btn').addEventListener('click', () => {
+      const newPeep = document.querySelector('#add-peep-input').value;
+      this.addNewPeep(newPeep);
+    });
   }
 
   displayPeeps() {
@@ -9,10 +14,15 @@ class PeepsView {
 
     peeps.forEach(peep => {
       const peepE1 = document.createElement('div');
-      noteE1.textContent = peep;
-      noteE1.className = 'peep';
+      peepE1.textContent = peep;
+      peepE1.className = 'peep';
       this.mainContainerE1.append(peepE1);
     });
+  }
+
+  addNewPeep(newPeep) {
+    this.model.addPeep(newPeep);
+    this.displayPeeps();
   }
 }
 
