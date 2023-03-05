@@ -1,17 +1,33 @@
 class PeepsClient {
   async loadPeeps() {
     try {
-      const response = await fetch('http://localhost:8080/peeps');
+      const response = await fetch('https://chitter-backend-api-v2.herokuapp.com/peeps');
       const data = await response.json();
-      return data;
+  
+      return data.map(peep => ({
+        id: peep.id,
+        body: peep.body,
+        created_at: peep.created_at,
+        updated_at: peep.updated_at,
+        user: {
+          id: peep.user.id,
+          handle: peep.user.handle
+        },
+        likes: peep.likes.map(like => ({
+          user: {
+            id: like.user.id,
+            handle: like.user.handle
+          }
+        }))
+      }));
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
 
-  async createPeep(name) {
-    const url = 'http://localhost:8080/peeps';
+  async createPeep(newPeep) {
+    const url = 'https://chitter-backend-api-v2.herokuapp.com/peeps';
       
     try {
       const response = await fetch(url, {
@@ -19,7 +35,7 @@ class PeepsClient {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name })
+        body: JSON.stringify({ peep: newPeep })
       });
     
       const data = await response.json();
@@ -29,6 +45,6 @@ class PeepsClient {
       throw error;
     }
   }  
-  }
+}
 
 module.exports = PeepsClient;
