@@ -9,5 +9,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "esbuild-plugin": "^0.0.0",
+    "jest-environment-jsdom": "^29.4.3"
+  }
 }
