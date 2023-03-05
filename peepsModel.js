@@ -11,6 +11,10 @@ class PeepsModel {
   getPeeps () {
     return this.peeps;
   }
+
+  setPeeps (data) {
+    this.peeps = data;
+  }
 }
 
 module.exports = PeepsModel;
