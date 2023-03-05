@@ -19,10 +19,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/peep/:id" element={<Peep />} />
         <Route
-          path="/error"
-          element={<Error message={"Please check if the URL is correct."} />}
-        />
-        <Route
           path="/*"
           element={<Error message={"Please check if the URL is correct."} />}
         />

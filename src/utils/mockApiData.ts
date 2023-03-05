@@ -1,4 +1,9 @@
-import { CreateUserRes, peepType, sessionType } from "../../types/apiData";
+import {
+  CreateUserRes,
+  OpenApiRes,
+  peepType,
+  sessionType,
+} from "../../types/apiData";
 
 export const getAllPeepsDataSample: peepType[] = [
   {
@@ -96,4 +101,24 @@ export const sessionSample: sessionType = {
 export const UserSample: CreateUserRes = {
   id: 1,
   handle: "kay",
+};
+
+export const OpenApiResSample: OpenApiRes = {
+  id: "cmpl-6qq4x5adRtUY1YYBSVJcVbhCpU9jb",
+  object: "text_completion",
+  created: 1678051267,
+  model: "text-davinci-003",
+  choices: [
+    {
+      text: " \n{username: 'Lola_K', content: 'This is a great post!'}\n{username: 'Pete_F', content: 'I'm so glad you shared this!'}\n{username: 'Gina_C', content: 'This is really helpful information!'}",
+      index: 0,
+      logprobs: null,
+      finish_reason: "stop",
+    },
+  ],
+  usage: {
+    prompt_tokens: 55,
+    completion_tokens: 63,
+    total_tokens: 118,
+  },
 };
