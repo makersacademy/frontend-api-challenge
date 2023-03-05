@@ -19,6 +19,7 @@ describe("Like", () => {
       cy.login("terryhycheng", "password");
     });
     it("allows a user to toggle between like and dislike", () => {
+      cy.url().should("eq", "http://localhost:5173/");
       cy.get('[data-cy="like-btn"]').first().click();
       cy.get('[data-cy="like-btn"]').first().should("have.class", "bg-twred");
       cy.get('[data-cy="like-btn"]').first().click();

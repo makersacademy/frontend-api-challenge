@@ -5,7 +5,7 @@ import App from "./App";
 import "./index.css";
 import { GlobalContext } from "./Context/globalContext";
 import ChitterClient from "./utils/chitterClient";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { SessionProvider } from "./Context/sessionContext";
 
 const chitterClient = new ChitterClient();
@@ -18,9 +18,9 @@ const globalContext = {
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <GlobalContext.Provider value={globalContext}>
     <SessionProvider>
-      <HashRouter>
+      <BrowserRouter>
         <App />
-      </HashRouter>
+      </BrowserRouter>
     </SessionProvider>
   </GlobalContext.Provider>
 );
