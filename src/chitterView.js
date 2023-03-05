@@ -17,8 +17,6 @@ class ChitterView {
 
   async displayPeepsFromApi() {
     const peeps = await this.client.loadPeeps();
-    console.log(Array.isArray(peeps));
-    console.log(`Peeps:`, peeps);
     this.model.setPeeps(peeps);
     this.displayPeeps();
   }

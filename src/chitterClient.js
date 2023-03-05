@@ -4,8 +4,6 @@ class ChitterClient {
       "https://chitter-backend-api-v2.herokuapp.com/peeps"
     );
     const data = await response.json();
-    console.log(Array.isArray(data));
-    console.log(`Data---------`, data);
     return data;
   }
 }

@@ -15,6 +15,10 @@ class ChitterModel {
     this.peeps = peeps;
     return this.peeps;
   }
+
+  getPeepById(id) {
+    return this.peeps.find((peep) => peep.id === id);
+  }
 }
 
 module.exports = ChitterModel;
