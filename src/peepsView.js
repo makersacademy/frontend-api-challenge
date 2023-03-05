@@ -1,6 +1,7 @@
 class PeepsView {
-  constructor(model) {
+  constructor(model, client) {
     this.model = model;
+    this.client = client;
     this.mainContainerE1 = document.querySelector('#main-container');
 
     document.querySelector('#add-peep-btn').addEventListener('click', () => {
@@ -28,6 +29,13 @@ class PeepsView {
     this.model.addPeep(newPeep);
     this.displayPeeps();
   }
+
+  async displayPeepsFromApi() {
+    const data = await this.client.loadPeeps((peeps) => {
+      this.model.setPeeps(peeps);
+      this.displayPeeps();
+    });
+  }  
 }
 
 module.exports = PeepsView;
