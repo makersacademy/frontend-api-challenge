@@ -10,6 +10,10 @@ class PeepsView {
   }
 
   displayPeeps() {
+    document.querySelectorAll('.peep').forEach(element => {
+      element.remove();
+    });
+
     const peeps = this.model.getPeeps();
 
     peeps.forEach(peep => {

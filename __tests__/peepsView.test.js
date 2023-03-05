@@ -23,7 +23,7 @@ describe('Peeps view', () => {
     expect(document.querySelectorAll('div.peep').length).toEqual(2);
   });
 
-  it('adds a new peep', () => {
+  it('allows the user to add a new peep', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
 
     const model = new PeepsModel;
@@ -37,5 +37,20 @@ describe('Peeps view', () => {
 
     expect(document.querySelectorAll('div.peep').length).toEqual(1);
     expect(document.querySelectorAll('div.peep')[0].textContent).toEqual('another peep');
+  })
+
+  it('clears previous peeps before displaying', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+
+    const model = new PeepsModel;
+    const view = new PeepsView(model);
+
+    model.addPeep('and another peep');
+    model.addPeep('peeping once more');
+
+    view.displayPeeps();
+    view.displayPeeps();
+
+    expect(document.querySelectorAll('div.peep').length).toEqual(2);
   })
 })
