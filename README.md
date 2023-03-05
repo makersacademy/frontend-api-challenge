@@ -43,7 +43,7 @@
 
 Chitter is a **Twitter clone app** built with cutting-edge technologies including **ReactJS, TypeScript, and TailwindCSS**, featuring a user interface similar to Twitter.
 
-The project showcases the effectiveness of **TypeScript** in building a **type-safe, well-tested** application. Custom hooks were developed to handle data fetching and form submission, and the app includes comprehensive **end-to-end** and **unit tests** using **Cypress and Jest**.
+The project showcases the effectiveness of **TypeScript** in building a **type-safe, well-tested** application. Custom hooks were developed to handle data fetching and form submission, and the app includes comprehensive **end-to-end** and **unit tests** using **Cypress and Jest**. Furthermore, the app integrates `OpenAI API` to generate random comments for each peep.
 
 Overall, this project represents a significant achievement in my development career, showcasing my expertise in building scalable and maintainable front-end applications using the latest technologies and development practices.
 
@@ -56,6 +56,7 @@ Overall, this project represents a significant achievement in my development car
 - ✅ Ability to like and unlike peeps
 - ✅ Custom hooks for data fetching and form submission
 - ✅ User interface based on the real Twitter for a familiar experience
+- ✅ Integration of OpenAI API for generating random comments for each peep.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -68,6 +69,7 @@ This project was built with the following tools:
 - [![tailwindcss][tailwindcss-shield]][tailwindcss-url]
 - [![Cypress][cypress-shield]][cypress-url]
 - [![Jest][jest-shield]][jest-url]
+- [![OpenAI][openai-shield]][openai-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -112,6 +114,12 @@ You have to make sure that `npm` and `node` have been installed in your local ma
    # OR
 
    yarn
+   ```
+
+3. Set Up `.env.local`
+   In order to use `OpenAI`, please add your API key to the file.
+   ```sh
+   VITE_OPENAI_API_KEY=
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -215,3 +223,5 @@ Project Link: [https://github.com/terryhycheng/frontend-api-challenge](https://g
 [cypress-url]: https://www.cypress.io/
 [tailwindcss-shield]: https://img.shields.io/badge/tailwindcss-0f172a?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8
 [tailwindcss-url]: https://tailwindcss.com/
+[openai-shield]: https://img.shields.io/badge/openai-10a27e?style=for-the-badge&logo=openai&logoColor=white
+[openai-url]: https://openai.com/
