@@ -29,13 +29,13 @@ class PeepsView {
     this.model.addPeep(newPeep);
     this.displayPeeps();
   }
-
-  async displayPeepsFromApi() {
-    const data = await this.client.loadPeeps((peeps) => {
+  
+  displayPeepsFromApi() {
+    return this.client.loadPeeps().then((peeps) => {
       this.model.setPeeps(peeps);
       this.displayPeeps();
     });
-  }  
+  }
 }
 
 module.exports = PeepsView;

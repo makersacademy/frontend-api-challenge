@@ -2,13 +2,12 @@
 
 const PeepsModel = require('./src/peepsModel');
 const PeepsView = require('./src/peepsView');
+const PeepsClient = require('./src/peepsClient');
 
-let model = new PeepsModel;
+const client = new PeepsClient();
+const model = new PeepsModel();
+const view = new PeepsView(model, client);
 
-console.log(model.getPeeps());
+view.displayPeepsFromApi();
 
-model.addPeep('example peep');
-
-let view = new PeepsView(model);
-
-view.displayPeeps();
+// console.log(view.displayPeepsFromApi());

@@ -60,16 +60,17 @@ describe('Peeps view', () => {
   it('displays peep data from Chitter API', (done) => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     PeepsClient.mockClear();
-
-    const fakeClient = {loadPeeps: (callback) => callback(['mock peep'])}
+  
+    const fakeClient = {loadPeeps: () => Promise.resolve(['mock peep'])};
     const client = new PeepsClient();
     const model = new PeepsModel();
     const view = new PeepsView(model, fakeClient);
-
-    view.displayPeepsFromApi();
-    const peepE1s = document.querySelectorAll('.peep');
-    expect(peepE1s.length).toEqual(1);
-    expect(peepE1s[0].textContent).toEqual('mock peep');
-    done();
-  });
+  
+    view.displayPeepsFromApi().then(() => {
+      const peepE1s = document.querySelectorAll('.peep');
+      expect(peepE1s.length).toEqual(1);
+      expect(peepE1s[0].textContent).toEqual('mock peep');
+      done();
+    });
+  });  
 })
