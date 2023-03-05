@@ -25,4 +25,16 @@ describe('Peeps View', () => {
     expect(document.querySelectorAll('div.peep').length).toEqual(1);
     });
   });
+
+  it('adds peep to the model when add button clicked', () => {
+    const peep = 'It is Sunday!'
+    const inputEl = document.querySelector('#peep-input');
+    inputEl.value = peep;
+    const buttonEl = document.querySelector('#add-peep-btn')
+    buttonEl.click();
+
+    const peepEl = document.querySelectorAll('.peep');
+    expect(peepEl.length).toEqual(1);
+    expect(peepEl[0].textContent).toContain('It is Sunday');
+  });
 })

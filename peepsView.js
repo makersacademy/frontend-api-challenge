@@ -7,8 +7,8 @@ class PeepsView {
     this.peepButtonEl = document.querySelector('#add-peep-btn');
     this.peepButtonEl.addEventListener('click', () => {
       const input = document.querySelector('#peep-input').value;
-      this.addNote(input);
-      this.displayNotes();
+      this.model.addPeep(input);
+      this.displayPeeps();
     });
   }
 
