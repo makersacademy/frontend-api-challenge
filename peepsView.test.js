@@ -5,15 +5,18 @@
 const fs = require('fs');
 const PeepsModel = require('./peepsModel')
 const PeepsView = require('./peepsView');
+const PeepsClient = require('./peepsClient')
 
 describe('Peeps View', () => {
   let model;
+  let client;
   let view;
 
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     model = new PeepsModel();
-    view = new PeepsView(model);
+    client = new PeepsClient();
+    view = new PeepsView(model, client);
   });
 
   it('displays peeps', () => {
@@ -46,5 +49,15 @@ describe('Peeps View', () => {
 
     const peepEl = document.querySelectorAll('.peep');
     expect(peepEl.length).toEqual(2);
+  });
+
+  it('can fetch and display peeps from API', (done) => {
+    const mockClient = {loadPeeps: (callback) => callback(['This is another mock peep'])}
+    const mockview = new PeepsView(model, mockClient);
+
+    mockview.displayPeepsFromApi();
+    const PeepEl = document.querySelector('.peep');
+    expect(PeepEl.textContent).toEqual('This is another mock peep');
+    done();
   });
 })  
