@@ -134,7 +134,7 @@ Before compiling the codes into production-ready Javascript, you should run the 
 
 2. Run Cypress tests
 
-   Please make sure the dev server is serving the front-end before running the following commands.
+   Please make sure `a dev server` is serving the front-end before running the following commands.
 
    ```sh
    # run cypress tests without GUI
