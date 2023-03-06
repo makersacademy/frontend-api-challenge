@@ -13,10 +13,21 @@ describe("template spec", () => {
   });
 
   it("shows the create user page", () => {
+    cy.intercept("POST", "https://chitter-backend-api-v2.herokuapp.com/users", {
+      statusCode: 201,
+      body: {},
+    }).as("createUser");
     cy.visit("http://localhost:5173");
     cy.get("button").contains("Create User").click();
     cy.get("input#username").should("exist");
     cy.get("input#password").should("exist");
     cy.getByData("submit-btn").contains("Create User");
+    cy.get("input#username").type("testuser");
+    cy.get("input#password").type("testpassword");
+    cy.getByData("submit-btn").click();
+    cy.wait("@createUser").then(({ response }) => {
+      expect(response.statusCode).to.eq(201);
+      cy.get("#create-user-btn").should("not.exist");
+    });
   });
 });

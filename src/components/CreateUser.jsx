@@ -13,12 +13,15 @@ const CreateUser = ({ onChangePage }) => {
       }
     );
     console.log(response);
+    return response;
   }
 
   const onCreateFormSubmit = (event) => {
     event.preventDefault();
     console.log(username, password);
-    createUser(username, password).then(() => onChangePage("Home"));
+    createUser(username, password).then(
+      (response) => response.status === "200" && onChangePage("Home")
+    );
     // onChangePage("Home");
   };
   return (
