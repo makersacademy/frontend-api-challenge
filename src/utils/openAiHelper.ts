@@ -15,7 +15,6 @@ export const openAiClient = async (content: string, qty: number) => {
       max_tokens: 300,
     });
     const data = res.data as OpenApiRes;
-    console.log(data.choices[0]);
     return covertToObject(data.choices[0].text);
   } catch (error) {
     console.log(error);
