@@ -22,7 +22,7 @@ export const openAiClient = async (content: string, qty: number) => {
 };
 
 const generatePrompt = (content: string, qty: number) => {
-  return `I want to create fake Twitter comments. Please create ${qty} fake user names and fake comments to put under this tweet: "${content}".
+  return `I want to create fake Twitter comments. Please create ${qty} fake user names and fake comments to put under this tweet: "${content}". Do not use comma inside the comments.
 
 Example:
 {username: 'terry', content: 'put the content here'}
