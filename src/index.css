@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .form-field {
+    @apply border mb-4 p-3 rounded-md;
+  }
+
+  .blue-btn {
+    @apply bg-primary text-white p-2 xl:p-4 xl:py-3 rounded-full font-bold text-center hover:bg-[#1a8cd8] transition-all;
+  }
+
+  .blue-btn-outline {
+    @apply text-primary border-primary bg-white border p-2 xl:p-4 xl:py-3 rounded-full font-bold text-center hover:bg-primary hover:text-white transition-all cursor-pointer;
+  }
+}
+
+:root {
+  font-family: "Golos Text", sans-serif;
+}
+
+.custom-loader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #1d9bf0 94%, #0000) top/8px 8px
+      no-repeat,
+    conic-gradient(#0000 30%, #1d9bf0);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.like-loader {
+  width: 8px;
+  height: 8px;
+  background: #1d9bf0;
+  border-radius: 50%;
+  box-shadow: 15px 0 #1d9bf022, 30px 0 #1d9bf0;
+  animation: d5 1s infinite linear alternate;
+}
+@keyframes d5 {
+  0% {
+    box-shadow: 15px 0 #1d9bf0, 30px 0 #1d9bf022;
+    background: #1d9bf0;
+  }
+  33% {
+    box-shadow: 15px 0 #1d9bf0, 30px 0 #1d9bf022;
+    background: #1d9bf022;
+  }
+  66% {
+    box-shadow: 15px 0 #1d9bf022, 30px 0 #1d9bf0;
+    background: #1d9bf022;
+  }
+}
