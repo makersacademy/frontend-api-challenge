@@ -21,7 +21,7 @@ describe("ChitterView", () => {
 
     const view = new ChitterView(mockModel, mockClient);
 
-    // Mock the notes returned from the API
+    // Mock the peeps returned from the API
     const mockPeeps = [
       {
         user: { handle: "John" },
@@ -38,7 +38,7 @@ describe("ChitterView", () => {
       },
     ];
 
-    // Mock the behavior of loadNotes method to call the callback with the mockNotes
+    // Mock the behavior of loadPeeps method to call the callback with the mockPeeps
     mockClient.loadPeeps.mockImplementationOnce((callback) => {
       callback(mockPeeps);
     });
@@ -47,16 +47,16 @@ describe("ChitterView", () => {
       return mockPeeps;
     });
 
-    // Call the displayNotesFromApi method
+    // Call the displayPeepsFromApi method
     view.displayPeepsFromApi();
 
-    // Expect the loadNotes method to be called with the callback
+    // Expect the loadPeeps method to be called with the callback
     expect(mockClient.loadPeeps).toHaveBeenCalledWith(expect.any(Function));
 
-    // Expect the setNotes method to be called with the mockNotes
+    // Expect the setPeeps method to be called with the mockPeeps
     expect(mockModel.setPeeps).toHaveBeenCalledWith(mockPeeps);
 
-    // Expect the displayNotes method to be called
+    // Expect the displayPeeps method to be called
     const peepContainers = document.querySelectorAll(".peep");
 
     peepContainers.forEach((peepContainer, index) => {
