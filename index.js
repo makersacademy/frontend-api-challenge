@@ -1,0 +1,8 @@
+const ChitterPeep = require("./src/models/chitterPeep");
+const ChitterView = require("./src/views/chitterView");
+const ChitterClient = require("./src/clients/chitterClient");
+
+const model = new ChitterPeep();
+const client = new ChitterClient();
+const view = new ChitterView(model, client);
+view.displayPeepsFromApi();
