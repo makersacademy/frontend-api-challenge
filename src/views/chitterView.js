@@ -9,9 +9,15 @@ class ChitterView {
     this.peepsContainer = document.querySelector("#peepsContainer");
     this.signupButton = document.querySelector("#signupButton");
     this.loginButton = document.querySelector("#loginButton");
+    this.peepInput = document.querySelector("#peepInput");
+    this.createPeepButton = document.querySelector("#createPeepButton");
 
     this.signupButton.addEventListener("click", this.handleSignup.bind(this));
     this.loginButton.addEventListener("click", this.handleLogin.bind(this));
+    this.createPeepButton.addEventListener(
+      "click",
+      this.handleCreatePeep.bind(this)
+    );
   }
 
   displayPeeps() {
@@ -67,10 +73,11 @@ class ChitterView {
     const handle = prompt("Enter your handle");
     const password = prompt("Enter your password");
 
-    const user = new ChitterUser(handle, password);
-    this.client.loginUser(user, (data) => {
+    this.user = new ChitterUser(handle, password);
+    this.client.loginUser(this.user, (data) => {
       if (data && !data.error) {
-        this.user = data; // Set the user property to the login response data
+        this.user.setSessionKey(data.session_key); // Store the session key in the ChitterUser instance
+        this.user.setUserId(data.user_id);
         console.log("User logged in successfully");
         // Additional logic can be added here, such as displaying a success message or redirecting to a different page.
       } else {
@@ -78,6 +85,39 @@ class ChitterView {
         // Additional error handling logic can be added here, such as displaying an error message to the user.
       }
     });
+  }
+
+  handleCreatePeep() {
+    const peepText = this.peepInput.value;
+
+    if (!peepText) {
+      console.log("Please enter a peep.");
+      return;
+    }
+
+    if (!this.user || !this.user.sessionKey) {
+      console.log("Please log in first.");
+      return;
+    }
+    console.log(this.user.userId);
+    console.log(this.user.sessionKey);
+    const peep = {
+      user_id: this.user.userId,
+      body: peepText,
+    };
+    console.log("Session Key: ", this.user.sessionKey);
+    this.client.createPeep(peep, this.user.sessionKey, (data) => {
+      if (data && !data.error) {
+        console.log("Peep created successfully:", data);
+        // Additional logic can be added here, such as displaying a success message or updating the peeps list.
+      } else {
+        console.error("Error creating peep:", data.error);
+        // Additional error handling logic can be added here, such as displaying an error message to the user.
+      }
+    });
+
+    // Clear the peep input after creating a peep
+    this.peepInput.value = "";
   }
 }
 

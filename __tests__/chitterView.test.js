@@ -118,8 +118,8 @@ describe("ChitterView", () => {
 
       const mockClient = {
         loginUser: jest.fn((user, callback) => {
-          // Simulate successful login by calling the callback with the user data
-          callback(mockUser);
+          // Simulate successful login by calling the callback with session_key and user_id
+          callback({ session_key: "testSessionKey", user_id: 1 });
         }),
       };
 
@@ -136,12 +136,22 @@ describe("ChitterView", () => {
 
       // Expect the loginUser method to be called with the mockUser object
       expect(mockClient.loginUser).toHaveBeenCalledWith(
-        mockUser,
+        {
+          handle: "testUser",
+          password: "testPassword",
+          sessionKey: "testSessionKey",
+          userId: 1,
+        },
         expect.any(Function)
       );
 
       // Expect the user property of the view to be set with the mockUser object
-      expect(view.user).toEqual(mockUser);
+      expect(view.user).toEqual({
+        handle: "testUser",
+        password: "testPassword",
+        sessionKey: "testSessionKey",
+        userId: 1,
+      });
     });
   });
 });

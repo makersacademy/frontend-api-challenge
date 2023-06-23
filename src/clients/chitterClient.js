@@ -58,6 +58,32 @@ class ChitterClient {
         console.error("Error logging in user:", error);
       });
   }
+
+  createPeep(peep, sessionKey, callback) {
+    console.log("Session Key: ", sessionKey);
+    fetch("https://chitter-backend-api-v2.herokuapp.com/peeps", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token token=${sessionKey}`,
+      },
+      body: JSON.stringify({
+        peep,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to create peep");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        callback(data);
+      })
+      .catch((error) => {
+        console.error("Error creating peep:", error);
+      });
+  }
 }
 
 module.exports = ChitterClient;

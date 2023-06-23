@@ -5,6 +5,5 @@ const ChitterUser = require("./src/models/chitterUser");
 
 const model = new ChitterPeep();
 const client = new ChitterClient();
-const user = new ChitterUser();
 const view = new ChitterView(model, client);
 view.displayPeepsFromApi();
