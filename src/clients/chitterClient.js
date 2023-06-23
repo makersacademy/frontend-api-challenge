@@ -102,6 +102,44 @@ class ChitterClient {
         callback({ error: error.message });
       });
   }
+
+  likePeep(peepId, userId, sessionKey, callback) {
+    fetch(
+      `https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Token token=${sessionKey}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => callback(data))
+      .catch((error) => callback({ error: error.message }));
+  }
+
+  unlikePeep(peepId, userId, sessionKey, callback) {
+    fetch(
+      `https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}/likes/${userId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Token token=${sessionKey}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        if (response.status === 204) {
+          callback({ message: "Peep unliked successfully." });
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => callback(data))
+      .catch((error) => callback({ error: error.message }));
+  }
 }
 
 module.exports = ChitterClient;

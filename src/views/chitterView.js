@@ -130,6 +130,28 @@ class ChitterView {
         "#peepLikes"
       ).textContent = `Likes: ${peep.likes.length}👍`;
 
+      if (this.user === null) {
+        console.log("No user is logged in");
+        return;
+      }
+
+      const likeButton = modal.querySelector("#likeButton");
+
+      // Check if the current user has already liked the peep
+      const hasLiked = peep.likes.some(
+        (like) => like.user.handle === this.user.handle
+      );
+
+      likeButton.textContent = hasLiked ? "Unlike" : "Like";
+
+      likeButton.onclick = () => {
+        if (likeButton.textContent === "Like") {
+          this.handleLike(peepId, likeButton);
+        } else {
+          this.handleUnlike(peepId, likeButton);
+        }
+      };
+
       // show the modal
       modal.style.display = "block";
     });
@@ -138,6 +160,38 @@ class ChitterView {
   closeModal() {
     const modal = document.querySelector("#peepModal");
     modal.style.display = "none";
+  }
+
+  handleLike(peepId, likeButton) {
+    this.client.likePeep(
+      peepId,
+      this.user.userId,
+      this.user.sessionKey,
+      (data) => {
+        if (data && !data.error) {
+          likeButton.textContent = "Unlike";
+          // Update the peep's likes count in the modal
+        } else {
+          console.error("Error liking peep:", data.error);
+        }
+      }
+    );
+  }
+
+  handleUnlike(peepId, likeButton) {
+    this.client.unlikePeep(
+      peepId,
+      this.user.userId,
+      this.user.sessionKey,
+      (data) => {
+        if (data && data.error) {
+          console.error("Error unliking peep:", data.error);
+        } else {
+          likeButton.textContent = "Like";
+          // Update the peep's likes count in the modal
+        }
+      }
+    );
   }
 }
 
