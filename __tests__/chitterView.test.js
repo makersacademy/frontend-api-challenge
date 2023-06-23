@@ -154,4 +154,45 @@ describe("ChitterView", () => {
       });
     });
   });
+
+  it("should create a peep successfully", () => {
+    // Mock user data
+    const mockUser = {
+      userId: 1,
+      sessionKey: "testSessionKey",
+    };
+
+    // Mock client
+    const mockClient = {
+      createPeep: jest.fn((peep, sessionKey, callback) => {
+        // Simulate successful creation by calling the callback with the peep data
+        callback({
+          peepId: 1,
+          body: peep.body,
+          created_at: "2023-06-23T13:21:23.317Z",
+        });
+      }),
+    };
+
+    // Mock view
+    const view = new ChitterView({}, mockClient);
+    view.user = mockUser;
+    view.peepInput.value = "Test peep";
+
+    // Call the handleCreatePeep method
+    view.handleCreatePeep();
+
+    // Expect the createPeep method to be called with the correct arguments
+    expect(mockClient.createPeep).toHaveBeenCalledWith(
+      {
+        user_id: mockUser.userId,
+        body: "Test peep",
+      },
+      mockUser.sessionKey,
+      expect.any(Function)
+    );
+
+    // Expect the peep input to be cleared
+    expect(view.peepInput.value).toBe("");
+  });
 });
