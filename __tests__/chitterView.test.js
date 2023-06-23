@@ -4,6 +4,7 @@
 
 const ChitterPeep = require("../src/models/chitterPeep");
 const ChitterView = require("../src/views/chitterView");
+const ChitterUser = require("../src/models/chitterUser");
 const ChitterClient = require("../src/clients/chitterClient");
 const fs = require("fs");
 
@@ -75,6 +76,72 @@ describe("ChitterView", () => {
       expect(peepContainer.querySelector("#likes").textContent).toBe(
         `Likes: ${peep.likes.length}👍`
       );
+    });
+  });
+
+  describe("handleSignup", () => {
+    it("should sign up a user successfully", () => {
+      const mockUser = new ChitterUser("testUser", "testPassword");
+
+      const mockClient = {
+        signupUser: jest.fn((user, callback) => {
+          // Simulate successful signup by calling the callback with the user data
+          callback(mockUser);
+        }),
+      };
+
+      const view = new ChitterView({}, mockClient);
+
+      // Mock the prompt function to provide user input
+      jest
+        .spyOn(window, "prompt")
+        .mockReturnValueOnce("testUser")
+        .mockReturnValueOnce("testPassword");
+
+      // Call the handleSignup method
+      view.handleSignup();
+
+      // Expect the signupUser method to be called with the mockUser object
+      expect(mockClient.signupUser).toHaveBeenCalledWith(
+        mockUser,
+        expect.any(Function)
+      );
+
+      // Expect the user property of the view to be set with the mockUser object
+      expect(view.user).toEqual(mockUser);
+    });
+  });
+
+  describe("handleLogin", () => {
+    it("should log in a user successfully", () => {
+      const mockUser = new ChitterUser("testUser", "testPassword");
+
+      const mockClient = {
+        loginUser: jest.fn((user, callback) => {
+          // Simulate successful login by calling the callback with the user data
+          callback(mockUser);
+        }),
+      };
+
+      const view = new ChitterView({}, mockClient);
+
+      // Mock the prompt function to provide user input
+      jest
+        .spyOn(window, "prompt")
+        .mockReturnValueOnce("testUser")
+        .mockReturnValueOnce("testPassword");
+
+      // Call the handleLogin method
+      view.handleLogin();
+
+      // Expect the loginUser method to be called with the mockUser object
+      expect(mockClient.loginUser).toHaveBeenCalledWith(
+        mockUser,
+        expect.any(Function)
+      );
+
+      // Expect the user property of the view to be set with the mockUser object
+      expect(view.user).toEqual(mockUser);
     });
   });
 });
