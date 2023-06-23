@@ -18,34 +18,23 @@ class ChitterView {
       "click",
       this.handleCreatePeep.bind(this)
     );
+
+    this.closeModalButton = document.querySelector(".modal .close");
+    this.closeModalButton.addEventListener("click", this.closeModal.bind(this));
   }
 
   displayPeeps() {
     this.model.getPeeps().forEach((peep) => {
       const peepContainer = document.createElement("div");
-      peepContainer.className = "peep";
+      peepContainer.classList.add("peep");
+      peepContainer.dataset.peepId = peep.id; // assign the peep id to each div
 
-      const authorName = document.createElement("p");
-      authorName.id = "author";
-      authorName.textContent = `Author: ${peep.user.handle}`;
-      peepContainer.appendChild(authorName);
+      const peepContent = document.createTextNode(peep.body);
+      peepContainer.appendChild(peepContent);
 
-      const content = document.createElement("p");
-      content.id = "content";
-      content.textContent = `Content: ${peep.body}`;
-      peepContainer.appendChild(content);
+      peepContainer.addEventListener("click", this.handlePeepClick.bind(this)); // attach the event handler to each peep
 
-      const createdAt = document.createElement("p");
-      createdAt.id = "created_at";
-      createdAt.textContent = `Created at: ${peep.created_at}`;
-      peepContainer.appendChild(createdAt);
-
-      const likes = document.createElement("p");
-      likes.id = "likes";
-      likes.textContent = `Likes: ${peep.likes.length}👍`;
-      peepContainer.appendChild(likes);
-
-      this.peepsContainer.appendChild(peepContainer);
+      document.getElementById("peepsContainer").appendChild(peepContainer);
     });
   }
 
@@ -118,6 +107,37 @@ class ChitterView {
 
     // Clear the peep input after creating a peep
     this.peepInput.value = "";
+  }
+
+  handlePeepClick(event) {
+    // get peep id from the clicked element
+    const peepId = event.currentTarget.dataset.peepId;
+
+    // get peep details
+    this.client.loadPeepById(peepId, (peep) => {
+      // update modal content with peep details
+      const modal = document.querySelector("#peepModal");
+      modal.querySelector("#peepBody").textContent = peep.body;
+
+      // add creation date, author and likes
+      modal.querySelector(
+        "#peepCreated"
+      ).textContent = `Created at: ${peep.created_at}`;
+      modal.querySelector(
+        "#peepAuthor"
+      ).textContent = `Author: ${peep.user.handle}`;
+      modal.querySelector(
+        "#peepLikes"
+      ).textContent = `Likes: ${peep.likes.length}👍`;
+
+      // show the modal
+      modal.style.display = "block";
+    });
+  }
+
+  closeModal() {
+    const modal = document.querySelector("#peepModal");
+    modal.style.display = "none";
   }
 }
 

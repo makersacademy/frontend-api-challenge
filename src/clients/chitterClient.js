@@ -84,6 +84,24 @@ class ChitterClient {
         console.error("Error creating peep:", error);
       });
   }
+
+  loadPeepById(id, callback) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Network response was not ok");
+        }
+      })
+      .then((data) => callback(data))
+      .catch((error) => {
+        console.error(
+          `There has been a problem with your fetch operation: ${error.message}`
+        );
+        callback({ error: error.message });
+      });
+  }
 }
 
 module.exports = ChitterClient;

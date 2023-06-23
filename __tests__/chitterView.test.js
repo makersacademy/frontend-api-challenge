@@ -9,10 +9,12 @@ const ChitterClient = require("../src/clients/chitterClient");
 const fs = require("fs");
 
 describe("ChitterView", () => {
-  it("calls fetch and loads repo info", () => {
+  it("calls fetch and loads repo info, and shows correct info in modal when peep is clicked", () => {
     document.body.innerHTML = fs.readFileSync("./index.html");
+
     const mockClient = {
       loadPeeps: jest.fn(),
+      loadPeepById: jest.fn(),
     };
 
     const mockModel = {
@@ -22,16 +24,16 @@ describe("ChitterView", () => {
 
     const view = new ChitterView(mockModel, mockClient);
 
-    // Mock the peeps returned from the API
     const mockPeeps = [
       {
+        id: 1,
         user: { handle: "John" },
         body: "Hello World",
         created_at: "2023-06-20T12:34:56.789Z",
         likes: [{ user: { handle: "Alice" } }],
       },
-
       {
+        id: 2,
         user: { handle: "Smith" },
         body: "Bye World",
         created_at: "2022-07-20T12:34:56.789Z",
@@ -39,43 +41,43 @@ describe("ChitterView", () => {
       },
     ];
 
-    // Mock the behavior of loadPeeps method to call the callback with the mockPeeps
     mockClient.loadPeeps.mockImplementationOnce((callback) => {
       callback(mockPeeps);
+    });
+
+    mockClient.loadPeepById.mockImplementation((id, callback) => {
+      const peep = mockPeeps.find((peep) => peep.id === Number(id));
+      callback(peep);
     });
 
     mockModel.getPeeps.mockImplementationOnce(() => {
       return mockPeeps;
     });
 
-    // Call the displayPeepsFromApi method
     view.displayPeepsFromApi();
 
-    // Expect the loadPeeps method to be called with the callback
     expect(mockClient.loadPeeps).toHaveBeenCalledWith(expect.any(Function));
-
-    // Expect the setPeeps method to be called with the mockPeeps
     expect(mockModel.setPeeps).toHaveBeenCalledWith(mockPeeps);
 
-    // Expect the displayPeeps method to be called
     const peepContainers = document.querySelectorAll(".peep");
 
     peepContainers.forEach((peepContainer, index) => {
       const peep = mockPeeps[index];
-      console.log(peepContainer.querySelector("p.authorName"));
-
-      expect(peepContainer.querySelector("#author").textContent).toBe(
-        `Author: ${peep.user.handle}`
-      );
-      expect(peepContainer.querySelector("#content").textContent).toBe(
-        `Content: ${peep.body}`
-      );
-      expect(peepContainer.querySelector("#created_at").textContent).toBe(
-        `Created at: ${peep.created_at}`
-      );
-      expect(peepContainer.querySelector("#likes").textContent).toBe(
-        `Likes: ${peep.likes.length}👍`
-      );
+      peepContainer.click();
+      setTimeout(() => {
+        expect(document.querySelector("#peepBody").textContent).toEqual(
+          peep.body
+        );
+        expect(document.querySelector("#peepCreated").textContent).toBe(
+          `Created at: ${new Date(peep.created_at).toLocaleString()}`
+        );
+        expect(document.querySelector("#peepAuthor").textContent).toBe(
+          `Author: ${peep.user.handle}`
+        );
+        expect(document.querySelector("#peepLikes").textContent).toBe(
+          `Likes: ${peep.likes.length}`
+        );
+      }, 0); // a small delay
     });
   });
 
@@ -194,5 +196,75 @@ describe("ChitterView", () => {
 
     // Expect the peep input to be cleared
     expect(view.peepInput.value).toBe("");
+  });
+
+  describe("handlePeepClick", () => {
+    it("should load peep details and display them in the modal", () => {
+      // Mock peep data
+      const mockPeep = {
+        id: 1,
+        user: { handle: "John" },
+        body: "Hello World",
+        created_at: "2023-06-20T12:34:56.789Z",
+        likes: [{ user: { handle: "Alice" } }],
+      };
+
+      // Mock client
+      const mockClient = {
+        loadPeepById: jest.fn((peepId, callback) => {
+          // Simulate successful loading of peep details by calling the callback with the mockPeep object
+          callback(mockPeep);
+        }),
+      };
+
+      // Mock view
+      const view = new ChitterView({}, mockClient);
+
+      // Mock the modal elements
+      document.body.innerHTML = `
+        <div id="peepModal">
+          <span id="peepBody"></span>
+          <span id="peepCreated"></span>
+          <span id="peepAuthor"></span>
+          <span id="peepLikes"></span>
+        </div>
+      `;
+
+      // Mock the event and peepContainer
+      const event = {
+        currentTarget: {
+          dataset: {
+            peepId: "1",
+          },
+        },
+      };
+
+      const peepContainer = document.createElement("div");
+      peepContainer.classList.add("peep");
+      peepContainer.dataset.peepId = "1";
+
+      // Call the handlePeepClick method
+      view.handlePeepClick(event);
+
+      // Expect the loadPeepById method to be called with the correct peepId
+      expect(mockClient.loadPeepById).toHaveBeenCalledWith(
+        "1",
+        expect.any(Function)
+      );
+
+      // Expect the modal content to be updated with the peep details
+      expect(document.querySelector("#peepBody").textContent).toBe(
+        mockPeep.body
+      );
+      expect(document.querySelector("#peepCreated").textContent).toBe(
+        `Created at: ${mockPeep.created_at}`
+      );
+      expect(document.querySelector("#peepAuthor").textContent).toBe(
+        `Author: ${mockPeep.user.handle}`
+      );
+      expect(document.querySelector("#peepLikes").textContent).toBe(
+        `Likes: ${mockPeep.likes.length}👍`
+      );
+    });
   });
 });
