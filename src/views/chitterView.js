@@ -19,6 +19,7 @@ class ChitterView {
     this.logoutButton.addEventListener("click", () => {
       localStorage.removeItem("sessionKey");
       localStorage.removeItem("userId");
+      this.updatePeepsDisplay();
     });
     this.peepsContainer = document.querySelector("#peepsContainer");
     this.signupButton = document.querySelector("#signupButton");
@@ -70,6 +71,7 @@ class ChitterView {
     this.client.signupUser(user, (data) => {
       this.user = data;
       console.log("User signed up successfully");
+      alert("New account is succesfully created, please login to proceed");
       // Additional logic can be added here, such as displaying a success message or redirecting to a different page.
     });
   }
@@ -87,9 +89,11 @@ class ChitterView {
         localStorage.setItem("userId", data.user_id);
         localStorage.setItem("handle", this.user.handle);
         console.log("User logged in successfully");
+        alert("User logged in successfully");
         // Additional logic can be added here, such as displaying a success message or redirecting to a different page.
       } else {
         console.error("Error logging in user:", data.error);
+        alert("Oops something went wrong");
         // Additional error handling logic can be added here, such as displaying an error message to the user.
       }
     });
@@ -104,6 +108,7 @@ class ChitterView {
     }
 
     if (!this.user || !this.user.sessionKey) {
+      alert("Please log in first.");
       console.log("Please log in first.");
       return;
     }
@@ -150,6 +155,7 @@ class ChitterView {
       ).textContent = `Likes: ${peep.likes.length}👍`;
 
       if (this.user === null) {
+        alert("No user is logged in");
         console.log("No user is logged in");
         return;
       }
@@ -225,6 +231,7 @@ class ChitterView {
   }
   handleDeletePeep(peepId) {
     if (!this.user || !this.user.sessionKey) {
+      alert("Please log in first.");
       console.log("Please log in first.");
       return;
     }
