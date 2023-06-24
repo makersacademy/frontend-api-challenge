@@ -267,4 +267,69 @@ describe("ChitterView", () => {
       );
     });
   });
+
+  describe("handleLike", () => {
+    it("should like a peep successfully", () => {
+      document.body.innerHTML = fs.readFileSync("./index.html");
+
+      const mockUser = {
+        userId: 1,
+        sessionKey: "testSessionKey",
+        handle: "testUser",
+      };
+
+      const mockClient = {
+        likePeep: jest.fn((peepId, userId, sessionKey, callback) => {
+          // Simulate successful liking of peep
+          callback({});
+        }),
+      };
+
+      const view = new ChitterView({}, mockClient);
+      view.user = mockUser;
+
+      // Call the handleLike method
+      view.handleLike(1, {});
+
+      // Expect the likePeep method to be called with the correct arguments
+      expect(mockClient.likePeep).toHaveBeenCalledWith(
+        1,
+        mockUser.userId,
+        mockUser.sessionKey,
+        expect.any(Function)
+      );
+    });
+  });
+
+  describe("handleUnlike", () => {
+    it("should unlike a peep successfully", () => {
+      document.body.innerHTML = fs.readFileSync("./index.html");
+
+      const mockUser = {
+        userId: 1,
+        sessionKey: "testSessionKey",
+        handle: "testUser",
+      };
+      const mockClient = {
+        unlikePeep: jest.fn((peepId, userId, sessionKey, callback) => {
+          // Simulate successful unliking of peep
+          callback({});
+        }),
+      };
+
+      const view = new ChitterView({}, mockClient);
+      view.user = mockUser;
+
+      // Call the handleUnlike method
+      view.handleUnlike(1, {});
+
+      // Expect the unlikePeep method to be called with the correct arguments
+      expect(mockClient.unlikePeep).toHaveBeenCalledWith(
+        1,
+        mockUser.userId,
+        mockUser.sessionKey,
+        expect.any(Function)
+      );
+    });
+  });
 });
