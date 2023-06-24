@@ -137,11 +137,11 @@ class ChitterView {
       // update modal content with peep details
       const modal = document.querySelector("#peepModal");
       modal.querySelector("#peepBody").textContent = peep.body;
-
+      const date = new Date(peep.created_at);
       // add creation date, author and likes
       modal.querySelector(
         "#peepCreated"
-      ).textContent = `Created at: ${peep.created_at}`;
+      ).textContent = `Created at: ${date.toLocaleString()}`;
       modal.querySelector(
         "#peepAuthor"
       ).textContent = `Author: ${peep.user.handle}`;

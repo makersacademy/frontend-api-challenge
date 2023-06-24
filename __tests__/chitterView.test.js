@@ -69,8 +69,9 @@ describe("ChitterView", () => {
           peep.body
         );
         expect(document.querySelector("#peepCreated").textContent).toBe(
-          `Created at: ${new Date(peep.created_at).toLocaleString()}`
+          `Created at: ${new Date(mockPeep.created_at).toLocaleString()}`
         );
+
         expect(document.querySelector("#peepAuthor").textContent).toBe(
           `Author: ${peep.user.handle}`
         );
@@ -166,6 +167,7 @@ describe("ChitterView", () => {
 
     // Mock client
     const mockClient = {
+      loadPeeps: jest.fn(),
       createPeep: jest.fn((peep, sessionKey, callback) => {
         // Simulate successful creation by calling the callback with the peep data
         callback({
@@ -263,8 +265,9 @@ describe("ChitterView", () => {
         mockPeep.body
       );
       expect(document.querySelector("#peepCreated").textContent).toBe(
-        `Created at: ${mockPeep.created_at}`
+        `Created at: ${new Date(mockPeep.created_at).toLocaleString()}`
       );
+
       expect(document.querySelector("#peepAuthor").textContent).toBe(
         `Author: ${mockPeep.user.handle}`
       );
@@ -348,6 +351,7 @@ describe("ChitterView", () => {
       };
 
       const mockClient = {
+        loadPeeps: jest.fn(),
         deletePeep: jest.fn((peepId, sessionKey, callback) => {
           // Simulate successful deletion of peep
           callback({});
