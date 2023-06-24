@@ -8,11 +8,13 @@ class ChitterView {
 
     const storedSessionKey = localStorage.getItem("sessionKey");
     const storedUserId = localStorage.getItem("userId");
-    if (storedSessionKey && storedUserId) {
-      this.user = new ChitterUser(null, null);
+    const storedHandle = localStorage.getItem("handle");
+    if (storedSessionKey && storedUserId && storedHandle) {
+      this.user = new ChitterUser(storedHandle, null);
       this.user.setSessionKey(storedSessionKey);
       this.user.setUserId(storedUserId);
     }
+
     this.logoutButton = document.querySelector("#logoutButton");
     this.logoutButton.addEventListener("click", () => {
       localStorage.removeItem("sessionKey");
@@ -83,6 +85,7 @@ class ChitterView {
         this.user.setUserId(data.user_id);
         localStorage.setItem("sessionKey", data.session_key);
         localStorage.setItem("userId", data.user_id);
+        localStorage.setItem("handle", this.user.handle);
         console.log("User logged in successfully");
         // Additional logic can be added here, such as displaying a success message or redirecting to a different page.
       } else {
@@ -118,6 +121,7 @@ class ChitterView {
         console.error("Error creating peep:", data.error);
         // Additional error handling logic can be added here, such as displaying an error message to the user.
       }
+      this.updatePeepsDisplay();
     });
 
     // Clear the peep input after creating a peep
@@ -233,6 +237,19 @@ class ChitterView {
         console.error("Error deleting peep:", data.error);
         // Additional error handling logic can be added here, such as displaying an error message to the user.
       }
+      this.closeModal();
+      this.updatePeepsDisplay();
+    });
+  }
+
+  private;
+
+  updatePeepsDisplay() {
+    this.client.loadPeeps((data) => {
+      this.model.setPeeps(data);
+      // Before appending new peeps, clear out the old peeps
+      this.peepsContainer.innerHTML = "";
+      this.displayPeeps();
     });
   }
 }
