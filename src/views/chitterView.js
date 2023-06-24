@@ -6,6 +6,18 @@ class ChitterView {
     this.model = model;
     this.client = client;
 
+    const storedSessionKey = localStorage.getItem("sessionKey");
+    const storedUserId = localStorage.getItem("userId");
+    if (storedSessionKey && storedUserId) {
+      this.user = new ChitterUser(null, null);
+      this.user.setSessionKey(storedSessionKey);
+      this.user.setUserId(storedUserId);
+    }
+    this.logoutButton = document.querySelector("#logoutButton");
+    this.logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("sessionKey");
+      localStorage.removeItem("userId");
+    });
     this.peepsContainer = document.querySelector("#peepsContainer");
     this.signupButton = document.querySelector("#signupButton");
     this.loginButton = document.querySelector("#loginButton");
@@ -69,6 +81,8 @@ class ChitterView {
       if (data && !data.error) {
         this.user.setSessionKey(data.session_key); // Store the session key in the ChitterUser instance
         this.user.setUserId(data.user_id);
+        localStorage.setItem("sessionKey", data.session_key);
+        localStorage.setItem("userId", data.user_id);
         console.log("User logged in successfully");
         // Additional logic can be added here, such as displaying a success message or redirecting to a different page.
       } else {
@@ -90,13 +104,12 @@ class ChitterView {
       console.log("Please log in first.");
       return;
     }
-    console.log(this.user.userId);
-    console.log(this.user.sessionKey);
+
     const peep = {
       user_id: this.user.userId,
       body: peepText,
     };
-    console.log("Session Key: ", this.user.sessionKey);
+
     this.client.createPeep(peep, this.user.sessionKey, (data) => {
       if (data && !data.error) {
         console.log("Peep created successfully:", data);

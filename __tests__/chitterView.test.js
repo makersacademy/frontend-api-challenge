@@ -200,6 +200,11 @@ describe("ChitterView", () => {
 
   describe("handlePeepClick", () => {
     it("should load peep details and display them in the modal", () => {
+      // Mock local storage
+      global.localStorage = {
+        getItem: jest.fn().mockImplementation(() => null),
+      };
+
       // Mock peep data
       const mockPeep = {
         id: 1,
@@ -227,6 +232,7 @@ describe("ChitterView", () => {
           <span id="peepCreated"></span>
           <span id="peepAuthor"></span>
           <span id="peepLikes"></span>
+          <button id="likeButton"></button>
         </div>
       `;
 
