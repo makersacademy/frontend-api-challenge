@@ -140,6 +140,33 @@ class ChitterClient {
       .then((data) => callback(data))
       .catch((error) => callback({ error: error.message }));
   }
+
+  deletePeep(peepId, sessionKey, callback) {
+    fetch(`https://chitter-backend-api-v2.herokuapp.com/peeps/${peepId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token token=${sessionKey}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(JSON.stringify(error));
+          });
+        }
+        return null; // No content to return
+      })
+      .then((data) => {
+        if (data !== null) {
+          callback(JSON.parse(data));
+        } else {
+          callback(null);
+        }
+      })
+      .catch((error) => {
+        callback(error.message);
+      });
+  }
 }
 
 module.exports = ChitterClient;

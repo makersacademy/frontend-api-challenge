@@ -332,4 +332,34 @@ describe("ChitterView", () => {
       );
     });
   });
+
+  describe("handleDeletePeep", () => {
+    it("should delete a peep successfully", () => {
+      const mockUser = {
+        userId: 1,
+        sessionKey: "testSessionKey",
+        handle: "testUser",
+      };
+
+      const mockClient = {
+        deletePeep: jest.fn((peepId, sessionKey, callback) => {
+          // Simulate successful deletion of peep
+          callback({});
+        }),
+      };
+
+      const view = new ChitterView({}, mockClient);
+      view.user = mockUser;
+
+      // Call the handleDeletePeep method
+      view.handleDeletePeep(1);
+
+      // Expect the deletePeep method to be called with the correct arguments
+      expect(mockClient.deletePeep).toHaveBeenCalledWith(
+        1,
+        mockUser.sessionKey,
+        expect.any(Function)
+      );
+    });
+  });
 });

@@ -21,6 +21,8 @@ class ChitterView {
 
     this.closeModalButton = document.querySelector(".modal .close");
     this.closeModalButton.addEventListener("click", this.closeModal.bind(this));
+
+    this.deletePeepButton = document.querySelector("#deletePeepButton");
   }
 
   displayPeeps() {
@@ -134,6 +136,12 @@ class ChitterView {
         console.log("No user is logged in");
         return;
       }
+      // checking if the user is owner of the peep, if yes it will display the delete button
+      if (peep.user.handle === this.user.handle) {
+        this.deletePeepButton.style.display = "block";
+      } else {
+        this.deletePeepButton.style.display = "none";
+      }
 
       const likeButton = modal.querySelector("#likeButton");
 
@@ -152,6 +160,10 @@ class ChitterView {
         }
       };
 
+      this.deletePeepButton.onclick = () => {
+        this.handleDeletePeep(peepId);
+      };
+
       // show the modal
       modal.style.display = "block";
     });
@@ -160,6 +172,7 @@ class ChitterView {
   closeModal() {
     const modal = document.querySelector("#peepModal");
     modal.style.display = "none";
+    this.deletePeepButton.style.display = "none"; // Hide the delete button
   }
 
   handleLike(peepId, likeButton) {
@@ -192,6 +205,22 @@ class ChitterView {
         }
       }
     );
+  }
+  handleDeletePeep(peepId) {
+    if (!this.user || !this.user.sessionKey) {
+      console.log("Please log in first.");
+      return;
+    }
+
+    this.client.deletePeep(peepId, this.user.sessionKey, (data) => {
+      if (data && !data.error) {
+        console.log("Peep deleted successfully:", data);
+        // Additional logic can be added here, such as removing the peep from the list or updating the display.
+      } else {
+        console.error("Error deleting peep:", data.error);
+        // Additional error handling logic can be added here, such as displaying an error message to the user.
+      }
+    });
   }
 }
 
