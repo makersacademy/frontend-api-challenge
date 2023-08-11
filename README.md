@@ -2,6 +2,10 @@
 
 This is a small Twitter clone that allows users to post messages to a public stream. The backend API is already provided and hosted on Heroku. The task is to build a front-end single-page application (SPA) to interface with the API.
 
+## Screenshot
+
+![](./public/screenshot.png)
+
 ## Ruby Version
 
 If you're interested in an alternative implementation of this project using Ruby, you can check out the [Ruby version](https://github.com/Shakhrai8/cyber-twitter).
